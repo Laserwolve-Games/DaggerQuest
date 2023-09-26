@@ -1,0 +1,1 @@
+var nInstanceNumber = App.instanceName(); // The current instance number.

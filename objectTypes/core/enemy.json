@@ -1,0 +1,301 @@
+{
+	"name": "enemy",
+	"plugin-id": "Sprite",
+	"sid": 518395024005990,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "simpleName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 958210947506660
+		},
+		{
+			"name": "fullName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 988144193055206
+		},
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 280670260596109
+		},
+		{
+			"name": "currentHealth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 686871655432550
+		},
+		{
+			"name": "maxHealth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 267740942384062
+		},
+		{
+			"name": "attackSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 613468282844767
+		},
+		{
+			"name": "slashDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 857915232428568
+		},
+		{
+			"name": "smashDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 417592882703838
+		},
+		{
+			"name": "stabDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 601797503490626
+		},
+		{
+			"name": "coldDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 361238906418353
+		},
+		{
+			"name": "fireDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 386797975167481
+		},
+		{
+			"name": "lightningDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 204282384303313
+		},
+		{
+			"name": "arcaneDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 292478452258240
+		},
+		{
+			"name": "corruptDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 920038690379609
+		},
+		{
+			"name": "attributes",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 624942311539884
+		},
+		{
+			"name": "degrees",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 901683544696250
+		},
+		{
+			"name": "alerted",
+			"type": "boolean",
+			"desc": "Whether or not the enemy is aware of the player",
+			"show": true,
+			"sid": 659170211664084
+		},
+		{
+			"name": "attackRange",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 200710110755214
+		},
+		{
+			"name": "idleX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 927070847452949
+		},
+		{
+			"name": "idleY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 434362352426368
+		},
+		{
+			"name": "slashResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 633328326013027
+		},
+		{
+			"name": "smashResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 582122768254122
+		},
+		{
+			"name": "stabResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 296845589753750
+		},
+		{
+			"name": "coldResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 455805137943026
+		},
+		{
+			"name": "fireResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 895054958303484
+		},
+		{
+			"name": "lightningResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 368129485202405
+		},
+		{
+			"name": "arcaneResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 710633441953582
+		},
+		{
+			"name": "holyResistance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 800979097822039
+		},
+		{
+			"name": "alive",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 247303252181467
+		},
+		{
+			"name": "inRange",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 451787563168295
+		},
+		{
+			"name": "attacking",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 702172015302256
+		},
+		{
+			"name": "IsTarget",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 804968302980086
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "MoveTo",
+			"name": "MoveTo",
+			"sid": 149146662960358
+		},
+		{
+			"behaviorId": "LOS",
+			"name": "LineOfSight",
+			"sid": 906971099191366
+		},
+		{
+			"behaviorId": "custom",
+			"name": "Custom",
+			"sid": 889185486944472
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 204662495394984
+		},
+		{
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 372540028546814
+		},
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 832862683740903
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 2,
+						"height": 2,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 1,
+						"imageSpriteId": 2877749,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.5,
+								"y": -5
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 373683837649767,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 10
+			}
+		],
+		"subfolders": []
+	}
+}

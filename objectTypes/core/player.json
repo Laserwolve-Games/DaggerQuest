@@ -1,0 +1,228 @@
+{
+	"name": "player",
+	"plugin-id": "Sprite",
+	"sid": 690450040743179,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "degrees",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 333291429573460
+		},
+		{
+			"name": "currentHealth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 247291230881765
+		},
+		{
+			"name": "maxHealth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 825076560292166
+		},
+		{
+			"name": "healthRegen",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 489310121941773
+		},
+		{
+			"name": "currentMana",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 783968816955289
+		},
+		{
+			"name": "maxMana",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 577122986603851
+		},
+		{
+			"name": "manaRegen",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 416620320150077
+		},
+		{
+			"name": "blockChance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 570027713585262
+		},
+		{
+			"name": "slashDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 873839658390247
+		},
+		{
+			"name": "smashDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 944715971490021
+		},
+		{
+			"name": "stabDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 207604587019585
+		},
+		{
+			"name": "coldDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 868774105644083
+		},
+		{
+			"name": "fireDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 417929429531109
+		},
+		{
+			"name": "lightningDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 863343986164716
+		},
+		{
+			"name": "arcaneDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 806572042959072
+		},
+		{
+			"name": "holyDamage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 870602491291484
+		},
+		{
+			"name": "level",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 231237737142489
+		},
+		{
+			"name": "class",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 552884799527032
+		},
+		{
+			"name": "alive",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 289650528189284
+		},
+		{
+			"name": "movementSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 559826754171766
+		},
+		{
+			"name": "actionSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 471701441318471
+		},
+		{
+			"name": "absoluteMovingAngle",
+			"type": "number",
+			"desc": "the absolute moving angle of the player",
+			"show": true,
+			"sid": 537390759382388
+		},
+		{
+			"name": "pickupRange",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 289810211162941
+		},
+		{
+			"name": "isInsideBuilding",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 401070089941287
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "MoveTo",
+			"name": "MoveTo",
+			"sid": 207416876956988
+		},
+		{
+			"behaviorId": "bound",
+			"name": "BoundToLayout",
+			"sid": 820638607686932
+		},
+		{
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 811913334378350
+		},
+		{
+			"behaviorId": "custom",
+			"name": "Custom",
+			"sid": 783463831550089
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 2,
+						"height": 2,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 1,
+						"imageSpriteId": 7684184,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 706624594024376,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 10
+			}
+		],
+		"subfolders": []
+	}
+}

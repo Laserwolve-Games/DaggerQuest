@@ -1,0 +1,918 @@
+{
+	"projectFormatVersion": 1,
+	"savedWithRelease": 35800,
+	"name": "DaggerQuest",
+	"runtime": "c3",
+	"useWorker": "worker",
+	"bundleAddons": true,
+	"usedAddons": [
+		{
+			"type": "plugin",
+			"id": "AJAX",
+			"name": "AJAX",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "AdvancedRandom",
+			"name": "Advanced Random",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Arr",
+			"name": "Array",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Button",
+			"name": "Button",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Dictionary",
+			"name": "Dictionary",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Keyboard",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "LocalStorage",
+			"name": "Local storage",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "NinePatch",
+			"name": "9-patch",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "NodeWebkit",
+			"name": "NW.js",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "PlatformInfo",
+			"name": "Platform info",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TiledBg",
+			"name": "Tiled Background",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "video",
+			"name": "Video",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Anchor",
+			"name": "Anchor",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Bullet",
+			"name": "Bullet",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "DragnDrop",
+			"name": "Drag & Drop",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "LOS",
+			"name": "Line of sight",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "MoveTo",
+			"name": "Move To",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "NoSave",
+			"name": "No save",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Pin",
+			"name": "Pin",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "Sine",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Tween",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "bound",
+			"name": "Bound to layout",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "custom",
+			"name": "Custom",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "solid",
+			"name": "Solid",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "blurhorizontal",
+			"name": "Blur horizontal",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "blurvertical",
+			"name": "Blur vertical",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "brightness",
+			"name": "Brightness",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "glowhorizontal",
+			"name": "Glow horizontal",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "glowvertical",
+			"name": "Glow vertical",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "grayscale",
+			"name": "Grayscale",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "water",
+			"name": "Water",
+			"author": "Viktor Korsun",
+			"bundled": false
+		}
+	],
+	"uniqueId": "6qmjko7p97e",
+	"objectTypes": {
+		"items": [
+			"tutorial",
+			"nonCombatArea",
+			"CantClick"
+		],
+		"subfolders": [
+			{
+				"items": [
+					"AJAX",
+					"equipmentArray",
+					"keyboard",
+					"advancedRandom",
+					"mouse",
+					"browser",
+					"enemiesArray",
+					"abilitiesArray",
+					"modsArray",
+					"modTableNamesArray",
+					"video",
+					"gearQueueArray",
+					"modRelationshipsArray",
+					"settingsDictionary",
+					"abilityOptionsArray",
+					"PlatformInfo",
+					"NWjs",
+					"npcDialogArray",
+					"LocalStorage"
+				],
+				"subfolders": [],
+				"name": "peripherals"
+			},
+			{
+				"items": [],
+				"subfolders": [
+					{
+						"items": [
+							"healthCover",
+							"manaOrb",
+							"healthOrb",
+							"healthStatue",
+							"manaStatue",
+							"manaCover",
+							"orbCoverFront",
+							"orbCoverBack"
+						],
+						"subfolders": [],
+						"name": "orbs"
+					},
+					{
+						"items": [
+							"tooltipName",
+							"tooltipClass",
+							"tooltipDescription",
+							"tooltipLevel",
+							"tooltipLore",
+							"tooltip"
+						],
+						"subfolders": [],
+						"name": "tooltip"
+					},
+					{
+						"items": [
+							"logo",
+							"versionText",
+							"mainMenuStill"
+						],
+						"subfolders": [],
+						"name": "mainMenu"
+					},
+					{
+						"items": [
+							"loadingText",
+							"loadingTextBackground",
+							"loadingScreen",
+							"fader"
+						],
+						"subfolders": [],
+						"name": "loadingScreen"
+					},
+					{
+						"items": [
+							"chestPlaceholder",
+							"feetPlaceholder",
+							"handsPlaceholder",
+							"headPlaceholder",
+							"legsPlaceholder",
+							"mainHandPlaceholder",
+							"neckPlaceholder",
+							"offHandPlaceholder",
+							"ring2Placeholder",
+							"ringPlaceholder"
+						],
+						"subfolders": [],
+						"name": "placeholders"
+					},
+					{
+						"items": [
+							"characterStatue",
+							"inventoryStatue",
+							"abilityBarStatue",
+							"abilitySelectorStatue",
+							"escapeMenuStatue",
+							"settingsMenuStatue"
+						],
+						"subfolders": [],
+						"name": "statues"
+					},
+					{
+						"items": [
+							"autoEquip",
+							"fullscreen",
+							"shadows",
+							"staticText"
+						],
+						"subfolders": [],
+						"name": "settings"
+					},
+					{
+						"items": [
+							"slot",
+							"menu"
+						],
+						"subfolders": [],
+						"name": "components"
+					},
+					{
+						"items": [
+							"play",
+							"settings",
+							"exit",
+							"back",
+							"resume",
+							"reset",
+							"keyBindings",
+							"save",
+							"saveSuccessful"
+						],
+						"subfolders": [],
+						"name": "textButtons"
+					},
+					{
+						"items": [
+							"man_ability",
+							"abilitySlot"
+						],
+						"subfolders": [],
+						"name": "abilities"
+					},
+					{
+						"items": [
+							"comparisonTooltip",
+							"comparisonTooltipClass",
+							"comparisonTooltipDescription",
+							"comparisonTooltipLevel",
+							"comparisonTooltipLore",
+							"comparisonTooltipName"
+						],
+						"subfolders": [],
+						"name": "comparison tooltip"
+					},
+					{
+						"items": [
+							"enemyAttributes",
+							"enemyHealthBar",
+							"enemyHealthFrame",
+							"enemyName"
+						],
+						"subfolders": [],
+						"name": "enemyInfo"
+					},
+					{
+						"items": [
+							"dialog",
+							"dialogNpcName",
+							"dialogText"
+						],
+						"subfolders": [],
+						"name": "dialog"
+					}
+				],
+				"name": "overlay"
+			},
+			{
+				"items": [
+					"man",
+					"goblinArcher",
+					"goblinUnderling",
+					"goblinWarlock",
+					"guide"
+				],
+				"subfolders": [],
+				"name": "characters"
+			},
+			{
+				"items": [
+					"man_legsDefault_gear",
+					"man_headDefault_gear",
+					"man_chestDefault_gear",
+					"man_maraudersBracers_gear",
+					"man_maraudersStraps_gear",
+					"man_feetDefault_gear",
+					"man_simpleGloves_gear",
+					"man_leggings_gear",
+					"man_simpleShirt_gear",
+					"man_simpleShield_gear",
+					"man_simpleSword_gear",
+					"man_crudeHelmet_gear",
+					"man_ornateShield_gear",
+					"man_simpleHelmet_gear",
+					"man_simpleMace_gear",
+					"man_simplePants_gear",
+					"man_strappedBoots_gear"
+				],
+				"subfolders": [],
+				"name": "gear"
+			},
+			{
+				"items": [
+					"maraudersBracers_loot",
+					"crudeHelmet_loot",
+					"ornateShield_loot",
+					"simpleHelmet_loot",
+					"simpleMace_loot",
+					"simplePants_loot",
+					"strappedBoots_loot",
+					"maraudersStraps_loot",
+					"simpleGloves_loot",
+					"leggings_loot",
+					"simpleShirt_loot",
+					"simpleShield_loot",
+					"simpleSword_loot"
+				],
+				"subfolders": [],
+				"name": "loot"
+			},
+			{
+				"items": [
+					"maraudersBracers_item",
+					"crudeHelmet_item",
+					"simpleHelmet_item",
+					"simpleMace_item",
+					"simplePants_item",
+					"simpleShield_item",
+					"strappedBoots_item",
+					"maraudersStraps_item",
+					"simpleGloves_item",
+					"leggings_item",
+					"simpleShirt_item",
+					"ornateShield_item",
+					"simpleSword_item"
+				],
+				"subfolders": [],
+				"name": "items"
+			},
+			{
+				"items": [
+					"boundary",
+					"dirtBackground"
+				],
+				"subfolders": [],
+				"name": "layout"
+			},
+			{
+				"items": [
+					"enemy",
+					"player",
+					"projectile",
+					"npc"
+				],
+				"subfolders": [],
+				"name": "core"
+			},
+			{
+				"items": [
+					"man_shadow",
+					"goblinArcher_shadow",
+					"goblinUnderling_shadow",
+					"goblinWarlock_shadow",
+					"man_crudeHelmet_gear_shadow",
+					"man_headDefault_gear_shadow",
+					"man_leggings_gear_shadow",
+					"man_maraudersBracers_gear_shadow",
+					"man_maraudersStraps_gear_shadow",
+					"man_ornateShield_gear_shadow",
+					"man_simpleGloves_gear_shadow",
+					"man_simpleHelmet_gear_shadow",
+					"man_simpleMace_gear_shadow",
+					"man_simpleShield_gear_shadow",
+					"man_simpleShirt_gear_shadow",
+					"man_simpleSword_gear_shadow",
+					"man_strappedBoots_gear_shadow",
+					"guide_shadow",
+					"farmhouse_shadow",
+					"farmhouseTree_shadow",
+					"fenceHorizontal_shadow",
+					"fencePatchedHorizontal_shadow",
+					"fenceVertical_shadow",
+					"cottageExterior_shadow",
+					"windmillExterior_shadow",
+					"windmillFan_shadow",
+					"cart_shadow",
+					"fenceRight_shadow",
+					"fencePatchedLeft_shadow",
+					"fenceLeft_shadow",
+					"fencePatchedRight_shadow",
+					"man_chestDefault_gear_shadow",
+					"man_feetDefault_gear_shadow",
+					"man_legsDefault_gear_shadow",
+					"man_simplePants_gear_shadow"
+				],
+				"subfolders": [],
+				"name": "shadows"
+			},
+			{
+				"items": [
+					"guide_portrait"
+				],
+				"subfolders": [],
+				"name": "portraits"
+			},
+			{
+				"items": [
+					"fenceHorizontal",
+					"fencePatchedHorizontal",
+					"farmhouse",
+					"farmhouseTree",
+					"fenceVertical",
+					"cottageDoor",
+					"cottageExterior",
+					"cottageInterior",
+					"cottageProps",
+					"windmillDoor",
+					"windmillExterior",
+					"windmillFan",
+					"windmillFloorLevel",
+					"windmillInterior",
+					"windmillLowerStairs",
+					"windmillUpperStairs",
+					"cart",
+					"grass",
+					"fencePatchedLeft",
+					"fenceRight",
+					"fenceLeft",
+					"fencePatchedRight"
+				],
+				"subfolders": [],
+				"name": "props"
+			},
+			{
+				"items": [
+					"CursotTarget",
+					"EnemyTarget"
+				],
+				"subfolders": [],
+				"name": "Cursors"
+			}
+		]
+	},
+	"autosaveData": null,
+	"containers": [],
+	"families": {
+		"items": [
+			"gear",
+			"mainHand",
+			"offHand",
+			"loot",
+			"chest",
+			"item",
+			"invalidLocation",
+			"legs",
+			"head",
+			"hands",
+			"enemyBody",
+			"body",
+			"feet",
+			"sortable",
+			"prop",
+			"background",
+			"placeholder",
+			"queriedArrays",
+			"shadow",
+			"hasShadow",
+			"npcBody",
+			"portrait",
+			"statue",
+			"tooltipText",
+			"orb",
+			"ability",
+			"9PatchInvalidLocations",
+			"textButtons",
+			"comparisonTooltipText",
+			"9patchNoSave",
+			"textNoSave",
+			"tiledBgNoSave",
+			"door"
+		],
+		"subfolders": []
+	},
+	"layouts": {
+		"items": [
+			"layout"
+		],
+		"subfolders": []
+	},
+	"eventSheets": {
+		"items": [
+			"eventSheet"
+		],
+		"subfolders": []
+	},
+	"rootFileFolders": {
+		"script": {
+			"items": [],
+			"subfolders": []
+		},
+		"sound": {
+			"items": [],
+			"subfolders": []
+		},
+		"music": {
+			"items": [],
+			"subfolders": []
+		},
+		"video": {
+			"items": [
+				{
+					"name": "mainMenu.webm",
+					"type": "video/webm",
+					"sid": 455075727425904,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"font": {
+			"items": [
+				{
+					"name": "Grenze-SemiBold.woff2",
+					"type": "font/woff2",
+					"sid": 849155670428152,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Cinzel-SemiBold.woff2",
+					"type": "font/woff2",
+					"sid": 258657763936330,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Grenze-SemiBoldItalic.woff2",
+					"type": "font/woff2",
+					"sid": 908858589036901,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"icon": {
+			"items": [
+				{
+					"name": "icon-16.png",
+					"type": "image/png",
+					"sid": 155458515577179,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-32.png",
+					"type": "image/png",
+					"sid": 456185370889924,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-64.png",
+					"type": "image/png",
+					"sid": 464991951395600,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-128.png",
+					"type": "image/png",
+					"sid": 660804249112502,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-512.png",
+					"type": "image/png",
+					"sid": 964732919867352,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "loading-logo.png",
+					"type": "image/png",
+					"sid": 621136872608175,
+					"icon-info": {
+						"purpose": "loading-logo"
+					}
+				},
+				{
+					"name": "icon-256.png",
+					"type": "image/png",
+					"sid": 652281540239797,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"general": {
+			"items": [
+				{
+					"name": "equipment.json",
+					"type": "application/json",
+					"sid": 884988177623692,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "enemies.json",
+					"type": "application/json",
+					"sid": 150640229904579,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "abilities.json",
+					"type": "application/json",
+					"sid": 850923103170034,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "mods.json",
+					"type": "application/json",
+					"sid": 658717097293930,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "modRelationships.json",
+					"type": "application/json",
+					"sid": 338821489653653,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "elementStyles.css",
+					"type": "text/css",
+					"sid": 977819427936547,
+					"file-info": {
+						"purpose": "stylesheet"
+					}
+				},
+				{
+					"name": "npcDialog.json",
+					"type": "application/json",
+					"sid": 675520489143280,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		}
+	},
+	"timelines": {
+		"items": [],
+		"subfolders": [
+			{
+				"items": [],
+				"subfolders": []
+			}
+		]
+	},
+	"properties": {
+		"description": "An Action Roleplaying Game by Laserwolve Games",
+		"version": "0.2.3",
+		"author": "Laserwolve Games",
+		"authorEmail": "Support@LaserwolveGames.com",
+		"authorWebsite": "https://DaggerQuest.com/",
+		"appId": "com.LaserwolveGames.daggerQuest",
+		"pixelRounding": false,
+		"zAxisScale": "normalized",
+		"fov": 0.7853981633974483,
+		"useLoaderLayout": false,
+		"fullscreenMode": "scale-inner",
+		"fullscreenQuality": "high",
+		"viewportFit": "auto",
+		"backgroundColor": [
+			0,
+			0,
+			0,
+			0
+		],
+		"splashColor": [
+			0,
+			0,
+			0,
+			0
+		],
+		"useThemeColor": true,
+		"themeColor": [
+			0,
+			0,
+			0,
+			0
+		],
+		"orientations": "landscape",
+		"webgpu": "auto",
+		"gpuPreference": "high-performance",
+		"scriptsType": "module",
+		"framerateMode": "vsync",
+		"compositingMode": "standard",
+		"sampling": "trilinear",
+		"downscaling": "low",
+		"renderingMode": "2d",
+		"anisotropicFiltering": "16x",
+		"zNear": 1,
+		"zFar": 10000,
+		"maxSpriteSheetSize": 512,
+		"loaderStyle": "progress-logo",
+		"preloadSounds": true,
+		"cordovaiOSScheme": "app",
+		"cordovaAndroidScheme": "https",
+		"autoReloadScriptsOnPreview": false,
+		"exportFileStructure": "folders",
+		"uidAllocationMode": "increment"
+	},
+	"viewportWidth": 1920,
+	"viewportHeight": 1080,
+	"firstLayout": "layout"
+}

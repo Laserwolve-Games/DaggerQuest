@@ -11456,6 +11456,19 @@
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 591620327036336,
+											"parameters": {
+												"object-to-create": "lightningOrb",
+												"layer": "\"main\"",
+												"x": "enemy.X",
+												"y": "enemy.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
 										}
 									],
 									"sid": 406308995601874,
@@ -11470,9 +11483,46 @@
 													"parameters": {
 														"object": "projectile"
 													}
+												},
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 618628102218224,
+													"parameters": {
+														"object": "lightningOrb"
+													}
 												}
 											],
 											"actions": [
+												{
+													"id": "add-child",
+													"objectClass": "projectile",
+													"sid": 215832460537368,
+													"parameters": {
+														"child": "lightningOrb",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": true,
+														"transform-o": true,
+														"transform-z-elevation": true,
+														"transform-visibility": false,
+														"destroy-with-parent": true
+													}
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "lightningOrb",
+													"sid": 656885986086268,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "need lightning orb to turn visible after a set amount of time, but don't want to recalculate the wait down below"
+												},
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",

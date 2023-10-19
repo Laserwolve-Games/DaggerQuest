@@ -9861,9 +9861,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 632568917200217,
+											"sid": 836240726222999,
 											"parameters": {
-												"count": "4"
+												"count": "5"
 											}
 										}
 									],
@@ -9885,7 +9885,6 @@
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
 											"sid": 153383100038050,
-											"disabled": true,
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
@@ -9894,10 +9893,11 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 289099014543888,
+											"sid": 255914402663929,
+											"disabled": true,
 											"parameters": {
 												"instance-variable": "simpleName",
-												"value": "\"goblinUnderling\""
+												"value": "\"goblinArcher\""
 											}
 										},
 										{
@@ -10577,6 +10577,14 @@
 													"eventType": "block",
 													"conditions": [
 														{
+															"id": "for-each",
+															"objectClass": "System",
+															"sid": 744371686696271,
+															"parameters": {
+																"object": "enemy"
+															}
+														},
+														{
 															"id": "is-boolean-instance-variable-set",
 															"objectClass": "enemy",
 															"sid": 248326533263059,
@@ -10945,13 +10953,29 @@
 									"sid": 839528805683530
 								}
 							]
-						},
+						}
+					],
+					"sid": 346842453318444
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "enemy abilities",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
 						{
-							"eventType": "group",
-							"disabled": false,
-							"title": "enemy abilities",
-							"description": "",
-							"isActiveOnStart": true,
+							"functionName": "goblinUnderling",
+							"functionDescription": "",
+							"functionCategory": "enemies",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 429038780345131,
 							"children": [
 								{
 									"eventType": "variable",
@@ -10961,22 +10985,15 @@
 									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 314189069022261
+									"sid": 211932246081304
 								},
 								{
-									"functionName": "goblinUnderling",
-									"functionDescription": "",
-									"functionCategory": "enemies",
-									"functionReturnType": "none",
-									"functionCopyPicked": true,
-									"functionIsAsync": false,
-									"functionParameters": [],
-									"eventType": "function-block",
+									"eventType": "block",
 									"conditions": [
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 414727481527445,
+											"sid": 798162200338716,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
@@ -10987,7 +11004,7 @@
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
-											"sid": 173103747587188,
+											"sid": 965605275472030,
 											"parameters": {
 												"instance-variable": "attacking",
 												"value": "true"
@@ -10996,13 +11013,13 @@
 										{
 											"id": "stop",
 											"objectClass": "enemy",
-											"sid": 562029589479550,
+											"sid": 773381885453265,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 924046954851746,
+											"sid": 957952672967573,
 											"parameters": {
 												"animation": "\"attack_\" & enemy.degrees",
 												"from": "beginning"
@@ -11011,7 +11028,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 443759321071027,
+											"sid": 191487015686769,
 											"parameters": {
 												"variable": "waitPeriod",
 												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  38 / ticksPerSecond"
@@ -11020,7 +11037,7 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 553207084562162,
+											"sid": 504629123416583,
 											"parameters": {
 												"seconds": "waitPeriod"
 											}
@@ -11028,7 +11045,7 @@
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 994121322178260,
+											"sid": 407330687199050,
 											"parameters": {
 												"object-to-create": "projectile",
 												"layer": "\"mechanics\"",
@@ -11039,7 +11056,7 @@
 											}
 										}
 									],
-									"sid": 316648921474016,
+									"sid": 637095266380560,
 									"children": [
 										{
 											"eventType": "block",
@@ -11047,7 +11064,7 @@
 												{
 													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 697467653306280,
+													"sid": 306169381692502,
 													"parameters": {
 														"object": "projectile"
 													}
@@ -11057,7 +11074,7 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 811952393126488,
+													"sid": 435082607904322,
 													"parameters": {
 														"instance-variable": "friendly",
 														"value": "false"
@@ -11066,7 +11083,7 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 405020085390273,
+													"sid": 642441044173211,
 													"parameters": {
 														"instance-variable": "piercing",
 														"value": "true"
@@ -11075,16 +11092,16 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 116694269634660,
+													"sid": 421947269715217,
 													"parameters": {
 														"instance-variable": "range",
-														"value": "150"
+														"value": "enemy.attackRange"
 													}
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 677748892171178,
+													"sid": 625256602482310,
 													"parameters": {
 														"instance-variable": "slashDamage",
 														"value": "enemy.slashDamage"
@@ -11093,23 +11110,23 @@
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 715877049249147,
+													"sid": 868181777184268,
 													"parameters": {
-														"width": "128"
+														"width": "120"
 													}
 												},
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 977241841820648,
+													"sid": 176639158518050,
 													"parameters": {
-														"height": "Self.Width / 2"
+														"height": "Self.Width / 3"
 													}
 												},
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 351978106357000,
+													"sid": 184010790922265,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"speed": "700"
@@ -11118,7 +11135,7 @@
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 196839665461999,
+													"sid": 210312104926155,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -11127,7 +11144,7 @@
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 830436669194579,
+													"sid": 108628200063609,
 													"parameters": {
 														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
 													}
@@ -11135,388 +11152,423 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "enemy",
-													"sid": 484795178107208,
+													"sid": 228705299376612,
 													"parameters": {
 														"instance-variable": "attacking",
 														"value": "false"
 													}
 												}
 											],
-											"sid": 513633780153413
-										}
-									]
-								},
-								{
-									"functionName": "goblinArcher",
-									"functionDescription": "",
-									"functionCategory": "enemies",
-									"functionReturnType": "none",
-									"functionCopyPicked": true,
-									"functionIsAsync": false,
-									"functionParameters": [],
-									"eventType": "function-block",
-									"conditions": [
-										{
-											"id": "pick-children",
-											"objectClass": "enemy",
-											"sid": 399079871994690,
-											"parameters": {
-												"child": "enemyBody",
-												"which": "own"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 993226943777294,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "true"
-											}
-										},
-										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 639477461271616,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "enemyBody",
-											"sid": 913962417995025,
-											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 515070843217667,
-											"parameters": {
-												"variable": "waitPeriod",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  38 / ticksPerSecond"
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 552633407696358,
-											"parameters": {
-												"seconds": "waitPeriod"
-											}
-										},
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 122296907149957,
-											"parameters": {
-												"object-to-create": "projectile",
-												"layer": "\"mechanics\"",
-												"x": "enemy.X",
-												"y": "enemy.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 189165789185985,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 461774702995647,
-													"parameters": {
-														"object": "projectile"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 298067095392977,
-													"parameters": {
-														"instance-variable": "friendly",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 173333046701528,
-													"parameters": {
-														"instance-variable": "piercing",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 832296829382425,
-													"parameters": {
-														"instance-variable": "range",
-														"value": "150"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 751919677843867,
-													"parameters": {
-														"instance-variable": "slashDamage",
-														"value": "enemy.slashDamage"
-													}
-												},
-												{
-													"id": "set-width",
-													"objectClass": "projectile",
-													"sid": 567562281319104,
-													"parameters": {
-														"width": "128"
-													}
-												},
-												{
-													"id": "set-height",
-													"objectClass": "projectile",
-													"sid": 684066428244381,
-													"parameters": {
-														"height": "Self.Width / 2"
-													}
-												},
-												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 476842086238258,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "700"
-													}
-												},
-												{
-													"id": "set-angle-of-motion",
-													"objectClass": "projectile",
-													"sid": 471263387812331,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 671257241490566,
-													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 518704872325030,
-													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
-													}
-												}
-											],
-											"sid": 996453310413333
-										}
-									]
-								},
-								{
-									"functionName": "goblinWarlock",
-									"functionDescription": "",
-									"functionCategory": "enemies",
-									"functionReturnType": "none",
-									"functionCopyPicked": true,
-									"functionIsAsync": false,
-									"functionParameters": [],
-									"eventType": "function-block",
-									"conditions": [
-										{
-											"id": "pick-children",
-											"objectClass": "enemy",
-											"sid": 321215582548248,
-											"parameters": {
-												"child": "enemyBody",
-												"which": "own"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 569999598154455,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "true"
-											}
-										},
-										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 681543606633519,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "enemyBody",
-											"sid": 538689116334126,
-											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 954134668622098,
-											"parameters": {
-												"variable": "waitPeriod",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  38 / ticksPerSecond"
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 711354629333364,
-											"parameters": {
-												"seconds": "waitPeriod"
-											}
-										},
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 933269043669877,
-											"parameters": {
-												"object-to-create": "projectile",
-												"layer": "\"mechanics\"",
-												"x": "enemy.X",
-												"y": "enemy.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 691979318684605,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 447060820902179,
-													"parameters": {
-														"object": "projectile"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 124888872905664,
-													"parameters": {
-														"instance-variable": "friendly",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 618049727597793,
-													"parameters": {
-														"instance-variable": "piercing",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 106853523458469,
-													"parameters": {
-														"instance-variable": "range",
-														"value": "150"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 195884612101831,
-													"parameters": {
-														"instance-variable": "slashDamage",
-														"value": "enemy.slashDamage"
-													}
-												},
-												{
-													"id": "set-width",
-													"objectClass": "projectile",
-													"sid": 611077717554885,
-													"parameters": {
-														"width": "128"
-													}
-												},
-												{
-													"id": "set-height",
-													"objectClass": "projectile",
-													"sid": 294325629643884,
-													"parameters": {
-														"height": "Self.Width / 2"
-													}
-												},
-												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 438179079642761,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "700"
-													}
-												},
-												{
-													"id": "set-angle-of-motion",
-													"objectClass": "projectile",
-													"sid": 933994228964553,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 462135872323219,
-													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 251332273848094,
-													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
-													}
-												}
-											],
-											"sid": 230770637060771
+											"sid": 977939820763027
 										}
 									]
 								}
-							],
-							"sid": 963842056910697
+							]
+						},
+						{
+							"functionName": "goblinArcher",
+							"functionDescription": "",
+							"functionCategory": "enemies",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 266372004783406,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "waitPeriod",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 696087909733481
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 105445611718963,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 558507287337418,
+											"parameters": {
+												"instance-variable": "attacking",
+												"value": "true"
+											}
+										},
+										{
+											"id": "stop",
+											"objectClass": "enemy",
+											"sid": 740508463648355,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 924616726098714,
+											"parameters": {
+												"animation": "\"attack_\" & enemy.degrees",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 505834943870034,
+											"parameters": {
+												"variable": "waitPeriod",
+												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  6 / ticksPerSecond"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 820159986153971,
+											"parameters": {
+												"seconds": "waitPeriod"
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 363034684453033,
+											"parameters": {
+												"object-to-create": "projectile",
+												"layer": "\"mechanics\"",
+												"x": "enemy.X",
+												"y": "enemy.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										}
+									],
+									"sid": 816917315635176,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 796344370059456,
+													"parameters": {
+														"object": "projectile"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 309216381152305,
+													"parameters": {
+														"instance-variable": "friendly",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 115298856092433,
+													"parameters": {
+														"instance-variable": "piercing",
+														"value": "true"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "projectile",
+													"sid": 260498165103581,
+													"parameters": {
+														"instance-variable": "range",
+														"value": "enemy.attackRange"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "projectile",
+													"sid": 621337243746619,
+													"parameters": {
+														"instance-variable": "slashDamage",
+														"value": "enemy.slashDamage"
+													}
+												},
+												{
+													"id": "set-width",
+													"objectClass": "projectile",
+													"sid": 193861968963935,
+													"parameters": {
+														"width": "30"
+													}
+												},
+												{
+													"id": "set-height",
+													"objectClass": "projectile",
+													"sid": 365722857222348,
+													"parameters": {
+														"height": "Self.Width / 3"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 269862804231534,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "700"
+													}
+												},
+												{
+													"id": "set-angle-of-motion",
+													"objectClass": "projectile",
+													"sid": 667087146522934,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 239748351802532,
+													"parameters": {
+														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 808837922130560,
+													"parameters": {
+														"instance-variable": "attacking",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 370006946744075
+										}
+									]
+								}
+							]
+						},
+						{
+							"functionName": "goblinWarlock",
+							"functionDescription": "",
+							"functionCategory": "enemies",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 195491233080812,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "waitPeriod",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 851120241612677
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 314920875130410,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 142076905224775,
+											"parameters": {
+												"instance-variable": "attacking",
+												"value": "true"
+											}
+										},
+										{
+											"id": "stop",
+											"objectClass": "enemy",
+											"sid": 830657030129777,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 912767484979645,
+											"parameters": {
+												"animation": "\"attack_\" & enemy.degrees",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 963546350909828,
+											"parameters": {
+												"variable": "waitPeriod",
+												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  10 / ticksPerSecond"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 832629659398298,
+											"parameters": {
+												"seconds": "waitPeriod"
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 774645058329043,
+											"parameters": {
+												"object-to-create": "projectile",
+												"layer": "\"mechanics\"",
+												"x": "enemy.X",
+												"y": "enemy.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										}
+									],
+									"sid": 406308995601874,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 386414059219293,
+													"parameters": {
+														"object": "projectile"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 975528139394415,
+													"parameters": {
+														"instance-variable": "friendly",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 183054145863476,
+													"parameters": {
+														"instance-variable": "piercing",
+														"value": "true"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "projectile",
+													"sid": 436733010713003,
+													"parameters": {
+														"instance-variable": "range",
+														"value": "enemy.attackRange"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "projectile",
+													"sid": 278195394714033,
+													"parameters": {
+														"instance-variable": "slashDamage",
+														"value": "enemy.slashDamage"
+													}
+												},
+												{
+													"id": "set-width",
+													"objectClass": "projectile",
+													"sid": 675912856457757,
+													"parameters": {
+														"width": "30"
+													}
+												},
+												{
+													"id": "set-height",
+													"objectClass": "projectile",
+													"sid": 488612417025538,
+													"parameters": {
+														"height": "Self.Width / 3"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 776688734765434,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "700"
+													}
+												},
+												{
+													"id": "set-angle-of-motion",
+													"objectClass": "projectile",
+													"sid": 410567305766358,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 699846711223375,
+													"parameters": {
+														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 776723673493495,
+													"parameters": {
+														"instance-variable": "attacking",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 696474949340151
+										}
+									]
+								}
+							]
 						}
 					],
-					"sid": 346842453318444
+					"sid": 353498742385237
 				}
 			],
 			"sid": 617251843840566

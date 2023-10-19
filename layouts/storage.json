@@ -95,7 +95,61 @@
 						"x": 249,
 						"y": 155,
 						"width": 15,
-						"height": 10.666666666666666,
+						"height": 5,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "projectile",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 257,
+					"instanceVariables": {
+						"friendly": false,
+						"piercing": false,
+						"range": 0,
+						"slashDamage": 0,
+						"smashDamage": 0,
+						"stabDamage": 0,
+						"coldDamage": 0,
+						"fireDamage": 0,
+						"lightningDamage": 0,
+						"arcaneDamage": 0,
+						"holyDamage": 0,
+						"corruptDamage": 0
+					},
+					"behaviors": {
+						"Bullet": {
+							"properties": {
+								"speed": 400,
+								"acceleration": 0,
+								"gravity": 0,
+								"bounce-off-solids": false,
+								"set-angle": false,
+								"step": false,
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 339,
+						"y": 126,
+						"width": 60,
+						"height": 20,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -141,8 +195,8 @@
 	"sid": 712635808910082,
 	"nonworld-instances": [],
 	"effectTypes": [],
-	"width": 3840,
-	"height": 2160,
+	"width": 1024,
+	"height": 1024,
 	"unboundedScrolling": false,
 	"vpX": 0.5,
 	"vpY": 0.5,

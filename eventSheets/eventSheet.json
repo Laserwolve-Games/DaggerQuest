@@ -10389,6 +10389,46 @@
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 900647754600926,
+													"parameters": {
+														"instance-variable": "alive"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 544660977972298,
+													"parameters": {
+														"instance-variable": "alerted",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 163787051367073,
+													"parameters": {
+														"instance-variable": "inRange",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 563993700874420
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 963612318451755
+												},
+												{
 													"id": "has-los-to-object",
 													"objectClass": "enemy",
 													"sid": 286230012234224,
@@ -10449,6 +10489,11 @@
 										{
 											"eventType": "block",
 											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 957895485327835
+												},
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
@@ -11949,6 +11994,10 @@
 					"sid": 585039691434774
 				},
 				{
+					"eventType": "comment",
+					"text": "TODO: Add all other damage types"
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -11975,11 +12024,93 @@
 							"sid": 341924341314063,
 							"parameters": {
 								"instance-variable": "currentHealth",
-								"value": "projectile.slashDamage * (1 - Self.slashResistance)"
+								"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
 							}
 						}
 					],
-					"sid": 117313514456786
+					"sid": 117313514456786,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 585725641305748,
+									"parameters": {
+										"instance-variable": "piercing"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "projectile",
+									"sid": 141149116116226
+								}
+							],
+							"sid": 354997195148311
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "projectile",
+							"sid": 769464231029811,
+							"parameters": {
+								"object": "player"
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "projectile",
+							"sid": 945657032117679,
+							"parameters": {
+								"instance-variable": "friendly"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "player",
+							"sid": 107888251636126,
+							"parameters": {
+								"instance-variable": "currentHealth",
+								"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
+							}
+						}
+					],
+					"sid": 406495706780491,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 149277392961043,
+									"parameters": {
+										"instance-variable": "piercing"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "projectile",
+									"sid": 645439349336793
+								}
+							],
+							"sid": 242654464073193
+						}
+					]
 				}
 			],
 			"sid": 725204103231325

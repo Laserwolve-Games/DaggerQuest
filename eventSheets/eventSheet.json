@@ -13,6 +13,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "uidOfClicked",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "the UID of the out-of-range object that was clicked",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 177078912612098
+		},
+		{
+			"eventType": "variable",
 			"name": "dataLoaded",
 			"type": "boolean",
 			"initialValue": "false",
@@ -70,16 +80,6 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 900247445259502
-		},
-		{
-			"eventType": "variable",
-			"name": "uidOfClicked",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "the UID of the out-of-range object that was clicked",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 329086069473022
 		},
 		{
 			"eventType": "variable",
@@ -5226,22 +5226,6 @@
 									"text": "isometrically correct movement"
 								},
 								{
-									"eventType": "comment",
-									"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/4",
-									"text-color": [
-										0,
-										0,
-										1,
-										1
-									],
-									"background-color": [
-										1,
-										1,
-										1,
-										1
-									]
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -5339,6 +5323,15 @@
 												"variable": "isOnInteractCooldown"
 											},
 											"isInverted": true
+										},
+										{
+											"id": "compare-opacity",
+											"objectClass": "fader",
+											"sid": 323832919972461,
+											"parameters": {
+												"comparison": 0,
+												"opacity": "0"
+											}
 										},
 										{
 											"id": "mouse-button-is-down",
@@ -9800,19 +9793,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/39",
-							"text-color": [
-								0,
-								0,
-								1,
-								1
-							],
-							"background-color": [
-								1,
-								1,
-								1,
-								1
-							]
+							"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/11"
 						},
 						{
 							"id": "set-opacity",
@@ -11423,7 +11404,7 @@
 									"eventType": "variable",
 									"name": "MANIFESTATION_FRAME",
 									"type": "number",
-									"initialValue": "100",
+									"initialValue": "10",
 									"comment": "The (0-based) frame in which the projectile should manifest",
 									"isStatic": false,
 									"isConstant": true,

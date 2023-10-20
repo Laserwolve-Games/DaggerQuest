@@ -63,26 +63,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "fpsOfAnimations",
-			"type": "number",
-			"initialValue": "30",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 975162776320766
-		},
-		{
-			"eventType": "variable",
-			"name": "interactCooldown",
-			"type": "number",
-			"initialValue": "0.3",
-			"comment": "how frequently to let the player interact with things",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 759733211743524
-		},
-		{
-			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
@@ -103,7 +83,27 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ticksPerSecond",
+			"name": "FPS_OF_ANIMATIONS",
+			"type": "number",
+			"initialValue": "30",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 471018002704781
+		},
+		{
+			"eventType": "variable",
+			"name": "INTERACT_COOLDOWN",
+			"type": "number",
+			"initialValue": "0.3",
+			"comment": "how frequently to let the player interact with things",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 319367684950517
+		},
+		{
+			"eventType": "variable",
+			"name": "TICKS_PER_SECOND",
 			"type": "number",
 			"initialValue": "60",
 			"comment": "",
@@ -113,13 +113,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "animationDivisor",
+			"name": "ANIMATION_DIVISOR",
 			"type": "number",
 			"initialValue": "7",
 			"comment": "number by which to divide the movement speed to obtain the animation speed",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 916597361761975
+		},
+		{
+			"eventType": "variable",
+			"name": "QUARTER_OF_A_CIRCLE",
+			"type": "number",
+			"initialValue": "90",
+			"comment": "A quarter of the character circle, used for correcting projectile start locations",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 883872539904860
 		},
 		{
 			"eventType": "group",
@@ -1705,7 +1715,7 @@
 									"sid": 694946160892797,
 									"parameters": [
 										"\"idle\"",
-										"fpsOfAnimations",
+										"FPS_OF_ANIMATIONS",
 										"\"playFromBeginning\""
 									]
 								}
@@ -3560,7 +3570,7 @@
 											"sid": 397934085809959,
 											"parameters": [
 												"\"idle\"",
-												"fpsOfAnimations",
+												"FPS_OF_ANIMATIONS",
 												"\"playFromBeginning\""
 											]
 										},
@@ -4480,7 +4490,7 @@
 									"sid": 637328215420222,
 									"parameters": [
 										"\"idle\"",
-										"fpsOfAnimations",
+										"FPS_OF_ANIMATIONS",
 										"\"playFromBeginning\""
 									]
 								}
@@ -5075,7 +5085,7 @@
 									"sid": 952278306690971,
 									"parameters": [
 										"\"die\"",
-										"fpsOfAnimations",
+										"FPS_OF_ANIMATIONS",
 										"\"playFromBeginning\""
 									]
 								},
@@ -5303,7 +5313,7 @@
 											"objectClass": "System",
 											"sid": 646357893737341,
 											"parameters": {
-												"seconds": "interactCooldown"
+												"seconds": "INTERACT_COOLDOWN"
 											}
 										},
 										{
@@ -5397,7 +5407,7 @@
 															"sid": 678078874997710,
 															"parameters": [
 																"\"idle\"",
-																"fpsOfAnimations",
+																"FPS_OF_ANIMATIONS",
 																"\"playFromBeginning\""
 															]
 														},
@@ -5497,7 +5507,7 @@
 															"sid": 512504051309512,
 															"parameters": [
 																"\"idle\"",
-																"fpsOfAnimations",
+																"FPS_OF_ANIMATIONS",
 																"\"playFromBeginning\""
 															]
 														},
@@ -5883,7 +5893,7 @@
 											"sid": 813757426231788,
 											"parameters": [
 												"\"walk\"",
-												"player.movementSpeed / animationDivisor",
+												"player.movementSpeed / ANIMATION_DIVISOR",
 												"\"playFromBeginning\""
 											]
 										}
@@ -5917,7 +5927,7 @@
 											"sid": 713576676136872,
 											"parameters": [
 												"\"walk\"",
-												"player.movementSpeed / animationDivisor",
+												"player.movementSpeed / ANIMATION_DIVISOR",
 												"\"playFromCurrentFrame\""
 											]
 										}
@@ -5948,7 +5958,7 @@
 									"sid": 589735361435979,
 									"parameters": [
 										"\"idle\"",
-										"fpsOfAnimations",
+										"FPS_OF_ANIMATIONS",
 										"\"playFromBeginning\""
 									]
 								}
@@ -6185,7 +6195,7 @@
 											"objectClass": "System",
 											"sid": 509435642718061,
 											"parameters": {
-												"seconds": "ticksPerSecond / body.AnimationSpeed *  4 / ticksPerSecond"
+												"seconds": "TICKS_PER_SECOND / body.AnimationSpeed *  4 / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -6296,7 +6306,7 @@
 													"objectClass": "System",
 													"sid": 211717945170467,
 													"parameters": {
-														"seconds": "body.AnimationFrameCount / body.AnimationSpeed - ticksPerSecond / body.AnimationSpeed *  4 / ticksPerSecond"
+														"seconds": "body.AnimationFrameCount / body.AnimationSpeed - TICKS_PER_SECOND / body.AnimationSpeed *  4 / TICKS_PER_SECOND"
 													}
 												},
 												{
@@ -6331,7 +6341,7 @@
 													"sid": 784706056682974,
 													"parameters": [
 														"\"idle\"",
-														"fpsOfAnimations",
+														"FPS_OF_ANIMATIONS",
 														"\"playFromBeginning\""
 													]
 												}
@@ -11031,7 +11041,7 @@
 											"sid": 191487015686769,
 											"parameters": {
 												"variable": "waitPeriod",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  38 / ticksPerSecond"
+												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  38 / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -11232,7 +11242,7 @@
 											"sid": 505834943870034,
 											"parameters": {
 												"variable": "waitPeriod",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  6 / ticksPerSecond"
+												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  6 / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -11381,13 +11391,43 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "projectileSpeed",
+									"name": "PROJECTILE_SPEED",
 									"type": "number",
-									"initialValue": "0",
+									"initialValue": "600",
 									"comment": "needs to be a variable, as we need to read it before we set the projectile's speed",
-									"isStatic": true,
-									"isConstant": false,
+									"isStatic": false,
+									"isConstant": true,
 									"sid": 369324009696675
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_POINT_MIN_DISTANCE",
+									"type": "number",
+									"initialValue": "40",
+									"comment": "The shortest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 140676274655578
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_POINT_MAX_DISTANCE",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 768361143392393
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_FRAME",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "The (0-based) frame in which the projectile should manifest",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 521281225561699
 								},
 								{
 									"eventType": "variable",
@@ -11424,34 +11464,25 @@
 									],
 									"actions": [
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 746856387172263,
-											"parameters": {
-												"variable": "projectileSpeed",
-												"value": "600"
-											}
-										},
-										{
 											"type": "comment",
-											"text": "lerp between the number that looks good when facing right, and the number that looks good when facing up and down"
+											"text": "The point in time when the projectile should appear differs based on which direction the enemy is facing. (i.e., the distance between the enemy's origin and hand is drastically different if he's facing left, vs. if he's facing up)"
 										},
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 388293069507218,
+											"sid": 454840512096550,
 											"parameters": {
 												"variable": "projectileManifestationTime",
-												"value": "lerp(40, 100, abs(abs(enemy.degrees) - 90) / 90) / projectileSpeed"
+												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_OF_A_CIRCLE) / QUARTER_OF_A_CIRCLE) / PROJECTILE_SPEED"
 											}
 										},
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 581534777524547,
+											"sid": 682244044715001,
 											"parameters": {
 												"variable": "animationManifestationTime",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  10 / ticksPerSecond"
+												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -11485,6 +11516,10 @@
 											"parameters": {
 												"seconds": "animationManifestationTime - projectileManifestationTime"
 											}
+										},
+										{
+											"type": "comment",
+											"text": "Time the spawning of the projectile so it will pass over the manifestation point (the goblin warlock's left hand) during the same frame that the lightning orb disappears."
 										},
 										{
 											"id": "create-object",
@@ -11582,7 +11617,7 @@
 													"sid": 210847363802554,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "projectileSpeed"
+														"speed": "PROJECTILE_SPEED"
 													}
 												},
 												{
@@ -11592,6 +11627,10 @@
 													"parameters": {
 														"seconds": "projectileManifestationTime"
 													}
+												},
+												{
+													"type": "comment",
+													"text": "The projectile is now at the manifestation point. Spawn the lightning orb."
 												},
 												{
 													"id": "create-object",
@@ -11604,6 +11643,15 @@
 														"y": "projectile.Y",
 														"create-hierarchy": false,
 														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 389331601398312,
+													"parameters": {
+														"instance-variable": "enabled",
+														"value": "true"
 													}
 												}
 											],
@@ -11641,7 +11689,7 @@
 														},
 														{
 															"type": "comment",
-															"text": "wait until the animation is finished to set 'attacking' to false"
+															"text": "Wait until the animation is finished to set 'attacking' to false."
 														},
 														{
 															"id": "wait",
@@ -14526,7 +14574,7 @@
 							"sid": 388786730635919,
 							"parameters": [
 								"\"idle\"",
-								"fpsOfAnimations",
+								"FPS_OF_ANIMATIONS",
 								"\"playFromBeginning\""
 							]
 						},

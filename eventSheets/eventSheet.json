@@ -9861,9 +9861,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 836240726222999,
+											"sid": 870610430519349,
 											"parameters": {
-												"count": "5"
+												"count": "1"
 											}
 										}
 									],
@@ -9885,6 +9885,7 @@
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
 											"sid": 153383100038050,
+											"disabled": true,
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
@@ -9893,11 +9894,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 255914402663929,
-											"disabled": true,
+											"sid": 523566977526759,
 											"parameters": {
 												"instance-variable": "simpleName",
-												"value": "\"goblinArcher\""
+												"value": "\"goblinWarlock\""
 											}
 										},
 										{
@@ -11381,10 +11381,30 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "waitPeriod",
+									"name": "projectileSpeed",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "needs to be a variable, as we need to read it before we set the projectile's speed",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 369324009696675
+								},
+								{
+									"eventType": "variable",
+									"name": "projectileManifestationTime",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 195663232522458
+								},
+								{
+									"eventType": "variable",
+									"name": "animationManifestationTime",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 851120241612677
@@ -11403,6 +11423,37 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 746856387172263,
+											"parameters": {
+												"variable": "projectileSpeed",
+												"value": "600"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "lerp between the number that looks good when facing right, and the number that looks good when facing up and down"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 388293069507218,
+											"parameters": {
+												"variable": "projectileManifestationTime",
+												"value": "lerp(40, 100, abs(abs(enemy.degrees) - 90) / 90) / projectileSpeed"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 581534777524547,
+											"parameters": {
+												"variable": "animationManifestationTime",
+												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  10 / ticksPerSecond"
+											}
+										},
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
@@ -11428,42 +11479,20 @@
 											}
 										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 963546350909828,
-											"parameters": {
-												"variable": "waitPeriod",
-												"value": "ticksPerSecond / enemyBody.AnimationSpeed *  10 / ticksPerSecond"
-											}
-										},
-										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 832629659398298,
+											"sid": 256449875525655,
 											"parameters": {
-												"seconds": "waitPeriod"
+												"seconds": "animationManifestationTime - projectileManifestationTime"
 											}
 										},
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 774645058329043,
+											"sid": 893443883892980,
 											"parameters": {
 												"object-to-create": "projectile",
 												"layer": "\"mechanics\"",
-												"x": "enemy.X",
-												"y": "enemy.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										},
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 591620327036336,
-											"parameters": {
-												"object-to-create": "lightningOrb",
-												"layer": "\"main\"",
 												"x": "enemy.X",
 												"y": "enemy.Y",
 												"create-hierarchy": false,
@@ -11483,50 +11512,13 @@
 													"parameters": {
 														"object": "projectile"
 													}
-												},
-												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 618628102218224,
-													"parameters": {
-														"object": "lightningOrb"
-													}
 												}
 											],
 											"actions": [
 												{
-													"id": "add-child",
-													"objectClass": "projectile",
-													"sid": 215832460537368,
-													"parameters": {
-														"child": "lightningOrb",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": true,
-														"transform-o": true,
-														"transform-z-elevation": true,
-														"transform-visibility": false,
-														"destroy-with-parent": true
-													}
-												},
-												{
-													"id": "set-visible",
-													"objectClass": "lightningOrb",
-													"sid": 656885986086268,
-													"parameters": {
-														"visibility": "invisible"
-													}
-												},
-												{
-													"type": "comment",
-													"text": "need lightning orb to turn visible after a set amount of time, but don't want to recalculate the wait down below"
-												},
-												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 975528139394415,
+													"sid": 262185663752676,
 													"parameters": {
 														"instance-variable": "friendly",
 														"value": "false"
@@ -11535,16 +11527,16 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 183054145863476,
+													"sid": 895859226393996,
 													"parameters": {
 														"instance-variable": "piercing",
-														"value": "true"
+														"value": "false"
 													}
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 436733010713003,
+													"sid": 396653339179070,
 													"parameters": {
 														"instance-variable": "range",
 														"value": "enemy.attackRange"
@@ -11553,16 +11545,16 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 278195394714033,
+													"sid": 382332407981806,
 													"parameters": {
-														"instance-variable": "slashDamage",
-														"value": "enemy.slashDamage"
+														"instance-variable": "lightningDamage",
+														"value": "enemy.lightningDamage"
 													}
 												},
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 675912856457757,
+													"sid": 796599373521446,
 													"parameters": {
 														"width": "30"
 													}
@@ -11570,48 +11562,108 @@
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 488612417025538,
+													"sid": 449133120640062,
 													"parameters": {
 														"height": "Self.Width / 3"
 													}
 												},
 												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 776688734765434,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "700"
-													}
-												},
-												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 410567305766358,
+													"sid": 249640085068009,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
 													}
 												},
 												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 699846711223375,
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 210847363802554,
+													"behaviorType": "Bullet",
 													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
+														"speed": "projectileSpeed"
 													}
 												},
 												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 776723673493495,
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 811100475905046,
 													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
+														"seconds": "projectileManifestationTime"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 498554347597244,
+													"parameters": {
+														"object-to-create": "lightningOrb",
+														"layer": "\"main\"",
+														"x": "projectile.X",
+														"y": "projectile.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
 													}
 												}
 											],
-											"sid": 696474949340151
+											"sid": 696474949340151,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 829186448386174,
+															"parameters": {
+																"object": "lightningOrb"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "projectile",
+															"sid": 707237475102059,
+															"parameters": {
+																"child": "lightningOrb",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": true,
+																"transform-o": true,
+																"transform-z-elevation": true,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"type": "comment",
+															"text": "wait until the animation is finished to set 'attacking' to false"
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 722054214433292,
+															"parameters": {
+																"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "enemy",
+															"sid": 809107079836593,
+															"parameters": {
+																"instance-variable": "attacking",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 472629869572533
+												}
+											]
 										}
 									]
 								}

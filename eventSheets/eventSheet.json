@@ -3,86 +3,6 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "nextAvailableIdentifier",
-			"type": "number",
-			"initialValue": "1",
-			"comment": "Stores the next available identifier, to be assigned to equipment",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 782649170393674
-		},
-		{
-			"eventType": "variable",
-			"name": "uidOfClicked",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "the UID of the out-of-range object that was clicked",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 177078912612098
-		},
-		{
-			"eventType": "variable",
-			"name": "dataLoaded",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 244467423019426
-		},
-		{
-			"eventType": "variable",
-			"name": "characterLoaded",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 699653838409836
-		},
-		{
-			"eventType": "variable",
-			"name": "npcsLoaded",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 359113346407799
-		},
-		{
-			"eventType": "variable",
-			"name": "enemiesLoaded",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 554154862214930
-		},
-		{
-			"eventType": "variable",
-			"name": "abilitiesLoaded",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 791104036641885
-		},
-		{
-			"eventType": "variable",
-			"name": "isOnInteractCooldown",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 900247445259502
-		},
-		{
-			"eventType": "variable",
 			"name": "FPS_OF_ANIMATIONS",
 			"type": "number",
 			"initialValue": "30",
@@ -130,6 +50,96 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 883872539904860
+		},
+		{
+			"eventType": "variable",
+			"name": "ISOMETRIC_DIVIDER",
+			"type": "number",
+			"initialValue": "90",
+			"comment": "The number by which to divide projectile's and character's height to be properly isometric",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 449892706850942
+		},
+		{
+			"eventType": "variable",
+			"name": "nextAvailableIdentifier",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "Stores the next available identifier, to be assigned to equipment",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 995721705060518
+		},
+		{
+			"eventType": "variable",
+			"name": "uidOfClicked",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "the UID of the out-of-range object that was clicked",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 849112042530215
+		},
+		{
+			"eventType": "variable",
+			"name": "dataLoaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 541734374862868
+		},
+		{
+			"eventType": "variable",
+			"name": "characterLoaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 110986848731057
+		},
+		{
+			"eventType": "variable",
+			"name": "npcsLoaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 313952944655562
+		},
+		{
+			"eventType": "variable",
+			"name": "enemiesLoaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 133692535627532
+		},
+		{
+			"eventType": "variable",
+			"name": "abilitiesLoaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 107174281886995
+		},
+		{
+			"eventType": "variable",
+			"name": "isOnInteractCooldown",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 822176132467234
 		},
 		{
 			"eventType": "group",
@@ -10970,13 +10980,43 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "waitPeriod",
+									"name": "PROJECTILE_SPEED",
+									"type": "number",
+									"initialValue": "700",
+									"comment": "The speed of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 421665011073282
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_FRAME",
+									"type": "number",
+									"initialValue": "38",
+									"comment": "The (0-based) frame in which the projectile should manifest",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 433125076602187
+								},
+								{
+									"eventType": "variable",
+									"name": "SIZE",
+									"type": "number",
+									"initialValue": "120",
+									"comment": "The size of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 968347307715670
+								},
+								{
+									"eventType": "variable",
+									"name": "animationManifestationTime",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 211932246081304
+									"sid": 525463239267531
 								},
 								{
 									"eventType": "block",
@@ -10992,6 +11032,15 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 825585027959434,
+											"parameters": {
+												"variable": "animationManifestationTime",
+												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+											}
+										},
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
@@ -11017,20 +11066,11 @@
 											}
 										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 191487015686769,
-											"parameters": {
-												"variable": "waitPeriod",
-												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  38 / TICKS_PER_SECOND"
-											}
-										},
-										{
 											"id": "wait",
 											"objectClass": "System",
 											"sid": 504629123416583,
 											"parameters": {
-												"seconds": "waitPeriod"
+												"seconds": "animationManifestationTime"
 											}
 										},
 										{
@@ -11065,10 +11105,10 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 435082607904322,
+													"sid": 777565137465121,
 													"parameters": {
-														"instance-variable": "friendly",
-														"value": "false"
+														"instance-variable": "enabled",
+														"value": "true"
 													}
 												},
 												{
@@ -11101,26 +11141,26 @@
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 868181777184268,
+													"sid": 406621780057284,
 													"parameters": {
-														"width": "120"
+														"width": "SIZE"
 													}
 												},
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 176639158518050,
+													"sid": 297419088255885,
 													"parameters": {
-														"height": "Self.Width / 3"
+														"height": "Self.Width / ISOMETRIC_DIVIDER"
 													}
 												},
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 184010790922265,
+													"sid": 441011042745867,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "700"
+														"speed": "PROJECTILE_SPEED"
 													}
 												},
 												{
@@ -11137,7 +11177,7 @@
 													"objectClass": "System",
 													"sid": 108628200063609,
 													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
+														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
 													}
 												},
 												{
@@ -11375,7 +11415,7 @@
 									"name": "PROJECTILE_SPEED",
 									"type": "number",
 									"initialValue": "600",
-									"comment": "needs to be a variable, as we need to read it before we set the projectile's speed",
+									"comment": "The speed of the projectile",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 369324009696675
@@ -11412,13 +11452,23 @@
 								},
 								{
 									"eventType": "variable",
+									"name": "SIZE",
+									"type": "number",
+									"initialValue": "30",
+									"comment": "The size of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 311141190353756
+								},
+								{
+									"eventType": "variable",
 									"name": "projectileManifestationTime",
 									"type": "number",
 									"initialValue": "0",
 									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 195663232522458
+									"sid": 135630290224051
 								},
 								{
 									"eventType": "variable",
@@ -11428,7 +11478,7 @@
 									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 851120241612677
+									"sid": 861254738736715
 								},
 								{
 									"eventType": "block",
@@ -11532,24 +11582,6 @@
 											],
 											"actions": [
 												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 262185663752676,
-													"parameters": {
-														"instance-variable": "friendly",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 895859226393996,
-													"parameters": {
-														"instance-variable": "piercing",
-														"value": "false"
-													}
-												},
-												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
 													"sid": 396653339179070,
@@ -11570,17 +11602,17 @@
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 796599373521446,
+													"sid": 173055489794593,
 													"parameters": {
-														"width": "30"
+														"width": "SIZE"
 													}
 												},
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 449133120640062,
+													"sid": 941564951635091,
 													"parameters": {
-														"height": "Self.Width / 3"
+														"height": "Self.Width / ISOMETRIC_DIVIDER"
 													}
 												},
 												{
@@ -11611,7 +11643,7 @@
 												},
 												{
 													"type": "comment",
-													"text": "The projectile is now at the manifestation point. Spawn the lightning orb."
+													"text": "The projectile is now at the manifestation point. Spawn the lightning orb and enable the projectile."
 												},
 												{
 													"id": "create-object",

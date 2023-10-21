@@ -6148,133 +6148,200 @@
 									"functionIsAsync": false,
 									"functionParameters": [],
 									"eventType": "function-block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 417279376105749,
-											"parameters": {
-												"object": "gear",
-												"expression": "gear.type",
-												"comparison": 0,
-												"value": "\"mainHand\""
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 725385373354233,
-											"parameters": {
-												"instance-variable": "currentMana",
-												"comparison": 5,
-												"value": "50"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "must have a weapon equipped and enough mana"
-										},
-										{
-											"id": "subtract-from-instvar",
-											"objectClass": "player",
-											"sid": 292703273319280,
-											"parameters": {
-												"instance-variable": "currentMana",
-												"value": "2"
-											}
-										},
-										{
-											"id": "stop",
-											"objectClass": "player",
-											"sid": 393221085649804,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"callFunction": "updateFacing",
-											"sid": 834207086762945,
-											"parameters": [
-												"mouse.X",
-												"mouse.Y"
-											]
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 353746224432749,
-											"parameters": {
-												"group-name": "\"movement\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 231435887947911,
-											"parameters": {
-												"group-name": "\"Man Upward Slash\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 410156274113782,
-											"parameters": {
-												"group-name": "\"facings\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "body",
-											"sid": 372691237668019,
-											"parameters": {
-												"animation": "\"upwardSlash_\" & player.degrees",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-animation-speed",
-											"objectClass": "body",
-											"sid": 541008262873611,
-											"parameters": {
-												"speed": "player.actionSpeed"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "the 4 here is the 0-based frame to fire the projectile on"
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 509435642718061,
-											"parameters": {
-												"seconds": "TICKS_PER_SECOND / body.AnimationSpeed *  4 / TICKS_PER_SECOND"
-											}
-										},
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 538961495854265,
-											"parameters": {
-												"object-to-create": "projectile",
-												"layer": "\"mechanics\"",
-												"x": "player.X",
-												"y": "player.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										},
-										{
-											"type": "comment",
-											"text": "These waits mean we can handle everything pertaining to a particular ability within it's designated function. This prevents us, however, from implemented functionality such as silencing the player or an enemy mid-ability."
-										}
-									],
+									"conditions": [],
+									"actions": [],
 									"sid": 839839600918941,
 									"children": [
+										{
+											"eventType": "variable",
+											"name": "MANA_COST",
+											"type": "number",
+											"initialValue": "2",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 417560487113981
+										},
+										{
+											"eventType": "variable",
+											"name": "PROJECTILE_SPEED",
+											"type": "number",
+											"initialValue": "700",
+											"comment": "The speed of the projectile",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 533709240996136
+										},
+										{
+											"eventType": "variable",
+											"name": "MANIFESTATION_FRAME",
+											"type": "number",
+											"initialValue": "4",
+											"comment": "The (0-based) frame in which the projectile should manifest",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 198117948289843
+										},
+										{
+											"eventType": "variable",
+											"name": "SIZE",
+											"type": "number",
+											"initialValue": "126",
+											"comment": "The size of the projectile",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 350014471127298
+										},
+										{
+											"eventType": "variable",
+											"name": "RANGE",
+											"type": "number",
+											"initialValue": "150",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 160173397656657
+										},
+										{
+											"eventType": "variable",
+											"name": "waitPeriod",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "How long to wait (in seconds) after the start of the animation before generating the projectile",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 572448180230308
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 108778444465957,
+													"parameters": {
+														"object": "gear",
+														"expression": "gear.type",
+														"comparison": 0,
+														"value": "\"mainHand\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 153876308713924,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"comparison": 5,
+														"value": "MANA_COST"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "must have a weapon equipped and enough mana"
+												},
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 708904478501512,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"value": "MANA_COST"
+													}
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 862574879045827,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "updateFacing",
+													"sid": 737373599081057,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y"
+													]
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 886168887415017,
+													"parameters": {
+														"group-name": "\"movement\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 451074730069151,
+													"parameters": {
+														"group-name": "\"Man Upward Slash\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 546480801579905,
+													"parameters": {
+														"group-name": "\"facings\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-animation",
+													"objectClass": "body",
+													"sid": 452672347087041,
+													"parameters": {
+														"animation": "\"upwardSlash_\" & player.degrees",
+														"from": "beginning"
+													}
+												},
+												{
+													"id": "set-animation-speed",
+													"objectClass": "body",
+													"sid": 238405076457835,
+													"parameters": {
+														"speed": "player.actionSpeed"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 134787444557260,
+													"parameters": {
+														"variable": "waitPeriod",
+														"value": "TICKS_PER_SECOND / body.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 927289292114547,
+													"parameters": {
+														"seconds": "waitPeriod"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 850293852307025,
+													"parameters": {
+														"object-to-create": "projectile",
+														"layer": "\"mechanics\"",
+														"x": "player.X",
+														"y": "player.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												}
+											],
+											"sid": 711031212314139
+										},
 										{
 											"eventType": "block",
 											"conditions": [
@@ -6307,12 +6374,21 @@
 													}
 												},
 												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 381793933475815,
+													"parameters": {
+														"instance-variable": "enabled",
+														"value": "true"
+													}
+												},
+												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 493810727305846,
+													"sid": 824944653087112,
 													"parameters": {
 														"instance-variable": "range",
-														"value": "150"
+														"value": "RANGE"
 													}
 												},
 												{
@@ -6327,9 +6403,9 @@
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 618327782944650,
+													"sid": 554588784523189,
 													"parameters": {
-														"width": "128"
+														"width": "SIZE"
 													}
 												},
 												{
@@ -6343,10 +6419,10 @@
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 187475994167593,
+													"sid": 629958949126495,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "700"
+														"speed": "PROJECTILE_SPEED"
 													}
 												},
 												{
@@ -6361,9 +6437,9 @@
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 211717945170467,
+													"sid": 725126813020823,
 													"parameters": {
-														"seconds": "body.AnimationFrameCount / body.AnimationSpeed - TICKS_PER_SECOND / body.AnimationSpeed *  4 / TICKS_PER_SECOND"
+														"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
 													}
 												},
 												{

@@ -1,11 +1,11 @@
 var oContentMgr = App.getContentMgr();
 var nTotalNumberOfInstances = App.scriptArgs[0];
-oContentMgr.openFile('C:assets/templates/masterTemplate.duf', false);
+oContentMgr.openFile('C:/assets/templates/masterTemplate.duf', false);
 
 if (nTotalNumberOfInstances)
 {
 	var nInstanceNumber = App.instanceName();
-	var oInputDirectory = new DzDir('C:assets/input');
+	var oInputDirectory = new DzDir('C:/assets/input');
 	var aCharacters = oInputDirectory.getFilesFromDir(['*_character.duf'], true);
 	var aAnimations = oInputDirectory.getFilesFromDir(['*_animation.duf'], true);
 	var aGear = oInputDirectory.getFilesFromDir(['*_gear.duf'], true);
@@ -47,7 +47,7 @@ if (nTotalNumberOfInstances)
 	/*********************************************************************/
 	function renderCore(sName, sAnimationName, bIsGear, bIsShadow)
 	{
-		for (var i = 0; i != aChildPropertyControllers.length; i++) // then for each of the child property controllers...
+		if (aChildPropertyControllers) for (var i = 0; i != aChildPropertyControllers.length; i++) // then for each of the child property controllers...
 		{
 			/* 
 			Use the name of the property in the "Custom" category to find the property to which to link it.

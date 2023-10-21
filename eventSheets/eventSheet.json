@@ -9992,9 +9992,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 195909978946757,
+											"sid": 781854039268590,
 											"parameters": {
-												"count": "1"
+												"count": "5"
 											}
 										}
 									],
@@ -10016,19 +10016,9 @@
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
 											"sid": 153383100038050,
-											"disabled": true,
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 523566977526759,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "\"goblinWarlock\""
 											}
 										},
 										{
@@ -11368,13 +11358,73 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "waitPeriod",
+									"name": "PROJECTILE_SPEED",
+									"type": "number",
+									"initialValue": "600",
+									"comment": "The speed of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 740015134778544
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_POINT_MIN_DISTANCE",
+									"type": "number",
+									"initialValue": "35",
+									"comment": "The shortest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 340139789282625
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_POINT_MAX_DISTANCE",
+									"type": "number",
+									"initialValue": "75",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 694013683657195
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_FRAME",
+									"type": "number",
+									"initialValue": "15",
+									"comment": "The (0-based) frame in which the projectile should manifest",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 163965109939145
+								},
+								{
+									"eventType": "variable",
+									"name": "SIZE",
+									"type": "number",
+									"initialValue": "15",
+									"comment": "The size of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 159897247114374
+								},
+								{
+									"eventType": "variable",
+									"name": "projectileManifestationTime",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 696087909733481
+									"sid": 228220816216230
+								},
+								{
+									"eventType": "variable",
+									"name": "animationManifestationTime",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 616956177701283
 								},
 								{
 									"eventType": "block",
@@ -11382,7 +11432,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 105445611718963,
+											"sid": 411494418569165,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
@@ -11391,9 +11441,31 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "The point in time when the projectile should appear differs based on which direction the enemy is facing. (i.e., the distance between the enemy's origin and hand is drastically different if he's facing left, vs. if he's facing up)"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 537894200545935,
+											"parameters": {
+												"variable": "projectileManifestationTime",
+												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 947719606185087,
+											"parameters": {
+												"variable": "animationManifestationTime",
+												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+											}
+										},
+										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
-											"sid": 558507287337418,
+											"sid": 393906545113120,
 											"parameters": {
 												"instance-variable": "attacking",
 												"value": "true"
@@ -11402,39 +11474,34 @@
 										{
 											"id": "stop",
 											"objectClass": "enemy",
-											"sid": 740508463648355,
+											"sid": 344316499934358,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 924616726098714,
+											"sid": 396083681322291,
 											"parameters": {
 												"animation": "\"attack_\" & enemy.degrees",
 												"from": "beginning"
 											}
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "wait",
 											"objectClass": "System",
-											"sid": 505834943870034,
+											"sid": 303134507357147,
 											"parameters": {
-												"variable": "waitPeriod",
-												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  6 / TICKS_PER_SECOND"
+												"seconds": "animationManifestationTime - projectileManifestationTime"
 											}
 										},
 										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 820159986153971,
-											"parameters": {
-												"seconds": "waitPeriod"
-											}
+											"type": "comment",
+											"text": "Time the spawning of the projectile so it will pass over the manifestation point (the goblin warlock's left hand) during the same frame that the lightning orb disappears."
 										},
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 363034684453033,
+											"sid": 610396205495670,
 											"parameters": {
 												"object-to-create": "projectile",
 												"layer": "\"mechanics\"",
@@ -11445,7 +11512,7 @@
 											}
 										}
 									],
-									"sid": 816917315635176,
+									"sid": 927697697940487,
 									"children": [
 										{
 											"eventType": "block",
@@ -11453,7 +11520,7 @@
 												{
 													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 796344370059456,
+													"sid": 759112214299253,
 													"parameters": {
 														"object": "projectile"
 													}
@@ -11461,27 +11528,9 @@
 											],
 											"actions": [
 												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 309216381152305,
-													"parameters": {
-														"instance-variable": "friendly",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 115298856092433,
-													"parameters": {
-														"instance-variable": "piercing",
-														"value": "true"
-													}
-												},
-												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 260498165103581,
+													"sid": 763337844007405,
 													"parameters": {
 														"instance-variable": "range",
 														"value": "enemy.attackRange"
@@ -11490,41 +11539,45 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 621337243746619,
+													"sid": 870877868545091,
 													"parameters": {
-														"instance-variable": "slashDamage",
-														"value": "enemy.slashDamage"
+														"instance-variable": "stabDamage",
+														"value": "enemy.stabDamage"
 													}
 												},
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 193861968963935,
+													"sid": 993569313954941,
 													"parameters": {
-														"width": "30"
+														"width": "SIZE"
 													}
 												},
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 365722857222348,
+													"sid": 655843181057595,
 													"parameters": {
-														"height": "Self.Width / 3"
+														"height": "Self.Width / ISOMETRIC_DIVIDER"
 													}
+												},
+												{
+													"type": "comment",
+													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
 												},
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 269862804231534,
+													"sid": 567062837203852,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "700"
+														"speed": "PROJECTILE_SPEED"
 													}
 												},
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 667087146522934,
+													"sid": 780402882790308,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -11533,22 +11586,104 @@
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 239748351802532,
+													"sid": 292088751147760,
 													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - waitPeriod"
+														"seconds": "projectileManifestationTime"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "The projectile is now at the manifestation point. Spawn the lightning orb and enable the projectile."
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 649637122511183,
+													"parameters": {
+														"object-to-create": "crossbowBolt",
+														"layer": "\"main\"",
+														"x": "projectile.X",
+														"y": "projectile.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
 													}
 												},
 												{
 													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 808837922130560,
+													"objectClass": "projectile",
+													"sid": 813987427983861,
 													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
+														"instance-variable": "enabled",
+														"value": "true"
 													}
 												}
 											],
-											"sid": 370006946744075
+											"sid": 733227132886190,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 688533767880599,
+															"parameters": {
+																"object": "crossbowBolt"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-animation",
+															"objectClass": "crossbowBolt",
+															"sid": 950018422987991,
+															"parameters": {
+																"animation": "str(enemy.degrees)",
+																"from": "beginning"
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "projectile",
+															"sid": 435817321659889,
+															"parameters": {
+																"child": "crossbowBolt",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": true,
+																"transform-o": true,
+																"transform-z-elevation": true,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"type": "comment",
+															"text": "Wait until the animation is finished to set 'attacking' to false."
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 146159583190059,
+															"parameters": {
+																"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "enemy",
+															"sid": 984896481978646,
+															"parameters": {
+																"instance-variable": "attacking",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 591159171678089
+												}
+											]
 										}
 									]
 								}
@@ -11643,7 +11778,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 314920875130410,
+											"sid": 398729890238329,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
@@ -11658,7 +11793,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 454840512096550,
+											"sid": 647248504293887,
 											"parameters": {
 												"variable": "projectileManifestationTime",
 												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
@@ -11667,7 +11802,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 682244044715001,
+											"sid": 214056221985056,
 											"parameters": {
 												"variable": "animationManifestationTime",
 												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
@@ -11676,7 +11811,7 @@
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
-											"sid": 142076905224775,
+											"sid": 931151037682390,
 											"parameters": {
 												"instance-variable": "attacking",
 												"value": "true"
@@ -11685,13 +11820,13 @@
 										{
 											"id": "stop",
 											"objectClass": "enemy",
-											"sid": 830657030129777,
+											"sid": 504078988693406,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 912767484979645,
+											"sid": 579305051478491,
 											"parameters": {
 												"animation": "\"attack_\" & enemy.degrees",
 												"from": "beginning"
@@ -11700,7 +11835,7 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 256449875525655,
+											"sid": 162354327100413,
 											"parameters": {
 												"seconds": "animationManifestationTime - projectileManifestationTime"
 											}
@@ -11712,7 +11847,7 @@
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 893443883892980,
+											"sid": 455174194533443,
 											"parameters": {
 												"object-to-create": "projectile",
 												"layer": "\"mechanics\"",
@@ -11723,7 +11858,7 @@
 											}
 										}
 									],
-									"sid": 406308995601874,
+									"sid": 493235774122151,
 									"children": [
 										{
 											"eventType": "block",
@@ -11731,7 +11866,7 @@
 												{
 													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 386414059219293,
+													"sid": 871316166713711,
 													"parameters": {
 														"object": "projectile"
 													}
@@ -11741,7 +11876,7 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 396653339179070,
+													"sid": 351385241594765,
 													"parameters": {
 														"instance-variable": "range",
 														"value": "enemy.attackRange"
@@ -11750,7 +11885,7 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 382332407981806,
+													"sid": 475567156572571,
 													"parameters": {
 														"instance-variable": "lightningDamage",
 														"value": "enemy.lightningDamage"
@@ -11759,7 +11894,7 @@
 												{
 													"id": "set-width",
 													"objectClass": "projectile",
-													"sid": 173055489794593,
+													"sid": 680499543400551,
 													"parameters": {
 														"width": "SIZE"
 													}
@@ -11767,7 +11902,7 @@
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 941564951635091,
+													"sid": 878916452073970,
 													"parameters": {
 														"height": "Self.Width / ISOMETRIC_DIVIDER"
 													}
@@ -11779,7 +11914,7 @@
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 744905927227821,
+													"sid": 110451981377936,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"speed": "PROJECTILE_SPEED"
@@ -11788,7 +11923,7 @@
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 249640085068009,
+													"sid": 820277257434389,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -11797,7 +11932,7 @@
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 811100475905046,
+													"sid": 585844038334198,
 													"parameters": {
 														"seconds": "projectileManifestationTime"
 													}
@@ -11809,7 +11944,7 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 498554347597244,
+													"sid": 979216626508753,
 													"parameters": {
 														"object-to-create": "lightningOrb",
 														"layer": "\"main\"",
@@ -11822,14 +11957,14 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "projectile",
-													"sid": 389331601398312,
+													"sid": 156392894582662,
 													"parameters": {
 														"instance-variable": "enabled",
 														"value": "true"
 													}
 												}
 											],
-											"sid": 696474949340151,
+											"sid": 936278893373169,
 											"children": [
 												{
 													"eventType": "block",
@@ -11837,7 +11972,7 @@
 														{
 															"id": "pick-last-created",
 															"objectClass": "System",
-															"sid": 829186448386174,
+															"sid": 602771202190050,
 															"parameters": {
 																"object": "lightningOrb"
 															}
@@ -11847,7 +11982,7 @@
 														{
 															"id": "add-child",
 															"objectClass": "projectile",
-															"sid": 707237475102059,
+															"sid": 166111228929101,
 															"parameters": {
 																"child": "lightningOrb",
 																"transform-x": true,
@@ -11868,7 +12003,7 @@
 														{
 															"id": "wait",
 															"objectClass": "System",
-															"sid": 722054214433292,
+															"sid": 703272956317424,
 															"parameters": {
 																"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
 															}
@@ -11876,14 +12011,14 @@
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "enemy",
-															"sid": 809107079836593,
+															"sid": 584435190493649,
 															"parameters": {
 																"instance-variable": "attacking",
 																"value": "false"
 															}
 														}
 													],
-													"sid": 472629869572533
+													"sid": 381061485361545
 												}
 											]
 										}
@@ -12215,6 +12350,15 @@
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
+									}
+								},
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "player",
+									"sid": 832299082059975,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "projectile.stabDamage * (1 - Self.physicalResistance)"
 									}
 								}
 							],

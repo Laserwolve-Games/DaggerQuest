@@ -3,23 +3,23 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "FPS_OF_ANIMATIONS",
-			"type": "number",
-			"initialValue": "30",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 471018002704781
-		},
-		{
-			"eventType": "variable",
 			"name": "INTERACT_COOLDOWN",
 			"type": "number",
 			"initialValue": "0.3",
-			"comment": "how frequently to let the player interact with things",
+			"comment": "How frequently (in seconds) to let the player interact with things.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 319367684950517
+		},
+		{
+			"eventType": "variable",
+			"name": "ANIMATION_DIVISOR",
+			"type": "number",
+			"initialValue": "7",
+			"comment": "number by which to divide the movement speed to obtain the animation speed",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 274670126082924
 		},
 		{
 			"eventType": "variable",
@@ -33,29 +33,39 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ANIMATION_DIVISOR",
+			"name": "ARC",
 			"type": "number",
-			"initialValue": "7",
-			"comment": "number by which to divide the movement speed to obtain the animation speed",
+			"initialValue": "22.5",
+			"comment": "The number of degrees in a circle divided by the number of angles our assets have.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 916597361761975
+			"sid": 363141446243930
 		},
 		{
 			"eventType": "variable",
-			"name": "QUARTER_OF_A_CIRCLE",
+			"name": "QUARTER_CIRCLE",
 			"type": "number",
 			"initialValue": "90",
-			"comment": "A quarter of the character circle, used for correcting projectile start locations",
+			"comment": "",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 883872539904860
 		},
 		{
 			"eventType": "variable",
+			"name": "HALF_CIRCLE",
+			"type": "number",
+			"initialValue": "180",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 192320948206579
+		},
+		{
+			"eventType": "variable",
 			"name": "ISOMETRIC_DIVIDER",
 			"type": "number",
-			"initialValue": "90",
+			"initialValue": "3",
 			"comment": "The number by which to divide projectile's and character's height to be properly isometric",
 			"isStatic": false,
 			"isConstant": true,
@@ -288,10 +298,10 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "npc",
-							"sid": 983311193438610,
+							"sid": 130198787549103,
 							"parameters": {
 								"instance-variable": "degrees",
-								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / 22.5) * 22.5"
+								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
 							}
 						},
 						{
@@ -346,10 +356,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "npc",
-									"sid": 270750691270698,
+									"sid": 964543860543322,
 									"parameters": {
 										"instance-variable": "degrees",
-										"value": "180"
+										"value": "HALF_CIRCLE"
 									}
 								}
 							],
@@ -1191,9 +1201,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "loot",
-											"sid": 673314269713725,
+											"sid": 874150850325430,
 											"parameters": {
-												"animation": "\"static_\" & (floor(random(1, 17)) * 22.5) - 180",
+												"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
 												"from": "beginning"
 											}
 										},
@@ -1722,10 +1732,10 @@
 								},
 								{
 									"callFunction": "updateAnimations",
-									"sid": 694946160892797,
+									"sid": 887995735821246,
 									"parameters": [
 										"\"idle\"",
-										"FPS_OF_ANIMATIONS",
+										"body.OriginalAnimationSpeed",
 										"\"playFromBeginning\""
 									]
 								}
@@ -3234,9 +3244,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "loot",
-													"sid": 771862003723927,
+													"sid": 500499623414376,
 													"parameters": {
-														"animation": "\"static_\" & (floor(random(1, 17)) * 22.5) - 180",
+														"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
 														"from": "beginning"
 													}
 												},
@@ -3577,10 +3587,10 @@
 										},
 										{
 											"callFunction": "updateAnimations",
-											"sid": 397934085809959,
+											"sid": 452588573889096,
 											"parameters": [
 												"\"idle\"",
-												"FPS_OF_ANIMATIONS",
+												"body.OriginalAnimationSpeed",
 												"\"playFromBeginning\""
 											]
 										},
@@ -3841,38 +3851,6 @@
 											],
 											"actions": [
 												{
-													"type": "comment",
-													"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/35",
-													"text-color": [
-														0,
-														0,
-														1,
-														1
-													],
-													"background-color": [
-														1,
-														1,
-														1,
-														1
-													]
-												},
-												{
-													"type": "comment",
-													"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/36",
-													"text-color": [
-														0,
-														0,
-														1,
-														1
-													],
-													"background-color": [
-														1,
-														1,
-														1,
-														1
-													]
-												},
-												{
 													"id": "load-object-images-by-name",
 													"objectClass": "System",
 													"sid": 141994234606501,
@@ -4114,7 +4092,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "this event needs to be above the sorting group to prevent a graphical glitch"
+							"text": "This event needs to be above the sorting group to prevent a graphical glitch. This uses Image Point 1 if it exists, otherwise it defaults to Image Point 0."
 						},
 						{
 							"id": "set-instvar-value",
@@ -4144,7 +4122,7 @@
 					"eventType": "group",
 					"disabled": false,
 					"title": "sorting",
-					"description": "",
+					"description": "Check for edge cases to indicate utilization of a custom sorting order, otherwise use the default.",
 					"isActiveOnStart": true,
 					"children": [
 						{
@@ -4323,6 +4301,10 @@
 							],
 							"actions": [
 								{
+									"type": "comment",
+									"text": "The default sorting order."
+								},
+								{
 									"id": "move-to-object",
 									"objectClass": "offHand",
 									"sid": 938400889925313,
@@ -4434,10 +4416,10 @@
 								{
 									"id": "set-moving-angle",
 									"objectClass": "player",
-									"sid": 903710838478062,
+									"sid": 195525601946456,
 									"behaviorType": "MoveTo",
 									"parameters": {
-										"angle": "90"
+										"angle": "QUARTER_CIRCLE"
 									}
 								},
 								{
@@ -4497,10 +4479,10 @@
 								},
 								{
 									"callFunction": "updateAnimations",
-									"sid": 637328215420222,
+									"sid": 216378451846316,
 									"parameters": [
 										"\"idle\"",
-										"FPS_OF_ANIMATIONS",
+										"body.OriginalAnimationSpeed",
 										"\"playFromBeginning\""
 									]
 								}
@@ -4818,10 +4800,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "player",
-											"sid": 370363002887553,
+											"sid": 838503794389132,
 											"parameters": {
 												"instance-variable": "degrees",
-												"value": "round(player.MoveTo.MovingAngle / 22.5) * 22.5"
+												"value": "round(player.MoveTo.MovingAngle / ARC) * ARC"
 											}
 										}
 									],
@@ -4849,10 +4831,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "player",
-											"sid": 483699238532964,
+											"sid": 474728216387351,
 											"parameters": {
 												"instance-variable": "degrees",
-												"value": "180"
+												"value": "HALF_CIRCLE"
 											}
 										}
 									],
@@ -4894,17 +4876,17 @@
 								{
 									"id": "set-height",
 									"objectClass": "healthOrb",
-									"sid": 838430323348818,
+									"sid": 378778446921463,
 									"parameters": {
-										"height": "clamp(player.currentHealth / player.maxHealth * 210, 0, 210)"
+										"height": "clamp(player.currentHealth / player.maxHealth * self.ImageHeight, 0, Self.ImageHeight)"
 									}
 								},
 								{
 									"id": "set-height",
 									"objectClass": "manaOrb",
-									"sid": 609764393613840,
+									"sid": 356871380388085,
 									"parameters": {
-										"height": "clamp(player.currentMana / player.maxMana * 210, 0, 210)"
+										"height": "clamp(player.currentMana / player.maxMana * Self.ImageHeight, 0, Self.ImageHeight)"
 									}
 								}
 							],
@@ -4926,10 +4908,6 @@
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "Don't let the Player's Mana or Health exceed the maximum"
-								},
-								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
 									"sid": 948005510207791,
@@ -4940,6 +4918,33 @@
 								}
 							],
 							"sid": 626822929654135
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 347193666593438,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 2,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 568140490164365,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 284450252978099
 						},
 						{
 							"eventType": "block",
@@ -4972,18 +4977,53 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 414329790171110,
+									"parameters": {
+										"instance-variable": "currentMana",
+										"comparison": 2,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 883040235264336,
+									"parameters": {
+										"instance-variable": "currentMana",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 793873407046539
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "is-boolean-instance-variable-set",
 									"objectClass": "player",
 									"sid": 440720543124514,
 									"parameters": {
 										"instance-variable": "alive"
 									}
+								},
+								{
+									"id": "every-x-seconds",
+									"objectClass": "System",
+									"sid": 945005244314587,
+									"parameters": {
+										"interval-seconds": "1.0"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "regen health and mana while not at max and not paused"
+									"text": "Regenerate health and mana while not at the maximum values."
 								}
 							],
 							"sid": 668684290774718,
@@ -5000,16 +5040,30 @@
 												"comparison": 2,
 												"value": "Self.maxHealth"
 											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 362708406627703,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 1,
+												"value": "0"
+											}
 										}
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "Regenerate health only when alive."
+										},
+										{
 											"id": "add-to-instvar",
 											"objectClass": "player",
-											"sid": 603804130668118,
+											"sid": 230359381703937,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "Self.healthRegen / 60 * timescale"
+												"value": "Self.healthRegen"
 											}
 										}
 									],
@@ -5033,10 +5087,10 @@
 										{
 											"id": "add-to-instvar",
 											"objectClass": "player",
-											"sid": 878876979790378,
+											"sid": 678430866172172,
 											"parameters": {
 												"instance-variable": "currentMana",
-												"value": "Self.ManaRegen / 60 * timescale"
+												"value": "Self.ManaRegen"
 											}
 										}
 									],
@@ -5050,10 +5104,10 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 494411441798188,
+									"sid": 220016749589610,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"comparison": 3,
+										"comparison": 0,
 										"value": "0"
 									}
 								}
@@ -5092,10 +5146,10 @@
 							"actions": [
 								{
 									"callFunction": "updateAnimations",
-									"sid": 952278306690971,
+									"sid": 789142860526151,
 									"parameters": [
 										"\"die\"",
-										"FPS_OF_ANIMATIONS",
+										"body.OriginalAnimationSpeed",
 										"\"playFromBeginning\""
 									]
 								},
@@ -5241,11 +5295,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 578540092978873,
+											"sid": 756696238464695,
 											"parameters": {
 												"instance-variable": "absoluteMovingAngle",
 												"comparison": 3,
-												"value": "90"
+												"value": "QUARTER_CIRCLE"
 											}
 										}
 									],
@@ -5253,10 +5307,10 @@
 										{
 											"id": "set-max-speed",
 											"objectClass": "player",
-											"sid": 946918027073857,
+											"sid": 800753080883890,
 											"behaviorType": "MoveTo",
 											"parameters": {
-												"max-speed": "Self.movementSpeed * lerp(1, sqrt(2)/2, unlerp(0, 90, Self.absoluteMovingAngle))"
+												"max-speed": "Self.movementSpeed * lerp(1, sqrt(2)/2, unlerp(0, QUARTER_CIRCLE, Self.absoluteMovingAngle))"
 											}
 										}
 									],
@@ -5275,10 +5329,10 @@
 										{
 											"id": "set-max-speed",
 											"objectClass": "player",
-											"sid": 399320722713690,
+											"sid": 900811105407312,
 											"behaviorType": "MoveTo",
 											"parameters": {
-												"max-speed": "Self.movementSpeed * lerp(sqrt(2)/2, 1, unlerp(90, 180, Self.absoluteMovingAngle))"
+												"max-speed": "Self.movementSpeed * lerp(sqrt(2)/2, 1, unlerp(QUARTER_CIRCLE, HALF_CIRCLE, Self.absoluteMovingAngle))"
 											}
 										}
 									],
@@ -5407,10 +5461,10 @@
 														},
 														{
 															"callFunction": "updateAnimations",
-															"sid": 678078874997710,
+															"sid": 907249120845704,
 															"parameters": [
 																"\"idle\"",
-																"FPS_OF_ANIMATIONS",
+																"body.OriginalAnimationSpeed",
 																"\"playFromBeginning\""
 															]
 														},
@@ -5507,10 +5561,10 @@
 														},
 														{
 															"callFunction": "updateAnimations",
-															"sid": 512504051309512,
+															"sid": 852737969328709,
 															"parameters": [
 																"\"idle\"",
-																"FPS_OF_ANIMATIONS",
+																"body.OriginalAnimationSpeed",
 																"\"playFromBeginning\""
 															]
 														},
@@ -5958,10 +6012,10 @@
 							"actions": [
 								{
 									"callFunction": "updateAnimations",
-									"sid": 589735361435979,
+									"sid": 457139795317091,
 									"parameters": [
 										"\"idle\"",
-										"FPS_OF_ANIMATIONS",
+										"body.OriginalAnimationSpeed",
 										"\"playFromBeginning\""
 									]
 								}
@@ -6125,10 +6179,10 @@
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 997812150594519,
+											"sid": 292703273319280,
 											"parameters": {
 												"instance-variable": "currentMana",
-												"value": "50"
+												"value": "2"
 											}
 										},
 										{
@@ -6281,9 +6335,9 @@
 												{
 													"id": "set-height",
 													"objectClass": "projectile",
-													"sid": 484062895432408,
+													"sid": 306850612120177,
 													"parameters": {
-														"height": "Self.Width / 2"
+														"height": "Self.Width / ISOMETRIC_DIVIDER"
 													}
 												},
 												{
@@ -6341,10 +6395,10 @@
 												},
 												{
 													"callFunction": "updateAnimations",
-													"sid": 784706056682974,
+													"sid": 222426207827924,
 													"parameters": [
 														"\"idle\"",
-														"FPS_OF_ANIMATIONS",
+														"body.OriginalAnimationSpeed",
 														"\"playFromBeginning\""
 													]
 												}
@@ -9862,7 +9916,7 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 870610430519349,
+											"sid": 195909978946757,
 											"parameters": {
 												"count": "1"
 											}
@@ -9912,9 +9966,9 @@
 										{
 											"id": "set-height",
 											"objectClass": "enemy",
-											"sid": 645724007798150,
+											"sid": 933176108737590,
 											"parameters": {
-												"height": "Self.Width * 1/3"
+												"height": "Self.Width / ISOMETRIC_DIVIDER"
 											}
 										},
 										{
@@ -10064,17 +10118,26 @@
 										{
 											"id": "set-range",
 											"objectClass": "enemy",
-											"sid": 734780333858861,
-											"behaviorType": "LineOfSight",
+											"sid": 319207890959408,
+											"behaviorType": "AlertLineOfSight",
 											"parameters": {
-												"range": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"sightRange\"))"
+												"range": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"alertRange\"))"
+											}
+										},
+										{
+											"id": "set-range",
+											"objectClass": "enemy",
+											"sid": 216372370672288,
+											"behaviorType": "AttackLineOfSight",
+											"parameters": {
+												"range": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
 											}
 										},
 										{
 											"id": "add-obstacle",
 											"objectClass": "enemy",
 											"sid": 937085143334034,
-											"behaviorType": "LineOfSight",
+											"behaviorType": "AlertLineOfSight",
 											"parameters": {
 												"obstacle": "prop"
 											}
@@ -10262,7 +10325,7 @@
 									"children": [
 										{
 											"eventType": "comment",
-											"text": "if enemies overlap, slowly push one of them away. This can cause enemies to overlap the player or props, so push them out if that happens."
+											"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
 										},
 										{
 											"eventType": "block",
@@ -10288,10 +10351,10 @@
 												{
 													"id": "move-at-angle",
 													"objectClass": "enemy",
-													"sid": 728157553223064,
+													"sid": 280555035841714,
 													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - 90",
-														"distance": ".5"
+														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+														"distance": "1"
 													}
 												}
 											],
@@ -10313,10 +10376,10 @@
 												{
 													"id": "move-at-angle",
 													"objectClass": "enemy",
-													"sid": 196479359536416,
+													"sid": 994235958291077,
 													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - 90",
-														"distance": ".5"
+														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+														"distance": "1"
 													}
 												}
 											],
@@ -10336,6 +10399,10 @@
 											],
 											"actions": [
 												{
+													"type": "comment",
+													"text": "This is untested."
+												},
+												{
 													"id": "stop",
 													"objectClass": "enemy",
 													"sid": 610736715772109,
@@ -10344,10 +10411,10 @@
 												{
 													"id": "move-at-angle",
 													"objectClass": "enemy",
-													"sid": 302300573047777,
+													"sid": 132585289809477,
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, prop.X, prop.Y)",
-														"distance": ".5"
+														"distance": "1"
 													}
 												}
 											],
@@ -10361,15 +10428,6 @@
 													"objectClass": "enemy",
 													"sid": 271441516135696,
 													"behaviorType": "MoveTo"
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "enemy",
-													"sid": 419885330126787,
-													"parameters": {
-														"child": "enemyBody",
-														"which": "own"
-													}
 												}
 											],
 											"actions": [
@@ -10391,137 +10449,14 @@
 												{
 													"id": "is-boolean-instance-variable-set",
 													"objectClass": "player",
-													"sid": 900647754600926,
+													"sid": 133463961443121,
 													"parameters": {
 														"instance-variable": "alive"
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 544660977972298,
-													"parameters": {
-														"instance-variable": "alerted",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 163787051367073,
-													"parameters": {
-														"instance-variable": "inRange",
-														"value": "false"
 													}
 												}
 											],
-											"sid": 563993700874420
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 963612318451755
-												},
-												{
-													"id": "has-los-to-object",
-													"objectClass": "enemy",
-													"sid": 286230012234224,
-													"behaviorType": "LineOfSight",
-													"parameters": {
-														"object": "player",
-														"image-point": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if they have line of sight, they may or may not also be in range"
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 736346859248245,
-													"parameters": {
-														"instance-variable": "alerted",
-														"value": "true"
-													}
-												}
-											],
-											"sid": 559074502599033,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 908136400954120,
-															"parameters": {
-																"object": "enemy",
-																"expression": "distance(enemy.X, enemy.Y, player.X, player.Y)",
-																"comparison": 3,
-																"value": "enemy.attackRange"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 847068310577022,
-															"parameters": {
-																"instance-variable": "inRange",
-																"value": "true"
-															}
-														}
-													],
-													"sid": 591827953544134
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 957895485327835
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 987687916873012,
-													"parameters": {
-														"object": "enemy",
-														"expression": "distance(enemy.X, enemy.Y, player.X, player.Y)",
-														"comparison": 4,
-														"value": "enemy.attackRange"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if they're not in range, they may or may not have line of sight"
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 563329931533064,
-													"parameters": {
-														"instance-variable": "inRange",
-														"value": "false"
-													}
-												}
-											],
-											"sid": 411977277908769,
+											"actions": [],
+											"sid": 344340264084454,
 											"children": [
 												{
 													"eventType": "block",
@@ -10529,29 +10464,130 @@
 														{
 															"id": "has-los-to-object",
 															"objectClass": "enemy",
-															"sid": 195172642874656,
-															"behaviorType": "LineOfSight",
+															"sid": 750999944473546,
+															"behaviorType": "AlertLineOfSight",
 															"parameters": {
 																"object": "player",
 																"image-point": "0"
-															},
-															"isInverted": true
+															}
 														}
 													],
 													"actions": [
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "enemy",
-															"sid": 453847106805907,
+															"sid": 468805914163938,
+															"parameters": {
+																"instance-variable": "alerted",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 106072688820374
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 963919031828765
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "enemy",
+															"sid": 444700362210378,
 															"parameters": {
 																"instance-variable": "alerted",
 																"value": "false"
 															}
 														}
 													],
-													"sid": 843225961900578
+													"sid": 136495679728278
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "has-los-to-object",
+															"objectClass": "enemy",
+															"sid": 732831820384353,
+															"behaviorType": "AttackLineOfSight",
+															"parameters": {
+																"object": "player",
+																"image-point": "0"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "enemy",
+															"sid": 809460822259912,
+															"parameters": {
+																"instance-variable": "inRange",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 346465699324260
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 521910528280756
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "enemy",
+															"sid": 576332721383233,
+															"parameters": {
+																"instance-variable": "inRange",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 722509629117577
 												}
 											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 829101298821673
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 437498915943067,
+													"parameters": {
+														"instance-variable": "alerted",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 242976139111348,
+													"parameters": {
+														"instance-variable": "inRange",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 161870780354494
 										},
 										{
 											"eventType": "block",
@@ -10578,10 +10614,10 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 334170811782710,
+													"sid": 660955818163334,
 													"parameters": {
 														"instance-variable": "degrees",
-														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / 22.5) * 22.5"
+														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
 													}
 												},
 												{
@@ -10676,10 +10712,10 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 929269334590625,
+													"sid": 715322932899274,
 													"parameters": {
 														"instance-variable": "degrees",
-														"value": "round(Self.MoveTo.MovingAngle / 22.5) * 22.5"
+														"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC"
 													}
 												},
 												{
@@ -10745,7 +10781,7 @@
 																	"id": "has-los-to-position",
 																	"objectClass": "enemy",
 																	"sid": 173177200831477,
-																	"behaviorType": "LineOfSight",
+																	"behaviorType": "AlertLineOfSight",
 																	"parameters": {
 																		"x": "Self.idleX",
 																		"y": "Self.idleY"
@@ -10989,10 +11025,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 872758525129347,
+											"sid": 816012387658166,
 											"parameters": {
 												"instance-variable": "degrees",
-												"value": "180"
+												"value": "HALF_CIRCLE"
 											}
 										}
 									],
@@ -11549,7 +11585,7 @@
 											"sid": 454840512096550,
 											"parameters": {
 												"variable": "projectileManifestationTime",
-												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_OF_A_CIRCLE) / QUARTER_OF_A_CIRCLE) / PROJECTILE_SPEED"
+												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
 											}
 										},
 										{
@@ -11661,21 +11697,25 @@
 													}
 												},
 												{
+													"type": "comment",
+													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 744905927227821,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "PROJECTILE_SPEED"
+													}
+												},
+												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
 													"sid": 249640085068009,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 210847363802554,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "PROJECTILE_SPEED"
 													}
 												},
 												{
@@ -12001,114 +12041,132 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "projectile",
-							"sid": 980155639317506,
-							"parameters": {
-								"object": "enemy"
-							}
-						},
-						{
 							"id": "is-boolean-instance-variable-set",
 							"objectClass": "projectile",
-							"sid": 172656301180449,
+							"sid": 866965572546389,
 							"parameters": {
-								"instance-variable": "friendly"
+								"instance-variable": "enabled"
 							}
 						}
 					],
-					"actions": [
-						{
-							"id": "subtract-from-instvar",
-							"objectClass": "enemy",
-							"sid": 341924341314063,
-							"parameters": {
-								"instance-variable": "currentHealth",
-								"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
-							}
-						}
-					],
-					"sid": 117313514456786,
+					"actions": [],
+					"sid": 932202329358705,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "on-collision-with-another-object",
+									"objectClass": "projectile",
+									"sid": 703840981642531,
+									"parameters": {
+										"object": "enemy"
+									}
+								},
+								{
 									"id": "is-boolean-instance-variable-set",
 									"objectClass": "projectile",
-									"sid": 585725641305748,
+									"sid": 790358766814217,
 									"parameters": {
-										"instance-variable": "piercing"
+										"instance-variable": "friendly"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "enemy",
+									"sid": 868142860697604,
+									"breakpoint": true,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
+									}
+								}
+							],
+							"sid": 673936274587997,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "projectile",
+											"sid": 930689339639153,
+											"parameters": {
+												"instance-variable": "piercing"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "projectile",
+											"sid": 712906424152491
+										}
+									],
+									"sid": 647399467179630
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-collision-with-another-object",
+									"objectClass": "projectile",
+									"sid": 921224045921521,
+									"parameters": {
+										"object": "player"
+									}
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 748826451704647,
+									"parameters": {
+										"instance-variable": "friendly"
 									},
 									"isInverted": true
 								}
 							],
 							"actions": [
 								{
-									"id": "destroy",
-									"objectClass": "projectile",
-									"sid": 141149116116226
-								}
-							],
-							"sid": 354997195148311
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "projectile",
-							"sid": 769464231029811,
-							"parameters": {
-								"object": "player"
-							}
-						},
-						{
-							"id": "is-boolean-instance-variable-set",
-							"objectClass": "projectile",
-							"sid": 945657032117679,
-							"parameters": {
-								"instance-variable": "friendly"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "subtract-from-instvar",
-							"objectClass": "player",
-							"sid": 107888251636126,
-							"parameters": {
-								"instance-variable": "currentHealth",
-								"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
-							}
-						}
-					],
-					"sid": 406495706780491,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "projectile",
-									"sid": 149277392961043,
+									"id": "subtract-from-instvar",
+									"objectClass": "player",
+									"sid": 962114783874109,
 									"parameters": {
-										"instance-variable": "piercing"
-									},
-									"isInverted": true
+										"instance-variable": "currentHealth",
+										"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
+									}
 								}
 							],
-							"actions": [
+							"sid": 591454218470020,
+							"children": [
 								{
-									"id": "destroy",
-									"objectClass": "projectile",
-									"sid": 645439349336793
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "projectile",
+											"sid": 830654479909252,
+											"parameters": {
+												"instance-variable": "piercing"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "projectile",
+											"sid": 413478000377979
+										}
+									],
+									"sid": 615426759922895
 								}
-							],
-							"sid": 242654464073193
+							]
 						}
 					]
 				}
@@ -14715,10 +14773,10 @@
 						},
 						{
 							"callFunction": "updateAnimations",
-							"sid": 388786730635919,
+							"sid": 516172736720725,
 							"parameters": [
 								"\"idle\"",
-								"FPS_OF_ANIMATIONS",
+								"body.OriginalAnimationSpeed",
 								"\"playFromBeginning\""
 							]
 						},

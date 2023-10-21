@@ -2043,22 +2043,22 @@
 							"uid": 374,
 							"instanceVariables": {
 								"degrees": 0,
-								"currentHealth": 1000,
-								"maxHealth": 1000,
+								"currentHealth": 100,
+								"maxHealth": 100,
 								"healthRegen": 1,
-								"currentMana": 1000,
-								"maxMana": 1000,
-								"manaRegen": 10,
+								"currentMana": 100,
+								"maxMana": 100,
+								"manaRegen": 1,
 								"blockChance": 0,
-								"slashDamage": 49,
-								"smashDamage": 10,
-								"stabDamage": 10,
-								"coldDamage": 10,
-								"fireDamage": 10,
-								"lightningDamage": 10,
-								"arcaneDamage": 10,
-								"holyDamage": 10,
-								"level": 10,
+								"slashDamage": 5,
+								"smashDamage": 5,
+								"stabDamage": 5,
+								"coldDamage": 5,
+								"fireDamage": 5,
+								"lightningDamage": 5,
+								"arcaneDamage": 5,
+								"holyDamage": 5,
+								"level": 5,
 								"class": "man",
 								"alive": true,
 								"movementSpeed": 200,
@@ -2190,11 +2190,174 @@
 								"angle": 0,
 								"zElevation": 0
 							}
+						},
+						{
+							"type": "projectile",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 258,
+							"instanceVariables": {
+								"friendly": false,
+								"piercing": false,
+								"range": 0,
+								"slashDamage": 0,
+								"smashDamage": 0,
+								"stabDamage": 0,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 0,
+								"arcaneDamage": 0,
+								"holyDamage": 0,
+								"corruptDamage": 0,
+								"enabled": false
+							},
+							"behaviors": {
+								"Bullet": {
+									"properties": {
+										"speed": 0,
+										"acceleration": 0,
+										"gravity": 0,
+										"bounce-off-solids": false,
+										"set-angle": false,
+										"step": false,
+										"enabled": true
+									}
+								}
+							},
+							"world": {
+								"x": 925,
+								"y": -317,
+								"width": 60,
+								"height": 20,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "enemy",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 259,
+							"instanceVariables": {
+								"simpleName": "",
+								"fullName": "",
+								"type": "",
+								"currentHealth": 0,
+								"maxHealth": 0,
+								"attackSpeed": 0,
+								"slashDamage": 0,
+								"smashDamage": 0,
+								"stabDamage": 0,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 0,
+								"arcaneDamage": 0,
+								"corruptDamage": 0,
+								"attributes": "",
+								"degrees": 0,
+								"alerted": false,
+								"attackRange": 0,
+								"idleX": 0,
+								"idleY": 0,
+								"physicalResistance": 0,
+								"coldResistance": 0,
+								"fireResistance": 0,
+								"lightningResistance": 0,
+								"arcaneResistance": 0,
+								"holyResistance": 0,
+								"alive": true,
+								"inRange": false,
+								"attacking": false
+							},
+							"behaviors": {
+								"MoveTo": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
+								},
+								"AlertLineOfSight": {
+									"properties": {
+										"obstacles": "custom",
+										"range": 500,
+										"cone-of-view": 360,
+										"use-collision-cells": true
+									}
+								},
+								"Custom": {
+									"properties": {
+										"stepping-mode": "none",
+										"pixels-per-step": 1,
+										"enabled": true
+									}
+								},
+								"Timer": {
+									"properties": {}
+								},
+								"Solid": {
+									"properties": {
+										"enabled": true,
+										"tags": ""
+									}
+								},
+								"Tween": {
+									"properties": {
+										"enabled": true
+									}
+								},
+								"AttackLineOfSight": {
+									"properties": {
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
+									}
+								}
+							},
+							"world": {
+								"x": 1264,
+								"y": -306,
+								"width": 15,
+								"height": 5,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
 						}
 					],
 					"sid": 988900429067042,
 					"effectTypes": [],
-					"isInitiallyVisible": false,
+					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
 					"color": [
 						1,

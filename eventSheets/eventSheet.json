@@ -9945,9 +9945,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 540812172670370,
+											"sid": 141457408265736,
 											"parameters": {
-												"count": "5"
+												"count": "11"
 											}
 										}
 									],
@@ -9972,6 +9972,15 @@
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 521184587334836,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "\"goblinWarlock\""
 											}
 										},
 										{
@@ -10128,6 +10137,15 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
+											"sid": 371268143992257,
+											"parameters": {
+												"instance-variable": "alertRange",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"alertRange\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
 											"sid": 483035637655814,
 											"parameters": {
 												"instance-variable": "movementSpeed",
@@ -10135,37 +10153,14 @@
 											}
 										},
 										{
-											"id": "set-range",
-											"objectClass": "enemy",
-											"sid": 319207890959408,
-											"behaviorType": "AlertLineOfSight",
-											"parameters": {
-												"range": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"alertRange\"))"
-											}
-										},
-										{
-											"id": "set-range",
-											"objectClass": "enemy",
-											"sid": 216372370672288,
-											"behaviorType": "AttackLineOfSight",
-											"parameters": {
-												"range": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
-											}
+											"type": "comment",
+											"text": "This might not need to be for each enemy, we should be able to do this just once."
 										},
 										{
 											"id": "add-obstacle",
 											"objectClass": "enemy",
 											"sid": 937085143334034,
-											"behaviorType": "AlertLineOfSight",
-											"parameters": {
-												"obstacle": "prop"
-											}
-										},
-										{
-											"id": "add-obstacle",
-											"objectClass": "enemy",
-											"sid": 208346508935494,
-											"behaviorType": "AttackLineOfSight",
+											"behaviorType": "LineOfSight",
 											"parameters": {
 												"obstacle": "prop"
 											}
@@ -10423,22 +10418,9 @@
 											"parameters": {
 												"instance-variable": "alive"
 											}
-										},
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 706847559783065,
-											"parameters": {
-												"object": "enemy"
-											}
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "This `for each` prevents enemies from using each other's variables."
-										}
-									],
+									"actions": [],
 									"sid": 101639443714332,
 									"children": [
 										{
@@ -10448,14 +10430,29 @@
 													"id": "has-los-to-object",
 													"objectClass": "enemy",
 													"sid": 676970214702117,
-													"behaviorType": "AlertLineOfSight",
+													"behaviorType": "LineOfSight",
 													"parameters": {
 														"object": "player",
 														"image-point": "0"
 													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 964408351043792,
+													"parameters": {
+														"instance-variable": "alertRange",
+														"comparison": 5,
+														"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+													}
 												}
 											],
-											"actions": [],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Check if the player is within the enemy's alert range ellipse, and if the enemy has Line of Sight to the player."
+												}
+											],
 											"sid": 756460331904798,
 											"children": [
 												{
@@ -10503,6 +10500,15 @@
 																}
 															],
 															"actions": [
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "enemy",
+																	"sid": 420997322686714,
+																	"parameters": {
+																		"instance-variable": "attacking",
+																		"value": "true"
+																	}
+																},
 																{
 																	"id": "call-mapped-function",
 																	"objectClass": "Functions",
@@ -10553,15 +10559,14 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "has-los-to-object",
+													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 896381998753798,
-													"behaviorType": "AlertLineOfSight",
+													"sid": 690991945871411,
 													"parameters": {
-														"object": "player",
-														"image-point": "0"
-													},
-													"isInverted": true
+														"instance-variable": "alertRange",
+														"comparison": 2,
+														"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+													}
 												}
 											],
 											"actions": [
@@ -10610,6 +10615,16 @@
 															]
 														},
 														{
+															"type": "comment",
+															"text": "TODO: make this idle area isometric",
+															"background-color": [
+																1,
+																1,
+																0,
+																1
+															]
+														},
+														{
 															"id": "set-instvar-value",
 															"objectClass": "enemy",
 															"sid": 794067938079009,
@@ -10637,7 +10652,7 @@
 																	"id": "has-los-to-position",
 																	"objectClass": "enemy",
 																	"sid": 593040763128910,
-																	"behaviorType": "AlertLineOfSight",
+																	"behaviorType": "LineOfSight",
 																	"parameters": {
 																		"x": "Self.idleX",
 																		"y": "Self.idleY"
@@ -11000,15 +11015,6 @@
 											}
 										},
 										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 965605275472030,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "true"
-											}
-										},
-										{
 											"id": "stop",
 											"objectClass": "enemy",
 											"sid": 773381885453265,
@@ -11271,15 +11277,6 @@
 											"parameters": {
 												"variable": "animationManifestationTime",
 												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
-											}
-										},
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 393906545113120,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "true"
 											}
 										},
 										{
@@ -11617,15 +11614,6 @@
 											"parameters": {
 												"variable": "animationManifestationTime",
 												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
-											}
-										},
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 931151037682390,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "true"
 											}
 										},
 										{

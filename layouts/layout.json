@@ -2227,7 +2227,8 @@
 								"arcaneResistance": 0,
 								"holyResistance": 0,
 								"attacking": false,
-								"movementSpeed": 0
+								"movementSpeed": 0,
+								"alertRange": 0
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -2241,10 +2242,10 @@
 										"enabled": true
 									}
 								},
-								"AlertLineOfSight": {
+								"LineOfSight": {
 									"properties": {
 										"obstacles": "custom",
-										"range": 500,
+										"range": 2000,
 										"cone-of-view": 360,
 										"use-collision-cells": true
 									}

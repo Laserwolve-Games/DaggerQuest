@@ -2063,7 +2063,6 @@
 								"alive": true,
 								"movementSpeed": 200,
 								"actionSpeed": 30,
-								"absoluteMovingAngle": 0,
 								"pickupRange": 100,
 								"isInsideBuilding": false,
 								"physicalResistance": 0,
@@ -2192,61 +2191,6 @@
 							}
 						},
 						{
-							"type": "projectile",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 258,
-							"instanceVariables": {
-								"friendly": false,
-								"piercing": false,
-								"range": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"holyDamage": 0,
-								"corruptDamage": 0,
-								"enabled": false
-							},
-							"behaviors": {
-								"Bullet": {
-									"properties": {
-										"speed": 0,
-										"acceleration": 0,
-										"gravity": 0,
-										"bounce-off-solids": false,
-										"set-angle": false,
-										"step": false,
-										"enabled": true
-									}
-								}
-							},
-							"world": {
-								"x": 925,
-								"y": -317,
-								"width": 60,
-								"height": 20,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
 							"type": "enemy",
 							"properties": {
 								"initially-visible": true,
@@ -2282,7 +2226,8 @@
 								"lightningResistance": 0,
 								"arcaneResistance": 0,
 								"holyResistance": 0,
-								"attacking": false
+								"attacking": false,
+								"movementSpeed": 0
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -2327,7 +2272,7 @@
 								},
 								"AttackLineOfSight": {
 									"properties": {
-										"obstacles": "solids",
+										"obstacles": "custom",
 										"range": 10000,
 										"cone-of-view": 360,
 										"use-collision-cells": true
@@ -2339,6 +2284,61 @@
 								"y": -306,
 								"width": 15,
 								"height": 5,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "projectile",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 257,
+							"instanceVariables": {
+								"friendly": false,
+								"piercing": false,
+								"range": 0,
+								"slashDamage": 0,
+								"smashDamage": 0,
+								"stabDamage": 0,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 0,
+								"arcaneDamage": 0,
+								"holyDamage": 0,
+								"corruptDamage": 0,
+								"enabled": false
+							},
+							"behaviors": {
+								"Bullet": {
+									"properties": {
+										"speed": 0,
+										"acceleration": 0,
+										"gravity": 0,
+										"bounce-off-solids": false,
+										"set-angle": false,
+										"step": false,
+										"enabled": true
+									}
+								}
+							},
+							"world": {
+								"x": 856,
+								"y": -259,
+								"width": 60,
+								"height": 20,
 								"originX": 0.5,
 								"originY": 0.5,
 								"color": [

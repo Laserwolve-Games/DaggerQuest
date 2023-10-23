@@ -5186,12 +5186,16 @@
 							],
 							"actions": [
 								{
-									"id": "set-instvar-value",
+									"type": "comment",
+									"text": "isometrically correct movement"
+								},
+								{
+									"id": "set-max-speed",
 									"objectClass": "player",
-									"sid": 506584128717096,
+									"sid": 821585789970137,
+									"behaviorType": "MoveTo",
 									"parameters": {
-										"instance-variable": "absoluteMovingAngle",
-										"value": "abs(player.MoveTo.MovingAngle)"
+										"max-speed": "Self.movementSpeed * lerp(sqrt(2) / 2, 1, abs(abs(Self.MoveTo.MovingAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 									}
 								},
 								{
@@ -5284,59 +5288,6 @@
 										}
 									],
 									"sid": 762040588479492
-								},
-								{
-									"eventType": "comment",
-									"text": "isometrically correct movement"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 756696238464695,
-											"parameters": {
-												"instance-variable": "absoluteMovingAngle",
-												"comparison": 3,
-												"value": "QUARTER_CIRCLE"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-max-speed",
-											"objectClass": "player",
-											"sid": 800753080883890,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"max-speed": "Self.movementSpeed * lerp(1, sqrt(2)/2, unlerp(0, QUARTER_CIRCLE, Self.absoluteMovingAngle))"
-											}
-										}
-									],
-									"sid": 782977246713564
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 646207952282782
-										}
-									],
-									"actions": [
-										{
-											"id": "set-max-speed",
-											"objectClass": "player",
-											"sid": 900811105407312,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"max-speed": "Self.movementSpeed * lerp(sqrt(2)/2, 1, unlerp(QUARTER_CIRCLE, HALF_CIRCLE, Self.absoluteMovingAngle))"
-											}
-										}
-									],
-									"sid": 700592390302659
 								},
 								{
 									"eventType": "block",
@@ -6340,146 +6291,148 @@
 													}
 												}
 											],
-											"sid": 711031212314139
-										},
-										{
-											"eventType": "block",
-											"conditions": [
+											"sid": 711031212314139,
+											"children": [
 												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 740701285920758,
-													"parameters": {
-														"object": "projectile"
-													}
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 599495591871293,
+															"parameters": {
+																"object": "projectile"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 213398293916739,
+															"parameters": {
+																"instance-variable": "friendly",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 413351075493280,
+															"parameters": {
+																"instance-variable": "piercing",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 261871274462356,
+															"parameters": {
+																"instance-variable": "enabled",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 702534395324628,
+															"parameters": {
+																"instance-variable": "range",
+																"value": "RANGE"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 958192383301282,
+															"parameters": {
+																"instance-variable": "slashDamage",
+																"value": "player.slashDamage"
+															}
+														},
+														{
+															"id": "set-width",
+															"objectClass": "projectile",
+															"sid": 463900277504500,
+															"parameters": {
+																"width": "SIZE"
+															}
+														},
+														{
+															"id": "set-height",
+															"objectClass": "projectile",
+															"sid": 826323290718197,
+															"parameters": {
+																"height": "Self.Width / ISOMETRIC_DIVIDER"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 492962339528377,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "PROJECTILE_SPEED"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "projectile",
+															"sid": 637989994791103,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "player.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 381155470199995,
+															"parameters": {
+																"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 558483152582253,
+															"parameters": {
+																"group-name": "\"movement\"",
+																"state": "activated"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 722086422079796,
+															"parameters": {
+																"group-name": "\"facings\"",
+																"state": "activated"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 698859409749767,
+															"parameters": {
+																"group-name": "\"Man Upward Slash\"",
+																"state": "activated"
+															}
+														},
+														{
+															"callFunction": "updateAnimations",
+															"sid": 852441723348355,
+															"parameters": [
+																"\"idle\"",
+																"body.OriginalAnimationSpeed",
+																"\"playFromBeginning\""
+															]
+														}
+													],
+													"sid": 713383358241408
 												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 994274575092173,
-													"parameters": {
-														"instance-variable": "friendly",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 634162557124733,
-													"parameters": {
-														"instance-variable": "piercing",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 381793933475815,
-													"parameters": {
-														"instance-variable": "enabled",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 824944653087112,
-													"parameters": {
-														"instance-variable": "range",
-														"value": "RANGE"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 813246016323838,
-													"parameters": {
-														"instance-variable": "slashDamage",
-														"value": "player.slashDamage"
-													}
-												},
-												{
-													"id": "set-width",
-													"objectClass": "projectile",
-													"sid": 554588784523189,
-													"parameters": {
-														"width": "SIZE"
-													}
-												},
-												{
-													"id": "set-height",
-													"objectClass": "projectile",
-													"sid": 306850612120177,
-													"parameters": {
-														"height": "Self.Width / ISOMETRIC_DIVIDER"
-													}
-												},
-												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 629958949126495,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "PROJECTILE_SPEED"
-													}
-												},
-												{
-													"id": "set-angle-of-motion",
-													"objectClass": "projectile",
-													"sid": 138694018116338,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"angle": "player.MoveTo.MovingAngle"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 725126813020823,
-													"parameters": {
-														"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 501236974096876,
-													"parameters": {
-														"group-name": "\"movement\"",
-														"state": "activated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 184359154376958,
-													"parameters": {
-														"group-name": "\"facings\"",
-														"state": "activated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 112499015872170,
-													"parameters": {
-														"group-name": "\"Man Upward Slash\"",
-														"state": "activated"
-													}
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 222426207827924,
-													"parameters": [
-														"\"idle\"",
-														"body.OriginalAnimationSpeed",
-														"\"playFromBeginning\""
-													]
-												}
-											],
-											"sid": 112061215502004
+											]
 										}
 									]
 								}
@@ -9992,9 +9945,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 501712028175186,
+											"sid": 540812172670370,
 											"parameters": {
-												"count": "3"
+												"count": "5"
 											}
 										}
 									],
@@ -10015,20 +9968,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 153383100038050,
+											"sid": 875219976838660,
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 896772321554590,
-											"disabled": true,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "\"goblinUnderling\""
 											}
 										},
 										{
@@ -10183,12 +10126,12 @@
 											}
 										},
 										{
-											"id": "set-max-speed",
+											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 890227594666955,
-											"behaviorType": "MoveTo",
+											"sid": 483035637655814,
 											"parameters": {
-												"max-speed": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
+												"instance-variable": "movementSpeed",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
 											}
 										},
 										{
@@ -10214,6 +10157,15 @@
 											"objectClass": "enemy",
 											"sid": 937085143334034,
 											"behaviorType": "AlertLineOfSight",
+											"parameters": {
+												"obstacle": "prop"
+											}
+										},
+										{
+											"id": "add-obstacle",
+											"objectClass": "enemy",
+											"sid": 208346508935494,
+											"behaviorType": "AttackLineOfSight",
 											"parameters": {
 												"obstacle": "prop"
 											}
@@ -10358,6 +10310,15 @@
 								{
 									"type": "comment",
 									"text": "check if we're not paused, otherwise enemies will continue to push out of each other"
+								},
+								{
+									"id": "set-max-speed",
+									"objectClass": "enemy",
+									"sid": 118598441867383,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"max-speed": "Self.movementSpeed * lerp(sqrt(2) / 2, 1, abs(abs(Self.MoveTo.MovingAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+									}
 								}
 							],
 							"sid": 996519786960622,
@@ -10378,51 +10339,44 @@
 											}
 										},
 										{
-											"id": "pick-topbottom",
-											"objectClass": "enemy",
-											"sid": 871024575159928,
-											"parameters": {
-												"which": "bottom"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "move-at-angle",
-											"objectClass": "enemy",
-											"sid": 968769746812851,
-											"parameters": {
-												"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-												"distance": "1"
-											}
-										}
-									],
-									"sid": 628085848393766
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
 											"id": "is-overlapping-another-object",
 											"objectClass": "enemy",
-											"sid": 246935128809407,
+											"sid": 124492715740495,
 											"parameters": {
 												"object": "player"
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 628085848393766,
+									"children": [
 										{
-											"id": "move-at-angle",
-											"objectClass": "enemy",
-											"sid": 980593270226676,
-											"parameters": {
-												"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-												"distance": "1"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-topbottom",
+													"objectClass": "enemy",
+													"sid": 722762707132868,
+													"parameters": {
+														"which": "bottom"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-at-angle",
+													"objectClass": "enemy",
+													"sid": 905218391304860,
+													"parameters": {
+														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+														"distance": "Self.MoveTo.MaxSpeed / TICKS_PER_SECOND"
+													}
+												}
+											],
+											"sid": 364584999303722
 										}
 									],
-									"sid": 740528709825752
+									"isOrBlock": true
 								},
 								{
 									"eventType": "block",
@@ -10469,9 +10423,22 @@
 											"parameters": {
 												"instance-variable": "alive"
 											}
+										},
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 706847559783065,
+											"parameters": {
+												"object": "enemy"
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "This `for each` prevents enemies from using each other's variables."
+										}
+									],
 									"sid": 101639443714332,
 									"children": [
 										{
@@ -10488,21 +10455,7 @@
 													}
 												}
 											],
-											"actions": [
-												{
-													"id": "set-instvar-value",
-													"objectClass": "enemy",
-													"sid": 643341828245361,
-													"parameters": {
-														"instance-variable": "degrees",
-														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
-													}
-												},
-												{
-													"callFunction": "correctEnemyAngle",
-													"sid": 677033278696939
-												}
-											],
+											"actions": [],
 											"sid": 756460331904798,
 											"children": [
 												{
@@ -10518,20 +10471,34 @@
 															"isInverted": true
 														}
 													],
-													"actions": [],
+													"actions": [
+														{
+															"id": "set-instvar-value",
+															"objectClass": "enemy",
+															"sid": 294532904119414,
+															"parameters": {
+																"instance-variable": "degrees",
+																"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
+															}
+														},
+														{
+															"callFunction": "correctEnemyAngle",
+															"sid": 343267115664267
+														}
+													],
 													"sid": 777651415202590,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "has-los-to-object",
+																	"id": "compare-instance-variable",
 																	"objectClass": "enemy",
-																	"sid": 919718074427999,
-																	"behaviorType": "AttackLineOfSight",
+																	"sid": 810003580725913,
 																	"parameters": {
-																		"object": "player",
-																		"image-point": "0"
+																		"instance-variable": "attackRange",
+																		"comparison": 5,
+																		"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 																	}
 																}
 															],
@@ -10553,15 +10520,14 @@
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "has-los-to-object",
+																	"id": "compare-instance-variable",
 																	"objectClass": "enemy",
-																	"sid": 579778313289485,
-																	"behaviorType": "AttackLineOfSight",
+																	"sid": 189333774923745,
 																	"parameters": {
-																		"object": "player",
-																		"image-point": "0"
-																	},
-																	"isInverted": true
+																		"instance-variable": "attackRange",
+																		"comparison": 2,
+																		"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+																	}
 																}
 															],
 															"actions": [
@@ -10800,6 +10766,11 @@
 										"child": "enemyBody",
 										"which": "own"
 									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 799858513486664
 								}
 							],
 							"actions": [
@@ -10830,32 +10801,17 @@
 										"animation": "\"die_\" & enemy.degrees",
 										"from": "beginning"
 									}
+								},
+								{
+									"callFunction": "spawnLoot",
+									"sid": 806474540295518,
+									"parameters": [
+										"enemy.X",
+										"enemy.Y"
+									]
 								}
 							],
-							"sid": 201490393119751,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 510860300567295
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "spawnLoot",
-											"sid": 667561582214297,
-											"parameters": [
-												"enemy.X",
-												"enemy.Y"
-											]
-										}
-									],
-									"sid": 634322940856480
-								}
-							]
+							"sid": 201490393119751
 						},
 						{
 							"eventType": "block",
@@ -11012,16 +10968,6 @@
 								},
 								{
 									"eventType": "variable",
-									"name": "degrees",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The angle the enemy is facing when this attack starts.",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 714327314567464
-								},
-								{
-									"eventType": "variable",
 									"name": "animationManifestationTime",
 									"type": "number",
 									"initialValue": "0",
@@ -11069,20 +11015,11 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 664509481140311,
-											"parameters": {
-												"variable": "degrees",
-												"value": "enemy.degrees"
-											}
-										},
-										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 849874245462623,
+											"sid": 240705091466775,
 											"parameters": {
-												"animation": "\"attack_\" & degrees",
+												"animation": "\"attack_\" & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -11144,15 +11081,6 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 421947269715217,
-													"parameters": {
-														"instance-variable": "range",
-														"value": "enemy.attackRange"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
 													"sid": 625256602482310,
 													"parameters": {
 														"instance-variable": "slashDamage",
@@ -11176,31 +11104,36 @@
 													}
 												},
 												{
-													"id": "set-speed",
+													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 441011042745867,
-													"behaviorType": "Bullet",
+													"sid": 815017169155218,
 													"parameters": {
-														"speed": "PROJECTILE_SPEED"
+														"instance-variable": "range",
+														"value": "lerp(enemy.Height / 2 + self.Height / 2, enemy.Width / 2 + Self.Width / 2, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 													}
 												},
 												{
-													"type": "comment",
-													"text": "This must be `degrees` and not `enemy.degrees`, so that the projectile moves in a manner that's cohesive with the enemy's animation."
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 588480706223938,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+													}
 												},
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 249376267702049,
+													"sid": 170067425753773,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"angle": "degrees"
+														"angle": "enemy.degrees"
 													}
 												},
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 108628200063609,
+													"sid": 397635090221959,
 													"parameters": {
 														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
 													}
@@ -11208,7 +11141,7 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "enemy",
-													"sid": 228705299376612,
+													"sid": 555441553421078,
 													"parameters": {
 														"instance-variable": "attacking",
 														"value": "false"
@@ -12105,10 +12038,10 @@
 						{
 							"id": "compare-distance-travelled",
 							"objectClass": "projectile",
-							"sid": 243287186081921,
+							"sid": 302008192882952,
 							"behaviorType": "Bullet",
 							"parameters": {
-								"comparison": 4,
+								"comparison": 5,
 								"distance": "Self.range"
 							}
 						}
@@ -12166,7 +12099,6 @@
 									"id": "subtract-from-instvar",
 									"objectClass": "enemy",
 									"sid": 868142860697604,
-									"breakpoint": true,
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"

@@ -9992,9 +9992,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 781854039268590,
+											"sid": 501712028175186,
 											"parameters": {
-												"count": "5"
+												"count": "3"
 											}
 										}
 									],
@@ -10019,6 +10019,16 @@
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 896772321554590,
+											"disabled": true,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "\"goblinUnderling\""
 											}
 										},
 										{
@@ -10315,372 +10325,174 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-on-screen",
-									"objectClass": "enemyBody",
-									"sid": 426377860000821
+									"id": "compare-instance-variable",
+									"objectClass": "enemy",
+									"sid": 637427823661479,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
+									}
 								},
 								{
-									"id": "pick-parent",
-									"objectClass": "enemyBody",
-									"sid": 814286520771065,
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 693911710946489,
 									"parameters": {
-										"parent": "enemy",
-										"which": "own"
+										"first-value": "timescale",
+										"comparison": 1,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "compare-opacity",
+									"objectClass": "fader",
+									"sid": 822066223200546,
+									"parameters": {
+										"comparison": 0,
+										"opacity": "0"
 									}
 								}
 							],
-							"actions": [],
-							"sid": 476001805712100,
+							"actions": [
+								{
+									"type": "comment",
+									"text": "check if we're not paused, otherwise enemies will continue to push out of each other"
+								}
+							],
+							"sid": 996519786960622,
 							"children": [
+								{
+									"eventType": "comment",
+									"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
+											"id": "is-overlapping-another-object",
 											"objectClass": "enemy",
-											"sid": 248089365326045,
+											"sid": 755788042914820,
 											"parameters": {
-												"instance-variable": "currentHealth",
-												"comparison": 3,
-												"value": "0"
+												"object": "enemy"
+											}
+										},
+										{
+											"id": "pick-topbottom",
+											"objectClass": "enemy",
+											"sid": 871024575159928,
+											"parameters": {
+												"which": "bottom"
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "set-boolean-instvar",
+											"id": "move-at-angle",
 											"objectClass": "enemy",
-											"sid": 373656054592635,
+											"sid": 968769746812851,
 											"parameters": {
-												"instance-variable": "alive",
-												"value": "false"
+												"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+												"distance": "1"
 											}
 										}
 									],
-									"sid": 858660492222022
+									"sid": 628085848393766
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-boolean-instance-variable-set",
+											"id": "is-overlapping-another-object",
 											"objectClass": "enemy",
-											"sid": 384560223884263,
+											"sid": 246935128809407,
 											"parameters": {
-												"instance-variable": "alive"
+												"object": "player"
 											}
-										},
+										}
+									],
+									"actions": [
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 617997223111887,
+											"id": "move-at-angle",
+											"objectClass": "enemy",
+											"sid": 980593270226676,
 											"parameters": {
-												"first-value": "timescale",
-												"comparison": 1,
-												"second-value": "0"
+												"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+												"distance": "1"
+											}
+										}
+									],
+									"sid": 740528709825752
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "enemy",
+											"sid": 299166230125626,
+											"parameters": {
+												"object": "prop"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "check if we're not paused, otherwise enemies will continue to push out of each other"
+											"text": "This is untested."
+										},
+										{
+											"id": "stop",
+											"objectClass": "enemy",
+											"sid": 246125416823146,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "move-at-angle",
+											"objectClass": "enemy",
+											"sid": 123193199869194,
+											"parameters": {
+												"angle": "angle(Self.X, Self.Y, prop.X, prop.Y)",
+												"distance": "1"
+											}
 										}
 									],
-									"sid": 933842933885710,
+									"sid": 641404088236259
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "player",
+											"sid": 264981282314782,
+											"parameters": {
+												"instance-variable": "alive"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 101639443714332,
 									"children": [
 										{
-											"eventType": "comment",
-											"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
-										},
-										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "is-overlapping-another-object",
+													"id": "has-los-to-object",
 													"objectClass": "enemy",
-													"sid": 932816908214743,
+													"sid": 676970214702117,
+													"behaviorType": "AlertLineOfSight",
 													"parameters": {
-														"object": "enemy"
+														"object": "player",
+														"image-point": "0"
 													}
-												},
-												{
-													"id": "pick-topbottom",
-													"objectClass": "enemy",
-													"sid": 384235396994498,
-													"parameters": {
-														"which": "bottom"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "move-at-angle",
-													"objectClass": "enemy",
-													"sid": 280555035841714,
-													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-														"distance": "1"
-													}
-												}
-											],
-											"sid": 677224893189240
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "enemy",
-													"sid": 226568717066080,
-													"parameters": {
-														"object": "player"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "move-at-angle",
-													"objectClass": "enemy",
-													"sid": 994235958291077,
-													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-														"distance": "1"
-													}
-												}
-											],
-											"sid": 594867618371045
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "enemy",
-													"sid": 489138033769847,
-													"parameters": {
-														"object": "prop"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "This is untested."
-												},
-												{
-													"id": "stop",
-													"objectClass": "enemy",
-													"sid": 610736715772109,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"id": "move-at-angle",
-													"objectClass": "enemy",
-													"sid": 132585289809477,
-													"parameters": {
-														"angle": "angle(Self.X, Self.Y, prop.X, prop.Y)",
-														"distance": "1"
-													}
-												}
-											],
-											"sid": 716810355456483
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-moving",
-													"objectClass": "enemy",
-													"sid": 271441516135696,
-													"behaviorType": "MoveTo"
-												}
-											],
-											"actions": [
-												{
-													"id": "set-animation",
-													"objectClass": "enemyBody",
-													"sid": 828585005596839,
-													"parameters": {
-														"animation": "\"walk_\" & enemy.degrees",
-														"from": "beginning"
-													}
-												}
-											],
-											"sid": 337923214546929
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "player",
-													"sid": 133463961443121,
-													"parameters": {
-														"instance-variable": "alive"
-													}
-												}
-											],
-											"actions": [],
-											"sid": 344340264084454,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "has-los-to-object",
-															"objectClass": "enemy",
-															"sid": 750999944473546,
-															"behaviorType": "AlertLineOfSight",
-															"parameters": {
-																"object": "player",
-																"image-point": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 468805914163938,
-															"parameters": {
-																"instance-variable": "alerted",
-																"value": "true"
-															}
-														}
-													],
-													"sid": 106072688820374
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 963919031828765
-														}
-													],
-													"actions": [
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 444700362210378,
-															"parameters": {
-																"instance-variable": "alerted",
-																"value": "false"
-															}
-														}
-													],
-													"sid": 136495679728278
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "has-los-to-object",
-															"objectClass": "enemy",
-															"sid": 732831820384353,
-															"behaviorType": "AttackLineOfSight",
-															"parameters": {
-																"object": "player",
-																"image-point": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 809460822259912,
-															"parameters": {
-																"instance-variable": "inRange",
-																"value": "true"
-															}
-														}
-													],
-													"sid": 346465699324260
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 521910528280756
-														}
-													],
-													"actions": [
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 576332721383233,
-															"parameters": {
-																"instance-variable": "inRange",
-																"value": "false"
-															}
-														}
-													],
-													"sid": 722509629117577
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 829101298821673
-												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 437498915943067,
-													"parameters": {
-														"instance-variable": "alerted",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 242976139111348,
-													"parameters": {
-														"instance-variable": "inRange",
-														"value": "false"
-													}
-												}
-											],
-											"sid": 161870780354494
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "enemy",
-													"sid": 948340135117364,
-													"parameters": {
-														"instance-variable": "alerted"
-													}
-												},
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "enemy",
-													"sid": 910258109473812,
-													"parameters": {
-														"instance-variable": "attacking"
-													},
-													"isInverted": true
 												}
 											],
 											"actions": [
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 660955818163334,
+													"sid": 643341828245361,
 													"parameters": {
 														"instance-variable": "degrees",
 														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
@@ -10688,10 +10500,10 @@
 												},
 												{
 													"callFunction": "correctEnemyAngle",
-													"sid": 455446402233240
+													"sid": 677033278696939
 												}
 											],
-											"sid": 240583155986572,
+											"sid": 756460331904798,
 											"children": [
 												{
 													"eventType": "block",
@@ -10699,65 +10511,75 @@
 														{
 															"id": "is-boolean-instance-variable-set",
 															"objectClass": "enemy",
-															"sid": 531086139728793,
+															"sid": 679389295270515,
 															"parameters": {
-																"instance-variable": "inRange"
+																"instance-variable": "attacking"
 															},
 															"isInverted": true
 														}
 													],
-													"actions": [
+													"actions": [],
+													"sid": 777651415202590,
+													"children": [
 														{
-															"id": "move-to-object",
-															"objectClass": "enemy",
-															"sid": 576365237424412,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"object": "player",
-																"image-point": "0",
-																"mode": "direct"
-															}
-														}
-													],
-													"sid": 778505852096023
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "for-each",
-															"objectClass": "System",
-															"sid": 744371686696271,
-															"parameters": {
-																"object": "enemy"
-															}
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "has-los-to-object",
+																	"objectClass": "enemy",
+																	"sid": 919718074427999,
+																	"behaviorType": "AttackLineOfSight",
+																	"parameters": {
+																		"object": "player",
+																		"image-point": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "call-mapped-function",
+																	"objectClass": "Functions",
+																	"sid": 646537182273686,
+																	"parameters": {
+																		"name": "\"enemyAbilities\"",
+																		"string": "enemy.simpleName",
+																		"forward-params": "0"
+																	}
+																}
+															],
+															"sid": 571505173437010
 														},
 														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "enemy",
-															"sid": 248326533263059,
-															"parameters": {
-																"instance-variable": "inRange"
-															}
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "has-los-to-object",
+																	"objectClass": "enemy",
+																	"sid": 579778313289485,
+																	"behaviorType": "AttackLineOfSight",
+																	"parameters": {
+																		"object": "player",
+																		"image-point": "0"
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "move-to-object",
+																	"objectClass": "enemy",
+																	"sid": 574920409982655,
+																	"behaviorType": "MoveTo",
+																	"parameters": {
+																		"object": "player",
+																		"image-point": "0",
+																		"mode": "direct"
+																	}
+																}
+															],
+															"sid": 225704237150725
 														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if the player is in range..."
-														},
-														{
-															"id": "call-mapped-function",
-															"objectClass": "Functions",
-															"sid": 939811886158849,
-															"parameters": {
-																"name": "\"enemyAbilities\"",
-																"string": "enemy.simpleName",
-																"forward-params": "0"
-															}
-														}
-													],
-													"sid": 176339748185990
+													]
 												}
 											]
 										},
@@ -10765,11 +10587,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "is-boolean-instance-variable-set",
+													"id": "has-los-to-object",
 													"objectClass": "enemy",
-													"sid": 807048788680842,
+													"sid": 896381998753798,
+													"behaviorType": "AlertLineOfSight",
 													"parameters": {
-														"instance-variable": "alerted"
+														"object": "player",
+														"image-point": "0"
 													},
 													"isInverted": true
 												}
@@ -10778,7 +10602,7 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 715322932899274,
+													"sid": 534852136242489,
 													"parameters": {
 														"instance-variable": "degrees",
 														"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC"
@@ -10786,10 +10610,10 @@
 												},
 												{
 													"callFunction": "correctEnemyAngle",
-													"sid": 588650749045384
+													"sid": 905243560206357
 												}
 											],
-											"sid": 922336148029034,
+											"sid": 926281402710238,
 											"children": [
 												{
 													"eventType": "block",
@@ -10797,7 +10621,7 @@
 														{
 															"id": "on-timer",
 															"objectClass": "enemy",
-															"sid": 613318836908855,
+															"sid": 305574574518487,
 															"behaviorType": "Timer",
 															"parameters": {
 																"tag": "\"idle\""
@@ -10822,7 +10646,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "enemy",
-															"sid": 403642690829229,
+															"sid": 794067938079009,
 															"parameters": {
 																"instance-variable": "idleX",
 																"value": "Self.X + random(Self.Width * -2, Self.Width * 2)"
@@ -10831,14 +10655,14 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "enemy",
-															"sid": 241176457915239,
+															"sid": 626444596421158,
 															"parameters": {
 																"instance-variable": "idleY",
 																"value": "Self.Y + random(Self.Width * -2, Self.Width * 2)"
 															}
 														}
 													],
-													"sid": 806714911012155,
+													"sid": 611706043413949,
 													"children": [
 														{
 															"eventType": "block",
@@ -10846,7 +10670,7 @@
 																{
 																	"id": "has-los-to-position",
 																	"objectClass": "enemy",
-																	"sid": 173177200831477,
+																	"sid": 593040763128910,
 																	"behaviorType": "AlertLineOfSight",
 																	"parameters": {
 																		"x": "Self.idleX",
@@ -10862,7 +10686,7 @@
 																{
 																	"id": "move-to-position",
 																	"objectClass": "enemy",
-																	"sid": 327097378899146,
+																	"sid": 317836107306734,
 																	"behaviorType": "MoveTo",
 																	"parameters": {
 																		"x": "Self.idleX",
@@ -10871,42 +10695,9 @@
 																	}
 																}
 															],
-															"sid": 310604089057859
+															"sid": 899188908780863
 														}
 													]
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-moving",
-															"objectClass": "enemy",
-															"sid": 864036661519191,
-															"behaviorType": "MoveTo",
-															"isInverted": true
-														},
-														{
-															"id": "pick-children",
-															"objectClass": "enemy",
-															"sid": 686920589340033,
-															"parameters": {
-																"child": "enemyBody",
-																"which": "own"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-animation",
-															"objectClass": "enemyBody",
-															"sid": 186127422558677,
-															"parameters": {
-																"animation": "\"idle_\" & enemy.degrees",
-																"from": "beginning"
-															}
-														}
-													],
-													"sid": 780963165027679
 												}
 											]
 										}
@@ -10916,191 +10707,255 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "is-moving",
+											"objectClass": "enemy",
+											"sid": 778202492086155,
+											"behaviorType": "MoveTo",
+											"isInverted": true
+										},
+										{
 											"id": "is-boolean-instance-variable-set",
 											"objectClass": "enemy",
-											"sid": 480937589260679,
+											"sid": 917112833089655,
 											"parameters": {
-												"instance-variable": "alive"
+												"instance-variable": "attacking"
 											},
 											"isInverted": true
 										},
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 815071911624665,
+											"sid": 518611440624420,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
-											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 792875154432758,
-											"parameters": {
-												"object": "enemyBody",
-												"expression": "find(enemyBody.AnimationName, \"die\")",
-												"comparison": 0,
-												"value": "-1"
 											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "pick enemies that are dead, and their bodies that aren't playing the die animation. Immediately stop their movement and disabled solids, and play the die animation"
-										},
-										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 148380833294715,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "set-enabled",
-											"objectClass": "enemy",
-											"sid": 818083537927502,
-											"behaviorType": "Solid",
-											"parameters": {
-												"state": "disabled"
-											}
-										},
-										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 979126748341638,
+											"sid": 619592005321881,
 											"parameters": {
-												"animation": "\"die_\" & enemy.degrees",
+												"animation": "\"idle_\" & enemy.degrees",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 363363874255790,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "trigger-once-while-true",
-													"objectClass": "System",
-													"sid": 414075271566645
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "spawnLoot",
-													"sid": 122993682754255,
-													"parameters": [
-														"enemy.X",
-														"enemy.Y"
-													]
-												}
-											],
-											"sid": 292205185653640
-										}
-									]
+									"sid": 716664797354796
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-any-animation-finished",
-											"objectClass": "enemyBody",
-											"sid": 315375025215723
+											"id": "is-moving",
+											"objectClass": "enemy",
+											"sid": 275593121938288,
+											"behaviorType": "MoveTo"
 										},
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 267667893950844,
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 271961044554964,
 											"parameters": {
-												"object": "enemyBody",
-												"expression": "find(enemyBody.AnimationName, \"die\")",
-												"comparison": 1,
-												"value": "-1"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "enemyBody",
-											"sid": 454490420401228,
-											"parameters": {
-												"parent": "enemy",
+												"child": "enemyBody",
 												"which": "own"
 											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "if we're on the last frame of a die animation, reduce the opacity by 1 (every tick)"
-										},
-										{
-											"id": "set-opacity",
+											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 984116077737318,
+											"sid": 660379227368701,
 											"parameters": {
-												"opacity": "Self.Opacity - 1"
-											}
-										},
-										{
-											"id": "tween-one-property",
-											"objectClass": "enemy",
-											"sid": 958642430551542,
-											"behaviorType": "Tween",
-											"parameters": {
-												"tags": "\"\"",
-												"property": "offsetOpacity",
-												"end-value": "0",
-												"time": "1",
-												"ease": "noease",
-												"destroy-on-complete": "yes",
-												"loop": "no",
-												"ping-pong": "no",
-												"repeat-count": "1"
+												"animation": "\"walk_\" & enemy.degrees",
+												"from": "beginning"
 											}
 										}
 									],
-									"sid": 120369709351630
+									"sid": 443111317639138
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "enemy",
+									"sid": 975230396579349,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 3,
+										"value": "0"
+									}
 								},
 								{
-									"functionName": "correctEnemyAngle",
-									"functionDescription": "",
-									"functionCategory": "",
-									"functionReturnType": "none",
-									"functionCopyPicked": true,
-									"functionIsAsync": false,
-									"functionParameters": [],
-									"eventType": "function-block",
+									"id": "pick-children",
+									"objectClass": "enemy",
+									"sid": 621092966252252,
+									"parameters": {
+										"child": "enemyBody",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "pick enemies that are dead, and their bodies that aren't playing the die animation. Immediately stop their movement and disabled solids, and play the die animation"
+								},
+								{
+									"id": "stop",
+									"objectClass": "enemy",
+									"sid": 792950617723228,
+									"behaviorType": "MoveTo"
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "enemy",
+									"sid": 643076666263776,
+									"behaviorType": "Solid",
+									"parameters": {
+										"state": "disabled"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "enemyBody",
+									"sid": 229458987317342,
+									"parameters": {
+										"animation": "\"die_\" & enemy.degrees",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 201490393119751,
+							"children": [
+								{
+									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "enemy",
-											"sid": 943364457263327,
-											"parameters": {
-												"instance-variable": "degrees",
-												"comparison": 0,
-												"value": "-180"
-											}
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 510860300567295
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "this needs to be a function so it can be called immediately after the enemy degrees is set"
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 816012387658166,
-											"parameters": {
-												"instance-variable": "degrees",
-												"value": "HALF_CIRCLE"
-											}
+											"callFunction": "spawnLoot",
+											"sid": 667561582214297,
+											"parameters": [
+												"enemy.X",
+												"enemy.Y"
+											]
 										}
 									],
-									"sid": 839528805683530
+									"sid": 634322940856480
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-animation-finished",
+									"objectClass": "enemyBody",
+									"sid": 817299499657078
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 903127944135433,
+									"parameters": {
+										"object": "enemyBody",
+										"expression": "find(enemyBody.AnimationName, \"die\")",
+										"comparison": 1,
+										"value": "-1"
+									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "enemyBody",
+									"sid": 927686762127560,
+									"parameters": {
+										"parent": "enemy",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "if we're on the last frame of a die animation, reduce the opacity by 1 (every tick)"
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "enemyBody",
+									"sid": 430328132665190,
+									"parameters": {
+										"opacity": "Self.Opacity - 1"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "enemy",
+									"sid": 246004212390954,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "0",
+										"time": "1",
+										"ease": "noease",
+										"destroy-on-complete": "yes",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
+							"sid": 415067068612535
+						},
+						{
+							"functionName": "correctEnemyAngle",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "enemy",
+									"sid": 367685312039349,
+									"parameters": {
+										"instance-variable": "degrees",
+										"comparison": 0,
+										"value": "-180"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "this needs to be a function so it can be called immediately after the enemy degrees is set"
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 451414852860036,
+									"parameters": {
+										"instance-variable": "degrees",
+										"value": "HALF_CIRCLE"
+									}
+								}
+							],
+							"sid": 329467449501951
 						}
 					],
 					"sid": 346842453318444
@@ -11157,6 +11012,16 @@
 								},
 								{
 									"eventType": "variable",
+									"name": "degrees",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The angle the enemy is facing when this attack starts.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 714327314567464
+								},
+								{
+									"eventType": "variable",
 									"name": "animationManifestationTime",
 									"type": "number",
 									"initialValue": "0",
@@ -11204,11 +11069,20 @@
 											"behaviorType": "MoveTo"
 										},
 										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 664509481140311,
+											"parameters": {
+												"variable": "degrees",
+												"value": "enemy.degrees"
+											}
+										},
+										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 957952672967573,
+											"sid": 849874245462623,
 											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
+												"animation": "\"attack_\" & degrees",
 												"from": "beginning"
 											}
 										},
@@ -11311,12 +11185,16 @@
 													}
 												},
 												{
+													"type": "comment",
+													"text": "This must be `degrees` and not `enemy.degrees`, so that the projectile moves in a manner that's cohesive with the enemy's animation."
+												},
+												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 210312104926155,
+													"sid": 249376267702049,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+														"angle": "degrees"
 													}
 												},
 												{
@@ -12363,6 +12241,7 @@
 								}
 							],
 							"sid": 591454218470020,
+							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -12384,7 +12263,8 @@
 											"sid": 413478000377979
 										}
 									],
-									"sid": 615426759922895
+									"sid": 615426759922895,
+									"disabled": true
 								}
 							]
 						}

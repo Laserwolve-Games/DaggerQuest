@@ -9945,9 +9945,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 141457408265736,
+											"sid": 155149259761541,
 											"parameters": {
-												"count": "11"
+												"count": "random(3, 6)"
 											}
 										}
 									],
@@ -9972,15 +9972,6 @@
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 521184587334836,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "\"goblinWarlock\""
 											}
 										},
 										{
@@ -10927,6 +10918,47 @@
 								}
 							],
 							"sid": 329467449501951
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-animation-finished",
+									"objectClass": "enemyBody",
+									"sid": 659347671477631
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 992942676390286,
+									"parameters": {
+										"first-value": "find(enemyBody.AnimationName, \"attack\")",
+										"comparison": 1,
+										"second-value": "-1"
+									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "enemyBody",
+									"sid": 801172532810366,
+									"parameters": {
+										"parent": "enemy",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "enemy",
+									"sid": 740695250973948,
+									"parameters": {
+										"instance-variable": "attacking",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 296493559637835
 						}
 					],
 					"sid": 346842453318444
@@ -10982,16 +11014,6 @@
 									"sid": 968347307715670
 								},
 								{
-									"eventType": "variable",
-									"name": "animationManifestationTime",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 525463239267531
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -11005,15 +11027,6 @@
 										}
 									],
 									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 825585027959434,
-											"parameters": {
-												"variable": "animationManifestationTime",
-												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
-											}
-										},
 										{
 											"id": "stop",
 											"objectClass": "enemy",
@@ -11030,11 +11043,15 @@
 											}
 										},
 										{
+											"type": "comment",
+											"text": "This is the amount of time between the start of the animation and the manifestation of the projectile."
+										},
+										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 504629123416583,
+											"sid": 661077253537304,
 											"parameters": {
-												"seconds": "animationManifestationTime"
+												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -11110,6 +11127,10 @@
 													}
 												},
 												{
+													"type": "comment",
+													"text": "Melee attacks don't use the enemy's `range` variable to determine projectile range. Instead, compound the enemy's size with the projectile's size."
+												},
+												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
 													"sid": 815017169155218,
@@ -11134,23 +11155,6 @@
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "enemy.degrees"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 397635090221959,
-													"parameters": {
-														"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
-													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "enemy",
-													"sid": 555441553421078,
-													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
 													}
 												}
 											],
@@ -11234,16 +11238,6 @@
 									"sid": 228220816216230
 								},
 								{
-									"eventType": "variable",
-									"name": "animationManifestationTime",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 616956177701283
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -11271,15 +11265,6 @@
 											}
 										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 947719606185087,
-											"parameters": {
-												"variable": "animationManifestationTime",
-												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
-											}
-										},
-										{
 											"id": "stop",
 											"objectClass": "enemy",
 											"sid": 344316499934358,
@@ -11295,16 +11280,16 @@
 											}
 										},
 										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 303134507357147,
-											"parameters": {
-												"seconds": "animationManifestationTime - projectileManifestationTime"
-											}
+											"type": "comment",
+											"text": "Time the spawning of the projectile so it will pass over the manifestation point during the same frame that the the projectile's visual representation on the enemy disappears."
 										},
 										{
-											"type": "comment",
-											"text": "Time the spawning of the projectile so it will pass over the manifestation point (the goblin warlock's left hand) during the same frame that the lightning orb disappears."
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 922785798570809,
+											"parameters": {
+												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND - projectileManifestationTime"
+											}
 										},
 										{
 											"id": "create-object",
@@ -11371,16 +11356,20 @@
 												},
 												{
 													"type": "comment",
-													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
+													"text": "Adjust the projectile's speed to account for isometry."
 												},
 												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 567062837203852,
+													"sid": 870884133819674,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "PROJECTILE_SPEED"
+														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 													}
+												},
+												{
+													"type": "comment",
+													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
 												},
 												{
 													"id": "set-angle-of-motion",
@@ -11401,7 +11390,7 @@
 												},
 												{
 													"type": "comment",
-													"text": "The projectile is now at the manifestation point. Spawn the lightning orb and enable the projectile."
+													"text": "The projectile is now at the manifestation point. Spawn the projectile's visual representation."
 												},
 												{
 													"id": "create-object",
@@ -11465,27 +11454,6 @@
 																"transform-z-elevation": true,
 																"transform-visibility": false,
 																"destroy-with-parent": true
-															}
-														},
-														{
-															"type": "comment",
-															"text": "Wait until the animation is finished to set 'attacking' to false."
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 146159583190059,
-															"parameters": {
-																"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 984896481978646,
-															"parameters": {
-																"instance-variable": "attacking",
-																"value": "false"
 															}
 														}
 													],
@@ -11571,16 +11539,6 @@
 									"sid": 135630290224051
 								},
 								{
-									"eventType": "variable",
-									"name": "animationManifestationTime",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The amount of time between the start of the animation and the manifestation of the projectile",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 861254738736715
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -11595,25 +11553,12 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "The point in time when the projectile should appear differs based on which direction the enemy is facing. (i.e., the distance between the enemy's origin and hand is drastically different if he's facing left, vs. if he's facing up)"
-										},
-										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 647248504293887,
 											"parameters": {
 												"variable": "projectileManifestationTime",
 												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 214056221985056,
-											"parameters": {
-												"variable": "animationManifestationTime",
-												"value": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
 											}
 										},
 										{
@@ -11634,14 +11579,10 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 162354327100413,
+											"sid": 342374240170874,
 											"parameters": {
-												"seconds": "animationManifestationTime - projectileManifestationTime"
+												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND - projectileManifestationTime"
 											}
-										},
-										{
-											"type": "comment",
-											"text": "Time the spawning of the projectile so it will pass over the manifestation point (the goblin warlock's left hand) during the same frame that the lightning orb disappears."
 										},
 										{
 											"id": "create-object",
@@ -11707,22 +11648,18 @@
 													}
 												},
 												{
-													"type": "comment",
-													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
-												},
-												{
 													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 110451981377936,
+													"sid": 717145248787599,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "PROJECTILE_SPEED"
+														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 													}
 												},
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 820277257434389,
+													"sid": 810083778757028,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -11735,10 +11672,6 @@
 													"parameters": {
 														"seconds": "projectileManifestationTime"
 													}
-												},
-												{
-													"type": "comment",
-													"text": "The projectile is now at the manifestation point. Spawn the lightning orb and enable the projectile."
 												},
 												{
 													"id": "create-object",
@@ -11793,27 +11726,6 @@
 																"transform-z-elevation": true,
 																"transform-visibility": false,
 																"destroy-with-parent": true
-															}
-														},
-														{
-															"type": "comment",
-															"text": "Wait until the animation is finished to set 'attacking' to false."
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 703272956317424,
-															"parameters": {
-																"seconds": "enemyBody.AnimationFrameCount / enemyBody.AnimationSpeed - animationManifestationTime"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 584435190493649,
-															"parameters": {
-																"instance-variable": "attacking",
-																"value": "false"
 															}
 														}
 													],
@@ -12161,7 +12073,6 @@
 								}
 							],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -12183,8 +12094,7 @@
 											"sid": 413478000377979
 										}
 									],
-									"sid": 615426759922895,
-									"disabled": true
+									"sid": 615426759922895
 								}
 							]
 						}

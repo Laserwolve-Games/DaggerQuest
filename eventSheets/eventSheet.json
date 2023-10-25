@@ -9945,7 +9945,7 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 470026317196377,
+											"sid": 847251743305353,
 											"parameters": {
 												"count": "random(3, 6)"
 											}
@@ -9972,15 +9972,6 @@
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 779589978157131,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "\"goblinArcher\""
 											}
 										},
 										{
@@ -10399,44 +10390,51 @@
 											}
 										},
 										{
+											"id": "pick-topbottom",
+											"objectClass": "enemy",
+											"sid": 617303135426459,
+											"parameters": {
+												"which": "bottom"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "move-at-angle",
+											"objectClass": "enemy",
+											"sid": 308454771547290,
+											"parameters": {
+												"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
+												"distance": "Self.MoveTo.MaxSpeed / 2 / TICKS_PER_SECOND"
+											}
+										}
+									],
+									"sid": 628085848393766
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "is-overlapping-another-object",
 											"objectClass": "enemy",
-											"sid": 124492715740495,
+											"sid": 878311508737458,
 											"parameters": {
 												"object": "player"
 											}
 										}
 									],
-									"actions": [],
-									"sid": 628085848393766,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-topbottom",
-													"objectClass": "enemy",
-													"sid": 722762707132868,
-													"parameters": {
-														"which": "bottom"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "move-at-angle",
-													"objectClass": "enemy",
-													"sid": 905218391304860,
-													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-														"distance": "Self.MoveTo.MaxSpeed / TICKS_PER_SECOND"
-													}
-												}
-											],
-											"sid": 364584999303722
+											"id": "move-at-angle",
+											"objectClass": "enemy",
+											"sid": 181023611010741,
+											"parameters": {
+												"angle": "angle(enemy.X, enemy.Y, player.X, player.Y)",
+												"distance": "Self.MoveTo.MaxSpeed / 2 / TICKS_PER_SECOND"
+											}
 										}
 									],
-									"isOrBlock": true
+									"sid": 540160277791119
 								},
 								{
 									"eventType": "block",

@@ -5994,6 +5994,15 @@
 									"parameters": {
 										"instance-variable": "alive"
 									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "player",
+									"sid": 751185817127087,
+									"parameters": {
+										"object": "nonCombatArea"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [],
@@ -13684,7 +13693,7 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "string",
+							"name": "mod",
 							"type": "string",
 							"initialValue": "",
 							"comment": "the mod description from which to extract the string",
@@ -13706,7 +13715,7 @@
 							"objectClass": "Functions",
 							"sid": 231109643138954,
 							"parameters": {
-								"value": "RegexReplace(RegexMatchAt(string, \"\\{.*?\\}\", \"g\", index), \"\\{|}\", \"g\", \"\")"
+								"value": "RegexReplace(RegexMatchAt(mod, \"\\{.*?\\}\", \"g\", index), \"\\{|}\", \"g\", \"\")"
 							}
 						}
 					],
@@ -13744,12 +13753,7 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "TODO: Make sure this can't kill the player"
-								}
-							],
+							"actions": [],
 							"sid": 444193088646752,
 							"children": [
 								{
@@ -13823,12 +13827,16 @@
 									],
 									"actions": [
 										{
-											"id": "subtract-from-instvar",
+											"type": "comment",
+											"text": "prevent removing this mod from killing the player"
+										},
+										{
+											"id": "set-instvar-value",
 											"objectClass": "player",
-											"sid": 530959900465471,
+											"sid": 234393131366957,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "value"
+												"value": "clamp(Self.currentHealth - value, 1, Self.maxHealth)"
 											}
 										},
 										{

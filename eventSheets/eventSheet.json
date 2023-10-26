@@ -13171,11 +13171,11 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 586830790743241,
+							"sid": 352238979016024,
 							"parameters": {
 								"name": "\"equipmentMods\"",
-								"string": "\"oscillatePhysical\"",
-								"function": "oscillatePhysical"
+								"string": "\"flatPhysical\"",
+								"function": "flatPhysical"
 							}
 						},
 						{
@@ -14509,7 +14509,7 @@
 							]
 						},
 						{
-							"functionName": "oscillatePhysical",
+							"functionName": "flatPhysical",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -14538,29 +14538,23 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "value",
+									"name": "damageType",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 313882942019148
+								},
+								{
+									"eventType": "variable",
+									"name": "amount",
 									"type": "number",
 									"initialValue": "0",
 									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 175249790575320
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 958231985560123,
-											"parameters": {
-												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
-											}
-										}
-									],
-									"sid": 970262893628206
+									"sid": 506829206640632
 								},
 								{
 									"eventType": "block",
@@ -14574,8 +14568,110 @@
 											}
 										}
 									],
-									"actions": [],
-									"sid": 460177480565386
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 178928919487212,
+											"parameters": {
+												"variable": "amount",
+												"value": "Functions.getValueFromMod(modDescription, 0)"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 716939391397843,
+											"parameters": {
+												"variable": "damageType",
+												"value": "Functions.getValueFromMod(modDescription, 1)"
+											}
+										}
+									],
+									"sid": 460177480565386,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 647009878134427,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Slash\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "player",
+													"sid": 307075666247828,
+													"parameters": {
+														"instance-variable": "slashDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 899029722355018
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 516156131856547,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Smash\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "player",
+													"sid": 674040280899441,
+													"parameters": {
+														"instance-variable": "smashDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 605145294202577
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 148266729061949,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Stab\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "player",
+													"sid": 640283016435828,
+													"parameters": {
+														"instance-variable": "stabDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 469788707024177
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -14587,7 +14683,90 @@
 										}
 									],
 									"actions": [],
-									"sid": 869658595429510
+									"sid": 869658595429510,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 649960748686757,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Slash\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 418488349775888,
+													"parameters": {
+														"instance-variable": "slashDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 158186614004615
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 637874891029247,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Smash\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 723880095772861,
+													"parameters": {
+														"instance-variable": "smashDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 735778638523005
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 347103955837597,
+													"parameters": {
+														"variable": "damageType",
+														"comparison": 0,
+														"value": "\"Stab\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 844156788201573,
+													"parameters": {
+														"instance-variable": "stabDamage",
+														"value": "amount"
+													}
+												}
+											],
+											"sid": 171575061019100
+										}
+									]
 								}
 							]
 						}

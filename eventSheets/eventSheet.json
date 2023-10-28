@@ -73,6 +73,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "PERCENTAGE_DIVIDER",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 444792278907568
+		},
+		{
+			"eventType": "variable",
 			"name": "nextAvailableIdentifier",
 			"type": "number",
 			"initialValue": "1",
@@ -6352,18 +6362,23 @@
 															}
 														},
 														{
+															"type": "comment",
+															"text": "Extract the multiplier from the description in the abilities table"
+														},
+														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 958192383301282,
+															"sid": 408008704611028,
 															"parameters": {
 																"instance-variable": "slashDamage",
-																"value": "player.slashDamage"
+																"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
 															}
 														},
 														{
 															"id": "set-width",
 															"objectClass": "projectile",
 															"sid": 463900277504500,
+															"breakpoint": true,
 															"parameters": {
 																"width": "SIZE"
 															}
@@ -9121,7 +9136,7 @@
 										{
 											"id": "set-text",
 											"objectClass": "tooltipDescription",
-											"sid": 450889447511397,
+											"sid": 169696152975065,
 											"parameters": {
 												"text": "text"
 											}
@@ -9143,7 +9158,39 @@
 											}
 										}
 									],
-									"sid": 763060192049106
+									"sid": 763060192049106,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 776102274245743,
+													"parameters": {
+														"name": "\"\"",
+														"start-index": "1",
+														"end-index": "tokencount(text, \"{\") - 1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Start at 1, to always skip the first token. Subtract 1, to make it 0-based. For each set of curly brackets, multiply the contents of that set by the player level."
+												},
+												{
+													"id": "set-text",
+													"objectClass": "tooltipDescription",
+													"sid": 932648006707572,
+													"parameters": {
+														"text": "RegexReplace(Self.Text, \"{([^}]+)}\", \"\", str(float(tokenat(tokenat(text, loopindex, \"{\"), 0, \"}\")) * player.level))"
+													}
+												}
+											],
+											"sid": 656560243045374
+										}
+									]
 								},
 								{
 									"eventType": "block",

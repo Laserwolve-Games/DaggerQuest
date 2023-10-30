@@ -5379,11 +5379,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "cursor-is-over-object",
+													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 847539967846893,
+													"sid": 540000685936331,
 													"parameters": {
-														"object": "npcBody"
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "npcBody"
 													}
 												},
 												{
@@ -5475,16 +5477,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 367200789500488
-												},
-												{
-													"id": "cursor-is-over-object",
+													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 803351705248790,
+													"sid": 926855902879310,
 													"parameters": {
-														"object": "loot"
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "loot"
 													}
 												},
 												{
@@ -5575,16 +5574,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 175050506358937
-												},
-												{
-													"id": "cursor-is-over-object",
+													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 996743336762302,
+													"sid": 300550654264348,
 													"parameters": {
-														"object": "door"
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "door"
 													}
 												}
 											],
@@ -5652,9 +5648,12 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 357226637634347
+													"id": "mouse-button-is-down",
+													"objectClass": "mouse",
+													"sid": 108407215565737,
+													"parameters": {
+														"mouse-button": "left"
+													}
 												},
 												{
 													"id": "cursor-is-over-object",
@@ -5662,6 +5661,33 @@
 													"sid": 326863248303330,
 													"parameters": {
 														"object": "player"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 858460120912505,
+													"parameters": {
+														"object": "npcBody"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 535374952926890,
+													"parameters": {
+														"object": "door"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 202742161511940,
+													"parameters": {
+														"object": "loot"
 													},
 													"isInverted": true
 												},

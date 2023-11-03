@@ -590,36 +590,54 @@
 							}
 						},
 						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 253670829164996,
-							"parameters": {
-								"first-value": "portrait.Count",
-								"comparison": 1,
-								"second-value": "0"
-							}
-						},
-						{
-							"id": "cursor-is-over-object",
+							"id": "mouse-button-is-down",
 							"objectClass": "mouse",
-							"sid": 136561268503382,
+							"sid": 647126079709070,
 							"parameters": {
-								"object": "npcBody"
-							},
-							"isInverted": true
+								"mouse-button": "right"
+							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 607267948456563,
+					"children": [
 						{
-							"type": "comment",
-							"text": "if we click anywhere that's not an NPC, and there's a portrait up, destroy all portraits"
-						},
-						{
-							"callFunction": "closeDialog",
-							"sid": 997024975471915
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 671569229951174,
+									"parameters": {
+										"object": "npcBody"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 849051413122214,
+									"parameters": {
+										"first-value": "portrait.Count",
+										"comparison": 1,
+										"second-value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "if we click anywhere that's not an NPC, and there's a portrait up, destroy all portraits"
+								},
+								{
+									"callFunction": "closeDialog",
+									"sid": 797106228050498
+								}
+							],
+							"sid": 507640600485547
 						}
 					],
-					"sid": 607267948456563
+					"isOrBlock": true
 				},
 				{
 					"functionName": "closeDialog",
@@ -5357,14 +5375,6 @@
 												"comparison": 0,
 												"opacity": "0"
 											}
-										},
-										{
-											"id": "mouse-button-is-down",
-											"objectClass": "mouse",
-											"sid": 333298564071331,
-											"parameters": {
-												"mouse-button": "left"
-											}
 										}
 									],
 									"actions": [
@@ -5650,9 +5660,9 @@
 												{
 													"id": "mouse-button-is-down",
 													"objectClass": "mouse",
-													"sid": 108407215565737,
+													"sid": 119025548747158,
 													"parameters": {
-														"mouse-button": "left"
+														"mouse-button": "right"
 													}
 												},
 												{
@@ -5667,34 +5677,16 @@
 												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 858460120912505,
+													"sid": 492410665695329,
 													"parameters": {
-														"object": "npcBody"
+														"object": "item"
 													},
 													"isInverted": true
 												},
 												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 535374952926890,
-													"parameters": {
-														"object": "door"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 202742161511940,
-													"parameters": {
-														"object": "loot"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 138167436561949,
+													"sid": 666570401246243,
 													"parameters": {
 														"object": "invalidLocation"
 													},
@@ -5703,18 +5695,9 @@
 												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 851443191813940,
+													"sid": 573594975992952,
 													"parameters": {
 														"object": "9PatchInvalidLocations"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 216022271995411,
-													"parameters": {
-														"object": "item"
 													},
 													"isInverted": true
 												},

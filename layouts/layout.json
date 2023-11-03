@@ -4554,6 +4554,402 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "table",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 180,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Solid": {
+							"properties": {
+								"enabled": true,
+								"tags": ""
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 180,
+						"children": [
+							{
+								"uid": 264,
+								"flags": {
+									"x": false,
+									"y": false,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": false,
+									"v": false,
+									"d": false,
+									"sm": "normal"
+								}
+							},
+							{
+								"uid": 263,
+								"flags": {
+									"x": false,
+									"y": false,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": false,
+									"v": false,
+									"d": false,
+									"sm": "normal"
+								}
+							},
+							{
+								"uid": 262,
+								"flags": {
+									"x": false,
+									"y": false,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": false,
+									"v": false,
+									"d": false,
+									"sm": "normal"
+								}
+							},
+							{
+								"uid": 181,
+								"flags": {
+									"x": false,
+									"y": false,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": false,
+									"v": false,
+									"d": false,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 1959,
+						"y": 3668,
+						"width": 230,
+						"height": 213,
+						"originX": 0.02608695652173913,
+						"originY": 0.5821596244131456,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "simpleSword_loot",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "static_157.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 181,
+					"instanceVariables": {
+						"identifier": 1,
+						"simpleName": "simpleSword",
+						"fullName": "Simple Sword",
+						"type": "mainHand",
+						"lore": "The first of many",
+						"level": 1,
+						"mods": "flatSlash:+{5} Slash Damage;",
+						"classRestrictions": "All Classes",
+						"modTable": "simple1hWeapon"
+					},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 180,
+						"uid": 181,
+						"flags": {
+							"x": false,
+							"y": false,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": false,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 1999,
+						"y": 3565,
+						"width": 84,
+						"height": 42,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "simpleShield_loot",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "static_0",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 262,
+					"instanceVariables": {
+						"identifier": 2,
+						"simpleName": "simpleShield",
+						"fullName": "Simple Shield",
+						"type": "offHand",
+						"lore": "No respite for the scorned",
+						"level": 1,
+						"mods": "flatBlockChance:+{1.0}% Block Chance;",
+						"classRestrictions": "All Classes",
+						"modTable": "simpleShield"
+					},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 180,
+						"uid": 262,
+						"flags": {
+							"x": false,
+							"y": false,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": false,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2024,
+						"y": 3578,
+						"width": 47,
+						"height": 28,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "simpleShirt_loot",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "static_157.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 263,
+					"instanceVariables": {
+						"identifier": 3,
+						"simpleName": "simpleShirt",
+						"fullName": "Simple Shirt",
+						"type": "chest",
+						"lore": "Deep in the midst, you conceal him",
+						"level": 1,
+						"mods": "flatHealth:+{2} Health;",
+						"classRestrictions": "All Classes",
+						"modTable": "simpleArmor"
+					},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 180,
+						"uid": 263,
+						"flags": {
+							"x": false,
+							"y": false,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": false,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2059,
+						"y": 3613,
+						"width": 111,
+						"height": 56,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "simplePants_loot",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "static_157.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 264,
+					"instanceVariables": {
+						"identifier": 4,
+						"simpleName": "simplePants",
+						"fullName": "Simple Pants",
+						"type": "legs",
+						"lore": "Whoso is simple, let him perish!",
+						"level": 1,
+						"mods": "flatManaRegen:+{1} Mana Regeneration",
+						"classRestrictions": "All Classes",
+						"modTable": "simpleArmor"
+					},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 180,
+						"uid": 264,
+						"flags": {
+							"x": false,
+							"y": false,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": false,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2128,
+						"y": 3639,
+						"width": 81,
+						"height": 34,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 676313317196795,

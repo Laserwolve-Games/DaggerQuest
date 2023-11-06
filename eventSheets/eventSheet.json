@@ -3084,17 +3084,6 @@
 											"parameters": {
 												"object": "invalidLocation"
 											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 606915429390926,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.UID",
-												"comparison": 0,
-												"value": "draggedOriginSlotUID"
-											}
 										}
 									],
 									"actions": [
@@ -3103,66 +3092,36 @@
 											"text": "if the cursor was over an invalid location, send the item back to the slot it came from"
 										},
 										{
-											"callFunction": "attachItem",
-											"sid": 567535042357262
+											"callFunction": "returnItem",
+											"sid": 830932401995178
 										}
 									],
-									"sid": 173613641132192,
-									"children": [
+									"sid": 173613641132192
+								},
+								{
+									"eventType": "block",
+									"conditions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 669438137384719,
-													"parameters": {
-														"first-value": "slot.type",
-														"comparison": 1,
-														"second-value": "\"none\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if it came from a character slot, manage the gear and mods appropriately"
-												},
-												{
-													"callFunction": "queueGearManagement",
-													"sid": 506503431033482
-												},
-												{
-													"callFunction": "manageMods",
-													"sid": 664725274448361,
-													"parameters": [
-														true
-													]
-												}
-											],
-											"sid": 815270002103978
+											"id": "else",
+											"objectClass": "System",
+											"sid": 807845078693595
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 848638687292153,
+											"parameters": {
+												"object": "prop"
+											}
 										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "can't combine the above and below in an OR block, possibly due to the following:"
-								},
-								{
-									"eventType": "comment",
-									"text": "https://github.com/Scirra/Construct-bugs/issues/7003",
-									"text-color": [
-										0,
-										0,
-										1,
-										1
 									],
-									"background-color": [
-										1,
-										1,
-										1,
-										1
-									]
+									"actions": [
+										{
+											"callFunction": "returnItem",
+											"sid": 188046764195015
+										}
+									],
+									"sid": 681043468436456
 								},
 								{
 									"eventType": "block",
@@ -3179,65 +3138,15 @@
 											"parameters": {
 												"object": "9PatchInvalidLocations"
 											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 473465490257499,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.UID",
-												"comparison": 0,
-												"value": "draggedOriginSlotUID"
-											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "if the cursor was over an invalid 9patch location, send the item back to the slot it came from"
-										},
-										{
-											"callFunction": "attachItem",
-											"sid": 284540353299655
+											"callFunction": "returnItem",
+											"sid": 760097941165216
 										}
 									],
-									"sid": 655650270015638,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 662340366940638,
-													"parameters": {
-														"first-value": "slot.type",
-														"comparison": 1,
-														"second-value": "\"none\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if it came from a character slot, manage the gear and mods appropriately"
-												},
-												{
-													"callFunction": "queueGearManagement",
-													"sid": 193937137921424
-												},
-												{
-													"callFunction": "manageMods",
-													"sid": 772061093534735,
-													"parameters": [
-														true
-													]
-												}
-											],
-											"sid": 410460793748021
-										}
-									]
+									"sid": 655650270015638
 								},
 								{
 									"eventType": "block",
@@ -3534,6 +3443,71 @@
 										}
 									],
 									"sid": 417363291653191
+								}
+							]
+						},
+						{
+							"functionName": "returnItem",
+							"functionDescription": "Send an item back to whatever it came from, if it was dropped in an ineligible location.",
+							"functionCategory": "equipment",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 790003971076737,
+									"parameters": {
+										"object": "slot",
+										"expression": "slot.UID",
+										"comparison": 0,
+										"value": "draggedOriginSlotUID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "attachItem",
+									"sid": 257549238666092
+								}
+							],
+							"sid": 669193285438587,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "slot",
+											"sid": 947465263058252,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 1,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if it came from a character slot, manage the gear and mods appropriately"
+										},
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 860603048097230
+										},
+										{
+											"callFunction": "manageMods",
+											"sid": 470642327753329,
+											"parameters": [
+												true
+											]
+										}
+									],
+									"sid": 137910405971042
 								}
 							]
 						}

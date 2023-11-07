@@ -4455,6 +4455,88 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "camera",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 603442732683550
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "The \"scroll to\" behavior, but still clamp to the right edge even though the layout continues, while not in a building. We don't have to do this for the Y because the top and bottom of the layout is also the play area edges."
+								},
+								{
+									"id": "scroll-to-y",
+									"objectClass": "System",
+									"sid": 904683201078206,
+									"parameters": {
+										"y": "player.Y"
+									}
+								}
+							],
+							"sid": 192342804958732,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "player",
+											"sid": 634967681675669,
+											"parameters": {
+												"instance-variable": "isInsideBuilding"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "scroll-to-x",
+											"objectClass": "System",
+											"sid": 256341436493275,
+											"parameters": {
+												"x": "player.X"
+											}
+										}
+									],
+									"sid": 135011534147636
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 269752303030072
+										}
+									],
+									"actions": [
+										{
+											"id": "scroll-to-x",
+											"objectClass": "System",
+											"sid": 504408172854353,
+											"parameters": {
+												"x": "min(player.X, LayoutHeight - ViewportWidth(\"main\") / 2)"
+											}
+										}
+									],
+									"sid": 260024738787840
+								}
+							]
+						}
+					],
+					"sid": 437386535914416
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "generation",
 					"description": "",
 					"isActiveOnStart": true,
@@ -5237,8 +5319,8 @@
 				{
 					"eventType": "group",
 					"disabled": false,
-					"title": "movement",
-					"description": "TODO: break this up into movement, camera, and interaction. This group is toggled in player abilities.",
+					"title": "movement and interaction",
+					"description": "",
 					"isActiveOnStart": true,
 					"children": [
 						{
@@ -5266,67 +5348,10 @@
 									"parameters": {
 										"max-speed": "Self.movementSpeed * lerp(sqrt(2) / 2, 1, abs(abs(Self.MoveTo.MovingAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "The \"scroll to\" behavior, but still clamp to the right edge even though the layout continues, while not in a building"
-								},
-								{
-									"id": "scroll-to-y",
-									"objectClass": "System",
-									"sid": 696937311605022,
-									"parameters": {
-										"y": "player.Y"
-									}
 								}
 							],
 							"sid": 245583672645296,
 							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "player",
-											"sid": 934973500556509,
-											"parameters": {
-												"instance-variable": "isInsideBuilding"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "scroll-to-x",
-											"objectClass": "System",
-											"sid": 693011245316956,
-											"parameters": {
-												"x": "player.X"
-											}
-										}
-									],
-									"sid": 543324437619692
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 959223916317378
-										}
-									],
-									"actions": [
-										{
-											"id": "scroll-to-x",
-											"objectClass": "System",
-											"sid": 933806109829407,
-											"parameters": {
-												"x": "min(player.X, LayoutHeight - ViewportWidth(\"main\") / 2)"
-											}
-										}
-									],
-									"sid": 499255416095747
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -5364,7 +5389,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 573849551764633,
+											"sid": 120982026255155,
 											"parameters": {
 												"variable": "isOnInteractCooldown"
 											}
@@ -5372,14 +5397,14 @@
 										{
 											"id": "trigger-once-while-true",
 											"objectClass": "System",
-											"sid": 385074943703849
+											"sid": 585721311405905
 										}
 									],
 									"actions": [
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 646357893737341,
+											"sid": 944013668078549,
 											"parameters": {
 												"seconds": "INTERACT_COOLDOWN"
 											}
@@ -5387,14 +5412,14 @@
 										{
 											"id": "set-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 568247653890569,
+											"sid": 625124061650027,
 											"parameters": {
 												"variable": "isOnInteractCooldown",
 												"value": "false"
 											}
 										}
 									],
-									"sid": 690102869686332
+									"sid": 406589245541801
 								},
 								{
 									"eventType": "block",
@@ -5458,11 +5483,11 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "npc",
-															"sid": 411484989510481,
+															"sid": 612869452817336,
 															"parameters": {
 																"instance-variable": "interactRange",
 																"comparison": 5,
-																"value": "distance(npc.X, npc.Y, player.X, player.Y)"
+																"value": "distance(self.X, Self.Y, player.X, player.Y)"
 															}
 														}
 													],
@@ -5511,16 +5536,113 @@
 														{
 															"id": "move-to-position",
 															"objectClass": "player",
-															"sid": 319982596893757,
+															"sid": 652146421796565,
 															"behaviorType": "MoveTo",
 															"parameters": {
-																"x": "npc.x + cos(angle(npc.x, npc.y, player.x, player.y)) * npc.interactRange",
-																"y": "npc.y + sin(angle(npc.x, npc.y, player.x, player.y)) * npc.interactRange",
+																"x": "npc.x + cos(angle(npc.x, npc.y, self.x, self.y)) * npc.interactRange",
+																"y": "npc.y + sin(angle(npc.x, npc.y, self.x, Self.y)) * npc.interactRange",
 																"mode": "direct"
 															}
 														}
 													],
 													"sid": 427665327590872
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "mouse",
+													"sid": 647496400174350,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "enemyBody"
+													}
+												},
+												{
+													"id": "pick-topbottom",
+													"objectClass": "enemyBody",
+													"sid": 558149924020247,
+													"parameters": {
+														"which": "top"
+													}
+												},
+												{
+													"id": "pick-parent",
+													"objectClass": "enemyBody",
+													"sid": 308256509815841,
+													"parameters": {
+														"parent": "enemy",
+														"which": "own"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 749602820773931,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "player",
+															"sid": 395767663836304,
+															"parameters": {
+																"instance-variable": "attackRange",
+																"comparison": 5,
+																"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "call-mapped-function",
+															"objectClass": "Functions",
+															"sid": 312709600460506,
+															"parameters": {
+																"name": "\"playerAbilities\"",
+																"string": "\"basicAttack\"",
+																"forward-params": "0"
+															}
+														}
+													],
+													"sid": 318720870317571
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 613463249095690
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 714514369482814,
+															"parameters": {
+																"variable": "uidOfClicked",
+																"value": "enemy.UID"
+															}
+														},
+														{
+															"id": "move-to-position",
+															"objectClass": "player",
+															"sid": 912632744947369,
+															"behaviorType": "MoveTo",
+															"parameters": {
+																"x": "enemy.x + cos(angle(enemy.x, enemy.y, self.x, self.y)) * Self.attackRange",
+																"y": "enemy.y + sin(angle(enemy.x, enemy.y, self.x, self.y)) * Self.attackRange",
+																"mode": "direct"
+															}
+														}
+													],
+													"sid": 754626071378799
 												}
 											]
 										},
@@ -5953,6 +6075,50 @@
 												}
 											],
 											"sid": 155097763547603
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 762578463281120,
+													"parameters": {
+														"object": "enemy",
+														"expression": "uidOfClicked",
+														"comparison": 0,
+														"value": "enemy.UID"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 204545572041473,
+													"parameters": {
+														"instance-variable": "attackRange",
+														"comparison": 5,
+														"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Make sure the enemy is still in range when the player arrives."
+												},
+												{
+													"id": "call-mapped-function",
+													"objectClass": "Functions",
+													"sid": 282783449231615,
+													"breakpoint": true,
+													"parameters": {
+														"name": "\"playerAbilities\"",
+														"string": "\"basicAttack\"",
+														"forward-params": "0"
+													}
+												}
+											],
+											"sid": 238013612695904
 										}
 									]
 								}
@@ -6208,6 +6374,352 @@
 						{
 							"eventType": "group",
 							"disabled": false,
+							"title": "Man Basic Attack",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"functionName": "basicAttack",
+									"functionDescription": "",
+									"functionCategory": "abilities",
+									"functionReturnType": "none",
+									"functionCopyPicked": true,
+									"functionIsAsync": false,
+									"functionParameters": [
+										{
+											"name": "x",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "",
+											"sid": 935557963406068
+										},
+										{
+											"name": "y",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "",
+											"sid": 813009262949045
+										}
+									],
+									"eventType": "function-block",
+									"conditions": [],
+									"actions": [],
+									"sid": 370757918829638,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "PROJECTILE_SPEED",
+											"type": "number",
+											"initialValue": "700",
+											"comment": "The speed of the projectile",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 918563997374615
+										},
+										{
+											"eventType": "variable",
+											"name": "MANIFESTATION_FRAME",
+											"type": "number",
+											"initialValue": "4",
+											"comment": "The (0-based) frame in which the projectile should manifest",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 695853464938167
+										},
+										{
+											"eventType": "variable",
+											"name": "SIZE",
+											"type": "number",
+											"initialValue": "126",
+											"comment": "The size of the projectile",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 951595924954882
+										},
+										{
+											"eventType": "variable",
+											"name": "RANGE",
+											"type": "number",
+											"initialValue": "150",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 411794103289567
+										},
+										{
+											"eventType": "variable",
+											"name": "waitPeriod",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "How long to wait (in seconds) after the start of the animation before generating the projectile",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 671342766542709
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 468286147412509,
+													"parameters": {
+														"object": "gear",
+														"expression": "gear.type",
+														"comparison": 0,
+														"value": "\"mainHand\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "must have a weapon equipped"
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 165992628988138,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "updateFacing",
+													"sid": 569325032626697,
+													"parameters": [
+														"enemy.X",
+														"enemy.Y"
+													]
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 684728631988020,
+													"parameters": {
+														"group-name": "\"movement and interaction\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 583326802831326,
+													"parameters": {
+														"group-name": "\"abilities\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 563340581407919,
+													"parameters": {
+														"group-name": "\"facings\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-animation",
+													"objectClass": "body",
+													"sid": 236533970223964,
+													"parameters": {
+														"animation": "\"downwardSlash_\" & player.degrees",
+														"from": "beginning"
+													}
+												},
+												{
+													"id": "set-animation-speed",
+													"objectClass": "body",
+													"sid": 259802474767926,
+													"parameters": {
+														"speed": "player.actionSpeed"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 228349549313988,
+													"parameters": {
+														"variable": "waitPeriod",
+														"value": "TICKS_PER_SECOND / body.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 975874110382979,
+													"parameters": {
+														"seconds": "waitPeriod"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 641454421852731,
+													"parameters": {
+														"object-to-create": "projectile",
+														"layer": "\"mechanics\"",
+														"x": "player.X",
+														"y": "player.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												}
+											],
+											"sid": 139643682259676,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 249782864950808,
+															"parameters": {
+																"object": "projectile"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 418141516815654,
+															"parameters": {
+																"instance-variable": "friendly",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 894031840485246,
+															"parameters": {
+																"instance-variable": "piercing",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 357952283324498,
+															"parameters": {
+																"instance-variable": "enabled",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 129247847217603,
+															"parameters": {
+																"instance-variable": "range",
+																"value": "RANGE"
+															}
+														},
+														{
+															"type": "comment",
+															"text": "Extract the multiplier from the description in the abilities table"
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 895798928813790,
+															"parameters": {
+																"instance-variable": "slashDamage",
+																"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
+															}
+														},
+														{
+															"id": "set-width",
+															"objectClass": "projectile",
+															"sid": 621985424822789,
+															"parameters": {
+																"width": "SIZE"
+															}
+														},
+														{
+															"id": "set-height",
+															"objectClass": "projectile",
+															"sid": 207647929548318,
+															"parameters": {
+																"height": "Self.Width / ISOMETRIC_DIVIDER"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 495767871404992,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "PROJECTILE_SPEED"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "projectile",
+															"sid": 250041314668720,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "player.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 904893211971251,
+															"parameters": {
+																"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 844734543804403,
+															"parameters": {
+																"group-name": "\"movement and interaction\"",
+																"state": "activated"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 462103484113790,
+															"parameters": {
+																"group-name": "\"facings\"",
+																"state": "activated"
+															}
+														},
+														{
+															"id": "set-group-active",
+															"objectClass": "System",
+															"sid": 565708415104902,
+															"parameters": {
+																"group-name": "\"abilities\"",
+																"state": "activated"
+															}
+														},
+														{
+															"callFunction": "updateAnimations",
+															"sid": 285345766750237,
+															"parameters": [
+																"\"idle\"",
+																"body.OriginalAnimationSpeed",
+																"\"playFromBeginning\""
+															]
+														}
+													],
+													"sid": 532928922548205
+												}
+											]
+										}
+									]
+								}
+							],
+							"sid": 976387954697572
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
 							"title": "Man Upward Slash",
 							"description": "",
 							"isActiveOnStart": true,
@@ -6341,18 +6853,18 @@
 												{
 													"id": "set-group-active",
 													"objectClass": "System",
-													"sid": 886168887415017,
+													"sid": 836864039443408,
 													"parameters": {
-														"group-name": "\"movement\"",
+														"group-name": "\"movement and interaction\"",
 														"state": "deactivated"
 													}
 												},
 												{
 													"id": "set-group-active",
 													"objectClass": "System",
-													"sid": 451074730069151,
+													"sid": 710736552891004,
 													"parameters": {
-														"group-name": "\"Man Upward Slash\"",
+														"group-name": "\"abilities\"",
 														"state": "deactivated"
 													}
 												},
@@ -6481,7 +6993,6 @@
 															"id": "set-width",
 															"objectClass": "projectile",
 															"sid": 463900277504500,
-															"breakpoint": true,
 															"parameters": {
 																"width": "SIZE"
 															}
@@ -6523,9 +7034,9 @@
 														{
 															"id": "set-group-active",
 															"objectClass": "System",
-															"sid": 558483152582253,
+															"sid": 381453661601787,
 															"parameters": {
-																"group-name": "\"movement\"",
+																"group-name": "\"movement and interaction\"",
 																"state": "activated"
 															}
 														},
@@ -6541,9 +7052,9 @@
 														{
 															"id": "set-group-active",
 															"objectClass": "System",
-															"sid": 698859409749767,
+															"sid": 171776864818288,
 															"parameters": {
-																"group-name": "\"Man Upward Slash\"",
+																"group-name": "\"abilities\"",
 																"state": "activated"
 															}
 														},
@@ -11040,6 +11551,7 @@
 									"id": "set-animation",
 									"objectClass": "enemyBody",
 									"sid": 316680188201364,
+									"breakpoint": true,
 									"parameters": {
 										"animation": "\"die_\" & enemy.degrees",
 										"from": "beginning"
@@ -13340,6 +13852,16 @@
 								"name": "\"playerAbilities\"",
 								"string": "\"heroicStrike\"",
 								"function": "heroicStrike"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 371402426745639,
+							"parameters": {
+								"name": "\"playerAbilities\"",
+								"string": "\"basicAttack\"",
+								"function": "basicAttack"
 							}
 						},
 						{

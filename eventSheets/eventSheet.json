@@ -5970,12 +5970,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-arrived",
-											"objectClass": "player",
-											"sid": 266023590542015,
-											"behaviorType": "MoveTo"
-										},
-										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
 											"sid": 735511063130572,
@@ -5989,10 +5983,6 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "when we arrive somewhere, if we had a UID saved of something, call a function based off of what it is"
-										},
-										{
-											"type": "comment",
 											"text": "we don't need to check that it's 0 for this to function, however it saves us from evaluating each sub-event's condition"
 										}
 									],
@@ -6004,85 +5994,7 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 249763389925295,
-													"parameters": {
-														"object": "npc",
-														"expression": "npc.UID",
-														"comparison": 0,
-														"value": "uidOfClicked"
-													}
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "npc",
-													"sid": 126656198576000,
-													"parameters": {
-														"child": "npcBody",
-														"which": "own"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "beginDialog",
-													"sid": 110486132137755
-												}
-											],
-											"sid": 182085532883072
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 711163033533160,
-													"parameters": {
-														"object": "loot",
-														"expression": "loot.UID",
-														"comparison": 0,
-														"value": "uidOfClicked"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "pickUpLoot",
-													"sid": 606163483948961
-												}
-											],
-											"sid": 760647023019795
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 677377253264415,
-													"parameters": {
-														"object": "door",
-														"expression": "uidOfClicked",
-														"comparison": 0,
-														"value": "door.UID"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "buildingTransition",
-													"sid": 722250069952467
-												}
-											],
-											"sid": 155097763547603
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 762578463281120,
+													"sid": 720539290630348,
 													"parameters": {
 														"object": "enemy",
 														"expression": "uidOfClicked",
@@ -6093,7 +6005,7 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "player",
-													"sid": 204545572041473,
+													"sid": 771584707701155,
 													"parameters": {
 														"instance-variable": "attackRange",
 														"comparison": 5,
@@ -6104,21 +6016,133 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "Make sure the enemy is still in range when the player arrives."
+													"text": "As soon as the enemy comes in range, stop moving and attack it."
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 423776126456889,
+													"behaviorType": "MoveTo"
 												},
 												{
 													"id": "call-mapped-function",
 													"objectClass": "Functions",
-													"sid": 282783449231615,
-													"breakpoint": true,
+													"sid": 695091323001267,
 													"parameters": {
 														"name": "\"playerAbilities\"",
 														"string": "\"basicAttack\"",
 														"forward-params": "0"
 													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 220009919808246,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "0"
+													}
 												}
 											],
-											"sid": 238013612695904
+											"sid": 766000468871992
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-arrived",
+													"objectClass": "player",
+													"sid": 572346275376375,
+													"behaviorType": "MoveTo"
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "when we arrive somewhere, if we had a UID saved of something, call a function based off of what it is"
+												}
+											],
+											"sid": 768185830917990,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 188152185536450,
+															"parameters": {
+																"object": "npc",
+																"expression": "npc.UID",
+																"comparison": 0,
+																"value": "uidOfClicked"
+															}
+														},
+														{
+															"id": "pick-children",
+															"objectClass": "npc",
+															"sid": 903886249655530,
+															"parameters": {
+																"child": "npcBody",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "beginDialog",
+															"sid": 888426382144437
+														}
+													],
+													"sid": 904089008495540
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 810777610648875,
+															"parameters": {
+																"object": "loot",
+																"expression": "loot.UID",
+																"comparison": 0,
+																"value": "uidOfClicked"
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "pickUpLoot",
+															"sid": 807707765453852
+														}
+													],
+													"sid": 969149847173058
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 591541814013020,
+															"parameters": {
+																"object": "door",
+																"expression": "uidOfClicked",
+																"comparison": 0,
+																"value": "door.UID"
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "buildingTransition",
+															"sid": 837203022624942
+														}
+													],
+													"sid": 529136020412549
+												}
+											]
 										}
 									]
 								}
@@ -7544,7 +7568,7 @@
 								{
 									"id": "on-signal",
 									"objectClass": "System",
-									"sid": 731849256423025,
+									"sid": 551496541279165,
 									"parameters": {
 										"tag": "\"setAbilities\""
 									}
@@ -7552,7 +7576,7 @@
 								{
 									"id": "for-each",
 									"objectClass": "System",
-									"sid": 842924391244404,
+									"sid": 707055531504507,
 									"parameters": {
 										"object": "abilitySlot"
 									}
@@ -7566,7 +7590,7 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 310461313926225,
+									"sid": 703115001635694,
 									"parameters": {
 										"object-name": "body.ObjectTypeName & \"_ability\"",
 										"layer": "abilitySlot.LayerName",
@@ -7577,7 +7601,7 @@
 									}
 								}
 							],
-							"sid": 148380052646638,
+							"sid": 699935747304531,
 							"children": [
 								{
 									"eventType": "block",
@@ -7585,7 +7609,7 @@
 										{
 											"id": "pick-last-created",
 											"objectClass": "System",
-											"sid": 512281520571349,
+											"sid": 831544315515473,
 											"parameters": {
 												"object": "ability"
 											}
@@ -7595,7 +7619,7 @@
 										{
 											"id": "set-effect-enabled",
 											"objectClass": "ability",
-											"sid": 478618911194993,
+											"sid": 421956783211698,
 											"parameters": {
 												"mode": "disable",
 												"effect": "\"Grayscale\""
@@ -7604,7 +7628,7 @@
 										{
 											"id": "set-effect-parameter",
 											"objectClass": "ability",
-											"sid": 365762631956037,
+											"sid": 364167940092383,
 											"parameters": {
 												"effect": "\"Grayscale\"",
 												"parameter-index": "0",
@@ -7614,7 +7638,7 @@
 										{
 											"id": "add-child",
 											"objectClass": "abilitySlot",
-											"sid": 885983193919372,
+											"sid": 419678936034716,
 											"parameters": {
 												"child": "ability",
 												"transform-x": true,
@@ -7629,73 +7653,52 @@
 											}
 										}
 									],
-									"sid": 285945286407844,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 384375389560131,
-													"parameters": {
-														"first-value": "ability.IID",
-														"comparison": 0,
-														"second-value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "give the player their first ability"
-												},
-												{
-													"id": "set-animation",
-													"objectClass": "ability",
-													"sid": 373144257876183,
-													"parameters": {
-														"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 1)",
-														"from": "beginning"
-													}
-												}
-											],
-											"sid": 879980347055074
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 192623867896742,
-													"parameters": {
-														"first-value": "ability.IID",
-														"comparison": 0,
-														"second-value": "1"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "for debugging"
-												},
-												{
-													"id": "set-animation",
-													"objectClass": "ability",
-													"sid": 816183634789484,
-													"parameters": {
-														"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 4)",
-														"from": "beginning"
-													}
-												}
-											],
-											"sid": 952911104834769
-										}
-									]
+									"sid": 414672886242503
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 120436009830877,
+									"parameters": {
+										"instance-variable": "level",
+										"comparison": 0,
+										"value": "1"
+									}
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 184333656745929,
+									"parameters": {
+										"object": "ability",
+										"expression": "ability.IID",
+										"comparison": 0,
+										"value": "0"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 603110829498462
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 260180905161053,
+									"parameters": {
+										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 1)",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 125460944038665
 						},
 						{
 							"eventType": "block",
@@ -11551,7 +11554,6 @@
 									"id": "set-animation",
 									"objectClass": "enemyBody",
 									"sid": 316680188201364,
-									"breakpoint": true,
 									"parameters": {
 										"animation": "\"die_\" & enemy.degrees",
 										"from": "beginning"

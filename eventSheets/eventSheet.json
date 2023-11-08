@@ -4465,6 +4465,42 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
+									"sid": 706533316977819,
+									"parameters": {
+										"instance-variable": "experience",
+										"comparison": 5,
+										"value": "Self.level * 100"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 689062967222336,
+									"parameters": {
+										"instance-variable": "experience",
+										"value": "0"
+									}
+								},
+								{
+									"id": "add-to-instvar",
+									"objectClass": "player",
+									"sid": 956489463791798,
+									"parameters": {
+										"instance-variable": "level",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 634680856601273
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
 									"sid": 270549184786353,
 									"parameters": {
 										"instance-variable": "level",
@@ -4546,16 +4582,6 @@
 								{
 									"id": "set-animation",
 									"objectClass": "ability",
-									"sid": 654118071113377,
-									"disabled": true,
-									"parameters": {
-										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 4)",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
 									"sid": 532294579077369,
 									"parameters": {
 										"animation": "\"kick\"",
@@ -4579,45 +4605,13 @@
 									}
 								},
 								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 261574593950718,
-									"parameters": {
-										"object": "ability",
-										"expression": "ability.IID",
-										"comparison": 0,
-										"value": "1"
-									}
-								},
-								{
 									"id": "trigger-once-while-true",
 									"objectClass": "System",
 									"sid": 731532834625423
 								}
 							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
-									"sid": 642232572772485,
-									"disabled": true,
-									"parameters": {
-										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 4)",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
-									"sid": 879512146186566,
-									"parameters": {
-										"animation": "\"kick\"",
-										"from": "beginning"
-									}
-								}
-							],
-							"sid": 682547630660347,
-							"disabled": true
+							"actions": [],
+							"sid": 682547630660347
 						}
 					],
 					"sid": 560853960019214
@@ -5013,11 +5007,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-boolean-instance-variable-set",
+									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 778284806513307,
+									"sid": 226847805408058,
 									"parameters": {
-										"instance-variable": "alive"
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
 									}
 								}
 							],
@@ -5177,11 +5173,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-boolean-instance-variable-set",
+									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 438214241218846,
+									"sid": 729556865769116,
 									"parameters": {
-										"instance-variable": "alive"
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
 									}
 								}
 							],
@@ -5325,11 +5323,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-boolean-instance-variable-set",
+									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 440720543124514,
+									"sid": 918004471777489,
 									"parameters": {
-										"instance-variable": "alive"
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
 									}
 								},
 								{
@@ -5425,38 +5425,12 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 220016749589610,
+									"sid": 166621457417563,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"comparison": 0,
+										"comparison": 3,
 										"value": "0"
 									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "player",
-									"sid": 327792398533154,
-									"parameters": {
-										"instance-variable": "alive",
-										"value": "false"
-									}
-								}
-							],
-							"sid": 426922323504474
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "player",
-									"sid": 272213140570599,
-									"parameters": {
-										"instance-variable": "alive"
-									},
-									"isInverted": true
 								},
 								{
 									"id": "trigger-once-while-true",
@@ -5497,11 +5471,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-boolean-instance-variable-set",
+									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 442789165294478,
+									"sid": 125995727596137,
 									"parameters": {
-										"instance-variable": "alive"
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
 									}
 								}
 							],
@@ -5759,7 +5735,7 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "player",
-															"sid": 395767663836304,
+															"sid": 236447170818385,
 															"parameters": {
 																"instance-variable": "attackRange",
 																"comparison": 5,
@@ -5769,17 +5745,40 @@
 													],
 													"actions": [
 														{
-															"id": "call-mapped-function",
-															"objectClass": "Functions",
-															"sid": 312709600460506,
-															"parameters": {
-																"name": "\"playerAbilities\"",
-																"string": "\"basicAttack\"",
-																"forward-params": "0"
-															}
+															"type": "comment",
+															"text": "When an enemy is left clicked, check to see if it's within attack range. If it isn't, move so that it is. If it is, check to make sure the player isn't in a non-combat area, then attack."
 														}
 													],
-													"sid": 318720870317571
+													"sid": 139957733526720,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-overlapping-another-object",
+																	"objectClass": "player",
+																	"sid": 133381062536125,
+																	"parameters": {
+																		"object": "nonCombatArea"
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "call-mapped-function",
+																	"objectClass": "Functions",
+																	"sid": 639934518489744,
+																	"parameters": {
+																		"name": "\"playerAbilities\"",
+																		"string": "\"basicAttack\"",
+																		"forward-params": "0"
+																	}
+																}
+															],
+															"sid": 912467143497990
+														}
+													]
 												},
 												{
 													"eventType": "block",
@@ -5787,14 +5786,14 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 613463249095690
+															"sid": 493086878079024
 														}
 													],
 													"actions": [
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 714514369482814,
+															"sid": 215993732116641,
 															"parameters": {
 																"variable": "uidOfClicked",
 																"value": "enemy.UID"
@@ -5803,7 +5802,7 @@
 														{
 															"id": "move-to-position",
 															"objectClass": "player",
-															"sid": 912632744947369,
+															"sid": 564307296914156,
 															"behaviorType": "MoveTo",
 															"parameters": {
 																"x": "enemy.x + cos(angle(enemy.x, enemy.y, self.x, self.y)) * Self.attackRange",
@@ -5812,7 +5811,7 @@
 															}
 														}
 													],
-													"sid": 754626071378799
+													"sid": 325974417658702
 												}
 											]
 										},
@@ -6044,14 +6043,6 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "mouse-button-is-down",
-													"objectClass": "mouse",
-													"sid": 119025548747158,
-													"parameters": {
-														"mouse-button": "right"
-													}
-												},
-												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
 													"sid": 326863248303330,
@@ -6106,33 +6097,90 @@
 													"isInverted": true
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 166715960982564,
+											"children": [
 												{
-													"type": "comment",
-													"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "mouse-button-is-down",
+															"objectClass": "mouse",
+															"sid": 954094202655467,
+															"parameters": {
+																"mouse-button": "right"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
+														},
+														{
+															"callFunction": "normalMovement",
+															"sid": 905268901293177
+														}
+													],
+													"sid": 734198820085048
 												},
 												{
-													"id": "move-to-position",
-													"objectClass": "player",
-													"sid": 597457179007743,
-													"behaviorType": "MoveTo",
-													"parameters": {
-														"x": "mouse.X",
-														"y": "mouse.Y",
-														"mode": "direct"
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 983960257720300,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "mouse-button-is-down",
+															"objectClass": "mouse",
+															"sid": 128892431348860,
+															"parameters": {
+																"mouse-button": "left"
+															}
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 771157223441082,
+															"parameters": {
+																"object": "npcBody"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 354486739837909,
+															"parameters": {
+																"object": "enemyBody"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 229704619217903,
+															"parameters": {
+																"object": "loot"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 586698452226205,
+															"parameters": {
+																"object": "door"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "normalMovement",
+															"sid": 657244399168125
+														}
+													],
+													"sid": 867796252491452
 												}
-											],
-											"sid": 166715960982564
+											]
 										}
 									]
 								},
@@ -6195,16 +6243,6 @@
 													"behaviorType": "MoveTo"
 												},
 												{
-													"id": "call-mapped-function",
-													"objectClass": "Functions",
-													"sid": 695091323001267,
-													"parameters": {
-														"name": "\"playerAbilities\"",
-														"string": "\"basicAttack\"",
-														"forward-params": "0"
-													}
-												},
-												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
 													"sid": 220009919808246,
@@ -6214,7 +6252,36 @@
 													}
 												}
 											],
-											"sid": 766000468871992
+											"sid": 766000468871992,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-overlapping-another-object",
+															"objectClass": "player",
+															"sid": 419261775519050,
+															"parameters": {
+																"object": "nonCombatArea"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "call-mapped-function",
+															"objectClass": "Functions",
+															"sid": 492517561741127,
+															"parameters": {
+																"name": "\"playerAbilities\"",
+																"string": "\"basicAttack\"",
+																"forward-params": "0"
+															}
+														}
+													],
+													"sid": 159625125611369
+												}
+											]
 										},
 										{
 											"eventType": "block",
@@ -6446,6 +6513,40 @@
 							],
 							"sid": 527150234376711,
 							"isOrBlock": true
+						},
+						{
+							"functionName": "normalMovement",
+							"functionDescription": "Move to a location and reset the uidOfClicked variable.",
+							"functionCategory": "playerFunctions",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "move-to-position",
+									"objectClass": "player",
+									"sid": 651930939624738,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"x": "mouse.X",
+										"y": "mouse.Y",
+										"mode": "direct"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 143164164866806,
+									"parameters": {
+										"variable": "uidOfClicked",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 736875311258128
 						}
 					],
 					"sid": 914713205483917
@@ -6461,11 +6562,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-boolean-instance-variable-set",
+									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 185638574466964,
+									"sid": 319890286111428,
 									"parameters": {
-										"instance-variable": "alive"
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
 									}
 								},
 								{
@@ -6528,9 +6631,31 @@
 											"parameters": {
 												"key": 87
 											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 893202657118275,
+											"parameters": {
+												"object": "ability",
+												"expression": "ability.IID",
+												"comparison": 0,
+												"value": "1"
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"id": "call-mapped-function",
+											"objectClass": "Functions",
+											"sid": 260465786727523,
+											"parameters": {
+												"name": "\"playerAbilities\"",
+												"string": "ability.AnimationName",
+												"forward-params": "0"
+											}
+										}
+									],
 									"sid": 949187034190135
 								},
 								{
@@ -6543,9 +6668,31 @@
 											"parameters": {
 												"key": 69
 											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 987228128396527,
+											"parameters": {
+												"object": "ability",
+												"expression": "ability.IID",
+												"comparison": 0,
+												"value": "2"
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"id": "call-mapped-function",
+											"objectClass": "Functions",
+											"sid": 298870390797299,
+											"parameters": {
+												"name": "\"playerAbilities\"",
+												"string": "ability.AnimationName",
+												"forward-params": "0"
+											}
+										}
+									],
 									"sid": 179482036150432
 								},
 								{
@@ -6558,9 +6705,31 @@
 											"parameters": {
 												"key": 82
 											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 358716227755775,
+											"parameters": {
+												"object": "ability",
+												"expression": "ability.IID",
+												"comparison": 0,
+												"value": "3"
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"id": "call-mapped-function",
+											"objectClass": "Functions",
+											"sid": 924759053638185,
+											"parameters": {
+												"name": "\"playerAbilities\"",
+												"string": "ability.AnimationName",
+												"forward-params": "0"
+											}
+										}
+									],
 									"sid": 258916997745556
 								}
 							]
@@ -6604,7 +6773,7 @@
 											"eventType": "variable",
 											"name": "PROJECTILE_SPEED",
 											"type": "number",
-											"initialValue": "700",
+											"initialValue": "650",
 											"comment": "The speed of the projectile",
 											"isStatic": false,
 											"isConstant": true,
@@ -6614,7 +6783,7 @@
 											"eventType": "variable",
 											"name": "MANIFESTATION_FRAME",
 											"type": "number",
-											"initialValue": "4",
+											"initialValue": "9",
 											"comment": "The (0-based) frame in which the projectile should manifest",
 											"isStatic": false,
 											"isConstant": true,
@@ -6624,7 +6793,7 @@
 											"eventType": "variable",
 											"name": "SIZE",
 											"type": "number",
-											"initialValue": "126",
+											"initialValue": "99",
 											"comment": "The size of the projectile",
 											"isStatic": false,
 											"isConstant": true,
@@ -6817,10 +6986,10 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 895798928813790,
+															"sid": 909287918628467,
 															"parameters": {
 																"instance-variable": "slashDamage",
-																"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
+																"value": "player.slashDamage"
 															}
 														},
 														{
@@ -6935,7 +7104,7 @@
 											"eventType": "variable",
 											"name": "MANA_COST",
 											"type": "number",
-											"initialValue": "2",
+											"initialValue": "10",
 											"comment": "",
 											"isStatic": false,
 											"isConstant": true,
@@ -10749,9 +10918,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 847251743305353,
+											"sid": 743547585251898,
 											"parameters": {
-												"count": "random(3, 6)"
+												"count": "5"
 											}
 										}
 									],
@@ -11025,7 +11194,7 @@
 												{
 													"id": "add-child",
 													"objectClass": "enemy",
-													"sid": 477573968724165,
+													"sid": 764507394793625,
 													"parameters": {
 														"child": "enemyBody",
 														"transform-x": true,
@@ -11036,7 +11205,7 @@
 														"transform-o": true,
 														"transform-z-elevation": false,
 														"transform-visibility": false,
-														"destroy-with-parent": true
+														"destroy-with-parent": false
 													}
 												}
 											],
@@ -11288,11 +11457,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-boolean-instance-variable-set",
+											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 264981282314782,
+											"sid": 645126633850603,
 											"parameters": {
-												"instance-variable": "alive"
+												"instance-variable": "currentHealth",
+												"comparison": 4,
+												"value": "0"
 											}
 										}
 									],
@@ -11685,19 +11856,18 @@
 									"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a 'die' animation."
 								},
 								{
-									"id": "stop",
-									"objectClass": "enemy",
-									"sid": 137098140217860,
-									"behaviorType": "MoveTo"
+									"id": "add-to-instvar",
+									"objectClass": "player",
+									"sid": 464114896759868,
+									"parameters": {
+										"instance-variable": "experience",
+										"value": "enemy.experience"
+									}
 								},
 								{
-									"id": "set-enabled",
+									"id": "destroy",
 									"objectClass": "enemy",
-									"sid": 679459152886366,
-									"behaviorType": "Solid",
-									"parameters": {
-										"state": "disabled"
-									}
+									"sid": 176209762672943
 								},
 								{
 									"id": "set-animation",
@@ -11726,15 +11896,6 @@
 									"id": "on-any-animation-finished",
 									"objectClass": "enemyBody",
 									"sid": 817299499657078
-								},
-								{
-									"id": "pick-parent",
-									"objectClass": "enemyBody",
-									"sid": 763479614804108,
-									"parameters": {
-										"parent": "enemy",
-										"which": "own"
-									}
 								}
 							],
 							"actions": [],
@@ -11757,7 +11918,7 @@
 									"actions": [
 										{
 											"id": "tween-one-property",
-											"objectClass": "enemy",
+											"objectClass": "enemyBody",
 											"sid": 721035982159668,
 											"behaviorType": "Tween",
 											"parameters": {
@@ -11786,6 +11947,15 @@
 												"first-value": "find(enemyBody.AnimationName, \"attack\")",
 												"comparison": 1,
 												"second-value": "-1"
+											}
+										},
+										{
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 333116865852846,
+											"parameters": {
+												"parent": "enemy",
+												"which": "own"
 											}
 										}
 									],
@@ -12913,6 +13083,15 @@
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"value": "projectile.stabDamage * (1 - Self.physicalResistance)"
+									}
+								},
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "player",
+									"sid": 633002996225917,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
 									}
 								}
 							],

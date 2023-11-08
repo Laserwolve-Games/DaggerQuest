@@ -4455,6 +4455,176 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "levels",
+					"description": "handle the player leveling up",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 270549184786353,
+									"parameters": {
+										"instance-variable": "level",
+										"comparison": 0,
+										"value": "1"
+									}
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 956052953727412,
+									"parameters": {
+										"object": "ability",
+										"expression": "ability.IID",
+										"comparison": 0,
+										"value": "0"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 947040368790103
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 342675382481448,
+									"disabled": true,
+									"parameters": {
+										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 1)",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 669052896827154,
+									"parameters": {
+										"animation": "\"heroicStrike\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 940419245050055
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 548566264395182,
+									"parameters": {
+										"instance-variable": "level",
+										"comparison": 0,
+										"value": "2"
+									}
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 789016716037769,
+									"parameters": {
+										"object": "ability",
+										"expression": "ability.IID",
+										"comparison": 0,
+										"value": "1"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 119316877320385
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 654118071113377,
+									"disabled": true,
+									"parameters": {
+										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 4)",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 532294579077369,
+									"parameters": {
+										"animation": "\"kick\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 496529489392555
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 598343253120332,
+									"parameters": {
+										"instance-variable": "level",
+										"comparison": 0,
+										"value": "3"
+									}
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 261574593950718,
+									"parameters": {
+										"object": "ability",
+										"expression": "ability.IID",
+										"comparison": 0,
+										"value": "1"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 731532834625423
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 642232572772485,
+									"disabled": true,
+									"parameters": {
+										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 4)",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "ability",
+									"sid": 879512146186566,
+									"parameters": {
+										"animation": "\"kick\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 682547630660347,
+							"disabled": true
+						}
+					],
+					"sid": 560853960019214
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "camera",
 					"description": "",
 					"isActiveOnStart": true,
@@ -7661,49 +7831,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 120436009830877,
-									"parameters": {
-										"instance-variable": "level",
-										"comparison": 0,
-										"value": "1"
-									}
-								},
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 184333656745929,
-									"parameters": {
-										"object": "ability",
-										"expression": "ability.IID",
-										"comparison": 0,
-										"value": "0"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 603110829498462
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
-									"sid": 260180905161053,
-									"parameters": {
-										"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), 1)",
-										"from": "beginning"
-									}
-								}
-							],
-							"sid": 125460944038665
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "on-click",
 									"objectClass": "mouse",
 									"sid": 166153498320785,
@@ -8013,6 +8140,10 @@
 														{
 															"type": "comment",
 															"text": "populate the abilityOptionsArray with abilities that are of the matching class and meet the level requirement"
+														},
+														{
+															"type": "comment",
+															"text": "TODO: If the player levels up with the ability selector open, any new abilities won't show up. Is it even possible to level up with the ability selector open? Should we just close the ability selector on level-up?"
 														},
 														{
 															"id": "push",

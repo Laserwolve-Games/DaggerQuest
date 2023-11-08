@@ -10948,6 +10948,15 @@
 											}
 										},
 										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 647504006577084,
+											"parameters": {
+												"instance-variable": "experience",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
+											}
+										},
+										{
 											"type": "comment",
 											"text": "This might not need to be for each enemy, we should be able to do this just once."
 										},

@@ -5,11 +5,67 @@
 	"isGlobal": false,
 	"instanceVariables": [
 		{
+			"name": "class",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 552884799527032
+		},
+		{
+			"name": "alive",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 289650528189284
+		},
+		{
 			"name": "degrees",
 			"type": "number",
 			"desc": "",
 			"show": true,
 			"sid": 333291429573460
+		},
+		{
+			"name": "level",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 231237737142489
+		},
+		{
+			"name": "experience",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 287564138385133
+		},
+		{
+			"name": "actionSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 471701441318471
+		},
+		{
+			"name": "pickupRange",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 289810211162941
+		},
+		{
+			"name": "isInsideBuilding",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 401070089941287
+		},
+		{
+			"name": "attackRange",
+			"type": "number",
+			"desc": "Used only for the player's basic attack",
+			"show": true,
+			"sid": 884808415822327
 		},
 		{
 			"name": "currentHealth",
@@ -117,53 +173,11 @@
 			"sid": 870602491291484
 		},
 		{
-			"name": "level",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 231237737142489
-		},
-		{
-			"name": "class",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 552884799527032
-		},
-		{
-			"name": "alive",
-			"type": "boolean",
-			"desc": "",
-			"show": true,
-			"sid": 289650528189284
-		},
-		{
 			"name": "movementSpeed",
 			"type": "number",
 			"desc": "",
 			"show": true,
 			"sid": 559826754171766
-		},
-		{
-			"name": "actionSpeed",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 471701441318471
-		},
-		{
-			"name": "pickupRange",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 289810211162941
-		},
-		{
-			"name": "isInsideBuilding",
-			"type": "boolean",
-			"desc": "",
-			"show": true,
-			"sid": 401070089941287
 		},
 		{
 			"name": "physicalResistance",
@@ -206,13 +220,6 @@
 			"desc": "",
 			"show": true,
 			"sid": 643926247393794
-		},
-		{
-			"name": "attackRange",
-			"type": "number",
-			"desc": "Used only for the player's basic attack",
-			"show": true,
-			"sid": 884808415822327
 		}
 	],
 	"behaviorTypes": [

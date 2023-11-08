@@ -59,7 +59,7 @@ if (nTotalNumberOfInstances)
 			The "findPropertyOnNodeByLabel" method in the DzSceneHelper convenience object must be used to accommodate this scenario.
 			*/
 			var oChildPropertyController = aChildPropertyControllers[i];
-			var aTargetPropertyParameters = oChildPropertyController.name.split(",");
+			var aTargetPropertyParameters = oChildPropertyController.name.split("-");
 			var oTargetNode = Scene.findNodeByLabel(aTargetPropertyParameters[0]);
 			var sTargetPropertyName = aTargetPropertyParameters[1];
 			var sTargetMaterial = aTargetPropertyParameters[2];

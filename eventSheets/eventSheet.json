@@ -11643,7 +11643,7 @@
 								{
 									"id": "pick-children",
 									"objectClass": "enemy",
-									"sid": 994968481502178,
+									"sid": 206168022374396,
 									"parameters": {
 										"child": "enemyBody",
 										"which": "own"
@@ -11652,30 +11652,39 @@
 								{
 									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 684661691472490,
+									"sid": 685956716723678,
 									"parameters": {
 										"object": "enemyBody",
 										"expression": "find(enemyBody.AnimationName, \"die\")",
 										"comparison": 0,
 										"value": "-1"
 									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "enemyBody",
+									"sid": 558938823898829,
+									"parameters": {
+										"parent": "enemy",
+										"which": "own"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "pick enemies that are dead, and their bodies that aren't playing the die animation. Immediately stop their movement and disabled solids, and play the die animation"
+									"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a 'die' animation."
 								},
 								{
 									"id": "stop",
 									"objectClass": "enemy",
-									"sid": 749716578436962,
+									"sid": 137098140217860,
 									"behaviorType": "MoveTo"
 								},
 								{
 									"id": "set-enabled",
 									"objectClass": "enemy",
-									"sid": 722696771176807,
+									"sid": 679459152886366,
 									"behaviorType": "Solid",
 									"parameters": {
 										"state": "disabled"
@@ -11684,7 +11693,7 @@
 								{
 									"id": "set-animation",
 									"objectClass": "enemyBody",
-									"sid": 316680188201364,
+									"sid": 190102022343755,
 									"parameters": {
 										"animation": "\"die_\" & enemy.degrees",
 										"from": "beginning"
@@ -11692,7 +11701,7 @@
 								},
 								{
 									"callFunction": "spawnLoot",
-									"sid": 620269989182816,
+									"sid": 179384320663119,
 									"parameters": [
 										"enemy.X",
 										"enemy.Y"

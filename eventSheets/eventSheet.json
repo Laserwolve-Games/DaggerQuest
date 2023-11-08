@@ -4778,7 +4778,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "player",
-									"sid": 954676924295979,
+									"sid": 802130441263325,
 									"parameters": {
 										"child": "body",
 										"transform-x": true,
@@ -4789,7 +4789,7 @@
 										"transform-o": false,
 										"transform-z-elevation": false,
 										"transform-visibility": false,
-										"destroy-with-parent": true
+										"destroy-with-parent": false
 									}
 								},
 								{
@@ -5173,25 +5173,12 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 729556865769116,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
-									}
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 413143904177773
 								}
 							],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "if the player exists, set the orbs to the correct values and scroll them"
-								},
-								{
-									"type": "comment",
-									"text": "if the orb's height gets set before the players health and mana values are loaded, it'll divide by zero and its height will be NaN"
-								},
 								{
 									"id": "set-height",
 									"objectClass": "healthOrb",
@@ -6846,6 +6833,15 @@
 													"behaviorType": "MoveTo"
 												},
 												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 613316307028109,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "0"
+													}
+												},
+												{
 													"callFunction": "updateFacing",
 													"sid": 569325032626697,
 													"parameters": [
@@ -7204,6 +7200,15 @@
 													"objectClass": "player",
 													"sid": 862574879045827,
 													"behaviorType": "MoveTo"
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 554829003786200,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "0"
+													}
 												},
 												{
 													"callFunction": "updateFacing",
@@ -11486,11 +11491,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 964408351043792,
+													"sid": 719950604168533,
 													"parameters": {
 														"instance-variable": "alertRange",
 														"comparison": 5,
-														"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"value": "distance(self.X, self.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(self.X, Self.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 													}
 												}
 											],
@@ -11608,11 +11613,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 690991945871411,
+													"sid": 154500419747242,
 													"parameters": {
 														"instance-variable": "alertRange",
 														"comparison": 2,
-														"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"value": "distance(self.X, self.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(self.X, Self.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 													}
 												}
 											],
@@ -11649,44 +11654,24 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "find a random nearby location"
-														},
-														{
-															"type": "comment",
-															"text": "TODO: minimum distance so they don't walk 1 pixel away",
-															"background-color": [
-																1,
-																1,
-																0,
-																1
-															]
-														},
-														{
-															"type": "comment",
-															"text": "TODO: make this idle area isometric",
-															"background-color": [
-																1,
-																1,
-																0,
-																1
-															]
+															"text": "Find a random nearby location, in an isometric area based on the enemy's dimensions. The area is isometric because the enemy's dimensions are also isometric. The location will be between 1 and 2 enemy lengths away."
 														},
 														{
 															"id": "set-instvar-value",
 															"objectClass": "enemy",
-															"sid": 794067938079009,
+															"sid": 353957446770750,
 															"parameters": {
 																"instance-variable": "idleX",
-																"value": "Self.X + random(Self.Width * -2, Self.Width * 2)"
+																"value": "Self.X + choose(random(Self.Width * -1, Self.Width * -2), random(Self.Width, Self.Width * 2))"
 															}
 														},
 														{
 															"id": "set-instvar-value",
 															"objectClass": "enemy",
-															"sid": 626444596421158,
+															"sid": 994898501798680,
 															"parameters": {
 																"instance-variable": "idleY",
-																"value": "Self.Y + random(Self.Width * -2, Self.Width * 2)"
+																"value": "Self.Y + choose(random(Self.Height * -1, Self.Height * -2), random(Self.Height, Self.Height * 2))"
 															}
 														}
 													],
@@ -13096,7 +13081,6 @@
 								}
 							],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -13118,8 +13102,7 @@
 											"sid": 413478000377979
 										}
 									],
-									"sid": 615426759922895,
-									"disabled": true
+									"sid": 615426759922895
 								}
 							]
 						}

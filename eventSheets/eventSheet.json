@@ -7689,9 +7689,9 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 981981336967417,
+															"sid": 367208043762125,
 															"parameters": {
-																"instance-variable": "slashDamage",
+																"instance-variable": "smashDamage",
 																"value": "player.smashDamage"
 															}
 														},
@@ -13357,6 +13357,15 @@
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
+									}
+								},
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "enemy",
+									"sid": 601406039109145,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "projectile.smashDamage * (1 - Self.physicalResistance)"
 									}
 								},
 								{

@@ -87,6 +87,17 @@
 							"properties": {
 								"enabled": true
 							}
+						},
+						"knockback": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 0,
+								"deceleration": 0,
+								"rotate-speed": 0,
+								"set-angle": false,
+								"stop-on-solids": false,
+								"enabled": true
+							}
 						}
 					},
 					"world": {
@@ -129,7 +140,9 @@
 						"arcaneDamage": 0,
 						"holyDamage": 0,
 						"corruptDamage": 0,
-						"enabled": false
+						"enabled": false,
+						"knockbackDistance": 0,
+						"knockbackSpeed": 0
 					},
 					"behaviors": {
 						"Bullet": {

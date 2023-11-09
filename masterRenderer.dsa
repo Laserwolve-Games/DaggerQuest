@@ -126,7 +126,7 @@ if (nTotalNumberOfInstances)
 				if (bIsGear) sNameSuffix = '_gear';
 				if (bIsShadow) sNameSuffix += '_shadow';
 
-				var sFinalFilePath = 'C:/DaggerQuest/images/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
 
 				// if (oInputDirectory.exists(sFinalFilePath)) continue; // Set the filepath. If it already exists, skip it.
 				oRenderOptions.renderImgFilename = sFinalFilePath;

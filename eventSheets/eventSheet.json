@@ -5476,10 +5476,10 @@
 								{
 									"id": "set-max-speed",
 									"objectClass": "player",
-									"sid": 821585789970137,
+									"sid": 256885482061283,
 									"behaviorType": "MoveTo",
 									"parameters": {
-										"max-speed": "Self.movementSpeed * lerp(sqrt(2) / 2, 1, abs(abs(Self.MoveTo.MovingAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+										"max-speed": "Functions.isometrify(Self.movementSpeed, Self.MoveTo.MovingAngle)"
 									}
 								}
 							],
@@ -7019,7 +7019,7 @@
 															"sid": 550788800309276,
 															"behaviorType": "Bullet",
 															"parameters": {
-																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -7378,7 +7378,7 @@
 															"sid": 849894527277260,
 															"behaviorType": "Bullet",
 															"parameters": {
-																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -7744,7 +7744,7 @@
 															"sid": 293245551588915,
 															"behaviorType": "Bullet",
 															"parameters": {
-																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -11708,10 +11708,10 @@
 								{
 									"id": "set-max-speed",
 									"objectClass": "enemy",
-									"sid": 118598441867383,
+									"sid": 767300836232651,
 									"behaviorType": "MoveTo",
 									"parameters": {
-										"max-speed": "Self.movementSpeed * lerp(sqrt(2) / 2, 1, abs(abs(Self.MoveTo.MovingAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+										"max-speed": "Functions.isometrify(Self.movementSpeed, Self.MoveTo.MovingAngle)"
 									}
 								}
 							],
@@ -11847,11 +11847,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 719950604168533,
+													"sid": 908614320075698,
 													"parameters": {
 														"instance-variable": "alertRange",
 														"comparison": 5,
-														"value": "distance(self.X, self.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(self.X, Self.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
 													}
 												}
 											],
@@ -11899,11 +11899,11 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "enemy",
-																	"sid": 810003580725913,
+																	"sid": 400660253274509,
 																	"parameters": {
 																		"instance-variable": "attackRange",
 																		"comparison": 5,
-																		"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+																		"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
 																	}
 																}
 															],
@@ -11936,11 +11936,11 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "enemy",
-																	"sid": 189333774923745,
+																	"sid": 722418884974748,
 																	"parameters": {
 																		"instance-variable": "attackRange",
 																		"comparison": 2,
-																		"value": "distance(enemy.X, enemy.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(enemy.X, enemy.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+																		"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
 																	}
 																}
 															],
@@ -11969,11 +11969,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 154500419747242,
+													"sid": 477991697367987,
 													"parameters": {
 														"instance-variable": "alertRange",
 														"comparison": 2,
-														"value": "distance(self.X, self.Y, player.X, player.Y) / lerp(sqrt(2) / 2, 1, abs(abs(angle(self.X, Self.Y, player.X, player.Y)) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
 													}
 												}
 											],
@@ -12482,16 +12482,12 @@
 													}
 												},
 												{
-													"type": "comment",
-													"text": "Melee attacks don't use the enemy's `range` variable to determine projectile range. Instead, compound the enemy's size with the projectile's size."
-												},
-												{
 													"id": "set-instvar-value",
 													"objectClass": "projectile",
-													"sid": 815017169155218,
+													"sid": 499067580773091,
 													"parameters": {
 														"instance-variable": "range",
-														"value": "lerp(enemy.Height / 2 + self.Height / 2, enemy.Width / 2 + Self.Width / 2, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"value": "enemy.attackRange"
 													}
 												},
 												{
@@ -12509,7 +12505,7 @@
 													"sid": 612650861946859,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+														"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												}
 											],
@@ -12544,20 +12540,10 @@
 								},
 								{
 									"eventType": "variable",
-									"name": "MANIFESTATION_POINT_MIN_DISTANCE",
-									"type": "number",
-									"initialValue": "35",
-									"comment": "The shortest possible distance (in pixels) between the enemy origin and the manifestation point",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 340139789282625
-								},
-								{
-									"eventType": "variable",
-									"name": "MANIFESTATION_POINT_MAX_DISTANCE",
+									"name": "MANIFESTATION_POINT",
 									"type": "number",
 									"initialValue": "80",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear.. This is when they are facing directly left or right.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 694013683657195
@@ -12613,10 +12599,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 537894200545935,
+											"sid": 564225280416213,
 											"parameters": {
 												"variable": "projectileManifestationTime",
-												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
+												"value": "Functions.isometrify(MANIFESTATION_POINT, enemy.degrees) / PROJECTILE_SPEED"
 											}
 										},
 										{
@@ -12732,7 +12718,7 @@
 													"sid": 183994928915770,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+														"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												},
 												{
@@ -12845,20 +12831,10 @@
 								},
 								{
 									"eventType": "variable",
-									"name": "MANIFESTATION_POINT_MIN_DISTANCE",
-									"type": "number",
-									"initialValue": "40",
-									"comment": "The shortest possible distance (in pixels) between the enemy origin and the manifestation point",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 140676274655578
-								},
-								{
-									"eventType": "variable",
-									"name": "MANIFESTATION_POINT_MAX_DISTANCE",
+									"name": "MANIFESTATION_POINT",
 									"type": "number",
 									"initialValue": "100",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and the manifestation point",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear.. This is when they are facing directly left or right.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 768361143392393
@@ -12910,10 +12886,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 647248504293887,
+											"sid": 124188989084013,
 											"parameters": {
 												"variable": "projectileManifestationTime",
-												"value": "lerp(MANIFESTATION_POINT_MIN_DISTANCE, MANIFESTATION_POINT_MAX_DISTANCE, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE) / PROJECTILE_SPEED"
+												"value": "Functions.isometrify(MANIFESTATION_POINT, enemy.degrees) / PROJECTILE_SPEED"
 											}
 										},
 										{
@@ -13017,7 +12993,7 @@
 													"sid": 148024443202478,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+														"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												},
 												{
@@ -13297,7 +13273,7 @@
 							"behaviorType": "Bullet",
 							"parameters": {
 								"comparison": 5,
-								"distance": "Functions.isometricSpeed(Self.range, Self.Bullet.AngleOfMotion)"
+								"distance": "Functions.isometrify(Self.range, Self.Bullet.AngleOfMotion)"
 							}
 						}
 					],
@@ -13506,54 +13482,22 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "We have to go against the naming scheme here because \"distance\" and \"angle\" are reserved names."
-				},
-				{
-					"functionName": "isometricDistance",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "isoDistance",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The distance, which will be modified by the specified angle.",
-							"sid": 816924260116783
-						},
-						{
-							"name": "distanceAngle",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The angle, which will be used to modify the distance.",
-							"sid": 648141730387700
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 765137966063587
-				},
-				{
-					"functionName": "isometricSpeed",
-					"functionDescription": "Modify a speed value based on an angle, to make it isometrically correct.",
+					"functionName": "isometrify",
+					"functionDescription": "Modify a value based on an angle, to make it isometrically correct.",
 					"functionCategory": "Isometry",
 					"functionReturnType": "number",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "speed",
+							"name": "value",
 							"type": "number",
 							"initialValue": "0",
 							"comment": "The speed, which will be modified by the specified angle.",
 							"sid": 686725352825470
 						},
 						{
-							"name": "speedAngle",
+							"name": "nAngle",
 							"type": "number",
 							"initialValue": "0",
 							"comment": "The angle, which will be used to modify the speed.",
@@ -13564,11 +13508,15 @@
 					"conditions": [],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "\"nAngle\" because \"angle\" is a reserved keyword."
+						},
+						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
-							"sid": 838098460161724,
+							"sid": 410065321337001,
 							"parameters": {
-								"value": "speed * lerp(sqrt(2) / 2, 1, abs(abs(speedAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+								"value": "value * lerp(.5, 1, abs(abs(nAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 							}
 						}
 					],

@@ -7005,21 +7005,21 @@
 															}
 														},
 														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 856848477989325,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "PROJECTILE_SPEED"
-															}
-														},
-														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
-															"sid": 394505955604065,
+															"sid": 569838120045733,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "player.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 550788800309276,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -7364,21 +7364,21 @@
 															}
 														},
 														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 492962339528377,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "PROJECTILE_SPEED"
-															}
-														},
-														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
-															"sid": 637989994791103,
+															"sid": 461912268088400,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "player.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 849894527277260,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -7489,7 +7489,7 @@
 											"eventType": "variable",
 											"name": "RANGE",
 											"type": "number",
-											"initialValue": "100",
+											"initialValue": "140",
 											"comment": "",
 											"isStatic": false,
 											"isConstant": true,
@@ -7730,21 +7730,21 @@
 															}
 														},
 														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 961871834053830,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "PROJECTILE_SPEED"
-															}
-														},
-														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
 															"sid": 144133384775022,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "player.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 293245551588915,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -12495,21 +12495,21 @@
 													}
 												},
 												{
-													"id": "set-speed",
+													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 588480706223938,
+													"sid": 863225987383508,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
 													}
 												},
 												{
-													"id": "set-angle-of-motion",
+													"id": "set-speed",
 													"objectClass": "projectile",
-													"sid": 170067425753773,
+													"sid": 612650861946859,
 													"behaviorType": "Bullet",
 													"parameters": {
-														"angle": "enemy.degrees"
+														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												}
 											],
@@ -12714,25 +12714,25 @@
 													"text": "Adjust the projectile's speed to account for isometry."
 												},
 												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 870884133819674,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
-													}
-												},
-												{
 													"type": "comment",
 													"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
 												},
 												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 780402882790308,
+													"sid": 166018963850185,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 183994928915770,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												},
 												{
@@ -13003,21 +13003,21 @@
 													}
 												},
 												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 717145248787599,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "PROJECTILE_SPEED * lerp(sqrt(2) / 2, 1, abs(abs(enemy.degrees) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
-													}
-												},
-												{
 													"id": "set-angle-of-motion",
 													"objectClass": "projectile",
-													"sid": 810083778757028,
+													"sid": 837412095650488,
 													"behaviorType": "Bullet",
 													"parameters": {
 														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "projectile",
+													"sid": 148024443202478,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "Functions.isometricSpeed(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 													}
 												},
 												{
@@ -13293,11 +13293,11 @@
 						{
 							"id": "compare-distance-travelled",
 							"objectClass": "projectile",
-							"sid": 302008192882952,
+							"sid": 945441159530041,
 							"behaviorType": "Bullet",
 							"parameters": {
 								"comparison": 5,
-								"distance": "Self.range"
+								"distance": "Functions.isometricSpeed(Self.range, Self.Bullet.AngleOfMotion)"
 							}
 						}
 					],
@@ -13505,6 +13505,75 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "comment",
+					"text": "We have to go against the naming scheme here because \"distance\" and \"angle\" are reserved names."
+				},
+				{
+					"functionName": "isometricDistance",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "isoDistance",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The distance, which will be modified by the specified angle.",
+							"sid": 816924260116783
+						},
+						{
+							"name": "distanceAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The angle, which will be used to modify the distance.",
+							"sid": 648141730387700
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 765137966063587
+				},
+				{
+					"functionName": "isometricSpeed",
+					"functionDescription": "Modify a speed value based on an angle, to make it isometrically correct.",
+					"functionCategory": "Isometry",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "speed",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The speed, which will be modified by the specified angle.",
+							"sid": 686725352825470
+						},
+						{
+							"name": "speedAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The angle, which will be used to modify the speed.",
+							"sid": 539771032584735
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 838098460161724,
+							"parameters": {
+								"value": "speed * lerp(sqrt(2) / 2, 1, abs(abs(speedAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+							}
+						}
+					],
+					"sid": 230942831711372
+				},
 				{
 					"eventType": "group",
 					"disabled": false,

@@ -6365,6 +6365,19 @@
 														}
 													],
 													"sid": 529136020412549
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "stop",
+															"objectClass": "player",
+															"sid": 691611889417839,
+															"behaviorType": "MoveTo"
+														}
+													],
+													"sid": 816624984872775
 												}
 											]
 										}
@@ -6831,15 +6844,6 @@
 													"objectClass": "player",
 													"sid": 421576152101335,
 													"behaviorType": "MoveTo"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 184394029309453,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
 												},
 												{
 													"callFunction": "updateFacing",
@@ -11279,9 +11283,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 743547585251898,
+											"sid": 218770516229289,
 											"parameters": {
-												"count": "5"
+												"count": "1"
 											}
 										}
 									],
@@ -13442,7 +13446,6 @@
 								}
 							],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -13464,8 +13467,7 @@
 											"sid": 413478000377979
 										}
 									],
-									"sid": 615426759922895,
-									"disabled": true
+									"sid": 615426759922895
 								}
 							]
 						}

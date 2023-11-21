@@ -1,0 +1,666 @@
+{
+	"name": "mainMenu",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "minimumWindowSizeWidth",
+			"type": "number",
+			"initialValue": "1280",
+			"comment": "the width of the minimum window size, in pixels",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 411533255849662
+		},
+		{
+			"eventType": "variable",
+			"name": "minimumWindowSizeHeight",
+			"type": "number",
+			"initialValue": "720",
+			"comment": "the height of the minimum window size, in pixels",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 769008014635282
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 573126427733994
+				}
+			],
+			"actions": [
+				{
+					"id": "set-looping",
+					"objectClass": "video",
+					"sid": 579952194108233,
+					"parameters": {
+						"mode": "looping"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "versionText",
+					"sid": 755068560940103,
+					"parameters": {
+						"text": "projectversion"
+					}
+				},
+				{
+					"type": "comment",
+					"text": "set the minimum window size to not be smaller than the screen size, or 720p, whichever is lower"
+				},
+				{
+					"id": "set-minimum-size",
+					"objectClass": "NWjs",
+					"sid": 286068814150134,
+					"parameters": {
+						"min-width": "min(minimumWindowSizeWidth, PlatformInfo.ScreenWidth)",
+						"min-height": "min(minimumWindowSizeHeight, PlatformInfo.ScreenHeight)"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "fader",
+					"sid": 333010595345078,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"\"",
+						"property": "offsetOpacity",
+						"end-value": "0",
+						"time": ".5",
+						"ease": "noease",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 787644593355304
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 447808755892434,
+					"parameters": {
+						"layer": "\"mainMenu\"",
+						"interactive": true
+					}
+				}
+			],
+			"sid": 142931005715493
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "text buttons",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "textButtons",
+							"sid": 338636659483810
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "textButtons",
+							"sid": 395206916764681,
+							"parameters": {
+								"instance-variable": "originalFaceSize",
+								"value": "Self.FaceSize"
+							}
+						}
+					],
+					"sid": 131538089901693
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 503065502826559,
+							"parameters": {
+								"object": "textButtons"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 789998557833802,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "mouse",
+									"sid": 624277522715547,
+									"parameters": {
+										"mouse-button": "left"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 256781537362184
+								}
+							],
+							"actions": [
+								{
+									"id": "set-font-size",
+									"objectClass": "textButtons",
+									"sid": 857192487048772,
+									"parameters": {
+										"size-pt": "Self.FaceSize * .9"
+									}
+								}
+							],
+							"sid": 397880025818090
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 218341905454075
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 383677348512210,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"GlowHorizontal\""
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 512538497333438,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"GlowVertical\""
+									}
+								}
+							],
+							"sid": 416763800063386
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "mouse",
+							"sid": 360138719168563,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "the elses will ensure only one button is ever clicked with each release"
+						}
+					],
+					"sid": 929436437537100,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 789472167050719,
+									"parameters": {
+										"object": "play"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 949031707734270,
+									"parameters": {
+										"layer": "\"mainMenu\"",
+										"interactive": false
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "fader",
+									"sid": 830574222437942,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": ".5",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 967673771973946
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "loadingScreen",
+									"sid": 282762165116642,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": ".5",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 658862795166844
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 358184847913207,
+									"parameters": {
+										"layout": "\"farm\""
+									}
+								}
+							],
+							"sid": 286943185376714
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 435197868425745
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 489043993651650,
+									"parameters": {
+										"object": "resume"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-time-scale",
+									"objectClass": "System",
+									"sid": 359576134942504,
+									"parameters": {
+										"time-scale": "1"
+									}
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 271055231762324,
+									"parameters": [
+										"\"escapeMenu\""
+									]
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 542104168578441,
+									"parameters": {
+										"layer": "\"main\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 375722271217346,
+									"parameters": {
+										"layer": "\"abilityBar\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 715979451338509,
+									"parameters": {
+										"layer": "\"background\"",
+										"interactive": true
+									}
+								}
+							],
+							"sid": 732498834150420
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 645320405410371
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 903858500844683,
+									"parameters": {
+										"object": "settings"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "closeLayer",
+									"sid": 371405180610885,
+									"parameters": [
+										"\"startMenu\""
+									]
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 404139501071200,
+									"parameters": [
+										"\"escapeMenu\""
+									]
+								},
+								{
+									"callFunction": "openLayer",
+									"sid": 269457566869366,
+									"parameters": [
+										"\"settingsMenu\""
+									]
+								}
+							],
+							"sid": 621365975628591,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 406363912356451,
+											"parameters": {
+												"layer": "\"mainMenu\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if we're on the main menu, make the text buttons not interactable after the settings menu opens"
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 193432582475267,
+											"parameters": {
+												"layer": "\"mainMenu\"",
+												"interactive": false
+											}
+										}
+									],
+									"sid": 143559116245592
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 228808632078173
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 751653092246409,
+									"parameters": {
+										"object": "back"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "closeLayer",
+									"sid": 450521796405513,
+									"parameters": [
+										"\"settingsMenu\""
+									]
+								}
+							],
+							"sid": 712524815953989,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 636222857891383,
+											"parameters": {
+												"layer": "\"mainMenu\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if we were on the main menu, make the text buttons interactable again when the settings close"
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 450449840628637,
+											"parameters": {
+												"layer": "\"mainMenu\"",
+												"interactive": true
+											}
+										}
+									],
+									"sid": 264452684314489
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 601424569685679
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "openLayer",
+											"sid": 384609591142886,
+											"parameters": [
+												"\"escapeMenu\""
+											]
+										}
+									],
+									"sid": 885224889590265
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 858343085778986
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 803411465191552,
+									"parameters": {
+										"object": "exit"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "close",
+									"objectClass": "browser",
+									"sid": 431847613598267
+								}
+							],
+							"sid": 775602261724262
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 441559908758599
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 906734121434280,
+									"parameters": {
+										"object": "save"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "saveGame",
+									"sid": 813485864869611
+								}
+							],
+							"sid": 976071399932294
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 497351682173627,
+							"parameters": {
+								"object": "textButtons"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "mouse",
+							"sid": 594961166438681,
+							"parameters": {
+								"mouse-button": "left"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 688824896354918,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 899287018203679
+								}
+							],
+							"actions": [
+								{
+									"id": "set-font-size",
+									"objectClass": "textButtons",
+									"sid": 868780918278046,
+									"parameters": {
+										"size-pt": "Self.originalFaceSize"
+									}
+								}
+							],
+							"sid": 337106989943488
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 817250147786579,
+							"parameters": {
+								"object": "textButtons"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 226840281183386
+						}
+					],
+					"actions": [
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "textButtons",
+							"sid": 748635816528097,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"GlowHorizontal\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "textButtons",
+							"sid": 357362083477838,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"GlowVertical\""
+							}
+						}
+					],
+					"sid": 974878943780297
+				}
+			],
+			"sid": 139549291994701
+		}
+	],
+	"sid": 722961205554376
+}

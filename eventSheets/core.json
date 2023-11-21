@@ -2,6 +2,10 @@
 	"name": "core",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "global"
+		},
+		{
 			"eventType": "variable",
 			"name": "INTERACT_COOLDOWN",
 			"type": "number",
@@ -8101,77 +8105,8 @@
 							"conditions": [
 								{
 									"id": "on-clicked",
-									"objectClass": "fullscreen",
-									"sid": 884720227289241
-								}
-							],
-							"actions": [],
-							"sid": 320316284696177,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-checked",
-											"objectClass": "fullscreen",
-											"sid": 779631249255931
-										}
-									],
-									"actions": [
-										{
-											"id": "request-fullscreen",
-											"objectClass": "browser",
-											"sid": 952420963287170,
-											"parameters": {
-												"mode": "stretch-letterbox-scale",
-												"navigation-ui": "auto"
-											}
-										}
-									],
-									"sid": 436831244908382
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 134815186727090
-										}
-									],
-									"actions": [
-										{
-											"id": "cancel-fullscreen",
-											"objectClass": "browser",
-											"sid": 991937773642652
-										},
-										{
-											"id": "maximize",
-											"objectClass": "NWjs",
-											"sid": 457658142351718
-										}
-									],
-									"sid": 962108258523367
-								}
-							],
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-clicked",
 									"objectClass": "shadows",
 									"sid": 878818799881212
-								},
-								{
-									"id": "layer-is-visible",
-									"objectClass": "System",
-									"sid": 541463885231968,
-									"parameters": {
-										"layer": "\"mainMenu\""
-									},
-									"isInverted": true
 								}
 							],
 							"actions": [
@@ -13475,6 +13410,79 @@
 										}
 									],
 									"sid": 780562019240488
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 700717741751226,
+											"parameters": {
+												"seconds": "2"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 507210800219085
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "loadingScreen",
+											"sid": 973985680322674,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetOpacity",
+												"end-value": "0",
+												"time": ".5",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 231564462980452
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "fader",
+											"sid": 778251859566007,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetOpacity",
+												"end-value": "0",
+												"time": ".5",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 374178553794278
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 544131833982854,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": true
+											}
+										}
+									],
+									"sid": 407955171048823
 								}
 							]
 						}

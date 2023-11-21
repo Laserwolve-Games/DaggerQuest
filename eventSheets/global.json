@@ -1,0 +1,172 @@
+{
+	"name": "global",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 210756446733257
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/11"
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "loadingText",
+					"sid": 508998135847496,
+					"parameters": {
+						"opacity": "loadingScreen.Opacity"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "loadingTextBackground",
+					"sid": 951979902821568,
+					"parameters": {
+						"opacity": "loadingScreen.Opacity"
+					}
+				}
+			],
+			"sid": 220020476464695
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 602465964355862,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "loadingText",
+					"sid": 534710317823191,
+					"parameters": {
+						"text": "Self.Text = \"loading....\" ? \"loading\" : Self.Text & \".\""
+					}
+				}
+			],
+			"sid": 901007134028296
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 212137900735083
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "When the layout changes, global objects are moved to a layer that matches the layer number of their previous layer, regardless of layer name. We have to use global objects and not global layers for the loading screen, as objects on global layers are destroyed and remade. We need to retain the fluency of the loading text/loading bar."
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "fader",
+					"sid": 167213299714777,
+					"parameters": {
+						"layer": "\"loader\""
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "loadingScreen",
+					"sid": 366037664856132,
+					"parameters": {
+						"layer": "\"loader\""
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "loadingTextBackground",
+					"sid": 128174443115036,
+					"parameters": {
+						"layer": "\"loader\""
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "loadingText",
+					"sid": 373875207244166,
+					"parameters": {
+						"layer": "\"loader\""
+					}
+				}
+			],
+			"sid": 239447274462080
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "fullscreen",
+					"sid": 884720227289241
+				}
+			],
+			"actions": [],
+			"sid": 320316284696177,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-checked",
+							"objectClass": "fullscreen",
+							"sid": 779631249255931
+						}
+					],
+					"actions": [
+						{
+							"id": "request-fullscreen",
+							"objectClass": "browser",
+							"sid": 952420963287170,
+							"parameters": {
+								"mode": "stretch-letterbox-scale",
+								"navigation-ui": "auto"
+							}
+						}
+					],
+					"sid": 436831244908382
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 134815186727090
+						}
+					],
+					"actions": [
+						{
+							"id": "cancel-fullscreen",
+							"objectClass": "browser",
+							"sid": 991937773642652
+						},
+						{
+							"id": "maximize",
+							"objectClass": "NWjs",
+							"sid": 457658142351718
+						}
+					],
+					"sid": 962108258523367
+				}
+			],
+			"isOrBlock": true
+		}
+	],
+	"sid": 143332858877120
+}

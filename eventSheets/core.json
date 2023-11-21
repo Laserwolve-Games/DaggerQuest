@@ -5569,15 +5569,6 @@
 												"variable": "isOnInteractCooldown"
 											},
 											"isInverted": true
-										},
-										{
-											"id": "compare-opacity",
-											"objectClass": "fader",
-											"sid": 323832919972461,
-											"parameters": {
-												"comparison": 0,
-												"opacity": "0"
-											}
 										}
 									],
 									"actions": [
@@ -9174,15 +9165,6 @@
 											"parameters": {
 												"key": 27
 											}
-										},
-										{
-											"id": "layer-is-interactive",
-											"objectClass": "System",
-											"sid": 123582640644231,
-											"parameters": {
-												"layer": "\"mainMenu\""
-											},
-											"isInverted": true
 										}
 									],
 									"actions": [
@@ -10947,15 +10929,6 @@
 										"comparison": 1,
 										"second-value": "0"
 									}
-								},
-								{
-									"id": "compare-opacity",
-									"objectClass": "fader",
-									"sid": 822066223200546,
-									"parameters": {
-										"comparison": 0,
-										"opacity": "0"
-									}
 								}
 							],
 							"actions": [
@@ -12479,24 +12452,6 @@
 							"id": "is-checked",
 							"objectClass": "shadows",
 							"sid": 652894087172699
-						},
-						{
-							"id": "compare-opacity",
-							"objectClass": "loadingScreen",
-							"sid": 471138380159630,
-							"parameters": {
-								"comparison": 0,
-								"opacity": "0"
-							}
-						},
-						{
-							"id": "compare-opacity",
-							"objectClass": "fader",
-							"sid": 586231790855718,
-							"parameters": {
-								"comparison": 0,
-								"opacity": "0"
-							}
 						}
 					],
 					"actions": [
@@ -13478,6 +13433,42 @@
 											"sid": 544131833982854,
 											"parameters": {
 												"layer": "\"main\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 783922198661304,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 163343496542181,
+											"parameters": {
+												"layer": "\"abilityBar\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 874159226624380,
+											"parameters": {
+												"layer": "\"orbs\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 148207732624483,
+											"parameters": {
+												"layer": "\"mechanics\"",
 												"interactive": true
 											}
 										}

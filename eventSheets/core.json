@@ -13338,38 +13338,12 @@
 							"children": [
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-checked",
-											"objectClass": "shadows",
-											"sid": 640272453346311
-										},
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 345152691738219,
-											"parameters": {
-												"object": "hasShadow"
-											}
-										},
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 819184044466419
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "spawnShadows",
-											"sid": 913566020701277
-										}
-									],
-									"sid": 780562019240488
-								},
-								{
-									"eventType": "block",
 									"conditions": [],
 									"actions": [
+										{
+											"type": "comment",
+											"text": "TODO: Make sure shadows have loaded as well"
+										},
 										{
 											"id": "wait",
 											"objectClass": "System",

@@ -4742,6 +4742,15 @@
 									}
 								},
 								{
+									"id": "add-obstacle",
+									"objectClass": "player",
+									"sid": 826073523434442,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
+									}
+								},
+								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
 									"sid": 824010743775710,
@@ -5662,14 +5671,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
+															"id": "find-path",
 															"objectClass": "player",
-															"sid": 652146421796565,
-															"behaviorType": "MoveTo",
+															"sid": 990024775560324,
+															"behaviorType": "Pathfinding",
 															"parameters": {
-																"x": "npc.x + cos(angle(npc.x, npc.y, self.x, self.y)) * npc.interactRange",
-																"y": "npc.y + sin(angle(npc.x, npc.y, self.x, Self.y)) * npc.interactRange",
-																"mode": "direct"
+																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, npc.X, npc.Y, npc.interactRange)",
+																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, npc.X, npc.Y, npc.interactRange)"
 															}
 														}
 													],
@@ -5782,14 +5790,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
+															"id": "find-path",
 															"objectClass": "player",
-															"sid": 564307296914156,
-															"behaviorType": "MoveTo",
+															"sid": 728966152897525,
+															"behaviorType": "Pathfinding",
 															"parameters": {
-																"x": "enemy.x + cos(angle(enemy.x, enemy.y, self.x, self.y)) * Self.attackRange",
-																"y": "enemy.y + sin(angle(enemy.x, enemy.y, self.x, self.y)) * Self.attackRange",
-																"mode": "direct"
+																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, enemy.X, enemy.Y, Self.attackRange)",
+																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, enemy.X, enemy.Y, Self.attackRange)"
 															}
 														}
 													],
@@ -5932,14 +5939,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
+															"id": "find-path",
 															"objectClass": "player",
-															"sid": 392780209525023,
-															"behaviorType": "MoveTo",
+															"sid": 395946889141448,
+															"behaviorType": "Pathfinding",
 															"parameters": {
-																"x": "loot.x + cos(angle(loot.x, loot.y, player.x, player.y)) * effectivePickupRange",
-																"y": "loot.y + sin(angle(loot.x, loot.y, player.x, player.y)) * effectivePickupRange",
-																"mode": "direct"
+																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, loot.X, loot.Y, effectivePickupRange)",
+																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, loot.X, loot.Y, effectivePickupRange)"
 															}
 														}
 													],
@@ -6006,14 +6012,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
+															"id": "find-path",
 															"objectClass": "player",
-															"sid": 121651091625366,
-															"behaviorType": "MoveTo",
+															"sid": 285899031104115,
+															"behaviorType": "Pathfinding",
 															"parameters": {
-																"x": "door.ImagePointX(1) + cos(angle(door.ImagePointX(1), door.ImagePointY(1), player.x, player.y)) * door.interactRange",
-																"y": "door.ImagePointY(1) + sin(angle(door.ImagePointX(1), door.ImagePointY(1), player.x, player.y)) * door.interactRange",
-																"mode": "direct"
+																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
+																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)"
 															}
 														}
 													],
@@ -6521,14 +6526,13 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "move-to-position",
+									"id": "find-path",
 									"objectClass": "player",
-									"sid": 651930939624738,
-									"behaviorType": "MoveTo",
+									"sid": 511235255838766,
+									"behaviorType": "Pathfinding",
 									"parameters": {
 										"x": "mouse.X",
-										"y": "mouse.Y",
-										"mode": "direct"
+										"y": "mouse.Y"
 									}
 								},
 								{
@@ -6542,6 +6546,29 @@
 								}
 							],
 							"sid": 736875311258128
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-path-found",
+									"objectClass": "player",
+									"sid": 261304287830288,
+									"behaviorType": "Pathfinding"
+								}
+							],
+							"actions": [
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "player",
+									"sid": 833207283296780,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 191367706868043
 						}
 					],
 					"sid": 914713205483917
@@ -10727,6 +10754,15 @@
 											}
 										},
 										{
+											"id": "add-obstacle",
+											"objectClass": "enemy",
+											"sid": 942888975759229,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"obstacle": "prop"
+											}
+										},
+										{
 											"type": "comment",
 											"text": "This might not need to be for each enemy, we should be able to do this just once."
 										},
@@ -11014,41 +11050,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "enemy",
-											"sid": 299166230125626,
-											"parameters": {
-												"object": "prop"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "This is untested."
-										},
-										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 246125416823146,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "move-at-angle",
-											"objectClass": "enemy",
-											"sid": 123193199869194,
-											"parameters": {
-												"angle": "angle(Self.X, Self.Y, prop.X, prop.Y)",
-												"distance": "1"
-											}
-										}
-									],
-									"sid": 641404088236259
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
 											"sid": 645126633850603,
@@ -11180,10 +11181,35 @@
 																	"id": "move-to-object",
 																	"objectClass": "enemy",
 																	"sid": 574920409982655,
+																	"disabled": true,
 																	"behaviorType": "MoveTo",
 																	"parameters": {
 																		"object": "player",
 																		"image-point": "0",
+																		"mode": "direct"
+																	}
+																},
+																{
+																	"id": "find-path",
+																	"objectClass": "enemy",
+																	"sid": 376663646910642,
+																	"behaviorType": "Pathfinding",
+																	"parameters": {
+																		"x": "player.X",
+																		"y": "player.Y"
+																	}
+																},
+																{
+																	"id": "wait-for-previous-actions",
+																	"objectClass": "System",
+																	"sid": 324775577552318
+																},
+																{
+																	"id": "move-along-pathfinding-path",
+																	"objectClass": "enemy",
+																	"sid": 559936050659639,
+																	"behaviorType": "MoveTo",
+																	"parameters": {
 																		"mode": "direct"
 																	}
 																}
@@ -11374,6 +11400,14 @@
 									"parameters": {
 										"animation": "\"walk_\" & enemy.degrees",
 										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation-speed",
+									"objectClass": "enemyBody",
+									"sid": 282818213062494,
+									"parameters": {
+										"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
 									}
 								}
 							],
@@ -12697,6 +12731,122 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"functionName": "FixedDistanceAlongLineX",
+					"functionDescription": "Find the X coordinate of a point that's along a line between 2 points, a specified distance away from the 2nd point.",
+					"functionCategory": "movement",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "Point1X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 194825641577749
+						},
+						{
+							"name": "Point1Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 652129556671674
+						},
+						{
+							"name": "Point2X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 991289962500125
+						},
+						{
+							"name": "Point2Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 572393264354176
+						},
+						{
+							"name": "distanceAwayFromPoint2",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 563778760135197
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 971097400569170,
+							"parameters": {
+								"value": "Point2X + cos(angle(Point2X, Point2Y, Point1X, Point1Y)) * distanceAwayFromPoint2"
+							}
+						}
+					],
+					"sid": 218715847150785
+				},
+				{
+					"functionName": "FixedDistanceAlongLineY",
+					"functionDescription": "Find the Y coordinate of a point that's along a line between 2 points, a specified distance away from the 2nd point.",
+					"functionCategory": "movement",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "Point1X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 525553611518981
+						},
+						{
+							"name": "Point1Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 180004656787523
+						},
+						{
+							"name": "Point2X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 265677891104867
+						},
+						{
+							"name": "Point2Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 649636229779968
+						},
+						{
+							"name": "distanceAwayFromPoint2",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 203408354532086
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 913503751618676,
+							"parameters": {
+								"value": "Point2Y + sin(angle(Point2X, Point2Y, Point1X, Point1Y)) * distanceAwayFromPoint2"
+							}
+						}
+					],
+					"sid": 812931055253938
+				},
 				{
 					"functionName": "isometrify",
 					"functionDescription": "Modify a value based on an angle, to make it isometrically correct.",

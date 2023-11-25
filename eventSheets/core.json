@@ -10754,17 +10754,17 @@
 											}
 										},
 										{
+											"type": "comment",
+											"text": "This might not need to be for each enemy, we should be able to do this just once."
+										},
+										{
 											"id": "add-obstacle",
 											"objectClass": "enemy",
-											"sid": 942888975759229,
+											"sid": 182754967789873,
 											"behaviorType": "Pathfinding",
 											"parameters": {
 												"obstacle": "prop"
 											}
-										},
-										{
-											"type": "comment",
-											"text": "This might not need to be for each enemy, we should be able to do this just once."
 										},
 										{
 											"id": "add-obstacle",
@@ -11177,18 +11177,6 @@
 																}
 															],
 															"actions": [
-																{
-																	"id": "move-to-object",
-																	"objectClass": "enemy",
-																	"sid": 574920409982655,
-																	"disabled": true,
-																	"behaviorType": "MoveTo",
-																	"parameters": {
-																		"object": "player",
-																		"image-point": "0",
-																		"mode": "direct"
-																	}
-																},
 																{
 																	"id": "find-path",
 																	"objectClass": "enemy",

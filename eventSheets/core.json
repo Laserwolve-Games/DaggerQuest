@@ -3780,13 +3780,11 @@
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 848296478272481,
+															"id": "evaluate-expression",
+															"objectClass": "System",
+															"sid": 209381221455966,
 															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"chest\""
+																"value": "slot.type = \"chest\" & player.class <> \"man\""
 															}
 														},
 														{
@@ -3808,22 +3806,12 @@
 																"comparison": 0,
 																"value": "\"head\""
 															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 107639740855875,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"feet\""
-															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "if it's chest, legs, feet or head (the slots with visual representation that have default gear), load the default gear"
+															"text": "if it's legs or head, or chest and not a man, (the slots with visual representation that have default gear), load the default gear"
 														},
 														{
 															"id": "set-eventvar-value",
@@ -4375,7 +4363,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "The default sorting order."
+									"text": "The normal sorting order."
 								},
 								{
 									"id": "move-to-object",
@@ -4863,12 +4851,12 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 412188331434210,
+													"sid": 410256131255504,
 													"parameters": {
 														"object": "slot",
 														"expression": "slot.type",
 														"comparison": 0,
-														"value": "\"chest\""
+														"value": "\"legs\""
 													}
 												}
 											],
@@ -4889,6 +4877,16 @@
 													"eventType": "block",
 													"conditions": [
 														{
+															"id": "compare-instance-variable",
+															"objectClass": "player",
+															"sid": 758576516222070,
+															"parameters": {
+																"instance-variable": "class",
+																"comparison": 1,
+																"value": "\"man\""
+															}
+														},
+														{
 															"id": "pick-all",
 															"objectClass": "System",
 															"sid": 364662952518424,
@@ -4899,12 +4897,12 @@
 														{
 															"id": "pick-by-comparison",
 															"objectClass": "System",
-															"sid": 845785517442690,
+															"sid": 488970853562646,
 															"parameters": {
 																"object": "slot",
 																"expression": "slot.type",
 																"comparison": 0,
-																"value": "\"legs\""
+																"value": "\"chest\""
 															}
 														}
 													],
@@ -4919,40 +4917,7 @@
 															"sid": 357268931968551
 														}
 													],
-													"sid": 298826179305528,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "pick-all",
-																	"objectClass": "System",
-																	"sid": 897906325124482,
-																	"parameters": {
-																		"object": "slot"
-																	}
-																},
-																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 223627520597337,
-																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.type",
-																		"comparison": 0,
-																		"value": "\"feet\""
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"callFunction": "queueGearManagement",
-																	"sid": 947324745508221
-																}
-															],
-															"sid": 206572827278688
-														}
-													]
+													"sid": 298826179305528
 												}
 											]
 										}
@@ -4974,13 +4939,11 @@
 									}
 								},
 								{
-									"id": "compare-two-values",
+									"id": "evaluate-expression",
 									"objectClass": "System",
-									"sid": 945186957136710,
+									"sid": 479404276210554,
 									"parameters": {
-										"first-value": "gear.Count",
-										"comparison": 0,
-										"second-value": "3"
+										"value": "gear.Count = 2 | (gear.Count = 3 & player.class <> \"man\")"
 									}
 								},
 								{

@@ -48,6 +48,17 @@
 						"holyResistance": 0
 					},
 					"behaviors": {
+						"MoveTo": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 0,
+								"deceleration": 0,
+								"rotate-speed": 0,
+								"set-angle": false,
+								"stop-on-solids": false,
+								"enabled": true
+							}
+						},
 						"LineOfSight": {
 							"properties": {
 								"obstacles": "custom",
@@ -88,18 +99,19 @@
 								"enabled": true
 							}
 						},
-						"Physics": {
+						"Pathfinding": {
 							"properties": {
-								"immovable": false,
-								"collision-mask": "bounding-box",
-								"prevent-rotation": true,
-								"density": 1,
-								"friction": 0.5,
-								"elasticity": 0.2,
-								"linear-damping": 0,
-								"angular-damping": 0.01,
-								"bullet": false,
-								"enabled": false
+								"cell-size": 15,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 0,
+								"deceleration": 0,
+								"rotate-speed": 0,
+								"rotate-object": false,
+								"diagonals": true,
+								"direct-movement": "anywhere-along-path",
+								"enabled": true
 							}
 						}
 					},

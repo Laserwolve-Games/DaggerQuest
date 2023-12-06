@@ -25,8 +25,6 @@
 						"movementSpeed": 0,
 						"degrees": 0,
 						"attributes": "",
-						"attacking": false,
-						"alertRange": 0,
 						"experience": 0,
 						"currentHealth": 0,
 						"maxHealth": 0,
@@ -45,7 +43,8 @@
 						"fireResistance": 0,
 						"lightningResistance": 0,
 						"arcaneResistance": 0,
-						"holyResistance": 0
+						"holyResistance": 0,
+						"attacking": false
 					},
 					"behaviors": {
 						"MoveTo": {
@@ -59,23 +58,12 @@
 								"enabled": true
 							}
 						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "custom",
-								"range": 2000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
-							}
-						},
 						"Custom": {
 							"properties": {
 								"stepping-mode": "none",
 								"pixels-per-step": 1,
 								"enabled": true
 							}
-						},
-						"Timer": {
-							"properties": {}
 						},
 						"Solid": {
 							"properties": {
@@ -96,21 +84,6 @@
 								"rotate-speed": 0,
 								"set-angle": false,
 								"stop-on-solids": false,
-								"enabled": true
-							}
-						},
-						"Pathfinding": {
-							"properties": {
-								"cell-size": 15,
-								"cell-border": -1,
-								"obstacles": "custom",
-								"max-speed": 200,
-								"acceleration": 0,
-								"deceleration": 0,
-								"rotate-speed": 0,
-								"rotate-object": false,
-								"diagonals": true,
-								"direct-movement": "anywhere-along-path",
 								"enabled": true
 							}
 						}

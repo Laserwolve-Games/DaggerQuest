@@ -3,7 +3,7 @@
 	"savedWithRelease": 36802,
 	"name": "DaggerQuest",
 	"runtime": "c3",
-	"useWorker": "worker",
+	"useWorker": "dom",
 	"bundleAddons": true,
 	"usedAddons": [
 		{
@@ -654,7 +654,8 @@
 		"items": [
 			"core",
 			"mainMenu",
-			"global"
+			"global",
+			"test"
 		],
 		"subfolders": []
 	},
@@ -890,7 +891,7 @@
 		"anisotropicFiltering": "16x",
 		"zNear": 1,
 		"zFar": 10000,
-		"maxSpriteSheetSize": 2048,
+		"maxSpriteSheetSize": 1024,
 		"loaderStyle": "progress-logo",
 		"preloadSounds": true,
 		"cordovaiOSScheme": "app",

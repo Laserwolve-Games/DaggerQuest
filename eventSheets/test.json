@@ -1,0 +1,34 @@
+{
+	"name": "test",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "evaluate-expression",
+					"objectClass": "System",
+					"sid": 164210132613193,
+					"parameters": {
+						"value": "\"superUniqueStringFoobar\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"script": "runtime.objects.player.opacity"
+				},
+				{
+					"type": "script",
+					"script": "runtime.objects.player.x"
+				},
+				{
+					"type": "script",
+					"script": "runtime.objects.player.y"
+				}
+			],
+			"sid": 393867343487433
+		}
+	],
+	"sid": 946060316247747
+}

@@ -6,10 +6,12 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.StringWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -115,11 +117,25 @@ public class ConstructMethods extends ConstructXpaths {
 	 * @param path The path of to the NW.js executable of the Construct game.
 	 * @return The title of the game window.
 	 * @author laserwolve
+	 * @throws IOException
 	 */
 	protected static String startGame(String path) {
 
-		WebDriverManager webDriverManager = WebDriverManager.chromedriver()
-				.capabilities(new ChromeOptions().setBinary(path).addArguments("start-maximized"));
+		Path folder = Paths.get(path);
+		Path nwjsPackage = folder.resolve("package.nw");
+		Path webview2Package = folder.resolve("package.json");
+		WebDriverManager webDriverManager = WebDriverManager.getInstance();
+
+		if (Files.exists(nwjsPackage))
+			webDriverManager = WebDriverManager.chromedriver()
+					.capabilities(new ChromeOptions().setBinary(path).addArguments("start-maximized"));
+
+		// Not currently working
+		else if (Files.exists(webview2Package))
+			webDriverManager = WebDriverManager.edgedriver()
+					.capabilities(new EdgeOptions().setBinary(path).addArguments("start-maximized"));
+		
+		driver = webDriverManager.create();
 
 		try {
 
@@ -139,23 +155,16 @@ public class ConstructMethods extends ConstructXpaths {
 		}
 
 		initializeObjects();
-		
+
 		// Find the runtime
-		executeJavascript("globalThis.runtime = null;\r\n"
-				+ "for (let i = 0; i < 1000; i++)\r\n"
-				+ "{    \r\n"
-				+ "    const instance = IRuntime.prototype.getInstanceByUid(i);\r\n"
-				+ "\r\n"
-				+ "    if (instance === null) continue;\r\n"
-				+ "\r\n"
-				+ "    globalThis.runtime = instance.runtime;\r\n"
-				+ "\r\n"
-				+ "    break;\r\n"
-				+ "}");
+		executeJavascript("globalThis.runtime = null;\r\n" + "for (let i = 0; i < 1000; i++)\r\n" + "{    \r\n"
+				+ "    const instance = IRuntime.prototype.getInstanceByUid(i);\r\n" + "\r\n"
+				+ "    if (instance === null) continue;\r\n" + "\r\n" + "    globalThis.runtime = instance.runtime;\r\n"
+				+ "\r\n" + "    break;\r\n" + "}");
 
 		return driver.getTitle();
 	}
-	
+
 	protected static void clickLocation(Double exitButtonX, Double exitButtonY) {
 		actions.moveToLocation(exitButtonX.intValue(), exitButtonY.intValue()).click().perform();
 	}
@@ -214,8 +223,8 @@ public class ConstructMethods extends ConstructXpaths {
 			locatorXpath += "[@" + entry.getKey() + "='" + entry.getValue() + "']";
 		}
 
-		executeJavascript("let " + tagName + " = document.createElement('" + tagName + "');"
-				+ setAttributes + "arguments[0].appendChild(document.createElement('" + tagName + "'));", webElement);
+		executeJavascript("let " + tagName + " = document.createElement('" + tagName + "');" + setAttributes
+				+ "arguments[0].appendChild(document.createElement('" + tagName + "'));", webElement);
 
 		return "(" + xpath + "/" + tagName + locatorXpath + ")[last()]";
 	}
@@ -1008,8 +1017,8 @@ public class ConstructMethods extends ConstructXpaths {
 	 * @param optimizeForPixelArt
 	 * @author laserwolve
 	 */
-	protected static void createNewProject(String projectName, String preset, Integer viewportWidth, Integer viewportHeight,
-			String orientations, String startWith, boolean optimizeForPixelArt) {
+	protected static void createNewProject(String projectName, String preset, Integer viewportWidth,
+			Integer viewportHeight, String orientations, String startWith, boolean optimizeForPixelArt) {
 
 		click(menu);
 

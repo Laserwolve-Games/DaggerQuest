@@ -1,4 +1,4 @@
-package daggerQuestTests;
+package daggerquestTests;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;

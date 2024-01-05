@@ -15,6 +15,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Program Files/Eclipse Adoptium/jdk-21.0.1.12-hotspot/lib/jrt-fs.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -22,40 +23,15 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
 		<attributes>
-			<attribute name="optional" value="true"/>
 			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

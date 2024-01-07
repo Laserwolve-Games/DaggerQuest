@@ -17,7 +17,7 @@ class VerifyExitButton extends ConstructMethods {
 	@DisplayName("Test the Exit Button on the Main Menu")
 	void test() {
 
-		String name = startGame("C:\\Users\\Andre\\Downloads\\DaggerQuest\\win64\\DaggerQuest.exe");
+		String name = startGame("C:\\Users\\Andre\\Downloads\\DaggerQuest WebView2\\x64\\DaggerQuest.exe");
 
 		assertTrue("Fader is present", waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();"));
 

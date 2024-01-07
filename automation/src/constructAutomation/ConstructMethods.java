@@ -121,7 +121,7 @@ public class ConstructMethods extends ConstructXpaths {
 	 */
 	protected static String startGame(String path) {
 
-		Path folder = Paths.get(path);
+		Path folder = Paths.get(path).getParent();
 		Path nwjsPackage = folder.resolve("package.nw");
 		Path webview2Package = folder.resolve("package.json");
 		WebDriverManager webDriverManager = WebDriverManager.getInstance();

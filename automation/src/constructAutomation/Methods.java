@@ -1,5 +1,8 @@
 package constructAutomation;
 
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -19,10 +22,12 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.compress.utils.FileNameUtils;
+import org.junit.function.ThrowingRunnable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,28 +39,28 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.Animations;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.Animations.AnimationContextMenu;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.Animations.ContextMenu;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.Animations.ContextMenu.importAnimationPopout;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.CropDropdown;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.ImagePoints;
-import constructAutomation.ConstructXpaths.Dialog.AnimationsEditor.ImagePoints.ImagePointsContextMenu;
-import constructAutomation.ConstructXpaths.Dialog.BetaUpdateAvailable;
-import constructAutomation.ConstructXpaths.Dialog.ConstructUpdated;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.ExportReport;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.NwjsOptions;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.Page2;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.Page2.LosslessFormatOptions;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.Page2.LossyFormatOptions;
-import constructAutomation.ConstructXpaths.Dialog.ExportProject.Page2.MinifyModes;
-import constructAutomation.ConstructXpaths.Dialog.LogIn;
-import constructAutomation.ConstructXpaths.Dialog.NewProject;
-import constructAutomation.ConstructXpaths.Dialog.Welcome;
-import constructAutomation.ConstructXpaths.MenuDropdown.ProjectPopout;
-import constructAutomation.ConstructXpaths.MenuDropdown.ProjectPopout.OpenRecentPopout;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.Animations;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.Animations.AnimationContextMenu;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.Animations.ContextMenu;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.Animations.ContextMenu.importAnimationPopout;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.CropDropdown;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.ImagePoints;
+import constructAutomation.Xpaths.Dialog.AnimationsEditor.ImagePoints.ImagePointsContextMenu;
+import constructAutomation.Xpaths.Dialog.BetaUpdateAvailable;
+import constructAutomation.Xpaths.Dialog.ConstructUpdated;
+import constructAutomation.Xpaths.Dialog.ExportProject;
+import constructAutomation.Xpaths.Dialog.ExportProject.ExportReport;
+import constructAutomation.Xpaths.Dialog.ExportProject.NwjsOptions;
+import constructAutomation.Xpaths.Dialog.ExportProject.Page2;
+import constructAutomation.Xpaths.Dialog.ExportProject.Page2.LosslessFormatOptions;
+import constructAutomation.Xpaths.Dialog.ExportProject.Page2.LossyFormatOptions;
+import constructAutomation.Xpaths.Dialog.ExportProject.Page2.MinifyModes;
+import constructAutomation.Xpaths.Dialog.LogIn;
+import constructAutomation.Xpaths.Dialog.NewProject;
+import constructAutomation.Xpaths.Dialog.Welcome;
+import constructAutomation.Xpaths.MenuDropdown.ProjectPopout;
+import constructAutomation.Xpaths.MenuDropdown.ProjectPopout.OpenRecentPopout;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
 
@@ -64,7 +69,7 @@ import io.github.bonigarcia.wdm.config.WebDriverManagerException;
  *
  * @author laserwolve
  */
-public class ConstructMethods extends ConstructXpaths {
+public class Methods extends Xpaths {
 	protected static EdgeOptions edgeOptions;
 	protected static WebDriver driver;
 	protected static JavascriptExecutor javascriptExecutor;
@@ -104,26 +109,27 @@ public class ConstructMethods extends ConstructXpaths {
 	}
 
 	/**
-	 * <h1>Start DaggerQuest</h1>Launches DaggerQuest. If DaggerQuest is using an
-	 * NW.js version that doesn't match the latest Google Chrome version,
-	 * WebDriverManager throws an exception. The stack trace from this exception is
-	 * the only place where we can find out what Chromium version NW.js is. This
-	 * method catches that exception, parses out the correct Chromium version, and
-	 * to create the webDriver again, with the Chromium version specified. This only
-	 * will happen the first time we run against any given NW.js executable.
-	 * Subsequent {@link WebDriverManager#create()} calls without specifying browser
-	 * version will work fine.
+	 * <h1>Start {@value Data#projectName}</h1>Launches {@value Data#projectName} If
+	 * {@value Data#projectName} is using an NW.js version that doesn't match the
+	 * latest Google Chrome version, WebDriverManager throws an exception. The stack
+	 * trace from this exception is the only place where we can find out what
+	 * Chromium version NW.js is. This method catches that exception, parses out the
+	 * correct Chromium version, and to create the webDriver again, with the
+	 * Chromium version specified. This only will happen the first time we run
+	 * against any given NW.js executable. Subsequent
+	 * {@link WebDriverManager#create()} calls without specifying browser version
+	 * will work fine.
 	 * 
-	 * @param path The path of to the executable of DaggerQuest.
+	 * @param path The path of to the executable.
 	 * @author laserwolve
 	 * @throws IOException
 	 */
 	protected static void startDaggerQuest() {
 
-		Path directory = Paths.get(System.getProperty("user.dir")).getParent().resolve("DaggerQuest");
+		Path directory = Paths.get(System.getProperty("user.dir")).getParent().resolve(projectName);
 		Path nwjsPackage = directory.resolve("package.nw");
 		Path webview2Package = directory.resolve("package.json");
-		String executable = directory.resolve("DaggerQuest.exe").toString();
+		String executable = directory.resolve(projectName + ".exe").toString();
 		WebDriverManager webDriverManager = WebDriverManager.getInstance();
 
 		if (Files.exists(nwjsPackage))
@@ -176,6 +182,28 @@ public class ConstructMethods extends ConstructXpaths {
 		}
 		userHome = System.getProperty("user.home");
 		fs = File.separator;
+	}
+
+	/**
+	 * <h1>Verify True</h1> Verify something is true. Testing framework wrapper.
+	 * 
+	 * @author laserwolve
+	 * @see {@link org.junit.Assert#assertTrue(String, boolean)}
+	 */
+	protected static void verifyTrue(String message, boolean condition) {
+		assertTrue(message, condition);
+	}
+
+	/**
+	 * <h1>Verify Throws</h1> Verify an exception is thrown. Testing framework
+	 * wrapper.
+	 * 
+	 * @author laserwolve
+	 * @see {@link org.junit.Assert#assertThrows(String, Class, ThrowingRunnable)}
+	 */
+	protected static void verifyThrows(String message, Class<NoSuchWindowException> expectedThrowable,
+			ThrowingRunnable runnable) {
+		assertThrows(message, expectedThrowable, runnable);
 	}
 
 	/**
@@ -437,9 +465,9 @@ public class ConstructMethods extends ConstructXpaths {
 
 			switchToIframe(iframe);
 
-			sendText(LogIn.username, SensitiveData.username, true);
+			sendText(LogIn.username, Data.username, true);
 
-			sendText(LogIn.password, SensitiveData.password, true);
+			sendText(LogIn.password, Data.password, true);
 
 			click(LogIn.logIn);
 
@@ -447,7 +475,7 @@ public class ConstructMethods extends ConstructXpaths {
 
 			switchToDefaultContent();
 
-			waitUntilTextIs(UserAccount.userAccountName, SensitiveData.username, 10);
+			waitUntilTextIs(UserAccount.userAccountName, Data.username, 10);
 		}
 	}
 
@@ -1088,7 +1116,7 @@ public class ConstructMethods extends ConstructXpaths {
 	 * 
 	 * @param property The property of which to set the value.
 	 * @param value    The boolean to which the property should be set.
-	 * @see {@link ConstructMethods#setProperty(String, String)}
+	 * @see {@link Methods#setProperty(String, String)}
 	 * @author laserwolve
 	 */
 	protected static void setProperty(String property, Boolean value) {

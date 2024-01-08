@@ -2,18 +2,25 @@ package daggerquestTests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import constructAutomation.ConstructMethods;
+import constructAutomation.Methods;
 
-class PrimaryTestRun extends ConstructMethods {
+class PrimaryTestRun extends Methods {
 	
-	@Before
-	void setup() {
+	@BeforeAll
+	static void setup() {
 		
 		startDaggerQuest();
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		
+		quit();
 	}
 
 	@Test

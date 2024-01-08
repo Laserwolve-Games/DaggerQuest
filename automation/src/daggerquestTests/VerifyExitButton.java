@@ -4,17 +4,17 @@ import static org.junit.Assert.assertThrows;
 
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.NoSuchWindowException;
 
-import constructAutomation.ConstructMethods;
+import constructAutomation.Methods;
 
-class VerifyExitButton extends ConstructMethods {
+class VerifyExitButton extends Methods {
 	
-	@Before
-	void setup() {
+	@BeforeAll
+	static void setup() {
 		
 		startDaggerQuest();
 

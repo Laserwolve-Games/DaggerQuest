@@ -1,10 +1,10 @@
 package daggerquestTests;
 
 import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.NoSuchWindowException;
@@ -12,17 +12,20 @@ import org.openqa.selenium.NoSuchWindowException;
 import constructAutomation.ConstructMethods;
 
 class VerifyExitButton extends ConstructMethods {
+	
+	@Before
+	void setup() {
+		
+		startDaggerQuest();
+
+		waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();");
+
+		waitForJavascriptToBeTrue("return !runtime.objects.fader.getFirstInstance().opacity;");
+	}
 
 	@Test
 	@DisplayName("Test the Exit Button on the Main Menu")
-	void test() {
-
-		String name = startGame("C:\\Users\\Andre\\Downloads\\DaggerQuest WebView2\\x64\\DaggerQuest.exe");
-
-		assertTrue("Fader is present", waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();"));
-
-		assertTrue("Fader sucessfully faded out",
-				waitForJavascriptToBeTrue("return !runtime.objects.fader.getFirstInstance().opacity;"));
+	void verifyExitButton() {
 
 		@SuppressWarnings("unchecked")
 		List<Double> exitButtonLocation = (List<Double>) executeJavascript(
@@ -31,6 +34,6 @@ class VerifyExitButton extends ConstructMethods {
 
 		clickLocation(exitButtonLocation.get(0), exitButtonLocation.get(1));
 
-		assertThrows(name + "sucessfully exited", NoSuchWindowException.class, () -> driver.getTitle());
+		assertThrows("DaggerQuest sucessfully exited", NoSuchWindowException.class, () -> driver.getTitle());
 	}
 }

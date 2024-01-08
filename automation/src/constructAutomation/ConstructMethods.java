@@ -104,8 +104,8 @@ public class ConstructMethods extends ConstructXpaths {
 	}
 
 	/**
-	 * <h1>Start Game</h1>Launches a Construct game. If the Construct game is using
-	 * an NW.js version that doesn't match the latest Google Chrome version,
+	 * <h1>Start DaggerQuest</h1>Launches DaggerQuest. If DaggerQuest is using an
+	 * NW.js version that doesn't match the latest Google Chrome version,
 	 * WebDriverManager throws an exception. The stack trace from this exception is
 	 * the only place where we can find out what Chromium version NW.js is. This
 	 * method catches that exception, parses out the correct Chromium version, and
@@ -114,27 +114,26 @@ public class ConstructMethods extends ConstructXpaths {
 	 * Subsequent {@link WebDriverManager#create()} calls without specifying browser
 	 * version will work fine.
 	 * 
-	 * @param path The path of to the NW.js executable of the Construct game.
-	 * @return The title of the game window.
+	 * @param path The path of to the executable of DaggerQuest.
 	 * @author laserwolve
 	 * @throws IOException
 	 */
-	protected static String startGame(String path) {
+	protected static void startDaggerQuest() {
 
-		Path folder = Paths.get(path).getParent();
-		Path nwjsPackage = folder.resolve("package.nw");
-		Path webview2Package = folder.resolve("package.json");
+		Path directory = Paths.get(System.getProperty("user.dir")).getParent().resolve("DaggerQuest");
+		Path nwjsPackage = directory.resolve("package.nw");
+		Path webview2Package = directory.resolve("package.json");
+		String executable = directory.resolve("DaggerQuest.exe").toString();
 		WebDriverManager webDriverManager = WebDriverManager.getInstance();
 
 		if (Files.exists(nwjsPackage))
-			webDriverManager = WebDriverManager.chromedriver()
-					.capabilities(new ChromeOptions().setBinary(path).addArguments("start-maximized"));
+			webDriverManager = WebDriverManager.chromedriver().capabilities(new ChromeOptions().setBinary(executable));
 
-		// Not currently working
+		// Not currently working - Also blocked by
+		// https://github.com/Laserwolve-Games/DaggerQuest/issues/27
 		else if (Files.exists(webview2Package))
-			webDriverManager = WebDriverManager.edgedriver()
-					.capabilities(new EdgeOptions().setBinary(path).addArguments("start-maximized"));
-		
+			webDriverManager = WebDriverManager.edgedriver().capabilities(new EdgeOptions().setBinary(executable));
+
 		driver = webDriverManager.create();
 
 		try {
@@ -161,8 +160,6 @@ public class ConstructMethods extends ConstructXpaths {
 				+ "    const instance = IRuntime.prototype.getInstanceByUid(i);\r\n" + "\r\n"
 				+ "    if (instance === null) continue;\r\n" + "\r\n" + "    globalThis.runtime = instance.runtime;\r\n"
 				+ "\r\n" + "    break;\r\n" + "}");
-
-		return driver.getTitle();
 	}
 
 	protected static void clickLocation(Double exitButtonX, Double exitButtonY) {

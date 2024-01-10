@@ -14,10 +14,11 @@ public class Data {
 	/**
 	 * <h1>DaggerQuest Object</h1> This doesn't need to be a class, because we can
 	 * just use the actual name of the enumeration to reference the object via
-	 * JavaScript. Lowercase to we don't have to convert it every time.
+	 * JavaScript. Lowercase so we don't have to convert it every time.
+	 * 
 	 * @author laserwolve
 	 */
 	public enum DaggerQuestObject {
-		exit, settings
+		exit, settings, back, settingsMenu
 	}
 }

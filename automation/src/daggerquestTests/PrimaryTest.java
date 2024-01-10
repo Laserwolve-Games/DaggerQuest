@@ -9,17 +9,23 @@ class PrimaryTest extends Methods {
 
 	@Test
 	@DisplayName("Primary Test")
-	void verifyExitButton() {
-		
+	void primaryTest() {
+
 		startDaggerQuest();
 
-		verifyTrue("Fader is present", waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();"));
-
-		verifyTrue("Fader sucessfully faded out",
-				waitForJavascriptToBeTrue("return !runtime.objects.fader.getFirstInstance().opacity;"));
+		verifyTrue("Settings menu is not present",
+				!(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));
 
 		click(DaggerQuestObject.settings);
-		
+
+		verifyTrue("Settings menu is present",
+				(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));
+
+		click(DaggerQuestObject.back);
+
+		verifyTrue("Settings menu is not present",
+				!(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));
+
 		quit();
 	}
 }

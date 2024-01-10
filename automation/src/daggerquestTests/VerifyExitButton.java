@@ -14,10 +14,6 @@ class VerifyExitButton extends Methods {
 		
 		startDaggerQuest();
 
-		waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();");
-
-		waitForJavascriptToBeTrue("return !runtime.objects.fader.getFirstInstance().opacity;");
-
 		click(DaggerQuestObject.exit);
 
 		verifyThrows("DaggerQuest sucessfully exited", NoSuchWindowException.class, () -> driver.getTitle());

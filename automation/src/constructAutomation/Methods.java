@@ -164,8 +164,6 @@ public class Methods extends Xpaths {
 		else if (Files.exists(webview2Package))
 			webDriverManager = WebDriverManager.edgedriver().capabilities(new EdgeOptions().setBinary(executable));
 
-		driver = webDriverManager.create();
-
 		try {
 
 			driver = webDriverManager.create();
@@ -189,6 +187,11 @@ public class Methods extends Xpaths {
 		executeJavascript("globalThis.runtime = null;" + "for (let i = 0; i < 1000; i++) {"
 				+ "const instance = IRuntime.prototype.getInstanceByUid(i);" + "if (instance === null) continue;"
 				+ "globalThis.runtime = instance.runtime;" + "break;" + "}");
+
+		verifyTrue("Fader is present", waitForJavascriptToBeTrue("return !!runtime.objects.fader.getFirstInstance();"));
+
+		verifyTrue("Fader sucessfully faded out",
+				waitForJavascriptToBeTrue("return !runtime.objects.fader.getFirstInstance().opacity;"));
 	}
 
 	/**

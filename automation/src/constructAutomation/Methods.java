@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -38,6 +39,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import constructAutomation.Xpaths.Dialog.AnimationsEditor;
 import constructAutomation.Xpaths.Dialog.AnimationsEditor.Animations;
@@ -63,6 +66,7 @@ import constructAutomation.Xpaths.MenuDropdown.ProjectPopout;
 import constructAutomation.Xpaths.MenuDropdown.ProjectPopout.OpenRecentPopout;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
+import objects.Position;
 
 /**
  * <h1>Construct Methods</h1> A helper class for common Construct actions.
@@ -79,6 +83,7 @@ public class Methods extends Xpaths {
 	protected static String userHome;
 	protected static String fs;
 	protected static String editorURL;
+	protected static Logger logger = LoggerFactory.getLogger(Methods.class);
 
 	/**
 	 * <h1>Start Engine</h1> Opens the Construct Editor. Launches 'inprivate' to
@@ -106,6 +111,25 @@ public class Methods extends Xpaths {
 			logIn();
 
 		return driver.getCurrentUrl();
+	}
+
+	/**
+	 * <h1>Get Position</h1> Get the X, Y position of a {@link DaggerQuestObject}.
+	 * Executes JavaScript to get the first instance of the object, which returns a
+	 * List<Double>, which we parse into a {@link Position}.
+	 * 
+	 * @param object The {@link DaggerQuestObject} to obtain the position of.
+	 * @return A {@link Position} of that object.
+	 * @author laserwolve
+	 */
+	protected static Position getPosition(DaggerQuestObject object) {
+
+		@SuppressWarnings("unchecked")
+		List<Double> position = (List<Double>) executeJavascript(
+				"const constructObject = runtime.objects." + object + ".getFirstInstance();"
+						+ "return constructObject.layer.layerToCssPx(constructObject.x, constructObject.y);");
+
+		return new Position(position.get(0), position.get(1));
 	}
 
 	/**
@@ -162,14 +186,29 @@ public class Methods extends Xpaths {
 		initializeObjects();
 
 		// Find the runtime
-		executeJavascript("globalThis.runtime = null;\r\n" + "for (let i = 0; i < 1000; i++)\r\n" + "{    \r\n"
-				+ "    const instance = IRuntime.prototype.getInstanceByUid(i);\r\n" + "\r\n"
-				+ "    if (instance === null) continue;\r\n" + "\r\n" + "    globalThis.runtime = instance.runtime;\r\n"
-				+ "\r\n" + "    break;\r\n" + "}");
+		executeJavascript("globalThis.runtime = null;" + "for (let i = 0; i < 1000; i++) {"
+				+ "const instance = IRuntime.prototype.getInstanceByUid(i);" + "if (instance === null) continue;"
+				+ "globalThis.runtime = instance.runtime;" + "break;" + "}");
 	}
 
-	protected static void clickLocation(Double exitButtonX, Double exitButtonY) {
-		actions.moveToLocation(exitButtonX.intValue(), exitButtonY.intValue()).click().perform();
+	/**
+	 * <h1>Click Location</h1> Click the specified location.
+	 * 
+	 * @param position The {@link Position} to click.
+	 * @author laserwolve
+	 */
+	protected static void clickLocation(Position position) {
+		actions.moveToLocation((int) position.getX(), (int) position.getY()).click().perform();
+	}
+
+	/**
+	 * <h1>Click</h1> Click an object.
+	 * 
+	 * @param object The {@link DaggerQuestObject} to click.
+	 * @author laserwolve
+	 */
+	protected static void click(DaggerQuestObject object) {
+		clickLocation(getPosition(object));
 	}
 
 	protected static void initializeObjects() {

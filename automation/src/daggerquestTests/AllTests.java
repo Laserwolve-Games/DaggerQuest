@@ -7,7 +7,7 @@ import org.junit.platform.suite.api.Suite;
 @SelectClasses({
 	
 	VerifyExitButton.class,
-	PrimaryTestRun.class,
+	PrimaryTest.class,
 })
 public class AllTests {
 

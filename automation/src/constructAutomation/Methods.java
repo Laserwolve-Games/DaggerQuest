@@ -125,11 +125,15 @@ public class Methods extends Xpaths {
 	protected static Position getPosition(DaggerQuestObject object) {
 
 		@SuppressWarnings("unchecked")
-		List<Double> position = (List<Double>) executeJavascript(
+		List<Object> position = (List<Object>) executeJavascript(
 				"const constructObject = runtime.objects." + object + ".getFirstInstance();"
 						+ "return constructObject.layer.layerToCssPx(constructObject.x, constructObject.y);");
 
-		return new Position(position.get(0), position.get(1));
+		// If one of the coordinates is a whole number, it'll be a Long. Convert it to a
+		// Double.
+		return new Position(
+				position.get(0) instanceof Long ? ((Long) position.get(0)).doubleValue() : (Double) position.get(0),
+				position.get(1) instanceof Long ? ((Long) position.get(1)).doubleValue() : (Double) position.get(1));
 	}
 
 	/**
@@ -201,7 +205,7 @@ public class Methods extends Xpaths {
 	 * @author laserwolve
 	 */
 	protected static void clickLocation(Position position) {
-		actions.moveToLocation((int) position.getX(), (int) position.getY()).click().perform();
+		actions.moveToLocation(position.getX().intValue(), position.getY().intValue()).click().perform();
 	}
 
 	/**

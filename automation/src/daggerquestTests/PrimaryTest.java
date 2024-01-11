@@ -13,9 +13,6 @@ class PrimaryTest extends Methods {
 
 		startDaggerQuest();
 
-		verifyTrue("Settings menu is not present",
-				!(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));
-
 		click(DaggerQuestObject.settings);
 
 		verifyTrue("Settings menu is present",

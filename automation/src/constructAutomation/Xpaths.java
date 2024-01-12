@@ -1,6 +1,6 @@
 package constructAutomation;
 
-class Xpaths extends Data {
+class Xpaths {
 	
 	static class Game {
 		

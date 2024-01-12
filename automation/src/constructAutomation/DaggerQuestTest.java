@@ -1,24 +1,27 @@
-package daggerquestTests;
+package constructAutomation;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.NoSuchWindowException;
 
-import constructAutomation.Methods;
-
-class PrimaryTest extends Methods {
+class DaggerQuestTest extends Methods {
 
 	@Test
-	@DisplayName("Primary Test")
-	void primaryTest() {
+	void test() {
+		
+		startProject();
 
-		startDaggerQuest();
+		click("exit");
 
-		click(DaggerQuestObject.settings);
+		verifyThrows("DaggerQuest sucessfully exited", NoSuchWindowException.class, () -> driver.getTitle());
+		
+		startProject();
+
+		click("settings");
 
 		verifyTrue("Settings menu is present",
 				(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));
 
-		click(DaggerQuestObject.back);
+		click("back");
 
 		verifyTrue("Settings menu is not present",
 				!(boolean) executeJavascript("return runtime.layout.getLayer('settingsMenu').isVisible"));

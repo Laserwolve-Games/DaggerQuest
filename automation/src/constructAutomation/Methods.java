@@ -66,7 +66,6 @@ import constructAutomation.Xpaths.MenuDropdown.ProjectPopout;
 import constructAutomation.Xpaths.MenuDropdown.ProjectPopout.OpenRecentPopout;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
-import objects.Position;
 
 /**
  * <h1>Construct Methods</h1> A helper class for common Construct actions.
@@ -92,7 +91,7 @@ public class Methods extends Xpaths {
 	 * @return The current URL, once starting has finished.
 	 * @author laserwolve
 	 */
-	protected static String startEngine(boolean logIn) {
+	protected static String startEngine() {
 
 		driver = WebDriverManager.edgedriver()
 				.capabilities(new EdgeOptions().addArguments("start-maximized").addArguments("inprivate")).create();
@@ -107,26 +106,23 @@ public class Methods extends Xpaths {
 
 		handleUpdate();
 
-		if (logIn)
-			logIn();
-
 		return driver.getCurrentUrl();
 	}
 
 	/**
-	 * <h1>Get Position</h1> Get the X, Y position of a {@link DaggerQuestObject}.
+	 * <h1>Get Position</h1> Get the X, Y position of a Construct object.
 	 * Executes JavaScript to get the first instance of the object, which returns a
 	 * List<Double>, which we parse into a {@link Position}.
 	 * 
-	 * @param object The {@link DaggerQuestObject} to obtain the position of.
+	 * @param constructObject The Construct object to obtain the position of.
 	 * @return A {@link Position} of that object.
 	 * @author laserwolve
 	 */
-	protected static Position getPosition(DaggerQuestObject object) {
+	protected static Position getPosition(String constructObject) {
 
 		@SuppressWarnings("unchecked")
 		List<Object> position = (List<Object>) executeJavascript(
-				"const constructObject = runtime.objects." + object + ".getFirstInstance();"
+				"const constructObject = runtime.objects." + constructObject + ".getFirstInstance();"
 						+ "return constructObject.layer.layerToCssPx(constructObject.x, constructObject.y);");
 
 		// If one of the coordinates is a whole number, it'll be a Long. Convert it to a
@@ -137,14 +133,13 @@ public class Methods extends Xpaths {
 	}
 
 	/**
-	 * <h1>Start {@value Data#projectName}</h1>Launches {@value Data#projectName} If
-	 * {@value Data#projectName} is using an NW.js version that doesn't match the
-	 * latest Google Chrome version, WebDriverManager throws an exception. The stack
-	 * trace from this exception is the only place where we can find out what
-	 * Chromium version NW.js is. This method catches that exception, parses out the
-	 * correct Chromium version, and to create the webDriver again, with the
-	 * Chromium version specified. This only will happen the first time we run
-	 * against any given NW.js executable. Subsequent
+	 * <h1>Start Project</h1>Launches the project. If the is using an NW.js version that
+	 * doesn't match the latest Google Chrome version, WebDriverManager throws an
+	 * exception. The stack trace from this exception is the only place where we can
+	 * find out what Chromium version NW.js is. This method catches that exception,
+	 * parses out the correct Chromium version, and to create the webDriver again,
+	 * with the Chromium version specified. This only will happen the first time we
+	 * run against any given NW.js executable. Subsequent
 	 * {@link WebDriverManager#create()} calls without specifying browser version
 	 * will work fine.
 	 * 
@@ -152,12 +147,14 @@ public class Methods extends Xpaths {
 	 * @author laserwolve
 	 * @throws IOException
 	 */
-	protected static void startDaggerQuest() {
+	protected static void startProject() {
 
-		Path directory = Paths.get(System.getProperty("user.dir")).getParent().resolve(projectName);
-		Path nwjsPackage = directory.resolve("package.nw");
-		Path webview2Package = directory.resolve("package.json");
-		String executable = directory.resolve(projectName + ".exe").toString();
+		Path projectDirectory = Paths.get(System.getProperty("user.dir")).getParent();
+		String projectName = projectDirectory.getFileName().toString();
+		Path exportedDirectory = projectDirectory.resolve(projectName);
+		Path nwjsPackage = exportedDirectory.resolve("package.nw");
+		Path webview2Package = exportedDirectory.resolve("package.json");
+		String executable = exportedDirectory.resolve(projectName + ".exe").toString();
 		WebDriverManager webDriverManager = WebDriverManager.getInstance();
 
 		if (Files.exists(nwjsPackage))
@@ -214,8 +211,8 @@ public class Methods extends Xpaths {
 	 * @param object The {@link DaggerQuestObject} to click.
 	 * @author laserwolve
 	 */
-	protected static void click(DaggerQuestObject object) {
-		clickLocation(getPosition(object));
+	protected static void click(String constructObject) {
+		clickLocation(getPosition(constructObject));
 	}
 
 	protected static void initializeObjects() {
@@ -266,9 +263,9 @@ public class Methods extends Xpaths {
 			return;
 		}
 
-		click(BetaUpdateAvailable.update);
+		clickElement(BetaUpdateAvailable.update);
 
-		click(ConstructUpdated.notNow);
+		clickElement(ConstructUpdated.notNow);
 	}
 
 	/**
@@ -301,13 +298,13 @@ public class Methods extends Xpaths {
 	}
 
 	/**
-	 * <h1>Click</h1> Clicks the element specified in the XPath.
+	 * <h1>Click Element</h1> Clicks the element specified in the XPath.
 	 *
 	 * @param xpath The XPath of the element to click.
 	 * @author laserwolve
 	 * @see {@link org.openqa.selenium.WebElement#click()}
 	 */
-	protected static void click(String xpath) {
+	protected static void clickElement(String xpath) {
 		clickableElement(xpath).click();
 	}
 
@@ -365,7 +362,7 @@ public class Methods extends Xpaths {
 	 * @author laserwolve
 	 */
 	protected static void dismissWelcomeDialog() {
-		click(Welcome.noThanksNotNow);
+		clickElement(Welcome.noThanksNotNow);
 
 		waitUntilElementIsGone(welcome);
 	}
@@ -389,55 +386,55 @@ public class Methods extends Xpaths {
 	 * @throws InterruptedException
 	 */
 	protected static void exportProject(String projectName) {
-		click(menu);
+		clickElement(menu);
 
-		click(MenuDropdown.project);
+		clickElement(MenuDropdown.project);
 
-		click(ProjectPopout.export);
+		clickElement(ProjectPopout.export);
 
-		click(ExportProject.nwjs);
+		clickElement(ExportProject.nwjs);
 
-		click(ExportProject.next);
+		clickElement(ExportProject.next);
 
-		click(Page2.deduplicateImages);
+		clickElement(Page2.deduplicateImages);
 
-		click(Page2.losslessFormat);
+		clickElement(Page2.losslessFormat);
 
-		click(LosslessFormatOptions.webp);
+		clickElement(LosslessFormatOptions.webp);
 
-		click(Page2.lossyFormat);
+		clickElement(Page2.lossyFormat);
 
-		click(LossyFormatOptions.webp);
+		clickElement(LossyFormatOptions.webp);
 
-		click(Page2.minifyMode);
+		clickElement(Page2.minifyMode);
 
-		click(MinifyModes.advanced);
+		clickElement(MinifyModes.advanced);
 
-		click(Page2.next);
+		clickElement(Page2.next);
 
 		waitUntilElementIsGone(progressDialog, 10); // "Loading NW.js versions..."
 
-		click(NwjsOptions.linux32); // Uncheck
+		clickElement(NwjsOptions.linux32); // Uncheck
 
-		click(NwjsOptions.linux64); // Uncheck
+		clickElement(NwjsOptions.linux64); // Uncheck
 
-		click(NwjsOptions.mac64); // Uncheck
+		clickElement(NwjsOptions.mac64); // Uncheck
 
-		click(NwjsOptions.win32); // Uncheck
+		clickElement(NwjsOptions.win32); // Uncheck
 
-		click(NwjsOptions.windowFrame); // Uncheck
+		clickElement(NwjsOptions.windowFrame); // Uncheck
 
-		click(NwjsOptions.resizableWindow); // Uncheck
+		clickElement(NwjsOptions.resizableWindow); // Uncheck
 
-		click(NwjsOptions.enableDevTools); // Uncheck
+		clickElement(NwjsOptions.enableDevTools); // Uncheck
 
-		click(NwjsOptions.exportForSteam); // Check
+		clickElement(NwjsOptions.exportForSteam); // Check
 
-		click(NwjsOptions.next);
+		clickElement(NwjsOptions.next);
 
 		waitUntilElementIsGone(progressDialog, 6000);
 
-		click(ExportReport.downloadLink);
+		clickElement(ExportReport.downloadLink);
 
 		setExpiryTime(30);
 
@@ -501,27 +498,30 @@ public class Methods extends Xpaths {
 	/**
 	 * <h1>Log In</h1> Logs in to the Construct Editor.
 	 *
+	 * @param username The username to sign in with. Strangely, this is allowed to
+	 *                 contain spaces. It isn't allowed to be an email address.
+	 * @param password The password to sign in with.
 	 * @author laserwolve
 	 */
-	protected static void logIn() {
+	protected static void logIn(String username, String password) {
 		if (isSignedOut()) {
-			click(userAccount);
+			clickElement(userAccount);
 
-			click(AccountDropdown.logIn);
+			clickElement(AccountDropdown.logIn);
 
 			switchToIframe(iframe);
 
-			sendText(LogIn.username, Data.username, true);
+			sendText(LogIn.username, username, true);
 
-			sendText(LogIn.password, Data.password, true);
+			sendText(LogIn.password, password, true);
 
-			click(LogIn.logIn);
+			clickElement(LogIn.logIn);
 
 			waitUntilElementIsGone(logIn);
 
 			switchToDefaultContent();
 
-			waitUntilTextIs(UserAccount.userAccountName, Data.username, 10);
+			waitUntilTextIs(UserAccount.userAccountName, username, 10);
 		}
 	}
 
@@ -537,13 +537,13 @@ public class Methods extends Xpaths {
 	 * @throws InterruptedException from {@link Thread#sleep(long)}
 	 */
 	protected static void openRecentProject(String projectName) {
-		click(menu);
+		clickElement(menu);
 
-		click(MenuDropdown.project);
+		clickElement(MenuDropdown.project);
 
-		click(ProjectPopout.openRecent);
+		clickElement(ProjectPopout.openRecent);
 
-		click(OpenRecentPopout.recentProject(projectName));
+		clickElement(OpenRecentPopout.recentProject(projectName));
 
 		robot.delay(1000); // TODO: Replace this. I can't find a chrome flag to allow file editing.
 
@@ -856,9 +856,9 @@ public class Methods extends Xpaths {
 	 * @author laserwolve
 	 */
 	protected static void openProjectFolder(int MaximumProjectLoadTimeInSeconds, String projectPath) {
-		click(StartPage.open);
+		clickElement(StartPage.open);
 
-		click(StartPage.OpenButtonDropdown.projectFolder);
+		clickElement(StartPage.OpenButtonDropdown.projectFolder);
 
 		typeIntoFileExplorer(projectPath);
 
@@ -962,7 +962,7 @@ public class Methods extends Xpaths {
 
 			String newAnimation = addAnimation();
 
-			click(Animations.animation(1));
+			clickElement(Animations.animation(1));
 
 			waitForElementToHaveAttribute(Animations.animation(1), "selected", 5);
 
@@ -972,7 +972,7 @@ public class Methods extends Xpaths {
 
 			actions.keyDown(Keys.SHIFT).perform();
 
-			click(Animations.animation(penultimateAnimation));
+			clickElement(Animations.animation(penultimateAnimation));
 
 			actions.keyUp(Keys.SHIFT).perform();
 
@@ -980,13 +980,13 @@ public class Methods extends Xpaths {
 
 			contextClick(Animations.animation(penultimateAnimation));
 
-			click(AnimationContextMenu.delete);
+			clickElement(AnimationContextMenu.delete);
 
 			contextClick(Animations.title);
 
-			click(ContextMenu.importAnimation);
+			clickElement(ContextMenu.importAnimation);
 
-			click(importAnimationPopout.fromFiles);
+			clickElement(importAnimationPopout.fromFiles);
 
 			typeIntoFileExplorer(animation.getPath());
 
@@ -998,25 +998,25 @@ public class Methods extends Xpaths {
 
 			// Delete the animation we created, whose whole purpose was to satisfy the
 			// requirement that a sprite must always have at least one animation.
-			click(AnimationContextMenu.delete);
+			clickElement(AnimationContextMenu.delete);
 
 			if (Objects.nonNull(yValue)) {
-				click(AnimationsEditor.editTheImagePoints);
+				clickElement(AnimationsEditor.editTheImagePoints);
 
 				// Click into the input box, to make the correct input appear
-				click(AnimationsEditor.ySpinner);
+				clickElement(AnimationsEditor.ySpinner);
 
 				sendText(AnimationsEditor.y, yValue, false);
 
 				contextClick(ImagePoints.origin);
 
-				click(ImagePointsContextMenu.applyToAllAnimations);
+				clickElement(ImagePointsContextMenu.applyToAllAnimations);
 			}
-			click(AnimationsEditor.cropDropdownArrow);
+			clickElement(AnimationsEditor.cropDropdownArrow);
 
 			actions.keyDown(Keys.SHIFT).keyDown(Keys.CONTROL).perform();
 
-			click(CropDropdown.applyToAllAnimations);
+			clickElement(CropDropdown.applyToAllAnimations);
 
 			actions.keyUp(Keys.SHIFT).keyUp(Keys.CONTROL).perform();
 
@@ -1024,11 +1024,11 @@ public class Methods extends Xpaths {
 
 			waitForElementToNotHaveAttribute(AnimationsEditor.blocker, "locked", 180);
 
-			click(AnimationsEditor.x);
+			clickElement(AnimationsEditor.x);
 
 			waitUntilElementIsGone(dimmer, 300);
 
-			click(save);
+			clickElement(save);
 
 			waitUntilElementIsGone(progressDialog, 300);
 		}
@@ -1051,7 +1051,7 @@ public class Methods extends Xpaths {
 
 		contextClick(Animations.title);
 
-		click(ContextMenu.addAnimation);
+		clickElement(ContextMenu.addAnimation);
 
 		setExpiryTime(5);
 
@@ -1091,19 +1091,19 @@ public class Methods extends Xpaths {
 	protected static void createNewProject(String projectName, String preset, Integer viewportWidth,
 			Integer viewportHeight, String orientations, String startWith, boolean optimizeForPixelArt) {
 
-		click(menu);
+		clickElement(menu);
 
-		click(MenuDropdown.project);
+		clickElement(MenuDropdown.project);
 
-		click(ProjectPopout.newProject);
+		clickElement(ProjectPopout.newProject);
 
 		if (projectName != null)
 			sendText(NewProject.name, projectName);
 
 		if (preset != null) {
-			click(NewProject.choosePreset);
+			clickElement(NewProject.choosePreset);
 
-			click(preset);
+			clickElement(preset);
 		}
 
 		if (viewportWidth != null)
@@ -1113,21 +1113,21 @@ public class Methods extends Xpaths {
 			sendText(NewProject.viewportSizeHeight, viewportHeight);
 
 		if (orientations != null) {
-			click(NewProject.orientations);
+			clickElement(NewProject.orientations);
 
-			click(orientations);
+			clickElement(orientations);
 		}
 
 		if (startWith != null) {
-			click(NewProject.startWith);
+			clickElement(NewProject.startWith);
 
-			click(startWith);
+			clickElement(startWith);
 		}
 
 		if (optimizeForPixelArt)
-			click(NewProject.optimizeForPixelArt);
+			clickElement(NewProject.optimizeForPixelArt);
 
-		click(NewProject.create);
+		clickElement(NewProject.create);
 	}
 
 	/**
@@ -1145,7 +1145,7 @@ public class Methods extends Xpaths {
 
 		String propertyInput = Properties.propertyTextInput(property);
 
-		click(propertyInput);
+		clickElement(propertyInput);
 
 		if (clickableElement(propertyInput).getTagName().equals("input")) {
 
@@ -1170,6 +1170,6 @@ public class Methods extends Xpaths {
 		String checkbox = Properties.propertyTextInput(property);
 
 		if (clickableElement(checkbox).isSelected() != value)
-			click(checkbox);
+			clickElement(checkbox);
 	}
 }

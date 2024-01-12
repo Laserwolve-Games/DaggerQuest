@@ -1,4 +1,4 @@
-package objects;
+package constructAutomation;
 
 /**
  * <h1>Position</h1> An X Y position of a Construct object. Can't use

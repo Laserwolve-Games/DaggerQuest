@@ -618,6 +618,16 @@
 									"isInverted": true
 								},
 								{
+									"id": "is-playing",
+									"objectClass": "portrait",
+									"sid": 256641828168431,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"fadeOut\""
+									},
+									"isInverted": true
+								},
+								{
 									"id": "compare-two-values",
 									"objectClass": "System",
 									"sid": 849051413122214,
@@ -631,7 +641,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "if we click anywhere that's not an NPC, and there's a portrait up, destroy all portraits"
+									"text": "if we click anywhere that's not an NPC, and there's a portrait up (that's not currently fading out), close the dialog"
 								},
 								{
 									"callFunction": "closeDialog",
@@ -657,10 +667,10 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 722549384981587,
+							"sid": 167889325032600,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "\"\"",
+								"tags": "\"fadeOut\"",
 								"property": "offsetOpacity",
 								"end-value": "0",
 								"time": ".2",

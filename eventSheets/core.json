@@ -775,31 +775,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "player",
-									"sid": 995345782761167,
-									"parameters": {
-										"object": "nonCombatArea"
-									}
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 998225246948673,
-									"parameters": {
-										"instance-variable": "pickupRange",
-										"comparison": 2,
-										"value": "150"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 497860860607356
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "on-key-pressed",
 									"objectClass": "keyboard",
 									"sid": 704807057576814,
@@ -5804,50 +5779,21 @@
 											],
 											"actions": [
 												{
+													"type": "comment",
+													"text": "Boost the pick up range by the approximate size of the item, and it's apparent vertical height"
+												},
+												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 842843281545860,
+													"sid": 714405587024301,
 													"parameters": {
 														"variable": "effectivePickupRange",
-														"value": "player.pickupRange"
+														"value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)"
 													}
 												}
 											],
 											"sid": 169232376872581,
 											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-on-layer",
-															"objectClass": "loot",
-															"sid": 374961896672166,
-															"parameters": {
-																"layer": "\"main\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "Boost the player's pickup range a bit to compensate for loot that's on top of props."
-														},
-														{
-															"type": "comment",
-															"text": "TODO: Figure out a way to calculate a better number for this."
-														},
-														{
-															"id": "add-to-eventvar",
-															"objectClass": "System",
-															"sid": 648907432148851,
-															"parameters": {
-																"variable": "effectivePickupRange",
-																"value": "50"
-															}
-														}
-													],
-													"sid": 680550904650866
-												},
 												{
 													"eventType": "block",
 													"conditions": [

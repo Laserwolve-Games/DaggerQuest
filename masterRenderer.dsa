@@ -6,7 +6,7 @@ if (nTotalNumberOfInstances)
 {
 	var nInstanceNumber = App.instanceName();
 	var oInputDirectory = new DzDir('C:/assets/input');
-	var aCharacters = oInputDirectory.getFilesFromDir(['*_character.duf'], true);
+	var aSubjects = oInputDirectory.getFilesFromDir(['*_subject.duf'], true);
 	var aAnimations = oInputDirectory.getFilesFromDir(['*_animation.duf'], true);
 	var aGear = oInputDirectory.getFilesFromDir(['*_gear.duf'], true);
 
@@ -34,13 +34,13 @@ if (nTotalNumberOfInstances)
 		return sFileName.split('/').pop().split('_')[0];
 	}
 	/*********************************************************************/
-	function setMatte(bBool) // Set the Matte Parameter of a character and its children.
+	function setMatte(bBool) // Set the Matte Parameter of a subject and its children.
 	{	
-		if (oCharacterMatteParameter) oCharacterMatteParameter.setValue(bBool);
+		if (oSubjectMatteParameter) oSubjectMatteParameter.setValue(bBool);
 		
-		for (var i = 0; i != aCharacterChildren.length; i++)
+		for (var i = 0; i != aSubjectChildren.length; i++)
 		{
-			var oChildMatteParameter = aCharacterChildren[i].findPropertyByLabel('Enable Iray Matte');
+			var oChildMatteParameter = aSubjectChildren[i].findPropertyByLabel('Enable Iray Matte');
 			if (oChildMatteParameter) oChildMatteParameter.setValue(bBool);
 		}
 	}
@@ -175,37 +175,37 @@ if (nTotalNumberOfInstances)
 								RENDER LOOPS
 
 	*********************************************************************/
-	for (var i = 0; i != aCharacters.length; i++) // For each character...
+	for (var i = 0; i != aSubjects.length; i++) // For each subject...
 	{
-		oContentMgr.openFile(aCharacters[i], true);		// Merge in a character, and get its name.
-		var sCharacterName = getName(aCharacters[i]);
+		oContentMgr.openFile(aSubjects[i], true);		// Merge in a subject, and get its name.
+		var sSubjectName = getName(aSubjects[i]);
 
-		var oCharacter = Scene.findNodeByLabel('character');		// Set up the character.
-		var aCharacterChildren = oCharacter.getNodeChildren(true);
-		var oCharacterMatteParameter = oCharacter.findPropertyByLabel('Enable Iray Matte');
-		var oCustomPropertyGroup = oCharacter.getPropertyGroups().findChild("Custom");
+		var oSubject = Scene.findNodeByLabel('subject');		// Set up the subject.
+		var aSubjectChildren = oSubject.getNodeChildren(true);
+		var oSubjectMatteParameter = oSubject.findPropertyByLabel('Enable Iray Matte');
+		var oCustomPropertyGroup = oSubject.getPropertyGroups().findChild("Custom");
 		var aChildPropertyControllers;
 		if (oCustomPropertyGroup) aChildPropertyControllers = oCustomPropertyGroup.getAllProperties();
 
-		oRoot.addNodeChild(oCharacter, true);
+		oRoot.addNodeChild(oSubject, true);
 
 		if (!aAnimations.length)
 		{
-			renderCore(sCharacterName, 'Animation 1', false, false);
+			renderCore(sSubjectName, 'Animation 1', false, false);
 
-			renderCore(sCharacterName, 'Animation 1', false, true);
+			renderCore(sSubjectName, 'Animation 1', false, true);
 		}
 		else for (var j = 0; j != aAnimations.length; j++) // For each animation...
 		{
-			oContentMgr.openFile(aAnimations[j], true); // only the character can be selected when we merge in an animation
+			oContentMgr.openFile(aAnimations[j], true); // only the subject can be selected when we merge in an animation
 
 			var sAnimationName = getName(aAnimations[j]);
 
 			if (!aGear.length) // If there is no gear...
 			{
-				renderCore(sCharacterName, sAnimationName, false, false);
+				renderCore(sSubjectName, sAnimationName, false, false);
 
-				renderCore(sCharacterName, sAnimationName, false, true);
+				renderCore(sSubjectName, sAnimationName, false, true);
 			}
 			else for (var k = 0; k != aGear.length; k++) // If there are gears, for each gear...
 			{
@@ -219,17 +219,17 @@ if (nTotalNumberOfInstances)
 				
 				for (var ii = 0; ii != aGearChildren.length; ii++) oIrayOptions.addNodeToNodeList('visibleNodes', aGearChildren[ii]); // Add all gear children to the canvas as well.
 
-				renderCore(sCharacterName + '_' + sGearName, sAnimationName, true, false);
+				renderCore(sSubjectName + '_' + sGearName, sAnimationName, true, false);
 				
-				renderCore(sCharacterName + '_' + sGearName, sAnimationName, true, true);
+				renderCore(sSubjectName + '_' + sGearName, sAnimationName, true, true);
 
 				Scene.removeNode(oGear);
 			}
 			// Custom parameter keys don't always exist. They have to be manually cleared after each animation
-			for (var i = 0; i != aChildPropertyControllers.length; i++) aChildPropertyControllers[i].deleteAllKeys();
+			if (aChildPropertyControllers) for (var i = 0; i != aChildPropertyControllers.length; i++) aChildPropertyControllers[i].deleteAllKeys();
 
 			Scene.setPlayRange(DzTimeRange(0, 0));
 		}
-		Scene.removeNode(oCharacter);
+		Scene.removeNode(oSubject);
 	}
 }

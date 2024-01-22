@@ -27,6 +27,7 @@ if (nTotalNumberOfInstances)
 	var nTicksPerFrame = nDAZ_TICKS / nFrameRate;
 	var oRoot = Scene.findNodeByLabel('root');
 	var oShadowPlane = Scene.findNodeByLabel('shadowPlane');
+	var bIsNewConstructObject = false;
 
 	/*********************************************************************/
 	function getName(sFileName) // Obtain the desired name out of a filepath or filename.
@@ -126,10 +127,15 @@ if (nTotalNumberOfInstances)
 				if (bIsGear) sNameSuffix = '_gear';
 				if (bIsShadow) sNameSuffix += '_shadow';
 
-				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				var sFinalFilePath = 'C:/DaggerQuest/images/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				var bImageAlreadyExists = oInputDirectory.exists(sFinalFilePath);
 
-				// if (oInputDirectory.exists(sFinalFilePath)) continue; // Set the filepath. If it already exists, skip it.
-				oRenderOptions.renderImgFilename = sFinalFilePath;
+				// If we're making a new Construct object, and this particular image already exists, skip it.
+				// Applicable situations: Power outages, breaking a large render into chunks, needing to pause a render
+				// If we're replacing an existing object, and this particular image doesn't exist, skip it as well.
+				//Applicable situations: Rendering an object with less frames than it previously had, rendering an object with less than nAngles angles.
+				if ((!bIsNewConstructObject && !oInputDirectory.exists(sFinalFilePath)) || (bIsNewConstructObject && bImageAlreadyExists)) continue;
+				oRenderOptions.renderImgFilename = sFinalFilePath; // Set the filepath.
 
 				Scene.setFrame(nFrame);
 				oRoot.getYRotControl().setValue(nAngle); // Do this every frame, or else it will interpolate.

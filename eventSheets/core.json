@@ -6323,12 +6323,48 @@
 									"objectClass": "player",
 									"sid": 257293166185651,
 									"behaviorType": "MoveTo"
+								},
+								{
+									"id": "compare-x",
+									"objectClass": "player",
+									"sid": 620319082947073,
+									"parameters": {
+										"comparison": 1,
+										"x-co-ordinate": "Self.lastX"
+									}
+								},
+								{
+									"id": "compare-y",
+									"objectClass": "player",
+									"sid": 822297045595581,
+									"parameters": {
+										"comparison": 1,
+										"y-co-ordinate": "Self.lastY"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "...if they're moving, set their animation appropriately"
+									"text": "...if they're moving (and not where they were last tick), set their animation appropriately"
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 752318121370594,
+									"parameters": {
+										"instance-variable": "lastX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 958338878941089,
+									"parameters": {
+										"instance-variable": "lastY",
+										"value": "Self.Y"
+									}
 								}
 							],
 							"sid": 146079688686831,
@@ -6442,7 +6478,7 @@
 								{
 									"id": "move-to-position",
 									"objectClass": "player",
-									"sid": 749501081103327,
+									"sid": 285667238478145,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"x": "mouse.X",
@@ -6453,7 +6489,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 143164164866806,
+									"sid": 654479744680636,
 									"parameters": {
 										"variable": "uidOfClicked",
 										"value": "0"
@@ -10758,11 +10794,6 @@
 									}
 								},
 								{
-									"id": "is-on-screen",
-									"objectClass": "enemyBody",
-									"sid": 985971402451241
-								},
-								{
 									"id": "pick-parent",
 									"objectClass": "enemyBody",
 									"sid": 756156842270431,
@@ -10827,12 +10858,7 @@
 											}
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "TODO: What if enemies spawn on top of each other, off screen?"
-										}
-									],
+									"actions": [],
 									"sid": 629417720980880,
 									"children": [
 										{
@@ -10906,6 +10932,11 @@
 								{
 									"eventType": "block",
 									"conditions": [
+										{
+											"id": "is-on-screen",
+											"objectClass": "enemyBody",
+											"sid": 761279903125914
+										},
 										{
 											"id": "is-boolean-instance-variable-set",
 											"objectClass": "enemy",

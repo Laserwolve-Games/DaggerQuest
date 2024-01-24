@@ -299,265 +299,6 @@
 					]
 				},
 				{
-					"functionName": "beginDialog",
-					"functionDescription": "Begin dialog with an NPC",
-					"functionCategory": "general",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "npc",
-							"sid": 130198787549103,
-							"parameters": {
-								"instance-variable": "degrees",
-								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "dialogNpcName",
-							"sid": 799448355983987,
-							"parameters": {
-								"text": "lowercase(npc.fullName)"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "dialogText",
-							"sid": 385882831899065,
-							"parameters": {
-								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, \"npc\", npc.simpleName, \"message\")"
-							}
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 868837751437743,
-							"parameters": {
-								"seconds": "0"
-							}
-						},
-						{
-							"callFunction": "openLayer",
-							"sid": 831983067626887,
-							"parameters": [
-								"\"dialog\""
-							]
-						}
-					],
-					"sid": 447936217417067,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "npc",
-									"sid": 931230382108786,
-									"parameters": {
-										"instance-variable": "degrees",
-										"comparison": 0,
-										"value": "-180"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-instvar-value",
-									"objectClass": "npc",
-									"sid": 964543860543322,
-									"parameters": {
-										"instance-variable": "degrees",
-										"value": "HALF_CIRCLE"
-									}
-								}
-							],
-							"sid": 269735696328506
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "npcBody",
-									"sid": 911458837719317,
-									"parameters": {
-										"animation": "\"idle_\" & npc.degrees",
-										"from": "current-frame"
-									}
-								},
-								{
-									"callFunction": "updateFacing",
-									"sid": 448911465043330,
-									"parameters": [
-										"npc.X",
-										"npc.Y"
-									]
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 192789731455103,
-									"parameters": [
-										"\"idle\"",
-										"10",
-										"\"playFromCurrentFrame\""
-									]
-								}
-							],
-							"sid": 456764690419840
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 844928225366240,
-									"parameters": {
-										"object": "portrait",
-										"expression": "portrait.ObjectTypeName",
-										"comparison": 0,
-										"value": "npc.simpleName & \"_portrait\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "...if a portrait for it already exists, do nothing"
-								}
-							],
-							"sid": 946182224464701
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 212489894903979
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "…otherwise, destroy all portraits, and spawn a portrait for this NPC"
-								},
-								{
-									"id": "destroy",
-									"objectClass": "portrait",
-									"sid": 184313260669034
-								},
-								{
-									"id": "unload-object-images",
-									"objectClass": "System",
-									"sid": 617397566731158,
-									"parameters": {
-										"object": "portrait"
-									}
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 386217379259261,
-									"parameters": {
-										"object-name": "npc.simpleName & \"_portrait\"",
-										"layer": "\"portraits\"",
-										"x": "portraitPosition",
-										"y": "ViewportBottom(\"portraits\")",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 418343579746860,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 480662242760595,
-											"parameters": {
-												"object": "portrait"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "parent it to the mana cover so it resizes correctly. We would use anchor, but we can't set its parameters during the runtime"
-										},
-										{
-											"id": "add-child",
-											"objectClass": "manaCover",
-											"sid": 488886012167441,
-											"parameters": {
-												"child": "portrait",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": false,
-												"transform-h": false,
-												"transform-a": false,
-												"transform-o": false,
-												"transform-z-elevation": false,
-												"transform-visibility": false,
-												"destroy-with-parent": false
-											}
-										},
-										{
-											"type": "comment",
-											"text": "override the global timescale so we can still fade out on pause"
-										},
-										{
-											"id": "set-object-time-scale",
-											"objectClass": "System",
-											"sid": 726994785143505,
-											"parameters": {
-												"object": "portrait",
-												"time-scale": "1.0"
-											}
-										},
-										{
-											"id": "set-opacity",
-											"objectClass": "portrait",
-											"sid": 765346176114475,
-											"parameters": {
-												"opacity": "0"
-											}
-										},
-										{
-											"id": "tween-one-property",
-											"objectClass": "portrait",
-											"sid": 571623297068430,
-											"behaviorType": "Tween",
-											"parameters": {
-												"tags": "\"\"",
-												"property": "offsetOpacity",
-												"end-value": "100",
-												"time": ".2",
-												"ease": "noease",
-												"destroy-on-complete": "no",
-												"loop": "no",
-												"ping-pong": "no",
-												"repeat-count": "1"
-											}
-										}
-									],
-									"sid": 166629566598268
-								}
-							]
-						}
-					]
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -654,9 +395,268 @@
 					"isOrBlock": true
 				},
 				{
+					"functionName": "beginDialog",
+					"functionDescription": "Begin dialog with an NPC.",
+					"functionCategory": "world",
+					"functionReturnType": "none",
+					"functionCopyPicked": true,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "npc",
+							"sid": 386518271357204,
+							"parameters": {
+								"instance-variable": "degrees",
+								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "dialogNpcName",
+							"sid": 223028431246540,
+							"parameters": {
+								"text": "lowercase(npc.fullName)"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "dialogText",
+							"sid": 430213232029680,
+							"parameters": {
+								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, \"npc\", npc.simpleName, \"message\")"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 425548883981783,
+							"parameters": {
+								"seconds": "0"
+							}
+						},
+						{
+							"callFunction": "openLayer",
+							"sid": 270572504417913,
+							"parameters": [
+								"\"dialog\""
+							]
+						}
+					],
+					"sid": 484500702457343,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "npc",
+									"sid": 515856323861255,
+									"parameters": {
+										"instance-variable": "degrees",
+										"comparison": 0,
+										"value": "-180"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "npc",
+									"sid": 514409863397689,
+									"parameters": {
+										"instance-variable": "degrees",
+										"value": "HALF_CIRCLE"
+									}
+								}
+							],
+							"sid": 597617901621374
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "npcBody",
+									"sid": 768490635337084,
+									"parameters": {
+										"animation": "\"idle_\" & npc.degrees",
+										"from": "current-frame"
+									}
+								},
+								{
+									"callFunction": "updateFacing",
+									"sid": 880255149662395,
+									"parameters": [
+										"npc.X",
+										"npc.Y"
+									]
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 248013701897017,
+									"parameters": [
+										"\"idle\"",
+										"10",
+										"\"playFromCurrentFrame\""
+									]
+								}
+							],
+							"sid": 208162397307165
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 842439206812513,
+									"parameters": {
+										"object": "portrait",
+										"expression": "portrait.ObjectTypeName",
+										"comparison": 0,
+										"value": "npc.simpleName & \"_portrait\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "...if a portrait for it already exists, do nothing"
+								}
+							],
+							"sid": 688346724396258
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 536658391597305
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "…otherwise, destroy all portraits, and spawn a portrait for this NPC"
+								},
+								{
+									"id": "destroy",
+									"objectClass": "portrait",
+									"sid": 440104141978882
+								},
+								{
+									"id": "unload-object-images",
+									"objectClass": "System",
+									"sid": 516502329102582,
+									"parameters": {
+										"object": "portrait"
+									}
+								},
+								{
+									"id": "create-object-by-name",
+									"objectClass": "System",
+									"sid": 178316045937466,
+									"parameters": {
+										"object-name": "npc.simpleName & \"_portrait\"",
+										"layer": "\"portraits\"",
+										"x": "portraitPosition",
+										"y": "ViewportBottom(\"portraits\")",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								}
+							],
+							"sid": 157694837587103,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 617325792886852,
+											"parameters": {
+												"object": "portrait"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "parent it to the mana cover so it resizes correctly. We would use anchor, but we can't set its parameters during the runtime"
+										},
+										{
+											"id": "add-child",
+											"objectClass": "manaCover",
+											"sid": 366581371143765,
+											"parameters": {
+												"child": "portrait",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-o": false,
+												"transform-z-elevation": false,
+												"transform-visibility": false,
+												"destroy-with-parent": false
+											}
+										},
+										{
+											"type": "comment",
+											"text": "override the global timescale so we can still fade out on pause"
+										},
+										{
+											"id": "set-object-time-scale",
+											"objectClass": "System",
+											"sid": 385369070145994,
+											"parameters": {
+												"object": "portrait",
+												"time-scale": "1.0"
+											}
+										},
+										{
+											"id": "set-opacity",
+											"objectClass": "portrait",
+											"sid": 223827504388620,
+											"parameters": {
+												"opacity": "0"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "portrait",
+											"sid": 940792261109528,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetOpacity",
+												"end-value": "100",
+												"time": ".2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										}
+									],
+									"sid": 487290881549409
+								}
+							]
+						}
+					]
+				},
+				{
 					"functionName": "closeDialog",
-					"functionDescription": "",
-					"functionCategory": "",
+					"functionDescription": "End dialog with an NPC.",
+					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
@@ -4983,8 +4983,8 @@
 						},
 						{
 							"functionName": "updateFacing",
-							"functionDescription": "",
-							"functionCategory": "playerFunctions",
+							"functionDescription": "Update the facing of the player.",
+							"functionCategory": "player",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -6467,7 +6467,7 @@
 						{
 							"functionName": "normalMovement",
 							"functionDescription": "Move to a location and reset the uidOfClicked variable.",
-							"functionCategory": "playerFunctions",
+							"functionCategory": "player",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -7840,8 +7840,8 @@
 						},
 						{
 							"functionName": "updateAnimations",
-							"functionDescription": "change the player's animations",
-							"functionCategory": "playerFunctions",
+							"functionDescription": "Change the player's animation.",
+							"functionCategory": "player",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -10193,8 +10193,8 @@
 					"children": [
 						{
 							"functionName": "updateEnemyInfo",
-							"functionDescription": "",
-							"functionCategory": "",
+							"functionDescription": "Update an enemy's name, and clear the attributes.",
+							"functionCategory": "enemies",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
@@ -10484,12 +10484,12 @@
 										{
 											"id": "create-object",
 											"objectClass": "System",
-											"sid": 817989080893966,
+											"sid": 615327329998570,
 											"parameters": {
 												"object-to-create": "enemy",
 												"layer": "\"mechanics\"",
-												"x": "1200 + random(-100, 100)",
-												"y": "1200 + random(-100, 100)",
+												"x": "700 + random(-100, 100)",
+												"y": "1700 + random(-100, 100)",
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}
@@ -10945,6 +10945,15 @@
 												"instance-variable": "attacking"
 											},
 											"isInverted": true
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "enemy",
+											"sid": 872931908531743,
+											"parameters": {
+												"instance-variable": "hit"
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [],
@@ -11195,6 +11204,52 @@
 										}
 									],
 									"sid": 813031206383253
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 934957481402461,
+											"parameters": {
+												"object": "enemyBody",
+												"expression": "find(enemyBody.AnimationName, \"hit\")",
+												"comparison": 1,
+												"value": "-1"
+											}
+										},
+										{
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 181895926074327,
+											"parameters": {
+												"parent": "enemy",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 493665149181990,
+											"parameters": {
+												"instance-variable": "attacking",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 708648942899502,
+											"parameters": {
+												"instance-variable": "hit",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 320646800313079
 								}
 							]
 						}
@@ -11970,8 +12025,8 @@
 				},
 				{
 					"functionName": "spawnShadows",
-					"functionDescription": "",
-					"functionCategory": "",
+					"functionDescription": "Spawn the shadow of an object.",
+					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
 					"functionIsAsync": false,
@@ -12169,7 +12224,6 @@
 					],
 					"actions": [],
 					"sid": 932202329358705,
-					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -12232,7 +12286,6 @@
 								}
 							],
 							"sid": 673936274587997,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -12254,8 +12307,67 @@
 											"sid": 712906424152491
 										}
 									],
-									"sid": 647399467179630,
-									"disabled": true
+									"sid": 647399467179630
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 381227633579149,
+											"parameters": {
+												"first-value": "find(enemy.attributes, \"Unflinching\")",
+												"comparison": 1,
+												"second-value": "-1"
+											}
+										},
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 950502115769861,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										},
+										{
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 364016656038379,
+											"parameters": {
+												"parent": "enemy",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "enemy",
+											"sid": 319251762602010,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 167548785714291,
+											"parameters": {
+												"instance-variable": "hit",
+												"value": "true"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 546959138221891,
+											"parameters": {
+												"animation": "\"hit_\" & enemy.degrees",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 274471392484519
 								}
 							]
 						},
@@ -12310,7 +12422,6 @@
 								}
 							],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -12332,8 +12443,7 @@
 											"sid": 413478000377979
 										}
 									],
-									"sid": 615426759922895,
-									"disabled": true
+									"sid": 615426759922895
 								}
 							]
 						}
@@ -12505,139 +12615,6 @@
 						}
 					],
 					"sid": 230942831711372
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "game saves",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "saveSuccessfulTimer",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 154646613668118
-						},
-						{
-							"functionName": "saveGame",
-							"functionDescription": "saves the state of the game",
-							"functionCategory": "general",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "TODO: save the player's level, all the items, and the selected abilities, and maybe the position of the statues"
-								}
-							],
-							"sid": 162036800390837,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "layer-is-visible",
-											"objectClass": "System",
-											"sid": 941200574163992,
-											"parameters": {
-												"layer": "\"escapeMenu\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "saveSuccessful",
-											"sid": 356428073293943,
-											"parameters": {
-												"visibility": "visible"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "wall clock time, since we're paused so normal waits and timers won't work"
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 472720389100434,
-											"parameters": {
-												"variable": "saveSuccessfulTimer",
-												"value": "wallclocktime"
-											}
-										}
-									],
-									"sid": 247387140275747
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-visible",
-									"objectClass": "saveSuccessful",
-									"sid": 170636780802953
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 395384947623650,
-									"parameters": {
-										"first-value": "wallclocktime",
-										"comparison": 5,
-										"second-value": "saveSuccessfulTimer + 1"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 702726404007882
-								}
-							],
-							"actions": [
-								{
-									"id": "set-visible",
-									"objectClass": "saveSuccessful",
-									"sid": 240705239373629,
-									"parameters": {
-										"visibility": "invisible"
-									}
-								}
-							],
-							"sid": 835485994637741
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "every-x-seconds",
-									"objectClass": "System",
-									"sid": 333127395085509,
-									"parameters": {
-										"interval-seconds": "60"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "saveGame",
-									"sid": 672732823059614
-								}
-							],
-							"sid": 252297367938613
-						}
-					],
-					"sid": 300267274287503
 				},
 				{
 					"functionName": "arrayLookup",
@@ -13986,8 +13963,8 @@
 				},
 				{
 					"functionName": "modCaller",
-					"functionDescription": "",
-					"functionCategory": "",
+					"functionDescription": "Intermediary function to call a mod function.",
+					"functionCategory": "equipment",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
 					"functionIsAsync": false,
@@ -15234,8 +15211,8 @@
 				},
 				{
 					"functionName": "buildingTransition",
-					"functionDescription": "",
-					"functionCategory": "",
+					"functionDescription": "Move the player in and out of a building.",
+					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
 					"functionIsAsync": false,

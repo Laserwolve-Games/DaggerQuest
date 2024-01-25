@@ -12590,89 +12590,10 @@
 											"text": "If the player has an offHand item equipped, and successfully blocks the attack, just play the block animation, then we're done."
 										},
 										{
-											"id": "stop",
-											"objectClass": "player",
-											"sid": 556447635135862,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 760840983808363,
+											"callFunction": "channeledAnimation",
+											"sid": 837860087589841,
 											"parameters": [
-												"\"hit\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 579894924986931,
-											"parameters": {
-												"group-name": "\"movement and interaction\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 860296996828843,
-											"parameters": {
-												"group-name": "\"abilities\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 142003343369403,
-											"parameters": {
-												"group-name": "\"facings\"",
-												"state": "deactivated"
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 476709922183398,
-											"parameters": {
-												"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 973884488229170,
-											"parameters": {
-												"group-name": "\"movement and interaction\"",
-												"state": "activated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 315081026583378,
-											"parameters": {
-												"group-name": "\"facings\"",
-												"state": "activated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 136858173420865,
-											"parameters": {
-												"group-name": "\"abilities\"",
-												"state": "activated"
-											}
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 352952423644342,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
+												"\"block\""
 											]
 										}
 									],
@@ -12762,92 +12683,13 @@
 												},
 												{
 													"type": "comment",
-													"text": "TODO: Attributes for the player"
+													"text": "TODO: Attributes for the player (can they be unflinching?)"
 												},
 												{
-													"id": "stop",
-													"objectClass": "player",
-													"sid": 136521454217483,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 731763162954510,
+													"callFunction": "channeledAnimation",
+													"sid": 623891007101868,
 													"parameters": [
-														"\"hit\"",
-														"body.OriginalAnimationSpeed",
-														"\"playFromBeginning\""
-													]
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 268058627296574,
-													"parameters": {
-														"group-name": "\"movement and interaction\"",
-														"state": "deactivated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 945243391916501,
-													"parameters": {
-														"group-name": "\"abilities\"",
-														"state": "deactivated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 989960851543694,
-													"parameters": {
-														"group-name": "\"facings\"",
-														"state": "deactivated"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 284846129494154,
-													"parameters": {
-														"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 594437180270154,
-													"parameters": {
-														"group-name": "\"movement and interaction\"",
-														"state": "activated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 348777597644303,
-													"parameters": {
-														"group-name": "\"facings\"",
-														"state": "activated"
-													}
-												},
-												{
-													"id": "set-group-active",
-													"objectClass": "System",
-													"sid": 613360317053683,
-													"parameters": {
-														"group-name": "\"abilities\"",
-														"state": "activated"
-													}
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 366611295429989,
-													"parameters": [
-														"\"idle\"",
-														"body.OriginalAnimationSpeed",
-														"\"playFromBeginning\""
+														"\"hit\""
 													]
 												}
 											],
@@ -13525,6 +13367,17 @@
 										{
 											"type": "comment",
 											"text": "TODO: Make sure shadows have loaded as well"
+										},
+										{
+											"id": "fade-volume",
+											"objectClass": "Audio",
+											"sid": 486094858941902,
+											"parameters": {
+												"tag": "\"main\"",
+												"db": "-100",
+												"duration": "2",
+												"ending": "stop"
+											}
 										},
 										{
 											"id": "wait",

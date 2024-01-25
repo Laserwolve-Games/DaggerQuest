@@ -29,6 +29,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Browser",
 			"name": "Browser",
 			"author": "Scirra",
@@ -258,7 +265,8 @@
 					"PlatformInfo",
 					"NWjs",
 					"npcDialogArray",
-					"LocalStorage"
+					"LocalStorage",
+					"Audio"
 				],
 				"subfolders": [],
 				"name": "peripherals"
@@ -661,7 +669,16 @@
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "mainTheme.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 384387624438617,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"video": {

@@ -498,10 +498,10 @@
 								},
 								{
 									"callFunction": "updateAnimations",
-									"sid": 248013701897017,
+									"sid": 463287089790000,
 									"parameters": [
 										"\"idle\"",
-										"10",
+										"body.OriginalAnimationSpeed",
 										"\"playFromCurrentFrame\""
 									]
 								}
@@ -10474,9 +10474,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 653187447852128,
+											"sid": 650752614505575,
 											"parameters": {
-												"count": "5"
+												"count": "1"
 											}
 										}
 									],
@@ -10501,6 +10501,15 @@
 											"parameters": {
 												"instance-variable": "simpleName",
 												"value": "advancedRandom.WeightedByName(\"enemies\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 710752952393499,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "\"goblinWarlock\""
 											}
 										},
 										{
@@ -11852,19 +11861,6 @@
 											"parameters": {
 												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND - projectileManifestationTime"
 											}
-										},
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 455174194533443,
-											"parameters": {
-												"object-to-create": "projectile",
-												"layer": "\"mechanics\"",
-												"x": "enemy.X",
-												"y": "enemy.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
 										}
 									],
 									"sid": 493235774122151,
@@ -11873,99 +11869,35 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 871316166713711,
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "enemy",
+													"sid": 285805991759328,
 													"parameters": {
-														"object": "projectile"
-													}
+														"instance-variable": "hit"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [
 												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 351385241594765,
-													"parameters": {
-														"instance-variable": "range",
-														"value": "enemy.attackRange"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "projectile",
-													"sid": 475567156572571,
-													"parameters": {
-														"instance-variable": "lightningDamage",
-														"value": "enemy.lightningDamage"
-													}
-												},
-												{
-													"id": "set-width",
-													"objectClass": "projectile",
-													"sid": 680499543400551,
-													"parameters": {
-														"width": "SIZE"
-													}
-												},
-												{
-													"id": "set-height",
-													"objectClass": "projectile",
-													"sid": 878916452073970,
-													"parameters": {
-														"height": "Self.Width / ISOMETRIC_DIVIDER"
-													}
-												},
-												{
-													"id": "set-angle-of-motion",
-													"objectClass": "projectile",
-													"sid": 837412095650488,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "set-speed",
-													"objectClass": "projectile",
-													"sid": 148024443202478,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 585844038334198,
-													"parameters": {
-														"seconds": "projectileManifestationTime"
-													}
+													"type": "comment",
+													"text": "If the enemy was hit between the time when the attack started, but before the projectile was generated, cease continuation with the attack."
 												},
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 979216626508753,
+													"sid": 469502575992036,
 													"parameters": {
-														"object-to-create": "lightningOrb",
-														"layer": "\"main\"",
-														"x": "projectile.X",
-														"y": "projectile.Y",
+														"object-to-create": "projectile",
+														"layer": "\"mechanics\"",
+														"x": "enemy.X",
+														"y": "enemy.Y",
 														"create-hierarchy": false,
 														"template-name": "\"\""
 													}
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 156392894582662,
-													"parameters": {
-														"instance-variable": "enabled",
-														"value": "true"
-													}
 												}
 											],
-											"sid": 936278893373169,
+											"sid": 561465114721611,
 											"children": [
 												{
 													"eventType": "block",
@@ -11973,32 +11905,132 @@
 														{
 															"id": "pick-last-created",
 															"objectClass": "System",
-															"sid": 602771202190050,
+															"sid": 646588341210602,
 															"parameters": {
-																"object": "lightningOrb"
+																"object": "projectile"
 															}
 														}
 													],
 													"actions": [
 														{
-															"id": "add-child",
+															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 166111228929101,
+															"sid": 555217025714282,
 															"parameters": {
-																"child": "lightningOrb",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": true,
-																"transform-o": true,
-																"transform-z-elevation": true,
-																"transform-visibility": false,
-																"destroy-with-parent": true
+																"instance-variable": "range",
+																"value": "enemy.attackRange"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 250729036068441,
+															"parameters": {
+																"instance-variable": "lightningDamage",
+																"value": "enemy.lightningDamage"
+															}
+														},
+														{
+															"id": "set-width",
+															"objectClass": "projectile",
+															"sid": 851506649190779,
+															"parameters": {
+																"width": "SIZE"
+															}
+														},
+														{
+															"id": "set-height",
+															"objectClass": "projectile",
+															"sid": 226605164943253,
+															"parameters": {
+																"height": "Self.Width / ISOMETRIC_DIVIDER"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "projectile",
+															"sid": 352335505658191,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 199188507633963,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+															}
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 782251004938865,
+															"parameters": {
+																"seconds": "projectileManifestationTime"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 162586936319832,
+															"parameters": {
+																"object-to-create": "lightningOrb",
+																"layer": "\"main\"",
+																"x": "projectile.X",
+																"y": "projectile.Y",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 276295156620133,
+															"parameters": {
+																"instance-variable": "enabled",
+																"value": "true"
 															}
 														}
 													],
-													"sid": 381061485361545
+													"sid": 128093128862648,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-last-created",
+																	"objectClass": "System",
+																	"sid": 238163367629294,
+																	"parameters": {
+																		"object": "lightningOrb"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "projectile",
+																	"sid": 509425320795648,
+																	"parameters": {
+																		"child": "lightningOrb",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": true,
+																		"transform-o": true,
+																		"transform-z-elevation": true,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																}
+															],
+															"sid": 580403643807865
+														}
+													]
 												}
 											]
 										}
@@ -12315,11 +12347,21 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 381227633579149,
+											"sid": 331025693013030,
 											"parameters": {
 												"first-value": "find(enemy.attributes, \"Unflinching\")",
-												"comparison": 1,
+												"comparison": 0,
 												"second-value": "-1"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 625263807415948,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 4,
+												"value": "0"
 											}
 										},
 										{
@@ -12342,6 +12384,10 @@
 										}
 									],
 									"actions": [
+										{
+											"type": "comment",
+											"text": "Hitstun the enemy, as long as they aren't Unflinching and the projectile didn't kill them."
+										},
 										{
 											"id": "stop",
 											"objectClass": "enemy",
@@ -12372,6 +12418,16 @@
 							]
 						},
 						{
+							"eventType": "variable",
+							"name": "playerHealthBeforeImpact",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The player's health before the projectile hit them.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 482638464423514
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -12393,6 +12449,15 @@
 								}
 							],
 							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 254417232439509,
+									"parameters": {
+										"variable": "playerHealthBeforeImpact",
+										"value": "player.currentHealth"
+									}
+								},
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "player",
@@ -12427,9 +12492,131 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 486731779743904,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 2,
+												"value": "playerHealthBeforeImpact - Self.maxHealth * Self.hitstunThreshold"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 643824897101009,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the player takes a hit that doesn't kill him, and is bigger than the hitstun threshold, the player gets hitstunned"
+										},
+										{
+											"type": "comment",
+											"text": "TODO: Attributes for the player"
+										},
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 406787633694252,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 336661884954084,
+											"parameters": [
+												"\"hit\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 774627267534143,
+											"parameters": {
+												"group-name": "\"movement and interaction\"",
+												"state": "deactivated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 167630054015084,
+											"parameters": {
+												"group-name": "\"abilities\"",
+												"state": "deactivated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 526327797298377,
+											"parameters": {
+												"group-name": "\"facings\"",
+												"state": "deactivated"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 247176534942932,
+											"parameters": {
+												"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 666032287865562,
+											"parameters": {
+												"group-name": "\"movement and interaction\"",
+												"state": "activated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 712212381135072,
+											"parameters": {
+												"group-name": "\"facings\"",
+												"state": "activated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 906735821608583,
+											"parameters": {
+												"group-name": "\"abilities\"",
+												"state": "activated"
+											}
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 873747169486862,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
+										}
+									],
+									"sid": 927419223074732
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "is-boolean-instance-variable-set",
 											"objectClass": "projectile",
-											"sid": 830654479909252,
+											"sid": 106014736960182,
 											"parameters": {
 												"instance-variable": "piercing"
 											},
@@ -12440,10 +12627,10 @@
 										{
 											"id": "destroy",
 											"objectClass": "projectile",
-											"sid": 413478000377979
+											"sid": 286615940712885
 										}
 									],
-									"sid": 615426759922895
+									"sid": 967279412571929
 								}
 							]
 						}
@@ -13964,7 +14151,7 @@
 				{
 					"functionName": "modCaller",
 					"functionDescription": "Intermediary function to call a mod function.",
-					"functionCategory": "equipment",
+					"functionCategory": "mods",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
 					"functionIsAsync": false,

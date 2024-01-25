@@ -8025,6 +8025,114 @@
 									"sid": 604915883843805
 								}
 							]
+						},
+						{
+							"functionName": "channeledAnimation",
+							"functionDescription": "Play an animation where the player is uncontrollable.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "animationName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The animation to play.",
+									"sid": 234166732811254
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "stop",
+									"objectClass": "player",
+									"sid": 415479509316204,
+									"behaviorType": "MoveTo"
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 592922038118624,
+									"parameters": [
+										"animationName",
+										"body.OriginalAnimationSpeed",
+										"\"playFromBeginning\""
+									]
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 182083514171421,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 165409029238706,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 703320316572271,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 501026766251883,
+									"parameters": {
+										"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 775379687103667,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 818422607278468,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 830387083707417,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "activated"
+									}
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 232904452025142,
+									"parameters": [
+										"\"idle\"",
+										"body.OriginalAnimationSpeed",
+										"\"playFromBeginning\""
+									]
+								}
+							],
+							"sid": 241724089671820
 						}
 					],
 					"sid": 121151613548917
@@ -12418,16 +12526,6 @@
 							]
 						},
 						{
-							"eventType": "variable",
-							"name": "playerHealthBeforeImpact",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The player's health before the projectile hit them.",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 482638464423514
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -12448,88 +12546,58 @@
 									"isInverted": true
 								}
 							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 254417232439509,
-									"parameters": {
-										"variable": "playerHealthBeforeImpact",
-										"value": "player.currentHealth"
-									}
-								},
-								{
-									"id": "subtract-from-instvar",
-									"objectClass": "player",
-									"sid": 962114783874109,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
-									}
-								},
-								{
-									"id": "subtract-from-instvar",
-									"objectClass": "player",
-									"sid": 832299082059975,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"value": "projectile.stabDamage * (1 - Self.physicalResistance)"
-									}
-								},
-								{
-									"id": "subtract-from-instvar",
-									"objectClass": "player",
-									"sid": 633002996225917,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 591454218470020,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "playerHealthBeforeImpact",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The player's health before the projectile hit them.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 386149964426580
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 486731779743904,
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 590785792254548,
 											"parameters": {
-												"instance-variable": "currentHealth",
-												"comparison": 2,
-												"value": "playerHealthBeforeImpact - Self.maxHealth * Self.hitstunThreshold"
+												"object": "gear",
+												"expression": "gear.type",
+												"comparison": 0,
+												"value": "\"offHand\""
 											}
 										},
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 643824897101009,
+											"sid": 304888180753921,
 											"parameters": {
-												"instance-variable": "currentHealth",
-												"comparison": 4,
-												"value": "0"
+												"instance-variable": "blockChance",
+												"comparison": 5,
+												"value": "floor(random(1, 100))"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "If the player takes a hit that doesn't kill him, and is bigger than the hitstun threshold, the player gets hitstunned"
-										},
-										{
-											"type": "comment",
-											"text": "TODO: Attributes for the player"
+											"text": "If the player has an offHand item equipped, and successfully blocks the attack, just play the block animation, then we're done."
 										},
 										{
 											"id": "stop",
 											"objectClass": "player",
-											"sid": 406787633694252,
+											"sid": 556447635135862,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"callFunction": "updateAnimations",
-											"sid": 336661884954084,
+											"sid": 760840983808363,
 											"parameters": [
 												"\"hit\"",
 												"body.OriginalAnimationSpeed",
@@ -12539,7 +12607,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 774627267534143,
+											"sid": 579894924986931,
 											"parameters": {
 												"group-name": "\"movement and interaction\"",
 												"state": "deactivated"
@@ -12548,7 +12616,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 167630054015084,
+											"sid": 860296996828843,
 											"parameters": {
 												"group-name": "\"abilities\"",
 												"state": "deactivated"
@@ -12557,7 +12625,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 526327797298377,
+											"sid": 142003343369403,
 											"parameters": {
 												"group-name": "\"facings\"",
 												"state": "deactivated"
@@ -12566,7 +12634,7 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 247176534942932,
+											"sid": 476709922183398,
 											"parameters": {
 												"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
 											}
@@ -12574,7 +12642,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 666032287865562,
+											"sid": 973884488229170,
 											"parameters": {
 												"group-name": "\"movement and interaction\"",
 												"state": "activated"
@@ -12583,7 +12651,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 712212381135072,
+											"sid": 315081026583378,
 											"parameters": {
 												"group-name": "\"facings\"",
 												"state": "activated"
@@ -12592,7 +12660,7 @@
 										{
 											"id": "set-group-active",
 											"objectClass": "System",
-											"sid": 906735821608583,
+											"sid": 136858173420865,
 											"parameters": {
 												"group-name": "\"abilities\"",
 												"state": "activated"
@@ -12600,7 +12668,7 @@
 										},
 										{
 											"callFunction": "updateAnimations",
-											"sid": 873747169486862,
+											"sid": 352952423644342,
 											"parameters": [
 												"\"idle\"",
 												"body.OriginalAnimationSpeed",
@@ -12608,29 +12676,206 @@
 											]
 										}
 									],
-									"sid": 927419223074732
+									"sid": 661315679644106
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "projectile",
-											"sid": 106014736960182,
-											"parameters": {
-												"instance-variable": "piercing"
-											},
-											"isInverted": true
+											"id": "else",
+											"objectClass": "System",
+											"sid": 212609481973178
 										}
 									],
 									"actions": [
 										{
-											"id": "destroy",
-											"objectClass": "projectile",
-											"sid": 286615940712885
+											"type": "comment",
+											"text": "If the projectile didn't get blocked..."
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 705146640200271,
+											"parameters": {
+												"variable": "playerHealthBeforeImpact",
+												"value": "player.currentHealth"
+											}
+										},
+										{
+											"id": "subtract-from-instvar",
+											"objectClass": "player",
+											"sid": 893185114435343,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
+											}
+										},
+										{
+											"id": "subtract-from-instvar",
+											"objectClass": "player",
+											"sid": 132008705769330,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"value": "projectile.stabDamage * (1 - Self.physicalResistance)"
+											}
+										},
+										{
+											"id": "subtract-from-instvar",
+											"objectClass": "player",
+											"sid": 226885000296688,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
+											}
 										}
 									],
-									"sid": 967279412571929
+									"sid": 680787690708581,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 353087544354699,
+													"parameters": {
+														"instance-variable": "currentHealth",
+														"comparison": 2,
+														"value": "playerHealthBeforeImpact - Self.maxHealth * Self.hitstunThreshold"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 884911017862546,
+													"parameters": {
+														"instance-variable": "currentHealth",
+														"comparison": 4,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the player takes a hit that doesn't kill him, and is bigger than the hitstun threshold, the player gets hitstunned"
+												},
+												{
+													"type": "comment",
+													"text": "TODO: Attributes for the player"
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 136521454217483,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "updateAnimations",
+													"sid": 731763162954510,
+													"parameters": [
+														"\"hit\"",
+														"body.OriginalAnimationSpeed",
+														"\"playFromBeginning\""
+													]
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 268058627296574,
+													"parameters": {
+														"group-name": "\"movement and interaction\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 945243391916501,
+													"parameters": {
+														"group-name": "\"abilities\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 989960851543694,
+													"parameters": {
+														"group-name": "\"facings\"",
+														"state": "deactivated"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 284846129494154,
+													"parameters": {
+														"seconds": "body.AnimationFrameCount / TICKS_PER_SECOND"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 594437180270154,
+													"parameters": {
+														"group-name": "\"movement and interaction\"",
+														"state": "activated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 348777597644303,
+													"parameters": {
+														"group-name": "\"facings\"",
+														"state": "activated"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 613360317053683,
+													"parameters": {
+														"group-name": "\"abilities\"",
+														"state": "activated"
+													}
+												},
+												{
+													"callFunction": "updateAnimations",
+													"sid": 366611295429989,
+													"parameters": [
+														"\"idle\"",
+														"body.OriginalAnimationSpeed",
+														"\"playFromBeginning\""
+													]
+												}
+											],
+											"sid": 181406029233488
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "projectile",
+													"sid": 558866989360890,
+													"parameters": {
+														"instance-variable": "piercing"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "destroy",
+													"objectClass": "projectile",
+													"sid": 887800632849253
+												}
+											],
+											"sid": 944725340629196
+										}
+									]
 								}
 							]
 						}

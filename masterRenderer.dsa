@@ -6,7 +6,7 @@ if (nTotalNumberOfInstances)
 {
 	var nInstanceNumber = App.instanceName();
 	var oInputDirectory = new DzDir('C:/assets/input');
-	var aSubjects = oInputDirectory.getFilesFromDir(['*_subject.duf'], true);
+	var aCharacters = oInputDirectory.getFilesFromDir(['*_character.duf'], true);
 	var aAnimations = oInputDirectory.getFilesFromDir(['*_animation.duf'], true);
 	var aGear = oInputDirectory.getFilesFromDir(['*_gear.duf'], true);
 
@@ -181,10 +181,10 @@ if (nTotalNumberOfInstances)
 								RENDER LOOPS
 
 	*********************************************************************/
-	for (var i = 0; i != aSubjects.length; i++) // For each subject...
+	for (var i = 0; i != aCharacters.length; i++) // For each subject...
 	{
-		oContentMgr.openFile(aSubjects[i], true);		// Merge in a subject, and get its name.
-		var sSubjectName = getName(aSubjects[i]);
+		oContentMgr.openFile(aCharacters[i], true);		// Merge in a subject, and get its name.
+		var sSubjectName = getName(aCharacters[i]);
 
 		var oSubject = Scene.findNodeByLabel('subject');		// Set up the subject.
 		var aSubjectChildren = oSubject.getNodeChildren(true);

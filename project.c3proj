@@ -50,13 +50,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Dictionary",
-			"name": "Dictionary",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Keyboard",
 			"author": "Scirra",
@@ -80,20 +73,6 @@
 			"type": "plugin",
 			"id": "NinePatch",
 			"name": "9-patch",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
-			"id": "NodeWebkit",
-			"name": "NW.js",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
-			"id": "PlatformInfo",
-			"name": "Platform info",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -240,11 +219,7 @@
 	],
 	"uniqueId": "6qmjko7p97e",
 	"objectTypes": {
-		"items": [
-			"tutorial",
-			"nonCombatArea",
-			"laserwolveGamesLogo"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -261,10 +236,7 @@
 					"video",
 					"gearQueueArray",
 					"modRelationshipsArray",
-					"settingsDictionary",
 					"abilityOptionsArray",
-					"PlatformInfo",
-					"NWjs",
 					"npcDialogArray",
 					"LocalStorage",
 					"Audio"
@@ -305,8 +277,7 @@
 						"items": [
 							"logo",
 							"versionText",
-							"mainMenuStill",
-							"loadingLogo"
+							"mainMenuStill"
 						],
 						"subfolders": [],
 						"name": "mainMenu"
@@ -316,7 +287,9 @@
 							"loadingText",
 							"loadingTextBackground",
 							"loadingScreen",
-							"fader"
+							"fader",
+							"loadingLogo",
+							"laserwolveGamesLogo"
 						],
 						"subfolders": [],
 						"name": "loadingScreen"
@@ -363,7 +336,8 @@
 						"items": [
 							"slot",
 							"escapeMenu",
-							"settingsMenu"
+							"settingsMenu",
+							"tutorial"
 						],
 						"subfolders": [],
 						"name": "components"
@@ -372,7 +346,6 @@
 						"items": [
 							"play",
 							"settings",
-							"exit",
 							"back",
 							"resume",
 							"reset",
@@ -499,7 +472,8 @@
 				"items": [
 					"boundary",
 					"dirt",
-					"grass"
+					"grass",
+					"nonCombatArea"
 				],
 				"subfolders": [],
 				"name": "layout"

@@ -10,6 +10,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,
@@ -47,6 +48,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": false,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -80,6 +82,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -169,7 +172,8 @@
 							1,
 							1,
 							1
-						]
+						],
+						"zElevation": 0
 					}
 				},
 				{
@@ -206,7 +210,7 @@
 					},
 					"world": {
 						"x": 480,
-						"y": 250,
+						"y": 324,
 						"width": 640,
 						"height": 278,
 						"originX": 0.5,
@@ -240,6 +244,7 @@
 						"horizontal-alignment": "left",
 						"vertical-alignment": "bottom",
 						"wrapping": "word",
+						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "bottom-left",
@@ -294,6 +299,7 @@
 						"horizontal-alignment": "center",
 						"vertical-alignment": "center",
 						"wrapping": "word",
+						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "center",
@@ -332,7 +338,7 @@
 					},
 					"world": {
 						"x": 462,
-						"y": 475,
+						"y": 549,
 						"width": 355,
 						"height": 78,
 						"originX": 0.5,
@@ -366,6 +372,7 @@
 						"horizontal-alignment": "center",
 						"vertical-alignment": "center",
 						"wrapping": "word",
+						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "center",
@@ -404,81 +411,9 @@
 					},
 					"world": {
 						"x": 462,
-						"y": 625,
+						"y": 699,
 						"width": 297,
 						"height": 78,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "exit",
-					"properties": {
-						"text": "exit",
-						"enable-bbcode": true,
-						"font": "Cinzel-SemiBold",
-						"size": 48,
-						"line-height": 0,
-						"bold": false,
-						"italic": false,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
-						"wrapping": "word",
-						"icon-set": -1,
-						"initially-visible": true,
-						"origin": "center",
-						"read-aloud": false
-					},
-					"uid": 97,
-					"instanceVariables": {
-						"originalX": 0,
-						"originalY": 0,
-						"originalFaceSize": 0
-					},
-					"behaviors": {
-						"Anchor": {
-							"properties": {
-								"left-edge": "window-left",
-								"top-edge": "window-top",
-								"right-edge": "none",
-								"bottom-edge": "none",
-								"enabled": true
-							}
-						}
-					},
-					"effects": {
-						"GlowHorizontal": {
-							"isEnabled": false,
-							"parameters": {
-								"intensity": 1
-							}
-						},
-						"GlowVertical": {
-							"isEnabled": false,
-							"parameters": {
-								"intensity": 1
-							}
-						}
-					},
-					"world": {
-						"x": 462,
-						"y": 775,
-						"width": 200,
-						"height": 55,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -496,6 +431,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,
@@ -529,6 +465,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,
@@ -566,6 +503,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -599,6 +537,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -632,6 +571,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -665,6 +605,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -698,6 +639,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1061,6 +1003,7 @@
 								"horizontal-alignment": "center",
 								"vertical-alignment": "center",
 								"wrapping": "word",
+								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
 								"origin": "center",
@@ -1151,6 +1094,7 @@
 								"horizontal-alignment": "left",
 								"vertical-alignment": "center",
 								"wrapping": "word",
+								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
 								"origin": "center",
@@ -1282,6 +1226,7 @@
 								"horizontal-alignment": "left",
 								"vertical-alignment": "center",
 								"wrapping": "word",
+								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
 								"origin": "center",
@@ -1354,6 +1299,7 @@
 								"horizontal-alignment": "left",
 								"vertical-alignment": "center",
 								"wrapping": "word",
+								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
 								"origin": "center",
@@ -1471,6 +1417,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": false,
 					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1504,6 +1451,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1537,6 +1485,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1570,6 +1519,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1603,6 +1553,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1636,6 +1587,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1669,6 +1621,7 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
 					"color": [
 						1,
 						1,
@@ -1699,6 +1652,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,
@@ -1890,6 +1844,7 @@
 						"horizontal-alignment": "center",
 						"vertical-alignment": "center",
 						"wrapping": "word",
+						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "center",
@@ -2008,6 +1963,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,

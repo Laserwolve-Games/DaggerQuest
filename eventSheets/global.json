@@ -187,11 +187,6 @@
 							"id": "cancel-fullscreen",
 							"objectClass": "browser",
 							"sid": 991937773642652
-						},
-						{
-							"id": "maximize",
-							"objectClass": "NWjs",
-							"sid": 457658142351718
 						}
 					],
 					"sid": 962108258523367
@@ -620,32 +615,6 @@
 									"sid": 885224889590265
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 858343085778986
-								},
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "mouse",
-									"sid": 803411465191552,
-									"parameters": {
-										"object": "exit"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "close",
-									"objectClass": "browser",
-									"sid": 431847613598267
-								}
-							],
-							"sid": 775602261724262
 						},
 						{
 							"eventType": "block",

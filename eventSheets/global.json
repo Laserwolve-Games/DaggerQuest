@@ -5,6 +5,72 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 873898041171818,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "checkbox"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 471236601988483,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "checkbox",
+							"sid": 177215777074468,
+							"parameters": {
+								"animation": "\"checked\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "checkbox",
+							"sid": 528716939282737,
+							"parameters": {
+								"animation": "\"unchecked\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 179136949644017
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 366036075218289
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "checkbox",
+							"sid": 423634557611898,
+							"parameters": {
+								"animation": "\"checked\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 177283369366679
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "is-visible",
 					"objectClass": "loadingScreen",
 					"sid": 236958552195479
@@ -110,16 +176,8 @@
 				},
 				{
 					"id": "move-to-layer",
-					"objectClass": "fullscreen",
-					"sid": 977649644921522,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
 					"objectClass": "autoEquip",
-					"sid": 948145536514977,
+					"sid": 976962727575836,
 					"parameters": {
 						"layer": "settingsMenuStatue.LayerName"
 					}
@@ -127,7 +185,7 @@
 				{
 					"id": "move-to-layer",
 					"objectClass": "shadows",
-					"sid": 747071047671245,
+					"sid": 678360802275762,
 					"parameters": {
 						"layer": "settingsMenuStatue.LayerName"
 					}
@@ -142,61 +200,6 @@
 				}
 			],
 			"sid": 239447274462080
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-clicked",
-					"objectClass": "fullscreen",
-					"sid": 884720227289241
-				}
-			],
-			"actions": [],
-			"sid": 320316284696177,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-checked",
-							"objectClass": "fullscreen",
-							"sid": 779631249255931
-						}
-					],
-					"actions": [
-						{
-							"id": "request-fullscreen",
-							"objectClass": "browser",
-							"sid": 952420963287170,
-							"parameters": {
-								"mode": "stretch-letterbox-scale",
-								"navigation-ui": "auto"
-							}
-						}
-					],
-					"sid": 436831244908382
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 134815186727090
-						}
-					],
-					"actions": [
-						{
-							"id": "cancel-fullscreen",
-							"objectClass": "browser",
-							"sid": 991937773642652
-						}
-					],
-					"sid": 962108258523367
-				}
-			],
-			"isOrBlock": true
 		},
 		{
 			"eventType": "group",
@@ -420,9 +423,9 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 271055231762324,
+									"sid": 129050006109020,
 									"parameters": [
-										"\"escapeMenu\""
+										"\"pauseMenu\""
 									]
 								},
 								{
@@ -483,9 +486,9 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 719670449552227,
+									"sid": 567152706005632,
 									"parameters": [
-										"\"escapeMenu\""
+										"\"pauseMenu\""
 									]
 								},
 								{
@@ -598,9 +601,9 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 404139501071200,
+									"sid": 875454636028410,
 									"parameters": [
-										"\"escapeMenu\""
+										"\"pauseMenu\""
 									]
 								},
 								{
@@ -713,9 +716,9 @@
 									"actions": [
 										{
 											"callFunction": "openLayer",
-											"sid": 384609591142886,
+											"sid": 662519806829510,
 											"parameters": [
-												"\"escapeMenu\""
+												"\"pauseMenu\""
 											]
 										}
 									],

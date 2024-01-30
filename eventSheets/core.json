@@ -843,9 +843,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-checked",
+											"id": "is-animation-playing",
 											"objectClass": "autoEquip",
-											"sid": 699016538599260
+											"sid": 488279947558139,
+											"parameters": {
+												"animation": "\"checked\""
+											}
 										},
 										{
 											"id": "evaluate-expression",
@@ -8172,9 +8175,14 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-clicked",
-									"objectClass": "shadows",
-									"sid": 878818799881212
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 746906379460318,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "shadows"
+									}
 								}
 							],
 							"actions": [
@@ -8189,9 +8197,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-checked",
+											"id": "is-animation-playing",
 											"objectClass": "shadows",
-											"sid": 554532696313372
+											"sid": 197983694177942,
+											"parameters": {
+												"animation": "\"checked\""
+											}
 										},
 										{
 											"id": "for-each",
@@ -8214,10 +8225,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-checked",
+											"id": "is-animation-playing",
 											"objectClass": "shadows",
-											"sid": 896903373419417,
-											"isInverted": true
+											"sid": 410173119622418,
+											"parameters": {
+												"animation": "\"unchecked\""
+											}
 										}
 									],
 									"actions": [
@@ -9238,9 +9251,9 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 190862893393706,
+											"sid": 396343111379655,
 											"parameters": {
-												"key": 27
+												"key": 32
 											}
 										}
 									],
@@ -12311,9 +12324,12 @@
 							"sid": 446392350790686
 						},
 						{
-							"id": "is-checked",
+							"id": "is-animation-playing",
 							"objectClass": "shadows",
-							"sid": 652894087172699
+							"sid": 657737685484136,
+							"parameters": {
+								"animation": "\"checked\""
+							}
 						}
 					],
 					"actions": [

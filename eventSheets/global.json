@@ -5,54 +5,10 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 210756446733257
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/11"
+					"id": "is-visible",
+					"objectClass": "loadingScreen",
+					"sid": 236958552195479
 				},
-				{
-					"id": "set-opacity",
-					"objectClass": "loadingText",
-					"sid": 508998135847496,
-					"parameters": {
-						"opacity": "loadingScreen.Opacity"
-					}
-				},
-				{
-					"id": "set-opacity",
-					"objectClass": "loadingTextBackground",
-					"sid": 951979902821568,
-					"parameters": {
-						"opacity": "loadingScreen.Opacity"
-					}
-				},
-				{
-					"id": "set-opacity",
-					"objectClass": "loadingLogo",
-					"sid": 202544982386437,
-					"parameters": {
-						"opacity": "loadingScreen.Opacity"
-					}
-				},
-				{
-					"id": "set-opacity",
-					"objectClass": "laserwolveGamesLogo",
-					"sid": 584879376379871,
-					"parameters": {
-						"opacity": "loadingScreen.Opacity"
-					}
-				}
-			],
-			"sid": 220020476464695
-		},
-		{
-			"eventType": "block",
-			"conditions": [
 				{
 					"id": "every-x-seconds",
 					"objectClass": "System",
@@ -90,50 +46,98 @@
 				},
 				{
 					"id": "move-to-layer",
-					"objectClass": "fader",
-					"sid": 167213299714777,
-					"parameters": {
-						"layer": "\"loader\""
-					}
-				},
-				{
-					"id": "move-to-layer",
 					"objectClass": "loadingScreen",
-					"sid": 366037664856132,
+					"sid": 163224548611476,
 					"parameters": {
-						"layer": "\"loader\""
+						"layer": "\"loadingScreen\""
 					}
 				},
 				{
 					"id": "move-to-layer",
 					"objectClass": "loadingTextBackground",
-					"sid": 128174443115036,
+					"sid": 655577242888141,
 					"parameters": {
-						"layer": "\"loader\""
+						"layer": "loadingScreen.LayerName"
 					}
 				},
 				{
 					"id": "move-to-layer",
 					"objectClass": "loadingText",
-					"sid": 373875207244166,
+					"sid": 545338611624206,
 					"parameters": {
-						"layer": "\"loader\""
+						"layer": "loadingScreen.LayerName"
 					}
 				},
 				{
 					"id": "move-to-layer",
 					"objectClass": "loadingLogo",
-					"sid": 205958166970633,
+					"sid": 717406028700334,
 					"parameters": {
-						"layer": "\"loader\""
+						"layer": "loadingScreen.LayerName"
 					}
 				},
 				{
 					"id": "move-to-layer",
 					"objectClass": "laserwolveGamesLogo",
-					"sid": 983387280905408,
+					"sid": 850067607070848,
 					"parameters": {
-						"layer": "\"loader\""
+						"layer": "loadingScreen.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "settingsMenuStatue",
+					"sid": 459731808013548,
+					"parameters": {
+						"layer": "\"settingsMenu\""
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "settingsMenu",
+					"sid": 433717459638047,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "settingsText",
+					"sid": 888330145139114,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "fullscreen",
+					"sid": 977649644921522,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "autoEquip",
+					"sid": 948145536514977,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "shadows",
+					"sid": 747071047671245,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "back",
+					"sid": 696533436144298,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
 					}
 				}
 			],
@@ -308,6 +312,46 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "is-visible",
+							"objectClass": "loadingScreen",
+							"sid": 307633937543268
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 670423744826685,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"mainMenu\""
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 132052492717525
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 425813163535950,
+							"parameters": {
+								"layout": "\"farm\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Having this as a trigger and not as a subevent under the play button prevents a massive stutter, presumably caused by: The loading of the next layout commencing before the loadingScreen can be made visible."
+						}
+					],
+					"sid": 252869525891124
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-button-released",
 							"objectClass": "mouse",
 							"sid": 360138719168563,
@@ -338,64 +382,11 @@
 							],
 							"actions": [
 								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 949031707734270,
-									"parameters": {
-										"layer": "\"mainMenu\"",
-										"interactive": false
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "fader",
-									"sid": 830574222437942,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"\"",
-										"property": "offsetOpacity",
-										"end-value": "100",
-										"time": ".5",
-										"ease": "noease",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 967673771973946
-								},
-								{
-									"id": "tween-one-property",
+									"id": "set-visible",
 									"objectClass": "loadingScreen",
-									"sid": 282762165116642,
-									"behaviorType": "Tween",
+									"sid": 986911498821251,
 									"parameters": {
-										"tags": "\"\"",
-										"property": "offsetOpacity",
-										"end-value": "100",
-										"time": ".5",
-										"ease": "noease",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 658862795166844
-								},
-								{
-									"id": "go-to-layout-by-name",
-									"objectClass": "System",
-									"sid": 358184847913207,
-									"parameters": {
-										"layout": "\"farm\""
+										"visibility": "visible"
 									}
 								}
 							],
@@ -463,6 +454,122 @@
 								}
 							],
 							"sid": 732498834150420
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 668087489728566
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 781497524786786,
+									"parameters": {
+										"object": "mainMenu"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-time-scale",
+									"objectClass": "System",
+									"sid": 338084126849296,
+									"parameters": {
+										"time-scale": "1"
+									}
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 719670449552227,
+									"parameters": [
+										"\"escapeMenu\""
+									]
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 255555914383041,
+									"parameters": {
+										"layer": "\"main\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 464051199336300,
+									"parameters": {
+										"layer": "\"abilityBar\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 118822868894921,
+									"parameters": {
+										"layer": "\"background\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 812270723784521,
+									"parameters": {
+										"layout": "mainMenu"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 842681679388219,
+									"parameters": {
+										"variable": "abilitiesLoaded",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 587128992994671,
+									"parameters": {
+										"variable": "characterLoaded",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 968681964017519,
+									"parameters": {
+										"variable": "dataLoaded",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 993571289681923,
+									"parameters": {
+										"variable": "enemiesLoaded",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 314688308061498,
+									"parameters": {
+										"variable": "npcsLoaded",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 828299072002076
 						},
 						{
 							"eventType": "block",

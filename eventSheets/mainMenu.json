@@ -6,26 +6,6 @@
 			"includeSheet": "global"
 		},
 		{
-			"eventType": "variable",
-			"name": "minimumWindowSizeWidth",
-			"type": "number",
-			"initialValue": "1280",
-			"comment": "the width of the minimum window size, in pixels",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 411533255849662
-		},
-		{
-			"eventType": "variable",
-			"name": "minimumWindowSizeHeight",
-			"type": "number",
-			"initialValue": "720",
-			"comment": "the height of the minimum window size, in pixels",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 769008014635282
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -49,41 +29,6 @@
 					"sid": 755068560940103,
 					"parameters": {
 						"text": "projectversion"
-					}
-				},
-				{
-					"type": "comment",
-					"text": "set the minimum window size to not be smaller than the screen size, or 720p, whichever is lower"
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "fader",
-					"sid": 333010595345078,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "\"\"",
-						"property": "offsetOpacity",
-						"end-value": "0",
-						"time": ".5",
-						"ease": "noease",
-						"destroy-on-complete": "no",
-						"loop": "no",
-						"ping-pong": "no",
-						"repeat-count": "1"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 787644593355304
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 864298575707825,
-					"parameters": {
-						"layer": "\"main\"",
-						"interactive": true
 					}
 				},
 				{

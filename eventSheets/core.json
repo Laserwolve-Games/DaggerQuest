@@ -4526,6 +4526,15 @@
 										"animation": "\"heroicStrike\"",
 										"from": "beginning"
 									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 903489498510955,
+									"parameters": {
+										"variable": "abilitiesLoaded",
+										"value": "true"
+									}
 								}
 							],
 							"sid": 940419245050055
@@ -13358,6 +13367,14 @@
 									}
 								},
 								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 867475687815279,
+									"parameters": {
+										"variable": "abilitiesLoaded"
+									}
+								},
+								{
 									"id": "trigger-once-while-true",
 									"objectClass": "System",
 									"sid": 565303113216660
@@ -13375,77 +13392,18 @@
 											"text": "TODO: Make sure shadows have loaded as well"
 										},
 										{
-											"id": "fade-volume",
-											"objectClass": "Audio",
-											"sid": 486094858941902,
-											"parameters": {
-												"tag": "\"main\"",
-												"db": "-100",
-												"duration": "2",
-												"ending": "stop"
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 700717741751226,
-											"parameters": {
-												"seconds": "2"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 507210800219085
-										},
-										{
-											"id": "tween-one-property",
+											"id": "set-visible",
 											"objectClass": "loadingScreen",
-											"sid": 973985680322674,
-											"behaviorType": "Tween",
+											"sid": 140551534137701,
 											"parameters": {
-												"tags": "\"\"",
-												"property": "offsetOpacity",
-												"end-value": "0",
-												"time": ".5",
-												"ease": "noease",
-												"destroy-on-complete": "no",
-												"loop": "no",
-												"ping-pong": "no",
-												"repeat-count": "1"
+												"visibility": "invisible"
 											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 231564462980452
-										},
-										{
-											"id": "tween-one-property",
-											"objectClass": "fader",
-											"sid": 778251859566007,
-											"behaviorType": "Tween",
-											"parameters": {
-												"tags": "\"\"",
-												"property": "offsetOpacity",
-												"end-value": "0",
-												"time": ".5",
-												"ease": "noease",
-												"destroy-on-complete": "no",
-												"loop": "no",
-												"ping-pong": "no",
-												"repeat-count": "1"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 374178553794278
 										},
 										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
 											"sid": 544131833982854,
+											"breakpoint": true,
 											"parameters": {
 												"layer": "\"main\"",
 												"interactive": true
@@ -13485,6 +13443,17 @@
 											"parameters": {
 												"layer": "\"mechanics\"",
 												"interactive": true
+											}
+										},
+										{
+											"id": "fade-volume",
+											"objectClass": "Audio",
+											"sid": 560462115325825,
+											"parameters": {
+												"tag": "\"main\"",
+												"db": "-100",
+												"duration": "3",
+												"ending": "stop"
 											}
 										}
 									],

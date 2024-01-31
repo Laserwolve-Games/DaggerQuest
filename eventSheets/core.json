@@ -8021,18 +8021,42 @@
 										"group-name": "\"abilities\"",
 										"state": "activated"
 									}
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 232904452025142,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
 								}
 							],
-							"sid": 241724089671820
+							"sid": 241724089671820,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 300853305157475,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the player isn't dead at the end of the channeled animation, they go back to idling"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 503664131276382,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
+										}
+									],
+									"sid": 376571747137365
+								}
+							]
 						}
 					],
 					"sid": 121151613548917
@@ -10632,214 +10656,230 @@
 										"create-hierarchy": false,
 										"template-name": "\"\""
 									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 718539270477094,
-									"parameters": {
-										"instance-variable": "simpleName",
-										"value": "advancedRandom.WeightedByName(\"enemies\")"
-									}
-								},
-								{
-									"id": "set-width",
-									"objectClass": "enemy",
-									"sid": 923513335917725,
-									"parameters": {
-										"width": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"size\"))"
-									}
-								},
-								{
-									"id": "set-height",
-									"objectClass": "enemy",
-									"sid": 779856976406704,
-									"parameters": {
-										"height": "Self.Width / ISOMETRIC_DIVIDER"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 497884112459646,
-									"parameters": {
-										"instance-variable": "arcaneDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"arcaneDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 907707367297458,
-									"parameters": {
-										"instance-variable": "attackSpeed",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackSpeed\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 214479350800234,
-									"parameters": {
-										"instance-variable": "attributes",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 568889115268879,
-									"parameters": {
-										"instance-variable": "coldDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"coldDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 777702795987232,
-									"parameters": {
-										"instance-variable": "corruptDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"corruptDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 168753087974200,
-									"parameters": {
-										"instance-variable": "fireDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fireDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 284802301417847,
-									"parameters": {
-										"instance-variable": "fullName",
-										"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 468203543270203,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 624860481372648,
-									"parameters": {
-										"instance-variable": "maxHealth",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 964349841437814,
-									"parameters": {
-										"instance-variable": "lightningDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lightningDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 172853493996460,
-									"parameters": {
-										"instance-variable": "slashDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"slashDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 773796812018744,
-									"parameters": {
-										"instance-variable": "smashDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"smashDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 618907994781253,
-									"parameters": {
-										"instance-variable": "stabDamage",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"stabDamage\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 217943254999663,
-									"parameters": {
-										"instance-variable": "type",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 932467903667504,
-									"parameters": {
-										"instance-variable": "attackRange",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 753874028002829,
-									"parameters": {
-										"instance-variable": "movementSpeed",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 665188613092665,
-									"parameters": {
-										"instance-variable": "experience",
-										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "set a random facing on spawn, and spawn the enemy's body"
-								},
-								{
-									"id": "set-moving-angle",
-									"objectClass": "enemy",
-									"sid": 930196580099805,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"angle": "random(-180, 180)"
-									}
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 367503193099881,
-									"parameters": {
-										"object-name": "enemy.simpleName",
-										"layer": "\"main\"",
-										"x": "enemy.X",
-										"y": "enemy.Y",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
 								}
 							],
 							"sid": 258393414366867,
 							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 576252112612364,
+											"parameters": {
+												"object": "enemy"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 629998645562104,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "advancedRandom.WeightedByName(\"enemies\")"
+											}
+										},
+										{
+											"id": "set-width",
+											"objectClass": "enemy",
+											"sid": 657940661750712,
+											"parameters": {
+												"width": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"size\"))"
+											}
+										},
+										{
+											"id": "set-height",
+											"objectClass": "enemy",
+											"sid": 129222639171906,
+											"parameters": {
+												"height": "Self.Width / ISOMETRIC_DIVIDER"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 379402120396704,
+											"parameters": {
+												"instance-variable": "arcaneDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"arcaneDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 963255966237747,
+											"parameters": {
+												"instance-variable": "attackSpeed",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackSpeed\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 166476307629322,
+											"parameters": {
+												"instance-variable": "attributes",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 669422730983425,
+											"parameters": {
+												"instance-variable": "coldDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"coldDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 486271740898748,
+											"parameters": {
+												"instance-variable": "corruptDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"corruptDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 959132211187911,
+											"parameters": {
+												"instance-variable": "fireDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fireDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 240058906358416,
+											"parameters": {
+												"instance-variable": "fullName",
+												"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 115398551868480,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 956373505933351,
+											"parameters": {
+												"instance-variable": "maxHealth",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 574096436112301,
+											"parameters": {
+												"instance-variable": "lightningDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lightningDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 666943890038341,
+											"parameters": {
+												"instance-variable": "slashDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"slashDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 406719109958926,
+											"parameters": {
+												"instance-variable": "smashDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"smashDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 186140982782274,
+											"parameters": {
+												"instance-variable": "stabDamage",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"stabDamage\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 387936396713609,
+											"parameters": {
+												"instance-variable": "type",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 946806638704341,
+											"parameters": {
+												"instance-variable": "attackRange",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 808051964492781,
+											"parameters": {
+												"instance-variable": "movementSpeed",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 345760173856261,
+											"parameters": {
+												"instance-variable": "experience",
+												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "set a random facing on spawn, and spawn the enemy's body"
+										},
+										{
+											"id": "set-moving-angle",
+											"objectClass": "enemy",
+											"sid": 504411726936199,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"angle": "random(-180, 180)"
+											}
+										},
+										{
+											"id": "create-object-by-name",
+											"objectClass": "System",
+											"sid": 674015415612296,
+											"parameters": {
+												"object-name": "enemy.simpleName",
+												"layer": "\"main\"",
+												"x": "enemy.X",
+												"y": "enemy.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										}
+									],
+									"sid": 121890087717670
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -13301,30 +13341,6 @@
 							"text": "load and parse out data"
 						},
 						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 909785121563958,
-							"parameters": {
-								"tag": "\"createNPCs\""
-							}
-						},
-						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 702075315416147,
-							"parameters": {
-								"tag": "\"createPlayer\""
-							}
-						},
-						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 922035184769343,
-							"parameters": {
-								"tag": "\"createEnemies\""
-							}
-						},
-						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
 							"sid": 643583976543378,
@@ -13634,14 +13650,34 @@
 						},
 						{
 							"type": "comment",
+							"text": "Signal creations - use signals so we can control order, and keep relevant groups together"
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 815532331544622,
+							"parameters": {
+								"tag": "\"createNPCs\""
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 303513948127334,
+							"parameters": {
+								"tag": "\"createPlayer\""
+							}
+						},
+						{
+							"type": "comment",
 							"text": "This wait is a suboptimal solution for https://github.com/Laserwolve-Games/DaggerQuest/issues/34"
 						},
 						{
 							"id": "wait",
 							"objectClass": "System",
-							"sid": 414272201473980,
+							"sid": 215241331436489,
 							"parameters": {
-								"seconds": "1.0"
+								"seconds": "2"
 							}
 						},
 						{
@@ -13764,9 +13800,9 @@
 								{
 									"id": "signal",
 									"objectClass": "System",
-									"sid": 565101366090050,
+									"sid": 296533061474417,
 									"parameters": {
-										"tag": "\"generateEnemies\""
+										"tag": "\"createEnemies\""
 									}
 								}
 							],

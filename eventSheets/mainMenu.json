@@ -30,29 +30,6 @@
 					"parameters": {
 						"text": "projectversion"
 					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 530352068277408,
-					"parameters": {
-						"audio-file": "mainTheme",
-						"loop": "looping",
-						"volume": "-100",
-						"stereo-pan": "0",
-						"tag-optional": "\"main\""
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 195625014149484,
-					"parameters": {
-						"tag": "\"main\"",
-						"db": "0",
-						"duration": "5",
-						"ending": "keep-playing"
-					}
 				}
 			],
 			"sid": 142931005715493
@@ -122,6 +99,79 @@
 				}
 			],
 			"sid": 252869525891124
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-click",
+					"objectClass": "mouse",
+					"sid": 534646384122371
+				},
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 346196279412257
+				}
+			],
+			"actions": [],
+			"sid": 403514843034258,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 221425578614375,
+							"parameters": {
+								"layer": "\"launcher\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 471121025496621,
+							"parameters": {
+								"layer": "\"launcher\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "video",
+							"sid": 344215869191148
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 953120952208759,
+							"parameters": {
+								"audio-file": "mainTheme",
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "\"main\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 809925726785550,
+							"parameters": {
+								"tag": "\"main\"",
+								"db": "0",
+								"duration": "5",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 195916310811890
+				}
+			],
+			"isOrBlock": true
 		}
 	],
 	"sid": 722961205554376

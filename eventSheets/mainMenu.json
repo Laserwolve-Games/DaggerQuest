@@ -56,6 +56,72 @@
 				}
 			],
 			"sid": 142931005715493
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 628849515389079,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "play"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "loadingScreen",
+					"sid": 311439937347461,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 387251329612208
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-visible",
+					"objectClass": "loadingScreen",
+					"sid": 307633937543268
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 670423744826685,
+					"parameters": {
+						"first-value": "LayoutName",
+						"comparison": 0,
+						"second-value": "\"mainMenu\""
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 132052492717525
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout-by-name",
+					"objectClass": "System",
+					"sid": 425813163535950,
+					"parameters": {
+						"layout": "\"farm\""
+					}
+				},
+				{
+					"type": "comment",
+					"text": "Having this as a trigger and not as a subevent under the play button prevents a massive stutter, presumably caused by: The loading of the next layout commencing before the loadingScreen can be made visible."
+				}
+			],
+			"sid": 252869525891124
 		}
 	],
 	"sid": 722961205554376

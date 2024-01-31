@@ -107,6 +107,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "previousLayout",
+			"type": "string",
+			"initialValue": "",
+			"comment": "The layout we were on, before this one.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 241570996019166
+		},
+		{
+			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
@@ -4027,6 +4037,40 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "pathfinding grid",
+					"description": "we need to break out layouts before doing pathfinding... otherwise layoutWidth / 3 will be unnecessarily large",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-start-of-layout",
+									"objectClass": "System",
+									"sid": 729681850970393
+								}
+							],
+							"actions": [
+								{
+									"id": "set-size",
+									"objectClass": "pathfindingGridArray",
+									"sid": 672943269369393,
+									"parameters": {
+										"width": "LayoutWidth / 3",
+										"height": "LayoutHeight",
+										"depth": "1"
+									}
+								}
+							],
+							"sid": 453815565285983,
+							"disabled": true
+						}
+					],
+					"sid": 458737662348462
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -4531,80 +4575,7 @@
 					"title": "camera",
 					"description": "",
 					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "every-tick",
-									"objectClass": "System",
-									"sid": 603442732683550
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "The \"scroll to\" behavior, but still clamp to the right edge even though the layout continues, while not in a building. We don't have to do this for the Y because the top and bottom of the layout is also the play area edges."
-								},
-								{
-									"id": "scroll-to-y",
-									"objectClass": "System",
-									"sid": 904683201078206,
-									"parameters": {
-										"y": "player.Y"
-									}
-								}
-							],
-							"sid": 192342804958732,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "player",
-											"sid": 634967681675669,
-											"parameters": {
-												"instance-variable": "isInsideBuilding"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "scroll-to-x",
-											"objectClass": "System",
-											"sid": 256341436493275,
-											"parameters": {
-												"x": "player.X"
-											}
-										}
-									],
-									"sid": 135011534147636
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 269752303030072
-										}
-									],
-									"actions": [
-										{
-											"id": "scroll-to-x",
-											"objectClass": "System",
-											"sid": 504408172854353,
-											"parameters": {
-												"x": "min(player.X, LayoutHeight - ViewportWidth(\"main\") / 2)"
-											}
-										}
-									],
-									"sid": 260024738787840
-								}
-							]
-						}
-					],
+					"children": [],
 					"sid": 437386535914416
 				},
 				{
@@ -4699,7 +4670,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "player",
-									"sid": 802130441263325,
+									"sid": 611922543482958,
 									"parameters": {
 										"child": "body",
 										"transform-x": true,
@@ -4710,7 +4681,7 @@
 										"transform-o": false,
 										"transform-z-elevation": false,
 										"transform-visibility": false,
-										"destroy-with-parent": false
+										"destroy-with-parent": true
 									}
 								},
 								{
@@ -5279,6 +5250,12 @@
 							],
 							"actions": [
 								{
+									"id": "stop",
+									"objectClass": "player",
+									"sid": 971848669141960,
+									"behaviorType": "MoveTo"
+								},
+								{
 									"callFunction": "updateAnimations",
 									"sid": 789142860526151,
 									"parameters": [
@@ -5288,10 +5265,17 @@
 									]
 								},
 								{
-									"id": "stop",
+									"id": "remove-child",
 									"objectClass": "player",
-									"sid": 265532492838695,
-									"behaviorType": "MoveTo"
+									"sid": 145829245427267,
+									"parameters": {
+										"child": "body"
+									}
+								},
+								{
+									"id": "destroy",
+									"objectClass": "player",
+									"sid": 505168066403956
 								}
 							],
 							"sid": 274794580633845
@@ -6921,7 +6905,40 @@
 															]
 														}
 													],
-													"sid": 737877903865695
+													"sid": 737877903865695,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "player",
+																	"sid": 102221236428958,
+																	"parameters": {
+																		"instance-variable": "currentHealth",
+																		"comparison": 4,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "updateAnimations",
+																	"sid": 344699785485167,
+																	"parameters": [
+																		"\"idle\"",
+																		"body.OriginalAnimationSpeed",
+																		"\"playFromBeginning\""
+																	]
+																},
+																{
+																	"type": "comment",
+																	"text": "Go back to idling if the player is still alive"
+																}
+															],
+															"sid": 889466449167885
+														}
+													]
 												}
 											]
 										}
@@ -7269,18 +7286,42 @@
 																"group-name": "\"abilities\"",
 																"state": "activated"
 															}
-														},
-														{
-															"callFunction": "updateAnimations",
-															"sid": 852441723348355,
-															"parameters": [
-																"\"idle\"",
-																"body.OriginalAnimationSpeed",
-																"\"playFromBeginning\""
-															]
 														}
 													],
-													"sid": 713383358241408
+													"sid": 713383358241408,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "player",
+																	"sid": 640518055477890,
+																	"parameters": {
+																		"instance-variable": "currentHealth",
+																		"comparison": 4,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "updateAnimations",
+																	"sid": 615172535025779,
+																	"parameters": [
+																		"\"idle\"",
+																		"body.OriginalAnimationSpeed",
+																		"\"playFromBeginning\""
+																	]
+																},
+																{
+																	"type": "comment",
+																	"text": "Go back to idling if the player is still alive"
+																}
+															],
+															"sid": 428301366670408
+														}
+													]
 												}
 											]
 										}
@@ -7635,18 +7676,42 @@
 																"group-name": "\"abilities\"",
 																"state": "activated"
 															}
-														},
-														{
-															"callFunction": "updateAnimations",
-															"sid": 504213194725024,
-															"parameters": [
-																"\"idle\"",
-																"body.OriginalAnimationSpeed",
-																"\"playFromBeginning\""
-															]
 														}
 													],
-													"sid": 125045940678337
+													"sid": 125045940678337,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "player",
+																	"sid": 498041385680103,
+																	"parameters": {
+																		"instance-variable": "currentHealth",
+																		"comparison": 4,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "updateAnimations",
+																	"sid": 211508341847618,
+																	"parameters": [
+																		"\"idle\"",
+																		"body.OriginalAnimationSpeed",
+																		"\"playFromBeginning\""
+																	]
+																},
+																{
+																	"type": "comment",
+																	"text": "Go back to idling if the player is still alive"
+																}
+															],
+															"sid": 183519760116794
+														}
+													]
 												}
 											]
 										}
@@ -8160,6 +8225,15 @@
 									"parameters": {
 										"time-scale": "1"
 									}
+								},
+								{
+									"type": "comment",
+									"text": "The player is global; destroy him (and all his children) so he doesn't persist back into the main menu."
+								},
+								{
+									"id": "destroy",
+									"objectClass": "player",
+									"sid": 966937218448803
 								},
 								{
 									"callFunction": "closeLayer",
@@ -10719,10 +10793,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 166476307629322,
+											"sid": 232437403011463,
 											"parameters": {
 												"instance-variable": "attributes",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\"))"
+												"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\")"
 											}
 										},
 										{
@@ -12616,6 +12690,16 @@
 											}
 										},
 										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 662190681012854,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 4,
+												"value": "0"
+											}
+										},
+										{
 											"id": "compare-two-values",
 											"objectClass": "System",
 											"sid": 462007984757440,
@@ -12650,7 +12734,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "If the player has an offHand item equipped, and successfully blocks the attack, just play the block animation, then we're done."
+											"text": "If the player is alive, has an offHand item equipped, and successfully blocks the attack, just play the block animation, then we're done."
 										},
 										{
 											"callFunction": "channeledAnimation",
@@ -13373,6 +13457,26 @@
 							"id": "on-start-of-layout",
 							"objectClass": "System",
 							"sid": 655626658031456
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 555056281458346,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"farm\""
+							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 912464234672610,
+							"parameters": {
+								"variable": "previousLayout",
+								"comparison": 0,
+								"value": "\"mainMenu\""
+							}
 						}
 					],
 					"actions": [
@@ -15342,6 +15446,7 @@
 							"id": "set-animation",
 							"objectClass": "door",
 							"sid": 285583430795064,
+							"breakpoint": true,
 							"parameters": {
 								"animation": "\"open\"",
 								"from": "current-frame"
@@ -15429,6 +15534,26 @@
 					"sid": 348574872578129
 				},
 				{
+					"eventType": "variable",
+					"name": "relocateToX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The coordinate on the X axis where the player should be on the new layout.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 833726552928261
+				},
+				{
+					"eventType": "variable",
+					"name": "relocateToY",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The coordinate on the Y axis where the player should be on the new layout.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 234170710727433
+				},
+				{
 					"functionName": "buildingTransition",
 					"functionDescription": "Move the player in and out of a building.",
 					"functionCategory": "world",
@@ -15440,18 +15565,57 @@
 					"conditions": [],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "These have to saved to local variables because the door object will be inaccessible after we change layouts."
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 384868622806757,
+							"parameters": {
+								"variable": "relocateToX",
+								"value": "door.relocateToX"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 686088561550463,
+							"parameters": {
+								"variable": "relocateToY",
+								"value": "door.relocateToY"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 833203496811020,
+							"parameters": {
+								"variable": "previousLayout",
+								"value": "LayoutName"
+							}
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 414950710571795,
+							"parameters": {
+								"layout": "door.layout"
+							}
+						},
+						{
 							"id": "set-position",
 							"objectClass": "player",
-							"sid": 306084288011336,
+							"sid": 682996575029714,
 							"parameters": {
-								"x": "door.relocateToX",
-								"y": "door.relocateToY"
+								"x": "relocateToX",
+								"y": "relocateToY"
 							}
 						},
 						{
 							"id": "stop",
 							"objectClass": "player",
-							"sid": 428990218376500,
+							"sid": 405568347004095,
 							"behaviorType": "MoveTo"
 						},
 						{
@@ -15473,64 +15637,7 @@
 							}
 						}
 					],
-					"sid": 605751022796155,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "player",
-									"sid": 383444319400282,
-									"parameters": {
-										"object": "background"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "if the player is now overlapping the background, they're back in the main area, and not in a building"
-								},
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "player",
-									"sid": 233530060981134,
-									"parameters": {
-										"instance-variable": "isInsideBuilding",
-										"value": "false"
-									}
-								}
-							],
-							"sid": 557921840107408
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 654018853199339
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "if they're not overlapping the background, they're now in a building"
-								},
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "player",
-									"sid": 884524246634332,
-									"parameters": {
-										"instance-variable": "isInsideBuilding",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 549145578319639
-						}
-					]
+					"sid": 605751022796155
 				}
 			],
 			"sid": 992252066588856

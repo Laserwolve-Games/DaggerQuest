@@ -57,13 +57,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "LocalStorage",
-			"name": "Local storage",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -162,6 +155,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "scrollto",
+			"name": "Scroll To",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "solid",
 			"name": "Solid",
 			"author": "Scirra",
@@ -240,8 +240,8 @@
 					"modRelationshipsArray",
 					"abilityOptionsArray",
 					"npcDialogArray",
-					"LocalStorage",
-					"Audio"
+					"Audio",
+					"pathfindingGridArray"
 				],
 				"subfolders": [],
 				"name": "peripherals"
@@ -626,9 +626,12 @@
 	},
 	"layouts": {
 		"items": [
-			"farm",
 			"storage",
-			"mainMenu"
+			"farm",
+			"mainMenu",
+			"windmillLevel1",
+			"windmillLevel2",
+			"cottage"
 		],
 		"subfolders": []
 	},

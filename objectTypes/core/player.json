@@ -2,7 +2,7 @@
 	"name": "player",
 	"plugin-id": "Sprite",
 	"sid": 690450040743179,
-	"isGlobal": false,
+	"isGlobal": true,
 	"instanceVariables": [
 		{
 			"name": "class",
@@ -45,13 +45,6 @@
 			"desc": "",
 			"show": true,
 			"sid": 289810211162941
-		},
-		{
-			"name": "isInsideBuilding",
-			"type": "boolean",
-			"desc": "",
-			"show": true,
-			"sid": 401070089941287
 		},
 		{
 			"name": "attackRange",
@@ -256,6 +249,11 @@
 			"behaviorId": "custom",
 			"name": "Custom",
 			"sid": 783463831550089
+		},
+		{
+			"behaviorId": "scrollto",
+			"name": "ScrollTo",
+			"sid": 760333616579088
 		}
 	],
 	"effectTypes": [],

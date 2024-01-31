@@ -86,16 +86,25 @@
 			],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "Having this as a trigger and not as a sub-event under the play button click prevents a massive stutter, presumably caused by: The loading of the next layout commencing before the loadingScreen can be made visible."
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 235547920437981,
+					"parameters": {
+						"variable": "previousLayout",
+						"value": "LayoutName"
+					}
+				},
+				{
 					"id": "go-to-layout-by-name",
 					"objectClass": "System",
 					"sid": 425813163535950,
 					"parameters": {
 						"layout": "\"farm\""
 					}
-				},
-				{
-					"type": "comment",
-					"text": "Having this as a trigger and not as a subevent under the play button prevents a massive stutter, presumably caused by: The loading of the next layout commencing before the loadingScreen can be made visible."
 				}
 			],
 			"sid": 252869525891124

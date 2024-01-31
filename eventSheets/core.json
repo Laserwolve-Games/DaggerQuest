@@ -12606,6 +12606,26 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 846580369862648,
+											"parameters": {
+												"first-value": "find(player.AnimationName, \"block\")",
+												"comparison": 0,
+												"second-value": "-1"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 462007984757440,
+											"parameters": {
+												"first-value": "find(player.AnimationName, \"hit\")",
+												"comparison": 0,
+												"second-value": "-1"
+											}
+										},
+										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
 											"sid": 590785792254548,
@@ -12698,6 +12718,26 @@
 										{
 											"eventType": "block",
 											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 690162783770499,
+													"parameters": {
+														"first-value": "find(player.AnimationName, \"block\")",
+														"comparison": 0,
+														"second-value": "-1"
+													}
+												},
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 808376535961513,
+													"parameters": {
+														"first-value": "find(player.AnimationName, \"hit\")",
+														"comparison": 0,
+														"second-value": "-1"
+													}
+												},
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "player",

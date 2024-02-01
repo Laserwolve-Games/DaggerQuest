@@ -64,6 +64,40 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 267080040050862,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "mainMenuSettings"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "openLayer",
+					"sid": 922971563798983,
+					"parameters": [
+						"\"settingsMenu\""
+					]
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 901021362734978,
+					"parameters": {
+						"layer": "\"false\"",
+						"interactive": true
+					}
+				}
+			],
+			"sid": 823601215273245
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "is-visible",
 					"objectClass": "loadingScreen",
 					"sid": 307633937543268

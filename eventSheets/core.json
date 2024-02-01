@@ -8209,6 +8209,38 @@
 								{
 									"id": "on-object-clicked",
 									"objectClass": "mouse",
+									"sid": 303733975915610,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "pauseMenuSettings"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "openLayer",
+									"sid": 678012002283094,
+									"parameters": [
+										"\"settingsMenu\""
+									]
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 837451121337575,
+									"parameters": [
+										"\"pauseMenu\""
+									]
+								}
+							],
+							"sid": 501055649406530
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
 									"sid": 773169470326777,
 									"parameters": {
 										"mouse-button": "left",

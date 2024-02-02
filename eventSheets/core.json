@@ -126,16 +126,6 @@
 			"sid": 822176132467234
 		},
 		{
-			"eventType": "variable",
-			"name": "busyManagingGear",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "Whether or not we are currently managing gear.",
-			"isStatic": true,
-			"isConstant": false,
-			"sid": 182244552293067
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "npc",
@@ -3398,12 +3388,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-empty",
-									"objectClass": "gearQueueArray",
-									"sid": 867084292226056,
-									"isInverted": true
-								},
-								{
 									"id": "pick-by-unique-id",
 									"objectClass": "slot",
 									"sid": 640181349833218,
@@ -3413,6 +3397,15 @@
 								}
 							],
 							"actions": [
+								{
+									"id": "pop",
+									"objectClass": "gearQueueArray",
+									"sid": 245240681574058,
+									"parameters": {
+										"where": "back",
+										"axis": "x"
+									}
+								},
 								{
 									"callFunction": "updateAnimations",
 									"sid": 490403966226362,
@@ -3766,15 +3759,6 @@
 														"transform-visibility": false,
 														"destroy-with-parent": true
 													}
-												},
-												{
-													"id": "pop",
-													"objectClass": "gearQueueArray",
-													"sid": 738226593396954,
-													"parameters": {
-														"where": "back",
-														"axis": "x"
-													}
 												}
 											],
 											"sid": 188569173547399
@@ -3812,6 +3796,22 @@
 											"sid": 298625994197661
 										},
 										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 514395196872197,
+											"parameters": {
+												"seconds": "0"
+											}
+										},
+										{
+											"id": "unload-object-images",
+											"objectClass": "System",
+											"sid": 872852704936728,
+											"parameters": {
+												"object": "gear"
+											}
+										},
+										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 608099366145852,
@@ -3819,43 +3819,11 @@
 												"variable": "gearToDestroy",
 												"value": "\"\""
 											}
-										},
-										{
-											"id": "pop",
-											"objectClass": "gearQueueArray",
-											"sid": 755410485549342,
-											"parameters": {
-												"where": "back",
-												"axis": "x"
-											}
 										}
 									],
 									"sid": 967654632053070
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 257716529321934
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 779799502766775
-								}
-							],
-							"actions": [
-								{
-									"id": "unload-unused-images",
-									"objectClass": "System",
-									"sid": 828959972000489
-								}
-							],
-							"sid": 854651417018560
 						}
 					],
 					"sid": 976456797084060
@@ -4296,109 +4264,103 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 787501508145995,
+									"id": "pick-parent",
+									"objectClass": "ability",
+									"sid": 953424379950288,
 									"parameters": {
-										"instance-variable": "level",
-										"comparison": 0,
-										"value": "1"
+										"parent": "abilitySlot",
+										"which": "own"
 									}
 								},
 								{
 									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 559576057949746,
+									"sid": 602434934367432,
 									"parameters": {
-										"object": "ability",
-										"expression": "ability.IID",
+										"object": "abilitySlot",
+										"expression": "abilitySlot.unlock",
 										"comparison": 0,
-										"value": "0"
+										"value": "player.level"
 									}
 								},
 								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 315306438464741
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
-									"sid": 876048480968748,
+									"id": "pick-children",
+									"objectClass": "abilitySlot",
+									"sid": 424632925588933,
 									"parameters": {
-										"animation": "\"heroicStrike\"",
-										"from": "beginning"
+										"child": "ability",
+										"which": "own"
 									}
-								}
-							],
-							"sid": 820140174345689
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 270880947695480,
-									"parameters": {
-										"instance-variable": "level",
-										"comparison": 0,
-										"value": "2"
-									}
-								},
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 772013475008395,
-									"parameters": {
-										"object": "ability",
-										"expression": "ability.IID",
-										"comparison": 0,
-										"value": "1"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 671133643322786
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "ability",
-									"sid": 537901346557288,
-									"parameters": {
-										"animation": "\"kick\"",
-										"from": "beginning"
-									}
-								}
-							],
-							"sid": 504985593544963
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 880023823060612,
-									"parameters": {
-										"instance-variable": "level",
-										"comparison": 0,
-										"value": "3"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 599021929690700
 								}
 							],
 							"actions": [],
-							"sid": 248961295001002
+							"sid": 820140174345689,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 770257619060937,
+											"parameters": {
+												"instance-variable": "level",
+												"comparison": 0,
+												"value": "1"
+											}
+										},
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 781076181273254
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ability",
+											"sid": 342264984411336,
+											"parameters": {
+												"animation": "\"heroicStrike\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 570054714230054
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 121654417346304,
+											"parameters": {
+												"instance-variable": "level",
+												"comparison": 0,
+												"value": "2"
+											}
+										},
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 408855644204187
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ability",
+											"sid": 279989319670224,
+											"parameters": {
+												"animation": "\"kick\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 123881620713685
+								}
+							]
 						}
 					],
 					"sid": 221630090189973
@@ -7936,14 +7898,6 @@
 											"sid": 197983694177942,
 											"parameters": {
 												"animation": "\"checked\""
-											}
-										},
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 854294652366274,
-											"parameters": {
-												"object": "hasShadow"
 											}
 										}
 									],
@@ -11497,41 +11451,38 @@
 					"text": "we tried a lot of different things to get shadows to stay immediately behind their hasShadow. A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter. We just decided to make shadows sortable, that seems to be working."
 				},
 				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-created",
-							"objectClass": "hasShadow",
-							"sid": 378910601868966
-						},
-						{
-							"id": "is-animation-playing",
-							"objectClass": "shadows",
-							"sid": 109471631179697,
-							"parameters": {
-								"animation": "\"checked\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "spawnShadows",
-							"sid": 451995717011975
-						}
-					],
-					"sid": 162215546549743
-				},
-				{
 					"functionName": "spawnShadows",
 					"functionDescription": "Spawn the shadow of an object.",
 					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
-					"functionIsAsync": false,
+					"functionIsAsync": true,
 					"functionParameters": [],
 					"eventType": "function-block",
-					"conditions": [],
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 907894704610391,
+							"parameters": {
+								"object": "hasShadow"
+							}
+						}
+					],
 					"actions": [
+						{
+							"id": "load-object-images-by-name",
+							"objectClass": "System",
+							"sid": 692060927067017,
+							"parameters": {
+								"object": "hasShadow.ObjectTypeName & \"_shadow\""
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 583721515827403
+						},
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
@@ -12702,75 +12653,111 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 741768671534422
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "loadingScreen",
-							"sid": 326753976665460,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 977992207052901,
-							"breakpoint": true,
-							"parameters": {
-								"layer": "\"main\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 663104217863289,
-							"parameters": {
-								"layer": "\"background\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 423683459194389,
-							"parameters": {
-								"layer": "\"abilityBar\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 442215454845124,
-							"parameters": {
-								"layer": "\"orbs\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 162804760549906,
-							"parameters": {
-								"layer": "\"mechanics\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "fade-volume",
-							"objectClass": "Audio",
-							"sid": 282134565796980,
-							"parameters": {
-								"tag": "\"main\"",
-								"db": "-100",
-								"duration": "3",
-								"ending": "stop"
-							}
+							"sid": 386395602259682
 						}
 					],
-					"sid": 803419978161680
+					"sid": 803419978161680,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "shadows",
+									"sid": 587559276865619,
+									"parameters": {
+										"animation": "\"checked\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "spawnShadows",
+									"sid": 613453278479390
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 195043199346989
+								}
+							],
+							"sid": 196575738655035,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "loadingScreen",
+											"sid": 470616944961394,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 794823874165651,
+											"breakpoint": true,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 837697288123841,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 636711178308023,
+											"parameters": {
+												"layer": "\"abilityBar\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 585869294141966,
+											"parameters": {
+												"layer": "\"orbs\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 360697776176394,
+											"parameters": {
+												"layer": "\"mechanics\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "fade-volume",
+											"objectClass": "Audio",
+											"sid": 425678352214686,
+											"parameters": {
+												"tag": "\"main\"",
+												"db": "-100",
+												"duration": "3",
+												"ending": "stop"
+											}
+										}
+									],
+									"sid": 410877502763355
+								}
+							]
+						}
+					]
 				},
 				{
 					"functionName": "load",
@@ -13105,6 +13092,19 @@
 							}
 						},
 						{
+							"id": "load-object-images-by-name",
+							"objectClass": "System",
+							"sid": 592263512784190,
+							"parameters": {
+								"object": "player.class"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 889793153000775
+						},
+						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
 							"sid": 516693142745191,
@@ -13116,19 +13116,6 @@
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
-						},
-						{
-							"id": "load-object-images-by-name",
-							"objectClass": "System",
-							"sid": 407909083916883,
-							"parameters": {
-								"object": "player.class"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 243187478876559
 						},
 						{
 							"id": "setProbabilityTable",
@@ -13451,6 +13438,19 @@
 											"text": "for each ability cover, create the appropriate ability on the same layer as that cover"
 										},
 										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 740740986270441,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_ability\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 345631182077315
+										},
+										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
 											"sid": 630695246886363,
@@ -13564,24 +13564,47 @@
 											"sid": 427789135441579
 										},
 										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 214321585896874,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"chest\" & \"Default_gear_shadow\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 970020906650979
-										},
-										{
 											"callFunction": "queueGearManagement",
 											"sid": 642951113880653
 										}
 									],
 									"sid": 781753122231719
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 104510266197393,
+											"parameters": {
+												"object": "slot",
+												"expression": "slot.type",
+												"comparison": 0,
+												"value": "\"head\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 630339265664122,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 375584916565103
+										},
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 546821670274877
+										}
+									],
+									"sid": 260168805793814
 								},
 								{
 									"eventType": "block",
@@ -13613,73 +13636,11 @@
 											"sid": 632171238967920
 										},
 										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 807663176478473,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"legs\" & \"Default_gear_shadow\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 514317617836873
-										},
-										{
 											"callFunction": "queueGearManagement",
 											"sid": 105657799472601
 										}
 									],
 									"sid": 437737076174307
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 529746168504917,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "\"head\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 582291464743282,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 404836081783116
-										},
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 367540469501029,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear_shadow\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 374866886742628
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 328658235205661
-										}
-									],
-									"sid": 677740658980604
 								}
 							]
 						},
@@ -13712,19 +13673,6 @@
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
 									"sid": 428317090135640
-								},
-								{
-									"id": "load-object-images-by-name",
-									"objectClass": "System",
-									"sid": 436599357808296,
-									"parameters": {
-										"object": "npc.simpleName & \"_shadow\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 737425696485554
 								},
 								{
 									"id": "create-object-by-name",
@@ -13999,19 +13947,6 @@
 									"sid": 480256585505852
 								},
 								{
-									"id": "load-object-images-by-name",
-									"objectClass": "System",
-									"sid": 196028879926132,
-									"parameters": {
-										"object": "enemy.simpleName & \"_shadow\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 833837090869346
-								},
-								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
 									"sid": 881399018105449,
@@ -14070,21 +14005,6 @@
 									"sid": 936517967351408
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 222464443198748,
-									"parameters": {
-										"seconds": "0"
-									}
-								}
-							],
-							"sid": 340547706677700
 						}
 					]
 				}

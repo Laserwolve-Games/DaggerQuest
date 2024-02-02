@@ -109,7 +109,7 @@
 			"eventType": "variable",
 			"name": "previousLayout",
 			"type": "string",
-			"initialValue": "",
+			"initialValue": "none",
 			"comment": "The layout we were on, before this one.",
 			"isStatic": false,
 			"isConstant": false,
@@ -124,6 +124,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 822176132467234
+		},
+		{
+			"eventType": "variable",
+			"name": "busyManagingGear",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Whether or not we are currently managing gear.",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 182244552293067
 		},
 		{
 			"eventType": "group",
@@ -151,121 +161,6 @@
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 795195881715473
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 513723433728062,
-							"parameters": {
-								"tag": "\"createNPCs\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "TODO: Make sure this works with multiple NPCs",
-							"background-color": [
-								1,
-								1,
-								0,
-								1
-							]
-						}
-					],
-					"sid": 295343820530030,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 140298723926199,
-									"parameters": {
-										"object": "npc"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 822601046469838,
-									"parameters": {
-										"object-name": "npc.simpleName",
-										"layer": "\"main\"",
-										"x": "npc.X",
-										"y": "npc.Y",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 613276139234650
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-last-created",
-									"objectClass": "System",
-									"sid": 465897373035454,
-									"parameters": {
-										"object": "npcBody"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "add-child",
-									"objectClass": "npc",
-									"sid": 101586874540849,
-									"parameters": {
-										"child": "npcBody",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": false
-									}
-								}
-							],
-							"sid": 508832258388582
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-overlapping-another-object",
-							"objectClass": "npc",
-							"sid": 886572544963710,
-							"parameters": {
-								"object": "player"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "push-out-solid",
-							"objectClass": "player",
-							"sid": 947588256996462,
-							"behaviorType": "Custom",
-							"parameters": {
-								"direction": "nearest"
-							}
-						}
-					],
-					"sid": 102494875690120
 				},
 				{
 					"eventType": "block",
@@ -3500,194 +3395,111 @@
 							"sid": 143517779829659
 						},
 						{
-							"eventType": "variable",
-							"name": "blocked",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 695329498320645
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 456274353307555,
-									"parameters": {
-										"variable": "blocked"
-									},
+									"id": "is-empty",
+									"objectClass": "gearQueueArray",
+									"sid": 867084292226056,
 									"isInverted": true
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "slot",
+									"sid": 640181349833218,
+									"parameters": {
+										"unique-id": "gearQueueArray.Back"
+									}
 								}
 							],
-							"actions": [],
-							"sid": 999175052855849,
+							"actions": [
+								{
+									"callFunction": "updateAnimations",
+									"sid": 490403966226362,
+									"parameters": [
+										"\"idle\"",
+										"body.OriginalAnimationSpeed",
+										"\"playFromBeginning\""
+									]
+								},
+								{
+									"id": "stop",
+									"objectClass": "player",
+									"sid": 270410677125237,
+									"behaviorType": "MoveTo"
+								}
+							],
+							"sid": 651284826494526,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "gearToSpawn",
+									"type": "string",
+									"initialValue": "",
+									"comment": "the name of the gear to spawn",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 677555926191230
+								},
+								{
+									"eventType": "variable",
+									"name": "gearToDestroy",
+									"type": "string",
+									"initialValue": "",
+									"comment": "the name of the gear to destroy",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 748934391559680
+								},
+								{
+									"eventType": "variable",
+									"name": "gearToDestroyUID",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "the UID of the gear to destroy",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 889745122437550
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-empty",
-											"objectClass": "gearQueueArray",
-											"sid": 444888010907526,
-											"isInverted": true
-										},
-										{
-											"id": "pick-by-unique-id",
-											"objectClass": "slot",
-											"sid": 826222459576580,
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 255976644231886,
 											"parameters": {
-												"unique-id": "gearQueueArray.Back"
+												"object": "item",
+												"expression": "item.identifier",
+												"comparison": 0,
+												"value": "slot.identifier"
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "pop",
-											"objectClass": "gearQueueArray",
-											"sid": 495025889538759,
-											"parameters": {
-												"where": "back",
-												"axis": "x"
-											}
+											"type": "comment",
+											"text": "if it's not empty, pick the item that's currently in that slot"
 										},
 										{
-											"callFunction": "updateAnimations",
-											"sid": 452588573889096,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
-										},
-										{
-											"id": "stop",
-											"objectClass": "player",
-											"sid": 755835890060922,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "set-boolean-eventvar",
+											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 753309846385322,
+											"sid": 795463113436528,
 											"parameters": {
-												"variable": "blocked",
-												"value": "true"
+												"variable": "gearToSpawn",
+												"value": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\""
 											}
 										}
 									],
-									"sid": 868134707259503,
+									"sid": 893057658559493,
 									"children": [
 										{
-											"eventType": "variable",
-											"name": "gearToSpawn",
-											"type": "string",
-											"initialValue": "",
-											"comment": "the name of the gear to spawn",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 507532226337350
-										},
-										{
-											"eventType": "variable",
-											"name": "gearToDestroy",
-											"type": "string",
-											"initialValue": "",
-											"comment": "the name of the gear to destroy",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 796888351887491
-										},
-										{
-											"eventType": "variable",
-											"name": "gearToDestroyUID",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "the UID of the gear to destroy",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 653142365454175
-										},
-										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 802497492991623,
-													"parameters": {
-														"object": "item",
-														"expression": "item.identifier",
-														"comparison": 0,
-														"value": "slot.identifier"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if it's not empty, pick the item that's currently in that slot"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 785633943433889,
-													"parameters": {
-														"variable": "gearToSpawn",
-														"value": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\""
-													}
-												}
-											],
-											"sid": 641425482981819,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 864155460211772,
-															"parameters": {
-																"object": "gear",
-																"expression": "gear.type",
-																"comparison": 0,
-																"value": "slot.type"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "destroy the existing gear that correlates with the slot's type, if it exists"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 270133762466694,
-															"parameters": {
-																"variable": "gearToDestroy",
-																"value": "gear.ObjectTypeName"
-															}
-														}
-													],
-													"sid": 854297470528183
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 413498936600433
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 635448070838991,
+													"sid": 289714084182762,
 													"parameters": {
 														"object": "gear",
 														"expression": "gear.type",
@@ -3699,264 +3511,197 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if it's empty, pick the gear that correlates with the slot's type"
+													"text": "destroy the existing gear that correlates with the slot's type, if it exists"
 												},
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 294524074614853,
+													"sid": 282137753175945,
 													"parameters": {
 														"variable": "gearToDestroy",
 														"value": "gear.ObjectTypeName"
 													}
 												}
 											],
-											"sid": 932158191432713,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "evaluate-expression",
-															"objectClass": "System",
-															"sid": 209381221455966,
-															"parameters": {
-																"value": "slot.type = \"chest\" & player.class <> \"man\""
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 114006959877210,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"legs\""
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 292918180453755,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"head\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if it's legs or head, or chest and not a man, (the slots with visual representation that have default gear), load the default gear"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 621298938763509,
-															"parameters": {
-																"variable": "gearToSpawn",
-																"value": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
-															}
-														}
-													],
-													"sid": 482972403415376,
-													"isOrBlock": true
-												}
-											]
+											"sid": 576268835496844
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 667664230607886
 										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 716921835074587,
+											"parameters": {
+												"object": "gear",
+												"expression": "gear.type",
+												"comparison": 0,
+												"value": "slot.type"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if it's empty, pick the gear that correlates with the slot's type"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 202031156069201,
+											"parameters": {
+												"variable": "gearToDestroy",
+												"value": "gear.ObjectTypeName"
+											}
+										}
+									],
+									"sid": 118634232344136,
+									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
+													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 834074795987185
+													"sid": 951670122447096,
+													"parameters": {
+														"value": "slot.type = \"chest\" & player.class <> \"man\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "slot",
+													"sid": 123039147000286,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"legs\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "slot",
+													"sid": 176394700427289,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"head\""
+													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if there's no gear, that means the game has just started, and we just need to spawn default gear"
+													"text": "if it's legs or head, or chest and not a man, (the slots with visual representation that have default gear), load the default gear"
 												},
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 459732092901564,
+													"sid": 634454518644159,
 													"parameters": {
 														"variable": "gearToSpawn",
 														"value": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
 													}
 												}
 											],
-											"sid": 127748103716226
+											"sid": 603808435396954,
+											"isOrBlock": true
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 189183554753081
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if there's no gear, that means the game has just started, and we just need to spawn default gear"
 										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 683781593422408,
+											"parameters": {
+												"variable": "gearToSpawn",
+												"value": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
+											}
+										}
+									],
+									"sid": 922030207122990
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 843090317999803,
+											"parameters": {
+												"variable": "gearToSpawn",
+												"comparison": 1,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 914925363519378,
+											"parameters": {
+												"object": "gearToSpawn"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 105240609334960
+										},
+										{
+											"id": "create-object-by-name",
+											"objectClass": "System",
+											"sid": 260978513288412,
+											"parameters": {
+												"object-name": "gearToSpawn",
+												"layer": "\"main\"",
+												"x": "player.X",
+												"y": "player.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 599652008082365,
+											"parameters": {
+												"variable": "gearToSpawn",
+												"value": "\"\""
+											}
+										}
+									],
+									"sid": 385237060086711,
+									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 229922055588224,
-													"parameters": {
-														"variable": "gearToSpawn",
-														"comparison": 1,
-														"value": "\"\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "load-object-images-by-name",
-													"objectClass": "System",
-													"sid": 141994234606501,
-													"parameters": {
-														"object": "gearToSpawn"
-													}
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 306533516831540
-												},
-												{
-													"id": "create-object-by-name",
-													"objectClass": "System",
-													"sid": 159036866421100,
-													"parameters": {
-														"object-name": "gearToSpawn",
-														"layer": "\"main\"",
-														"x": "player.X",
-														"y": "player.Y",
-														"create-hierarchy": false,
-														"template-name": "\"\""
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 823666391121210,
-													"parameters": {
-														"variable": "gearToSpawn",
-														"value": "\"\""
-													}
-												}
-											],
-											"sid": 731974333425003,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-last-created",
-															"objectClass": "System",
-															"sid": 713404709268296,
-															"parameters": {
-																"object": "gear"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "unblock in this subevent, where we can guarantee the gear exists"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "gear",
-															"sid": 101642919569253,
-															"parameters": {
-																"instance-variable": "type",
-																"value": "slot.type"
-															}
-														},
-														{
-															"id": "add-child",
-															"objectClass": "body",
-															"sid": 474768909675716,
-															"parameters": {
-																"child": "gear",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
-																"destroy-with-parent": true
-															}
-														}
-													],
-													"sid": 806281012459289
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 801785853100774,
-															"parameters": {
-																"object": "gear",
-																"expression": "gearToDestroy",
-																"comparison": 0,
-																"value": "gear.ObjectTypeName"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "destroy",
-															"objectClass": "gear",
-															"sid": 435627271916718
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 634449951731529,
-															"parameters": {
-																"variable": "gearToDestroy",
-																"value": "\"\""
-															}
-														}
-													],
-													"sid": 731691639457784
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if we're only creating gear and not destroying any, the previous event won't run, so this needs to be separate"
-														},
-														{
-															"id": "set-boolean-eventvar",
-															"objectClass": "System",
-															"sid": 639617080021623,
-															"parameters": {
-																"variable": "blocked",
-																"value": "false"
-															}
-														}
-													],
-													"sid": 294159635762109
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 583501936080612
-												},
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 953512478490965,
+													"sid": 634089443105719,
 													"parameters": {
 														"object": "gear",
 														"expression": "gearToDestroy",
@@ -3967,34 +3712,72 @@
 											],
 											"actions": [
 												{
-													"type": "comment",
-													"text": "if we're destroying gear without creating gear, we can instantly destroy it without waiting"
-												},
-												{
 													"id": "destroy",
 													"objectClass": "gear",
-													"sid": 607711161998475
+													"sid": 753546807235979
 												},
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 188726040899818,
+													"sid": 658667922592080,
 													"parameters": {
 														"variable": "gearToDestroy",
 														"value": "\"\""
 													}
-												},
+												}
+											],
+											"sid": 459614120304797
+										},
+										{
+											"eventType": "block",
+											"conditions": [
 												{
-													"id": "set-boolean-eventvar",
+													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 557632153383694,
+													"sid": 906321431607876,
 													"parameters": {
-														"variable": "blocked",
-														"value": "false"
+														"object": "gear"
 													}
 												}
 											],
-											"sid": 224880611156571
+											"actions": [
+												{
+													"id": "set-instvar-value",
+													"objectClass": "gear",
+													"sid": 701086917820502,
+													"parameters": {
+														"instance-variable": "type",
+														"value": "slot.type"
+													}
+												},
+												{
+													"id": "add-child",
+													"objectClass": "body",
+													"sid": 300895609002442,
+													"parameters": {
+														"child": "gear",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": false,
+														"transform-o": false,
+														"transform-z-elevation": false,
+														"transform-visibility": false,
+														"destroy-with-parent": true
+													}
+												},
+												{
+													"id": "pop",
+													"objectClass": "gearQueueArray",
+													"sid": 738226593396954,
+													"parameters": {
+														"where": "back",
+														"axis": "x"
+													}
+												}
+											],
+											"sid": 188569173547399
 										}
 									]
 								},
@@ -4004,24 +3787,75 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 579877351665732
+											"sid": 491720660451949
 										},
 										{
-											"id": "trigger-once-while-true",
+											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 882868098116194
+											"sid": 786050824993953,
+											"parameters": {
+												"object": "gear",
+												"expression": "gearToDestroy",
+												"comparison": 0,
+												"value": "gear.ObjectTypeName"
+											}
 										}
 									],
 									"actions": [
 										{
-											"id": "unload-unused-images",
+											"type": "comment",
+											"text": "if we're destroying gear without creating gear, we can instantly destroy it without waiting"
+										},
+										{
+											"id": "destroy",
+											"objectClass": "gear",
+											"sid": 298625994197661
+										},
+										{
+											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 192725039673478
+											"sid": 608099366145852,
+											"parameters": {
+												"variable": "gearToDestroy",
+												"value": "\"\""
+											}
+										},
+										{
+											"id": "pop",
+											"objectClass": "gearQueueArray",
+											"sid": 755410485549342,
+											"parameters": {
+												"where": "back",
+												"axis": "x"
+											}
 										}
 									],
-									"sid": 950005626813540
+									"sid": 967654632053070
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 257716529321934
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 779799502766775
+								}
+							],
+							"actions": [
+								{
+									"id": "unload-unused-images",
+									"objectClass": "System",
+									"sid": 828959972000489
+								}
+							],
+							"sid": 854651417018560
 						}
 					],
 					"sid": 976456797084060
@@ -4577,232 +4411,6 @@
 					"isActiveOnStart": true,
 					"children": [],
 					"sid": 437386535914416
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "generation",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-signal",
-									"objectClass": "System",
-									"sid": 366511464642274,
-									"parameters": {
-										"tag": "\"createPlayer\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "TODO: the player to be created is determined on the character selection screen",
-									"background-color": [
-										1,
-										1,
-										0,
-										1
-									]
-								},
-								{
-									"id": "set-moving-angle",
-									"objectClass": "player",
-									"sid": 195525601946456,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"angle": "QUARTER_CIRCLE"
-									}
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 824010743775710,
-									"parameters": {
-										"object-name": "player.class",
-										"layer": "\"main\"",
-										"x": "player.X",
-										"y": "player.Y",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 247596661271128
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-created",
-									"objectClass": "body",
-									"sid": 821906498427267
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "somehow the default 'head' is spawning before the body's name can be referenced. this 'wait 0' fixes that."
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 232463430017992,
-									"parameters": {
-										"seconds": "0"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "We can't set abilities until the player is created, because we need to read what class he is."
-								},
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 152655216240335,
-									"parameters": {
-										"tag": "\"setAbilities\""
-									}
-								},
-								{
-									"id": "add-child",
-									"objectClass": "player",
-									"sid": 611922543482958,
-									"parameters": {
-										"child": "body",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": true
-									}
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 216378451846316,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
-								}
-							],
-							"sid": 147297134178316,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 194080292251659,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "\"head\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "these events to spawn default gear need to be nested, and I don't know why"
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 104426710382001
-										}
-									],
-									"sid": 315854207588580,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 765496292019045,
-													"parameters": {
-														"object": "slot"
-													}
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 410256131255504,
-													"parameters": {
-														"object": "slot",
-														"expression": "slot.type",
-														"comparison": 0,
-														"value": "\"legs\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "queueGearManagement",
-													"sid": 708988139671752
-												}
-											],
-											"sid": 944221062483027,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "player",
-															"sid": 758576516222070,
-															"parameters": {
-																"instance-variable": "class",
-																"comparison": 1,
-																"value": "\"man\""
-															}
-														},
-														{
-															"id": "pick-all",
-															"objectClass": "System",
-															"sid": 364662952518424,
-															"parameters": {
-																"object": "slot"
-															}
-														},
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 488970853562646,
-															"parameters": {
-																"object": "slot",
-																"expression": "slot.type",
-																"comparison": 0,
-																"value": "\"chest\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "queueGearManagement",
-															"sid": 741855895061145
-														}
-													],
-													"sid": 298826179305528
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					],
-					"sid": 273395503606669
 				},
 				{
 					"eventType": "group",
@@ -8404,101 +8012,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-signal",
-									"objectClass": "System",
-									"sid": 551496541279165,
-									"parameters": {
-										"tag": "\"setAbilities\""
-									}
-								},
-								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 707055531504507,
-									"parameters": {
-										"object": "abilitySlot"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "for each ability cover, create the appropriate ability on the same layer as that cover"
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 703115001635694,
-									"parameters": {
-										"object-name": "body.ObjectTypeName & \"_ability\"",
-										"layer": "abilitySlot.LayerName",
-										"x": "abilitySlot.X",
-										"y": "abilitySlot.Y",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 699935747304531,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 831544315515473,
-											"parameters": {
-												"object": "ability"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-effect-enabled",
-											"objectClass": "ability",
-											"sid": 421956783211698,
-											"parameters": {
-												"mode": "disable",
-												"effect": "\"Grayscale\""
-											}
-										},
-										{
-											"id": "set-effect-parameter",
-											"objectClass": "ability",
-											"sid": 364167940092383,
-											"parameters": {
-												"effect": "\"Grayscale\"",
-												"parameter-index": "0",
-												"value": "100"
-											}
-										},
-										{
-											"id": "add-child",
-											"objectClass": "abilitySlot",
-											"sid": 419678936034716,
-											"parameters": {
-												"child": "ability",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": true,
-												"transform-h": true,
-												"transform-a": true,
-												"transform-o": false,
-												"transform-z-elevation": true,
-												"transform-visibility": false,
-												"destroy-with-parent": false
-											}
-										}
-									],
-									"sid": 414672886242503
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "on-click",
 									"objectClass": "mouse",
 									"sid": 166153498320785,
@@ -10710,317 +10223,6 @@
 				{
 					"eventType": "group",
 					"disabled": false,
-					"title": "enemy generation",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-signal",
-									"objectClass": "System",
-									"sid": 649929137211269,
-									"parameters": {
-										"tag": "\"createEnemies\""
-									}
-								},
-								{
-									"id": "repeat",
-									"objectClass": "System",
-									"sid": 435541247236561,
-									"parameters": {
-										"count": "5"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 697558163745123,
-									"parameters": {
-										"object-to-create": "enemy",
-										"layer": "\"mechanics\"",
-										"x": "700 + random(-100, 100)",
-										"y": "1700 + random(-100, 100)",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 258393414366867,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 576252112612364,
-											"parameters": {
-												"object": "enemy"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 629998645562104,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "advancedRandom.WeightedByName(\"enemies\")"
-											}
-										},
-										{
-											"id": "set-width",
-											"objectClass": "enemy",
-											"sid": 657940661750712,
-											"parameters": {
-												"width": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"size\"))"
-											}
-										},
-										{
-											"id": "set-height",
-											"objectClass": "enemy",
-											"sid": 129222639171906,
-											"parameters": {
-												"height": "Self.Width / ISOMETRIC_DIVIDER"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 379402120396704,
-											"parameters": {
-												"instance-variable": "arcaneDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"arcaneDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 963255966237747,
-											"parameters": {
-												"instance-variable": "attackSpeed",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackSpeed\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 232437403011463,
-											"parameters": {
-												"instance-variable": "attributes",
-												"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 669422730983425,
-											"parameters": {
-												"instance-variable": "coldDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"coldDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 486271740898748,
-											"parameters": {
-												"instance-variable": "corruptDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"corruptDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 959132211187911,
-											"parameters": {
-												"instance-variable": "fireDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fireDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 240058906358416,
-											"parameters": {
-												"instance-variable": "fullName",
-												"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 115398551868480,
-											"parameters": {
-												"instance-variable": "currentHealth",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 956373505933351,
-											"parameters": {
-												"instance-variable": "maxHealth",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 574096436112301,
-											"parameters": {
-												"instance-variable": "lightningDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lightningDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 666943890038341,
-											"parameters": {
-												"instance-variable": "slashDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"slashDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 406719109958926,
-											"parameters": {
-												"instance-variable": "smashDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"smashDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 186140982782274,
-											"parameters": {
-												"instance-variable": "stabDamage",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"stabDamage\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 387936396713609,
-											"parameters": {
-												"instance-variable": "type",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 946806638704341,
-											"parameters": {
-												"instance-variable": "attackRange",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 808051964492781,
-											"parameters": {
-												"instance-variable": "movementSpeed",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 345760173856261,
-											"parameters": {
-												"instance-variable": "experience",
-												"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "set a random facing on spawn, and spawn the enemy's body"
-										},
-										{
-											"id": "set-moving-angle",
-											"objectClass": "enemy",
-											"sid": 504411726936199,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"angle": "random(-180, 180)"
-											}
-										},
-										{
-											"id": "create-object-by-name",
-											"objectClass": "System",
-											"sid": 674015415612296,
-											"parameters": {
-												"object-name": "enemy.simpleName",
-												"layer": "\"main\"",
-												"x": "enemy.X",
-												"y": "enemy.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 121890087717670
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 694829183273304,
-											"parameters": {
-												"object": "enemyBody"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "add-child",
-											"objectClass": "enemy",
-											"sid": 808926530721111,
-											"parameters": {
-												"child": "enemyBody",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": false,
-												"transform-h": false,
-												"transform-a": false,
-												"transform-o": true,
-												"transform-z-elevation": false,
-												"transform-visibility": false,
-												"destroy-with-parent": false
-											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "enemyBody",
-											"sid": 193890737113890,
-											"parameters": {
-												"animation": "\"walk_90\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 838844628654470
-								}
-							]
-						}
-					],
-					"sid": 644327675921449
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
 					"title": "behaviors",
 					"description": "",
 					"isActiveOnStart": true,
@@ -12295,6 +11497,31 @@
 					"text": "we tried a lot of different things to get shadows to stay immediately behind their hasShadow. A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter. We just decided to make shadows sortable, that seems to be working."
 				},
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "hasShadow",
+							"sid": 378910601868966
+						},
+						{
+							"id": "is-animation-playing",
+							"objectClass": "shadows",
+							"sid": 109471631179697,
+							"parameters": {
+								"animation": "\"checked\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "spawnShadows",
+							"sid": 451995717011975
+						}
+					],
+					"sid": 162215546549743
+				},
+				{
 					"functionName": "spawnShadows",
 					"functionDescription": "Spawn the shadow of an object.",
 					"functionCategory": "world",
@@ -12417,35 +11644,6 @@
 						}
 					],
 					"sid": 365044933941635
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-created",
-							"objectClass": "hasShadow",
-							"sid": 446392350790686
-						},
-						{
-							"id": "is-animation-playing",
-							"objectClass": "shadows",
-							"sid": 657737685484136,
-							"parameters": {
-								"animation": "\"checked\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "spawn shadows during the game for things that need them, if it's not during a loading screen"
-						},
-						{
-							"callFunction": "spawnShadows",
-							"sid": 989790559126505
-						}
-					],
-					"sid": 160921299784915
 				}
 			],
 			"sid": 538206850780870
@@ -13473,12 +12671,12 @@
 						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 655626658031456
+							"sid": 262069484413518
 						},
 						{
 							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 555056281458346,
+							"sid": 912674401090762,
 							"parameters": {
 								"first-value": "LayoutName",
 								"comparison": 0,
@@ -13488,7 +12686,7 @@
 						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 912464234672610,
+							"sid": 651187199103032,
 							"parameters": {
 								"variable": "previousLayout",
 								"comparison": 0,
@@ -13498,13 +12696,101 @@
 					],
 					"actions": [
 						{
+							"callFunction": "load",
+							"sid": 571474006536988
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 741768671534422
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingScreen",
+							"sid": 326753976665460,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 977992207052901,
+							"breakpoint": true,
+							"parameters": {
+								"layer": "\"main\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 663104217863289,
+							"parameters": {
+								"layer": "\"background\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 423683459194389,
+							"parameters": {
+								"layer": "\"abilityBar\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 442215454845124,
+							"parameters": {
+								"layer": "\"orbs\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 162804760549906,
+							"parameters": {
+								"layer": "\"mechanics\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 282134565796980,
+							"parameters": {
+								"tag": "\"main\"",
+								"db": "-100",
+								"duration": "3",
+								"ending": "stop"
+							}
+						}
+					],
+					"sid": 803419978161680
+				},
+				{
+					"functionName": "load",
+					"functionDescription": "Loads the game.",
+					"functionCategory": "data",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": true,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
 							"type": "comment",
 							"text": "load and parse out data"
 						},
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 643583976543378,
+							"sid": 188103700214701,
 							"parameters": {
 								"tag": "\"dialog\"",
 								"file": "npcDialog.json"
@@ -13513,12 +12799,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 538486492364201
+							"sid": 851738624449654
 						},
 						{
 							"id": "load",
 							"objectClass": "npcDialogArray",
-							"sid": 995578618712741,
+							"sid": 361903270282151,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13526,7 +12812,7 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 710945861120802,
+							"sid": 695306524223199,
 							"parameters": {
 								"tag": "\"abilities\"",
 								"file": "abilities.json"
@@ -13535,12 +12821,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 788174360714570
+							"sid": 441102160954335
 						},
 						{
 							"id": "load",
 							"objectClass": "abilitiesArray",
-							"sid": 608578720052768,
+							"sid": 458846179139460,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13548,7 +12834,7 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 920440186593964,
+							"sid": 321885046798283,
 							"parameters": {
 								"tag": "\"enemies\"",
 								"file": "enemies.json"
@@ -13557,12 +12843,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 903011922692493
+							"sid": 305805820247339
 						},
 						{
 							"id": "load",
 							"objectClass": "enemiesArray",
-							"sid": 894468445598159,
+							"sid": 187927351931252,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13570,7 +12856,7 @@
 						{
 							"id": "createProbabilityTable",
 							"objectClass": "advancedRandom",
-							"sid": 354747158044542,
+							"sid": 125481344982735,
 							"parameters": {
 								"name": "\"enemies\""
 							}
@@ -13578,7 +12864,7 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 497113787435464,
+							"sid": 416116910033583,
 							"parameters": {
 								"tag": "\"equipment\"",
 								"file": "equipment.json"
@@ -13587,12 +12873,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 750608439134245
+							"sid": 978380059215073
 						},
 						{
 							"id": "load",
 							"objectClass": "equipmentArray",
-							"sid": 172105989325916,
+							"sid": 981825842670829,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13600,7 +12886,7 @@
 						{
 							"id": "createProbabilityTable",
 							"objectClass": "advancedRandom",
-							"sid": 926959556837082,
+							"sid": 328437321876711,
 							"parameters": {
 								"name": "\"equipment\""
 							}
@@ -13608,7 +12894,7 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 517928590083291,
+							"sid": 772788185482311,
 							"parameters": {
 								"tag": "\"mods\"",
 								"file": "mods.json"
@@ -13617,12 +12903,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 215027585354868
+							"sid": 900094526896274
 						},
 						{
 							"id": "load",
 							"objectClass": "modsArray",
-							"sid": 326626465371332,
+							"sid": 574042038688160,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13630,7 +12916,7 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 817865350352474,
+							"sid": 199724212336240,
 							"parameters": {
 								"tag": "\"modRelationships\"",
 								"file": "modRelationships.json"
@@ -13639,12 +12925,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 420080757435607
+							"sid": 752107183786302
 						},
 						{
 							"id": "load",
 							"objectClass": "modRelationshipsArray",
-							"sid": 946746743767847,
+							"sid": 693355519272666,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -13652,7 +12938,7 @@
 						{
 							"id": "createProbabilityTable",
 							"objectClass": "advancedRandom",
-							"sid": 159389144809897,
+							"sid": 381900368398311,
 							"parameters": {
 								"name": "\"modValues\""
 							}
@@ -13664,7 +12950,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 247179058728032,
+							"sid": 113163440621889,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatHealth\"",
@@ -13674,7 +12960,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 201741876481201,
+							"sid": 412755709204861,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatSlash\"",
@@ -13684,7 +12970,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 124373662697521,
+							"sid": 798406420673277,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatStab\"",
@@ -13694,7 +12980,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 490800972305279,
+							"sid": 465805472564373,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatSmash\"",
@@ -13704,7 +12990,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 636426569416839,
+							"sid": 407950191053006,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatBlockChance\"",
@@ -13714,7 +13000,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 549595640272861,
+							"sid": 820921972163401,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatManaRegen\"",
@@ -13724,7 +13010,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 686238726133757,
+							"sid": 588496283355576,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatSlashAndStab\"",
@@ -13734,7 +13020,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 352238979016024,
+							"sid": 724996761106564,
 							"parameters": {
 								"name": "\"equipmentMods\"",
 								"string": "\"flatPhysical\"",
@@ -13748,7 +13034,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 237132220068185,
+							"sid": 712921950323233,
 							"parameters": {
 								"name": "\"playerAbilities\"",
 								"string": "\"basicAttack\"",
@@ -13758,7 +13044,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 394529823473024,
+							"sid": 623102210397069,
 							"parameters": {
 								"name": "\"playerAbilities\"",
 								"string": "\"heroicStrike\"",
@@ -13768,7 +13054,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 285445435943423,
+							"sid": 165582652801540,
 							"parameters": {
 								"name": "\"playerAbilities\"",
 								"string": "\"kick\"",
@@ -13782,7 +13068,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 318266161970046,
+							"sid": 645488078155445,
 							"parameters": {
 								"name": "\"enemyAbilities\"",
 								"string": "\"goblinUnderling\"",
@@ -13792,7 +13078,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 811409482361320,
+							"sid": 756573863445253,
 							"parameters": {
 								"name": "\"enemyAbilities\"",
 								"string": "\"goblinWarlock\"",
@@ -13802,7 +13088,7 @@
 						{
 							"id": "map-function",
 							"objectClass": "Functions",
-							"sid": 746424719092194,
+							"sid": 998015725141503,
 							"parameters": {
 								"name": "\"enemyAbilities\"",
 								"string": "\"goblinArcher\"",
@@ -13810,111 +13096,58 @@
 							}
 						},
 						{
-							"type": "comment",
-							"text": "Signal creations - use signals so we can control order, and keep relevant groups together"
-						},
-						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 815532331544622,
+							"id": "set-moving-angle",
+							"objectClass": "player",
+							"sid": 449219917559174,
+							"behaviorType": "MoveTo",
 							"parameters": {
-								"tag": "\"createNPCs\""
+								"angle": "QUARTER_CIRCLE"
 							}
 						},
 						{
-							"id": "signal",
+							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 303513948127334,
+							"sid": 516693142745191,
 							"parameters": {
-								"tag": "\"createPlayer\""
+								"object-name": "player.class",
+								"layer": "\"main\"",
+								"x": "player.X",
+								"y": "player.Y",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "load-object-images-by-name",
+							"objectClass": "System",
+							"sid": 407909083916883,
+							"parameters": {
+								"object": "player.class"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 243187478876559
+						},
+						{
+							"id": "setProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 623678195648103,
+							"parameters": {
+								"name": "\"equipment\""
 							}
 						}
 					],
-					"sid": 532995399136102,
+					"sid": 591606931079912,
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 569494377044820,
-									"parameters": {
-										"name": "\"enemies\""
-									}
-								}
-							],
-							"sid": 112170896522901
-						},
-						{
-							"eventType": "comment",
-							"text": "Using a system loop is faster than the array loop here because we don't need to loop over XY, only Y, which isn't possible with array loop"
-						},
-						{
-							"eventType": "block",
 							"conditions": [
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 858278599151536,
-									"parameters": {
-										"name": "\"\"",
-										"start-index": "1",
-										"end-index": "enemiesArray.Height - 1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "addProbabilityEntry",
-									"objectClass": "advancedRandom",
-									"sid": 569790593755369,
-									"parameters": {
-										"value": "enemiesArray.At(Functions.getColumnNumber(enemiesArray.ObjectTypeName, \"simpleName\"), loopindex)",
-										"weight": "enemiesArray.At(Functions.getColumnNumber(enemiesArray.ObjectTypeName, \"rarity\"), loopindex)"
-									}
-								}
-							],
-							"sid": 391512807391587
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 296533061474417,
-									"parameters": {
-										"tag": "\"createEnemies\""
-									}
-								}
-							],
-							"sid": 914594101330032
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 527201751585900,
-									"parameters": {
-										"name": "\"equipment\""
-									}
-								}
-							],
-							"sid": 537651463997366
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 161277702824369,
+									"sid": 116351819219430,
 									"parameters": {
 										"name": "\"\"",
 										"start-index": "1",
@@ -13924,16 +13157,66 @@
 							],
 							"actions": [
 								{
+									"type": "comment",
+									"text": "Generate equipment probability table"
+								},
+								{
 									"id": "addProbabilityEntry",
 									"objectClass": "advancedRandom",
-									"sid": 462161066233346,
+									"sid": 639666205472895,
 									"parameters": {
 										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
 										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
 									}
 								}
 							],
-							"sid": 363609991636586
+							"sid": 881900960205070
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "setProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 313730633544515,
+									"parameters": {
+										"name": "\"enemies\""
+									}
+								}
+							],
+							"sid": 614517036972421
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 767277307109447,
+									"parameters": {
+										"name": "\"\"",
+										"start-index": "1",
+										"end-index": "enemiesArray.Height - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Using a system loop is faster than the array loop here because we don't need to loop over XY, only Y, which isn't possible with array loop"
+								},
+								{
+									"id": "addProbabilityEntry",
+									"objectClass": "advancedRandom",
+									"sid": 918958750738087,
+									"parameters": {
+										"value": "enemiesArray.At(Functions.getColumnNumber(enemiesArray.ObjectTypeName, \"simpleName\"), loopindex)",
+										"weight": "enemiesArray.At(Functions.getColumnNumber(enemiesArray.ObjectTypeName, \"rarity\"), loopindex)"
+									}
+								}
+							],
+							"sid": 969695164937601
 						},
 						{
 							"eventType": "variable",
@@ -13943,7 +13226,7 @@
 							"comment": "The name of the modTable to create and use",
 							"isStatic": true,
 							"isConstant": false,
-							"sid": 153722454041510
+							"sid": 220919801517194
 						},
 						{
 							"eventType": "block",
@@ -13951,7 +13234,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 938268666012959,
+									"sid": 937090007995574,
 									"parameters": {
 										"name": "\"\"",
 										"start-index": "1",
@@ -13967,14 +13250,14 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 819998973144750,
+									"sid": 818988151198021,
 									"parameters": {
 										"variable": "modTableName",
 										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"modTable\"), loopindex)"
 									}
 								}
 							],
-							"sid": 331050158213265,
+							"sid": 763456143255203,
 							"children": [
 								{
 									"eventType": "block",
@@ -13982,7 +13265,7 @@
 										{
 											"id": "contains-value",
 											"objectClass": "modTableNamesArray",
-											"sid": 624586429993127,
+											"sid": 252605213638998,
 											"parameters": {
 												"value": "modTableName"
 											},
@@ -13993,7 +13276,7 @@
 										{
 											"id": "push",
 											"objectClass": "modTableNamesArray",
-											"sid": 985549320205467,
+											"sid": 896892717099298,
 											"parameters": {
 												"where": "back",
 												"value": "modTableName",
@@ -14001,7 +13284,7 @@
 											}
 										}
 									],
-									"sid": 342490949321196
+									"sid": 835187524564695
 								}
 							]
 						},
@@ -14011,7 +13294,7 @@
 								{
 									"id": "for-each-element",
 									"objectClass": "modTableNamesArray",
-									"sid": 969967315228306,
+									"sid": 427976792893791,
 									"parameters": {
 										"axes": "x"
 									}
@@ -14021,7 +13304,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 429144231082775,
+									"sid": 756752291793251,
 									"parameters": {
 										"variable": "modTableName",
 										"value": "modTableNamesArray.CurValue"
@@ -14030,7 +13313,7 @@
 								{
 									"id": "createProbabilityTable",
 									"objectClass": "advancedRandom",
-									"sid": 643690238625194,
+									"sid": 378111053399511,
 									"parameters": {
 										"name": "modTableName"
 									}
@@ -14038,13 +13321,13 @@
 								{
 									"id": "setProbabilityTable",
 									"objectClass": "advancedRandom",
-									"sid": 269998747673991,
+									"sid": 857537133414865,
 									"parameters": {
 										"name": "modTableName"
 									}
 								}
 							],
-							"sid": 266387431749440,
+							"sid": 864894229881285,
 							"children": [
 								{
 									"eventType": "variable",
@@ -14054,7 +13337,7 @@
 									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 895817371529010
+									"sid": 699018067342483
 								},
 								{
 									"eventType": "block",
@@ -14062,7 +13345,7 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 924261551291335,
+											"sid": 322108031246328,
 											"parameters": {
 												"name": "\"\"",
 												"start-index": "1",
@@ -14072,7 +13355,7 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 740429727234499,
+											"sid": 974278022258087,
 											"parameters": {
 												"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"modTableName\"), loopindex)",
 												"comparison": 0,
@@ -14084,7 +13367,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 410438335810045,
+											"sid": 577716398394118,
 											"parameters": {
 												"variable": "modName",
 												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"mod\"), loopindex)"
@@ -14093,14 +13376,698 @@
 										{
 											"id": "addProbabilityEntry",
 											"objectClass": "advancedRandom",
-											"sid": 852474257247651,
+											"sid": 524413543389207,
 											"parameters": {
 												"value": "modName",
 												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, \"simpleName\", modName, \"rarity\"))"
 											}
 										}
 									],
-									"sid": 724785017388781
+									"sid": 419233956947461
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Create the player and abilities"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-last-created",
+									"objectClass": "System",
+									"sid": 833088231822802,
+									"parameters": {
+										"object": "body"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-child",
+									"objectClass": "player",
+									"sid": 734767840988603,
+									"parameters": {
+										"child": "body",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": false,
+										"transform-h": false,
+										"transform-a": false,
+										"transform-o": false,
+										"transform-z-elevation": false,
+										"transform-visibility": false,
+										"destroy-with-parent": true
+									}
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 911396598098996,
+									"parameters": [
+										"\"idle\"",
+										"body.OriginalAnimationSpeed",
+										"\"playFromBeginning\""
+									]
+								}
+							],
+							"sid": 955985015402344,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 910067669554608,
+											"parameters": {
+												"object": "abilitySlot"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "for each ability cover, create the appropriate ability on the same layer as that cover"
+										},
+										{
+											"id": "create-object-by-name",
+											"objectClass": "System",
+											"sid": 630695246886363,
+											"parameters": {
+												"object-name": "body.ObjectTypeName & \"_ability\"",
+												"layer": "abilitySlot.LayerName",
+												"x": "abilitySlot.X",
+												"y": "abilitySlot.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										}
+									],
+									"sid": 413159530480791,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 196031294098691,
+													"parameters": {
+														"object": "ability"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-effect-enabled",
+													"objectClass": "ability",
+													"sid": 548903170872779,
+													"parameters": {
+														"mode": "disable",
+														"effect": "\"Grayscale\""
+													}
+												},
+												{
+													"id": "set-effect-parameter",
+													"objectClass": "ability",
+													"sid": 851461370169948,
+													"parameters": {
+														"effect": "\"Grayscale\"",
+														"parameter-index": "0",
+														"value": "100"
+													}
+												},
+												{
+													"id": "add-child",
+													"objectClass": "abilitySlot",
+													"sid": 920361376648274,
+													"parameters": {
+														"child": "ability",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": true,
+														"transform-h": true,
+														"transform-a": true,
+														"transform-o": false,
+														"transform-z-elevation": true,
+														"transform-visibility": false,
+														"destroy-with-parent": false
+													}
+												}
+											],
+											"sid": 755236659759397
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "// Load the default gear of the player during this 'load' function, so the loading screen doesn't disappear until they're in."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 589943822224574,
+											"parameters": {
+												"instance-variable": "class",
+												"comparison": 1,
+												"value": "\"man\""
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 750272037224889,
+											"parameters": {
+												"object": "slot",
+												"expression": "slot.type",
+												"comparison": 0,
+												"value": "\"chest\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 294220523414173,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"chest\" & \"Default_gear\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 427789135441579
+										},
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 214321585896874,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"chest\" & \"Default_gear_shadow\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 970020906650979
+										},
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 642951113880653
+										}
+									],
+									"sid": 781753122231719
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 752368836180608,
+											"parameters": {
+												"object": "slot",
+												"expression": "slot.type",
+												"comparison": 0,
+												"value": "\"legs\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 621270635391535,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"legs\" & \"Default_gear\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 632171238967920
+										},
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 807663176478473,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"legs\" & \"Default_gear_shadow\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 514317617836873
+										},
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 105657799472601
+										}
+									],
+									"sid": 437737076174307
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 529746168504917,
+											"parameters": {
+												"object": "slot",
+												"expression": "slot.type",
+												"comparison": 0,
+												"value": "\"head\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 582291464743282,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 404836081783116
+										},
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 367540469501029,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear_shadow\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 374866886742628
+										},
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 328658235205661
+										}
+									],
+									"sid": 677740658980604
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Create NPCs"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 890104820261702,
+									"parameters": {
+										"object": "npc"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "load-object-images-by-name",
+									"objectClass": "System",
+									"sid": 418449852861118,
+									"parameters": {
+										"object": "npc.simpleName"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 428317090135640
+								},
+								{
+									"id": "load-object-images-by-name",
+									"objectClass": "System",
+									"sid": 436599357808296,
+									"parameters": {
+										"object": "npc.simpleName & \"_shadow\""
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 737425696485554
+								},
+								{
+									"id": "create-object-by-name",
+									"objectClass": "System",
+									"sid": 770678806215571,
+									"parameters": {
+										"object-name": "npc.simpleName",
+										"layer": "\"main\"",
+										"x": "npc.X",
+										"y": "npc.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								}
+							],
+							"sid": 782308197390908,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 915660315404432,
+											"parameters": {
+												"object": "npcBody"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-child",
+											"objectClass": "npc",
+											"sid": 463898096291360,
+											"parameters": {
+												"child": "npcBody",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-o": false,
+												"transform-z-elevation": false,
+												"transform-visibility": false,
+												"destroy-with-parent": false
+											}
+										}
+									],
+									"sid": 158986166365687
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Create enemies"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 291060336022569,
+									"parameters": {
+										"object": "enemy"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 348607155300486,
+									"parameters": {
+										"instance-variable": "simpleName",
+										"value": "advancedRandom.WeightedByName(\"enemies\")"
+									}
+								},
+								{
+									"id": "set-width",
+									"objectClass": "enemy",
+									"sid": 507357838208161,
+									"parameters": {
+										"width": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"size\"))"
+									}
+								},
+								{
+									"id": "set-height",
+									"objectClass": "enemy",
+									"sid": 485174847731875,
+									"parameters": {
+										"height": "Self.Width / ISOMETRIC_DIVIDER"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 189914820551434,
+									"parameters": {
+										"instance-variable": "arcaneDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"arcaneDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 951086004423311,
+									"parameters": {
+										"instance-variable": "attackSpeed",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackSpeed\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 278353993375725,
+									"parameters": {
+										"instance-variable": "attributes",
+										"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 629344724411215,
+									"parameters": {
+										"instance-variable": "coldDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"coldDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 738361690423043,
+									"parameters": {
+										"instance-variable": "corruptDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"corruptDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 924541694500871,
+									"parameters": {
+										"instance-variable": "fireDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fireDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 209988758275967,
+									"parameters": {
+										"instance-variable": "fullName",
+										"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 116719567233772,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 501520638085570,
+									"parameters": {
+										"instance-variable": "maxHealth",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 895186303757955,
+									"parameters": {
+										"instance-variable": "lightningDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lightningDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 295261295865196,
+									"parameters": {
+										"instance-variable": "slashDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"slashDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 506472088392675,
+									"parameters": {
+										"instance-variable": "smashDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"smashDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 634993640730236,
+									"parameters": {
+										"instance-variable": "stabDamage",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"stabDamage\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 674827865688253,
+									"parameters": {
+										"instance-variable": "type",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 352841142647286,
+									"parameters": {
+										"instance-variable": "attackRange",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 190614150035784,
+									"parameters": {
+										"instance-variable": "movementSpeed",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 837264860441705,
+									"parameters": {
+										"instance-variable": "experience",
+										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "set a random facing on spawn, and spawn the enemy's body"
+								},
+								{
+									"id": "set-moving-angle",
+									"objectClass": "enemy",
+									"sid": 119934343612232,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"angle": "random(-180, 180)"
+									}
+								},
+								{
+									"id": "load-object-images-by-name",
+									"objectClass": "System",
+									"sid": 337530727922837,
+									"parameters": {
+										"object": "enemy.simpleName"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 480256585505852
+								},
+								{
+									"id": "load-object-images-by-name",
+									"objectClass": "System",
+									"sid": 196028879926132,
+									"parameters": {
+										"object": "enemy.simpleName & \"_shadow\""
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 833837090869346
+								},
+								{
+									"id": "create-object-by-name",
+									"objectClass": "System",
+									"sid": 881399018105449,
+									"parameters": {
+										"object-name": "enemy.simpleName",
+										"layer": "\"main\"",
+										"x": "enemy.X",
+										"y": "enemy.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								}
+							],
+							"sid": 257404875087089,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 245890780403560,
+											"parameters": {
+												"object": "enemyBody"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-child",
+											"objectClass": "enemy",
+											"sid": 951244560400713,
+											"parameters": {
+												"child": "enemyBody",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-o": true,
+												"transform-z-elevation": false,
+												"transform-visibility": false,
+												"destroy-with-parent": false
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 100083109756452,
+											"parameters": {
+												"animation": "\"walk_90\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 936517967351408
 								}
 							]
 						},
@@ -14111,77 +14078,13 @@
 								{
 									"id": "wait",
 									"objectClass": "System",
-									"sid": 318598856672828,
+									"sid": 222464443198748,
 									"parameters": {
-										"seconds": "2"
-									}
-								},
-								{
-									"id": "set-visible",
-									"objectClass": "loadingScreen",
-									"sid": 641787469766839,
-									"parameters": {
-										"visibility": "invisible"
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 854125906146849,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 540608717877302,
-									"parameters": {
-										"layer": "\"background\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 291401725120660,
-									"parameters": {
-										"layer": "\"abilityBar\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 905588075991774,
-									"parameters": {
-										"layer": "\"orbs\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 244685369842982,
-									"parameters": {
-										"layer": "\"mechanics\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "fade-volume",
-									"objectClass": "Audio",
-									"sid": 518995939032362,
-									"parameters": {
-										"tag": "\"main\"",
-										"db": "-100",
-										"duration": "3",
-										"ending": "stop"
+										"seconds": "0"
 									}
 								}
 							],
-							"sid": 750205123469162
+							"sid": 340547706677700
 						}
 					]
 				}

@@ -4719,11 +4719,6 @@
 										{
 											"callFunction": "queueGearManagement",
 											"sid": 104426710382001
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 136218559561968
 										}
 									],
 									"sid": 315854207588580,
@@ -4755,11 +4750,6 @@
 												{
 													"callFunction": "queueGearManagement",
 													"sid": 708988139671752
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 118214878188060
 												}
 											],
 											"sid": 944221062483027,
@@ -4801,11 +4791,6 @@
 														{
 															"callFunction": "queueGearManagement",
 															"sid": 741855895061145
-														},
-														{
-															"id": "wait-for-previous-actions",
-															"objectClass": "System",
-															"sid": 357268931968551
 														}
 													],
 													"sid": 298826179305528
@@ -13843,82 +13828,6 @@
 							"parameters": {
 								"tag": "\"createPlayer\""
 							}
-						},
-						{
-							"type": "comment",
-							"text": "This wait is a suboptimal solution for https://github.com/Laserwolve-Games/DaggerQuest/issues/34"
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 215241331436489,
-							"parameters": {
-								"seconds": "2"
-							}
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "loadingScreen",
-							"sid": 848898868608911,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 154043553254825,
-							"parameters": {
-								"layer": "\"main\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 186487739399254,
-							"parameters": {
-								"layer": "\"background\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 211286755638225,
-							"parameters": {
-								"layer": "\"abilityBar\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 164597903700588,
-							"parameters": {
-								"layer": "\"orbs\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 630428645063600,
-							"parameters": {
-								"layer": "\"mechanics\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "fade-volume",
-							"objectClass": "Audio",
-							"sid": 681290593442490,
-							"parameters": {
-								"tag": "\"main\"",
-								"db": "-100",
-								"duration": "3",
-								"ending": "stop"
-							}
 						}
 					],
 					"sid": 532995399136102,
@@ -14194,6 +14103,85 @@
 									"sid": 724785017388781
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 318598856672828,
+									"parameters": {
+										"seconds": "2"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "loadingScreen",
+									"sid": 641787469766839,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 854125906146849,
+									"parameters": {
+										"layer": "\"main\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 540608717877302,
+									"parameters": {
+										"layer": "\"background\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 291401725120660,
+									"parameters": {
+										"layer": "\"abilityBar\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 905588075991774,
+									"parameters": {
+										"layer": "\"orbs\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 244685369842982,
+									"parameters": {
+										"layer": "\"mechanics\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "fade-volume",
+									"objectClass": "Audio",
+									"sid": 518995939032362,
+									"parameters": {
+										"tag": "\"main\"",
+										"db": "-100",
+										"duration": "3",
+										"ending": "stop"
+									}
+								}
+							],
+							"sid": 750205123469162
 						}
 					]
 				}

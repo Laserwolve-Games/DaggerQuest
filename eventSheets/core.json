@@ -11831,6 +11831,7 @@
 							],
 							"actions": [],
 							"sid": 591454218470020,
+							"disabled": true,
 							"children": [
 								{
 									"eventType": "variable",
@@ -11910,7 +11911,8 @@
 											]
 										}
 									],
-									"sid": 661315679644106
+									"sid": 661315679644106,
+									"disabled": true
 								},
 								{
 									"eventType": "block",
@@ -11964,6 +11966,7 @@
 										}
 									],
 									"sid": 680787690708581,
+									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -12026,7 +12029,8 @@
 													]
 												}
 											],
-											"sid": 181406029233488
+											"sid": 181406029233488,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -12048,7 +12052,8 @@
 													"sid": 887800632849253
 												}
 											],
-											"sid": 944725340629196
+											"sid": 944725340629196,
+											"disabled": true
 										}
 									]
 								}
@@ -12699,7 +12704,6 @@
 											"id": "set-layer-interactive",
 											"objectClass": "System",
 											"sid": 794823874165651,
-											"breakpoint": true,
 											"parameters": {
 												"layer": "\"main\"",
 												"interactive": true
@@ -12754,6 +12758,41 @@
 										}
 									],
 									"sid": 410877502763355
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-in-preview",
+											"objectClass": "System",
+											"sid": 677428295136778
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 254831716518711,
+											"parameters": {
+												"layer": "\"mechanics\"",
+												"visibility": "visible"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "boundary is a separate layer only so we can lock other layers to easily set boundaries"
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 802080427777729,
+											"parameters": {
+												"layer": "\"boundary\"",
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 477705581933398
 								}
 							]
 						}

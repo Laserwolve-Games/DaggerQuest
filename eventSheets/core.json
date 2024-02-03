@@ -3840,11 +3840,25 @@
 			"children": [
 				{
 					"eventType": "group",
-					"disabled": false,
+					"disabled": true,
 					"title": "pathfinding grid",
-					"description": "we need to break out layouts before doing pathfinding... otherwise layoutWidth / 3 will be unnecessarily large",
+					"description": "",
 					"isActiveOnStart": true,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "Has to be an even number?"
+						},
+						{
+							"eventType": "variable",
+							"name": "BORDER_SIZE",
+							"type": "number",
+							"initialValue": "10",
+							"comment": "The 0-based size of the additional border around pathfinding objects",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 562709694284046
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -3858,15 +3872,312 @@
 								{
 									"id": "set-size",
 									"objectClass": "pathfindingGridArray",
-									"sid": 672943269369393,
+									"sid": 458128146312919,
 									"parameters": {
-										"width": "LayoutWidth / 3",
+										"width": "LayoutWidth",
 										"height": "LayoutHeight",
 										"depth": "1"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 512920626503571,
+									"disabled": true,
+									"parameters": {
+										"tag": "\"pathfindingGrid\"",
+										"file": "pathfindingGrid.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 721132644754413,
+									"disabled": true
+								},
+								{
+									"id": "load",
+									"objectClass": "pathfindingGridArray",
+									"sid": 244042860157255,
+									"disabled": true,
+									"parameters": {
+										"json": "AJAX.LastData"
 									}
 								}
 							],
 							"sid": 453815565285983,
+							"disabled": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each-element",
+											"objectClass": "pathfindingGridArray",
+											"sid": 603370655769481,
+											"parameters": {
+												"axes": "xy"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 435609583327643,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-overlapping-point",
+													"objectClass": "System",
+													"sid": 882540248506168,
+													"parameters": {
+														"object": "prop",
+														"x": "pathfindingGridArray.CurX",
+														"y": "pathfindingGridArray.CurY"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-at-xy",
+													"objectClass": "pathfindingGridArray",
+													"sid": 178795601672041,
+													"parameters": {
+														"x": "Self.CurX",
+														"y": "Self.CurY",
+														"value": "prop.ObjectTypeName"
+													}
+												}
+											],
+											"sid": 757908872488131,
+											"disabled": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-overlapping-point",
+													"objectClass": "System",
+													"sid": 631198232332924,
+													"parameters": {
+														"object": "npc",
+														"x": "pathfindingGridArray.CurX",
+														"y": "pathfindingGridArray.CurY"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "NPCs that are 'on top' of props will replace the prop's UID in the array with the NPCs UID, because this event is below that one - that's ok"
+												},
+												{
+													"id": "set-at-xy",
+													"objectClass": "pathfindingGridArray",
+													"sid": 599640924319038,
+													"parameters": {
+														"x": "Self.CurX",
+														"y": "Self.CurY",
+														"value": "npc.ObjectTypeName"
+													}
+												}
+											],
+											"sid": 381834482521655,
+											"disabled": true
+										},
+										{
+											"eventType": "comment",
+											"text": "The player and enemies will move, but we can at least get their initial locations"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-overlapping-point",
+													"objectClass": "System",
+													"sid": 916886036207465,
+													"parameters": {
+														"object": "player",
+														"x": "pathfindingGridArray.CurX",
+														"y": "pathfindingGridArray.CurY"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-at-xy",
+													"objectClass": "pathfindingGridArray",
+													"sid": 269047494107796,
+													"parameters": {
+														"x": "Self.CurX",
+														"y": "Self.CurY",
+														"value": "player.ObjectTypeName"
+													}
+												}
+											],
+											"sid": 429812868162917,
+											"disabled": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-overlapping-point",
+													"objectClass": "System",
+													"sid": 851833894280424,
+													"parameters": {
+														"object": "enemy",
+														"x": "pathfindingGridArray.CurX",
+														"y": "pathfindingGridArray.CurY"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-at-xy",
+													"objectClass": "pathfindingGridArray",
+													"sid": 866584161725381,
+													"parameters": {
+														"x": "Self.CurX",
+														"y": "Self.CurY",
+														"value": "enemy.ObjectTypeName"
+													}
+												}
+											],
+											"sid": 196797097752217,
+											"disabled": true
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each-element",
+											"objectClass": "pathfindingGridArray",
+											"sid": 900256021316788,
+											"parameters": {
+												"axes": "xy"
+											}
+										},
+										{
+											"id": "compare-current-value",
+											"objectClass": "pathfindingGridArray",
+											"sid": 696041419908094,
+											"parameters": {
+												"comparison": 1,
+												"value": "0"
+											}
+										},
+										{
+											"id": "compare-current-value",
+											"objectClass": "pathfindingGridArray",
+											"sid": 281567548046974,
+											"parameters": {
+												"comparison": 1,
+												"value": "\"border\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "for every pathfinding grid coordinate, that's not empty, and not a border..."
+										}
+									],
+									"sid": 868100264396178,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 562980943161841,
+													"parameters": {
+														"name": "\"X\"",
+														"start-index": "0",
+														"end-index": "BORDER_SIZE"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-at-xy",
+													"objectClass": "pathfindingGridArray",
+													"sid": 942825395176823,
+													"parameters": {
+														"x": "Self.CurX - loopindex",
+														"y": "Self.CurY",
+														"value": "\"border\""
+													}
+												}
+											],
+											"sid": 701760410629864,
+											"disabled": true,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 497882016886263,
+															"parameters": {
+																"name": "\"Y\"",
+																"start-index": "0",
+																"end-index": "BORDER_SIZE"
+															}
+														},
+														{
+															"id": "compare-at-xy",
+															"objectClass": "pathfindingGridArray",
+															"sid": 869284419838284,
+															"parameters": {
+																"x": "Self.CurX - loopindex",
+																"y": "Self.CurY",
+																"comparison": 0,
+																"value": "0"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 516503843926226,
+													"disabled": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 338937585106535,
+									"parameters": {
+										"key": 90
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "invoke-download-of-string",
+									"objectClass": "browser",
+									"sid": 653542005167200,
+									"parameters": {
+										"string": "pathfindingGridArray.AsJSON",
+										"mime-type": "\"application/json\"",
+										"filename": "\"mydata.json\""
+									}
+								}
+							],
+							"sid": 151082340719092,
 							"disabled": true
 						}
 					],
@@ -10182,10 +10493,6 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -10246,11 +10553,43 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-overlapping-another-object",
+											"id": "is-overlapping-at-offset",
 											"objectClass": "enemy",
-											"sid": 209112392848397,
+											"sid": 441849426496314,
 											"parameters": {
-												"object": "enemy"
+												"object": "enemy",
+												"offset-x": "1",
+												"offset-y": "1"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "enemy",
+											"sid": 282765377903324,
+											"parameters": {
+												"object": "enemy",
+												"offset-x": "-1",
+												"offset-y": "1"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "enemy",
+											"sid": 406818718751347,
+											"parameters": {
+												"object": "enemy",
+												"offset-x": "1",
+												"offset-y": "-1"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "enemy",
+											"sid": 230611287926245,
+											"parameters": {
+												"object": "enemy",
+												"offset-x": "-1",
+												"offset-y": "-1"
 											}
 										},
 										{
@@ -10262,7 +10601,12 @@
 											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
+										}
+									],
 									"sid": 629417720980880,
 									"children": [
 										{

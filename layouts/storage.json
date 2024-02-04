@@ -59,22 +59,10 @@
 								"enabled": true
 							}
 						},
-						"Custom": {
-							"properties": {
-								"stepping-mode": "none",
-								"pixels-per-step": 1,
-								"enabled": true
-							}
-						},
 						"Solid": {
 							"properties": {
 								"enabled": true,
 								"tags": ""
-							}
-						},
-						"Tween": {
-							"properties": {
-								"enabled": true
 							}
 						},
 						"knockback": {
@@ -85,6 +73,21 @@
 								"rotate-speed": 0,
 								"set-angle": false,
 								"stop-on-solids": false,
+								"enabled": true
+							}
+						},
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 30,
+								"cell-border": -1,
+								"obstacles": "solids",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": true,
+								"diagonals": true,
+								"direct-movement": "to-destination",
 								"enabled": true
 							}
 						}

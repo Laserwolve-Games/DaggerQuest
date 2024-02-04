@@ -5360,15 +5360,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
-															"objectClass": "player",
-															"sid": 162515465204135,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, npc.X, npc.Y, npc.interactRange)",
-																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, npc.X, npc.Y, npc.interactRange)",
-																"mode": "direct"
-															}
+															"callFunction": "normalMovement",
+															"sid": 647102284639963,
+															"parameters": [
+																"Functions.FixedDistanceAlongLineX(player.X, player.Y, npc.X, npc.Y, npc.interactRange)",
+																"Functions.FixedDistanceAlongLineY(player.X, player.Y, npc.X, npc.Y, npc.interactRange)",
+																false
+															]
 														}
 													],
 													"sid": 427665327590872
@@ -5480,15 +5478,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
-															"objectClass": "player",
-															"sid": 769357481209818,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, enemy.X, enemy.Y, Self.attackRange)",
-																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, enemy.X, enemy.Y, Self.attackRange)",
-																"mode": "direct"
-															}
+															"callFunction": "normalMovement",
+															"sid": 181465131545106,
+															"parameters": [
+																"Functions.FixedDistanceAlongLineX(player.X, player.Y, enemy.X, enemy.Y, player.attackRange)",
+																"Functions.FixedDistanceAlongLineY(player.X, player.Y, enemy.X, enemy.Y, player.attackRange)",
+																false
+															]
 														}
 													],
 													"sid": 325974417658702
@@ -5601,15 +5597,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
-															"objectClass": "player",
-															"sid": 123314597747222,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, loot.X, loot.Y, effectivePickupRange)",
-																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, loot.X, loot.Y, effectivePickupRange)",
-																"mode": "direct"
-															}
+															"callFunction": "normalMovement",
+															"sid": 191093375155646,
+															"parameters": [
+																"Functions.FixedDistanceAlongLineX(player.X, player.Y, loot.X, loot.Y, effectivePickupRange)",
+																"Functions.FixedDistanceAlongLineY(player.X, player.Y, loot.X, loot.Y, effectivePickupRange)",
+																false
+															]
 														}
 													],
 													"sid": 973265333338329
@@ -5675,15 +5669,13 @@
 															}
 														},
 														{
-															"id": "move-to-position",
-															"objectClass": "player",
-															"sid": 393585758725355,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"x": "Functions.FixedDistanceAlongLineX(Self.X, Self.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
-																"y": "Functions.FixedDistanceAlongLineY(Self.X, Self.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
-																"mode": "direct"
-															}
+															"callFunction": "normalMovement",
+															"sid": 685894971540027,
+															"parameters": [
+																"Functions.FixedDistanceAlongLineX(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
+																"Functions.FixedDistanceAlongLineY(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
+																false
+															]
 														}
 													],
 													"sid": 597494309837339
@@ -5770,7 +5762,12 @@
 														},
 														{
 															"callFunction": "normalMovement",
-															"sid": 905268901293177
+															"sid": 890652795602718,
+															"parameters": [
+																"mouse.X",
+																"mouse.Y",
+																true
+															]
 														}
 													],
 													"sid": 734198820085048
@@ -5826,7 +5823,12 @@
 													"actions": [
 														{
 															"callFunction": "normalMovement",
-															"sid": 657244399168125
+															"sid": 190321896549681,
+															"parameters": [
+																"mouse.X",
+																"mouse.Y",
+																true
+															]
 														}
 													],
 													"sid": 867796252491452
@@ -6073,48 +6075,12 @@
 									"objectClass": "player",
 									"sid": 257293166185651,
 									"behaviorType": "MoveTo"
-								},
-								{
-									"id": "compare-x",
-									"objectClass": "player",
-									"sid": 620319082947073,
-									"parameters": {
-										"comparison": 1,
-										"x-co-ordinate": "Self.lastX"
-									}
-								},
-								{
-									"id": "compare-y",
-									"objectClass": "player",
-									"sid": 822297045595581,
-									"parameters": {
-										"comparison": 1,
-										"y-co-ordinate": "Self.lastY"
-									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
 									"text": "...if they're moving (and not where they were last tick), set their animation appropriately"
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 752318121370594,
-									"parameters": {
-										"instance-variable": "lastX",
-										"value": "Self.X"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 958338878941089,
-									"parameters": {
-										"instance-variable": "lastY",
-										"value": "Self.Y"
-									}
 								}
 							],
 							"sid": 146079688686831,
@@ -6123,64 +6089,111 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
-											"sid": 352311202166792,
+											"id": "compare-x",
+											"objectClass": "player",
+											"sid": 453153895915712,
 											"parameters": {
-												"value": "find(body.AnimationName, \"idle\") <> -1\n"
+												"comparison": 1,
+												"x-co-ordinate": "Self.lastX"
+											}
+										},
+										{
+											"id": "compare-y",
+											"objectClass": "player",
+											"sid": 481820623656507,
+											"parameters": {
+												"comparison": 1,
+												"y-co-ordinate": "Self.lastY"
 											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "if they were idling, start the animation from the beginning"
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 813757426231788,
-											"parameters": [
-												"\"walk\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromBeginning\""
-											]
-										}
-									],
-									"sid": 948214990872049
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 891393396713570
-										},
-										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
-											"sid": 716678570682387,
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 933425630135912,
 											"parameters": {
-												"value": "find(body.AnimationName, \"walk\") <> -1\n"
+												"instance-variable": "lastX",
+												"value": "Self.X"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 570281703444156,
+											"parameters": {
+												"instance-variable": "lastY",
+												"value": "Self.Y"
 											}
 										}
 									],
-									"actions": [
+									"sid": 944444375810434,
+									"children": [
 										{
-											"type": "comment",
-											"text": "if they were already walking, play the animation from the current frame"
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 491456437639695,
+													"parameters": {
+														"value": "find(body.AnimationName, \"idle\") <> -1\n"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "if they were idling, start the animation from the beginning"
+												},
+												{
+													"callFunction": "updateAnimations",
+													"sid": 275860637375017,
+													"parameters": [
+														"\"walk\"",
+														"player.movementSpeed / ANIMATION_DIVISOR",
+														"\"playFromBeginning\""
+													]
+												}
+											],
+											"sid": 889146865522435
 										},
 										{
-											"callFunction": "updateAnimations",
-											"sid": 713576676136872,
-											"parameters": [
-												"\"walk\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromCurrentFrame\""
-											]
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 920954747307638
+												},
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 897869442766280,
+													"parameters": {
+														"value": "find(body.AnimationName, \"walk\") <> -1\n"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "if they were already walking, play the animation from the current frame"
+												},
+												{
+													"callFunction": "updateAnimations",
+													"sid": 718541460779320,
+													"parameters": [
+														"\"walk\"",
+														"player.movementSpeed / ANIMATION_DIVISOR",
+														"\"playFromCurrentFrame\""
+													]
+												}
+											],
+											"sid": 398675718889829
 										}
 									],
-									"sid": 405952666635705
+									"isOrBlock": true
 								}
 							]
 						},
@@ -6221,32 +6234,85 @@
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
-							"functionParameters": [],
+							"functionParameters": [
+								{
+									"name": "x",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The coordinate on the X axis to move the player to",
+									"sid": 476477426097131
+								},
+								{
+									"name": "y",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The coordinate on the Y axis to move the player to",
+									"sid": 381101153777112
+								},
+								{
+									"name": "resetUidOfClicked",
+									"type": "boolean",
+									"initialValue": "false",
+									"comment": "Whether or not to 0 out the uidOfClicked variable",
+									"sid": 692441277433379
+								}
+							],
 							"eventType": "function-block",
 							"conditions": [],
 							"actions": [
 								{
-									"id": "move-to-position",
+									"id": "find-path",
 									"objectClass": "player",
-									"sid": 285667238478145,
-									"behaviorType": "MoveTo",
+									"sid": 404646966927390,
+									"behaviorType": "Pathfinding",
 									"parameters": {
-										"x": "mouse.X",
-										"y": "mouse.Y",
-										"mode": "direct"
+										"x": "x",
+										"y": "y"
 									}
 								},
 								{
-									"id": "set-eventvar-value",
+									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 654479744680636,
+									"sid": 688794276758511
+								},
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "player",
+									"sid": 117524857244301,
+									"behaviorType": "MoveTo",
 									"parameters": {
-										"variable": "uidOfClicked",
-										"value": "0"
+										"mode": "direct"
 									}
 								}
 							],
-							"sid": 736875311258128
+							"sid": 736875311258128,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 488673607968708,
+											"parameters": {
+												"variable": "resetUidOfClicked"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 819455018274928,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 456382177782865
+								}
+							]
 						}
 					],
 					"sid": 914713205483917
@@ -10553,94 +10619,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-overlapping-at-offset",
-											"objectClass": "enemy",
-											"sid": 441849426496314,
-											"parameters": {
-												"object": "enemy",
-												"offset-x": "1",
-												"offset-y": "1"
-											}
-										},
-										{
-											"id": "is-overlapping-at-offset",
-											"objectClass": "enemy",
-											"sid": 282765377903324,
-											"parameters": {
-												"object": "enemy",
-												"offset-x": "-1",
-												"offset-y": "1"
-											}
-										},
-										{
-											"id": "is-overlapping-at-offset",
-											"objectClass": "enemy",
-											"sid": 406818718751347,
-											"parameters": {
-												"object": "enemy",
-												"offset-x": "1",
-												"offset-y": "-1"
-											}
-										},
-										{
-											"id": "is-overlapping-at-offset",
-											"objectClass": "enemy",
-											"sid": 230611287926245,
-											"parameters": {
-												"object": "enemy",
-												"offset-x": "-1",
-												"offset-y": "-1"
-											}
-										},
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "enemy",
-											"sid": 617694340787267,
-											"parameters": {
-												"object": "player"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "If an enemy overlaps something it shouldn't, slowly push that enemy away."
-										}
-									],
-									"sid": 629417720980880,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-topbottom",
-													"objectClass": "enemy",
-													"sid": 399910944783713,
-													"parameters": {
-														"which": "bottom"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "move-at-angle",
-													"objectClass": "enemy",
-													"sid": 269044207457037,
-													"parameters": {
-														"angle": "Self.MoveTo.MovingAngle - QUARTER_CIRCLE",
-														"distance": "Self.MoveTo.MaxSpeed / 2 / TICKS_PER_SECOND"
-													}
-												}
-											],
-											"sid": 917479554105530
-										}
-									],
-									"isOrBlock": true
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
 											"id": "is-moving",
 											"objectClass": "enemy",
 											"sid": 705141017915169,
@@ -10657,6 +10635,15 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 884498023343598,
+											"parameters": {
+												"instance-variable": "attacking",
+												"value": "false"
+											}
+										},
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
@@ -10769,13 +10756,30 @@
 											],
 											"actions": [
 												{
-													"id": "move-to-object",
+													"type": "comment",
+													"text": "HERE: Find a random location to a box around the player... the smallest possible box where the enemy could attack the player from any location within it >:)"
+												},
+												{
+													"id": "find-path",
 													"objectClass": "enemy",
-													"sid": 774348983347328,
+													"sid": 732883502161521,
+													"behaviorType": "Pathfinding",
+													"parameters": {
+														"x": "player.X",
+														"y": "player.Y"
+													}
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 529858208011408
+												},
+												{
+													"id": "move-along-pathfinding-path",
+													"objectClass": "enemy",
+													"sid": 155380887518980,
 													"behaviorType": "MoveTo",
 													"parameters": {
-														"object": "player",
-														"image-point": "0",
 														"mode": "direct"
 													}
 												}
@@ -13037,6 +13041,21 @@
 									"conditions": [],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "We oddly still had to regenerate the obstacle map even when we added obstacles in the 'on start of layout' trigger. (that's what the documentation says to do.) We add obstacle maps to both the player and enemies in the 'load' function, so we have to (re?)generate the pathfinding obstacle map here."
+										},
+										{
+											"id": "regenerate-obstacle-map",
+											"objectClass": "player",
+											"sid": 750423419646440,
+											"behaviorType": "Pathfinding"
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 835471905542578
+										},
+										{
 											"id": "set-visible",
 											"objectClass": "loadingScreen",
 											"sid": 470616944961394,
@@ -13472,6 +13491,15 @@
 							"behaviorType": "MoveTo",
 							"parameters": {
 								"angle": "QUARTER_CIRCLE"
+							}
+						},
+						{
+							"id": "add-obstacle",
+							"objectClass": "player",
+							"sid": 214046696265066,
+							"behaviorType": "Pathfinding",
+							"parameters": {
+								"obstacle": "prop"
 							}
 						},
 						{
@@ -14126,6 +14154,15 @@
 							],
 							"actions": [
 								{
+									"id": "add-obstacle",
+									"objectClass": "enemy",
+									"sid": 119295802383009,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
+									}
+								},
+								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
 									"sid": 348607155300486,
@@ -14340,6 +14377,19 @@
 										"y": "enemy.Y",
 										"create-hierarchy": false,
 										"template-name": "\"\""
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Not sure if these needs to be done for every enemy"
+								},
+								{
+									"id": "add-obstacle",
+									"objectClass": "enemy",
+									"sid": 998329928147493,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
 									}
 								}
 							],

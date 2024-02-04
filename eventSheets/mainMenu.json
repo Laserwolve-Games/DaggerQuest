@@ -209,18 +209,32 @@
 								"duration": "5",
 								"ending": "keep-playing"
 							}
-						},
+						}
+					],
+					"sid": 195916310811890
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 799616200830014,
+							"isInverted": true
+						}
+					],
+					"actions": [
 						{
 							"id": "request-fullscreen",
 							"objectClass": "browser",
-							"sid": 530423346198859,
+							"sid": 674478456395328,
 							"parameters": {
 								"mode": "stretch-letterbox-scale",
 								"navigation-ui": "auto"
 							}
 						}
 					],
-					"sid": 195916310811890
+					"sid": 489553130293168
 				}
 			],
 			"isOrBlock": true

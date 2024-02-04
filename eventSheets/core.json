@@ -10562,6 +10562,157 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "on-arrived",
+									"objectClass": "enemy",
+									"sid": 518279583806986,
+									"behaviorType": "MoveTo"
+								}
+							],
+							"actions": [],
+							"sid": 994235310742500,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 130439527142755,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"backingUp\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 811944461905827,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"goingLeft\""
+											}
+										},
+										{
+											"id": "find-path",
+											"objectClass": "enemy",
+											"sid": 206120202169874,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "Self.X + cos(Self.MoveTo.MovingAngle - QUARTER_CIRCLE) * 100",
+												"y": "Self.Y + sin(Self.MoveTo.MovingAngle - QUARTER_CIRCLE) * 100"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 826370827859573
+										},
+										{
+											"id": "move-along-pathfinding-path",
+											"objectClass": "enemy",
+											"sid": 180002199631801,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"mode": "direct"
+											}
+										}
+									],
+									"sid": 158420076607690
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 900552729885255
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 308180633715786,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"goingLeft\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 898929388250999,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"no\""
+											}
+										}
+									],
+									"sid": 714740979148057
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-hit-solid",
+									"objectClass": "enemy",
+									"sid": 587518197059046,
+									"behaviorType": "MoveTo"
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 478233724873157,
+									"parameters": {
+										"instance-variable": "rerouting",
+										"value": "\"backingUp\""
+									}
+								},
+								{
+									"id": "stop",
+									"objectClass": "enemy",
+									"sid": 521043184418107,
+									"behaviorType": "MoveTo"
+								},
+								{
+									"id": "find-path",
+									"objectClass": "enemy",
+									"sid": 487205430789082,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"x": "Self.X + cos(Self.MoveTo.MovingAngle + 180) * 100",
+										"y": "Self.Y + sin(Self.MoveTo.MovingAngle + 180) * 100"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 724883335708709
+								},
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "enemy",
+									"sid": 884904878735717,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 577288128841206
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "pick-children",
 									"objectClass": "enemy",
 									"sid": 848820348799305,
@@ -10597,15 +10748,6 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 189160350404076,
-									"parameters": {
-										"instance-variable": "degrees",
-										"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC = -180 ? 180 : round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
 									"sid": 768129122851408,
 									"parameters": {
 										"instance-variable": "currentHealth",
@@ -10635,6 +10777,15 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 899393133726295,
+											"parameters": {
+												"instance-variable": "degrees",
+												"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC = -180 ? 180 : round(Self.MoveTo.MovingAngle / ARC) * ARC"
+											}
+										},
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "enemy",
@@ -10673,9 +10824,19 @@
 											"sid": 761279903125914
 										},
 										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 696393445790368,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"no\""
+											}
+										},
+										{
 											"id": "is-boolean-instance-variable-set",
 											"objectClass": "enemy",
-											"sid": 368259386046645,
+											"sid": 173239514945419,
 											"parameters": {
 												"instance-variable": "attacking"
 											},
@@ -10684,7 +10845,7 @@
 										{
 											"id": "is-boolean-instance-variable-set",
 											"objectClass": "enemy",
-											"sid": 872931908531743,
+											"sid": 377124458492689,
 											"parameters": {
 												"instance-variable": "hit"
 											},
@@ -10700,7 +10861,7 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 829695051670047,
+													"sid": 895905789845428,
 													"parameters": {
 														"instance-variable": "attackRange",
 														"comparison": 5,
@@ -10710,7 +10871,7 @@
 												{
 													"id": "pick-parent",
 													"objectClass": "enemyBody",
-													"sid": 615642058388745,
+													"sid": 282075221291682,
 													"parameters": {
 														"parent": "enemy",
 														"which": "own"
@@ -10719,9 +10880,18 @@
 											],
 											"actions": [
 												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 219510890836799,
+													"parameters": {
+														"instance-variable": "degrees",
+														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC = -180 ? 180 : round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
+													}
+												},
+												{
 													"id": "set-boolean-instvar",
 													"objectClass": "enemy",
-													"sid": 574594149749091,
+													"sid": 187675389327308,
 													"parameters": {
 														"instance-variable": "attacking",
 														"value": "true"
@@ -10730,7 +10900,7 @@
 												{
 													"id": "call-mapped-function",
 													"objectClass": "Functions",
-													"sid": 534914157590352,
+													"sid": 167004642038432,
 													"parameters": {
 														"name": "\"enemyAbilities\"",
 														"string": "enemy.simpleName",
@@ -10738,7 +10908,7 @@
 													}
 												}
 											],
-											"sid": 987857201212044
+											"sid": 481065139664159
 										},
 										{
 											"eventType": "block",
@@ -10746,7 +10916,7 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 189771731102224,
+													"sid": 533873729319822,
 													"parameters": {
 														"instance-variable": "attackRange",
 														"comparison": 2,
@@ -10757,12 +10927,12 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "HERE: Find a random location to a box around the player... the smallest possible box where the enemy could attack the player from any location within it >:)"
+													"text": "Find a path to a location that is exactly `attackRange` away from the player, in an isometric circle, divided up and assigned to each enemy on screen"
 												},
 												{
 													"id": "find-path",
 													"objectClass": "enemy",
-													"sid": 732883502161521,
+													"sid": 501553876362894,
 													"behaviorType": "Pathfinding",
 													"parameters": {
 														"x": "player.X",
@@ -10772,19 +10942,19 @@
 												{
 													"id": "wait-for-previous-actions",
 													"objectClass": "System",
-													"sid": 529858208011408
+													"sid": 252005265501546
 												},
 												{
 													"id": "move-along-pathfinding-path",
 													"objectClass": "enemy",
-													"sid": 155380887518980,
+													"sid": 317619803143241,
 													"behaviorType": "MoveTo",
 													"parameters": {
 														"mode": "direct"
 													}
 												}
 											],
-											"sid": 274512753515069
+											"sid": 492391732698195
 										}
 									]
 								}
@@ -11233,7 +11403,7 @@
 									"name": "MANIFESTATION_POINT",
 									"type": "number",
 									"initialValue": "80",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear.. This is when they are facing directly left or right.",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear. This is when they are facing directly left or right.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 694013683657195
@@ -11524,7 +11694,7 @@
 									"name": "MANIFESTATION_POINT",
 									"type": "number",
 									"initialValue": "100",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear.. This is when they are facing directly left or right.",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear. This is when they are facing directly left or right.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 768361143392393
@@ -14169,6 +14339,15 @@
 									"parameters": {
 										"instance-variable": "simpleName",
 										"value": "advancedRandom.WeightedByName(\"enemies\")"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 663270133951095,
+									"parameters": {
+										"instance-variable": "simpleName",
+										"value": "\"goblinWarlock\""
 									}
 								},
 								{

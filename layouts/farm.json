@@ -400,8 +400,8 @@
 								}
 							},
 							"world": {
-								"x": 1755,
-								"y": 3823,
+								"x": 1106,
+								"y": 2991,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -525,7 +525,8 @@
 								"arcaneResistance": 0,
 								"holyResistance": 0,
 								"attacking": false,
-								"hit": false
+								"hit": false,
+								"rerouting": "no"
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -541,7 +542,7 @@
 								},
 								"Solid": {
 									"properties": {
-										"enabled": false,
+										"enabled": true,
 										"tags": ""
 									}
 								},
@@ -579,6 +580,44 @@
 								"height": 26,
 								"originX": 0.5,
 								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "fenceVertical",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Default",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 236,
+							"instanceVariables": {
+								"yValue": 0
+							},
+							"behaviors": {
+								"Solid": {
+									"properties": {
+										"enabled": true,
+										"tags": ""
+									}
+								}
+							},
+							"world": {
+								"x": 1094,
+								"y": 1899,
+								"width": 30,
+								"height": 385,
+								"originX": 0.7666666666666667,
+								"originY": 0.9948051948051948,
 								"color": [
 									1,
 									1,
@@ -628,7 +667,8 @@
 								"arcaneResistance": 0,
 								"holyResistance": 0,
 								"attacking": false,
-								"hit": false
+								"hit": false,
+								"rerouting": "no"
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -642,393 +682,46 @@
 										"enabled": true
 									}
 								},
-								"Solid": {
-									"properties": {
-										"enabled": false,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 1,
-										"cell-border": 40,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								}
-							},
-							"world": {
-								"x": 843,
-								"y": 1593,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "enemy",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 232,
-							"instanceVariables": {
-								"simpleName": "",
-								"fullName": "",
-								"type": "",
-								"idleX": 0,
-								"idleY": 0,
-								"movementSpeed": 0,
-								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"corruptDamage": 0,
-								"attackRange": 0,
-								"physicalResistance": 0,
-								"coldResistance": 0,
-								"fireResistance": 0,
-								"lightningResistance": 0,
-								"arcaneResistance": 0,
-								"holyResistance": 0,
-								"attacking": false,
-								"hit": false
-							},
-							"behaviors": {
-								"MoveTo": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": true,
-										"enabled": true
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": false,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 1,
-										"cell-border": 40,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								}
-							},
-							"world": {
-								"x": 1256,
-								"y": 1626,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "enemy",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 233,
-							"instanceVariables": {
-								"simpleName": "",
-								"fullName": "",
-								"type": "",
-								"idleX": 0,
-								"idleY": 0,
-								"movementSpeed": 0,
-								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"corruptDamage": 0,
-								"attackRange": 0,
-								"physicalResistance": 0,
-								"coldResistance": 0,
-								"fireResistance": 0,
-								"lightningResistance": 0,
-								"arcaneResistance": 0,
-								"holyResistance": 0,
-								"attacking": false,
-								"hit": false
-							},
-							"behaviors": {
-								"MoveTo": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": true,
-										"enabled": true
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": false,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 1,
-										"cell-border": 40,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								}
-							},
-							"world": {
-								"x": 1812,
-								"y": 1496,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "enemy",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 234,
-							"instanceVariables": {
-								"simpleName": "",
-								"fullName": "",
-								"type": "",
-								"idleX": 0,
-								"idleY": 0,
-								"movementSpeed": 0,
-								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"corruptDamage": 0,
-								"attackRange": 0,
-								"physicalResistance": 0,
-								"coldResistance": 0,
-								"fireResistance": 0,
-								"lightningResistance": 0,
-								"arcaneResistance": 0,
-								"holyResistance": 0,
-								"attacking": false,
-								"hit": false
-							},
-							"behaviors": {
-								"MoveTo": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": true,
-										"enabled": true
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": false,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 1,
-										"cell-border": 40,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								}
-							},
-							"world": {
-								"x": 1198,
-								"y": 1186,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "fenceVertical",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Default",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 236,
-							"instanceVariables": {
-								"yValue": 0
-							},
-							"behaviors": {
 								"Solid": {
 									"properties": {
 										"enabled": true,
 										"tags": ""
 									}
+								},
+								"knockback": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
+								},
+								"Pathfinding": {
+									"properties": {
+										"cell-size": 1,
+										"cell-border": 40,
+										"obstacles": "custom",
+										"max-speed": 0,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"rotate-object": false,
+										"diagonals": true,
+										"direct-movement": "anywhere-along-path",
+										"enabled": true
+									}
 								}
 							},
 							"world": {
-								"x": 1094,
-								"y": 1899,
-								"width": 30,
-								"height": 385,
-								"originX": 0.7666666666666667,
-								"originY": 0.9948051948051948,
+								"x": 822,
+								"y": 1629,
+								"width": 78,
+								"height": 26,
+								"originX": 0.5,
+								"originY": 0.5,
 								"color": [
 									1,
 									1,
@@ -3651,44 +3344,6 @@
 						"height": 34,
 						"originX": 0.5,
 						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "fenceVertical",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Default",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 235,
-					"instanceVariables": {
-						"yValue": 0
-					},
-					"behaviors": {
-						"Solid": {
-							"properties": {
-								"enabled": true,
-								"tags": ""
-							}
-						}
-					},
-					"world": {
-						"x": 1554,
-						"y": 3880,
-						"width": 30,
-						"height": 385,
-						"originX": 0.7666666666666667,
-						"originY": 0.9948051948051948,
 						"color": [
 							1,
 							1,

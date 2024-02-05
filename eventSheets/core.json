@@ -5300,78 +5300,27 @@
 													}
 												}
 											],
-											"actions": [],
-											"sid": 835848342248823,
-											"children": [
+											"actions": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "npc",
-															"sid": 612869452817336,
-															"parameters": {
-																"instance-variable": "interactRange",
-																"comparison": 5,
-																"value": "distance(self.X, Self.Y, player.X, player.Y)"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 491104182229753,
-															"behaviorType": "MoveTo"
-														},
-														{
-															"callFunction": "updateAnimations",
-															"sid": 907249120845704,
-															"parameters": [
-																"\"idle\"",
-																"body.OriginalAnimationSpeed",
-																"\"playFromBeginning\""
-															]
-														},
-														{
-															"callFunction": "beginDialog",
-															"sid": 309503324718462
-														}
-													],
-													"sid": 641734535023417
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 564336320313701,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "npc.UID"
+													}
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 643998034517070
-														}
-													],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 229953425033817,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "npc.UID"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 342806030176650,
-															"parameters": [
-																"npc.X",
-																"npc.y",
-																"npc.interactRange"
-															]
-														}
-													],
-													"sid": 427665327590872
+													"callFunction": "moveToLocation",
+													"sid": 528350358814362,
+													"parameters": [
+														"npc.X",
+														"npc.y",
+														"0"
+													]
 												}
-											]
+											],
+											"sid": 835848342248823
 										},
 										{
 											"eventType": "block",
@@ -5404,102 +5353,27 @@
 													}
 												}
 											],
-											"actions": [],
-											"sid": 749602820773931,
-											"children": [
+											"actions": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "player",
-															"sid": 236447170818385,
-															"parameters": {
-																"instance-variable": "attackRange",
-																"comparison": 5,
-																"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "When an enemy is left clicked, check to see if it's within attack range. If it isn't, move so that it is. If it is, check to make sure the player isn't in a non-combat area, then attack."
-														}
-													],
-													"sid": 139957733526720,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "is-overlapping-another-object",
-																	"objectClass": "player",
-																	"sid": 133381062536125,
-																	"parameters": {
-																		"object": "nonCombatArea"
-																	},
-																	"isInverted": true
-																}
-															],
-															"actions": [
-																{
-																	"id": "call-mapped-function",
-																	"objectClass": "Functions",
-																	"sid": 639934518489744,
-																	"parameters": {
-																		"name": "\"playerAbilities\"",
-																		"string": "\"basicAttack\"",
-																		"forward-params": "0"
-																	}
-																}
-															],
-															"sid": 912467143497990
-														}
-													]
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 817746160964283,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "enemy.UID"
+													}
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 493086878079024
-														}
-													],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 215993732116641,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "enemy.UID"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 169557304754700,
-															"parameters": [
-																"enemy.X",
-																"enemy.y",
-																"player.attackRange"
-															]
-														}
-													],
-													"sid": 325974417658702
+													"callFunction": "moveToLocation",
+													"sid": 213305270508717,
+													"parameters": [
+														"enemy.X",
+														"enemy.y",
+														"0"
+													]
 												}
-											]
-										},
-										{
-											"eventType": "variable",
-											"name": "effectivePickupRange",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 964963236057063
+											],
+											"sid": 749602820773931
 										},
 										{
 											"eventType": "block",
@@ -5525,90 +5399,25 @@
 											],
 											"actions": [
 												{
-													"type": "comment",
-													"text": "Boost the pick up range by the approximate size of the item, and it's apparent vertical height"
-												},
-												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 714405587024301,
+													"sid": 608257977053813,
 													"parameters": {
-														"variable": "effectivePickupRange",
-														"value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)"
+														"variable": "uidOfClicked",
+														"value": "loot.UID"
 													}
-												}
-											],
-											"sid": 169232376872581,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 683944934432946,
-															"parameters": {
-																"first-value": "effectivePickupRange",
-																"comparison": 5,
-																"second-value": "distance(player.X, player.Y, loot.X, loot.Y)"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 826362810870089,
-															"behaviorType": "MoveTo"
-														},
-														{
-															"callFunction": "updateAnimations",
-															"sid": 852737969328709,
-															"parameters": [
-																"\"idle\"",
-																"body.OriginalAnimationSpeed",
-																"\"playFromBeginning\""
-															]
-														},
-														{
-															"callFunction": "pickUpLoot",
-															"sid": 179972406738069
-														}
-													],
-													"sid": 126826838589515
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 342898607643646
-														}
-													],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 922930535780417,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "loot.UID"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 732884424314195,
-															"parameters": [
-																"loot.X",
-																"loot.y",
-																"effectivePickupRange"
-															]
-														}
-													],
-													"sid": 973265333338329
+													"callFunction": "moveToLocation",
+													"sid": 802038486549519,
+													"parameters": [
+														"loot.X",
+														"loot.y",
+														"0"
+													]
 												}
-											]
+											],
+											"sid": 169232376872581
 										},
 										{
 											"eventType": "block",
@@ -5624,63 +5433,27 @@
 													}
 												}
 											],
-											"actions": [],
-											"sid": 479773362673259,
-											"children": [
+											"actions": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "door",
-															"sid": 987267690455311,
-															"parameters": {
-																"instance-variable": "interactRange",
-																"comparison": 5,
-																"value": "distance(door.ImagePointX(1), door.ImagePointY(1), player.X, player.Y)"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "buildingTransition",
-															"sid": 744348318848902
-														}
-													],
-													"sid": 436095560436944
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 307414198190697,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "door.UID"
+													}
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 871386455787587
-														}
-													],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 275020723577871,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "door.UID"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 801573005219085,
-															"parameters": [
-																"door.ImagePointX(1)",
-																"door.ImagePointY(1)",
-																"door.interactRange"
-															]
-														}
-													],
-													"sid": 597494309837339
+													"callFunction": "moveToLocation",
+													"sid": 580576573293621,
+													"parameters": [
+														"door.ImagePointX(1)",
+														"door.ImagePointY(1)",
+														"0"
+													]
 												}
-											]
+											],
+											"sid": 479773362673259
 										},
 										{
 											"eventType": "block",
@@ -5761,6 +5534,15 @@
 															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
 														},
 														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 897084797702736,
+															"parameters": {
+																"variable": "uidOfClicked",
+																"value": "0"
+															}
+														},
+														{
 															"callFunction": "moveToLocation",
 															"sid": 890652795602718,
 															"parameters": [
@@ -5822,6 +5604,15 @@
 													],
 													"actions": [
 														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 204046585401686,
+															"parameters": {
+																"variable": "uidOfClicked",
+																"value": "0"
+															}
+														},
+														{
 															"callFunction": "moveToLocation",
 															"sid": 190321896549681,
 															"parameters": [
@@ -5859,6 +5650,54 @@
 									],
 									"sid": 876565196589800,
 									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 919233706833169,
+													"parameters": {
+														"object": "npc",
+														"expression": "npc.UID",
+														"comparison": 0,
+														"value": "uidOfClicked"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "npc",
+													"sid": 755149013633612,
+													"parameters": {
+														"instance-variable": "interactRange",
+														"comparison": 5,
+														"value": "distance(Self.X, Self.Y, player.X, player.Y)"
+													}
+												},
+												{
+													"id": "pick-children",
+													"objectClass": "npc",
+													"sid": 969911445591245,
+													"parameters": {
+														"child": "npcBody",
+														"which": "own"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 232119868988035,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "beginDialog",
+													"sid": 382444816630141
+												}
+											],
+											"sid": 540024099999415
+										},
 										{
 											"eventType": "block",
 											"conditions": [
@@ -5942,22 +5781,74 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 445374973154523,
+													"sid": 499927505951578,
 													"parameters": {
-														"object": "npc",
-														"expression": "npc.UID",
+														"object": "loot",
+														"expression": "loot.UID",
 														"comparison": 0,
 														"value": "uidOfClicked"
 													}
 												},
 												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 531899067918596,
+													"parameters": {
+														"first-value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)",
+														"comparison": 5,
+														"second-value": "distance(player.X, player.Y, loot.X, loot.Y)"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "loot gets a bonus to its pick up range based on its size, and an additional bonus if it has a vertical height"
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 237461376263142,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "updateAnimations",
+													"sid": 119736605381469,
+													"parameters": [
+														"\"idle\"",
+														"body.OriginalAnimationSpeed",
+														"\"playFromBeginning\""
+													]
+												},
+												{
+													"callFunction": "pickUpLoot",
+													"sid": 928936656562424
+												}
+											],
+											"sid": 609901448175737
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 310721299510081,
+													"parameters": {
+														"object": "door",
+														"expression": "uidOfClicked",
+														"comparison": 0,
+														"value": "door.UID"
+													}
+												},
+												{
 													"id": "compare-instance-variable",
-													"objectClass": "npc",
-													"sid": 624931646010836,
+													"objectClass": "door",
+													"sid": 886536441345957,
 													"parameters": {
 														"instance-variable": "interactRange",
 														"comparison": 5,
-														"value": "distance(Self.X, Self.Y, player.X, player.Y)"
+														"value": "distance(Self.ImagePointX(1), Self.ImagePointY(1), player.X, player.Y)"
 													}
 												}
 											],
@@ -5965,150 +5856,15 @@
 												{
 													"id": "stop",
 													"objectClass": "player",
-													"sid": 276312790094866,
+													"sid": 623971236543322,
 													"behaviorType": "MoveTo"
 												},
 												{
-													"callFunction": "beginDialog",
-													"sid": 856947136633655
+													"callFunction": "buildingTransition",
+													"sid": 260885488883667
 												}
 											],
-											"sid": 619169894650855,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-overlapping-another-object",
-															"objectClass": "player",
-															"sid": 661026539042329,
-															"parameters": {
-																"object": "nonCombatArea"
-															},
-															"isInverted": true
-														}
-													],
-													"actions": [
-														{
-															"id": "call-mapped-function",
-															"objectClass": "Functions",
-															"sid": 829741771605520,
-															"parameters": {
-																"name": "\"playerAbilities\"",
-																"string": "\"basicAttack\"",
-																"forward-params": "0"
-															}
-														}
-													],
-													"sid": 283380080577620
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "on-arrived",
-													"objectClass": "player",
-													"sid": 572346275376375,
-													"behaviorType": "MoveTo"
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "when we arrive somewhere, if we had a UID saved of something, call a function based off of what it is"
-												}
-											],
-											"sid": 768185830917990,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 188152185536450,
-															"parameters": {
-																"object": "npc",
-																"expression": "npc.UID",
-																"comparison": 0,
-																"value": "uidOfClicked"
-															}
-														},
-														{
-															"id": "pick-children",
-															"objectClass": "npc",
-															"sid": 903886249655530,
-															"parameters": {
-																"child": "npcBody",
-																"which": "own"
-															}
-														}
-													],
-													"actions": [],
-													"sid": 904089008495540
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 810777610648875,
-															"parameters": {
-																"object": "loot",
-																"expression": "loot.UID",
-																"comparison": 0,
-																"value": "uidOfClicked"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "pickUpLoot",
-															"sid": 807707765453852
-														}
-													],
-													"sid": 969149847173058
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 591541814013020,
-															"parameters": {
-																"object": "door",
-																"expression": "uidOfClicked",
-																"comparison": 0,
-																"value": "door.UID"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "buildingTransition",
-															"sid": 837203022624942
-														}
-													],
-													"sid": 529136020412549
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 691611889417839,
-															"behaviorType": "MoveTo"
-														}
-													],
-													"sid": 816624984872775
-												}
-											]
+											"sid": 227920085693156
 										}
 									]
 								}
@@ -6322,121 +6078,33 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [],
-							"sid": 736875311258128,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "theAngle",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 730828261816299
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 231728224720460,
-											"parameters": {
-												"variable": "distanceAway",
-												"comparison": 0,
-												"value": "0"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 939832288833635,
-											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
-											}
-										},
-										{
-											"id": "find-path",
-											"objectClass": "player",
-											"sid": 591252893953509,
-											"behaviorType": "Pathfinding",
-											"parameters": {
-												"x": "x",
-												"y": "y"
-											}
-										}
-									],
-									"sid": 962359359123805
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 381232983008520
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 998788980527553,
-											"parameters": {
-												"variable": "theAngle",
-												"value": "angle(x, y, player.X, player.Y)"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 666728311699122,
-											"parameters": {
-												"variable": "distanceAway",
-												"value": "Functions.isometrify(distanceAway, theAngle)"
-											}
-										},
-										{
-											"id": "find-path",
-											"objectClass": "player",
-											"sid": 292394819049543,
-											"behaviorType": "Pathfinding",
-											"parameters": {
-												"x": "x + cos(theAngle) * distanceAway",
-												"y": "y + sin(theAngle) * distanceAway"
-											}
-										}
-									],
-									"sid": 307305801168629
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-path-found",
-									"objectClass": "player",
-									"sid": 224951666970170,
-									"behaviorType": "Pathfinding"
-								}
-							],
 							"actions": [
+								{
+									"id": "find-path",
+									"objectClass": "player",
+									"sid": 304007368338071,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"x": "x",
+										"y": "y"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 788217106271644
+								},
 								{
 									"id": "move-along-pathfinding-path",
 									"objectClass": "player",
-									"sid": 570605254729151,
+									"sid": 792284288742122,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"mode": "direct"
 									}
 								}
 							],
-							"sid": 455667557549143
+							"sid": 736875311258128
 						}
 					],
 					"sid": 914713205483917

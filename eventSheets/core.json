@@ -5360,12 +5360,12 @@
 															}
 														},
 														{
-															"callFunction": "normalMovement",
-															"sid": 647102284639963,
+															"callFunction": "moveToLocation",
+															"sid": 342806030176650,
 															"parameters": [
-																"Functions.FixedDistanceAlongLineX(player.X, player.Y, npc.X, npc.Y, npc.interactRange)",
-																"Functions.FixedDistanceAlongLineY(player.X, player.Y, npc.X, npc.Y, npc.interactRange)",
-																false
+																"npc.X",
+																"npc.y",
+																"npc.interactRange"
 															]
 														}
 													],
@@ -5478,12 +5478,12 @@
 															}
 														},
 														{
-															"callFunction": "normalMovement",
-															"sid": 181465131545106,
+															"callFunction": "moveToLocation",
+															"sid": 169557304754700,
 															"parameters": [
-																"Functions.FixedDistanceAlongLineX(player.X, player.Y, enemy.X, enemy.Y, player.attackRange)",
-																"Functions.FixedDistanceAlongLineY(player.X, player.Y, enemy.X, enemy.Y, player.attackRange)",
-																false
+																"enemy.X",
+																"enemy.y",
+																"player.attackRange"
 															]
 														}
 													],
@@ -5597,12 +5597,12 @@
 															}
 														},
 														{
-															"callFunction": "normalMovement",
-															"sid": 191093375155646,
+															"callFunction": "moveToLocation",
+															"sid": 732884424314195,
 															"parameters": [
-																"Functions.FixedDistanceAlongLineX(player.X, player.Y, loot.X, loot.Y, effectivePickupRange)",
-																"Functions.FixedDistanceAlongLineY(player.X, player.Y, loot.X, loot.Y, effectivePickupRange)",
-																false
+																"loot.X",
+																"loot.y",
+																"effectivePickupRange"
 															]
 														}
 													],
@@ -5669,12 +5669,12 @@
 															}
 														},
 														{
-															"callFunction": "normalMovement",
-															"sid": 685894971540027,
+															"callFunction": "moveToLocation",
+															"sid": 801573005219085,
 															"parameters": [
-																"Functions.FixedDistanceAlongLineX(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
-																"Functions.FixedDistanceAlongLineY(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1), door.interactRange)",
-																false
+																"door.ImagePointX(1)",
+																"door.ImagePointY(1)",
+																"door.interactRange"
 															]
 														}
 													],
@@ -5761,12 +5761,12 @@
 															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
 														},
 														{
-															"callFunction": "normalMovement",
+															"callFunction": "moveToLocation",
 															"sid": 890652795602718,
 															"parameters": [
 																"mouse.X",
 																"mouse.Y",
-																true
+																"0"
 															]
 														}
 													],
@@ -5822,12 +5822,12 @@
 													],
 													"actions": [
 														{
-															"callFunction": "normalMovement",
+															"callFunction": "moveToLocation",
 															"sid": 190321896549681,
 															"parameters": [
 																"mouse.X",
 																"mouse.Y",
-																true
+																"0"
 															]
 														}
 													],
@@ -5940,6 +5940,74 @@
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 445374973154523,
+													"parameters": {
+														"object": "npc",
+														"expression": "npc.UID",
+														"comparison": 0,
+														"value": "uidOfClicked"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "npc",
+													"sid": 624931646010836,
+													"parameters": {
+														"instance-variable": "interactRange",
+														"comparison": 5,
+														"value": "distance(Self.X, Self.Y, player.X, player.Y)"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 276312790094866,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"callFunction": "beginDialog",
+													"sid": 856947136633655
+												}
+											],
+											"sid": 619169894650855,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-overlapping-another-object",
+															"objectClass": "player",
+															"sid": 661026539042329,
+															"parameters": {
+																"object": "nonCombatArea"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "call-mapped-function",
+															"objectClass": "Functions",
+															"sid": 829741771605520,
+															"parameters": {
+																"name": "\"playerAbilities\"",
+																"string": "\"basicAttack\"",
+																"forward-params": "0"
+															}
+														}
+													],
+													"sid": 283380080577620
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
 													"id": "on-arrived",
 													"objectClass": "player",
 													"sid": 572346275376375,
@@ -5978,12 +6046,7 @@
 															}
 														}
 													],
-													"actions": [
-														{
-															"callFunction": "beginDialog",
-															"sid": 888426382144437
-														}
-													],
+													"actions": [],
 													"sid": 904089008495540
 												},
 												{
@@ -6228,8 +6291,8 @@
 							"isOrBlock": true
 						},
 						{
-							"functionName": "normalMovement",
-							"functionDescription": "Move to a location and reset the uidOfClicked variable.",
+							"functionName": "moveToLocation",
+							"functionDescription": "Move to a location, specifying a distance away from that location to arrive at",
 							"functionCategory": "player",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
@@ -6250,52 +6313,39 @@
 									"sid": 381101153777112
 								},
 								{
-									"name": "resetUidOfClicked",
-									"type": "boolean",
-									"initialValue": "false",
-									"comment": "Whether or not to 0 out the uidOfClicked variable",
-									"sid": 692441277433379
+									"name": "distanceAway",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "How far away from the target to move to",
+									"sid": 189856257906793
 								}
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [
-								{
-									"id": "find-path",
-									"objectClass": "player",
-									"sid": 404646966927390,
-									"behaviorType": "Pathfinding",
-									"parameters": {
-										"x": "x",
-										"y": "y"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 688794276758511
-								},
-								{
-									"id": "move-along-pathfinding-path",
-									"objectClass": "player",
-									"sid": 117524857244301,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"mode": "direct"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 736875311258128,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "theAngle",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 730828261816299
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-boolean-eventvar",
+											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 488673607968708,
+											"sid": 231728224720460,
 											"parameters": {
-												"variable": "resetUidOfClicked"
+												"variable": "distanceAway",
+												"comparison": 0,
+												"value": "0"
 											}
 										}
 									],
@@ -6303,16 +6353,90 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 819455018274928,
+											"sid": 939832288833635,
 											"parameters": {
 												"variable": "uidOfClicked",
 												"value": "0"
 											}
+										},
+										{
+											"id": "find-path",
+											"objectClass": "player",
+											"sid": 591252893953509,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "x",
+												"y": "y"
+											}
 										}
 									],
-									"sid": 456382177782865
+									"sid": 962359359123805
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 381232983008520
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 998788980527553,
+											"parameters": {
+												"variable": "theAngle",
+												"value": "angle(x, y, player.X, player.Y)"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 666728311699122,
+											"parameters": {
+												"variable": "distanceAway",
+												"value": "Functions.isometrify(distanceAway, theAngle)"
+											}
+										},
+										{
+											"id": "find-path",
+											"objectClass": "player",
+											"sid": 292394819049543,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "x + cos(theAngle) * distanceAway",
+												"y": "y + sin(theAngle) * distanceAway"
+											}
+										}
+									],
+									"sid": 307305801168629
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-path-found",
+									"objectClass": "player",
+									"sid": 224951666970170,
+									"behaviorType": "Pathfinding"
+								}
+							],
+							"actions": [
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "player",
+									"sid": 570605254729151,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 455667557549143
 						}
 					],
 					"sid": 914713205483917
@@ -10559,6 +10683,97 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"functionName": "MoveEnemyInDirection",
+							"functionDescription": "Move an enemy a certain direction in a certain angle. Already factors in isometry.",
+							"functionCategory": "enemies",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "enemyAngle",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The angle along which the enemy should move. Already factors in isometry.",
+									"sid": 635433825358544
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 483896032909382,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "actualDistance",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The actual distance the enemy will travel, after being isometrified.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 621974552811848
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 886722261518099,
+											"parameters": {
+												"variable": "enemyAngle",
+												"value": "enemy.MoveTo.MovingAngle - enemyAngle"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 891781979981733,
+											"parameters": {
+												"variable": "actualDistance",
+												"value": "Functions.isometrify(enemy.Width, enemyAngle)"
+											}
+										},
+										{
+											"id": "find-path",
+											"objectClass": "enemy",
+											"sid": 498761532131904,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "Self.X + cos(enemyAngle) * actualDistance",
+												"y": "Self.Y + sin(enemyAngle) * actualDistance"
+											}
+										}
+									],
+									"sid": 334655772665723
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-path-found",
+									"objectClass": "enemy",
+									"sid": 553792072497472,
+									"behaviorType": "Pathfinding"
+								}
+							],
+							"actions": [
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "enemy",
+									"sid": 902293462208106,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 797919656665353
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -10568,7 +10783,12 @@
 									"behaviorType": "MoveTo"
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "What happens when the enemy successfully arrives at their destination"
+								}
+							],
 							"sid": 994235310742500,
 							"children": [
 								{
@@ -10587,6 +10807,10 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "If they successfully backed up, now the enemy will go left"
+										},
+										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
 											"sid": 811944461905827,
@@ -10596,31 +10820,18 @@
 											}
 										},
 										{
-											"id": "find-path",
-											"objectClass": "enemy",
-											"sid": 206120202169874,
-											"behaviorType": "Pathfinding",
-											"parameters": {
-												"x": "Self.X + cos(Self.MoveTo.MovingAngle - QUARTER_CIRCLE) * 100",
-												"y": "Self.Y + sin(Self.MoveTo.MovingAngle - QUARTER_CIRCLE) * 100"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 826370827859573
-										},
-										{
-											"id": "move-along-pathfinding-path",
-											"objectClass": "enemy",
-											"sid": 180002199631801,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"mode": "direct"
-											}
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 874644631012637,
+											"parameters": [
+												"QUARTER_CIRCLE"
+											]
 										}
 									],
 									"sid": 158420076607690
+								},
+								{
+									"eventType": "comment",
+									"text": "Can't combine these two blocks because of how 'else' and OR blocks work."
 								},
 								{
 									"eventType": "block",
@@ -10633,7 +10844,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "enemy",
-											"sid": 308180633715786,
+											"sid": 797643837014401,
 											"parameters": {
 												"instance-variable": "rerouting",
 												"comparison": 0,
@@ -10643,9 +10854,13 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "If they successfully went left, they're done; they can resume normal behavior"
+										},
+										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
-											"sid": 898929388250999,
+											"sid": 478648717708202,
 											"parameters": {
 												"instance-variable": "rerouting",
 												"value": "\"no\""
@@ -10653,6 +10868,85 @@
 										}
 									],
 									"sid": 714740979148057
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 501242332727749
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 555918976870144,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"goingRight\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If they successfully went right, they're done; they can resume normal behavior"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 306881436161065,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"no\""
+											}
+										}
+									],
+									"sid": 254120874169345
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 896839586834432
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 232938002939091,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"backingUpAgain\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If they successfully backed up a second time, try turning left again (no need to record that this would be the 2nd left attempt)"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 515995319072878,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"goingLeft\""
+											}
+										},
+										{
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 592054920972942,
+											"parameters": [
+												"QUARTER_CIRCLE"
+											]
+										}
+									],
+									"sid": 406905184241648
 								}
 							]
 						},
@@ -10668,46 +10962,216 @@
 							],
 							"actions": [
 								{
-									"id": "set-instvar-value",
-									"objectClass": "enemy",
-									"sid": 478233724873157,
-									"parameters": {
-										"instance-variable": "rerouting",
-										"value": "\"backingUp\""
-									}
-								},
-								{
-									"id": "stop",
-									"objectClass": "enemy",
-									"sid": 521043184418107,
-									"behaviorType": "MoveTo"
-								},
-								{
-									"id": "find-path",
-									"objectClass": "enemy",
-									"sid": 487205430789082,
-									"behaviorType": "Pathfinding",
-									"parameters": {
-										"x": "Self.X + cos(Self.MoveTo.MovingAngle + 180) * 100",
-										"y": "Self.Y + sin(Self.MoveTo.MovingAngle + 180) * 100"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 724883335708709
-								},
-								{
-									"id": "move-along-pathfinding-path",
-									"objectClass": "enemy",
-									"sid": 884904878735717,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"mode": "direct"
-									}
+									"type": "comment",
+									"text": "If an enemy hit a solid while moving, they need to go somewhere else. They can't stop because they don't have an idle animation."
 								}
 							],
-							"sid": 577288128841206
+							"sid": 577288128841206,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 473558279930674,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"no\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if the enemy wasn't already rerouting when he hit a solid, begin rerouting by backing up"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 339659974560540,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"backingUp\""
+											}
+										},
+										{
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 418591484541926,
+											"parameters": [
+												"HALF_CIRCLE"
+											]
+										}
+									],
+									"sid": 654504102911585
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 480684410110782
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 663946670023900,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"backingUp\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the enemy hit a solid while backing up, try going left"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 227068549904207,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"goingLeft\""
+											}
+										},
+										{
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 877685061630907,
+											"parameters": [
+												"QUARTER_CIRCLE"
+											]
+										}
+									],
+									"sid": 803932494443702
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 274700560743496
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 678967316335769,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"goingLeft\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the enemy hit a solid while going left, try going right"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 705163158623332,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"goingRight\""
+											}
+										},
+										{
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 198437477443326,
+											"parameters": [
+												"HALF_CIRCLE"
+											]
+										}
+									],
+									"sid": 910391537059356
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 957093534483673
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 740264764105310,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"goingRight\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the enemy hit a solid while going right, try backing up again"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 624338864930156,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"backingUpAgain\""
+											}
+										},
+										{
+											"callFunction": "MoveEnemyInDirection",
+											"sid": 740111667496511,
+											"parameters": [
+												"QUARTER_CIRCLE"
+											]
+										}
+									],
+									"sid": 621553810010773
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 510504782571859
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 313711195512484,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"backingUpAgain\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the enemy hit a solid while backing up again, they are probably stuck. reset the rerouting process to try again"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 775306263056134,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"value": "\"no\""
+											}
+										}
+									],
+									"sid": 519776831404497
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -10937,20 +11401,6 @@
 													"parameters": {
 														"x": "player.X",
 														"y": "player.Y"
-													}
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 252005265501546
-												},
-												{
-													"id": "move-along-pathfinding-path",
-													"objectClass": "enemy",
-													"sid": 317619803143241,
-													"behaviorType": "MoveTo",
-													"parameters": {
-														"mode": "direct"
 													}
 												}
 											],
@@ -12590,122 +13040,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"functionName": "FixedDistanceAlongLineX",
-					"functionDescription": "Find the X coordinate of a point that's along a line between 2 points, a specified distance away from the 2nd point.",
-					"functionCategory": "movement",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "Point1X",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 194825641577749
-						},
-						{
-							"name": "Point1Y",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 652129556671674
-						},
-						{
-							"name": "Point2X",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 991289962500125
-						},
-						{
-							"name": "Point2Y",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 572393264354176
-						},
-						{
-							"name": "distanceAwayFromPoint2",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 563778760135197
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 971097400569170,
-							"parameters": {
-								"value": "Point2X + cos(angle(Point2X, Point2Y, Point1X, Point1Y)) * distanceAwayFromPoint2"
-							}
-						}
-					],
-					"sid": 218715847150785
-				},
-				{
-					"functionName": "FixedDistanceAlongLineY",
-					"functionDescription": "Find the Y coordinate of a point that's along a line between 2 points, a specified distance away from the 2nd point.",
-					"functionCategory": "movement",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "Point1X",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 525553611518981
-						},
-						{
-							"name": "Point1Y",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 180004656787523
-						},
-						{
-							"name": "Point2X",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 265677891104867
-						},
-						{
-							"name": "Point2Y",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 649636229779968
-						},
-						{
-							"name": "distanceAwayFromPoint2",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 203408354532086
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 913503751618676,
-							"parameters": {
-								"value": "Point2Y + sin(angle(Point2X, Point2Y, Point1X, Point1Y)) * distanceAwayFromPoint2"
-							}
-						}
-					],
-					"sid": 812931055253938
-				},
-				{
 					"functionName": "isometrify",
 					"functionDescription": "Modify a value based on an angle, to make it isometrically correct.",
 					"functionCategory": "Isometry",
@@ -12717,14 +13051,14 @@
 							"name": "value",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "The speed, which will be modified by the specified angle.",
+							"comment": "The value, which will be modified by the specified angle.",
 							"sid": 686725352825470
 						},
 						{
-							"name": "nAngle",
+							"name": "theAngle",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "The angle, which will be used to modify the speed.",
+							"comment": "The angle, which will be used to modify the specified value.",
 							"sid": 539771032584735
 						}
 					],
@@ -12733,14 +13067,14 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "\"nAngle\" because \"angle\" is a reserved keyword."
+							"text": "\"theAngle\" because \"angle\" is a reserved keyword."
 						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
 							"sid": 410065321337001,
 							"parameters": {
-								"value": "value * lerp(.5, 1, abs(abs(nAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+								"value": "value * lerp(.5, 1, abs(abs(theAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
 							}
 						}
 					],

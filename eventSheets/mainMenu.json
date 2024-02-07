@@ -14,25 +14,81 @@
 					"sid": 573126427733994
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 142931005715493,
+			"children": [
 				{
-					"id": "set-looping",
-					"objectClass": "video",
-					"sid": 579952194108233,
-					"parameters": {
-						"mode": "looping"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 808354573296270,
+							"parameters": {
+								"first-value": "browser.URL",
+								"comparison": 0,
+								"second-value": "\"https://laserwolvegames.itch.io/daggerquest\""
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 897149006983979,
+							"parameters": {
+								"first-value": "browser.URL",
+								"comparison": 0,
+								"second-value": "\"https://test.daggerquest.com/\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-looping",
+							"objectClass": "video",
+							"sid": 429607102555245,
+							"parameters": {
+								"mode": "looping"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "versionText",
+							"sid": 236184851366253,
+							"parameters": {
+								"text": "projectversion"
+							}
+						}
+					],
+					"sid": 410884549509201,
+					"isOrBlock": true
 				},
 				{
-					"id": "set-text",
-					"objectClass": "versionText",
-					"sid": 755068560940103,
-					"parameters": {
-						"text": "projectversion"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 513618293621750
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "If we aren't on an approved website, go to laserwolvegames.itch.io/daggerquest"
+						},
+						{
+							"id": "go-to-url",
+							"objectClass": "browser",
+							"sid": 838213573423317,
+							"parameters": {
+								"url": "\"https://laserwolvegames.itch.io/daggerquest\"",
+								"target": "top"
+							}
+						}
+					],
+					"sid": 255023290205054
 				}
-			],
-			"sid": 142931005715493
+			]
 		},
 		{
 			"eventType": "block",

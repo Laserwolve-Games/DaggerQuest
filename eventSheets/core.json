@@ -4276,7 +4276,7 @@
 									"sid": 602434934367432,
 									"parameters": {
 										"object": "abilitySlot",
-										"expression": "abilitySlot.unlock",
+										"expression": "abilitySlot.unlockLevel",
 										"comparison": 0,
 										"value": "player.level"
 									}
@@ -4300,11 +4300,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 770257619060937,
+											"sid": 524494304015622,
 											"parameters": {
 												"instance-variable": "level",
 												"comparison": 0,
-												"value": "1"
+												"value": "2"
 											}
 										},
 										{
@@ -4332,11 +4332,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 121654417346304,
+											"sid": 771211897507310,
 											"parameters": {
 												"instance-variable": "level",
 												"comparison": 0,
-												"value": "2"
+												"value": "3"
 											}
 										},
 										{
@@ -5155,15 +5155,6 @@
 												"layer": "\"pauseMenu\""
 											},
 											"isInverted": true
-										},
-										{
-											"id": "layer-is-visible",
-											"objectClass": "System",
-											"sid": 892799900484396,
-											"parameters": {
-												"layer": "\"mainMenu\""
-											},
-											"isInverted": true
 										}
 									],
 									"actions": [],
@@ -5294,6 +5285,26 @@
 											}
 										},
 										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 446143722805513,
+											"parameters": {
+												"object": "gear",
+												"expression": "gear.type",
+												"comparison": 0,
+												"value": "\"mainHand\""
+											}
+										},
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "player",
+											"sid": 539468882333294,
+											"parameters": {
+												"object": "nonCombatArea"
+											},
+											"isInverted": true
+										},
+										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
 											"sid": 146721833090233,
@@ -5307,13 +5318,22 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "As soon as the enemy comes in range, stop moving and attack it."
+											"text": "As soon as the enemy comes in range, stop moving and attack it. We must verify we're in a non-combat area and have a weapon equipped before we get to the basicAttack function."
 										},
 										{
 											"id": "stop",
 											"objectClass": "player",
 											"sid": 797725622384593,
 											"behaviorType": "MoveTo"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 882275987242572,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
 										},
 										{
 											"id": "set-eventvar-value",
@@ -5323,38 +5343,19 @@
 												"variable": "uidOfClicked",
 												"value": "0"
 											}
+										},
+										{
+											"id": "call-mapped-function",
+											"objectClass": "Functions",
+											"sid": 701899096196063,
+											"parameters": {
+												"name": "\"playerAbilities\"",
+												"string": "\"basicAttack\"",
+												"forward-params": "0"
+											}
 										}
 									],
-									"sid": 388352296582573,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "player",
-													"sid": 118553168547946,
-													"parameters": {
-														"object": "nonCombatArea"
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "call-mapped-function",
-													"objectClass": "Functions",
-													"sid": 676781920009763,
-													"parameters": {
-														"name": "\"playerAbilities\"",
-														"string": "\"basicAttack\"",
-														"forward-params": "0"
-													}
-												}
-											],
-											"sid": 778391973812408
-										}
-									]
+									"sid": 388352296582573
 								},
 								{
 									"eventType": "block",
@@ -5465,22 +5466,6 @@
 									],
 									"sid": 133416707150565
 								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "The below 2 events have to be here. Do not move them elsewhere. If you do, gear will desynchronize and abilities will break.",
-							"text-color": [
-								1,
-								1,
-								1,
-								1
-							],
-							"background-color": [
-								0.6078431372549019,
-								0,
-								0,
-								1
 							]
 						},
 						{
@@ -8548,43 +8533,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-drag-start",
-									"objectClass": "statue",
-									"sid": 604836220159451,
-									"behaviorType": "DragDrop"
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "disable anchoring when we move a statue, and don't turn it back on until we reset the settings"
-								},
-								{
-									"id": "set-enabled",
-									"objectClass": "statue",
-									"sid": 415687442313234,
-									"behaviorType": "Anchor",
-									"parameters": {
-										"state": "disabled"
-									}
-								},
-								{
-									"id": "move-layer",
-									"objectClass": "System",
-									"sid": 514606985739261,
-									"parameters": {
-										"layer": "statue.LayerName",
-										"insert-by": "\"tooltip\"",
-										"where": "below"
-									}
-								}
-							],
-							"sid": 538423186911769
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "layer-is-interactive",
 									"objectClass": "System",
 									"sid": 719958214401375,
@@ -10739,6 +10687,66 @@
 									]
 								},
 								{
+									"functionName": "setEnemyDegrees",
+									"functionDescription": "Set the value of the degrees variable on an enemy.",
+									"functionCategory": "enemies",
+									"functionReturnType": "none",
+									"functionCopyPicked": true,
+									"functionIsAsync": false,
+									"functionParameters": [
+										{
+											"name": "theAngle",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "The angle to use when calculating the degrees.",
+											"sid": 670365773502851
+										}
+									],
+									"eventType": "function-block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 846735971020347,
+											"parameters": {
+												"instance-variable": "degrees",
+												"value": "round(theAngle / ARC) * ARC"
+											}
+										}
+									],
+									"sid": 880029360901562,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 656052761956551,
+													"parameters": {
+														"instance-variable": "degrees",
+														"comparison": 0,
+														"value": "-180"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 434758384045740,
+													"parameters": {
+														"instance-variable": "degrees",
+														"value": "HALF_CIRCLE"
+													}
+												}
+											],
+											"sid": 337678075874270
+										}
+									]
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -10766,6 +10774,13 @@
 												"instance-variable": "degrees",
 												"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC = -180 ? 180 : round(Self.MoveTo.MovingAngle / ARC) * ARC"
 											}
+										},
+										{
+											"callFunction": "setEnemyDegrees",
+											"sid": 164766778429722,
+											"parameters": [
+												"enemy.MoveTo.MovingAngle"
+											]
 										},
 										{
 											"id": "set-boolean-instvar",
@@ -10835,13 +10850,14 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-instance-variable",
-													"objectClass": "enemy",
-													"sid": 728047562840732,
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 343293558951199,
 													"parameters": {
-														"instance-variable": "attackRange",
+														"object": "enemy",
+														"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
 														"comparison": 5,
-														"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
+														"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
 													}
 												},
 												{
@@ -10856,13 +10872,15 @@
 											],
 											"actions": [
 												{
-													"id": "set-instvar-value",
-													"objectClass": "enemy",
-													"sid": 214223478512113,
-													"parameters": {
-														"instance-variable": "degrees",
-														"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC = -180 ? 180 : round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
-													}
+													"type": "comment",
+													"text": "breaking angle(enemy.x, enemy.y, player.x, player.y) into a local variable doesn't work if we have more than 1 enemy."
+												},
+												{
+													"callFunction": "setEnemyDegrees",
+													"sid": 825103675800772,
+													"parameters": [
+														"angle(enemy.X, enemy.Y, player.X, player.Y)"
+													]
 												},
 												{
 													"id": "set-boolean-instvar",
@@ -10890,14 +10908,9 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-instance-variable",
-													"objectClass": "enemy",
-													"sid": 839851258173946,
-													"parameters": {
-														"instance-variable": "attackRange",
-														"comparison": 2,
-														"value": "Functions.isometrify(distance(self.X, self.Y, player.X, player.Y), angle(Self.X, Self.Y, player.X, player.Y))"
-													}
+													"id": "else",
+													"objectClass": "System",
+													"sid": 139303406645738
 												}
 											],
 											"actions": [
@@ -12003,6 +12016,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "projectile",
+							"sid": 398405530236454,
+							"parameters": {
+								"object": "prop"
+							}
+						},
+						{
 							"id": "compare-distance-travelled",
 							"objectClass": "projectile",
 							"sid": 945441159530041,
@@ -12020,7 +12041,8 @@
 							"sid": 785391520212267
 						}
 					],
-					"sid": 585039691434774
+					"sid": 585039691434774,
+					"isOrBlock": true
 				},
 				{
 					"eventType": "comment",
@@ -12966,6 +12988,24 @@
 							],
 							"actions": [
 								{
+									"id": "add-obstacle",
+									"objectClass": "player",
+									"sid": 556192847057245,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
+									}
+								},
+								{
+									"id": "add-obstacle",
+									"objectClass": "enemy",
+									"sid": 119295802383009,
+									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
+									}
+								},
+								{
 									"callFunction": "load",
 									"sid": 979628700487817
 								},
@@ -13431,15 +13471,6 @@
 							}
 						},
 						{
-							"id": "add-obstacle",
-							"objectClass": "player",
-							"sid": 214046696265066,
-							"behaviorType": "Pathfinding",
-							"parameters": {
-								"obstacle": "prop"
-							}
-						},
-						{
 							"id": "load-object-images-by-name",
 							"objectClass": "System",
 							"sid": 592263512784190,
@@ -13456,7 +13487,6 @@
 							"id": "create-object-by-name",
 							"objectClass": "System",
 							"sid": 516693142745191,
-							"breakpoint": true,
 							"parameters": {
 								"object-name": "player.class",
 								"layer": "\"main\"",
@@ -14091,15 +14121,6 @@
 								}
 							],
 							"actions": [
-								{
-									"id": "add-obstacle",
-									"objectClass": "enemy",
-									"sid": 119295802383009,
-									"behaviorType": "Pathfinding",
-									"parameters": {
-										"obstacle": "prop"
-									}
-								},
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",

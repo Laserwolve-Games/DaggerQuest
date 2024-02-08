@@ -224,259 +224,307 @@
 					"isOrBlock": true
 				},
 				{
-					"functionName": "beginDialog",
-					"functionDescription": "Begin dialog with an NPC.",
-					"functionCategory": "world",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
+					"eventType": "block",
+					"conditions": [
 						{
-							"id": "set-instvar-value",
-							"objectClass": "npc",
-							"sid": 386518271357204,
-							"parameters": {
-								"instance-variable": "degrees",
-								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "dialogNpcName",
-							"sid": 223028431246540,
-							"parameters": {
-								"text": "lowercase(npc.fullName)"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "dialogText",
-							"sid": 430213232029680,
-							"parameters": {
-								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, \"npc\", npc.simpleName, \"message\")"
-							}
-						},
-						{
-							"id": "wait",
+							"id": "pick-by-comparison",
 							"objectClass": "System",
-							"sid": 425548883981783,
+							"sid": 669647297717125,
 							"parameters": {
-								"seconds": "0"
+								"object": "npc",
+								"expression": "npc.UID",
+								"comparison": 0,
+								"value": "uidOfClicked"
 							}
 						},
 						{
-							"callFunction": "openLayer",
-							"sid": 270572504417913,
-							"parameters": [
-								"\"dialog\""
-							]
+							"id": "compare-instance-variable",
+							"objectClass": "npc",
+							"sid": 540272031370500,
+							"parameters": {
+								"instance-variable": "interactRange",
+								"comparison": 5,
+								"value": "distance(Self.X, Self.Y, player.X, player.Y)"
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "npc",
+							"sid": 547596792009158,
+							"parameters": {
+								"child": "npcBody",
+								"which": "own"
+							}
 						}
 					],
-					"sid": 484500702457343,
-					"children": [
+					"actions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "npc",
-									"sid": 515856323861255,
-									"parameters": {
-										"instance-variable": "degrees",
-										"comparison": 0,
-										"value": "-180"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-instvar-value",
-									"objectClass": "npc",
-									"sid": 514409863397689,
-									"parameters": {
-										"instance-variable": "degrees",
-										"value": "HALF_CIRCLE"
-									}
-								}
-							],
-							"sid": 597617901621374
+							"id": "stop",
+							"objectClass": "player",
+							"sid": 995148384126742,
+							"behaviorType": "MoveTo"
 						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 139133966391319,
+							"parameters": {
+								"variable": "uidOfClicked",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 421647053250642,
+					"children": [
 						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
-									"id": "set-animation",
-									"objectClass": "npcBody",
-									"sid": 768490635337084,
+									"id": "set-instvar-value",
+									"objectClass": "npc",
+									"sid": 672567292116154,
 									"parameters": {
-										"animation": "\"idle_\" & npc.degrees",
-										"from": "current-frame"
+										"instance-variable": "degrees",
+										"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
 									}
 								},
 								{
-									"callFunction": "updateFacing",
-									"sid": 880255149662395,
+									"id": "set-text",
+									"objectClass": "dialogNpcName",
+									"sid": 623015538201956,
+									"parameters": {
+										"text": "lowercase(npc.fullName)"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "dialogText",
+									"sid": 983615769116275,
+									"parameters": {
+										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, \"npc\", npc.simpleName, \"message\")"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 169684764025575,
+									"parameters": {
+										"seconds": "0"
+									}
+								},
+								{
+									"callFunction": "openLayer",
+									"sid": 998129604283940,
 									"parameters": [
-										"npc.X",
-										"npc.Y"
-									]
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 463287089790000,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromCurrentFrame\""
+										"\"dialog\""
 									]
 								}
 							],
-							"sid": 208162397307165
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 842439206812513,
-									"parameters": {
-										"object": "portrait",
-										"expression": "portrait.ObjectTypeName",
-										"comparison": 0,
-										"value": "npc.simpleName & \"_portrait\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "...if a portrait for it already exists, do nothing"
-								}
-							],
-							"sid": 688346724396258
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 536658391597305
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "…otherwise, destroy all portraits, and spawn a portrait for this NPC"
-								},
-								{
-									"id": "destroy",
-									"objectClass": "portrait",
-									"sid": 440104141978882
-								},
-								{
-									"id": "unload-object-images",
-									"objectClass": "System",
-									"sid": 516502329102582,
-									"parameters": {
-										"object": "portrait"
-									}
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 178316045937466,
-									"parameters": {
-										"object-name": "npc.simpleName & \"_portrait\"",
-										"layer": "\"portraits\"",
-										"x": "portraitPosition",
-										"y": "ViewportBottom(\"portraits\")",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 157694837587103,
+							"sid": 417477370892388,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 617325792886852,
+											"id": "compare-instance-variable",
+											"objectClass": "npc",
+											"sid": 518541035916660,
 											"parameters": {
-												"object": "portrait"
+												"instance-variable": "degrees",
+												"comparison": 0,
+												"value": "-180"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "npc",
+											"sid": 187806332354271,
+											"parameters": {
+												"instance-variable": "degrees",
+												"value": "HALF_CIRCLE"
+											}
+										}
+									],
+									"sid": 108561176223195
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "npcBody",
+											"sid": 399604877450603,
+											"parameters": {
+												"animation": "\"idle_\" & npc.degrees",
+												"from": "current-frame"
+											}
+										},
+										{
+											"callFunction": "updateFacing",
+											"sid": 262392189082691,
+											"parameters": [
+												"npc.X",
+												"npc.Y"
+											]
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 554125704445865,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromCurrentFrame\""
+											]
+										}
+									],
+									"sid": 481803048668382
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 603290908201890,
+											"parameters": {
+												"object": "portrait",
+												"expression": "portrait.ObjectTypeName",
+												"comparison": 0,
+												"value": "npc.simpleName & \"_portrait\""
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "parent it to the mana cover so it resizes correctly. We would use anchor, but we can't set its parameters during the runtime"
-										},
+											"text": "...if a portrait for it already exists, do nothing"
+										}
+									],
+									"sid": 883759055452889
+								},
+								{
+									"eventType": "block",
+									"conditions": [
 										{
-											"id": "add-child",
-											"objectClass": "manaCover",
-											"sid": 366581371143765,
-											"parameters": {
-												"child": "portrait",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": false,
-												"transform-h": false,
-												"transform-a": false,
-												"transform-o": false,
-												"transform-z-elevation": false,
-												"transform-visibility": false,
-												"destroy-with-parent": false
-											}
-										},
+											"id": "else",
+											"objectClass": "System",
+											"sid": 645696004310006
+										}
+									],
+									"actions": [
 										{
 											"type": "comment",
-											"text": "override the global timescale so we can still fade out on pause"
+											"text": "…otherwise, destroy all portraits, and spawn a portrait for this NPC"
 										},
 										{
-											"id": "set-object-time-scale",
+											"id": "destroy",
+											"objectClass": "portrait",
+											"sid": 829592231566676
+										},
+										{
+											"id": "unload-object-images",
 											"objectClass": "System",
-											"sid": 385369070145994,
+											"sid": 185891587069654,
 											"parameters": {
-												"object": "portrait",
-												"time-scale": "1.0"
+												"object": "portrait"
 											}
 										},
 										{
-											"id": "set-opacity",
-											"objectClass": "portrait",
-											"sid": 223827504388620,
+											"id": "create-object-by-name",
+											"objectClass": "System",
+											"sid": 774114215263902,
 											"parameters": {
-												"opacity": "0"
-											}
-										},
-										{
-											"id": "tween-one-property",
-											"objectClass": "portrait",
-											"sid": 940792261109528,
-											"behaviorType": "Tween",
-											"parameters": {
-												"tags": "\"\"",
-												"property": "offsetOpacity",
-												"end-value": "100",
-												"time": ".2",
-												"ease": "noease",
-												"destroy-on-complete": "no",
-												"loop": "no",
-												"ping-pong": "no",
-												"repeat-count": "1"
+												"object-name": "npc.simpleName & \"_portrait\"",
+												"layer": "\"portraits\"",
+												"x": "portraitPosition",
+												"y": "ViewportBottom(\"portraits\")",
+												"create-hierarchy": false,
+												"template-name": "\"\""
 											}
 										}
 									],
-									"sid": 487290881549409
+									"sid": 652814247398785,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 555011027746852,
+													"parameters": {
+														"object": "portrait"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "parent it to the mana cover so it resizes correctly. We would use anchor, but we can't set its parameters during the runtime"
+												},
+												{
+													"id": "add-child",
+													"objectClass": "manaCover",
+													"sid": 132401957377044,
+													"parameters": {
+														"child": "portrait",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": false,
+														"transform-o": false,
+														"transform-z-elevation": false,
+														"transform-visibility": false,
+														"destroy-with-parent": false
+													}
+												},
+												{
+													"type": "comment",
+													"text": "override the global timescale so we can still fade out on pause"
+												},
+												{
+													"id": "set-object-time-scale",
+													"objectClass": "System",
+													"sid": 360251454789608,
+													"parameters": {
+														"object": "portrait",
+														"time-scale": "1.0"
+													}
+												},
+												{
+													"id": "set-opacity",
+													"objectClass": "portrait",
+													"sid": 765430493810951,
+													"parameters": {
+														"opacity": "0"
+													}
+												},
+												{
+													"id": "tween-one-property",
+													"objectClass": "portrait",
+													"sid": 784007058105138,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"\"",
+														"property": "offsetOpacity",
+														"end-value": "100",
+														"time": ".2",
+														"ease": "noease",
+														"destroy-on-complete": "no",
+														"loop": "no",
+														"ping-pong": "no",
+														"repeat-count": "1"
+													}
+												}
+											],
+											"sid": 943916627642006
+										}
+									]
 								}
 							]
 						}
@@ -618,22 +666,6 @@
 								}
 							],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "Development: so we can spawn loot quickly",
-									"text-color": [
-										1,
-										1,
-										1,
-										1
-									],
-									"background-color": [
-										0,
-										0,
-										1,
-										1
-									]
-								},
 								{
 									"callFunction": "spawnLoot",
 									"sid": 642323707189951,
@@ -3839,351 +3871,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "group",
-					"disabled": true,
-					"title": "pathfinding grid",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Has to be an even number?"
-						},
-						{
-							"eventType": "variable",
-							"name": "BORDER_SIZE",
-							"type": "number",
-							"initialValue": "10",
-							"comment": "The 0-based size of the additional border around pathfinding objects",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 562709694284046
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-start-of-layout",
-									"objectClass": "System",
-									"sid": 729681850970393
-								}
-							],
-							"actions": [
-								{
-									"id": "set-size",
-									"objectClass": "pathfindingGridArray",
-									"sid": 458128146312919,
-									"parameters": {
-										"width": "LayoutWidth",
-										"height": "LayoutHeight",
-										"depth": "1"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "AJAX",
-									"sid": 512920626503571,
-									"disabled": true,
-									"parameters": {
-										"tag": "\"pathfindingGrid\"",
-										"file": "pathfindingGrid.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 721132644754413,
-									"disabled": true
-								},
-								{
-									"id": "load",
-									"objectClass": "pathfindingGridArray",
-									"sid": 244042860157255,
-									"disabled": true,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								}
-							],
-							"sid": 453815565285983,
-							"disabled": true,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each-element",
-											"objectClass": "pathfindingGridArray",
-											"sid": 603370655769481,
-											"parameters": {
-												"axes": "xy"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 435609583327643,
-									"disabled": true,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-overlapping-point",
-													"objectClass": "System",
-													"sid": 882540248506168,
-													"parameters": {
-														"object": "prop",
-														"x": "pathfindingGridArray.CurX",
-														"y": "pathfindingGridArray.CurY"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-at-xy",
-													"objectClass": "pathfindingGridArray",
-													"sid": 178795601672041,
-													"parameters": {
-														"x": "Self.CurX",
-														"y": "Self.CurY",
-														"value": "prop.ObjectTypeName"
-													}
-												}
-											],
-											"sid": 757908872488131,
-											"disabled": true
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-overlapping-point",
-													"objectClass": "System",
-													"sid": 631198232332924,
-													"parameters": {
-														"object": "npc",
-														"x": "pathfindingGridArray.CurX",
-														"y": "pathfindingGridArray.CurY"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "NPCs that are 'on top' of props will replace the prop's UID in the array with the NPCs UID, because this event is below that one - that's ok"
-												},
-												{
-													"id": "set-at-xy",
-													"objectClass": "pathfindingGridArray",
-													"sid": 599640924319038,
-													"parameters": {
-														"x": "Self.CurX",
-														"y": "Self.CurY",
-														"value": "npc.ObjectTypeName"
-													}
-												}
-											],
-											"sid": 381834482521655,
-											"disabled": true
-										},
-										{
-											"eventType": "comment",
-											"text": "The player and enemies will move, but we can at least get their initial locations"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-overlapping-point",
-													"objectClass": "System",
-													"sid": 916886036207465,
-													"parameters": {
-														"object": "player",
-														"x": "pathfindingGridArray.CurX",
-														"y": "pathfindingGridArray.CurY"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-at-xy",
-													"objectClass": "pathfindingGridArray",
-													"sid": 269047494107796,
-													"parameters": {
-														"x": "Self.CurX",
-														"y": "Self.CurY",
-														"value": "player.ObjectTypeName"
-													}
-												}
-											],
-											"sid": 429812868162917,
-											"disabled": true
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-overlapping-point",
-													"objectClass": "System",
-													"sid": 851833894280424,
-													"parameters": {
-														"object": "enemy",
-														"x": "pathfindingGridArray.CurX",
-														"y": "pathfindingGridArray.CurY"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-at-xy",
-													"objectClass": "pathfindingGridArray",
-													"sid": 866584161725381,
-													"parameters": {
-														"x": "Self.CurX",
-														"y": "Self.CurY",
-														"value": "enemy.ObjectTypeName"
-													}
-												}
-											],
-											"sid": 196797097752217,
-											"disabled": true
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each-element",
-											"objectClass": "pathfindingGridArray",
-											"sid": 900256021316788,
-											"parameters": {
-												"axes": "xy"
-											}
-										},
-										{
-											"id": "compare-current-value",
-											"objectClass": "pathfindingGridArray",
-											"sid": 696041419908094,
-											"parameters": {
-												"comparison": 1,
-												"value": "0"
-											}
-										},
-										{
-											"id": "compare-current-value",
-											"objectClass": "pathfindingGridArray",
-											"sid": 281567548046974,
-											"parameters": {
-												"comparison": 1,
-												"value": "\"border\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "for every pathfinding grid coordinate, that's not empty, and not a border..."
-										}
-									],
-									"sid": 868100264396178,
-									"disabled": true,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 562980943161841,
-													"parameters": {
-														"name": "\"X\"",
-														"start-index": "0",
-														"end-index": "BORDER_SIZE"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-at-xy",
-													"objectClass": "pathfindingGridArray",
-													"sid": 942825395176823,
-													"parameters": {
-														"x": "Self.CurX - loopindex",
-														"y": "Self.CurY",
-														"value": "\"border\""
-													}
-												}
-											],
-											"sid": 701760410629864,
-											"disabled": true,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "for",
-															"objectClass": "System",
-															"sid": 497882016886263,
-															"parameters": {
-																"name": "\"Y\"",
-																"start-index": "0",
-																"end-index": "BORDER_SIZE"
-															}
-														},
-														{
-															"id": "compare-at-xy",
-															"objectClass": "pathfindingGridArray",
-															"sid": 869284419838284,
-															"parameters": {
-																"x": "Self.CurX - loopindex",
-																"y": "Self.CurY",
-																"comparison": 0,
-																"value": "0"
-															}
-														}
-													],
-													"actions": [],
-													"sid": 516503843926226,
-													"disabled": true
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-key-pressed",
-									"objectClass": "keyboard",
-									"sid": 338937585106535,
-									"parameters": {
-										"key": 90
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "invoke-download-of-string",
-									"objectClass": "browser",
-									"sid": 653542005167200,
-									"parameters": {
-										"string": "pathfindingGridArray.AsJSON",
-										"mime-type": "\"application/json\"",
-										"filename": "\"mydata.json\""
-									}
-								}
-							],
-							"sid": 151082340719092,
-							"disabled": true
-						}
-					],
-					"sid": 458737662348462
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -5229,40 +4916,41 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "mouse-button-is-down",
+											"objectClass": "mouse",
+											"sid": 366207055047227,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										},
+										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 978143679708726,
+											"sid": 168592638850493,
 											"parameters": {
 												"variable": "isOnInteractCooldown"
 											},
 											"isInverted": true
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "the redundancy here can probably only be solved with inheritance, which Construct currently doesn't have"
-										}
-									],
-									"sid": 903969286228194,
+									"actions": [],
+									"sid": 867555195171773,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "on-object-clicked",
+													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 540000685936331,
+													"sid": 241453167878903,
 													"parameters": {
-														"mouse-button": "left",
-														"click-type": "clicked",
-														"object-clicked": "npcBody"
+														"object": "npcBody"
 													}
 												},
 												{
 													"id": "pick-parent",
 													"objectClass": "npcBody",
-													"sid": 699745615466680,
+													"sid": 487588066856047,
 													"parameters": {
 														"parent": "npc",
 														"which": "own"
@@ -5273,7 +4961,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 564336320313701,
+													"sid": 835749655774902,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "npc.UID"
@@ -5281,7 +4969,7 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 528350358814362,
+													"sid": 897237951759274,
 													"parameters": [
 														"npc.X",
 														"npc.y",
@@ -5289,25 +4977,23 @@
 													]
 												}
 											],
-											"sid": 835848342248823
+											"sid": 615790843207643
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "on-object-clicked",
+													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 647496400174350,
+													"sid": 714264512000422,
 													"parameters": {
-														"mouse-button": "left",
-														"click-type": "clicked",
-														"object-clicked": "enemyBody"
+														"object": "enemyBody"
 													}
 												},
 												{
 													"id": "pick-topbottom",
 													"objectClass": "enemyBody",
-													"sid": 558149924020247,
+													"sid": 285288840140339,
 													"parameters": {
 														"which": "top"
 													}
@@ -5315,7 +5001,7 @@
 												{
 													"id": "pick-parent",
 													"objectClass": "enemyBody",
-													"sid": 308256509815841,
+													"sid": 515156591801155,
 													"parameters": {
 														"parent": "enemy",
 														"which": "own"
@@ -5326,7 +5012,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 817746160964283,
+													"sid": 400514212269746,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "enemy.UID"
@@ -5334,7 +5020,7 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 213305270508717,
+													"sid": 678851215223079,
 													"parameters": [
 														"enemy.X",
 														"enemy.y",
@@ -5342,25 +5028,23 @@
 													]
 												}
 											],
-											"sid": 749602820773931
+											"sid": 608364097523123
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "on-object-clicked",
+													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 926855902879310,
+													"sid": 558274650929808,
 													"parameters": {
-														"mouse-button": "left",
-														"click-type": "clicked",
-														"object-clicked": "loot"
+														"object": "loot"
 													}
 												},
 												{
 													"id": "pick-topbottom",
 													"objectClass": "loot",
-													"sid": 232999226144291,
+													"sid": 552729975930446,
 													"parameters": {
 														"which": "top"
 													}
@@ -5370,7 +5054,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 608257977053813,
+													"sid": 605103292697351,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "loot.UID"
@@ -5378,7 +5062,7 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 802038486549519,
+													"sid": 139575520009903,
 													"parameters": [
 														"loot.X",
 														"loot.y",
@@ -5386,19 +5070,17 @@
 													]
 												}
 											],
-											"sid": 169232376872581
+											"sid": 622695218380131
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "on-object-clicked",
+													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 300550654264348,
+													"sid": 415260977256256,
 													"parameters": {
-														"mouse-button": "left",
-														"click-type": "clicked",
-														"object-clicked": "door"
+														"object": "door"
 													}
 												}
 											],
@@ -5406,7 +5088,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 307414198190697,
+													"sid": 378622065567138,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "door.UID"
@@ -5414,7 +5096,7 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 580576573293621,
+													"sid": 854461868791260,
 													"parameters": [
 														"door.ImagePointX(1)",
 														"door.ImagePointY(1)",
@@ -5422,178 +5104,7 @@
 													]
 												}
 											],
-											"sid": 479773362673259
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 326863248303330,
-													"parameters": {
-														"object": "player"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 492410665695329,
-													"parameters": {
-														"object": "item"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 666570401246243,
-													"parameters": {
-														"object": "invalidLocation"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 573594975992952,
-													"parameters": {
-														"object": "9PatchInvalidLocations"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "layer-is-visible",
-													"objectClass": "System",
-													"sid": 519399153989331,
-													"parameters": {
-														"layer": "\"pauseMenu\""
-													},
-													"isInverted": true
-												},
-												{
-													"id": "layer-is-visible",
-													"objectClass": "System",
-													"sid": 388126389480175,
-													"parameters": {
-														"layer": "\"mainMenu\""
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [],
-											"sid": 166715960982564,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "mouse-button-is-down",
-															"objectClass": "mouse",
-															"sid": 954094202655467,
-															"parameters": {
-																"mouse-button": "right"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 897084797702736,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "0"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 890652795602718,
-															"parameters": [
-																"mouse.X",
-																"mouse.Y",
-																"0"
-															]
-														}
-													],
-													"sid": 734198820085048
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "mouse-button-is-down",
-															"objectClass": "mouse",
-															"sid": 128892431348860,
-															"parameters": {
-																"mouse-button": "left"
-															}
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 771157223441082,
-															"parameters": {
-																"object": "npcBody"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 354486739837909,
-															"parameters": {
-																"object": "enemyBody"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 229704619217903,
-															"parameters": {
-																"object": "loot"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 586698452226205,
-															"parameters": {
-																"object": "door"
-															},
-															"isInverted": true
-														}
-													],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 204046585401686,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "0"
-															}
-														},
-														{
-															"callFunction": "moveToLocation",
-															"sid": 190321896549681,
-															"parameters": [
-																"mouse.X",
-																"mouse.Y",
-																"0"
-															]
-														}
-													],
-													"sid": 867796252491452
-												}
-											]
+											"sid": 342563382644118
 										}
 									]
 								},
@@ -5601,268 +5112,358 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 735511063130572,
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 857293946001196,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"comparison": 1,
-												"value": "0"
+												"object": "player"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 128899916492898,
+											"parameters": {
+												"object": "item"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 876584298511895,
+											"parameters": {
+												"object": "invalidLocation"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 886180726251542,
+											"parameters": {
+												"object": "9PatchInvalidLocations"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 180441204399974,
+											"parameters": {
+												"layer": "\"pauseMenu\""
+											},
+											"isInverted": true
+										},
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 892799900484396,
+											"parameters": {
+												"layer": "\"mainMenu\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 596268564767458,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "mouse-button-is-down",
+													"objectClass": "mouse",
+													"sid": 291531131797624,
+													"parameters": {
+														"mouse-button": "right"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 746302270088896,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "0"
+													}
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 965010289863841,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y",
+														"0"
+													]
+												}
+											],
+											"sid": 238953477578949
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "mouse-button-is-down",
+													"objectClass": "mouse",
+													"sid": 753527307690535,
+													"parameters": {
+														"mouse-button": "left"
+													}
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 205779074982549,
+													"parameters": {
+														"object": "npcBody"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 821611206954450,
+													"parameters": {
+														"object": "enemyBody"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 331704978528597,
+													"parameters": {
+														"object": "loot"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 741553770859849,
+													"parameters": {
+														"object": "door"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 929958256197414,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "0"
+													}
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 143170121126941,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y",
+														"0"
+													]
+												}
+											],
+											"sid": 721384957223395
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 430217294903986,
+											"parameters": {
+												"object": "enemy",
+												"expression": "uidOfClicked",
+												"comparison": 0,
+												"value": "enemy.UID"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 146721833090233,
+											"parameters": {
+												"instance-variable": "attackRange",
+												"comparison": 5,
+												"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "we don't need to check that it's 0 for this to function, however it saves us from evaluating each sub-event's condition"
+											"text": "As soon as the enemy comes in range, stop moving and attack it."
+										},
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 797725622384593,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 641852746905644,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
 										}
 									],
-									"sid": 876565196589800,
+									"sid": 388352296582573,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 919233706833169,
+													"id": "is-overlapping-another-object",
+													"objectClass": "player",
+													"sid": 118553168547946,
 													"parameters": {
-														"object": "npc",
-														"expression": "npc.UID",
-														"comparison": 0,
-														"value": "uidOfClicked"
-													}
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "npc",
-													"sid": 755149013633612,
-													"parameters": {
-														"instance-variable": "interactRange",
-														"comparison": 5,
-														"value": "distance(Self.X, Self.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "npc",
-													"sid": 969911445591245,
-													"parameters": {
-														"child": "npcBody",
-														"which": "own"
-													}
+														"object": "nonCombatArea"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [
 												{
-													"id": "stop",
-													"objectClass": "player",
-													"sid": 232119868988035,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"callFunction": "beginDialog",
-													"sid": 382444816630141
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 655845104448685,
+													"id": "call-mapped-function",
+													"objectClass": "Functions",
+													"sid": 676781920009763,
 													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
+														"name": "\"playerAbilities\"",
+														"string": "\"basicAttack\"",
+														"forward-params": "0"
 													}
 												}
 											],
-											"sid": 540024099999415
+											"sid": 778391973812408
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 721662282054252,
+											"parameters": {
+												"object": "loot",
+												"expression": "loot.UID",
+												"comparison": 0,
+												"value": "uidOfClicked"
+											}
 										},
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 720539290630348,
-													"parameters": {
-														"object": "enemy",
-														"expression": "uidOfClicked",
-														"comparison": 0,
-														"value": "enemy.UID"
-													}
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "player",
-													"sid": 771584707701155,
-													"parameters": {
-														"instance-variable": "attackRange",
-														"comparison": 5,
-														"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "As soon as the enemy comes in range, stop moving and attack it."
-												},
-												{
-													"id": "stop",
-													"objectClass": "player",
-													"sid": 423776126456889,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 220009919808246,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
-												}
-											],
-											"sid": 766000468871992,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-overlapping-another-object",
-															"objectClass": "player",
-															"sid": 419261775519050,
-															"parameters": {
-																"object": "nonCombatArea"
-															},
-															"isInverted": true
-														}
-													],
-													"actions": [
-														{
-															"id": "call-mapped-function",
-															"objectClass": "Functions",
-															"sid": 492517561741127,
-															"parameters": {
-																"name": "\"playerAbilities\"",
-																"string": "\"basicAttack\"",
-																"forward-params": "0"
-															}
-														}
-													],
-													"sid": 159625125611369
-												}
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 686762258131205,
+											"parameters": {
+												"first-value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)",
+												"comparison": 5,
+												"second-value": "distance(player.X, player.Y, loot.X, loot.Y)"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "loot gets a bonus to its pick up range based on its size, and an additional bonus if it has a vertical height"
+										},
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 961332417052704,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 293322297496227,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
 											]
 										},
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 499927505951578,
-													"parameters": {
-														"object": "loot",
-														"expression": "loot.UID",
-														"comparison": 0,
-														"value": "uidOfClicked"
-													}
-												},
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 531899067918596,
-													"parameters": {
-														"first-value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)",
-														"comparison": 5,
-														"second-value": "distance(player.X, player.Y, loot.X, loot.Y)"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "loot gets a bonus to its pick up range based on its size, and an additional bonus if it has a vertical height"
-												},
-												{
-													"id": "stop",
-													"objectClass": "player",
-													"sid": 237461376263142,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 119736605381469,
-													"parameters": [
-														"\"idle\"",
-														"body.OriginalAnimationSpeed",
-														"\"playFromBeginning\""
-													]
-												},
-												{
-													"callFunction": "pickUpLoot",
-													"sid": 928936656562424
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 328739119619636,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
-												}
-											],
-											"sid": 609901448175737
+											"callFunction": "pickUpLoot",
+											"sid": 728141715517524
 										},
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 310721299510081,
-													"parameters": {
-														"object": "door",
-														"expression": "uidOfClicked",
-														"comparison": 0,
-														"value": "door.UID"
-													}
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "door",
-													"sid": 886536441345957,
-													"parameters": {
-														"instance-variable": "interactRange",
-														"comparison": 5,
-														"value": "distance(Self.ImagePointX(1), Self.ImagePointY(1), player.X, player.Y)"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "stop",
-													"objectClass": "player",
-													"sid": 623971236543322,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"callFunction": "buildingTransition",
-													"sid": 260885488883667
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 104219717413373,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
-												}
-											],
-											"sid": 227920085693156
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 114187256365570,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
 										}
-									]
+									],
+									"sid": 781964436868869
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 289372584768611,
+											"parameters": {
+												"object": "door",
+												"expression": "uidOfClicked",
+												"comparison": 0,
+												"value": "door.UID"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "door",
+											"sid": 436346589078489,
+											"parameters": {
+												"instance-variable": "interactRange",
+												"comparison": 5,
+												"value": "distance(Self.ImagePointX(1), Self.ImagePointY(1), player.X, player.Y)"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 728178816355344,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"callFunction": "buildingTransition",
+											"sid": 894351674578264
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 394862477378289,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 133416707150565
 								}
 							]
 						},
@@ -6142,14 +5743,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-key-pressed",
-											"objectClass": "keyboard",
-											"sid": 596432560112866,
-											"parameters": {
-												"key": 81
-											}
-										},
-										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
 											"sid": 739695167969196,
@@ -6158,6 +5751,14 @@
 												"expression": "abilitySlot.IID",
 												"comparison": 0,
 												"value": "0"
+											}
+										},
+										{
+											"id": "key-is-down",
+											"objectClass": "keyboard",
+											"sid": 529359257387603,
+											"parameters": {
+												"key": 81
 											}
 										},
 										{
@@ -6338,22 +5939,7 @@
 									"functionReturnType": "none",
 									"functionCopyPicked": true,
 									"functionIsAsync": false,
-									"functionParameters": [
-										{
-											"name": "x",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "",
-											"sid": 935557963406068
-										},
-										{
-											"name": "y",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "",
-											"sid": 813009262949045
-										}
-									],
+									"functionParameters": [],
 									"eventType": "function-block",
 									"conditions": [],
 									"actions": [],
@@ -6442,6 +6028,10 @@
 														"enemy.X",
 														"enemy.Y"
 													]
+												},
+												{
+													"type": "comment",
+													"text": "Don't set uidOfClicked to 0 here, because we might have clicked on an enemy"
 												},
 												{
 													"id": "set-enabled",
@@ -7098,6 +6688,10 @@
 															],
 															"actions": [
 																{
+																	"type": "comment",
+																	"text": "Go back to idling if the player is still alive"
+																},
+																{
 																	"callFunction": "updateAnimations",
 																	"sid": 615172535025779,
 																	"parameters": [
@@ -7105,10 +6699,6 @@
 																		"body.OriginalAnimationSpeed",
 																		"\"playFromBeginning\""
 																	]
-																},
-																{
-																	"type": "comment",
-																	"text": "Go back to idling if the player is still alive"
 																}
 															],
 															"sid": 428301366670408
@@ -7830,50 +7420,8 @@
 									]
 								},
 								{
-									"type": "comment",
-									"text": "TOOD: This needs to get DRY'd along with the rest of the player abilities"
-								},
-								{
-									"id": "set-enabled",
-									"objectClass": "player",
-									"sid": 604244747639273,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"enabled": false
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 182083514171421,
-									"parameters": {
-										"group-name": "\"movement and interaction\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 165409029238706,
-									"parameters": {
-										"group-name": "\"abilities\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 703320316572271,
-									"parameters": {
-										"group-name": "\"facings\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "stop",
-									"objectClass": "player",
-									"sid": 904316087221004,
-									"behaviorType": "MoveTo"
+									"callFunction": "stopPlayer",
+									"sid": 864356451249667
 								},
 								{
 									"id": "wait",
@@ -7884,40 +7432,8 @@
 									}
 								},
 								{
-									"id": "set-enabled",
-									"objectClass": "player",
-									"sid": 233679379295841,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"enabled": true
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 775379687103667,
-									"parameters": {
-										"group-name": "\"movement and interaction\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 818422607278468,
-									"parameters": {
-										"group-name": "\"facings\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 830387083707417,
-									"parameters": {
-										"group-name": "\"abilities\"",
-										"state": "activated"
-									}
+									"callFunction": "startPlayer",
+									"sid": 785762217384285
 								}
 							],
 							"sid": 241724089671820,
@@ -7954,6 +7470,106 @@
 									"sid": 376571747137365
 								}
 							]
+						},
+						{
+							"functionName": "stopPlayer",
+							"functionDescription": "",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "player",
+									"sid": 755494463211122,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"enabled": false
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 396635574571222,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 173185401432157,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 308249203993032,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "deactivated"
+									}
+								}
+							],
+							"sid": 301345853236628
+						},
+						{
+							"functionName": "startPlayer",
+							"functionDescription": "Allow the player to move and receive input again.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "player",
+									"sid": 417178799977660,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"enabled": true
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 854005977144285,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 846354670191142,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 794951733140189,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "activated"
+									}
+								}
+							],
+							"sid": 131333290343239
 						}
 					],
 					"sid": 121151613548917
@@ -13284,186 +12900,199 @@
 							"id": "on-start-of-layout",
 							"objectClass": "System",
 							"sid": 262069484413518
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 912674401090762,
-							"parameters": {
-								"first-value": "LayoutName",
-								"comparison": 0,
-								"second-value": "\"farm\""
-							}
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 651187199103032,
-							"parameters": {
-								"variable": "previousLayout",
-								"comparison": 0,
-								"value": "\"mainMenu\""
-							}
 						}
 					],
-					"actions": [
-						{
-							"callFunction": "load",
-							"sid": 571474006536988
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 386395602259682
-						}
-					],
+					"actions": [],
 					"sid": 803419978161680,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-animation-playing",
-									"objectClass": "shadows",
-									"sid": 587559276865619,
+									"id": "is-in-preview",
+									"objectClass": "System",
+									"sid": 793697092263258
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 852802601552517,
 									"parameters": {
-										"animation": "\"checked\""
+										"layer": "\"mechanics\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "boundary is a separate layer only so we can lock other layers to easily set boundaries"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 546916533810165,
+									"parameters": {
+										"layer": "\"boundary\"",
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 700099437768094
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 420537721796360,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"farm\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 497581204284210,
+									"parameters": {
+										"variable": "previousLayout",
+										"comparison": 0,
+										"value": "\"mainMenu\""
 									}
 								}
 							],
 							"actions": [
 								{
-									"callFunction": "spawnShadows",
-									"sid": 613453278479390
+									"callFunction": "load",
+									"sid": 979628700487817
 								},
 								{
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 195043199346989
+									"sid": 889391003347667
 								}
 							],
-							"sid": 196575738655035,
+							"sid": 313423866928618,
 							"children": [
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "We oddly still had to regenerate the obstacle map even when we added obstacles in the 'on start of layout' trigger. (that's what the documentation says to do.) We add obstacle maps to both the player and enemies in the 'load' function, so we have to (re?)generate the pathfinding obstacle map here."
-										},
-										{
-											"id": "regenerate-obstacle-map",
-											"objectClass": "player",
-											"sid": 750423419646440,
-											"behaviorType": "Pathfinding"
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 835471905542578
-										},
-										{
-											"id": "set-visible",
-											"objectClass": "loadingScreen",
-											"sid": 470616944961394,
-											"parameters": {
-												"visibility": "invisible"
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 794823874165651,
-											"parameters": {
-												"layer": "\"main\"",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 837697288123841,
-											"parameters": {
-												"layer": "\"background\"",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 636711178308023,
-											"parameters": {
-												"layer": "\"abilityBar\"",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 585869294141966,
-											"parameters": {
-												"layer": "\"orbs\"",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 360697776176394,
-											"parameters": {
-												"layer": "\"mechanics\"",
-												"interactive": true
-											}
-										},
-										{
-											"id": "fade-volume",
-											"objectClass": "Audio",
-											"sid": 425678352214686,
-											"parameters": {
-												"tag": "\"main\"",
-												"db": "-100",
-												"duration": "3",
-												"ending": "stop"
-											}
-										}
-									],
-									"sid": 410877502763355
-								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-in-preview",
-											"objectClass": "System",
-											"sid": 677428295136778
+											"id": "is-animation-playing",
+											"objectClass": "shadows",
+											"sid": 731958437588170,
+											"parameters": {
+												"animation": "\"checked\""
+											}
 										}
 									],
 									"actions": [
 										{
-											"id": "set-layer-visible",
-											"objectClass": "System",
-											"sid": 254831716518711,
-											"parameters": {
-												"layer": "\"mechanics\"",
-												"visibility": "visible"
-											}
+											"callFunction": "spawnShadows",
+											"sid": 913506961906922
 										},
 										{
-											"type": "comment",
-											"text": "boundary is a separate layer only so we can lock other layers to easily set boundaries"
-										},
-										{
-											"id": "set-layer-visible",
+											"id": "wait-for-previous-actions",
 											"objectClass": "System",
-											"sid": 802080427777729,
-											"parameters": {
-												"layer": "\"boundary\"",
-												"visibility": "visible"
-											}
+											"sid": 592024328337459
 										}
 									],
-									"sid": 477705581933398
+									"sid": 478313947755560,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "We add obstacle maps to both the player and enemies in the 'load' function, so we have to regenerate the pathfinding obstacle map."
+												},
+												{
+													"type": "comment",
+													"text": "https://github.com/Scirra/Construct-bugs/issues/7814"
+												},
+												{
+													"id": "regenerate-obstacle-map",
+													"objectClass": "player",
+													"sid": 863558415609365,
+													"behaviorType": "Pathfinding"
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 574277040335142
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "loadingScreen",
+													"sid": 738944468596655,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 600681602716481,
+													"parameters": {
+														"layer": "\"main\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 622463058537742,
+													"parameters": {
+														"layer": "\"background\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 795484306112383,
+													"parameters": {
+														"layer": "\"abilityBar\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 694574401791079,
+													"parameters": {
+														"layer": "\"orbs\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 860315534404662,
+													"parameters": {
+														"layer": "\"mechanics\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "fade-volume",
+													"objectClass": "Audio",
+													"sid": 366249433444875,
+													"parameters": {
+														"tag": "\"main\"",
+														"db": "-100",
+														"duration": "3",
+														"ending": "stop"
+													}
+												}
+											],
+											"sid": 854781016338481
+										}
+									]
 								}
 							]
 						}
@@ -13827,6 +13456,7 @@
 							"id": "create-object-by-name",
 							"objectClass": "System",
 							"sid": 516693142745191,
+							"breakpoint": true,
 							"parameters": {
 								"object-name": "player.class",
 								"layer": "\"main\"",
@@ -16031,7 +15661,6 @@
 							"id": "set-animation",
 							"objectClass": "door",
 							"sid": 285583430795064,
-							"breakpoint": true,
 							"parameters": {
 								"animation": "\"open\"",
 								"from": "current-frame"

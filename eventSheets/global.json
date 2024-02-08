@@ -108,7 +108,7 @@
 			"actions": [
 				{
 					"type": "comment",
-					"text": "When the layout changes, global objects are moved to a layer that matches the layer number of their previous layer, regardless of layer name. We have to use global objects and not global layers for the loading screen, as objects on global layers are destroyed and remade. We need to retain the fluency of the loading text/loading bar."
+					"text": "When the layout changes, global objects are moved to a layer that matches the layer number of their previous layer, regardless of layer name. We have to use global objects and not global layers for the loading screen, as objects on global layers are destroyed and remade."
 				},
 				{
 					"id": "move-to-layer",
@@ -196,6 +196,14 @@
 					"sid": 696533436144298,
 					"parameters": {
 						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
+					"objectClass": "player",
+					"sid": 538953121026621,
+					"parameters": {
+						"layer": "\"mechanics\""
 					}
 				}
 			],

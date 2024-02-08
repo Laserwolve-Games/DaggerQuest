@@ -9,91 +9,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 573126427733994
-				}
-			],
-			"actions": [],
-			"sid": 142931005715493,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 808354573296270,
-							"parameters": {
-								"first-value": "browser.URL",
-								"comparison": 0,
-								"second-value": "\"https://laserwolvegames.itch.io/daggerquest\""
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 897149006983979,
-							"parameters": {
-								"first-value": "browser.URL",
-								"comparison": 0,
-								"second-value": "\"https://test.daggerquest.com/\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-looping",
-							"objectClass": "video",
-							"sid": 429607102555245,
-							"parameters": {
-								"mode": "looping"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "versionText",
-							"sid": 236184851366253,
-							"parameters": {
-								"text": "projectversion"
-							}
-						}
-					],
-					"sid": 410884549509201,
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 513618293621750
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "If we aren't on an approved website, go to laserwolvegames.itch.io/daggerquest"
-						},
-						{
-							"id": "go-to-url",
-							"objectClass": "browser",
-							"sid": 838213573423317,
-							"parameters": {
-								"url": "\"https://laserwolvegames.itch.io/daggerquest\"",
-								"target": "top"
-							}
-						}
-					],
-					"sid": 255023290205054
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "on-object-clicked",
 					"objectClass": "mouse",
 					"sid": 628849515389079,
@@ -222,75 +137,172 @@
 						{
 							"id": "layer-is-visible",
 							"objectClass": "System",
-							"sid": 221425578614375,
+							"sid": 843857722539970,
 							"parameters": {
 								"layer": "\"launcher\""
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 548421181255801,
+					"children": [
 						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 471121025496621,
-							"parameters": {
-								"layer": "\"launcher\"",
-								"visibility": "invisible"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 886675150309539,
+									"parameters": {
+										"first-value": "browser.URL",
+										"comparison": 0,
+										"second-value": "\"https://laserwolvegames.itch.io/daggerquest\""
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 186781646227584,
+									"parameters": {
+										"first-value": "browser.URL",
+										"comparison": 0,
+										"second-value": "\"https://test.daggerquest.com/\""
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 109835491749134,
+									"parameters": {
+										"first-value": "browser.Domain",
+										"comparison": 0,
+										"second-value": "\"preview.construct.net\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Verify we are on an approved URL at which we can play DaggerQuest"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 923876878737282,
+									"parameters": {
+										"layer": "\"launcher\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "versionText",
+									"sid": 942260743760368,
+									"parameters": {
+										"text": "projectversion"
+									}
+								},
+								{
+									"id": "set-looping",
+									"objectClass": "video",
+									"sid": 266536781887697,
+									"parameters": {
+										"mode": "looping"
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "video",
+									"sid": 650744810399738
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 814647346443809,
+									"parameters": {
+										"audio-file": "mainTheme",
+										"loop": "looping",
+										"volume": "-100",
+										"stereo-pan": "0",
+										"tag-optional": "\"main\""
+									}
+								},
+								{
+									"id": "fade-volume",
+									"objectClass": "Audio",
+									"sid": 833118601620741,
+									"parameters": {
+										"tag": "\"main\"",
+										"db": "0",
+										"duration": "5",
+										"ending": "keep-playing"
+									}
+								}
+							],
+							"sid": 172162060935782,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-in-preview",
+											"objectClass": "System",
+											"sid": 129915679444341,
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "request-fullscreen",
+											"objectClass": "browser",
+											"sid": 334999377279668,
+											"parameters": {
+												"mode": "stretch-letterbox-scale",
+												"navigation-ui": "auto"
+											}
+										}
+									],
+									"sid": 487104321931908
+								}
+							],
+							"isOrBlock": true
 						},
 						{
-							"id": "play",
-							"objectClass": "video",
-							"sid": 344215869191148
-						},
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 953120952208759,
-							"parameters": {
-								"audio-file": "mainTheme",
-								"loop": "looping",
-								"volume": "-100",
-								"stereo-pan": "0",
-								"tag-optional": "\"main\""
-							}
-						},
-						{
-							"id": "fade-volume",
-							"objectClass": "Audio",
-							"sid": 809925726785550,
-							"parameters": {
-								"tag": "\"main\"",
-								"db": "0",
-								"duration": "5",
-								"ending": "keep-playing"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 357952741306924
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If we aren't on an approved website, go to laserwolvegames.itch.io/daggerquest"
+								},
+								{
+									"id": "go-to-url",
+									"objectClass": "browser",
+									"sid": 901713233954920,
+									"parameters": {
+										"url": "\"https://laserwolvegames.itch.io/daggerquest\"",
+										"target": "top"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "browser",
+									"sid": 395370782391094,
+									"parameters": {
+										"type": "log",
+										"message": "browser.URL & \" and \" & browser.Domain"
+									}
+								}
+							],
+							"sid": 182917165958232
 						}
-					],
-					"sid": 195916310811890
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-in-preview",
-							"objectClass": "System",
-							"sid": 799616200830014,
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "request-fullscreen",
-							"objectClass": "browser",
-							"sid": 674478456395328,
-							"parameters": {
-								"mode": "stretch-letterbox-scale",
-								"navigation-ui": "auto"
-							}
-						}
-					],
-					"sid": 489553130293168
+					]
 				}
 			],
 			"isOrBlock": true

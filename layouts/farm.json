@@ -12439,6 +12439,21 @@
 											"d": false,
 											"sm": "normal"
 										}
+									},
+									{
+										"uid": 95,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": true,
+											"v": true,
+											"d": true,
+											"sm": "normal"
+										}
 									}
 								],
 								"flags": {
@@ -12505,7 +12520,7 @@
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 37,
@@ -12555,11 +12570,11 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 513,
+								"y": 533,
 								"width": 590,
 								"height": 41,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
@@ -12592,7 +12607,7 @@
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 38,
@@ -12628,11 +12643,11 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 548,
+								"y": 568,
 								"width": 590,
 								"height": 23,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
@@ -12665,7 +12680,7 @@
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 48,
@@ -12701,11 +12716,11 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 580,
+								"y": 600,
 								"width": 590,
 								"height": 19,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
@@ -12719,7 +12734,7 @@
 						{
 							"type": "comparisonTooltipDescription",
 							"properties": {
-								"text": "+1 Health\n+999 Mana\nRestore 100 Health every 10 seconds\nEvery 10 seconds, your Smash Damage is increased by 10 for 5 seconds",
+								"text": "Line 1\nLine 2\nLine 3\nLine 4\nLine 5",
 								"enable-bbcode": true,
 								"font": "Grenze-SemiBold",
 								"size": 16,
@@ -12733,12 +12748,12 @@
 									1
 								],
 								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
+								"vertical-alignment": "bottom",
 								"wrapping": "word",
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 49,
@@ -12774,11 +12789,11 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 666,
+								"y": 742,
 								"width": 590,
-								"height": 124,
+								"height": 143,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
@@ -12857,6 +12872,79 @@
 									1,
 									1,
 									0.8
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "currentlyEquipped",
+							"properties": {
+								"text": "currently equipped",
+								"enable-bbcode": true,
+								"font": "cinzel-semibold",
+								"size": 18,
+								"line-height": 0,
+								"bold": false,
+								"italic": true,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 95,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 95,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 454,
+								"width": 148,
+								"height": 60,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									0.75
 								],
 								"angle": 0,
 								"zElevation": 0

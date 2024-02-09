@@ -9985,6 +9985,57 @@
 									"sid": 452964067971167
 								},
 								{
+									"eventType": "comment",
+									"text": "see comments in the related events for the normal tooltip"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-y",
+											"objectClass": "comparisonTooltip",
+											"sid": 671311727852783,
+											"parameters": {
+												"y": "tooltip.BBoxTop"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "comparisonTooltipLevel",
+											"sid": 728337224561583,
+											"parameters": {
+												"y": "comparisonTooltipDescription.BBoxBottom - comparisonTooltipDescription.TextHeight - 15"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "comparisonTooltipClass",
+											"sid": 121561601808493,
+											"parameters": {
+												"y": "comparisonTooltipLevel.BBoxTop"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "comparisonTooltipName",
+											"sid": 886399482367159,
+											"parameters": {
+												"y": "comparisonTooltipClass.BBoxTop"
+											}
+										},
+										{
+											"id": "set-height",
+											"objectClass": "comparisonTooltip",
+											"sid": 401237268836532,
+											"parameters": {
+												"height": "Self.Y - comparisonTooltipName.Y + comparisonTooltipName.TextHeight + 20"
+											}
+										}
+									],
+									"sid": 233887033264269
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{

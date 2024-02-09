@@ -9641,6 +9641,69 @@
 									]
 								},
 								{
+									"eventType": "comment",
+									"text": "tooltipLore is along the bottom, so it's OK where it's at. The bottom of tooltipDescription has been aligned with the top of tooltipLore, in the editor."
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Align everything above tooltipDescription, cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltipLevel",
+											"sid": 985401344682367,
+											"parameters": {
+												"y": "tooltipDescription.BBoxBottom - tooltipDescription.TextHeight - 15"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltipClass",
+											"sid": 996569943533462,
+											"parameters": {
+												"y": "tooltipLevel.BBoxTop"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltipName",
+											"sid": 436680755485236,
+											"parameters": {
+												"y": "tooltipClass.BBoxTop"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Set the tooltip's height based on the distance between the bottom of the tooltip and the bottom of the tooltipName, plus the tooltipName's textHeight, plus some padding."
+										},
+										{
+											"id": "set-height",
+											"objectClass": "tooltip",
+											"sid": 932319951334630,
+											"parameters": {
+												"height": "Self.Y - tooltipName.Y + tooltipName.TextHeight + 20"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "If tooltip wasn't anchored, I think just setting the height would be enough. Since it is, we need to set it's Y every time we show it."
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltip",
+											"sid": 535940485689065,
+											"parameters": {
+												"y": "ViewportBottom(\"overlay\")"
+											}
+										}
+									],
+									"sid": 273454201901542
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -9655,6 +9718,10 @@
 										}
 									],
 									"actions": [
+										{
+											"type": "comment",
+											"text": "I don't think there's a way to get the tooltipText family member with the longest textWidth. We can use a descending loop and stop after the first value."
+										},
 										{
 											"id": "set-width",
 											"objectClass": "tooltip",

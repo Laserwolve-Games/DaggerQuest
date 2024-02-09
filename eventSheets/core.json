@@ -5660,33 +5660,79 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [
+							"actions": [],
+							"sid": 736875311258128,
+							"children": [
 								{
-									"id": "find-path",
-									"objectClass": "player",
-									"sid": 922533560421093,
-									"behaviorType": "Pathfinding",
-									"parameters": {
-										"x": "x",
-										"y": "y"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-on-screen",
+											"objectClass": "prop",
+											"sid": 948150951426727
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "prop",
+											"sid": 460712395876672,
+											"parameters": {
+												"instance-variable": "usePathfinding"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "find-path",
+											"objectClass": "player",
+											"sid": 988922268198483,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "x",
+												"y": "y"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 871261292508568
+										},
+										{
+											"id": "move-along-pathfinding-path",
+											"objectClass": "player",
+											"sid": 515356683123279,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"mode": "direct"
+											}
+										}
+									],
+									"sid": 125932126823661
 								},
 								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 147041412807276
-								},
-								{
-									"id": "move-along-pathfinding-path",
-									"objectClass": "player",
-									"sid": 716207971389620,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"mode": "direct"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 289974390496883
+										}
+									],
+									"actions": [
+										{
+											"id": "move-to-position",
+											"objectClass": "player",
+											"sid": 758784016272593,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"x": "mouse.X",
+												"y": "mouse.Y",
+												"mode": "direct"
+											}
+										}
+									],
+									"sid": 764050547650389
 								}
-							],
-							"sid": 736875311258128
+							]
 						}
 					],
 					"sid": 914713205483917
@@ -10278,15 +10324,6 @@
 									"id": "on-any-animation-finished",
 									"objectClass": "enemyBody",
 									"sid": 636124233086149
-								},
-								{
-									"id": "pick-parent",
-									"objectClass": "enemyBody",
-									"sid": 529758430605787,
-									"parameters": {
-										"parent": "enemy",
-										"which": "own"
-									}
 								}
 							],
 							"actions": [],
@@ -10332,66 +10369,84 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 621818743770483,
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 829615484125780,
 											"parameters": {
-												"object": "enemyBody",
-												"expression": "find(enemyBody.AnimationName, \"attack\")",
-												"comparison": 1,
-												"value": "-1"
+												"parent": "enemy",
+												"which": "own"
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 938155508642631,
+									"children": [
 										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 401309884873553,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "false"
-											}
-										}
-									],
-									"sid": 911228583075620
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 826003192918791,
-											"parameters": {
-												"object": "enemyBody",
-												"expression": "find(enemyBody.AnimationName, \"hit\")",
-												"comparison": 1,
-												"value": "-1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 877968121597626,
-											"parameters": {
-												"instance-variable": "attacking",
-												"value": "false"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 553330171954123,
+													"parameters": {
+														"object": "enemyBody",
+														"expression": "find(enemyBody.AnimationName, \"attack\")",
+														"comparison": 1,
+														"value": "-1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 183789396537260,
+													"parameters": {
+														"instance-variable": "attacking",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 307056031215417
 										},
 										{
-											"id": "set-boolean-instvar",
-											"objectClass": "enemy",
-											"sid": 443356741131108,
-											"parameters": {
-												"instance-variable": "hit",
-												"value": "false"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 998780592175427,
+													"parameters": {
+														"object": "enemyBody",
+														"expression": "find(enemyBody.AnimationName, \"hit\")",
+														"comparison": 1,
+														"value": "-1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 971129049528586,
+													"parameters": {
+														"instance-variable": "attacking",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 972174768371784,
+													"parameters": {
+														"instance-variable": "hit",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 521797612596668
 										}
-									],
-									"sid": 376306435391462
+									]
 								}
 							]
 						},
@@ -12399,6 +12454,7 @@
 							],
 							"actions": [],
 							"sid": 591454218470020,
+							"disabled": true,
 							"children": [
 								{
 									"eventType": "variable",
@@ -12494,7 +12550,8 @@
 											]
 										}
 									],
-									"sid": 661315679644106
+									"sid": 661315679644106,
+									"disabled": true
 								},
 								{
 									"eventType": "block",
@@ -12548,6 +12605,7 @@
 										}
 									],
 									"sid": 680787690708581,
+									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -12626,7 +12684,8 @@
 													]
 												}
 											],
-											"sid": 181406029233488
+											"sid": 181406029233488,
+											"disabled": true
 										},
 										{
 											"eventType": "block",
@@ -12648,7 +12707,8 @@
 													"sid": 887800632849253
 												}
 											],
-											"sid": 944725340629196
+											"sid": 944725340629196,
+											"disabled": true
 										}
 									]
 								}
@@ -13180,14 +13240,14 @@
 								},
 								{
 									"type": "comment",
-									"text": "boundary is a separate layer only so we can lock other layers to easily set boundaries"
+									"text": "'areas' is a separate layer only for editor QoL"
 								},
 								{
 									"id": "set-layer-visible",
 									"objectClass": "System",
-									"sid": 546916533810165,
+									"sid": 736136585495760,
 									"parameters": {
-										"layer": "\"boundary\"",
+										"layer": "\"areas\"",
 										"visibility": "visible"
 									}
 								}

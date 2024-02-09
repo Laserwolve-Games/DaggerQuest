@@ -157,7 +157,7 @@
 			"overriden": 0,
 			"subLayers": [
 				{
-					"name": "boundary",
+					"name": "areas",
 					"overriden": 0,
 					"subLayers": [],
 					"instances": [
@@ -171,7 +171,9 @@
 								"live-preview": false
 							},
 							"uid": 192,
-							"instanceVariables": {},
+							"instanceVariables": {
+								"usePathfinding": false
+							},
 							"behaviors": {
 								"Solid": {
 									"properties": {
@@ -207,7 +209,9 @@
 								"live-preview": false
 							},
 							"uid": 193,
-							"instanceVariables": {},
+							"instanceVariables": {
+								"usePathfinding": false
+							},
 							"behaviors": {
 								"Solid": {
 									"properties": {
@@ -243,7 +247,9 @@
 								"live-preview": false
 							},
 							"uid": 29,
-							"instanceVariables": {},
+							"instanceVariables": {
+								"usePathfinding": false
+							},
 							"behaviors": {
 								"Solid": {
 									"properties": {
@@ -257,6 +263,35 @@
 								"y": 3614,
 								"width": 50,
 								"height": 984,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "nonCombatArea",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 256,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 2048,
+								"y": 3320,
+								"width": 4096,
+								"height": 1552,
 								"originX": 0.5,
 								"originY": 0.5,
 								"color": [
@@ -393,8 +428,8 @@
 								}
 							},
 							"world": {
-								"x": 2873,
-								"y": 1623,
+								"x": 3051,
+								"y": 3803,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -438,35 +473,6 @@
 								"y": 3584,
 								"width": 80,
 								"height": 26.666667,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "nonCombatArea",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 256,
-							"instanceVariables": {},
-							"behaviors": {},
-							"world": {
-								"x": 2048,
-								"y": 3320,
-								"width": 4096,
-								"height": 1552,
 								"originX": 0.5,
 								"originY": 0.5,
 								"color": [
@@ -573,44 +579,6 @@
 								"height": 26,
 								"originX": 0.5,
 								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "fenceVertical",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Default",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 236,
-							"instanceVariables": {
-								"yValue": 0
-							},
-							"behaviors": {
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								}
-							},
-							"world": {
-								"x": 1094,
-								"y": 1899,
-								"width": 30,
-								"height": 385,
-								"originX": 0.7666666666666667,
-								"originY": 0.9948051948051948,
 								"color": [
 									1,
 									1,
@@ -917,8 +885,8 @@
 								}
 							},
 							"world": {
-								"x": 3041,
-								"y": 1383,
+								"x": 1219,
+								"y": 1430,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -1080,7 +1048,8 @@
 					},
 					"uid": 141,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1118,7 +1087,8 @@
 					},
 					"uid": 147,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1156,7 +1126,8 @@
 					},
 					"uid": 150,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1194,7 +1165,8 @@
 					},
 					"uid": 152,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1232,7 +1204,8 @@
 					},
 					"uid": 154,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1270,7 +1243,8 @@
 					},
 					"uid": 156,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1308,7 +1282,8 @@
 					},
 					"uid": 59,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1346,7 +1321,8 @@
 					},
 					"uid": 60,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1384,7 +1360,8 @@
 					},
 					"uid": 70,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1422,7 +1399,8 @@
 					},
 					"uid": 90,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1460,7 +1438,8 @@
 					},
 					"uid": 91,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1498,7 +1477,8 @@
 					},
 					"uid": 159,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1536,7 +1516,8 @@
 					},
 					"uid": 160,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1574,7 +1555,8 @@
 					},
 					"uid": 240,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1612,7 +1594,8 @@
 					},
 					"uid": 237,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1650,7 +1633,8 @@
 					},
 					"uid": 250,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1688,7 +1672,8 @@
 					},
 					"uid": 137,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1726,7 +1711,8 @@
 					},
 					"uid": 146,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1764,7 +1750,8 @@
 					},
 					"uid": 148,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1802,7 +1789,8 @@
 					},
 					"uid": 190,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1895,7 +1883,8 @@
 					},
 					"uid": 166,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1933,7 +1922,8 @@
 					},
 					"uid": 167,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -1971,7 +1961,8 @@
 					},
 					"uid": 168,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2009,7 +2000,8 @@
 					},
 					"uid": 169,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2047,7 +2039,8 @@
 					},
 					"uid": 170,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2085,7 +2078,8 @@
 					},
 					"uid": 171,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2123,7 +2117,8 @@
 					},
 					"uid": 172,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2161,7 +2156,8 @@
 					},
 					"uid": 173,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2199,7 +2195,8 @@
 					},
 					"uid": 175,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2237,7 +2234,8 @@
 					},
 					"uid": 176,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2275,7 +2273,8 @@
 					},
 					"uid": 177,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2313,7 +2312,8 @@
 					},
 					"uid": 183,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2351,7 +2351,8 @@
 					},
 					"uid": 184,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2389,7 +2390,8 @@
 					},
 					"uid": 185,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2427,7 +2429,8 @@
 					},
 					"uid": 187,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2465,7 +2468,8 @@
 					},
 					"uid": 3,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2503,7 +2507,8 @@
 					},
 					"uid": 139,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2541,7 +2546,8 @@
 					},
 					"uid": 200,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2579,7 +2585,8 @@
 					},
 					"uid": 163,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2700,7 +2707,8 @@
 					},
 					"uid": 243,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2738,7 +2746,8 @@
 					},
 					"uid": 242,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2776,7 +2785,8 @@
 					},
 					"uid": 244,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2814,7 +2824,8 @@
 					},
 					"uid": 245,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2852,7 +2863,8 @@
 					},
 					"uid": 247,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2890,7 +2902,8 @@
 					},
 					"uid": 248,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2928,7 +2941,8 @@
 					},
 					"uid": 249,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -2966,7 +2980,8 @@
 					},
 					"uid": 252,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3004,7 +3019,8 @@
 					},
 					"uid": 138,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3042,7 +3058,8 @@
 					},
 					"uid": 140,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3080,7 +3097,8 @@
 					},
 					"uid": 155,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3118,7 +3136,8 @@
 					},
 					"uid": 157,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3156,7 +3175,8 @@
 					},
 					"uid": 149,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3194,7 +3214,8 @@
 					},
 					"uid": 151,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3232,7 +3253,8 @@
 					},
 					"uid": 153,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -3270,7 +3292,8 @@
 					},
 					"uid": 180,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": true
 					},
 					"behaviors": {
 						"Solid": {
@@ -3439,8 +3462,8 @@
 						}
 					},
 					"world": {
-						"x": 2694,
-						"y": 1626,
+						"x": 1999,
+						"y": 3564,
 						"width": 84,
 						"height": 42,
 						"originX": 0.5,
@@ -3649,6 +3672,45 @@
 						"height": 34,
 						"originX": 0.5,
 						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "fenceVertical",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Default",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 236,
+					"instanceVariables": {
+						"yValue": 0,
+						"usePathfinding": true
+					},
+					"behaviors": {
+						"Solid": {
+							"properties": {
+								"enabled": true,
+								"tags": ""
+							}
+						}
+					},
+					"world": {
+						"x": 1094,
+						"y": 1899,
+						"width": 30,
+						"height": 385,
+						"originX": 0.7666666666666667,
+						"originY": 0.9948051948051948,
 						"color": [
 							1,
 							1,
@@ -4264,7 +4326,8 @@
 					},
 					"uid": 241,
 					"instanceVariables": {
-						"yValue": 0
+						"yValue": 0,
+						"usePathfinding": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -14215,16 +14278,6 @@
 				"depth": 1
 			},
 			"uid": 76,
-			"instanceVariables": {}
-		},
-		{
-			"type": "pathfindingGridArray",
-			"properties": {
-				"width": 1,
-				"height": 1,
-				"depth": 1
-			},
-			"uid": 95,
 			"instanceVariables": {}
 		}
 	],

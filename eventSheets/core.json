@@ -5112,6 +5112,15 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 844520078268042,
+											"parameters": {
+												"layer": "\"settingsMenu\""
+											},
+											"isInverted": true
+										},
+										{
 											"id": "cursor-is-over-object",
 											"objectClass": "mouse",
 											"sid": 857293946001196,
@@ -13106,6 +13115,61 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 201477378188011,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"comparison": 1,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 162468941575852,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"comparison": 1,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "player",
+									"sid": 933631110075681,
+									"parameters": {
+										"x": "Self.relocateToX",
+										"y": "Self.relocateToY"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 685636843515890,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 179115945325969,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 529554076428700
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "compare-two-values",
 									"objectClass": "System",
 									"sid": 420537721796360,
@@ -13129,7 +13193,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Do I need to add pathfinding obstacles for every layout?"
+									"text": "Do I need to add pathfinding obstacles for every layout? We won't know until we have a sub-layout that truly has pathfinding."
 								},
 								{
 									"id": "add-obstacle",
@@ -13208,6 +13272,32 @@
 									"sid": 610152528709825
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 334121896153780
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "createEnemiesAndNPCs",
+									"sid": 958279232482598
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 872046942878014
+								},
+								{
+									"callFunction": "finishLoading",
+									"sid": 416041549484519
+								}
+							],
+							"sid": 231295528850279
 						}
 					]
 				},
@@ -14199,16 +14289,43 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Create NPCs"
-						},
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "createEnemiesAndNPCs",
+									"sid": 785007419485345
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 880965842721203
+								}
+							],
+							"sid": 124382633569685
+						}
+					]
+				},
+				{
+					"functionName": "createEnemiesAndNPCs",
+					"functionDescription": "Create enemies and NPCs.",
+					"functionCategory": "world",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 655603239289141,
+					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "for-each",
 									"objectClass": "System",
-									"sid": 890104820261702,
+									"sid": 516551735037452,
 									"parameters": {
 										"object": "npc"
 									}
@@ -14218,7 +14335,7 @@
 								{
 									"id": "load-object-images-by-name",
 									"objectClass": "System",
-									"sid": 418449852861118,
+									"sid": 242928692035216,
 									"parameters": {
 										"object": "npc.simpleName"
 									}
@@ -14226,12 +14343,12 @@
 								{
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 428317090135640
+									"sid": 653569005219897
 								},
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 770678806215571,
+									"sid": 298518244945483,
 									"parameters": {
 										"object-name": "npc.simpleName",
 										"layer": "\"main\"",
@@ -14242,7 +14359,7 @@
 									}
 								}
 							],
-							"sid": 782308197390908,
+							"sid": 968825910500027,
 							"children": [
 								{
 									"eventType": "block",
@@ -14250,7 +14367,7 @@
 										{
 											"id": "pick-last-created",
 											"objectClass": "System",
-											"sid": 915660315404432,
+											"sid": 905214668569085,
 											"parameters": {
 												"object": "npcBody"
 											}
@@ -14260,7 +14377,7 @@
 										{
 											"id": "add-child",
 											"objectClass": "npc",
-											"sid": 463898096291360,
+											"sid": 655095931274831,
 											"parameters": {
 												"child": "npcBody",
 												"transform-x": true,
@@ -14275,7 +14392,7 @@
 											}
 										}
 									],
-									"sid": 158986166365687
+									"sid": 398438525605865
 								}
 							]
 						},
@@ -14289,7 +14406,7 @@
 								{
 									"id": "for-each",
 									"objectClass": "System",
-									"sid": 291060336022569,
+									"sid": 237864259382694,
 									"parameters": {
 										"object": "enemy"
 									}
@@ -14299,7 +14416,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 348607155300486,
+									"sid": 147721687882061,
 									"disabled": true,
 									"parameters": {
 										"instance-variable": "simpleName",
@@ -14309,7 +14426,7 @@
 								{
 									"id": "set-width",
 									"objectClass": "enemy",
-									"sid": 507357838208161,
+									"sid": 747016912167516,
 									"parameters": {
 										"width": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"size\"))"
 									}
@@ -14317,7 +14434,7 @@
 								{
 									"id": "set-height",
 									"objectClass": "enemy",
-									"sid": 485174847731875,
+									"sid": 396327160397696,
 									"parameters": {
 										"height": "Self.Width / ISOMETRIC_DIVIDER"
 									}
@@ -14325,7 +14442,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 189914820551434,
+									"sid": 211925452897443,
 									"parameters": {
 										"instance-variable": "arcaneDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"arcaneDamage\"))"
@@ -14334,7 +14451,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 951086004423311,
+									"sid": 472107164735698,
 									"parameters": {
 										"instance-variable": "attackSpeed",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackSpeed\"))"
@@ -14343,7 +14460,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 278353993375725,
+									"sid": 500951262247292,
 									"parameters": {
 										"instance-variable": "attributes",
 										"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attributes\")"
@@ -14352,7 +14469,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 629344724411215,
+									"sid": 187705958640607,
 									"parameters": {
 										"instance-variable": "coldDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"coldDamage\"))"
@@ -14361,7 +14478,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 738361690423043,
+									"sid": 415450284762301,
 									"parameters": {
 										"instance-variable": "corruptDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"corruptDamage\"))"
@@ -14370,7 +14487,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 924541694500871,
+									"sid": 736224320179454,
 									"parameters": {
 										"instance-variable": "fireDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fireDamage\"))"
@@ -14379,7 +14496,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 209988758275967,
+									"sid": 593369321676876,
 									"parameters": {
 										"instance-variable": "fullName",
 										"value": "Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
@@ -14388,7 +14505,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 116719567233772,
+									"sid": 834486543415832,
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
@@ -14397,7 +14514,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 501520638085570,
+									"sid": 912831046595706,
 									"parameters": {
 										"instance-variable": "maxHealth",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"health\"))"
@@ -14406,7 +14523,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 895186303757955,
+									"sid": 830786989454126,
 									"parameters": {
 										"instance-variable": "lightningDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lightningDamage\"))"
@@ -14415,7 +14532,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 295261295865196,
+									"sid": 991732481223834,
 									"parameters": {
 										"instance-variable": "slashDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"slashDamage\"))"
@@ -14424,7 +14541,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 506472088392675,
+									"sid": 351248742948061,
 									"parameters": {
 										"instance-variable": "smashDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"smashDamage\"))"
@@ -14433,7 +14550,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 634993640730236,
+									"sid": 137159179117077,
 									"parameters": {
 										"instance-variable": "stabDamage",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"stabDamage\"))"
@@ -14442,7 +14559,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 674827865688253,
+									"sid": 748880423383050,
 									"parameters": {
 										"instance-variable": "type",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\"))"
@@ -14451,7 +14568,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 352841142647286,
+									"sid": 496175609776514,
 									"parameters": {
 										"instance-variable": "attackRange",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"attackRange\"))"
@@ -14460,7 +14577,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 190614150035784,
+									"sid": 810592415693672,
 									"parameters": {
 										"instance-variable": "movementSpeed",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"movementSpeed\"))"
@@ -14469,7 +14586,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 837264860441705,
+									"sid": 595459648734929,
 									"parameters": {
 										"instance-variable": "experience",
 										"value": "int(Functions.arrayLookup(enemiesArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"experience\"))"
@@ -14482,7 +14599,7 @@
 								{
 									"id": "set-moving-angle",
 									"objectClass": "enemy",
-									"sid": 119934343612232,
+									"sid": 391062343479840,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"angle": "random(-180, 180)"
@@ -14491,7 +14608,7 @@
 								{
 									"id": "load-object-images-by-name",
 									"objectClass": "System",
-									"sid": 337530727922837,
+									"sid": 887188726516811,
 									"parameters": {
 										"object": "enemy.simpleName"
 									}
@@ -14499,12 +14616,12 @@
 								{
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 480256585505852
+									"sid": 246706824070823
 								},
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 881399018105449,
+									"sid": 329550713640467,
 									"parameters": {
 										"object-name": "enemy.simpleName",
 										"layer": "\"main\"",
@@ -14521,14 +14638,14 @@
 								{
 									"id": "add-obstacle",
 									"objectClass": "enemy",
-									"sid": 998329928147493,
+									"sid": 659542371708583,
 									"behaviorType": "Pathfinding",
 									"parameters": {
 										"obstacle": "prop"
 									}
 								}
 							],
-							"sid": 257404875087089,
+							"sid": 889515491687626,
 							"children": [
 								{
 									"eventType": "block",
@@ -14536,7 +14653,7 @@
 										{
 											"id": "pick-last-created",
 											"objectClass": "System",
-											"sid": 245890780403560,
+											"sid": 101045617371322,
 											"parameters": {
 												"object": "enemyBody"
 											}
@@ -14546,7 +14663,7 @@
 										{
 											"id": "add-child",
 											"objectClass": "enemy",
-											"sid": 951244560400713,
+											"sid": 223048326433083,
 											"parameters": {
 												"child": "enemyBody",
 												"transform-x": true,
@@ -14563,14 +14680,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 100083109756452,
+											"sid": 684951357220071,
 											"parameters": {
 												"animation": "\"walk_90\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 936517967351408
+									"sid": 562390821569660
 								}
 							]
 						}
@@ -15944,26 +16061,6 @@
 					"sid": 348574872578129
 				},
 				{
-					"eventType": "variable",
-					"name": "relocateToX",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The coordinate on the X axis where the player should be on the new layout.",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 833726552928261
-				},
-				{
-					"eventType": "variable",
-					"name": "relocateToY",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The coordinate on the Y axis where the player should be on the new layout.",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 234170710727433
-				},
-				{
 					"functionName": "buildingTransition",
 					"functionDescription": "Move the player in and out of a building.",
 					"functionCategory": "world",
@@ -15976,23 +16073,46 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "These have to saved to local variables because the door object will be inaccessible after we change layouts."
+							"text": "These have to be saved to variables because the door object will be inaccessible after we change layouts."
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 384868622806757,
+							"id": "set-visible",
+							"objectClass": "loadingScreen",
+							"sid": 829008042264045,
 							"parameters": {
-								"variable": "relocateToX",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "stop",
+							"objectClass": "player",
+							"sid": 607562531417494,
+							"behaviorType": "MoveTo"
+						},
+						{
+							"callFunction": "updateAnimations",
+							"sid": 315441955060426,
+							"parameters": [
+								"\"idle\"",
+								"body.OriginalAnimationSpeed",
+								"\"playFromBeginning\""
+							]
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 754258952321980,
+							"parameters": {
+								"instance-variable": "relocateToX",
 								"value": "door.relocateToX"
 							}
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 686088561550463,
+							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 976662891535172,
 							"parameters": {
-								"variable": "relocateToY",
+								"instance-variable": "relocateToY",
 								"value": "door.relocateToY"
 							}
 						},
@@ -16012,30 +16132,6 @@
 							"parameters": {
 								"layout": "door.layout"
 							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "player",
-							"sid": 682996575029714,
-							"parameters": {
-								"x": "relocateToX",
-								"y": "relocateToY"
-							}
-						},
-						{
-							"id": "stop",
-							"objectClass": "player",
-							"sid": 405568347004095,
-							"behaviorType": "MoveTo"
-						},
-						{
-							"callFunction": "updateAnimations",
-							"sid": 516172736720725,
-							"parameters": [
-								"\"idle\"",
-								"body.OriginalAnimationSpeed",
-								"\"playFromBeginning\""
-							]
 						},
 						{
 							"id": "set-boolean-eventvar",

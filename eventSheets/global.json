@@ -414,6 +414,134 @@
 						{
 							"id": "on-object-clicked",
 							"objectClass": "mouse",
+							"sid": 750565679067802,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "settings"
+							}
+						},
+						{
+							"id": "on-key-pressed",
+							"objectClass": "keyboard",
+							"sid": 820484934189431,
+							"parameters": {
+								"key": 32
+							}
+						}
+					],
+					"actions": [],
+					"sid": 429807153041690,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 923574345740145,
+									"parameters": {
+										"layer": "\"settingsMenu\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "closeSettings",
+									"sid": 115709160125196
+								}
+							],
+							"sid": 161907898604487
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 111115024703251
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 811508344447161,
+									"parameters": {
+										"layer": "\"main\"",
+										"interactive": false
+									}
+								},
+								{
+									"callFunction": "openLayer",
+									"sid": 168630458208796,
+									"parameters": [
+										"\"settingsMenu\""
+									]
+								},
+								{
+									"id": "set-time-scale",
+									"objectClass": "System",
+									"sid": 590931837656442,
+									"parameters": {
+										"time-scale": "0"
+									}
+								},
+								{
+									"callFunction": "closeDialog",
+									"sid": 456163328669713
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 685004550696799,
+									"parameters": {
+										"layer": "\"abilityBar\"",
+										"interactive": false
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 240488930273553,
+									"parameters": {
+										"layer": "\"background\"",
+										"interactive": false
+									}
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 589818251785372,
+									"parameters": [
+										"\"characterMenu\""
+									]
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 808293027096373,
+									"parameters": [
+										"\"inventoryMenu\""
+									]
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 755558964231259,
+									"parameters": [
+										"\"abilitySelector\""
+									]
+								}
+							],
+							"sid": 450046684498761
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
 							"sid": 863690073798191,
 							"parameters": {
 								"mouse-button": "left",
@@ -424,70 +552,70 @@
 					],
 					"actions": [
 						{
-							"callFunction": "closeLayer",
-							"sid": 698520983711514,
-							"parameters": [
-								"\"settingsMenu\""
-							]
+							"callFunction": "closeSettings",
+							"sid": 720167888495853
 						}
 					],
-					"sid": 723413034875278,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 974403250089269,
-									"parameters": {
-										"first-value": "LayoutName",
-										"comparison": 0,
-										"second-value": "\"mainMenu\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "if we were on the main menu, make the text buttons interactable again when the settings close"
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 828934730517656,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": true
-									}
-								}
-							],
-							"sid": 555618259844211
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 555981529903835
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "openLayer",
-									"sid": 686925724800632,
-									"parameters": [
-										"\"pauseMenu\""
-									]
-								}
-							],
-							"sid": 238115883815619
-						}
-					]
+					"sid": 723413034875278
 				}
 			],
 			"sid": 139549291994701
+		},
+		{
+			"functionName": "closeSettings",
+			"functionDescription": "Close the settings menu.",
+			"functionCategory": "menus",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-time-scale",
+					"objectClass": "System",
+					"sid": 423175416612413,
+					"parameters": {
+						"time-scale": "1"
+					}
+				},
+				{
+					"callFunction": "closeLayer",
+					"sid": 551323934044592,
+					"parameters": [
+						"\"settingsMenu\""
+					]
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 704348940612264,
+					"parameters": {
+						"layer": "\"main\"",
+						"interactive": true
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 537664737394426,
+					"parameters": {
+						"layer": "\"abilityBar\"",
+						"interactive": true
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 532160607941690,
+					"parameters": {
+						"layer": "\"background\"",
+						"interactive": true
+					}
+				}
+			],
+			"sid": 304544058121894
 		}
 	],
 	"sid": 143332858877120

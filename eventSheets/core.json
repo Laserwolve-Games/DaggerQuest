@@ -5146,15 +5146,6 @@
 												"object": "9PatchInvalidLocations"
 											},
 											"isInverted": true
-										},
-										{
-											"id": "layer-is-visible",
-											"objectClass": "System",
-											"sid": 180441204399974,
-											"parameters": {
-												"layer": "\"pauseMenu\""
-											},
-											"isInverted": true
 										}
 									],
 									"actions": [],
@@ -7809,175 +7800,6 @@
 								{
 									"id": "on-object-clicked",
 									"objectClass": "mouse",
-									"sid": 150316585866768,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "resume"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-time-scale",
-									"objectClass": "System",
-									"sid": 553172199121036,
-									"parameters": {
-										"time-scale": "1"
-									}
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 272068706462582,
-									"parameters": [
-										"\"pauseMenu\""
-									]
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 404433631253407,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 116808691568261,
-									"parameters": {
-										"layer": "\"abilityBar\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 885860429643297,
-									"parameters": {
-										"layer": "\"background\"",
-										"interactive": true
-									}
-								}
-							],
-							"sid": 429842832279041
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 303733975915610,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "pauseMenuSettings"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "openLayer",
-									"sid": 678012002283094,
-									"parameters": [
-										"\"settingsMenu\""
-									]
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 837451121337575,
-									"parameters": [
-										"\"pauseMenu\""
-									]
-								}
-							],
-							"sid": 501055649406530
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 773169470326777,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "mainMenu"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-time-scale",
-									"objectClass": "System",
-									"sid": 134737723275595,
-									"parameters": {
-										"time-scale": "1"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "The player is global; destroy him (and all his children) so he doesn't persist back into the main menu."
-								},
-								{
-									"id": "destroy",
-									"objectClass": "player",
-									"sid": 966937218448803
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 511429216335992,
-									"parameters": [
-										"\"pauseMenu\""
-									]
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 885788487746117,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 817566332891812,
-									"parameters": {
-										"layer": "\"abilityBar\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 261614348006905,
-									"parameters": {
-										"layer": "\"background\"",
-										"interactive": true
-									}
-								},
-								{
-									"id": "go-to-layout",
-									"objectClass": "System",
-									"sid": 488703293037129,
-									"parameters": {
-										"layout": "mainMenu"
-									}
-								}
-							],
-							"sid": 972944236459201
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
 									"sid": 746906379460318,
 									"parameters": {
 										"mouse-button": "left",
@@ -8760,18 +8582,9 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "layer-is-interactive",
+									"id": "layer-is-visible",
 									"objectClass": "System",
-									"sid": 719958214401375,
-									"parameters": {
-										"layer": "\"pauseMenu\""
-									},
-									"isInverted": true
-								},
-								{
-									"id": "layer-is-interactive",
-									"objectClass": "System",
-									"sid": 767964414839531,
+									"sid": 344324233789704,
 									"parameters": {
 										"layer": "\"settingsMenu\""
 									},
@@ -8905,89 +8718,6 @@
 											"sid": 428606722325241
 										}
 									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-key-pressed",
-											"objectClass": "keyboard",
-											"sid": 396343111379655,
-											"parameters": {
-												"key": 32
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "closeDialog",
-											"sid": 436185292278617
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 866498944092759,
-											"parameters": {
-												"layer": "\"main\"",
-												"interactive": false
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 913446666074020,
-											"parameters": {
-												"layer": "\"abilityBar\"",
-												"interactive": false
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 320766050784367,
-											"parameters": {
-												"layer": "\"background\"",
-												"interactive": false
-											}
-										},
-										{
-											"callFunction": "closeLayer",
-											"sid": 653317503500515,
-											"parameters": [
-												"\"characterMenu\""
-											]
-										},
-										{
-											"callFunction": "closeLayer",
-											"sid": 634976525456230,
-											"parameters": [
-												"\"inventoryMenu\""
-											]
-										},
-										{
-											"callFunction": "closeLayer",
-											"sid": 268127072506266,
-											"parameters": [
-												"\"abilitySelector\""
-											]
-										},
-										{
-											"callFunction": "openLayer",
-											"sid": 282856528718717,
-											"parameters": [
-												"\"pauseMenu\""
-											]
-										},
-										{
-											"id": "set-time-scale",
-											"objectClass": "System",
-											"sid": 491153929553650,
-											"parameters": {
-												"time-scale": "0"
-											}
-										}
-									],
-									"sid": 320363040752513
 								}
 							]
 						},
@@ -13398,6 +13128,10 @@
 							],
 							"actions": [
 								{
+									"type": "comment",
+									"text": "Do I need to add pathfinding obstacles for every layout?"
+								},
+								{
 									"id": "add-obstacle",
 									"objectClass": "player",
 									"sid": 556192847057245,
@@ -13448,105 +13182,131 @@
 											"id": "wait-for-previous-actions",
 											"objectClass": "System",
 											"sid": 592024328337459
+										},
+										{
+											"callFunction": "finishLoading",
+											"sid": 121578270328784
 										}
 									],
-									"sid": 478313947755560,
-									"children": [
+									"sid": 478313947755560
+								},
+								{
+									"eventType": "block",
+									"conditions": [
 										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "We add obstacle maps to both the player and enemies in the 'load' function, so we have to regenerate the pathfinding obstacle map."
-												},
-												{
-													"type": "comment",
-													"text": "https://github.com/Scirra/Construct-bugs/issues/7814"
-												},
-												{
-													"id": "regenerate-obstacle-map",
-													"objectClass": "player",
-													"sid": 863558415609365,
-													"behaviorType": "Pathfinding"
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 574277040335142
-												},
-												{
-													"id": "set-visible",
-													"objectClass": "loadingScreen",
-													"sid": 738944468596655,
-													"parameters": {
-														"visibility": "invisible"
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 600681602716481,
-													"parameters": {
-														"layer": "\"main\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 622463058537742,
-													"parameters": {
-														"layer": "\"background\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 795484306112383,
-													"parameters": {
-														"layer": "\"abilityBar\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 694574401791079,
-													"parameters": {
-														"layer": "\"orbs\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 860315534404662,
-													"parameters": {
-														"layer": "\"mechanics\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "fade-volume",
-													"objectClass": "Audio",
-													"sid": 366249433444875,
-													"parameters": {
-														"tag": "\"main\"",
-														"db": "-100",
-														"duration": "3",
-														"ending": "stop"
-													}
-												}
-											],
-											"sid": 854781016338481
+											"id": "else",
+											"objectClass": "System",
+											"sid": 256866203376508
 										}
-									]
+									],
+									"actions": [
+										{
+											"callFunction": "finishLoading",
+											"sid": 820929186763048
+										}
+									],
+									"sid": 610152528709825
 								}
 							]
 						}
 					]
+				},
+				{
+					"functionName": "finishLoading",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "We add obstacle maps to both the player and enemies in the 'load' function, so we have to regenerate the pathfinding obstacle map."
+						},
+						{
+							"type": "comment",
+							"text": "https://github.com/Scirra/Construct-bugs/issues/7814"
+						},
+						{
+							"id": "regenerate-obstacle-map",
+							"objectClass": "player",
+							"sid": 852284975689933,
+							"behaviorType": "Pathfinding"
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 955338053153508
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingScreen",
+							"sid": 954264826677712,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 613480563983735,
+							"parameters": {
+								"layer": "\"main\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 793338349351393,
+							"parameters": {
+								"layer": "\"background\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 345482351130484,
+							"parameters": {
+								"layer": "\"abilityBar\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 205163695720422,
+							"parameters": {
+								"layer": "\"orbs\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 481452600277700,
+							"parameters": {
+								"layer": "\"mechanics\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 467875635922328,
+							"parameters": {
+								"tag": "\"main\"",
+								"db": "-100",
+								"duration": "3",
+								"ending": "stop"
+							}
+						}
+					],
+					"sid": 560596547835359
 				},
 				{
 					"functionName": "load",

@@ -769,10 +769,10 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 330878443862984,
+											"sid": 339502509864802,
 											"parameters": {
 												"object-name": "loot.simpleName & \"_item\"",
-												"layer": "\"characterMenu\"",
+												"layer": "\"equippedMenu\"",
 												"x": "slot.X",
 												"y": "slot.Y",
 												"create-hierarchy": false,
@@ -1611,9 +1611,9 @@
 								{
 									"id": "layer-is-interactive",
 									"objectClass": "System",
-									"sid": 588715691115645,
+									"sid": 431089794413979,
 									"parameters": {
-										"layer": "\"characterMenu\""
+										"layer": "\"equippedMenu\""
 									}
 								},
 								{
@@ -8620,18 +8620,18 @@
 												{
 													"id": "layer-is-interactive",
 													"objectClass": "System",
-													"sid": 869535471606522,
+													"sid": 549749336278775,
 													"parameters": {
-														"layer": "\"characterMenu\""
+														"layer": "\"equippedMenu\""
 													}
 												}
 											],
 											"actions": [
 												{
 													"callFunction": "closeLayer",
-													"sid": 917867284245243,
+													"sid": 872265200753973,
 													"parameters": [
-														"\"characterMenu\""
+														"\"equippedMenu\""
 													]
 												}
 											],
@@ -8649,9 +8649,9 @@
 											"actions": [
 												{
 													"callFunction": "openLayer",
-													"sid": 349067267734666,
+													"sid": 710594765778172,
 													"parameters": [
-														"\"characterMenu\""
+														"\"equippedMenu\""
 													]
 												}
 											],
@@ -8903,12 +8903,12 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 455722943966993,
+													"sid": 700003521201403,
 													"parameters": {
 														"object": "item",
 														"expression": "item.LayerName",
 														"comparison": 0,
-														"value": "\"characterMenu\""
+														"value": "\"equippedMenu\""
 													}
 												},
 												{

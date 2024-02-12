@@ -210,356 +210,154 @@
 			"sid": 239447274462080
 		},
 		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "text buttons",
-			"description": "",
-			"isActiveOnStart": true,
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 990091618161461,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "settings"
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 418986390680115,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [],
+			"sid": 802857529141064,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "cursor-is-over-object",
-							"objectClass": "mouse",
-							"sid": 731188090167794,
-							"parameters": {
-								"object": "textButtons"
-							},
-							"isInverted": true
-						},
-						{
-							"id": "mouse-button-is-down",
-							"objectClass": "mouse",
-							"sid": 307122618728503,
-							"parameters": {
-								"mouse-button": "left"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [],
-					"sid": 228074640591316,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 176996355065126
-								}
-							],
-							"actions": [
-								{
-									"id": "set-font-size",
-									"objectClass": "textButtons",
-									"sid": 342608103002826,
-									"parameters": {
-										"size-pt": "Self.originalFaceSize"
-									}
-								}
-							],
-							"sid": 129466950794414
-						}
-					],
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "cursor-is-over-object",
-							"objectClass": "mouse",
-							"sid": 866593929685890,
-							"parameters": {
-								"object": "textButtons"
-							},
-							"isInverted": true
-						},
-						{
-							"id": "trigger-once-while-true",
+							"id": "layer-is-visible",
 							"objectClass": "System",
-							"sid": 538389367854034
-						}
-					],
-					"actions": [
-						{
-							"id": "set-effect-enabled",
-							"objectClass": "textButtons",
-							"sid": 866635504416415,
+							"sid": 791458371172378,
 							"parameters": {
-								"mode": "disable",
-								"effect": "\"GlowHorizontal\""
-							}
-						},
-						{
-							"id": "set-effect-enabled",
-							"objectClass": "textButtons",
-							"sid": 565501152655921,
-							"parameters": {
-								"mode": "disable",
-								"effect": "\"GlowVertical\""
-							}
-						}
-					],
-					"sid": 885292812803708
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-created",
-							"objectClass": "textButtons",
-							"sid": 338636659483810
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "textButtons",
-							"sid": 395206916764681,
-							"parameters": {
-								"instance-variable": "originalFaceSize",
-								"value": "Self.FaceSize"
-							}
-						}
-					],
-					"sid": 131538089901693
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "cursor-is-over-object",
-							"objectClass": "mouse",
-							"sid": 503065502826559,
-							"parameters": {
-								"object": "textButtons"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 789998557833802,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "mouse-button-is-down",
-									"objectClass": "mouse",
-									"sid": 624277522715547,
-									"parameters": {
-										"mouse-button": "left"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 256781537362184
-								}
-							],
-							"actions": [
-								{
-									"id": "set-font-size",
-									"objectClass": "textButtons",
-									"sid": 857192487048772,
-									"parameters": {
-										"size-pt": "Self.FaceSize * .9"
-									}
-								}
-							],
-							"sid": 397880025818090
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 218341905454075
-								}
-							],
-							"actions": [
-								{
-									"id": "set-effect-enabled",
-									"objectClass": "textButtons",
-									"sid": 383677348512210,
-									"parameters": {
-										"mode": "enable",
-										"effect": "\"GlowHorizontal\""
-									}
-								},
-								{
-									"id": "set-effect-enabled",
-									"objectClass": "textButtons",
-									"sid": 512538497333438,
-									"parameters": {
-										"mode": "enable",
-										"effect": "\"GlowVertical\""
-									}
-								}
-							],
-							"sid": 416763800063386
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 750565679067802,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "settings"
-							}
-						},
-						{
-							"id": "on-key-pressed",
-							"objectClass": "keyboard",
-							"sid": 820484934189431,
-							"parameters": {
-								"key": 32
-							}
-						}
-					],
-					"actions": [],
-					"sid": 429807153041690,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "layer-is-visible",
-									"objectClass": "System",
-									"sid": 923574345740145,
-									"parameters": {
-										"layer": "\"settingsMenu\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "closeSettings",
-									"sid": 115709160125196
-								}
-							],
-							"sid": 161907898604487
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 111115024703251
-								}
-							],
-							"actions": [
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 811508344447161,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": false
-									}
-								},
-								{
-									"callFunction": "openLayer",
-									"sid": 168630458208796,
-									"parameters": [
-										"\"settingsMenu\""
-									]
-								},
-								{
-									"id": "set-time-scale",
-									"objectClass": "System",
-									"sid": 590931837656442,
-									"parameters": {
-										"time-scale": "0"
-									}
-								},
-								{
-									"callFunction": "closeDialog",
-									"sid": 456163328669713
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 685004550696799,
-									"parameters": {
-										"layer": "\"abilityBar\"",
-										"interactive": false
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 240488930273553,
-									"parameters": {
-										"layer": "\"background\"",
-										"interactive": false
-									}
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 589818251785372,
-									"parameters": [
-										"\"characterMenu\""
-									]
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 808293027096373,
-									"parameters": [
-										"\"inventoryMenu\""
-									]
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 755558964231259,
-									"parameters": [
-										"\"abilitySelector\""
-									]
-								}
-							],
-							"sid": 450046684498761
-						}
-					],
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 863690073798191,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "back"
+								"layer": "\"settingsMenu\""
 							}
 						}
 					],
 					"actions": [
 						{
 							"callFunction": "closeSettings",
-							"sid": 720167888495853
+							"sid": 179037237705656
 						}
 					],
-					"sid": 723413034875278
+					"sid": 156773104561735
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 901423457799248
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 293370797578752,
+							"parameters": {
+								"layer": "\"main\"",
+								"interactive": false
+							}
+						},
+						{
+							"callFunction": "openLayer",
+							"sid": 448642839162585,
+							"parameters": [
+								"\"settingsMenu\""
+							]
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 138074388497009,
+							"parameters": {
+								"time-scale": "0"
+							}
+						},
+						{
+							"callFunction": "closeDialog",
+							"sid": 682966518108097
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 141105346312558,
+							"parameters": {
+								"layer": "\"abilityBar\"",
+								"interactive": false
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 822386766793187,
+							"parameters": {
+								"layer": "\"background\"",
+								"interactive": false
+							}
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 857324496253113,
+							"parameters": [
+								"\"equippedMenu\""
+							]
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 263964305856423,
+							"parameters": [
+								"\"inventoryMenu\""
+							]
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 719710005673541,
+							"parameters": [
+								"\"abilitySelector\""
+							]
+						}
+					],
+					"sid": 810816741282815
 				}
 			],
-			"sid": 139549291994701
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 651166303783075,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "back"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "closeSettings",
+					"sid": 600921726448603
+				}
+			],
+			"sid": 124341222333924
 		},
 		{
 			"functionName": "closeSettings",
@@ -575,14 +373,14 @@
 				{
 					"id": "set-time-scale",
 					"objectClass": "System",
-					"sid": 423175416612413,
+					"sid": 804766210261211,
 					"parameters": {
 						"time-scale": "1"
 					}
 				},
 				{
 					"callFunction": "closeLayer",
-					"sid": 551323934044592,
+					"sid": 379074612801183,
 					"parameters": [
 						"\"settingsMenu\""
 					]
@@ -590,7 +388,7 @@
 				{
 					"id": "set-layer-interactive",
 					"objectClass": "System",
-					"sid": 704348940612264,
+					"sid": 316027311495546,
 					"parameters": {
 						"layer": "\"main\"",
 						"interactive": true
@@ -599,7 +397,7 @@
 				{
 					"id": "set-layer-interactive",
 					"objectClass": "System",
-					"sid": 537664737394426,
+					"sid": 436797113145760,
 					"parameters": {
 						"layer": "\"abilityBar\"",
 						"interactive": true
@@ -608,14 +406,206 @@
 				{
 					"id": "set-layer-interactive",
 					"objectClass": "System",
-					"sid": 532160607941690,
+					"sid": 863060631504613,
 					"parameters": {
 						"layer": "\"background\"",
 						"interactive": true
 					}
 				}
 			],
-			"sid": 304544058121894
+			"sid": 871621413888934
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "mouse",
+					"sid": 467948922016410,
+					"parameters": {
+						"object": "textButtons"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "mouse",
+					"sid": 404710981931882,
+					"parameters": {
+						"mouse-button": "left"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [],
+			"sid": 391564301088392,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 607082247185165
+						}
+					],
+					"actions": [
+						{
+							"id": "set-font-size",
+							"objectClass": "textButtons",
+							"sid": 548098573460637,
+							"parameters": {
+								"size-pt": "Self.originalFaceSize"
+							}
+						}
+					],
+					"sid": 617668808348376
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "mouse",
+					"sid": 508489795241052,
+					"parameters": {
+						"object": "textButtons"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 971180879118645
+				}
+			],
+			"actions": [
+				{
+					"id": "set-effect-enabled",
+					"objectClass": "textButtons",
+					"sid": 822736687299962,
+					"parameters": {
+						"mode": "disable",
+						"effect": "\"GlowHorizontal\""
+					}
+				},
+				{
+					"id": "set-effect-enabled",
+					"objectClass": "textButtons",
+					"sid": 297347962598770,
+					"parameters": {
+						"mode": "disable",
+						"effect": "\"GlowVertical\""
+					}
+				}
+			],
+			"sid": 716388061234173
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "textButtons",
+					"sid": 886198240387001
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "textButtons",
+					"sid": 191311445489941,
+					"parameters": {
+						"instance-variable": "originalFaceSize",
+						"value": "Self.FaceSize"
+					}
+				}
+			],
+			"sid": 811979250604528
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "mouse",
+					"sid": 994834307673694,
+					"parameters": {
+						"object": "textButtons"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 118819025734658,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "mouse",
+							"sid": 519154729540182,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 725339850742216
+						}
+					],
+					"actions": [
+						{
+							"id": "set-font-size",
+							"objectClass": "textButtons",
+							"sid": 982642899378685,
+							"parameters": {
+								"size-pt": "Self.FaceSize * .9"
+							}
+						}
+					],
+					"sid": 948477824328938
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 483874979384388
+						}
+					],
+					"actions": [
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "textButtons",
+							"sid": 809227743690928,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"GlowHorizontal\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "textButtons",
+							"sid": 708370354439733,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"GlowVertical\""
+							}
+						}
+					],
+					"sid": 304252803360899
+				}
+			]
 		}
 	],
 	"sid": 143332858877120

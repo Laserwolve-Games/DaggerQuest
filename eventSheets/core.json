@@ -144,7 +144,7 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "portraitPosition",
+					"name": "PORTRAIT_POSITION",
 					"type": "number",
 					"initialValue": "1280",
 					"comment": "The position on the X axis of where the portrait should spawn",
@@ -440,7 +440,7 @@
 											"parameters": {
 												"object-name": "npc.simpleName & \"_portrait\"",
 												"layer": "\"portraits\"",
-												"x": "portraitPosition",
+												"x": "PORTRAIT_POSITION",
 												"y": "ViewportBottom(\"portraits\")",
 												"create-hierarchy": false,
 												"template-name": "\"\""
@@ -3882,15 +3882,15 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "This event needs to be above the sorting group to prevent a graphical glitch. This uses Image Point 1 if it exists, otherwise it defaults to Image Point 0."
+							"text": "This event needs to be above the sorting group to prevent a graphical glitch"
 						},
 						{
 							"id": "set-instvar-value",
 							"objectClass": "sortable",
-							"sid": 206267541351144,
+							"sid": 337150276514592,
 							"parameters": {
 								"instance-variable": "yValue",
-								"value": "Self.ImagePointY(1)"
+								"value": "Self.Y"
 							}
 						},
 						{
@@ -4878,6 +4878,31 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "player",
+											"sid": 252446053518418,
+											"parameters": {
+												"object": "prop"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "push-out-solid",
+											"objectClass": "player",
+											"sid": 254551071916362,
+											"behaviorType": "Custom",
+											"parameters": {
+												"direction": "nearest"
+											}
+										}
+									],
+									"sid": 287577509078653
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
 											"sid": 120982026255155,
@@ -4916,197 +4941,130 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "mouse-button-is-down",
+											"id": "on-object-clicked",
 											"objectClass": "mouse",
-											"sid": 366207055047227,
+											"sid": 209783182689097,
 											"parameters": {
-												"mouse-button": "left"
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "npcBody"
 											}
 										},
 										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 168592638850493,
+											"id": "pick-parent",
+											"objectClass": "npcBody",
+											"sid": 913970748833228,
 											"parameters": {
-												"variable": "isOnInteractCooldown"
-											},
-											"isInverted": true
+												"parent": "npc",
+												"which": "own"
+											}
 										}
 									],
-									"actions": [],
-									"sid": 867555195171773,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 241453167878903,
-													"parameters": {
-														"object": "npcBody"
-													}
-												},
-												{
-													"id": "pick-parent",
-													"objectClass": "npcBody",
-													"sid": 487588066856047,
-													"parameters": {
-														"parent": "npc",
-														"which": "own"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 835749655774902,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "npc.UID"
-													}
-												},
-												{
-													"callFunction": "moveToLocation",
-													"sid": 897237951759274,
-													"parameters": [
-														"npc.X",
-														"npc.y",
-														"0"
-													]
-												}
-											],
-											"sid": 615790843207643
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 432903177901009,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "npc.UID"
+											}
 										},
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 714264512000422,
-													"parameters": {
-														"object": "enemyBody"
-													}
-												},
-												{
-													"id": "pick-topbottom",
-													"objectClass": "enemyBody",
-													"sid": 285288840140339,
-													"parameters": {
-														"which": "top"
-													}
-												},
-												{
-													"id": "pick-parent",
-													"objectClass": "enemyBody",
-													"sid": 515156591801155,
-													"parameters": {
-														"parent": "enemy",
-														"which": "own"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 400514212269746,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "enemy.UID"
-													}
-												},
-												{
-													"callFunction": "moveToLocation",
-													"sid": 678851215223079,
-													"parameters": [
-														"enemy.X",
-														"enemy.y",
-														"0"
-													]
-												}
-											],
-											"sid": 608364097523123
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 558274650929808,
-													"parameters": {
-														"object": "loot"
-													}
-												},
-												{
-													"id": "pick-topbottom",
-													"objectClass": "loot",
-													"sid": 552729975930446,
-													"parameters": {
-														"which": "top"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 605103292697351,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "loot.UID"
-													}
-												},
-												{
-													"callFunction": "moveToLocation",
-													"sid": 139575520009903,
-													"parameters": [
-														"loot.X",
-														"loot.y",
-														"0"
-													]
-												}
-											],
-											"sid": 622695218380131
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 415260977256256,
-													"parameters": {
-														"object": "door"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 378622065567138,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "door.UID"
-													}
-												},
-												{
-													"callFunction": "moveToLocation",
-													"sid": 854461868791260,
-													"parameters": [
-														"door.ImagePointX(1)",
-														"door.ImagePointY(1)",
-														"0"
-													]
-												}
-											],
-											"sid": 342563382644118
+											"callFunction": "moveToLocation",
+											"sid": 970471063036979,
+											"parameters": [
+												"npc.X",
+												"npc.y",
+												"0"
+											]
 										}
-									]
+									],
+									"sid": 317371115726321
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "mouse",
+											"sid": 601048066866983,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "loot"
+											}
+										},
+										{
+											"id": "pick-topbottom",
+											"objectClass": "loot",
+											"sid": 271986481617348,
+											"parameters": {
+												"which": "top"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 262910963112713,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "loot.UID"
+											}
+										},
+										{
+											"callFunction": "moveToLocation",
+											"sid": 388404541686844,
+											"parameters": [
+												"loot.X",
+												"loot.y",
+												"0"
+											]
+										}
+									],
+									"sid": 611706998760076
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "mouse",
+											"sid": 807701934643906,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "door"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 945967018932120,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "door.UID"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Image Point 0 on some doors is very far away from the door itself, so they can line up with their building. If they have an Image Point 1, use that"
+										},
+										{
+											"callFunction": "moveToLocation",
+											"sid": 697234008679864,
+											"parameters": [
+												"door.ImagePointX(1)",
+												"door.ImagePointY(1)",
+												"0"
+											]
+										}
+									],
+									"sid": 967228807450558
 								},
 								{
 									"eventType": "block",
@@ -5208,65 +5166,134 @@
 													"parameters": {
 														"mouse-button": "left"
 													}
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 205779074982549,
-													"parameters": {
-														"object": "npcBody"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 821611206954450,
-													"parameters": {
-														"object": "enemyBody"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 331704978528597,
-													"parameters": {
-														"object": "loot"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "cursor-is-over-object",
-													"objectClass": "mouse",
-													"sid": 741553770859849,
-													"parameters": {
-														"object": "door"
-													},
-													"isInverted": true
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 721384957223395,
+											"children": [
 												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 929958256197414,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 797504142604412,
+															"parameters": {
+																"object": "npcBody"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 974384171444657,
+															"parameters": {
+																"object": "enemyBody"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 972021639907126,
+															"parameters": {
+																"object": "loot"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 704494516822603,
+															"parameters": {
+																"object": "door"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 700278359839751,
+															"parameters": {
+																"variable": "uidOfClicked",
+																"value": "0"
+															}
+														},
+														{
+															"callFunction": "moveToLocation",
+															"sid": 344672184381563,
+															"parameters": [
+																"mouse.X",
+																"mouse.Y",
+																"0"
+															]
+														}
+													],
+													"sid": 991322151249214
 												},
 												{
-													"callFunction": "moveToLocation",
-													"sid": 143170121126941,
-													"parameters": [
-														"mouse.X",
-														"mouse.Y",
-														"0"
-													]
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 856812059995472,
+															"parameters": {
+																"variable": "isOnInteractCooldown"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "mouse",
+															"sid": 388253995948931,
+															"parameters": {
+																"object": "enemyBody"
+															}
+														},
+														{
+															"id": "pick-topbottom",
+															"objectClass": "enemyBody",
+															"sid": 906172148505108,
+															"parameters": {
+																"which": "top"
+															}
+														},
+														{
+															"id": "pick-parent",
+															"objectClass": "enemyBody",
+															"sid": 420697934634780,
+															"parameters": {
+																"parent": "enemy",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 443493679813194,
+															"parameters": {
+																"variable": "uidOfClicked",
+																"value": "enemy.UID"
+															}
+														},
+														{
+															"callFunction": "moveToLocation",
+															"sid": 430133854030080,
+															"parameters": [
+																"enemy.X",
+																"enemy.y",
+																"0"
+															]
+														}
+													],
+													"sid": 489352706643229
 												}
-											],
-											"sid": 721384957223395
+											]
 										}
 									]
 								},
@@ -5687,34 +5714,149 @@
 							"sid": 736875311258128,
 							"children": [
 								{
+									"eventType": "comment",
+									"text": "Only path to the location if we can't get there without pathfinding, and we're not currently looking for a path. We don't need to worry about if player.targetX = player.X, or if player.targetY = player.Y, because we don't call this movement function if the cursor was over the player"
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 579008100947892,
+											"parameters": {
+												"value": "(player.targetX < player.X & player.targetY < player.Y) | (player.targetX > player.X & player.targetY > player.Y) "
+											}
+										},
+										{
+											"id": "has-los-between-positions",
+											"objectClass": "player",
+											"sid": 295769578829512,
+											"behaviorType": "LineOfSight",
+											"parameters": {
+												"from-x": "Self.X + Self.Width / 2",
+												"from-y": "Self.Y - Self.Height / 2",
+												"from-angle": "0",
+												"to-x": "Self.targetX + Self.Width / 2",
+												"to-y": "Self.targetY - Self.Height / 2"
+											}
+										},
+										{
+											"id": "has-los-between-positions",
+											"objectClass": "player",
+											"sid": 830508942852336,
+											"behaviorType": "LineOfSight",
+											"parameters": {
+												"from-x": "Self.X - Self.Width / 2",
+												"from-y": "Self.Y + Self.Height / 2",
+												"from-angle": "0",
+												"to-x": "Self.targetX - Self.Width / 2",
+												"to-y": "Self.targetY + Self.Height / 2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the target location is to the upper left of the player, or the bottom right, check line of sight from the upper right and bottom left corners of the player, to where those corners would be when he arrived at his destination"
+										},
+										{
+											"id": "move-to-position",
+											"objectClass": "player",
+											"sid": 832958801315104,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"x": "Self.targetX",
+												"y": "Self.targetY",
+												"mode": "direct"
+											}
+										}
+									],
+									"sid": 409243555086096
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 956769239432118
+										},
+										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 907012673875833,
+											"parameters": {
+												"value": "(player.targetX > player.X & player.targetY < player.Y) | (player.targetX > player.X & player.targetY < player.Y) "
+											}
+										},
+										{
+											"id": "has-los-between-positions",
+											"objectClass": "player",
+											"sid": 789746740748803,
+											"behaviorType": "LineOfSight",
+											"parameters": {
+												"from-x": "Self.X - Self.Width / 2",
+												"from-y": "Self.Y - Self.Height / 2",
+												"from-angle": "0",
+												"to-x": "Self.targetX - Self.Width / 2",
+												"to-y": "Self.targetY - Self.Height / 2"
+											}
+										},
+										{
+											"id": "has-los-between-positions",
+											"objectClass": "player",
+											"sid": 111051375457227,
+											"behaviorType": "LineOfSight",
+											"parameters": {
+												"from-x": "Self.X + Self.Width / 2",
+												"from-y": "Self.Y + Self.Height / 2",
+												"from-angle": "0",
+												"to-x": "Self.targetX + Self.Width / 2",
+												"to-y": "Self.targetY + Self.Height / 2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the target location is to the upper right of the player, or the bottom left, check line of sight from the upper left and bottom right corners of the player, to where those corners would be when he arrived at his destination"
+										},
+										{
+											"id": "move-to-position",
+											"objectClass": "player",
+											"sid": 167238638402811,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"x": "Self.targetX",
+												"y": "Self.targetY",
+												"mode": "direct"
+											}
+										}
+									],
+									"sid": 897809120274970
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 684171783750596
+										},
+										{
 											"id": "is-calculating-path",
 											"objectClass": "player",
-											"sid": 446498598566557,
+											"sid": 791917542376966,
 											"behaviorType": "Pathfinding",
 											"isInverted": true
-										},
-										{
-											"id": "is-on-screen",
-											"objectClass": "prop",
-											"sid": 948150951426727
-										},
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "prop",
-											"sid": 460712395876672,
-											"parameters": {
-												"instance-variable": "usePathfinding"
-											}
 										}
 									],
 									"actions": [
 										{
 											"id": "find-path",
 											"objectClass": "player",
-											"sid": 681134338911439,
+											"sid": 310475311707450,
 											"behaviorType": "Pathfinding",
 											"parameters": {
 												"x": "Self.targetX",
@@ -5722,7 +5864,7 @@
 											}
 										}
 									],
-									"sid": 125932126823661
+									"sid": 185421615712273
 								},
 								{
 									"eventType": "block",
@@ -7728,8 +7870,7 @@
 								},
 								{
 									"callFunction": "startPlayer",
-									"sid": 785762217384285,
-									"breakpoint": true
+									"sid": 785762217384285
 								}
 							],
 							"sid": 241724089671820,
@@ -10395,695 +10536,630 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "enemy",
+									"sid": 934725069880598,
+									"parameters": {
+										"object": "enemy"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "enemy",
+									"sid": 412643950066063,
+									"parameters": {
+										"object": "player"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "enemy",
+									"sid": 436401770952515,
+									"parameters": {
+										"object": "prop"
+									}
+								},
+								{
+									"id": "pick-topbottom",
+									"objectClass": "enemy",
+									"sid": 829994899324684,
+									"parameters": {
+										"which": "bottom"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push-out-solid",
+									"objectClass": "enemy",
+									"sid": 875983499479464,
+									"behaviorType": "Custom",
+									"parameters": {
+										"direction": "nearest"
+									}
+								}
+							],
+							"sid": 437274193387185,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-on-screen",
+									"objectClass": "enemyBody",
+									"sid": 706442669090389
+								},
+								{
 									"id": "pick-parent",
 									"objectClass": "enemyBody",
-									"sid": 143950313890098,
+									"sid": 323836686062680,
 									"parameters": {
 										"parent": "enemy",
 										"which": "own"
 									}
 								}
 							],
-							"actions": [],
-							"sid": 517758332129814,
+							"actions": [
+								{
+									"id": "set-max-speed",
+									"objectClass": "enemy",
+									"sid": 634349966415892,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"max-speed": "Functions.isometrify(Self.movementSpeed, Self.MoveTo.MovingAngle)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 413238295837127,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"value": "clamp(Self.currentHealth, 0,Self.maxHealth)"
+									}
+								}
+							],
+							"sid": 174834493979290,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-on-screen",
-											"objectClass": "enemyBody",
-											"sid": 138969941895809
+											"id": "on-path-found",
+											"objectClass": "enemy",
+											"sid": 802937682330488,
+											"behaviorType": "Pathfinding"
 										}
 									],
 									"actions": [
 										{
-											"id": "set-max-speed",
+											"id": "move-along-pathfinding-path",
 											"objectClass": "enemy",
-											"sid": 102747565805502,
+											"sid": 416573442135282,
 											"behaviorType": "MoveTo",
 											"parameters": {
-												"max-speed": "Functions.isometrify(Self.movementSpeed, Self.MoveTo.MovingAngle)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 877162755879416,
-											"parameters": {
-												"instance-variable": "currentHealth",
-												"value": "clamp(Self.currentHealth, 0,Self.maxHealth)"
+												"mode": "direct"
 											}
 										}
 									],
-									"sid": 717313559302238,
+									"sid": 202051243869830
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-arrived",
+											"objectClass": "enemy",
+											"sid": 108531086558830,
+											"behaviorType": "MoveTo"
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "What happens when the enemy successfully arrives at their destination"
+										}
+									],
+									"sid": 932472822147667,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "on-path-found",
+													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 998654151541742,
-													"behaviorType": "Pathfinding"
-												}
-											],
-											"actions": [
-												{
-													"id": "move-along-pathfinding-path",
-													"objectClass": "enemy",
-													"sid": 307095474196647,
-													"behaviorType": "MoveTo",
+													"sid": 342436791230229,
 													"parameters": {
-														"mode": "direct"
-													}
-												}
-											],
-											"sid": 730095281497150
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "on-arrived",
-													"objectClass": "enemy",
-													"sid": 387774122758169,
-													"behaviorType": "MoveTo"
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "What happens when the enemy successfully arrives at their destination"
-												}
-											],
-											"sid": 683042043745053,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 218891754299098,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"backingUp\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If they successfully backed up, now the enemy will go left"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 400698783119332,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"goingLeft\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 219950691710101,
-															"parameters": [
-																"QUARTER_CIRCLE"
-															]
-														}
-													],
-													"sid": 644481648063390
-												},
-												{
-													"eventType": "comment",
-													"text": "Can't combine these two blocks because of how 'else' and OR blocks work."
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 547443277059661
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 726968295425835,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"goingLeft\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If they successfully went left, they're done; they can resume normal behavior"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 621210040840750,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"no\""
-															}
-														}
-													],
-													"sid": 106331721968870
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 252282165439193
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 904436217216379,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"goingRight\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If they successfully went right, they're done; they can resume normal behavior"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 582756513547095,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"no\""
-															}
-														}
-													],
-													"sid": 525798709438955
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 472858851006933
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 967712461266575,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"backingUpAgain\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If they successfully backed up a second time, try turning left again (no need to record that this would be the 2nd left attempt)"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 608378198494556,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"goingLeft\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 910508557582661,
-															"parameters": [
-																"QUARTER_CIRCLE"
-															]
-														}
-													],
-													"sid": 602610895913064
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "on-hit-solid",
-													"objectClass": "enemy",
-													"sid": 207412010567001,
-													"behaviorType": "MoveTo"
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "If an enemy hit a solid while moving, they need to go somewhere else. They can't stop because they don't have an idle animation."
-												}
-											],
-											"sid": 924509011596382,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 229073284968608,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"no\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if the enemy wasn't already rerouting when he hit a solid, begin rerouting by backing up"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 959627247730437,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"backingUp\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 715339315099954,
-															"parameters": [
-																"HALF_CIRCLE"
-															]
-														}
-													],
-													"sid": 670476362339529
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 418033088104803
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 679782112380504,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"backingUp\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If the enemy hit a solid while backing up, try going left"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 476172310516007,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"goingLeft\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 332807144941767,
-															"parameters": [
-																"QUARTER_CIRCLE"
-															]
-														}
-													],
-													"sid": 901613905940799
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 232326367561535
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 176353556531677,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"goingLeft\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If the enemy hit a solid while going left, try going right"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 482235287556734,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"goingRight\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 276484538788984,
-															"parameters": [
-																"HALF_CIRCLE"
-															]
-														}
-													],
-													"sid": 752323777046054
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 393347895228771
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 339870816348087,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"goingRight\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If the enemy hit a solid while going right, try backing up again"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 754086275897163,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"backingUpAgain\""
-															}
-														},
-														{
-															"callFunction": "MoveEnemyInDirection",
-															"sid": 443727447633926,
-															"parameters": [
-																"QUARTER_CIRCLE"
-															]
-														}
-													],
-													"sid": 248704529343479
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 690056526964145
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "enemy",
-															"sid": 532828134883053,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"comparison": 0,
-																"value": "\"backingUpAgain\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If the enemy hit a solid while backing up again, they are probably stuck. reset the rerouting process to try again"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 368985194186458,
-															"parameters": {
-																"instance-variable": "rerouting",
-																"value": "\"no\""
-															}
-														}
-													],
-													"sid": 461431679542341
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-moving",
-													"objectClass": "enemy",
-													"sid": 663744177909629,
-													"behaviorType": "MoveTo"
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "enemy",
-													"sid": 203221527556375,
-													"parameters": {
-														"child": "enemyBody",
-														"which": "own"
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"backingUp\""
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "Extracting this out into a function results in enemies getting each other's angles"
+													"text": "If they successfully backed up, now the enemy will go left"
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 912661545583857,
+													"sid": 759231585901754,
 													"parameters": {
-														"instance-variable": "degrees",
-														"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC = -180 ? 180 : round(Self.MoveTo.MovingAngle / ARC) * ARC"
+														"instance-variable": "rerouting",
+														"value": "\"goingLeft\""
 													}
 												},
 												{
-													"id": "set-boolean-instvar",
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 778548505627112,
+													"parameters": [
+														"QUARTER_CIRCLE"
+													]
+												}
+											],
+											"sid": 802146445812782
+										},
+										{
+											"eventType": "comment",
+											"text": "Can't combine these two blocks because of how 'else' and OR blocks work."
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 607869068344708
+												},
+												{
+													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 610935364616370,
+													"sid": 964663122689615,
 													"parameters": {
-														"instance-variable": "attacking",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-animation",
-													"objectClass": "enemyBody",
-													"sid": 444534355352147,
-													"parameters": {
-														"animation": "\"walk_\" & enemy.degrees",
-														"from": "beginning"
-													}
-												},
-												{
-													"id": "set-animation-speed",
-													"objectClass": "enemyBody",
-													"sid": 105451790318195,
-													"parameters": {
-														"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"goingLeft\""
 													}
 												}
 											],
-											"sid": 608573733021852
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If they successfully went left, they're done; they can resume normal behavior"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 487514144577319,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"no\""
+													}
+												}
+											],
+											"sid": 594992318803811
 										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 433452068059710
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 981770024074576,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"goingRight\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If they successfully went right, they're done; they can resume normal behavior"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 905388199090667,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"no\""
+													}
+												}
+											],
+											"sid": 798577479446515
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 699076830355034
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 385263060061518,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"backingUpAgain\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If they successfully backed up a second time, try turning left again (no need to record that this would be the 2nd left attempt)"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 870213300416083,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"goingLeft\""
+													}
+												},
+												{
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 748718258560959,
+													"parameters": [
+														"QUARTER_CIRCLE"
+													]
+												}
+											],
+											"sid": 868260019468301
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-hit-solid",
+											"objectClass": "enemy",
+											"sid": 546564574111293,
+											"behaviorType": "MoveTo"
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If an enemy hit a solid while moving, they need to go somewhere else. They can't stop because they don't have an idle animation."
+										}
+									],
+									"sid": 641254597671685,
+									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 336845897594798,
+													"sid": 340181729965182,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
 														"value": "\"no\""
 													}
-												},
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "enemy",
-													"sid": 820932169882133,
-													"parameters": {
-														"instance-variable": "attacking"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "enemy",
-													"sid": 273288748299436,
-													"parameters": {
-														"instance-variable": "hit"
-													},
-													"isInverted": true
 												}
 											],
-											"actions": [],
-											"sid": 918174171054243,
-											"children": [
+											"actions": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 290264080659759,
-															"parameters": {
-																"object": "enemy",
-																"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
-																"comparison": 5,
-																"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
-															}
-														},
-														{
-															"id": "pick-parent",
-															"objectClass": "enemyBody",
-															"sid": 172286028337940,
-															"parameters": {
-																"parent": "enemy",
-																"which": "own"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "breaking angle(enemy.x, enemy.y, player.x, player.y) into a local variable doesn't work if we have more than 1 enemy."
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "enemy",
-															"sid": 749199536380084,
-															"parameters": {
-																"instance-variable": "degrees",
-																"value": "round(angle(enemy.X, enemy.Y, player.X, player.Y) / ARC) * ARC = -180 ? 180 : round(angle(enemy.X, enemy.Y, player.X, player.Y) / ARC) * ARC"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "enemy",
-															"sid": 115520143788273,
-															"parameters": {
-																"instance-variable": "attacking",
-																"value": "true"
-															}
-														},
-														{
-															"id": "call-mapped-function",
-															"objectClass": "Functions",
-															"sid": 759726925633388,
-															"parameters": {
-																"name": "\"enemyAbilities\"",
-																"string": "enemy.simpleName",
-																"forward-params": "0"
-															}
-														}
-													],
-													"sid": 782526532341013
+													"type": "comment",
+													"text": "if the enemy wasn't already rerouting when he hit a solid, begin rerouting by backing up"
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 209554053694717
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "Find a path to a location that is exactly `attackRange` away from the player, in an isometric circle, divided up and assigned to each enemy on screen"
-														},
-														{
-															"id": "find-path",
-															"objectClass": "enemy",
-															"sid": 122768721226123,
-															"behaviorType": "Pathfinding",
-															"parameters": {
-																"x": "player.X",
-																"y": "player.Y"
-															}
-														}
-													],
-													"sid": 592950360285880
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 486816690145285,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"backingUp\""
+													}
+												},
+												{
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 413602133272266,
+													"parameters": [
+														"HALF_CIRCLE"
+													]
 												}
-											]
+											],
+											"sid": 567440510835885
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 999951595657465
+												},
+												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 938903884621399,
+													"sid": 409417261922886,
 													"parameters": {
-														"instance-variable": "currentHealth",
+														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "0"
+														"value": "\"backingUp\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the enemy hit a solid while backing up, try going left"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 212669472739429,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"goingLeft\""
 													}
 												},
 												{
-													"id": "pick-children",
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 785004554532843,
+													"parameters": [
+														"QUARTER_CIRCLE"
+													]
+												}
+											],
+											"sid": 318415051621003
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 720977085453282
+												},
+												{
+													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 292006792391050,
+													"sid": 722899474208009,
 													"parameters": {
-														"child": "enemyBody",
-														"which": "own"
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"goingLeft\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the enemy hit a solid while going left, try going right"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 474557777484337,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"goingRight\""
 													}
 												},
+												{
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 536180746121827,
+													"parameters": [
+														"HALF_CIRCLE"
+													]
+												}
+											],
+											"sid": 740197724283539
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 199210491798534
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 306840900720489,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"goingRight\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the enemy hit a solid while going right, try backing up again"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 137159054013774,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"backingUpAgain\""
+													}
+												},
+												{
+													"callFunction": "MoveEnemyInDirection",
+													"sid": 990683457854995,
+													"parameters": [
+														"QUARTER_CIRCLE"
+													]
+												}
+											],
+											"sid": 281045770464232
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 134543292154657
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 110430942789487,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"comparison": 0,
+														"value": "\"backingUpAgain\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the enemy hit a solid while backing up again, they are probably stuck. reset the rerouting process to try again"
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "enemy",
+													"sid": 933133627043730,
+													"parameters": {
+														"instance-variable": "rerouting",
+														"value": "\"no\""
+													}
+												}
+											],
+											"sid": 267559780109886
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-moving",
+											"objectClass": "enemy",
+											"sid": 258348659985307,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 700539694059468,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Extracting this out into a function results in enemies getting each other's angles"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "enemy",
+											"sid": 803121899749529,
+											"parameters": {
+												"instance-variable": "degrees",
+												"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC = -180 ? 180 : round(Self.MoveTo.MovingAngle / ARC) * ARC"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "enemy",
+											"sid": 388396692443134,
+											"parameters": {
+												"instance-variable": "attacking",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 880365184842177,
+											"parameters": {
+												"animation": "\"walk_\" & enemy.degrees",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "enemyBody",
+											"sid": 630016478479141,
+											"parameters": {
+												"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
+											}
+										}
+									],
+									"sid": 105332196523743
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 915943658717162,
+											"parameters": {
+												"instance-variable": "rerouting",
+												"comparison": 0,
+												"value": "\"no\""
+											}
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "enemy",
+											"sid": 618536050124514,
+											"parameters": {
+												"instance-variable": "attacking"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "enemy",
+											"sid": 432618399224364,
+											"parameters": {
+												"instance-variable": "hit"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 195430523868688,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 259205238496039,
+													"sid": 590491087622979,
 													"parameters": {
-														"object": "enemyBody",
-														"expression": "find(enemyBody.AnimationName, \"die\")",
-														"comparison": 0,
-														"value": "-1"
+														"object": "enemy",
+														"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
+														"comparison": 5,
+														"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
 													}
 												},
 												{
 													"id": "pick-parent",
 													"objectClass": "enemyBody",
-													"sid": 654234396825723,
+													"sid": 440263482456732,
 													"parameters": {
 														"parent": "enemy",
 														"which": "own"
@@ -11093,41 +11169,65 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a 'die' animation."
+													"text": "breaking angle(enemy.x, enemy.y, player.x, player.y) into a local variable doesn't work if we have more than 1 enemy."
 												},
 												{
-													"id": "add-to-instvar",
-													"objectClass": "player",
-													"sid": 741031297136175,
-													"parameters": {
-														"instance-variable": "experience",
-														"value": "enemy.experience"
-													}
-												},
-												{
-													"id": "destroy",
+													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 311455545287270
-												},
-												{
-													"id": "set-animation",
-													"objectClass": "enemyBody",
-													"sid": 209783966402329,
+													"sid": 522333760849279,
 													"parameters": {
-														"animation": "\"die_\" & enemy.degrees",
-														"from": "beginning"
+														"instance-variable": "degrees",
+														"value": "round(angle(enemy.X, enemy.Y, player.X, player.Y) / ARC) * ARC = -180 ? 180 : round(angle(enemy.X, enemy.Y, player.X, player.Y) / ARC) * ARC"
 													}
 												},
 												{
-													"callFunction": "spawnLoot",
-													"sid": 119809769525795,
-													"parameters": [
-														"enemy.X",
-														"enemy.Y"
-													]
+													"id": "set-boolean-instvar",
+													"objectClass": "enemy",
+													"sid": 996691630031234,
+													"parameters": {
+														"instance-variable": "attacking",
+														"value": "true"
+													}
+												},
+												{
+													"id": "call-mapped-function",
+													"objectClass": "Functions",
+													"sid": 295552014146109,
+													"parameters": {
+														"name": "\"enemyAbilities\"",
+														"string": "enemy.simpleName",
+														"forward-params": "0"
+													}
 												}
 											],
-											"sid": 868278033558465
+											"sid": 744752081986702
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 340234677486647
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Find a path to a location that is exactly `attackRange` away from the player, in an isometric circle, divided up and assigned to each enemy on screen"
+												},
+												{
+													"id": "find-path",
+													"objectClass": "enemy",
+													"sid": 186132612456790,
+													"behaviorType": "Pathfinding",
+													"parameters": {
+														"x": "player.X",
+														"y": "player.Y"
+													}
+												}
+											],
+											"sid": 903725566906271
 										}
 									]
 								},
@@ -11135,31 +11235,113 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "else",
+											"id": "compare-instance-variable",
+											"objectClass": "enemy",
+											"sid": 826822769343704,
+											"parameters": {
+												"instance-variable": "currentHealth",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 724764572773923,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 249031405383844
+											"sid": 741756455271645,
+											"parameters": {
+												"object": "enemyBody",
+												"expression": "find(enemyBody.AnimationName, \"die\")",
+												"comparison": 0,
+												"value": "-1"
+											}
+										},
+										{
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 519782908007242,
+											"parameters": {
+												"parent": "enemy",
+												"which": "own"
+											}
 										}
 									],
 									"actions": [
 										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 895497933523874,
-											"behaviorType": "MoveTo"
+											"type": "comment",
+											"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a 'die' animation."
 										},
 										{
-											"id": "set-instvar-value",
-											"objectClass": "enemy",
-											"sid": 575064102509981,
+											"id": "add-to-instvar",
+											"objectClass": "player",
+											"sid": 862923587677556,
 											"parameters": {
-												"instance-variable": "rerouting",
-												"value": "\"no\""
+												"instance-variable": "experience",
+												"value": "enemy.experience"
 											}
+										},
+										{
+											"id": "destroy",
+											"objectClass": "enemy",
+											"sid": 765940287876578
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 915725489204836,
+											"parameters": {
+												"animation": "\"die_\" & enemy.degrees",
+												"from": "beginning"
+											}
+										},
+										{
+											"callFunction": "spawnLoot",
+											"sid": 389378038043440,
+											"parameters": [
+												"enemy.X",
+												"enemy.Y"
+											]
 										}
 									],
-									"sid": 548009915197708
+									"sid": 231520955921105
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 362265262037078
+								}
+							],
+							"actions": [
+								{
+									"id": "stop",
+									"objectClass": "enemy",
+									"sid": 223443046183465,
+									"behaviorType": "MoveTo"
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "enemy",
+									"sid": 412445814604539,
+									"parameters": {
+										"instance-variable": "rerouting",
+										"value": "\"no\""
+									}
+								}
+							],
+							"sid": 495671960396641
 						}
 					],
 					"sid": 346842453318444
@@ -12432,7 +12614,6 @@
 							],
 							"actions": [],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "variable",
@@ -12528,8 +12709,7 @@
 											]
 										}
 									],
-									"sid": 661315679644106,
-									"disabled": true
+									"sid": 661315679644106
 								},
 								{
 									"eventType": "block",
@@ -12583,7 +12763,6 @@
 										}
 									],
 									"sid": 680787690708581,
-									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -12662,8 +12841,7 @@
 													]
 												}
 											],
-											"sid": 181406029233488,
-											"disabled": true
+											"sid": 181406029233488
 										},
 										{
 											"eventType": "block",
@@ -12685,8 +12863,7 @@
 													"sid": 887800632849253
 												}
 											],
-											"sid": 944725340629196,
-											"disabled": true
+											"sid": 944725340629196
 										}
 									]
 								}
@@ -13321,6 +13498,15 @@
 									"objectClass": "player",
 									"sid": 556192847057245,
 									"behaviorType": "Pathfinding",
+									"parameters": {
+										"obstacle": "prop"
+									}
+								},
+								{
+									"id": "add-obstacle",
+									"objectClass": "player",
+									"sid": 807300779459129,
+									"behaviorType": "LineOfSight",
 									"parameters": {
 										"obstacle": "prop"
 									}
@@ -16265,6 +16451,37 @@
 						}
 					],
 					"sid": 605751022796155
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "door",
+							"sid": 346476188900140
+						},
+						{
+							"id": "pick-parent",
+							"objectClass": "door",
+							"sid": 521705764688664,
+							"parameters": {
+								"parent": "sortable",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-object",
+							"objectClass": "door",
+							"sid": 631990991231225,
+							"parameters": {
+								"where": "in-front",
+								"object": "sortable"
+							}
+						}
+					],
+					"sid": 235939344330391
 				}
 			],
 			"sid": 992252066588856

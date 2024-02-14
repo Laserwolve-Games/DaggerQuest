@@ -5660,12 +5660,38 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 784218440704263,
+									"parameters": {
+										"instance-variable": "targetX",
+										"value": "x"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 734060233847184,
+									"parameters": {
+										"instance-variable": "targetY",
+										"value": "y"
+									}
+								}
+							],
 							"sid": 736875311258128,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
+										{
+											"id": "is-calculating-path",
+											"objectClass": "player",
+											"sid": 446498598566557,
+											"behaviorType": "Pathfinding",
+											"isInverted": true
+										},
 										{
 											"id": "is-on-screen",
 											"objectClass": "prop",
@@ -5684,25 +5710,11 @@
 										{
 											"id": "find-path",
 											"objectClass": "player",
-											"sid": 988922268198483,
+											"sid": 681134338911439,
 											"behaviorType": "Pathfinding",
 											"parameters": {
-												"x": "x",
-												"y": "y"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 871261292508568
-										},
-										{
-											"id": "move-along-pathfinding-path",
-											"objectClass": "player",
-											"sid": 515356683123279,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"mode": "direct"
+												"x": "Self.targetX",
+												"y": "Self.targetY"
 											}
 										}
 									],
@@ -5721,11 +5733,11 @@
 										{
 											"id": "move-to-position",
 											"objectClass": "player",
-											"sid": 758784016272593,
+											"sid": 275676811524995,
 											"behaviorType": "MoveTo",
 											"parameters": {
-												"x": "mouse.X",
-												"y": "mouse.Y",
+												"x": "Self.targetX",
+												"y": "Self.targetY",
 												"mode": "direct"
 											}
 										}
@@ -5733,6 +5745,74 @@
 									"sid": 764050547650389
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-path-found",
+									"objectClass": "player",
+									"sid": 259939960745893,
+									"behaviorType": "Pathfinding"
+								}
+							],
+							"actions": [
+								{
+									"id": "move-along-pathfinding-path",
+									"objectClass": "player",
+									"sid": 951702701707545,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 704860093621083
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-failed-to-find-path",
+									"objectClass": "player",
+									"sid": 406061097055516,
+									"behaviorType": "Pathfinding"
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 146581456135600,
+									"parameters": {
+										"instance-variable": "targetX",
+										"comparison": 1,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 310426885212054,
+									"parameters": {
+										"instance-variable": "targetY",
+										"comparison": 1,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "move-to-position",
+									"objectClass": "player",
+									"sid": 435392699541922,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"x": "Self.targetX",
+										"y": "Self.targetY",
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 947007811183885
 						}
 					],
 					"sid": 914713205483917
@@ -16184,6 +16264,31 @@
 				}
 			],
 			"sid": 992252066588856
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "player",
+					"sid": 287305497368862,
+					"parameters": {
+						"object": "prop"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "log",
+					"objectClass": "browser",
+					"sid": 275627634999852,
+					"parameters": {
+						"type": "log",
+						"message": "\"this shouldn't be happening\""
+					}
+				}
+			],
+			"sid": 819038588116467
 		}
 	],
 	"sid": 318845921999986

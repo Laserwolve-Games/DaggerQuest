@@ -5629,6 +5629,10 @@
 							"isOrBlock": true
 						},
 						{
+							"eventType": "comment",
+							"text": "Save the target X and Y to player instance variables, so we use them if we fail to find a path. Only pathfind if we aren't currently looking for a path, and there's a prop that needs pathfinding on the screen. TODO: move manually if we can't find a path quickly (1 or 2 ticks)"
+						},
+						{
 							"functionName": "moveToLocation",
 							"functionDescription": "Move to a location, specifying a distance away from that location to arrive at",
 							"functionCategory": "player",
@@ -16264,31 +16268,6 @@
 				}
 			],
 			"sid": 992252066588856
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "player",
-					"sid": 287305497368862,
-					"parameters": {
-						"object": "prop"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "log",
-					"objectClass": "browser",
-					"sid": 275627634999852,
-					"parameters": {
-						"type": "log",
-						"message": "\"this shouldn't be happening\""
-					}
-				}
-			],
-			"sid": 819038588116467
 		}
 	],
 	"sid": 318845921999986

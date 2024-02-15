@@ -5764,6 +5764,7 @@
 											"id": "move-to-position",
 											"objectClass": "player",
 											"sid": 832958801315104,
+											"breakpoint": true,
 											"behaviorType": "MoveTo",
 											"parameters": {
 												"x": "Self.targetX",
@@ -5835,6 +5836,68 @@
 										}
 									],
 									"sid": 897809120274970
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 738421313195826
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "player",
+											"sid": 200263426786507,
+											"parameters": {
+												"object": "prop",
+												"offset-x": "Self.Width / 2",
+												"offset-y": "Self.Width / 2"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "player",
+											"sid": 250414728730048,
+											"parameters": {
+												"object": "prop",
+												"offset-x": "Self.Width / 2",
+												"offset-y": "Self.Width / -2"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "player",
+											"sid": 189804626012355,
+											"parameters": {
+												"object": "prop",
+												"offset-x": "Self.Width / -2",
+												"offset-y": "Self.Width / 2"
+											}
+										},
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "player",
+											"sid": 324480083614099,
+											"parameters": {
+												"object": "prop",
+												"offset-x": "Self.Width / -2",
+												"offset-y": "Self.Width / -2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If the player is in the pathfinding boundary of a prop, pathfinding will fail."
+										},
+										{
+											"type": "comment",
+											"text": "Possible solution to https://github.com/Laserwolve-Games/DaggerQuest/issues/35"
+										}
+									],
+									"sid": 172605748604295,
+									"disabled": true
 								},
 								{
 									"eventType": "block",

@@ -377,9 +377,7 @@
 								"lastY": 0,
 								"hitstunThreshold": 0.1,
 								"relocateToX": 0,
-								"relocateToY": 0,
-								"targetX": 0,
-								"targetY": 0
+								"relocateToY": 0
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -409,34 +407,11 @@
 										"enabled": true
 									}
 								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								},
 								"Custom": {
 									"properties": {
 										"stepping-mode": "linear",
 										"pixels-per-step": 1,
 										"enabled": true
-									}
-								},
-								"LineOfSight": {
-									"properties": {
-										"obstacles": "custom",
-										"range": 6000,
-										"cone-of-view": 360,
-										"use-collision-cells": true
 									}
 								}
 							},
@@ -569,21 +544,6 @@
 										"enabled": true
 									}
 								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								},
 								"Custom": {
 									"properties": {
 										"stepping-mode": "linear",
@@ -677,21 +637,6 @@
 										"rotate-speed": 0,
 										"set-angle": false,
 										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
 										"enabled": true
 									}
 								},
@@ -791,21 +736,6 @@
 										"enabled": true
 									}
 								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								},
 								"Custom": {
 									"properties": {
 										"stepping-mode": "linear",
@@ -902,21 +832,6 @@
 										"enabled": true
 									}
 								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
-										"enabled": true
-									}
-								},
 								"Custom": {
 									"properties": {
 										"stepping-mode": "linear",
@@ -1010,21 +925,6 @@
 										"rotate-speed": 0,
 										"set-angle": false,
 										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"Pathfinding": {
-									"properties": {
-										"cell-size": 39,
-										"cell-border": 39,
-										"obstacles": "custom",
-										"max-speed": 0,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"rotate-object": false,
-										"diagonals": true,
-										"direct-movement": "anywhere-along-path",
 										"enabled": true
 									}
 								},
@@ -3430,8 +3330,8 @@
 						}
 					},
 					"world": {
-						"x": 1959,
-						"y": 3668,
+						"x": 2065,
+						"y": 3661,
 						"width": 230,
 						"height": 213,
 						"originX": 0.02608695652173913,
@@ -3466,7 +3366,7 @@
 						"mods": "flatSlash:+{3} Slash Damage;",
 						"classRestrictions": "All Classes",
 						"modTable": "simple1hWeapon",
-						"verticalHeight": 25
+						"verticalHeight": 40
 					},
 					"behaviors": {},
 					"sceneGraphData": {
@@ -3498,8 +3398,8 @@
 						}
 					},
 					"world": {
-						"x": 1999,
-						"y": 3564,
+						"x": 2105,
+						"y": 3557,
 						"width": 84,
 						"height": 42,
 						"originX": 0.5,
@@ -3534,7 +3434,7 @@
 						"mods": "flatBlockChance:+{1.0}% Block Chance;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleShield",
-						"verticalHeight": 50
+						"verticalHeight": 40
 					},
 					"behaviors": {},
 					"sceneGraphData": {
@@ -3566,8 +3466,8 @@
 						}
 					},
 					"world": {
-						"x": 2024,
-						"y": 3578,
+						"x": 2130,
+						"y": 3571,
 						"width": 47,
 						"height": 28,
 						"originX": 0.5,
@@ -3602,7 +3502,7 @@
 						"mods": "flatHealth:+{2} Health;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleArmor",
-						"verticalHeight": 25
+						"verticalHeight": 40
 					},
 					"behaviors": {},
 					"sceneGraphData": {
@@ -3634,8 +3534,8 @@
 						}
 					},
 					"world": {
-						"x": 2059,
-						"y": 3613,
+						"x": 2165,
+						"y": 3606,
 						"width": 111,
 						"height": 56,
 						"originX": 0.5,
@@ -3670,7 +3570,7 @@
 						"mods": "flatManaRegen:+{1} Mana Regeneration;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleArmor",
-						"verticalHeight": 25
+						"verticalHeight": 40
 					},
 					"behaviors": {},
 					"sceneGraphData": {
@@ -3702,8 +3602,8 @@
 						}
 					},
 					"world": {
-						"x": 2128,
-						"y": 3639,
+						"x": 2234,
+						"y": 3632,
 						"width": 81,
 						"height": 34,
 						"originX": 0.5,

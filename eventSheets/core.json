@@ -3426,6 +3426,16 @@
 							"sid": 143517779829659
 						},
 						{
+							"eventType": "variable",
+							"name": "blockingGearManagement",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Whether or not the player can equip new gear",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 701726838342458
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -3435,9 +3445,27 @@
 									"parameters": {
 										"unique-id": "gearQueueArray.Back"
 									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 259687655719615,
+									"parameters": {
+										"variable": "blockingGearManagement"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 998042297008631,
+									"parameters": {
+										"variable": "blockingGearManagement",
+										"value": "true"
+									}
+								},
 								{
 									"id": "pop",
 									"objectClass": "gearQueueArray",
@@ -3695,6 +3723,7 @@
 											"id": "load-object-images-by-name",
 											"objectClass": "System",
 											"sid": 914925363519378,
+											"breakpoint": true,
 											"parameters": {
 												"object": "gearToSpawn"
 											}
@@ -3708,6 +3737,7 @@
 											"id": "create-object-by-name",
 											"objectClass": "System",
 											"sid": 260978513288412,
+											"breakpoint": true,
 											"parameters": {
 												"object-name": "gearToSpawn",
 												"layer": "\"main\"",
@@ -3800,6 +3830,15 @@
 														"transform-visibility": false,
 														"destroy-with-parent": true
 													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 842116524032064,
+													"parameters": {
+														"variable": "blockingGearManagement",
+														"value": "false"
+													}
 												}
 											],
 											"sid": 188569173547399
@@ -3859,6 +3898,15 @@
 											"parameters": {
 												"variable": "gearToDestroy",
 												"value": "\"\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 207804326816703,
+											"parameters": {
+												"variable": "blockingGearManagement",
+												"value": "false"
 											}
 										}
 									],
@@ -4887,31 +4935,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "player",
-											"sid": 252446053518418,
-											"parameters": {
-												"object": "prop"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "push-out-solid",
-											"objectClass": "player",
-											"sid": 254551071916362,
-											"behaviorType": "Custom",
-											"parameters": {
-												"direction": "nearest"
-											}
-										}
-									],
-									"sid": 287577509078653
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
 											"sid": 120982026255155,
@@ -4945,132 +4968,6 @@
 										}
 									],
 									"sid": 406589245541801
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-object-clicked",
-											"objectClass": "mouse",
-											"sid": 209783182689097,
-											"parameters": {
-												"mouse-button": "left",
-												"click-type": "clicked",
-												"object-clicked": "npcBody"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "npcBody",
-											"sid": 913970748833228,
-											"parameters": {
-												"parent": "npc",
-												"which": "own"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 432903177901009,
-											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "npc.UID"
-											}
-										},
-										{
-											"callFunction": "moveToLocation",
-											"sid": 970471063036979,
-											"parameters": [
-												"npc.X",
-												"npc.y"
-											]
-										}
-									],
-									"sid": 317371115726321
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-object-clicked",
-											"objectClass": "mouse",
-											"sid": 601048066866983,
-											"parameters": {
-												"mouse-button": "left",
-												"click-type": "clicked",
-												"object-clicked": "loot"
-											}
-										},
-										{
-											"id": "pick-topbottom",
-											"objectClass": "loot",
-											"sid": 271986481617348,
-											"parameters": {
-												"which": "top"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 262910963112713,
-											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "loot.UID"
-											}
-										},
-										{
-											"callFunction": "moveToLocation",
-											"sid": 388404541686844,
-											"parameters": [
-												"loot.X",
-												"loot.y"
-											]
-										}
-									],
-									"sid": 611706998760076
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-object-clicked",
-											"objectClass": "mouse",
-											"sid": 807701934643906,
-											"parameters": {
-												"mouse-button": "left",
-												"click-type": "clicked",
-												"object-clicked": "door"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 945967018932120,
-											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "door.UID"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "Image Point 0 on some doors is very far away from the door itself, so they can line up with their building. If they have an Image Point 1, use that"
-										},
-										{
-											"callFunction": "moveToLocation",
-											"sid": 697234008679864,
-											"parameters": [
-												"door.ImagePointX(1)",
-												"door.ImagePointY(1)"
-											]
-										}
-									],
-									"sid": 967228807450558
 								},
 								{
 									"eventType": "block",
@@ -5124,6 +5021,132 @@
 									"actions": [],
 									"sid": 596268564767458,
 									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "mouse",
+													"sid": 581983855282056,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "npcBody"
+													}
+												},
+												{
+													"id": "pick-parent",
+													"objectClass": "npcBody",
+													"sid": 500343006491042,
+													"parameters": {
+														"parent": "npc",
+														"which": "own"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 981260177954875,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "npc.UID"
+													}
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 602829088753991,
+													"parameters": [
+														"npc.X",
+														"npc.y"
+													]
+												}
+											],
+											"sid": 746307798420541
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "mouse",
+													"sid": 763879713843625,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "loot"
+													}
+												},
+												{
+													"id": "pick-topbottom",
+													"objectClass": "loot",
+													"sid": 435457045204375,
+													"parameters": {
+														"which": "top"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 640378117880726,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "loot.UID"
+													}
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 236035510369624,
+													"parameters": [
+														"loot.X",
+														"loot.y"
+													]
+												}
+											],
+											"sid": 422837792051483
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "mouse",
+													"sid": 469207193592956,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "door"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 453763709445327,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "door.UID"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "Image Point 0 on some doors is very far away from the door itself, so they can line up with their building. If they have an Image Point 1, use that"
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 710058873709779,
+													"parameters": [
+														"door.ImagePointX(1)",
+														"door.ImagePointY(1)"
+													]
+												}
+											],
+											"sid": 111921988297271
+										},
 										{
 											"eventType": "block",
 											"conditions": [
@@ -8590,9 +8613,9 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "layer-is-interactive",
+													"id": "layer-is-visible",
 													"objectClass": "System",
-													"sid": 549749336278775,
+													"sid": 150200417577567,
 													"parameters": {
 														"layer": "\"equippedMenu\""
 													}
@@ -8650,9 +8673,9 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "layer-is-interactive",
+													"id": "layer-is-visible",
 													"objectClass": "System",
-													"sid": 387601690380153,
+													"sid": 164553424390272,
 													"parameters": {
 														"layer": "\"inventoryMenu\""
 													}
@@ -10078,17 +10101,17 @@
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
-									"name": "enemyAngle",
+									"name": "theAngle",
 									"type": "number",
 									"initialValue": "0",
 									"comment": "The angle along which the enemy should move. Already factors in isometry.",
 									"sid": 635433825358544
 								},
 								{
-									"name": "actualDistance",
+									"name": "theDistance",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The actual distance the enemy will travel, after being isometrified.",
+									"comment": "The distance the enemy will travel",
 									"sid": 811565187927295
 								}
 							],
@@ -10100,8 +10123,8 @@
 									"objectClass": "System",
 									"sid": 598975375465378,
 									"parameters": {
-										"variable": "enemyAngle",
-										"value": "enemy.MoveTo.MovingAngle - enemyAngle"
+										"variable": "theAngle",
+										"value": "enemy.MoveTo.MovingAngle - theAngle"
 									}
 								},
 								{
@@ -10109,8 +10132,8 @@
 									"objectClass": "System",
 									"sid": 758273438453279,
 									"parameters": {
-										"variable": "actualDistance",
-										"value": "Functions.isometrify(actualDistance, enemyAngle)"
+										"variable": "theDistance",
+										"value": "Functions.isometrify(theDistance, theAngle)"
 									}
 								},
 								{
@@ -10119,8 +10142,8 @@
 									"sid": 586175186732044,
 									"behaviorType": "MoveTo",
 									"parameters": {
-										"x": "Self.X + cos(enemyAngle) * actualDistance",
-										"y": "Self.Y + sin(enemyAngle) * actualDistance",
+										"x": "Self.X + cos(theAngle) * theDistance",
+										"y": "Self.Y + sin(theAngle) * theDistance",
 										"mode": "direct"
 									}
 								}
@@ -10665,6 +10688,15 @@
 												"instance-variable": "hit"
 											},
 											"isInverted": true
+										},
+										{
+											"id": "pick-parent",
+											"objectClass": "enemyBody",
+											"sid": 304773321105288,
+											"parameters": {
+												"parent": "enemy",
+												"which": "own"
+											}
 										}
 									],
 									"actions": [],
@@ -10685,12 +10717,13 @@
 													}
 												},
 												{
-													"id": "pick-parent",
-													"objectClass": "enemyBody",
-													"sid": 759856023651950,
+													"id": "has-los-to-object",
+													"objectClass": "enemy",
+													"sid": 719865029279614,
+													"behaviorType": "LineOfSight",
 													"parameters": {
-														"parent": "enemy",
-														"which": "own"
+														"object": "player",
+														"image-point": "0"
 													}
 												}
 											],
@@ -10742,15 +10775,6 @@
 														"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
 														"comparison": 2,
 														"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
-													}
-												},
-												{
-													"id": "pick-parent",
-													"objectClass": "enemyBody",
-													"sid": 895553000592306,
-													"parameters": {
-														"parent": "enemy",
-														"which": "own"
 													}
 												}
 											],
@@ -11025,56 +11049,6 @@
 									]
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "enemy",
-									"sid": 934725069880598,
-									"parameters": {
-										"object": "enemy"
-									}
-								},
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "enemy",
-									"sid": 412643950066063,
-									"parameters": {
-										"object": "player"
-									}
-								},
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "enemy",
-									"sid": 436401770952515,
-									"parameters": {
-										"object": "prop"
-									}
-								},
-								{
-									"id": "pick-topbottom",
-									"objectClass": "enemy",
-									"sid": 829994899324684,
-									"parameters": {
-										"which": "bottom"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "push-out-solid",
-									"objectClass": "enemy",
-									"sid": 875983499479464,
-									"behaviorType": "Custom",
-									"parameters": {
-										"direction": "nearest"
-									}
-								}
-							],
-							"sid": 437274193387185,
-							"isOrBlock": true
 						}
 					],
 					"sid": 346842453318444
@@ -12347,7 +12321,6 @@
 							],
 							"actions": [],
 							"sid": 591454218470020,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "variable",
@@ -12443,8 +12416,7 @@
 											]
 										}
 									],
-									"sid": 661315679644106,
-									"disabled": true
+									"sid": 661315679644106
 								},
 								{
 									"eventType": "block",
@@ -12498,7 +12470,6 @@
 										}
 									],
 									"sid": 680787690708581,
-									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -12571,14 +12542,13 @@
 												},
 												{
 													"callFunction": "destroyMeleeProjectiles",
-													"sid": 156367090308619,
+													"sid": 234462207992389,
 													"parameters": [
-														"enemy.UID"
+														"player.UID"
 													]
 												}
 											],
-											"sid": 181406029233488,
-											"disabled": true
+											"sid": 181406029233488
 										},
 										{
 											"eventType": "block",
@@ -12600,8 +12570,7 @@
 													"sid": 887800632849253
 												}
 											],
-											"sid": 944725340629196,
-											"disabled": true
+											"sid": 944725340629196
 										}
 									]
 								}

@@ -416,8 +416,8 @@
 								}
 							},
 							"world": {
-								"x": 2757,
-								"y": 3860,
+								"x": 2866,
+								"y": 3890,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -544,17 +544,18 @@
 										"enabled": true
 									}
 								},
-								"Custom": {
+								"LineOfSight": {
 									"properties": {
-										"stepping-mode": "linear",
-										"pixels-per-step": 1,
-										"enabled": true
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
 									}
 								}
 							},
 							"world": {
-								"x": 632,
-								"y": 2097,
+								"x": 2752,
+								"y": 812,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -640,17 +641,18 @@
 										"enabled": true
 									}
 								},
-								"Custom": {
+								"LineOfSight": {
 									"properties": {
-										"stepping-mode": "linear",
-										"pixels-per-step": 1,
-										"enabled": true
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
 									}
 								}
 							},
 							"world": {
-								"x": 1137,
-								"y": 1989,
+								"x": 3257,
+								"y": 704,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -736,17 +738,18 @@
 										"enabled": true
 									}
 								},
-								"Custom": {
+								"LineOfSight": {
 									"properties": {
-										"stepping-mode": "linear",
-										"pixels-per-step": 1,
-										"enabled": true
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
 									}
 								}
 							},
 							"world": {
-								"x": 882,
-								"y": 1489,
+								"x": 3002,
+								"y": 204,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -832,11 +835,12 @@
 										"enabled": true
 									}
 								},
-								"Custom": {
+								"LineOfSight": {
 									"properties": {
-										"stepping-mode": "linear",
-										"pixels-per-step": 1,
-										"enabled": true
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
 									}
 								}
 							},
@@ -928,17 +932,18 @@
 										"enabled": true
 									}
 								},
-								"Custom": {
+								"LineOfSight": {
 									"properties": {
-										"stepping-mode": "linear",
-										"pixels-per-step": 1,
-										"enabled": true
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
 									}
 								}
 							},
 							"world": {
-								"x": 1442,
-								"y": 1595,
+								"x": 3562,
+								"y": 310,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -3398,8 +3403,8 @@
 						}
 					},
 					"world": {
-						"x": 2105,
-						"y": 3557,
+						"x": 2100,
+						"y": 3558,
 						"width": 84,
 						"height": 42,
 						"originX": 0.5,
@@ -10060,7 +10065,7 @@
 					"subLayers": [],
 					"instances": [
 						{
-							"type": "characterStatue",
+							"type": "equippedStatue",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "Default",
@@ -12981,7 +12986,7 @@
 							}
 						},
 						{
-							"type": "escapeMenuStatue",
+							"type": "characterStatue",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "Default",

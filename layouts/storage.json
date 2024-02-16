@@ -77,11 +77,12 @@
 								"enabled": true
 							}
 						},
-						"Custom": {
+						"LineOfSight": {
 							"properties": {
-								"stepping-mode": "none",
-								"pixels-per-step": 5,
-								"enabled": true
+								"obstacles": "solids",
+								"range": 10000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},

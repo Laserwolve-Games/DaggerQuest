@@ -3723,7 +3723,6 @@
 											"id": "load-object-images-by-name",
 											"objectClass": "System",
 											"sid": 914925363519378,
-											"breakpoint": true,
 											"parameters": {
 												"object": "gearToSpawn"
 											}
@@ -3737,7 +3736,6 @@
 											"id": "create-object-by-name",
 											"objectClass": "System",
 											"sid": 260978513288412,
-											"breakpoint": true,
 											"parameters": {
 												"object-name": "gearToSpawn",
 												"layer": "\"main\"",
@@ -4984,15 +4982,6 @@
 										{
 											"id": "cursor-is-over-object",
 											"objectClass": "mouse",
-											"sid": 857293946001196,
-											"parameters": {
-												"object": "player"
-											},
-											"isInverted": true
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
 											"sid": 128899916492898,
 											"parameters": {
 												"object": "item"
@@ -5114,7 +5103,7 @@
 												{
 													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 469207193592956,
+													"sid": 845886336656501,
 													"parameters": {
 														"mouse-button": "left",
 														"click-type": "clicked",
@@ -5126,7 +5115,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 453763709445327,
+													"sid": 886877031292798,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "door.UID"
@@ -5138,112 +5127,52 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 710058873709779,
+													"sid": 944613549068001,
 													"parameters": [
 														"door.ImagePointX(1)",
 														"door.ImagePointY(1)"
 													]
 												}
 											],
-											"sid": 111921988297271
+											"sid": 398884856732755
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "mouse-button-is-down",
+													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 291531131797624,
+													"sid": 455872059231958,
 													"parameters": {
-														"mouse-button": "right"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 746302270088896,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
-													}
-												},
-												{
-													"callFunction": "moveToLocation",
-													"sid": 965010289863841,
-													"parameters": [
-														"mouse.X",
-														"mouse.Y"
-													]
-												}
-											],
-											"sid": 238953477578949
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "mouse-button-is-down",
-													"objectClass": "mouse",
-													"sid": 753527307690535,
-													"parameters": {
-														"mouse-button": "left"
-													}
+														"object": "player"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [],
-											"sid": 721384957223395,
+											"sid": 568416994144019,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "cursor-is-over-object",
+															"id": "mouse-button-is-down",
 															"objectClass": "mouse",
-															"sid": 797504142604412,
+															"sid": 886023708674629,
 															"parameters": {
-																"object": "npcBody"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 974384171444657,
-															"parameters": {
-																"object": "enemyBody"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 972021639907126,
-															"parameters": {
-																"object": "loot"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
-															"objectClass": "mouse",
-															"sid": 704494516822603,
-															"parameters": {
-																"object": "door"
-															},
-															"isInverted": true
+																"mouse-button": "right"
+															}
 														}
 													],
 													"actions": [
 														{
+															"type": "comment",
+															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
+														},
+														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 700278359839751,
+															"sid": 798933237432196,
 															"parameters": {
 																"variable": "uidOfClicked",
 																"value": "0"
@@ -5251,73 +5180,151 @@
 														},
 														{
 															"callFunction": "moveToLocation",
-															"sid": 344672184381563,
+															"sid": 853024230693833,
 															"parameters": [
 																"mouse.X",
 																"mouse.Y"
 															]
 														}
 													],
-													"sid": 991322151249214
+													"sid": 616090096106922
 												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "compare-boolean-eventvar",
-															"objectClass": "System",
-															"sid": 856812059995472,
-															"parameters": {
-																"variable": "isOnInteractCooldown"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "cursor-is-over-object",
+															"id": "mouse-button-is-down",
 															"objectClass": "mouse",
-															"sid": 388253995948931,
+															"sid": 392493237748483,
 															"parameters": {
-																"object": "enemyBody"
-															}
-														},
-														{
-															"id": "pick-topbottom",
-															"objectClass": "enemyBody",
-															"sid": 906172148505108,
-															"parameters": {
-																"which": "top"
-															}
-														},
-														{
-															"id": "pick-parent",
-															"objectClass": "enemyBody",
-															"sid": 420697934634780,
-															"parameters": {
-																"parent": "enemy",
-																"which": "own"
+																"mouse-button": "left"
 															}
 														}
 													],
-													"actions": [
+													"actions": [],
+													"sid": 562650531510635,
+													"children": [
 														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 443493679813194,
-															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "enemy.UID"
-															}
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 730658468748834,
+																	"parameters": {
+																		"object": "npcBody"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 222773159887017,
+																	"parameters": {
+																		"object": "enemyBody"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 659138964629686,
+																	"parameters": {
+																		"object": "loot"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 887722893563606,
+																	"parameters": {
+																		"object": "door"
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 412136936476001,
+																	"parameters": {
+																		"variable": "uidOfClicked",
+																		"value": "0"
+																	}
+																},
+																{
+																	"callFunction": "moveToLocation",
+																	"sid": 122469423883515,
+																	"parameters": [
+																		"mouse.X",
+																		"mouse.Y"
+																	]
+																}
+															],
+															"sid": 112537948417270
 														},
 														{
-															"callFunction": "moveToLocation",
-															"sid": 430133854030080,
-															"parameters": [
-																"enemy.X",
-																"enemy.y"
-															]
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-boolean-eventvar",
+																	"objectClass": "System",
+																	"sid": 110680587794995,
+																	"parameters": {
+																		"variable": "isOnInteractCooldown"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 898126592540758,
+																	"parameters": {
+																		"object": "enemyBody"
+																	}
+																},
+																{
+																	"id": "pick-topbottom",
+																	"objectClass": "enemyBody",
+																	"sid": 526049155049224,
+																	"parameters": {
+																		"which": "top"
+																	}
+																},
+																{
+																	"id": "pick-parent",
+																	"objectClass": "enemyBody",
+																	"sid": 194969037014112,
+																	"parameters": {
+																		"parent": "enemy",
+																		"which": "own"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 701185362739958,
+																	"parameters": {
+																		"variable": "uidOfClicked",
+																		"value": "enemy.UID"
+																	}
+																},
+																{
+																	"callFunction": "moveToLocation",
+																	"sid": 307701980469008,
+																	"parameters": [
+																		"enemy.X",
+																		"enemy.y"
+																	]
+																}
+															],
+															"sid": 251943983229445
 														}
-													],
-													"sid": 489352706643229
+													]
 												}
 											]
 										}
@@ -8579,6 +8586,214 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
+									"sid": 482827758455036,
+									"parameters": {
+										"layer": "\"characterMenu\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "maxHealth",
+									"sid": 796437786557423,
+									"parameters": {
+										"text": "player.maxHealth"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "healthRegen",
+									"sid": 891067517392227,
+									"parameters": {
+										"text": "player.healthRegen & \"/second\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "actionSpeed",
+									"sid": 670237157538332,
+									"parameters": {
+										"text": "player.actionSpeed"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "attackRange",
+									"sid": 470649090255748,
+									"parameters": {
+										"text": "player.attackRange"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "pickupRange",
+									"sid": 433549745548644,
+									"parameters": {
+										"text": "player.pickupRange"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "movementSpeed",
+									"sid": 181346014050731,
+									"parameters": {
+										"text": "player.movementSpeed"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "stunThreshold",
+									"sid": 999319739569214,
+									"parameters": {
+										"text": "player.hitstunThreshold & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "blockChance",
+									"sid": 391527888240095,
+									"parameters": {
+										"text": "player.blockChance & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "maxMana",
+									"sid": 382263015663459,
+									"parameters": {
+										"text": "player.maxMana"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "manaRegen",
+									"sid": 773702094055869,
+									"parameters": {
+										"text": "player.manaRegen & \"/second\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "physicalResistance",
+									"sid": 748330157098833,
+									"parameters": {
+										"text": "player.physicalResistance  & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "coldResistance",
+									"sid": 238460396253314,
+									"parameters": {
+										"text": "player.coldResistance  & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "fireResistance",
+									"sid": 127099995750770,
+									"parameters": {
+										"text": "player.fireResistance & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "lightningResistance",
+									"sid": 875807040171870,
+									"parameters": {
+										"text": "player.lightningResistance & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "arcaneResistance",
+									"sid": 885663782193657,
+									"parameters": {
+										"text": "player.arcaneResistance & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "corruptResistance",
+									"sid": 228165600975839,
+									"parameters": {
+										"text": "player.corruptResistance & \"%\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "slashDamage",
+									"sid": 416334094982596,
+									"parameters": {
+										"text": "player.slashDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "smashDamage",
+									"sid": 167849782919164,
+									"parameters": {
+										"text": "player.smashDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "stabDamage",
+									"sid": 510369319232670,
+									"parameters": {
+										"text": "player.stabDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "coldDamage",
+									"sid": 455186547121666,
+									"parameters": {
+										"text": "player.coldDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "fireDamage",
+									"sid": 519317805663518,
+									"parameters": {
+										"text": "player.fireDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "lightningDamage",
+									"sid": 572268967804158,
+									"parameters": {
+										"text": "player.lightningDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "arcaneDamage",
+									"sid": 237068647164323,
+									"parameters": {
+										"text": "player.arcaneDamage"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "holyDamage",
+									"sid": 771136631524764,
+									"parameters": {
+										"text": "player.holyDamage"
+									}
+								}
+							],
+							"sid": 320596497522521
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
 									"sid": 344324233789704,
 									"parameters": {
 										"layer": "\"settingsMenu\""
@@ -8600,59 +8815,22 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 598601637453541,
+											"sid": 136702131059482,
 											"parameters": {
 												"key": 67
 											}
 										}
 									],
-									"actions": [],
-									"sid": 178878258421278,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "layer-is-visible",
-													"objectClass": "System",
-													"sid": 150200417577567,
-													"parameters": {
-														"layer": "\"equippedMenu\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "closeLayer",
-													"sid": 872265200753973,
-													"parameters": [
-														"\"equippedMenu\""
-													]
-												}
-											],
-											"sid": 262009421223096
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 753520278789364
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "openLayer",
-													"sid": 710594765778172,
-													"parameters": [
-														"\"equippedMenu\""
-													]
-												}
-											],
-											"sid": 497647737905739
+											"callFunction": "ManageMenuWithKey",
+											"sid": 734090742914611,
+											"parameters": [
+												"\"equippedMenu\""
+											]
 										}
-									]
+									],
+									"sid": 178878258421278
 								},
 								{
 									"eventType": "block",
@@ -8660,14 +8838,66 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 370431537167266,
+											"sid": 589371201187572,
+											"parameters": {
+												"key": 80
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "ManageMenuWithKey",
+											"sid": 460215475667850,
+											"parameters": [
+												"\"characterMenu\""
+											]
+										}
+									],
+									"sid": 380635994569706
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-key-pressed",
+											"objectClass": "keyboard",
+											"sid": 400102098344263,
 											"parameters": {
 												"key": 73
 											}
 										}
 									],
+									"actions": [
+										{
+											"callFunction": "ManageMenuWithKey",
+											"sid": 830898005880020,
+											"parameters": [
+												"\"inventoryMenu\""
+											]
+										}
+									],
+									"sid": 220547132814557
+								},
+								{
+									"functionName": "ManageMenuWithKey",
+									"functionDescription": "Open or close a menu with a key.",
+									"functionCategory": "menus",
+									"functionReturnType": "none",
+									"functionCopyPicked": false,
+									"functionIsAsync": false,
+									"functionParameters": [
+										{
+											"name": "menu",
+											"type": "string",
+											"initialValue": "",
+											"comment": "The name of the menu to manage.",
+											"sid": 569434202636859
+										}
+									],
+									"eventType": "function-block",
+									"conditions": [],
 									"actions": [],
-									"sid": 737222622995605,
+									"sid": 225147883294747,
 									"children": [
 										{
 											"eventType": "block",
@@ -8675,22 +8905,22 @@
 												{
 													"id": "layer-is-visible",
 													"objectClass": "System",
-													"sid": 164553424390272,
+													"sid": 820066369499391,
 													"parameters": {
-														"layer": "\"inventoryMenu\""
+														"layer": "menu"
 													}
 												}
 											],
 											"actions": [
 												{
 													"callFunction": "closeLayer",
-													"sid": 662212905681547,
+													"sid": 891183827140848,
 													"parameters": [
-														"\"inventoryMenu\""
+														"menu"
 													]
 												}
 											],
-											"sid": 428106017687038
+											"sid": 921377846773585
 										},
 										{
 											"eventType": "block",
@@ -8698,19 +8928,19 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 586412931600477
+													"sid": 273346581959658
 												}
 											],
 											"actions": [
 												{
 													"callFunction": "openLayer",
-													"sid": 640706410167039,
+													"sid": 139365913309534,
 													"parameters": [
-														"\"inventoryMenu\""
+														"menu"
 													]
 												}
 											],
-											"sid": 428606722325241
+											"sid": 950490241656385
 										}
 									]
 								}

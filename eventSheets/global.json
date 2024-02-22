@@ -176,6 +176,14 @@
 				},
 				{
 					"id": "move-to-layer",
+					"objectClass": "abilityKeybinder",
+					"sid": 129543125755716,
+					"parameters": {
+						"layer": "settingsMenuStatue.LayerName"
+					}
+				},
+				{
+					"id": "move-to-layer",
 					"objectClass": "autoEquip",
 					"sid": 976962727575836,
 					"parameters": {
@@ -358,6 +366,153 @@
 				}
 			],
 			"sid": 124341222333924
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 764349485064369,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "abilityKeybinder"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "If none of the abilityKeybinders are waiting to receive an input..."
+				}
+			],
+			"sid": 149544151631837,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 756027951739186,
+							"parameters": {
+								"object": "abilityKeybinder"
+							}
+						},
+						{
+							"id": "compare-text",
+							"objectClass": "abilityKeybinder",
+							"sid": 280175301956982,
+							"parameters": {
+								"text-to-compare": "\"...\"",
+								"case-sensitivity": "ignore-case"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 817847400648000
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 655553684470191
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "abilityKeybinder",
+							"sid": 338806400313804,
+							"parameters": {
+								"text": "\"...\""
+							}
+						}
+					],
+					"sid": 910490868652400
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 359114414096468
+				},
+				{
+					"id": "compare-text",
+					"objectClass": "abilityKeybinder",
+					"sid": 213725805204615,
+					"parameters": {
+						"text-to-compare": "\"...\"",
+						"case-sensitivity": "ignore-case"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "When a key is pressed, and there's an abilityKeybinder waiting to receive input..."
+				}
+			],
+			"sid": 366487945452418,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 993212589079403,
+							"parameters": {
+								"object": "abilityKeybinder"
+							}
+						},
+						{
+							"id": "compare-text",
+							"objectClass": "abilityKeybinder",
+							"sid": 330875485196400,
+							"parameters": {
+								"text-to-compare": "keyboard.TypedKey",
+								"case-sensitivity": "ignore-case"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "...And the key that was pressed isn't already bound..."
+						}
+					],
+					"sid": 235852751337565
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 219941139944526
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "abilityKeybinder",
+							"sid": 246986256356338,
+							"parameters": {
+								"text": "uppercase(keyboard.TypedKey)"
+							}
+						}
+					],
+					"sid": 178762478532830
+				}
+			]
 		},
 		{
 			"functionName": "closeSettings",

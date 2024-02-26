@@ -430,6 +430,15 @@
 							"parameters": {
 								"text": "\"...\""
 							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "abilityKeybinder",
+							"sid": 500601780764484,
+							"parameters": {
+								"instance-variable": "keycode",
+								"value": "0"
+							}
 						}
 					],
 					"sid": 910490868652400
@@ -508,6 +517,15 @@
 							"parameters": {
 								"text": "uppercase(keyboard.TypedKey)"
 							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "abilityKeybinder",
+							"sid": 917184011283984,
+							"parameters": {
+								"instance-variable": "keycode",
+								"value": "keyboard.LastKeyCode"
+							}
 						}
 					],
 					"sid": 178762478532830
@@ -524,51 +542,88 @@
 			"functionParameters": [],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [
+			"actions": [],
+			"sid": 871621413888934,
+			"children": [
 				{
-					"id": "set-time-scale",
-					"objectClass": "System",
-					"sid": 804766210261211,
-					"parameters": {
-						"time-scale": "1"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 106493574698208,
+							"parameters": {
+								"object": "abilityKeybinder",
+								"expression": "abilityKeybinder.PlainText",
+								"comparison": 0,
+								"value": "\"...\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Only allow closure of the settings menu if we aren't currently rebinding a key"
+						}
+					],
+					"sid": 691074844306267
 				},
 				{
-					"callFunction": "closeLayer",
-					"sid": 379074612801183,
-					"parameters": [
-						"\"settingsMenu\""
-					]
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 316027311495546,
-					"parameters": {
-						"layer": "\"main\"",
-						"interactive": true
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 436797113145760,
-					"parameters": {
-						"layer": "\"abilityBar\"",
-						"interactive": true
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 863060631504613,
-					"parameters": {
-						"layer": "\"background\"",
-						"interactive": true
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 736830509008874
+						}
+					],
+					"actions": [
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 154209899565271,
+							"parameters": {
+								"time-scale": "1"
+							}
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 515500498737219,
+							"parameters": [
+								"\"settingsMenu\""
+							]
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 818086575829722,
+							"parameters": {
+								"layer": "\"main\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 756724734812375,
+							"parameters": {
+								"layer": "\"abilityBar\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 363308566559102,
+							"parameters": {
+								"layer": "\"background\"",
+								"interactive": true
+							}
+						}
+					],
+					"sid": 756852656770919
 				}
-			],
-			"sid": 871621413888934
+			]
 		},
 		{
 			"eventType": "block",

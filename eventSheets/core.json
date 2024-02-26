@@ -5742,23 +5742,23 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 319890286111428,
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 233008741584371,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
+										"object": "abilityKeybinder"
 									}
 								},
 								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "player",
-									"sid": 751185817127087,
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 489042878713620,
 									"parameters": {
-										"object": "nonCombatArea"
-									},
-									"isInverted": true
+										"object": "abilitySlot",
+										"expression": "abilitySlot.abilityNumber",
+										"comparison": 0,
+										"value": "abilityKeybinder.abilityNumber"
+									}
 								}
 							],
 							"actions": [],
@@ -5768,35 +5768,35 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "key-is-down",
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 476102035725788,
+											"parameters": {
+												"layer": "\"settingsMenu\""
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "player",
+											"sid": 796894004493449,
+											"parameters": {
+												"object": "nonCombatArea"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "key-code-is-down",
 											"objectClass": "keyboard",
-											"sid": 864032195495415,
+											"sid": 355683040841919,
 											"parameters": {
-												"key": 81
-											}
-										},
-										{
-											"id": "compare-text",
-											"objectClass": "abilityKey",
-											"sid": 589643292431036,
-											"parameters": {
-												"text-to-compare": "\"[outline=#000000][lineThickness=1.5]Q[/outline][/lineThickness]\"",
-												"case-sensitivity": "case-sensitive"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "abilityKey",
-											"sid": 855463842143526,
-											"parameters": {
-												"parent": "abilitySlot",
-												"which": "own"
+												"keycode": "abilityKeybinder.keycode"
 											}
 										},
 										{
 											"id": "pick-children",
 											"objectClass": "abilitySlot",
-											"sid": 183119593582664,
+											"sid": 421688755344860,
 											"parameters": {
 												"child": "ability",
 												"which": "own"
@@ -5805,7 +5805,7 @@
 										{
 											"id": "is-animation-playing",
 											"objectClass": "ability",
-											"sid": 407385404305162,
+											"sid": 864877497299719,
 											"parameters": {
 												"animation": "\"none\""
 											},
@@ -5814,9 +5814,13 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "If we're not paused or in a non-combat area, check if the keycode for each abilityKeybinder is pressed, and if it is, find the correlating abilitySlot, and ability. Use that ability to call the right player ability function."
+										},
+										{
 											"id": "call-mapped-function",
 											"objectClass": "Functions",
-											"sid": 188353794003162,
+											"sid": 804480240916256,
 											"parameters": {
 												"name": "\"playerAbilities\"",
 												"string": "ability.AnimationName",
@@ -5824,193 +5828,36 @@
 											}
 										}
 									],
-									"sid": 792810018655248
+									"sid": 544531612741889
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "key-is-down",
-											"objectClass": "keyboard",
-											"sid": 974488850045346,
-											"parameters": {
-												"key": 87
-											}
-										},
-										{
-											"id": "compare-text",
-											"objectClass": "abilityKey",
-											"sid": 293120806943507,
-											"parameters": {
-												"text-to-compare": "\"[outline=#000000][lineThickness=1.5]W[/outline][/lineThickness]\"",
-												"case-sensitivity": "case-sensitive"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "abilityKey",
-											"sid": 153655567027655,
-											"parameters": {
-												"parent": "abilitySlot",
-												"which": "own"
-											}
-										},
-										{
 											"id": "pick-children",
 											"objectClass": "abilitySlot",
-											"sid": 842498062163191,
+											"sid": 442615408199941,
 											"parameters": {
-												"child": "ability",
+												"child": "abilityKey",
 												"which": "own"
 											}
-										},
-										{
-											"id": "is-animation-playing",
-											"objectClass": "ability",
-											"sid": 927345971536491,
-											"parameters": {
-												"animation": "\"none\""
-											},
-											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"id": "call-mapped-function",
-											"objectClass": "Functions",
-											"sid": 260465786727523,
-											"parameters": {
-												"name": "\"playerAbilities\"",
-												"string": "ability.AnimationName",
-												"forward-params": "0"
-											}
-										}
-									],
-									"sid": 949187034190135
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "key-is-down",
-											"objectClass": "keyboard",
-											"sid": 147294502969905,
-											"parameters": {
-												"key": 69
-											}
+											"type": "comment",
+											"text": "This doesn't need to be done every tick, however, we are already looping over all abilities and keybinders."
 										},
 										{
-											"id": "compare-text",
+											"id": "set-text",
 											"objectClass": "abilityKey",
-											"sid": 141637809092907,
+											"sid": 927448971753271,
 											"parameters": {
-												"text-to-compare": "\"[outline=#000000][lineThickness=1.5]E[/outline][/lineThickness]\"",
-												"case-sensitivity": "case-sensitive"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "abilityKey",
-											"sid": 304233911210745,
-											"parameters": {
-												"parent": "abilitySlot",
-												"which": "own"
-											}
-										},
-										{
-											"id": "pick-children",
-											"objectClass": "abilitySlot",
-											"sid": 744031918529805,
-											"parameters": {
-												"child": "ability",
-												"which": "own"
-											}
-										},
-										{
-											"id": "is-animation-playing",
-											"objectClass": "ability",
-											"sid": 703541982371017,
-											"parameters": {
-												"animation": "\"none\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "call-mapped-function",
-											"objectClass": "Functions",
-											"sid": 298870390797299,
-											"parameters": {
-												"name": "\"playerAbilities\"",
-												"string": "ability.AnimationName",
-												"forward-params": "0"
+												"text": "\"[outline=#000000][lineThickness=1.5]\" & abilityKeybinder.PlainText & \"[/outline][/lineThickness]\""
 											}
 										}
 									],
-									"sid": 179482036150432
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "key-is-down",
-											"objectClass": "keyboard",
-											"sid": 635235071828405,
-											"parameters": {
-												"key": 82
-											}
-										},
-										{
-											"id": "compare-text",
-											"objectClass": "abilityKey",
-											"sid": 184666931611406,
-											"parameters": {
-												"text-to-compare": "\"[outline=#000000][lineThickness=1.5]R[/outline][/lineThickness]\"",
-												"case-sensitivity": "case-sensitive"
-											}
-										},
-										{
-											"id": "pick-parent",
-											"objectClass": "abilityKey",
-											"sid": 111650919746580,
-											"parameters": {
-												"parent": "abilitySlot",
-												"which": "own"
-											}
-										},
-										{
-											"id": "pick-children",
-											"objectClass": "abilitySlot",
-											"sid": 950307260463655,
-											"parameters": {
-												"child": "ability",
-												"which": "own"
-											}
-										},
-										{
-											"id": "is-animation-playing",
-											"objectClass": "ability",
-											"sid": 771789139993779,
-											"parameters": {
-												"animation": "\"none\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "call-mapped-function",
-											"objectClass": "Functions",
-											"sid": 924759053638185,
-											"parameters": {
-												"name": "\"playerAbilities\"",
-												"string": "ability.AnimationName",
-												"forward-params": "0"
-											}
-										}
-									],
-									"sid": 258916997745556
+									"sid": 982787989841126
 								}
 							]
 						},

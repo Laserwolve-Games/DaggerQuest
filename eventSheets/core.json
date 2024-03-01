@@ -329,11 +329,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "npc",
-											"sid": 518541035916660,
+											"sid": 973170998418364,
 											"parameters": {
 												"instance-variable": "degrees",
 												"comparison": 0,
-												"value": "-180"
+												"value": "-HALF_CIRCLE"
 											}
 										}
 									],
@@ -4563,11 +4563,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 839912950654796,
+											"sid": 864370576953620,
 											"parameters": {
 												"instance-variable": "degrees",
 												"comparison": 0,
-												"value": "-180"
+												"value": "-HALF_CIRCLE"
 											}
 										}
 									],
@@ -15986,12 +15986,16 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "comment",
+					"text": "The 'start animation' action wasn't working here, so we have to use the 'set animation' action"
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "cursor-is-over-object",
 							"objectClass": "mouse",
-							"sid": 212487329704118,
+							"sid": 915045296711543,
 							"parameters": {
 								"object": "door"
 							}
@@ -15999,18 +16003,26 @@
 					],
 					"actions": [
 						{
+							"id": "set-animation-speed",
+							"objectClass": "door",
+							"sid": 933752701328386,
+							"parameters": {
+								"speed": "Self.OriginalAnimationSpeed"
+							}
+						},
+						{
 							"id": "set-animation",
 							"objectClass": "door",
-							"sid": 285583430795064,
+							"sid": 541313291022842,
 							"parameters": {
-								"animation": "\"open\"",
+								"animation": "Self.AnimationName",
 								"from": "current-frame"
 							}
 						},
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "door",
-							"sid": 183373806402720,
+							"sid": 158957851345472,
 							"parameters": {
 								"effect": "\"Brightness\"",
 								"parameter-index": "0",
@@ -16020,7 +16032,7 @@
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 808797388754580,
+							"sid": 101629265069819,
 							"parameters": {
 								"mode": "enable",
 								"effect": "\"GlowHorizontal\""
@@ -16029,38 +16041,50 @@
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 120141362090610,
+							"sid": 132631010688828,
 							"parameters": {
 								"mode": "enable",
 								"effect": "\"GlowVertical\""
 							}
 						}
 					],
-					"sid": 991839766226039
+					"sid": 642436103875474
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 449281099921006
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 219685639109414,
+							"parameters": {
+								"object": "door"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
 						{
+							"id": "set-animation-speed",
+							"objectClass": "door",
+							"sid": 761190167429150,
+							"parameters": {
+								"speed": "-Self.OriginalAnimationSpeed"
+							}
+						},
+						{
 							"id": "set-animation",
 							"objectClass": "door",
-							"sid": 888366485508554,
+							"sid": 320003253420886,
 							"parameters": {
-								"animation": "\"close\"",
+								"animation": "Self.AnimationName",
 								"from": "current-frame"
 							}
 						},
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "door",
-							"sid": 335527086862279,
+							"sid": 197037995400365,
 							"parameters": {
 								"effect": "\"Brightness\"",
 								"parameter-index": "0",
@@ -16070,7 +16094,7 @@
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 809827324346415,
+							"sid": 861807936677556,
 							"parameters": {
 								"mode": "disable",
 								"effect": "\"GlowHorizontal\""
@@ -16079,14 +16103,14 @@
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 735079784184243,
+							"sid": 148024402444128,
 							"parameters": {
 								"mode": "disable",
 								"effect": "\"GlowVertical\""
 							}
 						}
 					],
-					"sid": 348574872578129
+					"sid": 374910180747516
 				},
 				{
 					"functionName": "buildingTransition",

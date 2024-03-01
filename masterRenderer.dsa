@@ -6,7 +6,7 @@ if (nTotalNumberOfInstances)
 {
 	var nInstanceNumber = App.instanceName();
 	var oInputDirectory = new DzDir('C:/assets/input');
-	var aCharacters = oInputDirectory.getFilesFromDir(['*_character.duf'], true);
+	var aSubjects = oInputDirectory.getFilesFromDir(['*_subject.duf'], true);
 	var aAnimations = oInputDirectory.getFilesFromDir(['*_animation.duf'], true);
 	var aGear = oInputDirectory.getFilesFromDir(['*_gear.duf'], true);
 
@@ -27,7 +27,7 @@ if (nTotalNumberOfInstances)
 	var nTicksPerFrame = nDAZ_TICKS / nFrameRate;
 	var oRoot = Scene.findNodeByLabel('root');
 	var oShadowPlane = Scene.findNodeByLabel('shadowPlane');
-	var bIsNewConstructObject = false;
+	var bIsNewConstructObject = true;
 
 	/*********************************************************************/
 	function getName(sFileName) // Obtain the desired name out of a filepath or filename.
@@ -127,7 +127,7 @@ if (nTotalNumberOfInstances)
 				if (bIsGear) sNameSuffix = '_gear';
 				if (bIsShadow) sNameSuffix += '_shadow';
 
-				var sFinalFilePath = 'C:/DaggerQuest/images/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
 				var bImageAlreadyExists = oInputDirectory.exists(sFinalFilePath);
 
 				// If we're making a new Construct object, and this particular image already exists, skip it.
@@ -170,6 +170,8 @@ if (nTotalNumberOfInstances)
 				}
 			}
 		}
+
+		if (!bIsShadow) renderCore(sName, sAnimationName, bIsGear, true);
 	}
 
 	sleep(5000); // this prevents a postgre database error when opening multiple instances of Daz quickly
@@ -181,10 +183,10 @@ if (nTotalNumberOfInstances)
 								RENDER LOOPS
 
 	*********************************************************************/
-	for (var i = 0; i != aCharacters.length; i++) // For each subject...
+	for (var i = 0; i != aSubjects.length; i++) // For each subject...
 	{
-		oContentMgr.openFile(aCharacters[i], true);		// Merge in a subject, and get its name.
-		var sSubjectName = getName(aCharacters[i]);
+		oContentMgr.openFile(aSubjects[i], true);		// Merge in a subject, and get its name.
+		var sSubjectName = getName(aSubjects[i]);
 
 		var oSubject = Scene.findNodeByLabel('subject');		// Set up the subject.
 		var aSubjectChildren = oSubject.getNodeChildren(true);
@@ -195,24 +197,16 @@ if (nTotalNumberOfInstances)
 
 		oRoot.addNodeChild(oSubject, true);
 
-		if (!aAnimations.length)
-		{
-			renderCore(sSubjectName, 'Animation 1', false, false);
+		if (!aAnimations.length) renderCore(sSubjectName, 'Animation 1', false, false);
 
-			renderCore(sSubjectName, 'Animation 1', false, true);
-		}
 		else for (var j = 0; j != aAnimations.length; j++) // For each animation...
 		{
 			oContentMgr.openFile(aAnimations[j], true); // only the subject can be selected when we merge in an animation
 
 			var sAnimationName = getName(aAnimations[j]);
 
-			if (!aGear.length) // If there is no gear...
-			{
-				renderCore(sSubjectName, sAnimationName, false, false);
+			if (!aGear.length) renderCore(sSubjectName, sAnimationName, false, false);
 
-				renderCore(sSubjectName, sAnimationName, false, true);
-			}
 			else for (var k = 0; k != aGear.length; k++) // If there are gears, for each gear...
 			{
 				oContentMgr.openFile(aGear[k], true);
@@ -226,8 +220,6 @@ if (nTotalNumberOfInstances)
 				for (var ii = 0; ii != aGearChildren.length; ii++) oIrayOptions.addNodeToNodeList('visibleNodes', aGearChildren[ii]); // Add all gear children to the canvas as well.
 
 				renderCore(sSubjectName + '_' + sGearName, sAnimationName, true, false);
-				
-				renderCore(sSubjectName + '_' + sGearName, sAnimationName, true, true);
 
 				Scene.removeNode(oGear);
 			}

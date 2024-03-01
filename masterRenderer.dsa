@@ -124,10 +124,12 @@ if (nTotalNumberOfInstances)
 				if ((nFrame - (nInstanceNumber - 1)) % nTotalNumberOfInstances != 0) continue;
 
 				var sNameSuffix = '';
+				var sAngleSuffix = '';
 				if (bIsGear) sNameSuffix = '_gear';
 				if (bIsShadow) sNameSuffix += '_shadow';
+				if (sAnimationName !== 'default') sAngleSuffix = '_' + nConstructAngle;
 
-				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + '_' + nConstructAngle + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
 				var bImageAlreadyExists = oInputDirectory.exists(sFinalFilePath);
 
 				// If we're making a new Construct object, and this particular image already exists, skip it.
@@ -197,7 +199,7 @@ if (nTotalNumberOfInstances)
 
 		oRoot.addNodeChild(oSubject, true);
 
-		if (!aAnimations.length) renderCore(sSubjectName, 'Animation 1', false, false);
+		if (!aAnimations.length) renderCore(sSubjectName, 'default', false, false);
 
 		else for (var j = 0; j != aAnimations.length; j++) // For each animation...
 		{

@@ -118,39 +118,49 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 109835491749134,
+									"sid": 920876579093165,
 									"parameters": {
-										"first-value": "browser.Domain",
+										"first-value": "browser.URL",
 										"comparison": 0,
-										"second-value": "\"preview.construct.net\""
+										"second-value": "\"https://preview.construct.net/local.html?debug=\""
 									}
 								},
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 475667045050063,
+									"sid": 290078520207944,
 									"parameters": {
-										"first-value": "browser.Domain",
+										"first-value": "browser.URL",
 										"comparison": 0,
-										"second-value": "\"test.daggerquest.com\""
+										"second-value": "\"https://preview.construct.net/local.html\""
 									}
 								},
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 109916339180273,
+									"sid": 548485194179821,
 									"parameters": {
-										"first-value": "browser.Domain",
+										"first-value": "browser.URL",
 										"comparison": 0,
-										"second-value": "\"play.daggerquest.com\""
+										"second-value": "\"https://test.daggerquest.com/\""
 									}
 								},
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 413544361036467,
+									"sid": 654348182676585,
 									"parameters": {
-										"first-value": "browser.Domain",
+										"first-value": "browser.URL",
+										"comparison": 0,
+										"second-value": "\"https://daggerquest.com/\""
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 653405967317698,
+									"parameters": {
+										"first-value": "browser.URL",
 										"comparison": 0,
 										"second-value": "\"127.0.0.1\""
 									}
@@ -258,21 +268,12 @@
 									"text": "If we aren't on an approved website, go to laserwolvegames.itch.io/daggerquest"
 								},
 								{
-									"id": "go-to-url",
-									"objectClass": "browser",
-									"sid": 901713233954920,
-									"parameters": {
-										"url": "\"https://laserwolvegames.itch.io/daggerquest\"",
-										"target": "top"
-									}
-								},
-								{
 									"id": "log",
 									"objectClass": "browser",
-									"sid": 395370782391094,
+									"sid": 187646937587738,
 									"parameters": {
-										"type": "log",
-										"message": "browser.URL & \" and \" & browser.Domain"
+										"type": "error",
+										"message": "\"Cannot launch DaggerQuest, current URL '\" & Self.URL & \"' is not allowed\""
 									}
 								}
 							],

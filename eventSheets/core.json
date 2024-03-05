@@ -5122,12 +5122,8 @@
 													}
 												},
 												{
-													"type": "comment",
-													"text": "Image Point 0 on some doors is very far away from the door itself, so they can line up with their building. If they have an Image Point 1, use that"
-												},
-												{
 													"callFunction": "moveToLocation",
-													"sid": 944613549068001,
+													"sid": 579219826557585,
 													"parameters": [
 														"door.ImagePointX(1)",
 														"door.ImagePointY(1)"
@@ -5135,6 +5131,41 @@
 												}
 											],
 											"sid": 398884856732755
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "mouse",
+													"sid": 126393840589148,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "lootChest"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 776812038109201,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "lootChest.UID"
+													}
+												},
+												{
+													"callFunction": "moveToLocation",
+													"sid": 569670408157774,
+													"parameters": [
+														"lootChest.ImagePointX(1)",
+														"lootChest.ImagePointY(1)"
+													]
+												}
+											],
+											"sid": 194019025945268
 										},
 										{
 											"eventType": "block",
@@ -5525,6 +5556,58 @@
 										}
 									],
 									"sid": 133416707150565
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 820788770937825,
+											"parameters": {
+												"object": "lootChest",
+												"expression": "uidOfClicked",
+												"comparison": 0,
+												"value": "lootChest.UID"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 397359903615284,
+											"parameters": {
+												"first-value": "player.pickupRange",
+												"comparison": 5,
+												"second-value": "distance(player.X, player.Y, lootChest.X, lootChest.Y)"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 837229197482044,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "start-animation",
+											"objectClass": "lootChest",
+											"sid": 717015876556937,
+											"parameters": {
+												"from": "current-frame"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 474106579705788,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 571517915827350
 								}
 							]
 						},
@@ -15986,8 +16069,48 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "The 'start animation' action wasn't working here, so we have to use the 'set animation' action"
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "lootChest",
+							"sid": 403693177470265
+						}
+					],
+					"actions": [
+						{
+							"id": "stop-animation",
+							"objectClass": "lootChest",
+							"sid": 379990486114989
+						}
+					],
+					"sid": 460757171617526
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 725070574788360,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "lootChest"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "start-animation",
+							"objectClass": "lootChest",
+							"sid": 129035321738977,
+							"parameters": {
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 261972811266541
 				},
 				{
 					"eventType": "block",

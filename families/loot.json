@@ -72,9 +72,29 @@
 			"desc": "A number to add to effectivePickupRange to assist in picking up this loot",
 			"show": true,
 			"sid": 426919890339542
+		},
+		{
+			"name": "destinationX",
+			"type": "number",
+			"desc": "Where the loot should end up on the X axis.",
+			"show": true,
+			"sid": 192541550722260
+		},
+		{
+			"name": "destinationY",
+			"type": "number",
+			"desc": "Where the loot should end up on the Y axis.",
+			"show": true,
+			"sid": 376541579595914
 		}
 	],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 404432524161817
+		}
+	],
 	"effectTypes": [],
 	"members": [
 		"simpleShirt_loot",

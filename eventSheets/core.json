@@ -654,7 +654,7 @@
 								{
 									"id": "on-key-pressed",
 									"objectClass": "keyboard",
-									"sid": 704807057576814,
+									"sid": 144933746826998,
 									"parameters": {
 										"key": 83
 									}
@@ -1055,6 +1055,50 @@
 							]
 						},
 						{
+							"eventType": "variable",
+							"name": "TRAVEL_TIME",
+							"type": "number",
+							"initialValue": "0.5",
+							"comment": "The amount of time it takes loot to get to its destination.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 853578934190498
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-tweens-finished",
+									"objectClass": "loot",
+									"sid": 778561935894008,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"ascension\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "loot",
+									"sid": 436906443318718,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetY",
+										"end-value": "Self.destinationY",
+										"time": "TRAVEL_TIME / 2",
+										"ease": "easeoutbounce",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
+							"sid": 629339917694708
+						},
+						{
 							"functionName": "spawnLoot",
 							"functionDescription": "spawn loot at the specified location",
 							"functionCategory": "equipment",
@@ -1097,6 +1141,66 @@
 							"sid": 144578606465063,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "destinationX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "Where the loot should end up on the X axis.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 415954147368370
+								},
+								{
+									"eventType": "variable",
+									"name": "destinationY",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "Where the loot should end up on the Y axis.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 961023304084181
+								},
+								{
+									"eventType": "variable",
+									"name": "theAngle",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 326422520929617
+								},
+								{
+									"eventType": "variable",
+									"name": "isometrifiedDistance",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 542239830488062
+								},
+								{
+									"eventType": "variable",
+									"name": "LOOT_DISTANCE",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "How far away from an object to spawn loot.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 139716044803558
+								},
+								{
+									"eventType": "variable",
+									"name": "LOOT_ALTITUDE",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "How high the loot should fly up into the air after it spawns.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 586249255052912
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -1109,6 +1213,106 @@
 										}
 									],
 									"actions": [
+										{
+											"type": "comment",
+											"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/38"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 974018068570534,
+											"parameters": {
+												"variable": "theAngle",
+												"value": "random(-HALF_CIRCLE, HALF_CIRCLE)"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 464909334709579,
+											"parameters": {
+												"variable": "isometrifiedDistance",
+												"value": "Functions.isometrify(LOOT_DISTANCE, theAngle)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 244398877909043,
+											"parameters": {
+												"instance-variable": "destinationX",
+												"value": "x + isometrifiedDistance * cos(theAngle)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 328334205073985,
+											"parameters": {
+												"instance-variable": "destinationY",
+												"value": "y + isometrifiedDistance * sin(theAngle)"
+											}
+										},
+										{
+											"id": "set-scale",
+											"objectClass": "loot",
+											"sid": 285100696477771,
+											"parameters": {
+												"scale": ".5"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "loot",
+											"sid": 913745794039525,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "scale",
+												"end-x": "1",
+												"end-y": "1",
+												"time": "TRAVEL_TIME",
+												"ease": "default",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "loot",
+											"sid": 701077156422948,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetX",
+												"end-value": "Self.destinationX",
+												"time": "TRAVEL_TIME",
+												"ease": "easeoutbounce",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "loot",
+											"sid": 569974974965637,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"ascension\"",
+												"property": "offsetY",
+												"end-value": "Self.destinationY - LOOT_ALTITUDE",
+												"time": "TRAVEL_TIME / 2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
 										{
 											"id": "set-animation",
 											"objectClass": "loot",
@@ -12343,11 +12547,11 @@
 								{
 									"id": "move-to-position",
 									"objectClass": "enemy",
-									"sid": 589815178054577,
+									"sid": 446507994368750,
 									"behaviorType": "knockback",
 									"parameters": {
-										"x": "Self.X + projectile.knockbackDistance * cos(projectile.Bullet.AngleOfMotion)",
-										"y": "Self.Y + projectile.knockbackDistance * sin(projectile.Bullet.AngleOfMotion)",
+										"x": "Self.X + Functions.isometrify(projectile.knockbackDistance, projectile.Bullet.AngleOfMotion) * cos(projectile.Bullet.AngleOfMotion)",
+										"y": "Self.Y + Functions.isometrify(projectile.knockbackDistance, projectile.Bullet.AngleOfMotion) * sin(projectile.Bullet.AngleOfMotion)",
 										"mode": "direct"
 									}
 								}
@@ -13274,7 +13478,8 @@
 									}
 								}
 							],
-							"sid": 700099437768094
+							"sid": 700099437768094,
+							"disabled": true
 						},
 						{
 							"eventType": "block",

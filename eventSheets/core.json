@@ -97,16 +97,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "foobar",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 107868487087688
-		},
-		{
-			"eventType": "variable",
 			"name": "uidOfClicked",
 			"type": "number",
 			"initialValue": "0",
@@ -5614,13 +5604,13 @@
 											"isInverted": true
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 146721833090233,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 504025445902873,
 											"parameters": {
-												"instance-variable": "attackRange",
+												"first-value": "Functions.isometrify(player.attackRange, angle(player.X, player.Y, enemy.X, enemy.Y))",
 												"comparison": 5,
-												"value": "distance(enemy.X, enemy.Y, self.X, Self.Y)"
+												"second-value": "distance(player.X, player.Y, enemy.X, enemy.Y)"
 											}
 										}
 									],
@@ -5681,13 +5671,13 @@
 											}
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 334636219277674,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 217085120561329,
 											"parameters": {
-												"instance-variable": "pickupRange",
+												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, loot.X, loot.Y))",
 												"comparison": 5,
-												"value": "distance(Self.X, Self.Y, loot.X, loot.Y) - loot.verticalHeight - max(loot.Width, loot.Height)"
+												"second-value": "distance(player.X, player.Y, loot.X, loot.Y) - max(loot.Width, loot.Height)"
 											}
 										}
 									],
@@ -5742,13 +5732,13 @@
 											}
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "door",
-											"sid": 436346589078489,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 351145895360370,
 											"parameters": {
-												"instance-variable": "interactRange",
+												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1)))",
 												"comparison": 5,
-												"value": "distance(Self.ImagePointX(1), Self.ImagePointY(1), player.X, player.Y)"
+												"second-value": "distance(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1)) - max(door.Width, door.Height)"
 											}
 										}
 									],
@@ -5799,13 +5789,13 @@
 											}
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 184836962543324,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 435066524308366,
 											"parameters": {
-												"instance-variable": "pickupRange",
+												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)))",
 												"comparison": 5,
-												"value": "distance(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)) - max(lootChest.Width, lootChest.Height)"
+												"second-value": "distance(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)) - max(lootChest.Width, lootChest.Height)"
 											}
 										}
 									],
@@ -16337,15 +16327,104 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "cursor-is-over-object",
-							"objectClass": "mouse",
-							"sid": 915045296711543,
+							"id": "on-created",
+							"objectClass": "door",
+							"sid": 956882454928944
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "save the bbox of the door on it's first frame, to be used to detect when the mouse is over it"
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "door",
+							"sid": 909009362550791,
 							"parameters": {
-								"object": "door"
+								"instance-variable": "bottombbox",
+								"value": "Self.BBoxBottom"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "door",
+							"sid": 493247108868290,
+							"parameters": {
+								"instance-variable": "rightbbox",
+								"value": "Self.BBoxRight"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "door",
+							"sid": 925254730512657,
+							"parameters": {
+								"instance-variable": "leftbbox",
+								"value": "Self.BBoxLeft"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "door",
+							"sid": 835394361289990,
+							"parameters": {
+								"instance-variable": "topbbox",
+								"value": "Self.BBoxTop"
+							}
+						}
+					],
+					"sid": 579636236717138
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "door",
+							"sid": 148369945134594,
+							"parameters": {
+								"instance-variable": "leftbbox",
+								"comparison": 3,
+								"value": "mouse.X"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "door",
+							"sid": 367136965090945,
+							"parameters": {
+								"instance-variable": "rightbbox",
+								"comparison": 5,
+								"value": "mouse.X"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "door",
+							"sid": 686628689504263,
+							"parameters": {
+								"instance-variable": "topbbox",
+								"comparison": 3,
+								"value": "mouse.Y"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "door",
+							"sid": 709902257674375,
+							"parameters": {
+								"instance-variable": "bottombbox",
+								"comparison": 5,
+								"value": "mouse.Y"
 							}
 						}
 					],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "Check that the mouse is within a box that's the shape of the door on the door's first frame. This prevents a graphical issue where the door would open enough so that the mouse would no longer be over the door, so the door would start to shut, thus being under the mouse again, repeat ad infinitum (and every tick)"
+						},
 						{
 							"id": "set-animation-speed",
 							"objectClass": "door",
@@ -16398,13 +16477,9 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "cursor-is-over-object",
-							"objectClass": "mouse",
-							"sid": 219685639109414,
-							"parameters": {
-								"object": "door"
-							},
-							"isInverted": true
+							"id": "else",
+							"objectClass": "System",
+							"sid": 588369458426358
 						}
 					],
 					"actions": [

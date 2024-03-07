@@ -97,6 +97,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "foobar",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 107868487087688
+		},
+		{
+			"eventType": "variable",
 			"name": "uidOfClicked",
 			"type": "number",
 			"initialValue": "0",
@@ -5342,19 +5352,32 @@
 												{
 													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 126393840589148,
+													"sid": 217418460362889,
 													"parameters": {
 														"mouse-button": "left",
 														"click-type": "clicked",
 														"object-clicked": "lootChest"
 													}
+												},
+												{
+													"id": "compare-animation-frame",
+													"objectClass": "lootChest",
+													"sid": 340108756894294,
+													"parameters": {
+														"comparison": 0,
+														"number": "0"
+													}
 												}
 											],
 											"actions": [
 												{
+													"type": "comment",
+													"text": "We can only interact with loot chests that haven't been opened"
+												},
+												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 776812038109201,
+													"sid": 299063216853020,
 													"parameters": {
 														"variable": "uidOfClicked",
 														"value": "lootChest.UID"
@@ -5362,14 +5385,14 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 569670408157774,
+													"sid": 626940978577513,
 													"parameters": [
 														"lootChest.ImagePointX(1)",
 														"lootChest.ImagePointY(1)"
 													]
 												}
 											],
-											"sid": 194019025945268
+											"sid": 585061498189976
 										},
 										{
 											"eventType": "block",
@@ -5475,6 +5498,15 @@
 																	"sid": 887722893563606,
 																	"parameters": {
 																		"object": "door"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 630283028114606,
+																	"parameters": {
+																		"object": "lootChest"
 																	},
 																	"isInverted": true
 																}
@@ -5667,13 +5699,13 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 686762258131205,
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 334636219277674,
 											"parameters": {
-												"first-value": "player.pickupRange + loot.verticalHeight + (loot.Width + loot.Height / 2)",
+												"instance-variable": "pickupRange",
 												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, loot.X, loot.Y)"
+												"value": "distance(Self.X, Self.Y, loot.X, loot.Y) - loot.verticalHeight - max(loot.Width, loot.Height)"
 											}
 										}
 									],
@@ -5746,6 +5778,15 @@
 											"behaviorType": "MoveTo"
 										},
 										{
+											"callFunction": "updateAnimations",
+											"sid": 710682721590424,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
+										},
+										{
 											"callFunction": "buildingTransition",
 											"sid": 894351674578264
 										},
@@ -5776,13 +5817,13 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 397359903615284,
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 184836962543324,
 											"parameters": {
-												"first-value": "player.pickupRange",
+												"instance-variable": "pickupRange",
 												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, lootChest.X, lootChest.Y)"
+												"value": "distance(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)) - max(lootChest.Width, lootChest.Height)"
 											}
 										}
 									],
@@ -5794,12 +5835,29 @@
 											"behaviorType": "MoveTo"
 										},
 										{
+											"callFunction": "updateAnimations",
+											"sid": 693567026058676,
+											"parameters": [
+												"\"idle\"",
+												"body.OriginalAnimationSpeed",
+												"\"playFromBeginning\""
+											]
+										},
+										{
 											"id": "start-animation",
 											"objectClass": "lootChest",
 											"sid": 717015876556937,
 											"parameters": {
 												"from": "current-frame"
 											}
+										},
+										{
+											"callFunction": "spawnLoot",
+											"sid": 942283558771427,
+											"parameters": [
+												"lootChest.ImagePointX(1)",
+												"lootChest.ImagePointY(1)"
+											]
 										},
 										{
 											"id": "set-eventvar-value",
@@ -16290,32 +16348,6 @@
 						}
 					],
 					"sid": 460757171617526
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 725070574788360,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "lootChest"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "start-animation",
-							"objectClass": "lootChest",
-							"sid": 129035321738977,
-							"parameters": {
-								"from": "current-frame"
-							}
-						}
-					],
-					"sid": 261972811266541
 				},
 				{
 					"eventType": "block",

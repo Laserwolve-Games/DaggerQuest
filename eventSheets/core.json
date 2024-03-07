@@ -678,10 +678,11 @@
 							"actions": [
 								{
 									"callFunction": "spawnLoot",
-									"sid": 642323707189951,
+									"sid": 538939051809675,
 									"parameters": [
 										"player.X",
-										"player.Y"
+										"player.Y",
+										"max(player.Width, player.Height)"
 									]
 								}
 							],
@@ -1129,6 +1130,13 @@
 									"initialValue": "0",
 									"comment": "",
 									"sid": 508129132310762
+								},
+								{
+									"name": "lootDistance",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "How far away from the object to spawn loot.",
+									"sid": 245277320896905
 								}
 							],
 							"eventType": "function-block",
@@ -1146,30 +1154,14 @@
 										"create-hierarchy": false,
 										"template-name": "\"\""
 									}
+								},
+								{
+									"type": "comment",
+									"text": "TODO: lootDistance should be the smallest isometric circle (oval) that completely encompasses the object that spawned the loot."
 								}
 							],
 							"sid": 144578606465063,
 							"children": [
-								{
-									"eventType": "variable",
-									"name": "destinationX",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "Where the loot should end up on the X axis.",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 415954147368370
-								},
-								{
-									"eventType": "variable",
-									"name": "destinationY",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "Where the loot should end up on the Y axis.",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 961023304084181
-								},
 								{
 									"eventType": "variable",
 									"name": "theAngle",
@@ -1189,16 +1181,6 @@
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 542239830488062
-								},
-								{
-									"eventType": "variable",
-									"name": "LOOT_DISTANCE",
-									"type": "number",
-									"initialValue": "100",
-									"comment": "How far away from an object to spawn loot.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 139716044803558
 								},
 								{
 									"eventType": "variable",
@@ -1239,10 +1221,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 464909334709579,
+											"sid": 112883245426002,
 											"parameters": {
 												"variable": "isometrifiedDistance",
-												"value": "Functions.isometrify(LOOT_DISTANCE, theAngle)"
+												"value": "Functions.isometrify(lootDistance + max(loot.Width, loot.Height), theAngle)"
 											}
 										},
 										{
@@ -5853,10 +5835,11 @@
 										},
 										{
 											"callFunction": "spawnLoot",
-											"sid": 942283558771427,
+											"sid": 109958418072795,
 											"parameters": [
 												"lootChest.ImagePointX(1)",
-												"lootChest.ImagePointY(1)"
+												"lootChest.ImagePointY(1)",
+												"max(lootChest.Width, lootChest.Height)"
 											]
 										},
 										{
@@ -11290,10 +11273,11 @@
 										},
 										{
 											"callFunction": "spawnLoot",
-											"sid": 422928762342373,
+											"sid": 507101027020241,
 											"parameters": [
 												"enemy.X",
-												"enemy.Y"
+												"enemy.Y",
+												"max(enemy.Width, enemy.Height)"
 											]
 										}
 									],

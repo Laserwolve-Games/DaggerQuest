@@ -6,6 +6,16 @@
 			"includeSheet": "global"
 		},
 		{
+			"eventType": "variable",
+			"name": "updateAvailable",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Whether or not an update is available.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 348595350968897
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -81,6 +91,90 @@
 			"sid": 252869525891124
 		},
 		{
+			"eventType": "comment",
+			"text": "There's no way to do an \"On update not found\" trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-update-found-sw",
+					"objectClass": "browser",
+					"sid": 230525362101227
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 788244121458818,
+					"parameters": {
+						"variable": "updateAvailable",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "launcherMessage",
+					"sid": 564874823409654,
+					"parameters": {
+						"text": "\"Update available. Downloading\""
+					}
+				}
+			],
+			"sid": 282848727504620
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-update-ready-sw",
+					"objectClass": "browser",
+					"sid": 800806806584944
+				}
+			],
+			"actions": [
+				{
+					"id": "reload",
+					"objectClass": "browser",
+					"sid": 187265594295630
+				}
+			],
+			"sid": 519782063417592
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 458324776673466,
+					"parameters": {
+						"variable": "updateAvailable"
+					}
+				},
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 725473517626348,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "launcherMessage",
+					"sid": 284985166909909,
+					"parameters": {
+						"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
+					}
+				}
+			],
+			"sid": 123077271397200
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -94,9 +188,29 @@
 					"sid": 346196279412257
 				}
 			],
-			"actions": [],
+			"actions": [
+				{
+					"id": "log",
+					"objectClass": "browser",
+					"sid": 619530873243850,
+					"parameters": {
+						"type": "log",
+						"message": "\"Current URL: \" & Self.URL"
+					}
+				}
+			],
 			"sid": 403514843034258,
 			"children": [
+				{
+					"eventType": "variable",
+					"name": "REQUIRED_PROTOCOL",
+					"type": "string",
+					"initialValue": "https:",
+					"comment": "The required protocol.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 700212028262996
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -107,177 +221,118 @@
 							"parameters": {
 								"layer": "\"launcher\""
 							}
+						},
+						{
+							"id": "compare-text",
+							"objectClass": "launcherMessage",
+							"sid": 706263120045641,
+							"parameters": {
+								"text-to-compare": "\"Press any key to start\"",
+								"case-sensitivity": "ignore-case"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 373770140686063,
+							"parameters": {
+								"first-value": "browser.Protocol",
+								"comparison": 0,
+								"second-value": "REQUIRED_PROTOCOL"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 217642840212063,
+							"parameters": {
+								"value": "browser.Domain = \"preview.construct.net\" | browser.Domain = \"daggerquest.netlify.app\" | browser.Domain = \"daggerquesttest.netlify.app\""
+							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Verify we are on an approved URL at which we can play DaggerQuest"
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 631789550966149,
+							"parameters": {
+								"layer": "\"launcher\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "versionText",
+							"sid": 700194361988956,
+							"parameters": {
+								"text": "projectversion"
+							}
+						},
+						{
+							"id": "set-looping",
+							"objectClass": "video",
+							"sid": 396807237423762,
+							"parameters": {
+								"mode": "looping"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "video",
+							"sid": 477631205210615
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 564988041242043,
+							"parameters": {
+								"audio-file": "mainTheme",
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "\"main\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 504039863049416,
+							"parameters": {
+								"tag": "\"main\"",
+								"db": "0",
+								"duration": "5",
+								"ending": "keep-playing"
+							}
+						}
+					],
 					"sid": 548421181255801,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-two-values",
+									"id": "is-in-preview",
 									"objectClass": "System",
-									"sid": 920876579093165,
-									"parameters": {
-										"first-value": "browser.URL",
-										"comparison": 0,
-										"second-value": "\"https://preview.construct.net/local.html?debug=\""
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 290078520207944,
-									"parameters": {
-										"first-value": "browser.URL",
-										"comparison": 0,
-										"second-value": "\"https://preview.construct.net/local.html\""
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 254753475055278,
-									"parameters": {
-										"first-value": "browser.URL",
-										"comparison": 0,
-										"second-value": "\"https://daggerquest.netlify.app/\""
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 654348182676585,
-									"parameters": {
-										"first-value": "browser.URL",
-										"comparison": 0,
-										"second-value": "\"https://daggerquest.com/\""
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 653405967317698,
-									"parameters": {
-										"first-value": "browser.URL",
-										"comparison": 0,
-										"second-value": "\"127.0.0.1\""
-									}
+									"sid": 389419661755640,
+									"isInverted": true
 								}
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "Verify we are on an approved URL at which we can play DaggerQuest"
-								},
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 923876878737282,
-									"parameters": {
-										"layer": "\"launcher\"",
-										"visibility": "invisible"
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "versionText",
-									"sid": 942260743760368,
-									"parameters": {
-										"text": "projectversion"
-									}
-								},
-								{
-									"id": "set-looping",
-									"objectClass": "video",
-									"sid": 266536781887697,
-									"parameters": {
-										"mode": "looping"
-									}
-								},
-								{
-									"id": "play",
-									"objectClass": "video",
-									"sid": 650744810399738
-								},
-								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 814647346443809,
-									"parameters": {
-										"audio-file": "mainTheme",
-										"loop": "looping",
-										"volume": "-100",
-										"stereo-pan": "0",
-										"tag-optional": "\"main\""
-									}
-								},
-								{
-									"id": "fade-volume",
-									"objectClass": "Audio",
-									"sid": 833118601620741,
-									"parameters": {
-										"tag": "\"main\"",
-										"db": "0",
-										"duration": "5",
-										"ending": "keep-playing"
-									}
-								}
-							],
-							"sid": 172162060935782,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-in-preview",
-											"objectClass": "System",
-											"sid": 129915679444341,
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "request-fullscreen",
-											"objectClass": "browser",
-											"sid": 334999377279668,
-											"parameters": {
-												"mode": "stretch-letterbox-scale",
-												"navigation-ui": "auto"
-											}
-										}
-									],
-									"sid": 487104321931908
-								}
-							],
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 357952741306924
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If we aren't on an approved website, go to laserwolvegames.itch.io/daggerquest"
-								},
-								{
-									"id": "log",
+									"id": "request-fullscreen",
 									"objectClass": "browser",
-									"sid": 187646937587738,
+									"sid": 224313851080210,
 									"parameters": {
-										"type": "error",
-										"message": "\"Cannot launch DaggerQuest, current URL '\" & Self.URL & \"' is not allowed\""
+										"mode": "stretch-letterbox-scale",
+										"navigation-ui": "auto"
 									}
 								}
 							],
-							"sid": 182917165958232
+							"sid": 142253453144409
 						}
 					]
 				}

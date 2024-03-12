@@ -370,15 +370,6 @@
 												"npc.X",
 												"npc.Y"
 											]
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 554125704445865,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromCurrentFrame\""
-											]
 										}
 									],
 									"sid": 481803048668382
@@ -1826,15 +1817,6 @@
 								{
 									"type": "comment",
 									"text": "if an item is right clicked, and both the inventory and character menus are open, pick the slot the item is in"
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 887995735821246,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
 								}
 							],
 							"sid": 437401110381303,
@@ -3662,15 +3644,6 @@
 									}
 								},
 								{
-									"callFunction": "updateAnimations",
-									"sid": 490403966226362,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
-								},
-								{
 									"id": "stop",
 									"objectClass": "player",
 									"sid": 270410677125237,
@@ -5059,15 +5032,6 @@
 									"behaviorType": "MoveTo"
 								},
 								{
-									"callFunction": "updateAnimations",
-									"sid": 789142860526151,
-									"parameters": [
-										"\"die\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
-								},
-								{
 									"id": "remove-child",
 									"objectClass": "player",
 									"sid": 145829245427267,
@@ -5640,15 +5604,6 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "updateAnimations",
-											"sid": 882275987242572,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
-										},
-										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 641852746905644,
@@ -5707,15 +5662,6 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "updateAnimations",
-											"sid": 293322297496227,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
-										},
-										{
 											"callFunction": "pickUpLoot",
 											"sid": 728141715517524
 										},
@@ -5762,15 +5708,6 @@
 											"objectClass": "player",
 											"sid": 728178816355344,
 											"behaviorType": "MoveTo"
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 710682721590424,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
 										},
 										{
 											"callFunction": "buildingTransition",
@@ -5821,15 +5758,6 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "updateAnimations",
-											"sid": 693567026058676,
-											"parameters": [
-												"\"idle\"",
-												"body.OriginalAnimationSpeed",
-												"\"playFromBeginning\""
-											]
-										},
-										{
 											"id": "start-animation",
 											"objectClass": "lootChest",
 											"sid": 717015876556937,
@@ -5864,16 +5792,36 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-moving",
-									"objectClass": "player",
-									"sid": 257293166185651,
-									"behaviorType": "MoveTo"
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 632993639438788,
+									"parameters": {
+										"value": "player.X <> player.lastX | player.Y <> player.lastY"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "...if they're moving (and not where they were last tick), set their animation appropriately"
+									"text": "...if they were not where they were last tick, set their animation appropriately. Using the moveTo 'Is moving' condition causes the player to continue the walking animation when grinding into solids."
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 817596941489863,
+									"parameters": {
+										"instance-variable": "lastX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 265552678188149,
+									"parameters": {
+										"instance-variable": "lastY",
+										"value": "Self.Y"
+									}
 								}
 							],
 							"sid": 146079688686831,
@@ -5882,111 +5830,72 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-x",
-											"objectClass": "player",
-											"sid": 453153895915712,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 112390348904231,
 											"parameters": {
+												"first-value": "find(body.AnimationName, \"idle\")\n",
 												"comparison": 1,
-												"x-co-ordinate": "Self.lastX"
-											}
-										},
-										{
-											"id": "compare-y",
-											"objectClass": "player",
-											"sid": 481820623656507,
-											"parameters": {
-												"comparison": 1,
-												"y-co-ordinate": "Self.lastY"
+												"second-value": "-1"
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "set-instvar-value",
-											"objectClass": "player",
-											"sid": 933425630135912,
-											"parameters": {
-												"instance-variable": "lastX",
-												"value": "Self.X"
-											}
+											"type": "comment",
+											"text": "TODO: This won't work if we have an ability we can cancel by moving."
 										},
 										{
-											"id": "set-instvar-value",
-											"objectClass": "player",
-											"sid": 570281703444156,
+											"type": "comment",
+											"text": "if they were idling, start the animation from the beginning"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 847093809910980,
+											"parameters": [
+												"\"walk\"",
+												"player.movementSpeed / ANIMATION_DIVISOR",
+												"\"playFromBeginning\""
+											]
+										}
+									],
+									"sid": 104698990297760
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 402994292961100
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 929391951576858,
 											"parameters": {
-												"instance-variable": "lastY",
-												"value": "Self.Y"
+												"first-value": "find(body.AnimationName, \"walk\")\n",
+												"comparison": 1,
+												"second-value": "-1"
 											}
 										}
 									],
-									"sid": 944444375810434,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "evaluate-expression",
-													"objectClass": "System",
-													"sid": 491456437639695,
-													"parameters": {
-														"value": "find(body.AnimationName, \"idle\") <> -1\n"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if they were idling, start the animation from the beginning"
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 275860637375017,
-													"parameters": [
-														"\"walk\"",
-														"player.movementSpeed / ANIMATION_DIVISOR",
-														"\"playFromBeginning\""
-													]
-												}
-											],
-											"sid": 889146865522435
+											"type": "comment",
+											"text": "if they were already walking, play the animation from the current frame"
 										},
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 920954747307638
-												},
-												{
-													"id": "evaluate-expression",
-													"objectClass": "System",
-													"sid": 897869442766280,
-													"parameters": {
-														"value": "find(body.AnimationName, \"walk\") <> -1\n"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if they were already walking, play the animation from the current frame"
-												},
-												{
-													"callFunction": "updateAnimations",
-													"sid": 718541460779320,
-													"parameters": [
-														"\"walk\"",
-														"player.movementSpeed / ANIMATION_DIVISOR",
-														"\"playFromCurrentFrame\""
-													]
-												}
-											],
-											"sid": 398675718889829
+											"callFunction": "updateAnimations",
+											"sid": 244052231792126,
+											"parameters": [
+												"\"walk\"",
+												"player.movementSpeed / ANIMATION_DIVISOR",
+												"\"playFromCurrentFrame\""
+											]
 										}
 									],
-									"isOrBlock": true
+									"sid": 532660645651033
 								}
 							]
 						},
@@ -5994,31 +5903,37 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-arrived",
-									"objectClass": "player",
-									"sid": 890033528637521,
-									"behaviorType": "MoveTo"
+									"id": "else",
+									"objectClass": "System",
+									"sid": 345652199004941
 								},
 								{
-									"id": "on-hit-solid",
-									"objectClass": "player",
-									"sid": 905301131920126,
-									"behaviorType": "MoveTo"
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 235825850490150,
+									"parameters": {
+										"first-value": "find(body.AnimationName, \"walk\")",
+										"comparison": 1,
+										"second-value": "-1"
+									}
 								}
 							],
 							"actions": [
 								{
+									"type": "comment",
+									"text": "If the player isn't moving, and they were previously walking, make him start idling."
+								},
+								{
 									"callFunction": "updateAnimations",
-									"sid": 457139795317091,
+									"sid": 803445125987547,
 									"parameters": [
 										"\"idle\"",
-										"body.OriginalAnimationSpeed",
+										"player.movementSpeed / ANIMATION_DIVISOR",
 										"\"playFromBeginning\""
 									]
 								}
 							],
-							"sid": 527150234376711,
-							"isOrBlock": true
+							"sid": 574776329681679
 						},
 						{
 							"functionName": "moveToLocation",
@@ -6540,45 +6455,9 @@
 																{
 																	"id": "wait",
 																	"objectClass": "System",
-																	"sid": 447988693767832,
+																	"sid": 487195628824758,
 																	"parameters": {
 																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-																	}
-																},
-																{
-																	"id": "set-enabled",
-																	"objectClass": "player",
-																	"sid": 676529978963818,
-																	"behaviorType": "MoveTo",
-																	"parameters": {
-																		"enabled": true
-																	}
-																},
-																{
-																	"id": "set-group-active",
-																	"objectClass": "System",
-																	"sid": 255418944523074,
-																	"parameters": {
-																		"group-name": "\"movement and interaction\"",
-																		"state": "activated"
-																	}
-																},
-																{
-																	"id": "set-group-active",
-																	"objectClass": "System",
-																	"sid": 630174138319970,
-																	"parameters": {
-																		"group-name": "\"facings\"",
-																		"state": "activated"
-																	}
-																},
-																{
-																	"id": "set-group-active",
-																	"objectClass": "System",
-																	"sid": 630117299169015,
-																	"parameters": {
-																		"group-name": "\"abilities\"",
-																		"state": "activated"
 																	}
 																}
 															],
@@ -6588,29 +6467,9 @@
 																	"eventType": "block",
 																	"conditions": [
 																		{
-																			"id": "compare-two-values",
-																			"objectClass": "System",
-																			"sid": 590701369078348,
-																			"parameters": {
-																				"first-value": "find(body.AnimationName, \"block\")",
-																				"comparison": 0,
-																				"second-value": "-1"
-																			}
-																		},
-																		{
-																			"id": "compare-two-values",
-																			"objectClass": "System",
-																			"sid": 531158737477719,
-																			"parameters": {
-																				"first-value": "find(body.AnimationName, \"hit\")",
-																				"comparison": 0,
-																				"second-value": "-1"
-																			}
-																		},
-																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "player",
-																			"sid": 457979378336950,
+																			"sid": 781625263513465,
 																			"parameters": {
 																				"instance-variable": "currentHealth",
 																				"comparison": 4,
@@ -6620,29 +6479,52 @@
 																	],
 																	"actions": [
 																		{
-																			"id": "set-boolean-instvar",
+																			"id": "set-enabled",
 																			"objectClass": "player",
-																			"sid": 866749757018421,
+																			"sid": 512375326021978,
+																			"behaviorType": "MoveTo",
 																			"parameters": {
-																				"instance-variable": "busyCastingAbility",
-																				"value": "false"
+																				"enabled": true
 																			}
 																		},
 																		{
-																			"type": "comment",
-																			"text": "Go back to idling if the player is still alive"
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 714641369749673,
+																			"parameters": {
+																				"group-name": "\"movement and interaction\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 534174698977239,
+																			"parameters": {
+																				"group-name": "\"facings\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 337289797770092,
+																			"parameters": {
+																				"group-name": "\"abilities\"",
+																				"state": "activated"
+																			}
 																		},
 																		{
 																			"callFunction": "updateAnimations",
-																			"sid": 159628336788765,
+																			"sid": 650550032251601,
 																			"parameters": [
 																				"\"idle\"",
-																				"body.OriginalAnimationSpeed",
+																				"player.movementSpeed / ANIMATION_DIVISOR",
 																				"\"playFromBeginning\""
 																			]
 																		}
 																	],
-																	"sid": 168700420507772
+																	"sid": 426327952259254
 																}
 															]
 														}
@@ -6650,13 +6532,7 @@
 												},
 												{
 													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 674293182678644
-														}
-													],
+													"conditions": [],
 													"actions": [
 														{
 															"id": "set-boolean-instvar",
@@ -7044,40 +6920,7 @@
 															}
 														}
 													],
-													"sid": 713383358241408,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-instance-variable",
-																	"objectClass": "player",
-																	"sid": 640518055477890,
-																	"parameters": {
-																		"instance-variable": "currentHealth",
-																		"comparison": 4,
-																		"value": "0"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "Go back to idling if the player is still alive"
-																},
-																{
-																	"callFunction": "updateAnimations",
-																	"sid": 615172535025779,
-																	"parameters": [
-																		"\"idle\"",
-																		"body.OriginalAnimationSpeed",
-																		"\"playFromBeginning\""
-																	]
-																}
-															],
-															"sid": 428301366670408
-														}
-													]
+													"sid": 713383358241408
 												}
 											]
 										}
@@ -7460,40 +7303,7 @@
 															}
 														}
 													],
-													"sid": 125045940678337,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-instance-variable",
-																	"objectClass": "player",
-																	"sid": 498041385680103,
-																	"parameters": {
-																		"instance-variable": "currentHealth",
-																		"comparison": 4,
-																		"value": "0"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"callFunction": "updateAnimations",
-																	"sid": 211508341847618,
-																	"parameters": [
-																		"\"idle\"",
-																		"body.OriginalAnimationSpeed",
-																		"\"playFromBeginning\""
-																	]
-																},
-																{
-																	"type": "comment",
-																	"text": "Go back to idling if the player is still alive"
-																}
-															],
-															"sid": 183519760116794
-														}
-													]
+													"sid": 125045940678337
 												}
 											]
 										}
@@ -7586,117 +7396,86 @@
 							"sid": 560213321966011
 						},
 						{
-							"eventType": "group",
-							"disabled": false,
-							"title": "primary animation function",
-							"description": "",
-							"isActiveOnStart": true,
+							"functionName": "updateAnimations",
+							"functionDescription": "Change the player's animation.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "animationName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "which animation to play",
+									"sid": 308447533896746
+								},
+								{
+									"name": "animationSpeed",
+									"type": "number",
+									"initialValue": "10",
+									"comment": "how fast the animation plays",
+									"sid": 938843169588506
+								},
+								{
+									"name": "startPoint",
+									"type": "string",
+									"initialValue": "playFromBeginning",
+									"comment": "",
+									"sid": 930634823243599
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "startPoint is a string because it needs to get passed from an ability. Only update the animation if the player isn't current blocking or getting hitstunned."
+								}
+							],
+							"sid": 910128125988487,
 							"children": [
 								{
-									"functionName": "updateAnimations",
-									"functionDescription": "Change the player's animation.",
-									"functionCategory": "player",
-									"functionReturnType": "none",
-									"functionCopyPicked": false,
-									"functionIsAsync": false,
-									"functionParameters": [
+									"eventType": "block",
+									"conditions": [
 										{
-											"name": "animationName",
-											"type": "string",
-											"initialValue": "",
-											"comment": "which animation to play",
-											"sid": 308447533896746
-										},
-										{
-											"name": "animationSpeed",
-											"type": "number",
-											"initialValue": "10",
-											"comment": "how fast the animation plays",
-											"sid": 938843169588506
-										},
-										{
-											"name": "startPoint",
-											"type": "string",
-											"initialValue": "playFromBeginning",
-											"comment": "",
-											"sid": 930634823243599
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 393489959159725,
+											"parameters": {
+												"variable": "startPoint",
+												"comparison": 0,
+												"value": "\"playFromBeginning\""
+											}
 										}
 									],
-									"eventType": "function-block",
-									"conditions": [],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "startPoint is a string because it needs to get passed from an ability. Only update the animation if the player isn't current blocking or getting hitstunned."
-										}
-									],
-									"sid": 966395857484062,
+									"actions": [],
+									"sid": 139271324774243,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 165911857005642,
+													"id": "is-overlapping-another-object",
+													"objectClass": "player",
+													"sid": 723462591529865,
 													"parameters": {
-														"variable": "startPoint",
-														"comparison": 0,
-														"value": "\"playFromBeginning\""
+														"object": "nonCombatArea"
 													}
 												}
 											],
-											"actions": [],
-											"sid": 858647474168268,
-											"children": [
+											"actions": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-overlapping-another-object",
-															"objectClass": "player",
-															"sid": 306390610754167,
-															"parameters": {
-																"object": "nonCombatArea"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-animation",
-															"objectClass": "body",
-															"sid": 539378751213995,
-															"parameters": {
-																"animation": "animationName & \"Unarmed_\" & player.degrees",
-																"from": "beginning"
-															}
-														}
-													],
-													"sid": 512509021073106
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 900894083628063
-														}
-													],
-													"actions": [
-														{
-															"id": "set-animation",
-															"objectClass": "body",
-															"sid": 330536639133047,
-															"parameters": {
-																"animation": "animationName & \"_\" & player.degrees",
-																"from": "beginning"
-															}
-														}
-													],
-													"sid": 719197221353569
+													"id": "set-animation",
+													"objectClass": "body",
+													"sid": 843331586165991,
+													"parameters": {
+														"animation": "animationName & \"Unarmed_\" & player.degrees",
+														"from": "beginning"
+													}
 												}
-											]
+											],
+											"sid": 292599464920827
 										},
 										{
 											"eventType": "block",
@@ -7704,84 +7483,105 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 361710867265897
+													"sid": 499061105001770
 												}
 											],
-											"actions": [],
-											"sid": 417202743705058,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-overlapping-another-object",
-															"objectClass": "player",
-															"sid": 322709654553200,
-															"parameters": {
-																"object": "nonCombatArea"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-animation",
-															"objectClass": "body",
-															"sid": 212843265041403,
-															"parameters": {
-																"animation": "animationName & \"Unarmed_\" & player.degrees",
-																"from": "current-frame"
-															}
-														}
-													],
-													"sid": 706177130405517
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 815027869550930
-														}
-													],
-													"actions": [
-														{
-															"id": "set-animation",
-															"objectClass": "body",
-															"sid": 626746490367468,
-															"parameters": {
-																"animation": "animationName & \"_\" & player.degrees",
-																"from": "current-frame"
-															}
-														}
-													],
-													"sid": 116381649848243
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
 											"actions": [
 												{
-													"type": "comment",
-													"text": "this has to be done after the animation is set, so it goes in a blank event, instead of repeating it"
-												},
-												{
-													"id": "set-animation-speed",
+													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 765839934977669,
+													"sid": 946758532313313,
 													"parameters": {
-														"speed": "animationSpeed"
+														"animation": "animationName & \"_\" & player.degrees",
+														"from": "beginning"
 													}
 												}
 											],
-											"sid": 198045966179164
+											"sid": 709765348373749
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 995489158549756
+										}
+									],
+									"actions": [],
+									"sid": 967622134338678,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-overlapping-another-object",
+													"objectClass": "player",
+													"sid": 623837557229785,
+													"parameters": {
+														"object": "nonCombatArea"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-animation",
+													"objectClass": "body",
+													"sid": 183192181446713,
+													"parameters": {
+														"animation": "animationName & \"Unarmed_\" & player.degrees",
+														"from": "current-frame"
+													}
+												}
+											],
+											"sid": 602971606622350
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 629140960496298
+												}
+											],
+											"actions": [
+												{
+													"id": "set-animation",
+													"objectClass": "body",
+													"sid": 576241052775671,
+													"parameters": {
+														"animation": "animationName & \"_\" & player.degrees",
+														"from": "current-frame"
+													}
+												}
+											],
+											"sid": 663776914210048
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "this has to be done after the animation is set, so it goes in a blank event, instead of repeating it"
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "body",
+											"sid": 340496637210600,
+											"parameters": {
+												"speed": "animationSpeed"
+											}
+										}
+									],
+									"sid": 958593614177243
 								}
-							],
-							"sid": 650102906107257
+							]
 						},
 						{
 							"functionName": "channeledAnimation",
@@ -7832,15 +7632,6 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 813258249354897,
-									"parameters": {
-										"group-name": "\"primary animation function\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
 									"sid": 172655499978699,
 									"parameters": {
 										"group-name": "\"abilities\"",
@@ -7863,51 +7654,6 @@
 									"parameters": {
 										"seconds": "body.AnimationFrameCount / body.AnimationSpeed"
 									}
-								},
-								{
-									"id": "set-enabled",
-									"objectClass": "player",
-									"sid": 157241021616239,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"enabled": true
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 567847868157495,
-									"parameters": {
-										"group-name": "\"movement and interaction\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 547275898517607,
-									"parameters": {
-										"group-name": "\"primary animation function\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 497002886915297,
-									"parameters": {
-										"group-name": "\"facings\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 301519793108088,
-									"parameters": {
-										"group-name": "\"abilities\"",
-										"state": "activated"
-									}
 								}
 							],
 							"sid": 241724089671820,
@@ -7918,7 +7664,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 300853305157475,
+											"sid": 467862910692250,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"comparison": 4,
@@ -7928,20 +7674,52 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "If the player isn't dead at the end of the channeled animation, they go back to idling"
+											"id": "set-enabled",
+											"objectClass": "player",
+											"sid": 530208565746666,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"enabled": true
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 506463150459759,
+											"parameters": {
+												"group-name": "\"movement and interaction\"",
+												"state": "activated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 488457024164462,
+											"parameters": {
+												"group-name": "\"facings\"",
+												"state": "activated"
+											}
+										},
+										{
+											"id": "set-group-active",
+											"objectClass": "System",
+											"sid": 393557170403171,
+											"parameters": {
+												"group-name": "\"abilities\"",
+												"state": "activated"
+											}
 										},
 										{
 											"callFunction": "updateAnimations",
-											"sid": 503664131276382,
+											"sid": 233085607499440,
 											"parameters": [
 												"\"idle\"",
-												"body.OriginalAnimationSpeed",
+												"player.movementSpeed / ANIMATION_DIVISOR",
 												"\"playFromBeginning\""
 											]
 										}
 									],
-									"sid": 376571747137365
+									"sid": 484133570002695
 								}
 							]
 						}
@@ -14405,13 +14183,13 @@
 									}
 								},
 								{
-									"callFunction": "updateAnimations",
-									"sid": 911396598098996,
-									"parameters": [
-										"\"idle\"",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
+									"id": "set-animation",
+									"objectClass": "body",
+									"sid": 381529176035671,
+									"parameters": {
+										"animation": "\"idleUnarmed_90\"",
+										"from": "beginning"
+									}
 								}
 							],
 							"sid": 955985015402344,
@@ -16555,15 +16333,6 @@
 							"objectClass": "player",
 							"sid": 607562531417494,
 							"behaviorType": "MoveTo"
-						},
-						{
-							"callFunction": "updateAnimations",
-							"sid": 315441955060426,
-							"parameters": [
-								"\"idle\"",
-								"body.OriginalAnimationSpeed",
-								"\"playFromBeginning\""
-							]
 						},
 						{
 							"id": "set-instvar-value",

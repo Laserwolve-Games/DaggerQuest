@@ -13303,6 +13303,37 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 736058761957064,
+							"parameters": {
+								"first-value": "hasShadow.Count",
+								"comparison": 0,
+								"second-value": "shadow.Count"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 515603203116960
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 426367471979244,
+							"parameters": {
+								"tag": "\"shadows have loaded\""
+							}
+						}
+					],
+					"sid": 609487433870841
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
 							"sid": 262069484413518
@@ -13434,89 +13465,13 @@
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
 									"sid": 889391003347667
-								}
-							],
-							"sid": 313423866928618,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-animation-playing",
-											"objectClass": "shadows",
-											"sid": 731958437588170,
-											"parameters": {
-												"animation": "\"checked\""
-											}
-										}
-									],
-									"actions": [],
-									"sid": 478313947755560,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for-each",
-													"objectClass": "System",
-													"sid": 186830130096785,
-													"parameters": {
-														"object": "hasShadow"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "spawnShadows",
-													"sid": 119788986192906
-												}
-											],
-											"sid": 859405506545287,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 447794525990120,
-															"parameters": {
-																"first-value": "hasShadow.Count",
-																"comparison": 0,
-																"second-value": "shadow.Count"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "finishLoading",
-															"sid": 698250659646771
-														}
-													],
-													"sid": 961492264136108
-												}
-											]
-										}
-									]
 								},
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 256866203376508
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "finishLoading",
-											"sid": 820929186763048
-										}
-									],
-									"sid": 610152528709825
+									"callFunction": "finishLoading1",
+									"sid": 752999035541916
 								}
-							]
+							],
+							"sid": 313423866928618
 						},
 						{
 							"eventType": "block",
@@ -13538,7 +13493,7 @@
 									"sid": 872046942878014
 								},
 								{
-									"callFunction": "finishLoading",
+									"callFunction": "finishLoading1",
 									"sid": 416041549484519
 								}
 							],
@@ -13547,7 +13502,67 @@
 					]
 				},
 				{
-					"functionName": "finishLoading",
+					"functionName": "finishLoading1",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 560596547835359,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "shadows",
+									"sid": 990450802376433,
+									"parameters": {
+										"animation": "\"checked\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait-for-signal",
+									"objectClass": "System",
+									"sid": 714350059363085,
+									"parameters": {
+										"tag": "\"shadows have loaded\""
+									}
+								},
+								{
+									"callFunction": "finishLoading2",
+									"sid": 302017078913490
+								}
+							],
+							"sid": 510864506818469
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 354976304445481
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "finishLoading2",
+									"sid": 788146386989759
+								}
+							],
+							"sid": 276390569487426
+						}
+					]
+				},
+				{
+					"functionName": "finishLoading2",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
@@ -13560,7 +13575,7 @@
 						{
 							"id": "set-visible",
 							"objectClass": "loadingScreen",
-							"sid": 954264826677712,
+							"sid": 828212369123037,
 							"parameters": {
 								"visibility": "invisible"
 							}
@@ -13568,7 +13583,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 613480563983735,
+							"sid": 813618367214729,
 							"parameters": {
 								"layer": "\"main\"",
 								"interactive": true
@@ -13577,7 +13592,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 793338349351393,
+							"sid": 641200977947370,
 							"parameters": {
 								"layer": "\"background\"",
 								"interactive": true
@@ -13586,7 +13601,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 345482351130484,
+							"sid": 146762918365601,
 							"parameters": {
 								"layer": "\"abilityBar\"",
 								"interactive": true
@@ -13595,7 +13610,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 205163695720422,
+							"sid": 555322228575380,
 							"parameters": {
 								"layer": "\"orbs\"",
 								"interactive": true
@@ -13604,7 +13619,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 481452600277700,
+							"sid": 992097775003463,
 							"parameters": {
 								"layer": "\"mechanics\"",
 								"interactive": true
@@ -13613,7 +13628,7 @@
 						{
 							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 467875635922328,
+							"sid": 294061638666512,
 							"parameters": {
 								"tag": "\"main\"",
 								"db": "-100",
@@ -13622,7 +13637,7 @@
 							}
 						}
 					],
-					"sid": 560596547835359
+					"sid": 321107227740248
 				},
 				{
 					"functionName": "load",

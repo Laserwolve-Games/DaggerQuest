@@ -6475,6 +6475,26 @@
 																				"comparison": 4,
 																				"value": "0"
 																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 122939174557161,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"block\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 956372389820870,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"hit\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
 																		}
 																	],
 																	"actions": [
@@ -6522,6 +6542,15 @@
 																				"player.movementSpeed / ANIMATION_DIVISOR",
 																				"\"playFromBeginning\""
 																			]
+																		},
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 850712728101052,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
 																		}
 																	],
 																	"sid": 426327952259254
@@ -6532,7 +6561,13 @@
 												},
 												{
 													"eventType": "block",
-													"conditions": [],
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 980609902682346
+														}
+													],
 													"actions": [
 														{
 															"id": "set-boolean-instvar",
@@ -7774,6 +7809,14 @@
 											"sid": 197983694177942,
 											"parameters": {
 												"animation": "\"checked\""
+											}
+										},
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 447832580895870,
+											"parameters": {
+												"object": "hasShadow"
 											}
 										}
 									],
@@ -12085,6 +12128,40 @@
 					"text": "we tried a lot of different things to get shadows to stay immediately behind their hasShadow. A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter. We just decided to make shadows sortable, that seems to be working."
 				},
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-parent",
+							"objectClass": "shadow",
+							"sid": 226383708709643,
+							"parameters": {
+								"parent": "hasShadow",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "shadow",
+							"sid": 627266054647833,
+							"parameters": {
+								"animation": "hasShadow.AnimationName",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "shadow",
+							"sid": 282623935223883,
+							"parameters": {
+								"frame-number": "hasShadow.AnimationFrame"
+							}
+						}
+					],
+					"sid": 824913553665963
+				},
+				{
 					"functionName": "spawnShadows",
 					"functionDescription": "Spawn the shadow of an object.",
 					"functionCategory": "world",
@@ -12093,21 +12170,12 @@
 					"functionIsAsync": true,
 					"functionParameters": [],
 					"eventType": "function-block",
-					"conditions": [
-						{
-							"id": "for-each",
-							"objectClass": "System",
-							"sid": 907894704610391,
-							"parameters": {
-								"object": "hasShadow"
-							}
-						}
-					],
+					"conditions": [],
 					"actions": [
 						{
 							"id": "load-object-images-by-name",
 							"objectClass": "System",
-							"sid": 692060927067017,
+							"sid": 159158015409562,
 							"parameters": {
 								"object": "hasShadow.ObjectTypeName & \"_shadow\""
 							}
@@ -12115,12 +12183,12 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 583721515827403
+							"sid": 327283119025874
 						},
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 456650011814749,
+							"sid": 410672489780992,
 							"parameters": {
 								"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
 								"layer": "hasShadow.LayerName",
@@ -12139,7 +12207,7 @@
 								{
 									"id": "pick-last-created",
 									"objectClass": "System",
-									"sid": 536976280938980,
+									"sid": 525863493728586,
 									"parameters": {
 										"object": "shadow"
 									}
@@ -12149,7 +12217,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "hasShadow",
-									"sid": 241530028593238,
+									"sid": 576270027747294,
 									"parameters": {
 										"child": "shadow",
 										"transform-x": true,
@@ -12158,7 +12226,7 @@
 										"transform-h": false,
 										"transform-a": true,
 										"transform-o": true,
-										"transform-z-elevation": false,
+										"transform-z-elevation": true,
 										"transform-visibility": true,
 										"destroy-with-parent": true
 									}
@@ -12166,7 +12234,7 @@
 								{
 									"id": "set-opacity",
 									"objectClass": "shadow",
-									"sid": 892055560219421,
+									"sid": 289819008801289,
 									"parameters": {
 										"opacity": "50"
 									}
@@ -12174,7 +12242,7 @@
 								{
 									"id": "set-effect-parameter",
 									"objectClass": "shadow",
-									"sid": 967102842334003,
+									"sid": 296351187798779,
 									"parameters": {
 										"effect": "\"BlurHorizontal\"",
 										"parameter-index": "0",
@@ -12184,7 +12252,7 @@
 								{
 									"id": "set-effect-parameter",
 									"objectClass": "shadow",
-									"sid": 611025268084507,
+									"sid": 136782966192810,
 									"parameters": {
 										"effect": "\"BlurVertical\"",
 										"parameter-index": "0",
@@ -12192,7 +12260,7 @@
 									}
 								}
 							],
-							"sid": 874584007285148
+							"sid": 252532135846702
 						}
 					]
 				},
@@ -12200,35 +12268,26 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "pick-parent",
-							"objectClass": "shadow",
-							"sid": 721771950880500,
+							"id": "on-created",
+							"objectClass": "hasShadow",
+							"sid": 460073097317385
+						},
+						{
+							"id": "is-animation-playing",
+							"objectClass": "shadows",
+							"sid": 686604742716400,
 							"parameters": {
-								"parent": "hasShadow",
-								"which": "own"
+								"animation": "\"checked\""
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-animation",
-							"objectClass": "shadow",
-							"sid": 724704673527402,
-							"parameters": {
-								"animation": "hasShadow.AnimationName",
-								"from": "current-frame"
-							}
-						},
-						{
-							"id": "set-animation-frame",
-							"objectClass": "shadow",
-							"sid": 179496891440497,
-							"parameters": {
-								"frame-number": "hasShadow.AnimationFrame"
-							}
+							"callFunction": "spawnShadows",
+							"sid": 861273562752085
 						}
 					],
-					"sid": 365044933941635
+					"sid": 559501222679591
 				}
 			],
 			"sid": 538206850780870
@@ -13391,22 +13450,54 @@
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 478313947755560,
+									"children": [
 										{
-											"callFunction": "spawnShadows",
-											"sid": 913506961906922
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 592024328337459
-										},
-										{
-											"callFunction": "finishLoading",
-											"sid": 121578270328784
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for-each",
+													"objectClass": "System",
+													"sid": 186830130096785,
+													"parameters": {
+														"object": "hasShadow"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "spawnShadows",
+													"sid": 119788986192906
+												}
+											],
+											"sid": 859405506545287,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 447794525990120,
+															"parameters": {
+																"first-value": "hasShadow.Count",
+																"comparison": 0,
+																"second-value": "shadow.Count"
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "finishLoading",
+															"sid": 698250659646771
+														}
+													],
+													"sid": 961492264136108
+												}
+											]
 										}
-									],
-									"sid": 478313947755560
+									]
 								},
 								{
 									"eventType": "block",

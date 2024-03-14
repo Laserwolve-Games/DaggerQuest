@@ -4995,62 +4995,6 @@
 									"sid": 510763216032454
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 166621457417563,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 3,
-										"value": "0"
-									}
-								},
-								{
-									"id": "pick-children",
-									"objectClass": "player",
-									"sid": 937691615969120,
-									"parameters": {
-										"child": "projectile",
-										"which": "own"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 562594633971818
-								}
-							],
-							"actions": [
-								{
-									"id": "stop",
-									"objectClass": "player",
-									"sid": 971848669141960,
-									"behaviorType": "MoveTo"
-								},
-								{
-									"id": "remove-child",
-									"objectClass": "player",
-									"sid": 145829245427267,
-									"parameters": {
-										"child": "body"
-									}
-								},
-								{
-									"id": "destroy",
-									"objectClass": "projectile",
-									"sid": 689382051172268
-								},
-								{
-									"id": "destroy",
-									"objectClass": "player",
-									"sid": 505168066403956
-								}
-							],
-							"sid": 274794580633845
 						}
 					],
 					"sid": 382578483115015
@@ -5789,153 +5733,6 @@
 							]
 						},
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 632993639438788,
-									"parameters": {
-										"value": "player.X <> player.lastX | player.Y <> player.lastY"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "...if they were not where they were last tick, set their animation appropriately. Using the moveTo 'Is moving' condition causes the player to continue the walking animation when grinding into solids."
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 817596941489863,
-									"parameters": {
-										"instance-variable": "lastX",
-										"value": "Self.X"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 265552678188149,
-									"parameters": {
-										"instance-variable": "lastY",
-										"value": "Self.Y"
-									}
-								}
-							],
-							"sid": 146079688686831,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 112390348904231,
-											"parameters": {
-												"first-value": "find(body.AnimationName, \"idle\")\n",
-												"comparison": 1,
-												"second-value": "-1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "TODO: This won't work if we have an ability we can cancel by moving."
-										},
-										{
-											"type": "comment",
-											"text": "if they were idling, start the animation from the beginning"
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 847093809910980,
-											"parameters": [
-												"\"walk\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromBeginning\""
-											]
-										}
-									],
-									"sid": 104698990297760
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 402994292961100
-										},
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 929391951576858,
-											"parameters": {
-												"first-value": "find(body.AnimationName, \"walk\")\n",
-												"comparison": 1,
-												"second-value": "-1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "if they were already walking, play the animation from the current frame"
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 244052231792126,
-											"parameters": [
-												"\"walk\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromCurrentFrame\""
-											]
-										}
-									],
-									"sid": 532660645651033
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 345652199004941
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 235825850490150,
-									"parameters": {
-										"first-value": "find(body.AnimationName, \"walk\")",
-										"comparison": 1,
-										"second-value": "-1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If the player isn't moving, and they were previously walking, make him start idling."
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 803445125987547,
-									"parameters": [
-										"\"idle\"",
-										"player.movementSpeed / ANIMATION_DIVISOR",
-										"\"playFromBeginning\""
-									]
-								}
-							],
-							"sid": 574776329681679
-						},
-						{
 							"functionName": "moveToLocation",
 							"functionDescription": "Move to a location, specifying a distance away from that location to arrive at",
 							"functionCategory": "player",
@@ -6363,7 +6160,7 @@
 															"actions": [
 																{
 																	"id": "add-child",
-																	"objectClass": "enemy",
+																	"objectClass": "player",
 																	"sid": 336079578843816,
 																	"parameters": {
 																		"child": "projectile",
@@ -7359,6 +7156,163 @@
 					"children": [
 						{
 							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 692409938657133,
+									"parameters": {
+										"value": "player.X <> player.lastX | player.Y <> player.lastY"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "...if they were not where they were last tick, set their animation appropriately. Using the moveTo 'Is moving' condition causes the player to continue the walking animation when grinding into solids."
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 208232200302105,
+									"parameters": {
+										"instance-variable": "lastX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 127638597976387,
+									"parameters": {
+										"instance-variable": "lastY",
+										"value": "Self.Y"
+									}
+								}
+							],
+							"sid": 488064512871359,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 259989733408022,
+											"parameters": {
+												"first-value": "find(body.AnimationName, \"idle\")\n",
+												"comparison": 1,
+												"second-value": "-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "TODO: This won't work if we have an ability we can cancel by moving."
+										},
+										{
+											"type": "comment",
+											"text": "if they were idling, start the animation from the beginning"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 578053085308020,
+											"parameters": [
+												"\"walk\"",
+												"player.movementSpeed / ANIMATION_DIVISOR",
+												"\"playFromBeginning\""
+											]
+										}
+									],
+									"sid": 189926063793734
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 133619502888419
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 319503109138007,
+											"parameters": {
+												"first-value": "find(body.AnimationName, \"walk\")\n",
+												"comparison": 1,
+												"second-value": "-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if they were already walking, play the animation from the current frame"
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 936336099945621,
+											"parameters": [
+												"\"walk\"",
+												"player.movementSpeed / ANIMATION_DIVISOR",
+												"\"playFromCurrentFrame\""
+											]
+										}
+									],
+									"sid": 903812004404733
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 833216857476881
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 507327242231627,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 4,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 303510606567446,
+									"parameters": {
+										"first-value": "find(body.AnimationName, \"walk\")",
+										"comparison": 1,
+										"second-value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If the player isn't moving and not dead, and they were previously walking, make him start idling."
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 344445240607023,
+									"parameters": [
+										"\"idle\"",
+										"player.movementSpeed / ANIMATION_DIVISOR",
+										"\"playFromBeginning\""
+									]
+								}
+							],
+							"sid": 626061452344026
+						},
+						{
+							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
@@ -7380,6 +7334,51 @@
 								}
 							],
 							"sid": 568021042849555
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 649110140556211,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 3,
+										"value": "0"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 853324147301031
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "'Destroy with parent' is true for projectiles that are children of the player, so we don't need to destroy them here"
+								},
+								{
+									"id": "destroy",
+									"objectClass": "player",
+									"sid": 903194414252356
+								},
+								{
+									"type": "comment",
+									"text": "It's not true for the body however, so it and the gear can stick around to play the die animation after the player dies."
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 977255149789450,
+									"parameters": [
+										"\"die\"",
+										"player.movementSpeed / ANIMATION_DIVISOR",
+										"\"playFromBeginning\""
+									]
+								}
+							],
+							"sid": 835072886302918
 						},
 						{
 							"eventType": "block",
@@ -14274,7 +14273,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "player",
-									"sid": 734767840988603,
+									"sid": 478290303396000,
 									"parameters": {
 										"child": "body",
 										"transform-x": true,
@@ -14285,7 +14284,7 @@
 										"transform-o": false,
 										"transform-z-elevation": false,
 										"transform-visibility": false,
-										"destroy-with-parent": true
+										"destroy-with-parent": false
 									}
 								},
 								{

@@ -6178,6 +6178,15 @@
 																{
 																	"id": "set-boolean-instvar",
 																	"objectClass": "projectile",
+																	"sid": 823540080021214,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
 																	"sid": 509130563600094,
 																	"parameters": {
 																		"instance-variable": "piercing",
@@ -6636,6 +6645,15 @@
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "projectile",
+															"sid": 556179395183242,
+															"parameters": {
+																"instance-variable": "isMelee",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
 															"sid": 413351075493280,
 															"parameters": {
 																"instance-variable": "piercing",
@@ -6996,6 +7014,15 @@
 																"transform-z-elevation": false,
 																"transform-visibility": false,
 																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 468215392678120,
+															"parameters": {
+																"instance-variable": "isMelee",
+																"value": "true"
 															}
 														},
 														{
@@ -11403,18 +11430,9 @@
 											],
 											"actions": [
 												{
-													"id": "set-boolean-instvar",
-													"objectClass": "projectile",
-													"sid": 777565137465121,
-													"parameters": {
-														"instance-variable": "enabled",
-														"value": "true"
-													}
-												},
-												{
 													"id": "add-child",
-													"objectClass": "player",
-													"sid": 930245524417508,
+													"objectClass": "enemy",
+													"sid": 754811897098689,
 													"parameters": {
 														"child": "projectile",
 														"transform-x": false,
@@ -11426,6 +11444,24 @@
 														"transform-z-elevation": false,
 														"transform-visibility": false,
 														"destroy-with-parent": true
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 777565137465121,
+													"parameters": {
+														"instance-variable": "enabled",
+														"value": "true"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "projectile",
+													"sid": 443135731365143,
+													"parameters": {
+														"instance-variable": "isMelee",
+														"value": "true"
 													}
 												},
 												{
@@ -11668,6 +11704,23 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "enemy",
+															"sid": 292455479393073,
+															"parameters": {
+																"child": "projectile",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
@@ -11983,6 +12036,23 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "enemy",
+															"sid": 992349569937384,
+															"parameters": {
+																"child": "projectile",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
@@ -12322,6 +12392,10 @@
 					],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "TODO: We want projectiles not to go through props, but this will destroy a projectile even if it lightly grazes a prop, that's not ideal"
+						},
+						{
 							"id": "destroy",
 							"objectClass": "projectile",
 							"sid": 785391520212267
@@ -12358,6 +12432,15 @@
 									"sid": 703840981642531,
 									"parameters": {
 										"object": "enemy"
+									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "projectile",
+									"sid": 513615765405988,
+									"parameters": {
+										"parent": "player",
+										"which": "own"
 									}
 								}
 							],
@@ -12498,14 +12581,45 @@
 													}
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 813950715761836,
+											"children": [
 												{
-													"id": "destroy",
-													"objectClass": "projectile",
-													"sid": 990267013758973
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "projectile",
+															"sid": 532359483178596,
+															"parameters": {
+																"instance-variable": "enabled"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "projectile",
+															"sid": 949208087040951,
+															"parameters": {
+																"instance-variable": "isMelee"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "destroy ranged projectiles owned by this enemy that: haven't been enabled (visually generated) yet, or are melee projectiles"
+														},
+														{
+															"id": "destroy",
+															"objectClass": "projectile",
+															"sid": 690045203004240
+														}
+													],
+													"sid": 953439831951762,
+													"isOrBlock": true
 												}
-											],
-											"sid": 813950715761836
+											]
 										}
 									]
 								},
@@ -12542,6 +12656,15 @@
 									"sid": 921224045921521,
 									"parameters": {
 										"object": "player"
+									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "projectile",
+									"sid": 353666848228170,
+									"parameters": {
+										"parent": "enemy",
+										"which": "own"
 									}
 								}
 							],
@@ -12665,7 +12788,44 @@
 													"sid": 922785036681924
 												}
 											],
-											"sid": 162273133516722
+											"sid": 162273133516722,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "projectile",
+															"sid": 907979179229907,
+															"parameters": {
+																"instance-variable": "enabled"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "projectile",
+															"sid": 186493852144732,
+															"parameters": {
+																"instance-variable": "isMelee"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "destroy ranged projectiles owned by the player that: haven't been enabled (visually generated) yet, or are melee projectiles"
+														},
+														{
+															"id": "destroy",
+															"objectClass": "projectile",
+															"sid": 266194346335621
+														}
+													],
+													"sid": 727704609425814,
+													"isOrBlock": true
+												}
+											]
 										}
 									]
 								},
@@ -12822,7 +12982,44 @@
 															"sid": 582753969205622
 														}
 													],
-													"sid": 535985135308689
+													"sid": 535985135308689,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "projectile",
+																	"sid": 560527795339996,
+																	"parameters": {
+																		"instance-variable": "enabled"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "projectile",
+																	"sid": 683487282486522,
+																	"parameters": {
+																		"instance-variable": "isMelee"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "destroy ranged projectiles owned by the player that: haven't been enabled (visually generated) yet, or are melee projectiles"
+																},
+																{
+																	"id": "destroy",
+																	"objectClass": "projectile",
+																	"sid": 655951994131290
+																}
+															],
+															"sid": 990020247873838,
+															"isOrBlock": true
+														}
+													]
 												}
 											]
 										},

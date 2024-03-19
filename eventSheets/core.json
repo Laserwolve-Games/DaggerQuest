@@ -170,9 +170,19 @@
 							"parameters": {
 								"mouse-button": "right"
 							}
+						},
+						{
+							"id": "on-any-key-pressed",
+							"objectClass": "keyboard",
+							"sid": 480959912190824
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "TODO: Make sure that the key that was pressed to close the dialog isn't whatever key we decide to use to skip through dialog. Also when we add merchant NPCs, we need to permit mouse usage."
+						}
+					],
 					"sid": 607267948456563,
 					"children": [
 						{
@@ -369,6 +379,15 @@
 											"parameters": [
 												"npc.X",
 												"npc.Y"
+											]
+										},
+										{
+											"callFunction": "updateAnimations",
+											"sid": 394541616736890,
+											"parameters": [
+												"\"idle\"",
+												"player.movementSpeed / ANIMATION_DIVISOR",
+												"\"playFromBeginning\""
 											]
 										}
 									],
@@ -4707,10 +4726,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "player",
-											"sid": 838503794389132,
+											"sid": 537515292230777,
 											"parameters": {
 												"instance-variable": "degrees",
-												"value": "round(player.MoveTo.MovingAngle / ARC) * ARC"
+												"value": "round(Self.MoveTo.MovingAngle / ARC) * ARC"
 											}
 										}
 									],
@@ -6487,12 +6506,30 @@
 														"comparison": 5,
 														"value": "MANA_COST"
 													}
+												},
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 972926207054938,
+													"parameters": {
+														"instance-variable": "busyCastingAbility"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
 													"text": "must have a weapon equipped and enough mana"
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "player",
+													"sid": 825458347812084,
+													"parameters": {
+														"instance-variable": "busyCastingAbility",
+														"value": "true"
+													}
 												},
 												{
 													"id": "subtract-from-instvar",
@@ -6595,19 +6632,6 @@
 													"parameters": {
 														"seconds": "waitPeriod"
 													}
-												},
-												{
-													"id": "create-object",
-													"objectClass": "System",
-													"sid": 850293852307025,
-													"parameters": {
-														"object-to-create": "projectile",
-														"layer": "\"mechanics\"",
-														"x": "player.X",
-														"y": "player.Y",
-														"create-hierarchy": false,
-														"template-name": "\"\""
-													}
 												}
 											],
 											"sid": 711031212314139,
@@ -6616,161 +6640,284 @@
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-last-created",
+															"id": "compare-two-values",
 															"objectClass": "System",
-															"sid": 599495591871293,
+															"sid": 891751039898942,
 															"parameters": {
-																"object": "projectile"
+																"first-value": "find(body.AnimationName, \"block\")",
+																"comparison": 0,
+																"second-value": "-1"
+															}
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 848916538980387,
+															"parameters": {
+																"first-value": "find(body.AnimationName, \"hit\")",
+																"comparison": 0,
+																"second-value": "-1"
 															}
 														}
 													],
 													"actions": [
 														{
-															"id": "add-child",
-															"objectClass": "player",
-															"sid": 620175491030944,
-															"parameters": {
-																"child": "projectile",
-																"transform-x": false,
-																"transform-y": false,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 556179395183242,
-															"parameters": {
-																"instance-variable": "isMelee",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 413351075493280,
-															"parameters": {
-																"instance-variable": "piercing",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 261871274462356,
-															"parameters": {
-																"instance-variable": "enabled",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 702534395324628,
-															"parameters": {
-																"instance-variable": "range",
-																"value": "RANGE"
-															}
-														},
-														{
-															"type": "comment",
-															"text": "Extract the multiplier from the description in the abilities table"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 408008704611028,
-															"parameters": {
-																"instance-variable": "slashDamage",
-																"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
-															}
-														},
-														{
-															"id": "set-width",
-															"objectClass": "projectile",
-															"sid": 463900277504500,
-															"parameters": {
-																"width": "SIZE"
-															}
-														},
-														{
-															"id": "set-height",
-															"objectClass": "projectile",
-															"sid": 826323290718197,
-															"parameters": {
-																"height": "Self.Width / ISOMETRIC_DIVIDER"
-															}
-														},
-														{
-															"id": "set-angle-of-motion",
-															"objectClass": "projectile",
-															"sid": 461912268088400,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"angle": "player.MoveTo.MovingAngle"
-															}
-														},
-														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 849894527277260,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-															}
-														},
-														{
-															"id": "wait",
+															"id": "create-object",
 															"objectClass": "System",
-															"sid": 381155470199995,
+															"sid": 761497784678296,
 															"parameters": {
-																"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-															}
-														},
-														{
-															"id": "set-enabled",
-															"objectClass": "player",
-															"sid": 466273407920629,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"enabled": true
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 381453661601787,
-															"parameters": {
-																"group-name": "\"movement and interaction\"",
-																"state": "activated"
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 722086422079796,
-															"parameters": {
-																"group-name": "\"facings\"",
-																"state": "activated"
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 171776864818288,
-															"parameters": {
-																"group-name": "\"abilities\"",
-																"state": "activated"
+																"object-to-create": "projectile",
+																"layer": "\"mechanics\"",
+																"x": "player.X",
+																"y": "player.Y",
+																"create-hierarchy": false,
+																"template-name": "\"\""
 															}
 														}
 													],
-													"sid": 713383358241408
+													"sid": 463987865802505,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-last-created",
+																	"objectClass": "System",
+																	"sid": 227725923844003,
+																	"parameters": {
+																		"object": "projectile"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "player",
+																	"sid": 489669451948715,
+																	"parameters": {
+																		"child": "projectile",
+																		"transform-x": false,
+																		"transform-y": false,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 152686214009573,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 389349178458477,
+																	"parameters": {
+																		"instance-variable": "piercing",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 964847651942894,
+																	"parameters": {
+																		"instance-variable": "enabled",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 214752957415208,
+																	"parameters": {
+																		"instance-variable": "range",
+																		"value": "RANGE"
+																	}
+																},
+																{
+																	"type": "comment",
+																	"text": "Extract the multiplier from the description in the abilities table"
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 174392996248881,
+																	"parameters": {
+																		"instance-variable": "slashDamage",
+																		"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
+																	}
+																},
+																{
+																	"id": "set-width",
+																	"objectClass": "projectile",
+																	"sid": 266386413045689,
+																	"parameters": {
+																		"width": "SIZE"
+																	}
+																},
+																{
+																	"id": "set-height",
+																	"objectClass": "projectile",
+																	"sid": 302181917105168,
+																	"parameters": {
+																		"height": "Self.Width / ISOMETRIC_DIVIDER"
+																	}
+																},
+																{
+																	"id": "set-angle-of-motion",
+																	"objectClass": "projectile",
+																	"sid": 385832113125164,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"angle": "player.MoveTo.MovingAngle"
+																	}
+																},
+																{
+																	"id": "set-speed",
+																	"objectClass": "projectile",
+																	"sid": 593637970753442,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 978801191091309,
+																	"parameters": {
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																	}
+																}
+															],
+															"sid": 705143088288770,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "player",
+																			"sid": 734886104295358,
+																			"parameters": {
+																				"instance-variable": "currentHealth",
+																				"comparison": 4,
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 886312055961515,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"block\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 528722522048136,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"hit\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-enabled",
+																			"objectClass": "player",
+																			"sid": 846549629876075,
+																			"behaviorType": "MoveTo",
+																			"parameters": {
+																				"enabled": true
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 589837458190491,
+																			"parameters": {
+																				"group-name": "\"movement and interaction\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 880786918367777,
+																			"parameters": {
+																				"group-name": "\"facings\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 665019712197841,
+																			"parameters": {
+																				"group-name": "\"abilities\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"callFunction": "updateAnimations",
+																			"sid": 605119858749567,
+																			"parameters": [
+																				"\"idle\"",
+																				"player.movementSpeed / ANIMATION_DIVISOR",
+																				"\"playFromBeginning\""
+																			]
+																		},
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 202861126385566,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 542652828917541
+																}
+															]
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 462826839181658
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "player",
+															"sid": 379492682735694,
+															"parameters": {
+																"instance-variable": "busyCastingAbility",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 377655415586831
 												}
 											]
 										}
@@ -6861,12 +7008,30 @@
 														"comparison": 5,
 														"value": "MANA_COST"
 													}
+												},
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 486915479202624,
+													"parameters": {
+														"instance-variable": "busyCastingAbility"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
 													"text": "must have enough mana"
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "player",
+													"sid": 654561502785642,
+													"parameters": {
+														"instance-variable": "busyCastingAbility",
+														"value": "true"
+													}
 												},
 												{
 													"id": "subtract-from-instvar",
@@ -6990,179 +7155,302 @@
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-last-created",
+															"id": "compare-two-values",
 															"objectClass": "System",
-															"sid": 312462690445445,
+															"sid": 311495190409771,
 															"parameters": {
-																"object": "projectile"
+																"first-value": "find(body.AnimationName, \"block\")",
+																"comparison": 0,
+																"second-value": "-1"
+															}
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 536236850707619,
+															"parameters": {
+																"first-value": "find(body.AnimationName, \"hit\")",
+																"comparison": 0,
+																"second-value": "-1"
 															}
 														}
 													],
 													"actions": [
 														{
-															"id": "add-child",
-															"objectClass": "player",
-															"sid": 685974995813061,
-															"parameters": {
-																"child": "projectile",
-																"transform-x": false,
-																"transform-y": false,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 468215392678120,
-															"parameters": {
-																"instance-variable": "isMelee",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 957511065671967,
-															"parameters": {
-																"instance-variable": "piercing",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 111874836506501,
-															"parameters": {
-																"instance-variable": "enabled",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 653725228886798,
-															"parameters": {
-																"instance-variable": "range",
-																"value": "RANGE"
-															}
-														},
-														{
-															"type": "comment",
-															"text": "Extract the multiplier from the description in the abilities table"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 367208043762125,
-															"parameters": {
-																"instance-variable": "smashDamage",
-																"value": "player.smashDamage"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 914348958856246,
-															"parameters": {
-																"instance-variable": "knockbackDistance",
-																"value": "100"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 229612355171099,
-															"parameters": {
-																"instance-variable": "knockbackSpeed",
-																"value": "500"
-															}
-														},
-														{
-															"id": "set-width",
-															"objectClass": "projectile",
-															"sid": 552104400312452,
-															"parameters": {
-																"width": "SIZE"
-															}
-														},
-														{
-															"id": "set-height",
-															"objectClass": "projectile",
-															"sid": 518875130668534,
-															"parameters": {
-																"height": "Self.Width / ISOMETRIC_DIVIDER"
-															}
-														},
-														{
-															"id": "set-angle-of-motion",
-															"objectClass": "projectile",
-															"sid": 144133384775022,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"angle": "player.MoveTo.MovingAngle"
-															}
-														},
-														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 293245551588915,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-															}
-														},
-														{
-															"id": "wait",
+															"id": "create-object",
 															"objectClass": "System",
-															"sid": 866349173121340,
+															"sid": 288216207449581,
 															"parameters": {
-																"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-															}
-														},
-														{
-															"id": "set-enabled",
-															"objectClass": "player",
-															"sid": 775751368942249,
-															"behaviorType": "MoveTo",
-															"parameters": {
-																"enabled": true
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 113942480278273,
-															"parameters": {
-																"group-name": "\"movement and interaction\"",
-																"state": "activated"
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 678448174935693,
-															"parameters": {
-																"group-name": "\"facings\"",
-																"state": "activated"
-															}
-														},
-														{
-															"id": "set-group-active",
-															"objectClass": "System",
-															"sid": 259936006986324,
-															"parameters": {
-																"group-name": "\"abilities\"",
-																"state": "activated"
+																"object-to-create": "projectile",
+																"layer": "\"mechanics\"",
+																"x": "player.X",
+																"y": "player.Y",
+																"create-hierarchy": false,
+																"template-name": "\"\""
 															}
 														}
 													],
-													"sid": 125045940678337
+													"sid": 443727182418930,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-last-created",
+																	"objectClass": "System",
+																	"sid": 108733119191583,
+																	"parameters": {
+																		"object": "projectile"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "player",
+																	"sid": 662534463327716,
+																	"parameters": {
+																		"child": "projectile",
+																		"transform-x": false,
+																		"transform-y": false,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 866678401266402,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 462562445361387,
+																	"parameters": {
+																		"instance-variable": "piercing",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 310892559263199,
+																	"parameters": {
+																		"instance-variable": "enabled",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 603039735227228,
+																	"parameters": {
+																		"instance-variable": "range",
+																		"value": "RANGE"
+																	}
+																},
+																{
+																	"type": "comment",
+																	"text": "Extract the multiplier from the description in the abilities table"
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 456799936644380,
+																	"parameters": {
+																		"instance-variable": "smashDamage",
+																		"value": "player.smashDamage"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 332260829710652,
+																	"parameters": {
+																		"instance-variable": "knockbackDistance",
+																		"value": "100"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 686401110382199,
+																	"parameters": {
+																		"instance-variable": "knockbackSpeed",
+																		"value": "500"
+																	}
+																},
+																{
+																	"id": "set-width",
+																	"objectClass": "projectile",
+																	"sid": 201311051585835,
+																	"parameters": {
+																		"width": "SIZE"
+																	}
+																},
+																{
+																	"id": "set-height",
+																	"objectClass": "projectile",
+																	"sid": 198640981987399,
+																	"parameters": {
+																		"height": "Self.Width / ISOMETRIC_DIVIDER"
+																	}
+																},
+																{
+																	"id": "set-angle-of-motion",
+																	"objectClass": "projectile",
+																	"sid": 596375785757622,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"angle": "player.MoveTo.MovingAngle"
+																	}
+																},
+																{
+																	"id": "set-speed",
+																	"objectClass": "projectile",
+																	"sid": 843308953579633,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 938758012836775,
+																	"parameters": {
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																	}
+																}
+															],
+															"sid": 706091598479485,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "player",
+																			"sid": 474034525297726,
+																			"parameters": {
+																				"instance-variable": "currentHealth",
+																				"comparison": 4,
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 590517178184237,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"block\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 957196768453497,
+																			"parameters": {
+																				"first-value": "find(body.AnimationName, \"hit\")",
+																				"comparison": 0,
+																				"second-value": "-1"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-enabled",
+																			"objectClass": "player",
+																			"sid": 574420836429051,
+																			"behaviorType": "MoveTo",
+																			"parameters": {
+																				"enabled": true
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 731771689464359,
+																			"parameters": {
+																				"group-name": "\"movement and interaction\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 766002163642362,
+																			"parameters": {
+																				"group-name": "\"facings\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"id": "set-group-active",
+																			"objectClass": "System",
+																			"sid": 334824975174625,
+																			"parameters": {
+																				"group-name": "\"abilities\"",
+																				"state": "activated"
+																			}
+																		},
+																		{
+																			"callFunction": "updateAnimations",
+																			"sid": 620348401939089,
+																			"parameters": [
+																				"\"idle\"",
+																				"player.movementSpeed / ANIMATION_DIVISOR",
+																				"\"playFromBeginning\""
+																			]
+																		},
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 687922885209015,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 610616680550048
+																}
+															]
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 947115914077457
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "player",
+															"sid": 337989355345392,
+															"parameters": {
+																"instance-variable": "busyCastingAbility",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 237112727427605
 												}
 											]
 										}

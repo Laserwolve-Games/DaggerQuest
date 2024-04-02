@@ -9966,33 +9966,24 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "for-each-ordered",
+											"id": "pick-by-highest-lowest-value",
 											"objectClass": "System",
-											"sid": 843521397468893,
+											"sid": 346059891579239,
 											"parameters": {
 												"object": "tooltipText",
-												"expression": "tooltipText.TextWidth",
-												"order": "descending"
+												"which": "highest",
+												"expression": "tooltipText.TextWidth"
 											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "I don't think there's a way to get the tooltipText family member with the longest textWidth. We can use a descending loop and stop after the first value."
-										},
-										{
 											"id": "set-width",
 											"objectClass": "tooltip",
-											"sid": 105216766448373,
+											"sid": 712796239397574,
 											"parameters": {
 												"width": "tooltipText.TextWidth + 50"
 											}
-										},
-										{
-											"id": "stop-loop",
-											"objectClass": "System",
-											"sid": 620375102499779
 										}
 									],
 									"sid": 330945650350467
@@ -10298,13 +10289,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "for-each-ordered",
+											"id": "pick-by-highest-lowest-value",
 											"objectClass": "System",
-											"sid": 976685334015162,
+											"sid": 637439964578507,
 											"parameters": {
 												"object": "comparisonTooltipText",
-												"expression": "comparisonTooltipText.TextWidth",
-												"order": "descending"
+												"which": "highest",
+												"expression": "comparisonTooltipText.TextWidth"
 											}
 										}
 									],
@@ -10316,11 +10307,6 @@
 											"parameters": {
 												"width": "comparisonTooltipText.TextWidth + 50"
 											}
-										},
-										{
-											"id": "stop-loop",
-											"objectClass": "System",
-											"sid": 220779688855783
 										}
 									],
 									"sid": 758644597798527

@@ -3623,6 +3623,26 @@
 							"sid": 701726838342458
 						},
 						{
+							"eventType": "variable",
+							"name": "gearToSpawn",
+							"type": "string",
+							"initialValue": "",
+							"comment": "the name of the gear to spawn",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 495278738778131
+						},
+						{
+							"eventType": "variable",
+							"name": "gearToDestroy",
+							"type": "string",
+							"initialValue": "",
+							"comment": "the name of the gear to destroy",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 914541295519225
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -3644,6 +3664,28 @@
 								}
 							],
 							"actions": [
+								{
+									"type": "comment",
+									"text": "Need to reset these variables or else default gear can get deleted"
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 358209259050944,
+									"parameters": {
+										"variable": "gearToSpawn",
+										"value": "\"\""
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 244570123181282,
+									"parameters": {
+										"variable": "gearToDestroy",
+										"value": "\"\""
+									}
+								},
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
@@ -3671,36 +3713,6 @@
 							],
 							"sid": 651284826494526,
 							"children": [
-								{
-									"eventType": "variable",
-									"name": "gearToSpawn",
-									"type": "string",
-									"initialValue": "",
-									"comment": "the name of the gear to spawn",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 677555926191230
-								},
-								{
-									"eventType": "variable",
-									"name": "gearToDestroy",
-									"type": "string",
-									"initialValue": "",
-									"comment": "the name of the gear to destroy",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 748934391559680
-								},
-								{
-									"eventType": "variable",
-									"name": "gearToDestroyUID",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "the UID of the gear to destroy",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 889745122437550
-								},
 								{
 									"eventType": "block",
 									"conditions": [

@@ -12382,109 +12382,6 @@
 					"sid": 824913553665963
 				},
 				{
-					"functionName": "spawnShadows",
-					"functionDescription": "Spawn the shadow of an object.",
-					"functionCategory": "world",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": true,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "load-object-images-by-name",
-							"objectClass": "System",
-							"sid": 159158015409562,
-							"parameters": {
-								"object": "hasShadow.ObjectTypeName & \"_shadow\""
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 327283119025874
-						},
-						{
-							"id": "create-object-by-name",
-							"objectClass": "System",
-							"sid": 410672489780992,
-							"parameters": {
-								"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
-								"layer": "hasShadow.LayerName",
-								"x": "hasShadow.X",
-								"y": "hasShadow.Y - 1",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
-						}
-					],
-					"sid": 122326320160649,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-last-created",
-									"objectClass": "System",
-									"sid": 525863493728586,
-									"parameters": {
-										"object": "shadow"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "add-child",
-									"objectClass": "hasShadow",
-									"sid": 576270027747294,
-									"parameters": {
-										"child": "shadow",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": true,
-										"transform-o": true,
-										"transform-z-elevation": true,
-										"transform-visibility": true,
-										"destroy-with-parent": true
-									}
-								},
-								{
-									"id": "set-opacity",
-									"objectClass": "shadow",
-									"sid": 289819008801289,
-									"parameters": {
-										"opacity": "50"
-									}
-								},
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 296351187798779,
-									"parameters": {
-										"effect": "\"BlurHorizontal\"",
-										"parameter-index": "0",
-										"value": "75"
-									}
-								},
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 136782966192810,
-									"parameters": {
-										"effect": "\"BlurVertical\"",
-										"parameter-index": "0",
-										"value": "75"
-									}
-								}
-							],
-							"sid": 252532135846702
-						}
-					]
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -12508,6 +12405,109 @@
 						}
 					],
 					"sid": 559501222679591
+				},
+				{
+					"functionName": "spawnShadows",
+					"functionDescription": "Spawn the shadow of an object.",
+					"functionCategory": "world",
+					"functionReturnType": "none",
+					"functionCopyPicked": true,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "load-object-images-by-name",
+							"objectClass": "System",
+							"sid": 484150809102070,
+							"parameters": {
+								"object": "hasShadow.ObjectTypeName & \"_shadow\""
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 643821352284372
+						},
+						{
+							"id": "create-object-by-name",
+							"objectClass": "System",
+							"sid": 831182460755693,
+							"parameters": {
+								"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
+								"layer": "hasShadow.LayerName",
+								"x": "hasShadow.X",
+								"y": "hasShadow.Y - 1",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 231167600570761,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-last-created",
+									"objectClass": "System",
+									"sid": 358212810680298,
+									"parameters": {
+										"object": "shadow"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-child",
+									"objectClass": "hasShadow",
+									"sid": 274144026742843,
+									"parameters": {
+										"child": "shadow",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": false,
+										"transform-h": false,
+										"transform-a": true,
+										"transform-o": true,
+										"transform-z-elevation": true,
+										"transform-visibility": true,
+										"destroy-with-parent": true
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "shadow",
+									"sid": 259654835352672,
+									"parameters": {
+										"opacity": "50"
+									}
+								},
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "shadow",
+									"sid": 703459349485662,
+									"parameters": {
+										"effect": "\"BlurHorizontal\"",
+										"parameter-index": "0",
+										"value": "75"
+									}
+								},
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "shadow",
+									"sid": 627909877455943,
+									"parameters": {
+										"effect": "\"BlurVertical\"",
+										"parameter-index": "0",
+										"value": "75"
+									}
+								}
+							],
+							"sid": 418516007527361
+						}
+					]
 				}
 			],
 			"sid": 538206850780870

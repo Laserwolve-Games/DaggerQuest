@@ -13658,14 +13658,13 @@
 								"comparison": 0,
 								"second-value": "shadow.Count"
 							}
-						},
-						{
-							"id": "trigger-once-while-true",
-							"objectClass": "System",
-							"sid": 515603203116960
 						}
 					],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "This runs every tick because we haven't found a way to implement what we actually need, \"trigger once while true per layout\""
+						},
 						{
 							"id": "signal",
 							"objectClass": "System",

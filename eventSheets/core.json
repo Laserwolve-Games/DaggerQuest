@@ -3835,66 +3835,12 @@
 											"sid": 247128631608848
 										},
 										{
-											"eventType": "comment",
-											"text": "Destroying the old gear before creating the new one prevents memory spikes, but means the character's naked body appears briefly. The other way around doesn't necessarily mitigate the issue however; we'd hypothetically have to add a hardcoded wait (which would be unreliable across different hardware) since we don't have a way to guarantee that the new gear is actually on screen."
-										},
-										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 830974591164619,
-													"parameters": {
-														"variable": "gearToDestroy",
-														"comparison": 1,
-														"value": "\"\""
-													}
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 704289878977751,
-													"parameters": {
-														"object": "gear",
-														"expression": "gearToDestroy",
-														"comparison": 0,
-														"value": "gear.ObjectTypeName"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "destroy",
-													"objectClass": "gear",
-													"sid": 775515642211963
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 163737558733592,
-													"parameters": {
-														"seconds": "0"
-													}
-												},
-												{
-													"id": "unload-object-images",
-													"objectClass": "System",
-													"sid": 445309866644666,
-													"parameters": {
-														"object": "gear"
-													}
-												}
-											],
-											"sid": 743099863364870
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 459710861052111,
+													"sid": 928960323363946,
 													"parameters": {
 														"variable": "gearToSpawn",
 														"comparison": 1,
@@ -3906,7 +3852,7 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 528314706109549,
+													"sid": 139653619637214,
 													"parameters": {
 														"object-name": "gearToSpawn",
 														"layer": "\"main\"",
@@ -3917,7 +3863,7 @@
 													}
 												}
 											],
-											"sid": 668469683500758,
+											"sid": 591467221652683,
 											"children": [
 												{
 													"eventType": "block",
@@ -3925,7 +3871,7 @@
 														{
 															"id": "pick-last-created",
 															"objectClass": "System",
-															"sid": 323850980706364,
+															"sid": 602617995299142,
 															"parameters": {
 																"object": "gear"
 															}
@@ -3935,7 +3881,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "gear",
-															"sid": 899922761122527,
+															"sid": 589827222558533,
 															"parameters": {
 																"instance-variable": "type",
 																"value": "slot.type"
@@ -3944,7 +3890,7 @@
 														{
 															"id": "add-child",
 															"objectClass": "body",
-															"sid": 884095161917805,
+															"sid": 169474905139976,
 															"parameters": {
 																"child": "gear",
 																"transform-x": true,
@@ -3959,9 +3905,126 @@
 															}
 														}
 													],
-													"sid": 922032984733372
+													"sid": 694850352127487
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 753355824435263,
+															"parameters": {
+																"variable": "gearToDestroy",
+																"comparison": 1,
+																"value": "\"\""
+															}
+														},
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 363683408692614,
+															"parameters": {
+																"object": "gear",
+																"expression": "gearToDestroy",
+																"comparison": 0,
+																"value": "gear.ObjectTypeName"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "If you can't remember why this is like this, you deserve to waste your time refactoring it. It's literally the focal point of this entire game."
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 634528658317567,
+															"parameters": {
+																"seconds": "1"
+															}
+														},
+														{
+															"id": "destroy",
+															"objectClass": "gear",
+															"sid": 567407569457027
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 753874825164837,
+															"parameters": {
+																"seconds": "0"
+															}
+														},
+														{
+															"id": "unload-object-images",
+															"objectClass": "System",
+															"sid": 438281968655457,
+															"parameters": {
+																"object": "gear"
+															}
+														}
+													],
+													"sid": 778440291548320
 												}
 											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 321568539740016
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 600820194381813,
+													"parameters": {
+														"variable": "gearToDestroy",
+														"comparison": 1,
+														"value": "\"\""
+													}
+												},
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 897648944456839,
+													"parameters": {
+														"object": "gear",
+														"expression": "gearToDestroy",
+														"comparison": 0,
+														"value": "gear.ObjectTypeName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "destroy",
+													"objectClass": "gear",
+													"sid": 678251688427623
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 366699544080293,
+													"parameters": {
+														"seconds": "0"
+													}
+												},
+												{
+													"id": "unload-object-images",
+													"objectClass": "System",
+													"sid": 452922120713676,
+													"parameters": {
+														"object": "gear"
+													}
+												}
+											],
+											"sid": 898939573870654
 										}
 									]
 								}

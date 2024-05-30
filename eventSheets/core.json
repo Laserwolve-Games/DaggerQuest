@@ -13857,7 +13857,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 497581204284210,
+									"sid": 441949754457513,
 									"parameters": {
 										"variable": "previousLayout",
 										"comparison": 0,
@@ -13868,16 +13868,16 @@
 							"actions": [
 								{
 									"callFunction": "load",
-									"sid": 979628700487817
+									"sid": 172531787610409
 								},
 								{
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 889391003347667
+									"sid": 214867093560149
 								},
 								{
 									"callFunction": "finishLoading1",
-									"sid": 752999035541916
+									"sid": 581783225169648
 								}
 							],
 							"sid": 313423866928618
@@ -14035,7 +14035,39 @@
 							}
 						}
 					],
-					"sid": 321107227740248
+					"sid": 321107227740248,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 566082354359144,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"farm\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 699339397945750,
+									"parameters": {
+										"audio-file": "The Farm",
+										"loop": "looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "LayoutName"
+									}
+								}
+							],
+							"sid": 654115271341587
+						}
+					]
 				},
 				{
 					"functionName": "load",
@@ -16823,6 +16855,11 @@
 						{
 							"type": "comment",
 							"text": "These have to be saved to variables because the door object will be inaccessible after we change layouts."
+						},
+						{
+							"id": "stop-all",
+							"objectClass": "Audio",
+							"sid": 330743482395389
 						},
 						{
 							"id": "set-visible",

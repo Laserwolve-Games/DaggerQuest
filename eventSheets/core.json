@@ -6156,6 +6156,61 @@
 														{
 															"id": "compare-two-values",
 															"objectClass": "System",
+															"sid": 199618677977918,
+															"parameters": {
+																"first-value": "round(random(2))",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "play",
+															"objectClass": "Audio",
+															"sid": 562255169006725,
+															"parameters": {
+																"audio-file": "swordSwoosh1",
+																"loop": "not-looping",
+																"volume": "0",
+																"stereo-pan": "0",
+																"tag-optional": "\"\""
+															}
+														}
+													],
+													"sid": 162780025015956
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 703669893139337
+														}
+													],
+													"actions": [
+														{
+															"id": "play",
+															"objectClass": "Audio",
+															"sid": 627941319946469,
+															"parameters": {
+																"audio-file": "swordSwoosh2",
+																"loop": "not-looping",
+																"volume": "0",
+																"stereo-pan": "0",
+																"tag-optional": "\"\""
+															}
+														}
+													],
+													"sid": 805094798452604
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
 															"sid": 390178444282015,
 															"parameters": {
 																"first-value": "find(body.AnimationName, \"block\")",
@@ -6663,6 +6718,61 @@
 											],
 											"sid": 711031212314139,
 											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 263379217329999,
+															"parameters": {
+																"first-value": "round(random(2))",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "play",
+															"objectClass": "Audio",
+															"sid": 795420009696490,
+															"parameters": {
+																"audio-file": "swordSwoosh3",
+																"loop": "not-looping",
+																"volume": "0",
+																"stereo-pan": "0",
+																"tag-optional": "\"\""
+															}
+														}
+													],
+													"sid": 303192365633576
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 518708703939679
+														}
+													],
+													"actions": [
+														{
+															"id": "play",
+															"objectClass": "Audio",
+															"sid": 868840170455406,
+															"parameters": {
+																"audio-file": "swordSwoosh4",
+																"loop": "not-looping",
+																"volume": "0",
+																"stereo-pan": "0",
+																"tag-optional": "\"\""
+															}
+														}
+													],
+													"sid": 136819374604402
+												},
 												{
 													"eventType": "block",
 													"conditions": [

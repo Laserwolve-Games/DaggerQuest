@@ -5038,6 +5038,93 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 567004765579368,
+											"parameters": {
+												"first-value": "find(body.AnimationName, \"walk\")\n",
+												"comparison": 1,
+												"second-value": "-1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 411372396119511,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-animation-frame",
+													"objectClass": "body",
+													"sid": 967087257732985,
+													"parameters": {
+														"comparison": 0,
+														"number": "10"
+													}
+												},
+												{
+													"id": "trigger-once-while-true",
+													"objectClass": "System",
+													"sid": 289895318177335
+												}
+											],
+											"actions": [
+												{
+													"id": "play",
+													"objectClass": "Audio",
+													"sid": 360994679111508,
+													"parameters": {
+														"audio-file": "dirtFootstep1",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
+												}
+											],
+											"sid": 462888090850680
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-animation-frame",
+													"objectClass": "body",
+													"sid": 246511683996633,
+													"parameters": {
+														"comparison": 0,
+														"number": "25"
+													}
+												},
+												{
+													"id": "trigger-once-while-true",
+													"objectClass": "System",
+													"sid": 402546216458844
+												}
+											],
+											"actions": [
+												{
+													"id": "play",
+													"objectClass": "Audio",
+													"sid": 663415633140114,
+													"parameters": {
+														"audio-file": "dirtFootstep2",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
+												}
+											],
+											"sid": 567136850851248
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
 											"sid": 844520078268042,
@@ -14055,11 +14142,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 699339397945750,
+									"sid": 910200860729658,
 									"parameters": {
 										"audio-file": "The Farm",
 										"loop": "looping",
-										"volume": "0",
+										"volume": "-10",
 										"stereo-pan": "0",
 										"tag-optional": "LayoutName"
 									}

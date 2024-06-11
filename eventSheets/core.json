@@ -316,6 +316,22 @@
 									}
 								},
 								{
+									"type": "comment",
+									"text": "TODO: This will need a refactor for chaining dialogs"
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 812468966864708,
+									"parameters": {
+										"audio-file": "welcomeToDaggerquest",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"dialog\""
+									}
+								},
+								{
 									"id": "wait",
 									"objectClass": "System",
 									"sid": 169684764025575,
@@ -551,6 +567,17 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 955868083870139,
+							"parameters": {
+								"tag": "\"dialog\"",
+								"db": "-100",
+								"duration": ".2",
+								"ending": "stop"
+							}
+						},
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
@@ -5048,7 +5075,12 @@
 											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "we could use frame tags to tag the footsteps frame appropriately, and then compare the current frame's tag instead of the raw frame number, but we'd have to write a tool to bulk update frame tags"
+										}
+									],
 									"sid": 411372396119511,
 									"children": [
 										{
@@ -5071,11 +5103,12 @@
 											],
 											"actions": [
 												{
-													"id": "play",
+													"id": "play-by-name",
 													"objectClass": "Audio",
-													"sid": 360994679111508,
+													"sid": 871211693609295,
 													"parameters": {
-														"audio-file": "dirtFootstep1",
+														"folder": "sounds",
+														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
 														"volume": "0",
 														"stereo-pan": "0",
@@ -5105,11 +5138,12 @@
 											],
 											"actions": [
 												{
-													"id": "play",
+													"id": "play-by-name",
 													"objectClass": "Audio",
-													"sid": 663415633140114,
+													"sid": 954593586777123,
 													"parameters": {
-														"audio-file": "dirtFootstep2",
+														"folder": "sounds",
+														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
 														"loop": "not-looping",
 														"volume": "0",
 														"stereo-pan": "0",
@@ -6146,65 +6180,23 @@
 													"parameters": {
 														"seconds": "waitPeriod"
 													}
+												},
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 627908435321763,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "\"basicAttack\" & round(random(1))",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
 												}
 											],
 											"sid": 949182900975683,
 											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 199618677977918,
-															"parameters": {
-																"first-value": "round(random(2))",
-																"comparison": 0,
-																"second-value": "1"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "play",
-															"objectClass": "Audio",
-															"sid": 562255169006725,
-															"parameters": {
-																"audio-file": "swordSwoosh1",
-																"loop": "not-looping",
-																"volume": "0",
-																"stereo-pan": "0",
-																"tag-optional": "\"\""
-															}
-														}
-													],
-													"sid": 162780025015956
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 703669893139337
-														}
-													],
-													"actions": [
-														{
-															"id": "play",
-															"objectClass": "Audio",
-															"sid": 627941319946469,
-															"parameters": {
-																"audio-file": "swordSwoosh2",
-																"loop": "not-looping",
-																"volume": "0",
-																"stereo-pan": "0",
-																"tag-optional": "\"\""
-															}
-														}
-													],
-													"sid": 805094798452604
-												},
 												{
 													"eventType": "block",
 													"conditions": [
@@ -6714,65 +6706,23 @@
 													"parameters": {
 														"seconds": "waitPeriod"
 													}
+												},
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 787390104336117,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "\"heroicStrike\" & round(random(1))",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
 												}
 											],
 											"sid": 711031212314139,
 											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 263379217329999,
-															"parameters": {
-																"first-value": "round(random(2))",
-																"comparison": 0,
-																"second-value": "1"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "play",
-															"objectClass": "Audio",
-															"sid": 795420009696490,
-															"parameters": {
-																"audio-file": "swordSwoosh3",
-																"loop": "not-looping",
-																"volume": "0",
-																"stereo-pan": "0",
-																"tag-optional": "\"\""
-															}
-														}
-													],
-													"sid": 303192365633576
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 518708703939679
-														}
-													],
-													"actions": [
-														{
-															"id": "play",
-															"objectClass": "Audio",
-															"sid": 868840170455406,
-															"parameters": {
-																"audio-file": "swordSwoosh4",
-																"loop": "not-looping",
-																"volume": "0",
-																"stereo-pan": "0",
-																"tag-optional": "\"\""
-															}
-														}
-													],
-													"sid": 136819374604402
-												},
 												{
 													"eventType": "block",
 													"conditions": [
@@ -10851,6 +10801,95 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 208295220324639,
+											"parameters": {
+												"first-value": "find(enemyBody.AnimationName, \"walk\")\n",
+												"comparison": 1,
+												"second-value": "-1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 954751649253547,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-animation-frame",
+													"objectClass": "enemyBody",
+													"sid": 816092722648360,
+													"parameters": {
+														"comparison": 0,
+														"number": "13"
+													}
+												},
+												{
+													"id": "trigger-once-while-true",
+													"objectClass": "System",
+													"sid": 680416264464975
+												}
+											],
+											"actions": [
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 536212077886851,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
+												}
+											],
+											"sid": 633622757363681
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-animation-frame",
+													"objectClass": "enemyBody",
+													"sid": 252274796850433,
+													"parameters": {
+														"comparison": 0,
+														"number": "33"
+													}
+												},
+												{
+													"id": "trigger-once-while-true",
+													"objectClass": "System",
+													"sid": 267080386260004
+												}
+											],
+											"actions": [
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 277509138376754,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "\"\""
+													}
+												}
+											],
+											"sid": 880617534244316
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "on-arrived",
 											"objectClass": "enemy",
 											"sid": 885313538967121,
@@ -12578,6 +12617,18 @@
 																		"transform-visibility": false,
 																		"destroy-with-parent": true
 																	}
+																},
+																{
+																	"id": "play",
+																	"objectClass": "Audio",
+																	"sid": 282292364494313,
+																	"parameters": {
+																		"audio-file": "lightningOrb",
+																		"loop": "looping",
+																		"volume": "0",
+																		"stereo-pan": "0",
+																		"tag-optional": "str(projectile.IID)"
+																	}
 																}
 															],
 															"sid": 580403643807865
@@ -12779,6 +12830,27 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-destroyed",
+							"objectClass": "projectile",
+							"sid": 866847254131652
+						}
+					],
+					"actions": [
+						{
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 972199210143218,
+							"parameters": {
+								"tag": "str(projectile.IID)"
+							}
+						}
+					],
+					"sid": 852865633208779
+				},
 				{
 					"eventType": "block",
 					"conditions": [

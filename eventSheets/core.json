@@ -5103,15 +5103,18 @@
 											],
 											"actions": [
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 871211693609295,
+													"sid": 678395719565539,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "body",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -5138,15 +5141,18 @@
 											],
 											"actions": [
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 954593586777123,
+													"sid": 696434163387089,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "body",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -6182,15 +6188,18 @@
 													}
 												},
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 627908435321763,
+													"sid": 497705826848879,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "\"basicAttack\" & round(random(1))",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "gear",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -6708,15 +6717,18 @@
 													}
 												},
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 787390104336117,
+													"sid": 500587264791376,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "\"heroicStrike\" & round(random(1))",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "gear",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -10834,15 +10846,18 @@
 											],
 											"actions": [
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 536212077886851,
+													"sid": 382318423638994,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "enemyBody",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -10869,15 +10884,18 @@
 											],
 											"actions": [
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 277509138376754,
+													"sid": 610048696104273,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
+														"object": "enemyBody",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
 														"tag-optional": "\"\""
 													}
 												}
@@ -11862,6 +11880,22 @@
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}
+										},
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "Audio",
+											"sid": 205081329635772,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "\"basicAttack\" & round(random(1))",
+												"loop": "not-looping",
+												"volume": "0",
+												"object": "enemyBody",
+												"inner-angle": "360",
+												"outer-angle": "360",
+												"outer-gain": "0",
+												"tag-optional": "\"\""
+											}
 										}
 									],
 									"sid": 637095266380560,
@@ -12308,14 +12342,17 @@
 																	}
 																},
 																{
-																	"id": "play",
+																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 669876632905005,
+																	"sid": 936442780199264,
 																	"parameters": {
 																		"audio-file": "arrowShot",
 																		"loop": "not-looping",
 																		"volume": "0",
-																		"stereo-pan": "0",
+																		"object": "crossbowBolt",
+																		"inner-angle": "360",
+																		"outer-angle": "360",
+																		"outer-gain": "0",
 																		"tag-optional": "\"\""
 																	}
 																}
@@ -12631,14 +12668,17 @@
 																	}
 																},
 																{
-																	"id": "play",
+																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 282292364494313,
+																	"sid": 849616309913054,
 																	"parameters": {
 																		"audio-file": "lightningOrb",
 																		"loop": "looping",
 																		"volume": "0",
-																		"stereo-pan": "0",
+																		"object": "lightningOrb",
+																		"inner-angle": "360",
+																		"outer-angle": "360",
+																		"outer-gain": "0",
 																		"tag-optional": "str(projectile.IID)"
 																	}
 																}
@@ -14336,11 +14376,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 910200860729658,
+									"sid": 276028132802232,
 									"parameters": {
 										"audio-file": "The Farm",
 										"loop": "looping",
-										"volume": "-10",
+										"volume": "-20",
 										"stereo-pan": "0",
 										"tag-optional": "LayoutName"
 									}
@@ -15006,6 +15046,14 @@
 									"parameters": {
 										"animation": "\"idleUnarmed_90\"",
 										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-listener-object",
+									"objectClass": "Audio",
+									"sid": 128617689342094,
+									"parameters": {
+										"object": "body"
 									}
 								}
 							],
@@ -17233,6 +17281,48 @@
 						}
 					],
 					"sid": 235939344330391
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "windmillFan",
+							"sid": 667520165331960,
+							"parameters": {
+								"comparison": 0,
+								"number": "0"
+							}
+						},
+						{
+							"id": "is-on-screen",
+							"objectClass": "windmillFan",
+							"sid": 820084520295241
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 743795091332959
+						}
+					],
+					"actions": [
+						{
+							"id": "play-at-object",
+							"objectClass": "Audio",
+							"sid": 131944976187950,
+							"parameters": {
+								"audio-file": "windmill",
+								"loop": "not-looping",
+								"volume": "0",
+								"object": "windmillFan",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 629246997832647
 				}
 			],
 			"sid": 992252066588856

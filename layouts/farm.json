@@ -428,7 +428,7 @@
 											"z": false,
 											"w": true,
 											"h": true,
-											"a": true,
+											"a": false,
 											"o": false,
 											"v": false,
 											"d": true,
@@ -576,18 +576,18 @@
 							"uid": 230,
 							"instanceVariables": {
 								"simpleName": "goblinUnderling",
-								"fullName": "",
-								"type": "",
+								"fullName": "Goblin Underling",
+								"type": "Goblin",
 								"idleX": 0,
 								"idleY": 0,
-								"movementSpeed": 0,
+								"movementSpeed": 300,
 								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
+								"attributes": "Unflinching",
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 10,
+								"slashDamage": 7,
 								"smashDamage": 0,
 								"stabDamage": 0,
 								"coldDamage": 0,
@@ -595,7 +595,7 @@
 								"lightningDamage": 0,
 								"arcaneDamage": 0,
 								"corruptDamage": 0,
-								"attackRange": 0,
+								"attackRange": 150,
 								"physicalResistance": 0,
 								"coldResistance": 0,
 								"fireResistance": 0,
@@ -642,6 +642,51 @@
 										"cone-of-view": 360,
 										"use-collision-cells": true
 									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 230,
+								"children": [
+									{
+										"uid": 350,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
 								}
 							},
 							"world": {
@@ -670,23 +715,23 @@
 								"enable-collisions": true,
 								"live-preview": false
 							},
-							"uid": 231,
+							"uid": 233,
 							"instanceVariables": {
-								"simpleName": "goblinUnderling",
-								"fullName": "",
-								"type": "",
+								"simpleName": "goblinArcher",
+								"fullName": "Goblin Archer",
+								"type": "Goblin",
 								"idleX": 0,
 								"idleY": 0,
-								"movementSpeed": 0,
+								"movementSpeed": 300,
 								"degrees": 0,
 								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 9,
 								"slashDamage": 0,
 								"smashDamage": 0,
-								"stabDamage": 0,
+								"stabDamage": 10,
 								"coldDamage": 0,
 								"fireDamage": 0,
 								"lightningDamage": 0,
@@ -741,106 +786,54 @@
 									}
 								}
 							},
-							"world": {
-								"x": 3257,
-								"y": 704,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 233,
+								"children": [
+									{
+										"uid": 235,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
 								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "enemy",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 233,
-							"instanceVariables": {
-								"simpleName": "goblinArcher",
-								"fullName": "",
-								"type": "",
-								"idleX": 0,
-								"idleY": 0,
-								"movementSpeed": 0,
-								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"corruptDamage": 0,
-								"attackRange": 0,
-								"physicalResistance": 0,
-								"coldResistance": 0,
-								"fireResistance": 0,
-								"lightningResistance": 0,
-								"arcaneResistance": 0,
-								"holyResistance": 0,
-								"attacking": false,
-								"hit": false,
-								"rerouting": "no"
-							},
-							"behaviors": {
-								"MoveTo": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": true,
-										"enabled": true
-									}
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
 								},
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"LineOfSight": {
-									"properties": {
-										"obstacles": "solids",
-										"range": 10000,
-										"cone-of-view": 360,
-										"use-collision-cells": true
-									}
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
 								}
 							},
 							"world": {
 								"x": 3002,
-								"y": 204,
+								"y": 304,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -867,26 +860,26 @@
 							"uid": 234,
 							"instanceVariables": {
 								"simpleName": "goblinWarlock",
-								"fullName": "",
-								"type": "",
+								"fullName": "Goblin Warlock",
+								"type": "Goblin",
 								"idleX": 0,
 								"idleY": 0,
-								"movementSpeed": 0,
+								"movementSpeed": 300,
 								"degrees": 0,
 								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 10,
 								"slashDamage": 0,
 								"smashDamage": 0,
 								"stabDamage": 0,
 								"coldDamage": 0,
 								"fireDamage": 0,
-								"lightningDamage": 0,
+								"lightningDamage": 11,
 								"arcaneDamage": 0,
 								"corruptDamage": 0,
-								"attackRange": 0,
+								"attackRange": 300,
 								"physicalResistance": 0,
 								"coldResistance": 0,
 								"fireResistance": 0,
@@ -933,108 +926,56 @@
 										"cone-of-view": 360,
 										"use-collision-cells": true
 									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 234,
+								"children": [
+									{
+										"uid": 348,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": true,
+											"h": true,
+											"a": false,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
 								}
 							},
 							"world": {
 								"x": 1210,
 								"y": 1455,
-								"width": 78,
-								"height": 26,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "enemy",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 235,
-							"instanceVariables": {
-								"simpleName": "goblinArcher",
-								"fullName": "",
-								"type": "",
-								"idleX": 0,
-								"idleY": 0,
-								"movementSpeed": 0,
-								"degrees": 0,
-								"attributes": "",
-								"experience": 0,
-								"currentHealth": 0,
-								"maxHealth": 0,
-								"attackSpeed": 0,
-								"slashDamage": 0,
-								"smashDamage": 0,
-								"stabDamage": 0,
-								"coldDamage": 0,
-								"fireDamage": 0,
-								"lightningDamage": 0,
-								"arcaneDamage": 0,
-								"corruptDamage": 0,
-								"attackRange": 0,
-								"physicalResistance": 0,
-								"coldResistance": 0,
-								"fireResistance": 0,
-								"lightningResistance": 0,
-								"arcaneResistance": 0,
-								"holyResistance": 0,
-								"attacking": false,
-								"hit": false,
-								"rerouting": "no"
-							},
-							"behaviors": {
-								"MoveTo": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": true,
-										"enabled": true
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								},
-								"knockback": {
-									"properties": {
-										"max-speed": 200,
-										"acceleration": 0,
-										"deceleration": 0,
-										"rotate-speed": 0,
-										"set-angle": false,
-										"stop-on-solids": false,
-										"enabled": true
-									}
-								},
-								"LineOfSight": {
-									"properties": {
-										"obstacles": "solids",
-										"range": 10000,
-										"cone-of-view": 360,
-										"use-collision-cells": true
-									}
-								}
-							},
-							"world": {
-								"x": 3562,
-								"y": 310,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -4192,7 +4133,7 @@
 							"z": false,
 							"w": true,
 							"h": true,
-							"a": true,
+							"a": false,
 							"o": false,
 							"v": false,
 							"d": true,
@@ -4519,6 +4460,768 @@
 						"height": 211,
 						"originX": 0.5930232558139535,
 						"originY": 0.909952606635071,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinWarlock_shadow",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "attack_-112.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 349,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {},
+					"effects": {
+						"BlurHorizontal": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						},
+						"BlurVertical": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 348,
+						"uid": 349,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": true,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 1210,
+						"y": 1455,
+						"width": 196,
+						"height": 135,
+						"originX": 0.6785714285714286,
+						"originY": 0.6518518518518519,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinWarlock",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_90",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 348,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 234,
+						"uid": 348,
+						"children": [
+							{
+								"uid": 349,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": false,
+							"w": true,
+							"h": true,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 1210,
+						"y": 1455,
+						"width": 127,
+						"height": 159,
+						"originX": 0.33070866141732286,
+						"originY": 0.8553459119496856,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinUnderling_shadow",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "attack_-112.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 351,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {},
+					"effects": {
+						"BlurHorizontal": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						},
+						"BlurVertical": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 350,
+						"uid": 351,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": true,
+							"o": true,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2752,
+						"y": 812,
+						"width": 194,
+						"height": 87,
+						"originX": 0.8402061855670103,
+						"originY": 0.896551724137931,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinUnderling",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_90",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 350,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 230,
+						"uid": 350,
+						"children": [
+							{
+								"uid": 351,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2752,
+						"y": 812,
+						"width": 94,
+						"height": 152,
+						"originX": 0.5531914893617021,
+						"originY": 0.875,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "enemy",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 231,
+					"instanceVariables": {
+						"simpleName": "goblinUnderling",
+						"fullName": "Goblin Underling",
+						"type": "Goblin",
+						"idleX": 0,
+						"idleY": 0,
+						"movementSpeed": 300,
+						"degrees": 0,
+						"attributes": "Unflinching",
+						"experience": 50,
+						"currentHealth": 10,
+						"maxHealth": 10,
+						"attackSpeed": 10,
+						"slashDamage": 7,
+						"smashDamage": 0,
+						"stabDamage": 0,
+						"coldDamage": 0,
+						"fireDamage": 0,
+						"lightningDamage": 0,
+						"arcaneDamage": 0,
+						"corruptDamage": 0,
+						"attackRange": 150,
+						"physicalResistance": 0,
+						"coldResistance": 0,
+						"fireResistance": 0,
+						"lightningResistance": 0,
+						"arcaneResistance": 0,
+						"holyResistance": 0,
+						"attacking": false,
+						"hit": false,
+						"rerouting": "no"
+					},
+					"behaviors": {
+						"MoveTo": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 0,
+								"deceleration": 0,
+								"rotate-speed": 0,
+								"set-angle": false,
+								"stop-on-solids": true,
+								"enabled": true
+							}
+						},
+						"Solid": {
+							"properties": {
+								"enabled": true,
+								"tags": ""
+							}
+						},
+						"knockback": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 0,
+								"deceleration": 0,
+								"rotate-speed": 0,
+								"set-angle": false,
+								"stop-on-solids": false,
+								"enabled": true
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "solids",
+								"range": 10000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 231,
+						"children": [
+							{
+								"uid": 353,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 3210,
+						"y": 946,
+						"width": 78,
+						"height": 26,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinUnderling_shadow",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "attack_-112.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 352,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {},
+					"effects": {
+						"BlurHorizontal": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						},
+						"BlurVertical": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 353,
+						"uid": 352,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": true,
+							"o": true,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 3210,
+						"y": 946,
+						"width": 194,
+						"height": 87,
+						"originX": 0.8402061855670103,
+						"originY": 0.896551724137931,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinUnderling",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_90",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 353,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 231,
+						"uid": 353,
+						"children": [
+							{
+								"uid": 352,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 3210,
+						"y": 946,
+						"width": 94,
+						"height": 152,
+						"originX": 0.5531914893617021,
+						"originY": 0.875,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinArcher_shadow",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "attack_-112.5",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 354,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {},
+					"effects": {
+						"BlurHorizontal": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						},
+						"BlurVertical": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 1
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 235,
+						"uid": 354,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": false,
+							"h": false,
+							"a": true,
+							"o": true,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 3002,
+						"y": 304,
+						"width": 183,
+						"height": 96,
+						"originX": 0.7377049180327869,
+						"originY": 0.8645833333333334,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinArcher",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_90",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 235,
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 233,
+						"uid": 235,
+						"children": [
+							{
+								"uid": 354,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": false,
+									"h": false,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 3002,
+						"y": 304,
+						"width": 101,
+						"height": 168,
+						"originX": 0.43564356435643564,
+						"originY": 0.8690476190476191,
 						"color": [
 							1,
 							1,

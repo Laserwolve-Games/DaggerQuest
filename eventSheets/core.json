@@ -3839,32 +3839,6 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 615218491138260
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "if there's no gear or item, that means the game has just started, and we just need to spawn default gear"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 871569503498455,
-													"parameters": {
-														"variable": "gearToSpawn",
-														"value": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
-													}
-												}
-											],
-											"sid": 247128631608848
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
 													"sid": 928960323363946,
@@ -12761,13 +12735,48 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 559501222679591,
+					"children": [
 						{
-							"callFunction": "spawnShadows",
-							"sid": 861273562752085
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "hasShadow",
+									"sid": 229157054686219,
+									"parameters": {
+										"child": "shadow",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If this object already has a shadow, do nothing"
+								}
+							],
+							"sid": 306819096486497
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 710553164941548
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "spawnShadows",
+									"sid": 475098654613508
+								}
+							],
+							"sid": 922237215237393
 						}
-					],
-					"sid": 559501222679591
+					]
 				},
 				{
 					"functionName": "spawnShadows",
@@ -12838,39 +12847,52 @@
 										"transform-visibility": true,
 										"destroy-with-parent": true
 									}
-								},
-								{
-									"id": "set-opacity",
-									"objectClass": "shadow",
-									"sid": 259654835352672,
-									"parameters": {
-										"opacity": "50"
-									}
-								},
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 703459349485662,
-									"parameters": {
-										"effect": "\"BlurHorizontal\"",
-										"parameter-index": "0",
-										"value": "75"
-									}
-								},
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 627909877455943,
-									"parameters": {
-										"effect": "\"BlurVertical\"",
-										"parameter-index": "0",
-										"value": "75"
-									}
 								}
 							],
 							"sid": 418516007527361
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "shadow",
+							"sid": 726851021711244
+						}
+					],
+					"actions": [
+						{
+							"id": "set-opacity",
+							"objectClass": "shadow",
+							"sid": 168204375862268,
+							"parameters": {
+								"opacity": "50"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "shadow",
+							"sid": 569611365168761,
+							"parameters": {
+								"effect": "\"BlurHorizontal\"",
+								"parameter-index": "0",
+								"value": "75"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "shadow",
+							"sid": 308117943008354,
+							"parameters": {
+								"effect": "\"BlurVertical\"",
+								"parameter-index": "0",
+								"value": "75"
+							}
+						}
+					],
+					"sid": 784344448043891
 				}
 			],
 			"sid": 538206850780870
@@ -14723,32 +14745,6 @@
 							}
 						},
 						{
-							"id": "load-object-images-by-name",
-							"objectClass": "System",
-							"sid": 592263512784190,
-							"parameters": {
-								"object": "player.class"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 889793153000775
-						},
-						{
-							"id": "create-object-by-name",
-							"objectClass": "System",
-							"sid": 516693142745191,
-							"parameters": {
-								"object-name": "player.class",
-								"layer": "\"main\"",
-								"x": "player.X",
-								"y": "player.Y",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
-						},
-						{
 							"id": "setProbabilityTable",
 							"objectClass": "advancedRandom",
 							"sid": 623678195648103,
@@ -15319,83 +15315,6 @@
 					"actions": [],
 					"sid": 655603239289141,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 516551735037452,
-									"parameters": {
-										"object": "npc"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "load-object-images-by-name",
-									"objectClass": "System",
-									"sid": 242928692035216,
-									"parameters": {
-										"object": "npc.simpleName"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 653569005219897
-								},
-								{
-									"id": "create-object-by-name",
-									"objectClass": "System",
-									"sid": 298518244945483,
-									"parameters": {
-										"object-name": "npc.simpleName",
-										"layer": "\"main\"",
-										"x": "npc.X",
-										"y": "npc.Y",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								}
-							],
-							"sid": 968825910500027,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 905214668569085,
-											"parameters": {
-												"object": "npcBody"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "add-child",
-											"objectClass": "npc",
-											"sid": 655095931274831,
-											"parameters": {
-												"child": "npcBody",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": false,
-												"transform-h": false,
-												"transform-a": false,
-												"transform-o": false,
-												"transform-z-elevation": false,
-												"transform-visibility": false,
-												"destroy-with-parent": false
-											}
-										}
-									],
-									"sid": 398438525605865
-								}
-							]
-						},
 						{
 							"eventType": "comment",
 							"text": "Create enemies"

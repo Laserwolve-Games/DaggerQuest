@@ -8161,109 +8161,6 @@
 				{
 					"eventType": "group",
 					"disabled": false,
-					"title": "settings",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 746906379460318,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "shadows"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "TODO: If this checkbox gets spammed, it might cause problems"
-								}
-							],
-							"sid": 244022475371789,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-animation-playing",
-											"objectClass": "shadows",
-											"sid": 197983694177942,
-											"parameters": {
-												"animation": "\"checked\""
-											}
-										},
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 447832580895870,
-											"parameters": {
-												"object": "hasShadow"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "spawnShadows",
-											"sid": 836230612106996
-										}
-									],
-									"sid": 151709082605452
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-animation-playing",
-											"objectClass": "shadows",
-											"sid": 410173119622418,
-											"parameters": {
-												"animation": "\"unchecked\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "destroy",
-											"objectClass": "shadow",
-											"sid": 920179466175367
-										},
-										{
-											"type": "comment",
-											"text": "a wait 0 here being the official recommended way to unload images after destroying them, according to the manual"
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 183045845632500,
-											"parameters": {
-												"seconds": "0"
-											}
-										},
-										{
-											"id": "unload-object-images",
-											"objectClass": "System",
-											"sid": 111126715296548,
-											"parameters": {
-												"object": "shadow"
-											}
-										}
-									],
-									"sid": 606708545399068
-								}
-							]
-						}
-					],
-					"sid": 594124344109029
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
 					"title": "ability bar",
 					"description": "",
 					"isActiveOnStart": true,
@@ -12769,14 +12666,6 @@
 							"id": "on-created",
 							"objectClass": "hasShadow",
 							"sid": 460073097317385
-						},
-						{
-							"id": "is-animation-playing",
-							"objectClass": "shadows",
-							"sid": 686604742716400,
-							"parameters": {
-								"animation": "\"checked\""
-							}
 						}
 					],
 					"actions": [],

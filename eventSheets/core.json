@@ -14093,39 +14093,9 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "initialization",
-			"description": "",
+			"description": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too.",
 			"isActiveOnStart": true,
 			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 736058761957064,
-							"parameters": {
-								"first-value": "hasShadow.Count",
-								"comparison": 0,
-								"second-value": "shadow.Count"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "This runs every tick because we haven't found a way to implement what we actually need, \"trigger once while true per layout\""
-						},
-						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 426367471979244,
-							"parameters": {
-								"tag": "\"shadows have loaded\""
-							}
-						}
-					],
-					"sid": 609487433870841
-				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -14138,41 +14108,6 @@
 					"actions": [],
 					"sid": 803419978161680,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-in-preview",
-									"objectClass": "System",
-									"sid": 793697092263258
-								}
-							],
-							"actions": [
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 852802601552517,
-									"parameters": {
-										"layer": "\"mechanics\"",
-										"visibility": "visible"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "'areas' is a separate layer only for editor QoL"
-								},
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 736136585495760,
-									"parameters": {
-										"layer": "\"areas\"",
-										"visibility": "visible"
-									}
-								}
-							],
-							"sid": 700099437768094
-						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -14240,34 +14175,56 @@
 										"comparison": 0,
 										"second-value": "\"farm\""
 									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 441949754457513,
-									"parameters": {
-										"variable": "previousLayout",
-										"comparison": 0,
-										"value": "\"mainMenu\""
-									}
 								}
 							],
 							"actions": [
 								{
-									"callFunction": "load",
-									"sid": 172531787610409
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 214867093560149
-								},
-								{
-									"callFunction": "finishLoading1",
-									"sid": 581783225169648
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 153787979218908,
+									"parameters": {
+										"audio-file": "Main Theme",
+										"loop": "looping",
+										"volume": "-10",
+										"stereo-pan": "0",
+										"tag-optional": "LayoutName"
+									}
 								}
 							],
-							"sid": 313423866928618
+							"sid": 313423866928618,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 480858954622038,
+											"parameters": {
+												"variable": "previousLayout",
+												"comparison": 0,
+												"value": "\"mainMenu\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "load",
+											"sid": 104172091472640
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 461245072892059
+										},
+										{
+											"callFunction": "finishLoading1",
+											"sid": 507498899521312
+										}
+									],
+									"sid": 730314262015963
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -14298,71 +14255,11 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
-					"sid": 560596547835359,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-animation-playing",
-									"objectClass": "shadows",
-									"sid": 990450802376433,
-									"parameters": {
-										"animation": "\"checked\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "wait-for-signal",
-									"objectClass": "System",
-									"sid": 714350059363085,
-									"parameters": {
-										"tag": "\"shadows have loaded\""
-									}
-								},
-								{
-									"callFunction": "finishLoading2",
-									"sid": 302017078913490
-								}
-							],
-							"sid": 510864506818469
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 354976304445481
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "finishLoading2",
-									"sid": 788146386989759
-								}
-							],
-							"sid": 276390569487426
-						}
-					]
-				},
-				{
-					"functionName": "finishLoading2",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
 					"actions": [
 						{
 							"id": "set-visible",
 							"objectClass": "loadingScreen",
-							"sid": 828212369123037,
+							"sid": 127537027413624,
 							"parameters": {
 								"visibility": "invisible"
 							}
@@ -14370,7 +14267,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 813618367214729,
+							"sid": 106001036882143,
 							"parameters": {
 								"layer": "\"main\"",
 								"interactive": true
@@ -14379,7 +14276,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 641200977947370,
+							"sid": 835678758909524,
 							"parameters": {
 								"layer": "\"background\"",
 								"interactive": true
@@ -14388,7 +14285,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 146762918365601,
+							"sid": 462732394409401,
 							"parameters": {
 								"layer": "\"abilityBar\"",
 								"interactive": true
@@ -14397,7 +14294,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 555322228575380,
+							"sid": 510847722698576,
 							"parameters": {
 								"layer": "\"orbs\"",
 								"interactive": true
@@ -14406,46 +14303,14 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 992097775003463,
+							"sid": 209199971977099,
 							"parameters": {
 								"layer": "\"mechanics\"",
 								"interactive": true
 							}
 						}
 					],
-					"sid": 321107227740248,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 566082354359144,
-									"parameters": {
-										"first-value": "LayoutName",
-										"comparison": 0,
-										"second-value": "\"farm\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 276028132802232,
-									"parameters": {
-										"audio-file": "The Farm",
-										"loop": "looping",
-										"volume": "-20",
-										"stereo-pan": "0",
-										"tag-optional": "LayoutName"
-									}
-								}
-							],
-							"sid": 654115271341587
-						}
-					]
+					"sid": 560596547835359
 				},
 				{
 					"functionName": "load",
@@ -14741,12 +14606,11 @@
 							}
 						},
 						{
-							"id": "set-moving-angle",
-							"objectClass": "player",
-							"sid": 449219917559174,
-							"behaviorType": "MoveTo",
+							"id": "set-listener-object",
+							"objectClass": "Audio",
+							"sid": 140167563719454,
 							"parameters": {
-								"angle": "QUARTER_CIRCLE"
+								"object": "body"
 							}
 						},
 						{
@@ -14926,289 +14790,6 @@
 										}
 									],
 									"sid": 419233956947461
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Create the player and abilities"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-last-created",
-									"objectClass": "System",
-									"sid": 833088231822802,
-									"parameters": {
-										"object": "body"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "add-child",
-									"objectClass": "player",
-									"sid": 478290303396000,
-									"parameters": {
-										"child": "body",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": false
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "body",
-									"sid": 381529176035671,
-									"parameters": {
-										"animation": "\"idleUnarmed_90\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-listener-object",
-									"objectClass": "Audio",
-									"sid": 128617689342094,
-									"parameters": {
-										"object": "body"
-									}
-								}
-							],
-							"sid": 955985015402344,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 910067669554608,
-											"parameters": {
-												"object": "abilitySlot"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "for each ability cover, create the appropriate ability on the same layer as that cover"
-										},
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 740740986270441,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_ability\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 345631182077315
-										},
-										{
-											"id": "create-object-by-name",
-											"objectClass": "System",
-											"sid": 630695246886363,
-											"parameters": {
-												"object-name": "body.ObjectTypeName & \"_ability\"",
-												"layer": "abilitySlot.LayerName",
-												"x": "abilitySlot.X",
-												"y": "abilitySlot.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 413159530480791,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 196031294098691,
-													"parameters": {
-														"object": "ability"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "move-to-bottom",
-													"objectClass": "ability",
-													"sid": 201389029898242
-												},
-												{
-													"id": "set-effect-enabled",
-													"objectClass": "ability",
-													"sid": 548903170872779,
-													"parameters": {
-														"mode": "disable",
-														"effect": "\"Grayscale\""
-													}
-												},
-												{
-													"id": "set-effect-parameter",
-													"objectClass": "ability",
-													"sid": 851461370169948,
-													"parameters": {
-														"effect": "\"Grayscale\"",
-														"parameter-index": "0",
-														"value": "100"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "abilitySlot",
-													"sid": 920361376648274,
-													"parameters": {
-														"child": "ability",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": true,
-														"transform-h": true,
-														"transform-a": true,
-														"transform-o": false,
-														"transform-z-elevation": true,
-														"transform-visibility": false,
-														"destroy-with-parent": false
-													}
-												}
-											],
-											"sid": 755236659759397
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "// Load the default gear of the player during this 'load' function, so the loading screen doesn't disappear until they're in."
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 589943822224574,
-											"parameters": {
-												"instance-variable": "class",
-												"comparison": 1,
-												"value": "\"man\""
-											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 750272037224889,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "\"chest\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 294220523414173,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"chest\" & \"Default_gear\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 427789135441579
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 642951113880653
-										}
-									],
-									"sid": 781753122231719
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 104510266197393,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "\"head\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 630339265664122,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"head\" & \"Default_gear\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 375584916565103
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 546821670274877
-										}
-									],
-									"sid": 260168805793814
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 752368836180608,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "\"legs\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "load-object-images-by-name",
-											"objectClass": "System",
-											"sid": 621270635391535,
-											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & \"legs\" & \"Default_gear\""
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 632171238967920
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 105657799472601
-										}
-									],
-									"sid": 437737076174307
 								}
 							]
 						}

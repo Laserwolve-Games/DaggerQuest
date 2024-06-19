@@ -630,6 +630,16 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "allowEquipmentInteraction",
+					"type": "boolean",
+					"initialValue": "true",
+					"comment": "Whether or not the player is currently allowed to interact with equipment",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 683308433353572
+				},
+				{
+					"eventType": "variable",
 					"name": "swapID",
 					"type": "number",
 					"initialValue": "0",
@@ -1818,6 +1828,63 @@
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "If these are 'trigger once's instead of every tick, and item could get created while equipment interaction isn't allowed. That particular item would have its DragDrop enabled by default."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 254457882940289,
+									"parameters": {
+										"variable": "allowEquipmentInteraction"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "item",
+									"sid": 985394843959391,
+									"behaviorType": "DragDrop",
+									"parameters": {
+										"state": "enabled"
+									}
+								}
+							],
+							"sid": 726619441309664,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 454250615014830,
+									"parameters": {
+										"variable": "allowEquipmentInteraction"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "item",
+									"sid": 563296184406537,
+									"behaviorType": "DragDrop",
+									"parameters": {
+										"state": "disabled"
+									}
+								}
+							],
+							"sid": 327641752045332,
+							"disabled": true
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -3611,11 +3678,64 @@
 							"functionIsAsync": false,
 							"functionParameters": [],
 							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "stop",
+									"objectClass": "player",
+									"sid": 328253029749558,
+									"disabled": true,
+									"behaviorType": "MoveTo"
+								},
+								{
+									"id": "push",
+									"objectClass": "gearQueueArray",
+									"sid": 356911054804939,
+									"parameters": {
+										"where": "front",
+										"value": "slot.UID",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 819431238558145
+						},
+						{
+							"eventType": "variable",
+							"name": "allowGearManagement",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 925621554027701
+						},
+						{
+							"eventType": "block",
 							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 820556575473557,
+									"parameters": {
+										"object": "slot",
+										"expression": "gearQueueArray.Back",
+										"comparison": 0,
+										"value": "slot.UID"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 732243934327391,
+									"parameters": {
+										"variable": "allowGearManagement"
+									}
+								},
 								{
 									"id": "evaluate-expression",
 									"objectClass": "System",
-									"sid": 767810941640445,
+									"sid": 270461579224604,
 									"parameters": {
 										"value": "slot.type <> \"neck\" | slot.type <> \"ring\""
 									}
@@ -3627,58 +3747,95 @@
 									"text": "as long as the slot's type is not neck or ring..."
 								},
 								{
-									"id": "stop",
-									"objectClass": "player",
-									"sid": 333546965849144,
-									"behaviorType": "MoveTo"
+									"id": "pop",
+									"objectClass": "gearQueueArray",
+									"sid": 810792965075179,
+									"parameters": {
+										"where": "back",
+										"axis": "x"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 222087664981646,
+									"parameters": {
+										"variable": "allowGearManagement",
+										"value": "false"
+									}
 								}
 							],
-							"sid": 143517779829659,
+							"sid": 701337323720421,
 							"children": [
 								{
-									"eventType": "variable",
-									"name": "gearToSpawn",
-									"type": "string",
-									"initialValue": "",
-									"comment": "the name of the gear to spawn",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 938653276395709
-								},
-								{
-									"eventType": "variable",
-									"name": "gearToDestroy",
-									"type": "string",
-									"initialValue": "",
-									"comment": "the name of the gear to destroy",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 315233675903767
-								},
-								{
 									"eventType": "block",
-									"conditions": [],
-									"actions": [
+									"conditions": [
 										{
-											"id": "set-eventvar-value",
+											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 750864827470843,
+											"sid": 762550168577106,
 											"parameters": {
-												"variable": "gearToDestroy",
-												"value": "\"\""
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 792604619998542,
-											"parameters": {
-												"variable": "gearToSpawn",
-												"value": "\"\""
+												"object": "item",
+												"expression": "item.identifier",
+												"comparison": 0,
+												"value": "slot.identifier"
 											}
 										}
 									],
-									"sid": 864449927295706,
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if there's an item in this slot, spawn its gear"
+										},
+										{
+											"id": "load-object-images-by-name",
+											"objectClass": "System",
+											"sid": 794676870111503,
+											"parameters": {
+												"object": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\""
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 133325860735263
+										},
+										{
+											"id": "create-object-by-name",
+											"objectClass": "System",
+											"sid": 160314852164560,
+											"parameters": {
+												"object-name": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\"",
+												"layer": "\"main\"",
+												"x": "player.X",
+												"y": "player.Y",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"callFunction": "foobar",
+											"sid": 940388672910115
+										}
+									],
+									"sid": 546677173220756
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 784638280342671
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If there's no item in this slot..."
+										}
+									],
+									"sid": 989859722530036,
 									"children": [
 										{
 											"eventType": "block",
@@ -3686,291 +3843,107 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 733529455292175,
-													"parameters": {
-														"object": "item",
-														"expression": "item.identifier",
-														"comparison": 0,
-														"value": "slot.identifier"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "If there's an item in the slot, pick it"
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 463122126400987,
-													"parameters": {
-														"variable": "gearToSpawn",
-														"value": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\""
-													}
-												}
-											],
-											"sid": 798054236445145,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 536054554774859,
-															"parameters": {
-																"object": "gear",
-																"expression": "gear.type",
-																"comparison": 0,
-																"value": "slot.type"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "destroy the existing gear that correlates with the slot's type, if it exists"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 226553544784084,
-															"parameters": {
-																"variable": "gearToDestroy",
-																"value": "gear.ObjectTypeName"
-															}
-														}
-													],
-													"sid": 897665467316869
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 808572905801557
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 336486002163595,
+													"sid": 499012219178467,
 													"parameters": {
 														"object": "gear",
-														"expression": "gear.type",
+														"expression": "slot.type",
 														"comparison": 0,
-														"value": "slot.type"
+														"value": "gear.type"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if it's empty, pick the gear that correlates with the slot's type"
+													"text": "...destroy the gear that pertains to this slot, if there is any..."
 												},
 												{
-													"id": "set-eventvar-value",
+													"id": "destroy",
+													"objectClass": "gear",
+													"sid": 262392698189695
+												},
+												{
+													"id": "wait",
 													"objectClass": "System",
-													"sid": 742406507880472,
+													"sid": 607442532138358,
 													"parameters": {
-														"variable": "gearToDestroy",
-														"value": "gear.ObjectTypeName"
+														"seconds": "0"
+													}
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 835582566602958
+												},
+												{
+													"id": "unload-object-images",
+													"objectClass": "System",
+													"sid": 511516503665768,
+													"parameters": {
+														"object": "gear"
+													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 495152307530749,
+													"parameters": {
+														"variable": "allowGearManagement",
+														"value": "true"
 													}
 												}
 											],
-											"sid": 107601362739452,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "evaluate-expression",
-															"objectClass": "System",
-															"sid": 387471262503872,
-															"parameters": {
-																"value": "slot.type = \"chest\" & player.class <> \"man\""
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 941149303741347,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"legs\""
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 665422498431433,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"head\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if it's legs or head, or chest and not a man, (the slots with visual representation that have default gear), load the default gear"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 582735098207625,
-															"parameters": {
-																"variable": "gearToSpawn",
-																"value": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
-															}
-														}
-													],
-													"sid": 141514422046280,
-													"isOrBlock": true
-												}
-											]
+											"sid": 750308344592505
 										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-eventvar",
+													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 928960323363946,
+													"sid": 762338136436498,
 													"parameters": {
-														"variable": "gearToSpawn",
-														"comparison": 1,
-														"value": "\"\""
+														"value": "(slot.type = \"chest\" & player.class <> \"man\") | slot.type = \"legs\" | slot.type = \"head\""
 													}
 												}
 											],
 											"actions": [
+												{
+													"type": "comment",
+													"text": "...and the slot is legs or head, or chest and not a man, (the slots that have default gear), load the default gear"
+												},
+												{
+													"id": "load-object-images-by-name",
+													"objectClass": "System",
+													"sid": 287750059925718,
+													"parameters": {
+														"object": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
+													}
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 894376610262430
+												},
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 139653619637214,
+													"sid": 529024909446615,
 													"parameters": {
-														"object-name": "gearToSpawn",
+														"object-name": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\"",
 														"layer": "\"main\"",
 														"x": "player.X",
 														"y": "player.Y",
 														"create-hierarchy": false,
 														"template-name": "\"\""
 													}
-												}
-											],
-											"sid": 591467221652683,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-last-created",
-															"objectClass": "System",
-															"sid": 602617995299142,
-															"parameters": {
-																"object": "gear"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-instvar-value",
-															"objectClass": "gear",
-															"sid": 589827222558533,
-															"parameters": {
-																"instance-variable": "type",
-																"value": "slot.type"
-															}
-														},
-														{
-															"id": "add-child",
-															"objectClass": "body",
-															"sid": 169474905139976,
-															"parameters": {
-																"child": "gear",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
-																"destroy-with-parent": true
-															}
-														}
-													],
-													"sid": 694850352127487
 												},
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-eventvar",
-															"objectClass": "System",
-															"sid": 753355824435263,
-															"parameters": {
-																"variable": "gearToDestroy",
-																"comparison": 1,
-																"value": "\"\""
-															}
-														},
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 363683408692614,
-															"parameters": {
-																"object": "gear",
-																"expression": "gearToDestroy",
-																"comparison": 0,
-																"value": "gear.ObjectTypeName"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "If you can't remember why this is like this, you deserve to waste your time refactoring it. It's literally the focal point of this entire game."
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 634528658317567,
-															"parameters": {
-																"seconds": "1"
-															}
-														},
-														{
-															"id": "destroy",
-															"objectClass": "gear",
-															"sid": 567407569457027
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 753874825164837,
-															"parameters": {
-																"seconds": "0"
-															}
-														},
-														{
-															"id": "unload-object-images",
-															"objectClass": "System",
-															"sid": 438281968655457,
-															"parameters": {
-																"object": "gear"
-															}
-														}
-													],
-													"sid": 778440291548320
+													"callFunction": "foobar",
+													"sid": 242885273464823
 												}
-											]
+											],
+											"sid": 131483232924820
 										},
 										{
 											"eventType": "block",
@@ -3978,56 +3951,172 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 321568539740016
-												},
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 600820194381813,
-													"parameters": {
-														"variable": "gearToDestroy",
-														"comparison": 1,
-														"value": "\"\""
-													}
-												},
-												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 897648944456839,
-													"parameters": {
-														"object": "gear",
-														"expression": "gearToDestroy",
-														"comparison": 0,
-														"value": "gear.ObjectTypeName"
-													}
+													"sid": 386845044775760
 												}
 											],
 											"actions": [
 												{
-													"id": "destroy",
-													"objectClass": "gear",
-													"sid": 678251688427623
-												},
-												{
-													"id": "wait",
+													"id": "set-boolean-eventvar",
 													"objectClass": "System",
-													"sid": 366699544080293,
+													"sid": 815413137921599,
 													"parameters": {
-														"seconds": "0"
-													}
-												},
-												{
-													"id": "unload-object-images",
-													"objectClass": "System",
-													"sid": 452922120713676,
-													"parameters": {
-														"object": "gear"
+														"variable": "allowGearManagement",
+														"value": "true"
 													}
 												}
 											],
-											"sid": 898939573870654
+											"sid": 739321768155186
 										}
 									]
+								}
+							]
+						},
+						{
+							"functionName": "foobar",
+							"functionDescription": "whizz",
+							"functionCategory": "equipment",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "pick-last-created",
+									"objectClass": "System",
+									"sid": 417102779624001,
+									"parameters": {
+										"object": "gear"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "gear",
+									"sid": 253109701210262,
+									"parameters": {
+										"instance-variable": "type",
+										"value": "slot.type"
+									}
+								},
+								{
+									"id": "add-child",
+									"objectClass": "body",
+									"sid": 474579945392178,
+									"parameters": {
+										"child": "gear",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": false,
+										"transform-h": false,
+										"transform-a": false,
+										"transform-o": false,
+										"transform-z-elevation": false,
+										"transform-visibility": false,
+										"destroy-with-parent": true
+									}
+								}
+							],
+							"sid": 272474325755738,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 448521512955856,
+											"parameters": {
+												"object": "gear"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 408760511807789,
+											"parameters": {
+												"object": "gear",
+												"expression": "slot.type",
+												"comparison": 0,
+												"value": "gear.type"
+											}
+										},
+										{
+											"id": "pick-by-highest-lowest-value",
+											"objectClass": "System",
+											"sid": 664654443834845,
+											"parameters": {
+												"object": "gear",
+												"which": "lowest",
+												"expression": "gear.UID"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If there are now two gears that pertain to this slot, destroy the older one."
+										},
+										{
+											"id": "destroy",
+											"objectClass": "gear",
+											"sid": 925209693213512
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 952618963118351,
+											"parameters": {
+												"seconds": "0"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 800877690215158
+										},
+										{
+											"id": "unload-object-images",
+											"objectClass": "System",
+											"sid": 952402846170703,
+											"parameters": {
+												"object": "gear"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 691135580189458,
+											"parameters": {
+												"variable": "allowGearManagement",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 583666707229944
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 960890267766811
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 711910531748483,
+											"parameters": {
+												"variable": "allowGearManagement",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 743903977159582
 								}
 							]
 						}

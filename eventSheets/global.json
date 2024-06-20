@@ -2,812 +2,206 @@
 	"name": "global",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-object-clicked",
-					"objectClass": "mouse",
-					"sid": 873898041171818,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "checkbox"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 471236601988483,
+			"eventType": "group",
+			"disabled": false,
+			"title": "text buttons",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-animation-playing",
-							"objectClass": "checkbox",
-							"sid": 177215777074468,
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 682863764465177,
 							"parameters": {
-								"animation": "\"checked\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-animation",
-							"objectClass": "checkbox",
-							"sid": 528716939282737,
-							"parameters": {
-								"animation": "\"unchecked\"",
-								"from": "beginning"
-							}
-						}
-					],
-					"sid": 179136949644017
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 366036075218289
-						}
-					],
-					"actions": [
-						{
-							"id": "set-animation",
-							"objectClass": "checkbox",
-							"sid": 423634557611898,
-							"parameters": {
-								"animation": "\"checked\"",
-								"from": "beginning"
-							}
-						}
-					],
-					"sid": 177283369366679
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-visible",
-					"objectClass": "loadingScreen",
-					"sid": 236958552195479
-				},
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 602465964355862,
-					"parameters": {
-						"interval-seconds": "1.0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "loadingText",
-					"sid": 967955305651121,
-					"parameters": {
-						"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
-					}
-				}
-			],
-			"sid": 901007134028296
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 212137900735083
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "When the layout changes, global objects are moved to a layer that matches the layer number of their previous layer, regardless of layer name. We have to use global objects and not global layers for the loading screen, as objects on global layers are destroyed and remade."
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "loadingScreen",
-					"sid": 163224548611476,
-					"parameters": {
-						"layer": "\"loadingScreen\""
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "loadingTextBackground",
-					"sid": 655577242888141,
-					"parameters": {
-						"layer": "loadingScreen.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "loadingText",
-					"sid": 545338611624206,
-					"parameters": {
-						"layer": "loadingScreen.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "loadingLogo",
-					"sid": 717406028700334,
-					"parameters": {
-						"layer": "loadingScreen.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "laserwolveGamesLogo",
-					"sid": 850067607070848,
-					"parameters": {
-						"layer": "loadingScreen.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "settingsMenuStatue",
-					"sid": 459731808013548,
-					"parameters": {
-						"layer": "\"settingsMenu\""
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "settingsMenu",
-					"sid": 433717459638047,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "settingsText",
-					"sid": 888330145139114,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "abilityKeybinder",
-					"sid": 129543125755716,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "autoEquip",
-					"sid": 976962727575836,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "back",
-					"sid": 696533436144298,
-					"parameters": {
-						"layer": "settingsMenuStatue.LayerName"
-					}
-				},
-				{
-					"id": "move-to-layer",
-					"objectClass": "player",
-					"sid": 538953121026621,
-					"parameters": {
-						"layer": "\"mechanics\""
-					}
-				}
-			],
-			"sid": 239447274462080
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-object-clicked",
-					"objectClass": "mouse",
-					"sid": 990091618161461,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "settings"
-					}
-				},
-				{
-					"id": "on-key-pressed",
-					"objectClass": "keyboard",
-					"sid": 418986390680115,
-					"parameters": {
-						"key": 32
-					}
-				}
-			],
-			"actions": [],
-			"sid": 802857529141064,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "layer-is-visible",
-							"objectClass": "System",
-							"sid": 791458371172378,
-							"parameters": {
-								"layer": "\"settingsMenu\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "closeSettings",
-							"sid": 179037237705656
-						}
-					],
-					"sid": 156773104561735
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 901423457799248
-						}
-					],
-					"actions": [
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 293370797578752,
-							"parameters": {
-								"layer": "\"main\"",
-								"interactive": false
-							}
+								"object": "textButtons"
+							},
+							"isInverted": true
 						},
-						{
-							"callFunction": "openLayer",
-							"sid": 448642839162585,
-							"parameters": [
-								"\"settingsMenu\""
-							]
-						},
-						{
-							"id": "set-time-scale",
-							"objectClass": "System",
-							"sid": 138074388497009,
-							"parameters": {
-								"time-scale": "0"
-							}
-						},
-						{
-							"callFunction": "closeDialog",
-							"sid": 682966518108097
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 141105346312558,
-							"parameters": {
-								"layer": "\"abilityBar\"",
-								"interactive": false
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 822386766793187,
-							"parameters": {
-								"layer": "\"background\"",
-								"interactive": false
-							}
-						},
-						{
-							"callFunction": "closeLayer",
-							"sid": 857324496253113,
-							"parameters": [
-								"\"equippedMenu\""
-							]
-						},
-						{
-							"callFunction": "closeLayer",
-							"sid": 263964305856423,
-							"parameters": [
-								"\"inventoryMenu\""
-							]
-						},
-						{
-							"callFunction": "closeLayer",
-							"sid": 719710005673541,
-							"parameters": [
-								"\"abilitySelector\""
-							]
-						}
-					],
-					"sid": 810816741282815
-				}
-			],
-			"isOrBlock": true
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-object-clicked",
-					"objectClass": "mouse",
-					"sid": 651166303783075,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "back"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "closeSettings",
-					"sid": 600921726448603
-				}
-			],
-			"sid": 124341222333924
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-object-clicked",
-					"objectClass": "mouse",
-					"sid": 764349485064369,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "abilityKeybinder"
-					}
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "If none of the abilityKeybinders are waiting to receive an input..."
-				}
-			],
-			"sid": 149544151631837,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "pick-all",
-							"objectClass": "System",
-							"sid": 756027951739186,
-							"parameters": {
-								"object": "abilityKeybinder"
-							}
-						},
-						{
-							"id": "compare-text",
-							"objectClass": "abilityKeybinder",
-							"sid": 280175301956982,
-							"parameters": {
-								"text-to-compare": "\"...\"",
-								"case-sensitivity": "ignore-case"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 817847400648000
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 655553684470191
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "abilityKeybinder",
-							"sid": 338806400313804,
-							"parameters": {
-								"text": "\"...\""
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "abilityKeybinder",
-							"sid": 500601780764484,
-							"parameters": {
-								"instance-variable": "keycode",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 910490868652400
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-any-key-pressed",
-					"objectClass": "keyboard",
-					"sid": 359114414096468
-				},
-				{
-					"id": "compare-text",
-					"objectClass": "abilityKeybinder",
-					"sid": 213725805204615,
-					"parameters": {
-						"text-to-compare": "\"...\"",
-						"case-sensitivity": "ignore-case"
-					}
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "When a key is pressed, and there's an abilityKeybinder waiting to receive input..."
-				}
-			],
-			"sid": 366487945452418,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "pick-all",
-							"objectClass": "System",
-							"sid": 993212589079403,
-							"parameters": {
-								"object": "abilityKeybinder"
-							}
-						},
-						{
-							"id": "compare-text",
-							"objectClass": "abilityKeybinder",
-							"sid": 330875485196400,
-							"parameters": {
-								"text-to-compare": "keyboard.TypedKey",
-								"case-sensitivity": "ignore-case"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "...And the key that was pressed isn't already bound..."
-						}
-					],
-					"sid": 235852751337565
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 219941139944526
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "abilityKeybinder",
-							"sid": 246986256356338,
-							"parameters": {
-								"text": "uppercase(keyboard.TypedKey)"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "abilityKeybinder",
-							"sid": 917184011283984,
-							"parameters": {
-								"instance-variable": "keycode",
-								"value": "keyboard.LastKeyCode"
-							}
-						}
-					],
-					"sid": 178762478532830
-				}
-			]
-		},
-		{
-			"functionName": "closeSettings",
-			"functionDescription": "Close the settings menu.",
-			"functionCategory": "menus",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [],
-			"sid": 871621413888934,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 106493574698208,
-							"parameters": {
-								"object": "abilityKeybinder",
-								"expression": "abilityKeybinder.PlainText",
-								"comparison": 0,
-								"value": "\"...\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Only allow closure of the settings menu if we aren't currently rebinding a key"
-						}
-					],
-					"sid": 691074844306267
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 736830509008874
-						}
-					],
-					"actions": [
-						{
-							"id": "set-time-scale",
-							"objectClass": "System",
-							"sid": 154209899565271,
-							"parameters": {
-								"time-scale": "1"
-							}
-						},
-						{
-							"callFunction": "closeLayer",
-							"sid": 515500498737219,
-							"parameters": [
-								"\"settingsMenu\""
-							]
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 818086575829722,
-							"parameters": {
-								"layer": "\"main\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 756724734812375,
-							"parameters": {
-								"layer": "\"abilityBar\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 363308566559102,
-							"parameters": {
-								"layer": "\"background\"",
-								"interactive": true
-							}
-						}
-					],
-					"sid": 756852656770919
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "mouse",
-					"sid": 467948922016410,
-					"parameters": {
-						"object": "textButtons"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "mouse",
-					"sid": 404710981931882,
-					"parameters": {
-						"mouse-button": "left"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [],
-			"sid": 391564301088392,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "trigger-once-while-true",
-							"objectClass": "System",
-							"sid": 607082247185165
-						}
-					],
-					"actions": [
-						{
-							"id": "set-font-size",
-							"objectClass": "textButtons",
-							"sid": 548098573460637,
-							"parameters": {
-								"size-pt": "Self.originalFaceSize"
-							}
-						}
-					],
-					"sid": 617668808348376
-				}
-			],
-			"isOrBlock": true
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "mouse",
-					"sid": 508489795241052,
-					"parameters": {
-						"object": "textButtons"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "trigger-once-while-true",
-					"objectClass": "System",
-					"sid": 971180879118645
-				}
-			],
-			"actions": [
-				{
-					"id": "set-effect-enabled",
-					"objectClass": "textButtons",
-					"sid": 822736687299962,
-					"parameters": {
-						"mode": "disable",
-						"effect": "\"GlowHorizontal\""
-					}
-				},
-				{
-					"id": "set-effect-enabled",
-					"objectClass": "textButtons",
-					"sid": 297347962598770,
-					"parameters": {
-						"mode": "disable",
-						"effect": "\"GlowVertical\""
-					}
-				}
-			],
-			"sid": 716388061234173
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-created",
-					"objectClass": "textButtons",
-					"sid": 886198240387001
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "textButtons",
-					"sid": 191311445489941,
-					"parameters": {
-						"instance-variable": "originalFaceSize",
-						"value": "Self.FaceSize"
-					}
-				}
-			],
-			"sid": 811979250604528
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "mouse",
-					"sid": 994834307673694,
-					"parameters": {
-						"object": "textButtons"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 118819025734658,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
 						{
 							"id": "mouse-button-is-down",
 							"objectClass": "mouse",
-							"sid": 519154729540182,
+							"sid": 547425614993935,
 							"parameters": {
 								"mouse-button": "left"
-							}
-						},
-						{
-							"id": "trigger-once-while-true",
-							"objectClass": "System",
-							"sid": 725339850742216
+							},
+							"isInverted": true
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 884268721897870,
+					"children": [
 						{
-							"id": "set-font-size",
-							"objectClass": "textButtons",
-							"sid": 982642899378685,
-							"parameters": {
-								"size-pt": "Self.FaceSize * .9"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 731562520875611
+								}
+							],
+							"actions": [
+								{
+									"id": "set-font-size",
+									"objectClass": "textButtons",
+									"sid": 816209826932819,
+									"parameters": {
+										"size-pt": "Self.originalFaceSize"
+									}
+								}
+							],
+							"sid": 175659893826297
 						}
 					],
-					"sid": 948477824328938
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 917515370009307,
+							"parameters": {
+								"object": "textButtons"
+							},
+							"isInverted": true
+						},
+						{
 							"id": "trigger-once-while-true",
 							"objectClass": "System",
-							"sid": 483874979384388
+							"sid": 671563603172070
 						}
 					],
 					"actions": [
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "textButtons",
-							"sid": 809227743690928,
+							"sid": 169425913847254,
 							"parameters": {
-								"mode": "enable",
+								"mode": "disable",
 								"effect": "\"GlowHorizontal\""
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "textButtons",
-							"sid": 708370354439733,
+							"sid": 855027567922838,
 							"parameters": {
-								"mode": "enable",
+								"mode": "disable",
 								"effect": "\"GlowVertical\""
 							}
 						}
 					],
-					"sid": 304252803360899
+					"sid": 439602171010019
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "textButtons",
+							"sid": 815938482703421
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "textButtons",
+							"sid": 415202310475149,
+							"parameters": {
+								"instance-variable": "originalFaceSize",
+								"value": "Self.FaceSize"
+							}
+						}
+					],
+					"sid": 382180003142083
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 956754619363583,
+							"parameters": {
+								"object": "textButtons"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 175306431928720,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "mouse",
+									"sid": 577328826803467,
+									"parameters": {
+										"mouse-button": "left"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 900128062609753
+								}
+							],
+							"actions": [
+								{
+									"id": "set-font-size",
+									"objectClass": "textButtons",
+									"sid": 465165507319338,
+									"parameters": {
+										"size-pt": "Self.FaceSize * .9"
+									}
+								}
+							],
+							"sid": 320595298907106
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 795370263792880
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 933053713442834,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"GlowHorizontal\""
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 674653968651206,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"GlowVertical\""
+									}
+								}
+							],
+							"sid": 167942191771582
+						}
+					]
 				}
-			]
+			],
+			"sid": 467320930421398
 		}
 	],
 	"sid": 143332858877120

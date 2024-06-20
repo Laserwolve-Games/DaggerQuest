@@ -107,16 +107,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "previousLayout",
-			"type": "string",
-			"initialValue": "none",
-			"comment": "The layout we were on, before this one.",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 241570996019166
-		},
-		{
-			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
@@ -5821,8 +5811,44 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "buildingTransition",
-											"sid": 894351674578264
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 675620085922026,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 485604771343920,
+											"parameters": {
+												"instance-variable": "relocateToX",
+												"value": "door.relocateToX"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 296194498068389,
+											"parameters": {
+												"instance-variable": "relocateToY",
+												"value": "door.relocateToY"
+											}
+										},
+										{
+											"callFunction": "changeLayout",
+											"sid": 127629757310870,
+											"parameters": [
+												"door.layout"
+											]
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 966584748198363,
+											"parameters": {
+												"variable": "isOnInteractCooldown",
+												"value": "true"
+											}
 										},
 										{
 											"id": "set-eventvar-value",
@@ -10671,6 +10697,480 @@
 						}
 					],
 					"sid": 407220405598445
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "settings",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 695553011350850,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "checkbox"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 153414501637121,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "checkbox",
+											"sid": 439265879478969,
+											"parameters": {
+												"animation": "\"checked\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "checkbox",
+											"sid": 639544043782752,
+											"parameters": {
+												"animation": "\"unchecked\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 264097023026283
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 253648631373157
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "checkbox",
+											"sid": 477315523432826,
+											"parameters": {
+												"animation": "\"checked\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 449648110563718
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 463521542992005,
+									"parameters": {
+										"key": 32
+									}
+								}
+							],
+							"actions": [],
+							"sid": 125716644851603,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 933157130121884,
+											"parameters": {
+												"layer": "\"settingsMenu\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "closeSettings",
+											"sid": 635622755655161
+										}
+									],
+									"sid": 869647963456875
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 486565262612243
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 189230884247674,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": false
+											}
+										},
+										{
+											"callFunction": "openLayer",
+											"sid": 130359926278468,
+											"parameters": [
+												"\"settingsMenu\""
+											]
+										},
+										{
+											"id": "set-time-scale",
+											"objectClass": "System",
+											"sid": 865414369350797,
+											"parameters": {
+												"time-scale": "0"
+											}
+										},
+										{
+											"callFunction": "closeDialog",
+											"sid": 177788901720560
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 897910035227328,
+											"parameters": {
+												"layer": "\"abilityBar\"",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 304961908830118,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": false
+											}
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 697830583957032,
+											"parameters": [
+												"\"equippedMenu\""
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 299505981003586,
+											"parameters": [
+												"\"inventoryMenu\""
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 706857621097104,
+											"parameters": [
+												"\"abilitySelector\""
+											]
+										}
+									],
+									"sid": 548595647846757
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 210445843554400,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "back"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "closeSettings",
+									"sid": 711490527021551
+								}
+							],
+							"sid": 782356067568108
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 143313229941780,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "abilityKeybinder"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If none of the abilityKeybinders are waiting to receive an input..."
+								}
+							],
+							"sid": 535968868869274,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 252419677793395,
+											"parameters": {
+												"object": "abilityKeybinder"
+											}
+										},
+										{
+											"id": "compare-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 558191238957888,
+											"parameters": {
+												"text-to-compare": "\"...\"",
+												"case-sensitivity": "ignore-case"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 300182217029828
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 239328119100171
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 700131498352993,
+											"parameters": {
+												"text": "\"...\""
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "abilityKeybinder",
+											"sid": 444375810150198,
+											"parameters": {
+												"instance-variable": "keycode",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 132285053634574
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 170846145511480
+								},
+								{
+									"id": "compare-text",
+									"objectClass": "abilityKeybinder",
+									"sid": 315944224404616,
+									"parameters": {
+										"text-to-compare": "\"...\"",
+										"case-sensitivity": "ignore-case"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "When a key is pressed, and there's an abilityKeybinder waiting to receive input..."
+								}
+							],
+							"sid": 469864495402639,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 460736156515736,
+											"parameters": {
+												"object": "abilityKeybinder"
+											}
+										},
+										{
+											"id": "compare-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 784831115319945,
+											"parameters": {
+												"text-to-compare": "keyboard.TypedKey",
+												"case-sensitivity": "ignore-case"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "...And the key that was pressed isn't already bound..."
+										}
+									],
+									"sid": 802525867827833
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 149894942610561
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 274390140407112,
+											"parameters": {
+												"text": "uppercase(keyboard.TypedKey)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "abilityKeybinder",
+											"sid": 721640819038808,
+											"parameters": {
+												"instance-variable": "keycode",
+												"value": "keyboard.LastKeyCode"
+											}
+										}
+									],
+									"sid": 633293946300718
+								}
+							]
+						},
+						{
+							"functionName": "closeSettings",
+							"functionDescription": "Close the settings menu.",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 779033601047190,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 335973373437536,
+											"parameters": {
+												"object": "abilityKeybinder",
+												"expression": "abilityKeybinder.PlainText",
+												"comparison": 0,
+												"value": "\"...\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Only allow closure of the settings menu if we aren't currently rebinding a key"
+										}
+									],
+									"sid": 259750005587903
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 233944048254629
+										}
+									],
+									"actions": [
+										{
+											"id": "set-time-scale",
+											"objectClass": "System",
+											"sid": 265848183140156,
+											"parameters": {
+												"time-scale": "1"
+											}
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 424145004607766,
+											"parameters": [
+												"\"settingsMenu\""
+											]
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 916379639517808,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 261116445287969,
+											"parameters": {
+												"layer": "\"abilityBar\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 935551948049390,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": true
+											}
+										}
+									],
+									"sid": 714451405892346
+								}
+							]
+						}
+					],
+					"sid": 574797259884674
 				}
 			],
 			"sid": 491413826418283
@@ -15725,87 +16225,6 @@
 						}
 					],
 					"sid": 374910180747516
-				},
-				{
-					"functionName": "buildingTransition",
-					"functionDescription": "Move the player in and out of a building.",
-					"functionCategory": "world",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "These have to be saved to variables because the door object will be inaccessible after we change layouts."
-						},
-						{
-							"id": "stop-all",
-							"objectClass": "Audio",
-							"sid": 330743482395389
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "loadingScreen",
-							"sid": 829008042264045,
-							"parameters": {
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "stop",
-							"objectClass": "player",
-							"sid": 607562531417494,
-							"behaviorType": "MoveTo"
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 754258952321980,
-							"parameters": {
-								"instance-variable": "relocateToX",
-								"value": "door.relocateToX"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 976662891535172,
-							"parameters": {
-								"instance-variable": "relocateToY",
-								"value": "door.relocateToY"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 833203496811020,
-							"parameters": {
-								"variable": "previousLayout",
-								"value": "LayoutName"
-							}
-						},
-						{
-							"id": "go-to-layout-by-name",
-							"objectClass": "System",
-							"sid": 414950710571795,
-							"parameters": {
-								"layout": "door.layout"
-							}
-						},
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 210074657667276,
-							"parameters": {
-								"variable": "isOnInteractCooldown",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 605751022796155
 				},
 				{
 					"eventType": "block",

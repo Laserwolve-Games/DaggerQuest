@@ -31,69 +31,19 @@
 			],
 			"actions": [
 				{
-					"id": "set-visible",
-					"objectClass": "loadingScreen",
-					"sid": 311439937347461,
-					"parameters": {
-						"visibility": "visible"
-					}
-				},
-				{
 					"id": "stop-all",
 					"objectClass": "Audio",
 					"sid": 574841534203778
+				},
+				{
+					"callFunction": "changeLayout",
+					"sid": 360154941051278,
+					"parameters": [
+						"\"farm\""
+					]
 				}
 			],
 			"sid": 387251329612208
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-visible",
-					"objectClass": "loadingScreen",
-					"sid": 307633937543268
-				},
-				{
-					"id": "compare-two-values",
-					"objectClass": "System",
-					"sid": 670423744826685,
-					"parameters": {
-						"first-value": "LayoutName",
-						"comparison": 0,
-						"second-value": "\"mainMenu\""
-					}
-				},
-				{
-					"id": "trigger-once-while-true",
-					"objectClass": "System",
-					"sid": 132052492717525
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "Having this as a trigger and not as a sub-event under the play button click prevents a massive stutter, presumably caused by: The loading of the next layout commencing before the loadingScreen can be made visible."
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 235547920437981,
-					"parameters": {
-						"variable": "previousLayout",
-						"value": "LayoutName"
-					}
-				},
-				{
-					"id": "go-to-layout-by-name",
-					"objectClass": "System",
-					"sid": 425813163535950,
-					"parameters": {
-						"layout": "\"farm\""
-					}
-				}
-			],
-			"sid": 252869525891124
 		},
 		{
 			"eventType": "comment",
@@ -117,17 +67,41 @@
 						"variable": "updateAvailable",
 						"value": "true"
 					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "launcherMessage",
-					"sid": 564874823409654,
-					"parameters": {
-						"text": "\"Update available. Downloading\""
-					}
 				}
 			],
 			"sid": 282848727504620
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 603860594460344,
+					"parameters": {
+						"variable": "updateAvailable"
+					}
+				},
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 945239623243495,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "launcherMessage",
+					"sid": 648060711973366,
+					"parameters": {
+						"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
+					}
+				}
+			],
+			"sid": 703745360602145
 		},
 		{
 			"eventType": "block",
@@ -146,38 +120,6 @@
 				}
 			],
 			"sid": 519782063417592
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 458324776673466,
-					"parameters": {
-						"variable": "updateAvailable"
-					}
-				},
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 725473517626348,
-					"parameters": {
-						"interval-seconds": "1.0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "launcherMessage",
-					"sid": 284985166909909,
-					"parameters": {
-						"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
-					}
-				}
-			],
-			"sid": 123077271397200
 		},
 		{
 			"eventType": "block",

@@ -1,0 +1,130 @@
+{
+	"name": "loadingScreen",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "targetLayout",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 648387458732710
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 602465964355862,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "loadingText",
+					"sid": 967955305651121,
+					"parameters": {
+						"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
+					}
+				}
+			],
+			"sid": 901007134028296
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 922344026551091
+				}
+			],
+			"actions": [
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 228611557971995,
+					"parameters": {
+						"seconds": "0"
+					}
+				},
+				{
+					"type": "comment",
+					"text": "This `wait 0` prevents the loading screen from never appearing"
+				},
+				{
+					"id": "load-layout-images-by-name",
+					"objectClass": "System",
+					"sid": 921030571810964,
+					"parameters": {
+						"layout": "targetLayout"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 426931044558578
+				},
+				{
+					"id": "go-to-layout-by-name",
+					"objectClass": "System",
+					"sid": 981067355384183,
+					"parameters": {
+						"layout": "targetLayout"
+					}
+				}
+			],
+			"sid": 811552470184825
+		},
+		{
+			"functionName": "changeLayout",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "layoutToGoTo",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 937461635930858
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 378472723391850,
+					"parameters": {
+						"variable": "targetLayout",
+						"value": "layoutToGoTo"
+					}
+				},
+				{
+					"id": "stop-all",
+					"objectClass": "Audio",
+					"sid": 378303439646478
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 638394407667610,
+					"parameters": {
+						"layout": "loadingScreen"
+					}
+				}
+			],
+			"sid": 195427164227028
+		}
+	],
+	"sid": 173104587681457
+}

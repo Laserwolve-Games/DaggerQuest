@@ -1176,6 +1176,14 @@
 							"conditions": [],
 							"actions": [
 								{
+									"id": "setProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 583245095565362,
+									"parameters": {
+										"name": "\"loot\""
+									}
+								},
+								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
 									"sid": 210734168625939,
@@ -14169,9 +14177,9 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 153787979218908,
+									"sid": 668161944073842,
 									"parameters": {
-										"audio-file": "Main Theme",
+										"audio-file": "The Farm",
 										"loop": "looping",
 										"volume": "-10",
 										"stereo-pan": "0",
@@ -14612,6 +14620,37 @@
 					],
 					"sid": 591606931079912,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 814639379542261,
+									"parameters": {
+										"name": "\"\"",
+										"start-index": "1",
+										"end-index": "equipmentArray.Height - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Generate equipment probability table"
+								},
+								{
+									"id": "addProbabilityEntry",
+									"objectClass": "advancedRandom",
+									"sid": 418450067920864,
+									"parameters": {
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
+										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
+									}
+								}
+							],
+							"sid": 945283198847012
+						},
 						{
 							"eventType": "variable",
 							"name": "modTableName",

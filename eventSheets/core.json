@@ -849,11 +849,7 @@
 												},
 												{
 													"callFunction": "queueGearManagement",
-													"sid": 389861615475309
-												},
-												{
-													"callFunction": "manageMods",
-													"sid": 975152866924711,
+													"sid": 950198310626390,
 													"parameters": [
 														true
 													]
@@ -2019,11 +2015,7 @@
 														},
 														{
 															"callFunction": "queueGearManagement",
-															"sid": 609886070905927
-														},
-														{
-															"callFunction": "manageMods",
-															"sid": 136639627650351,
+															"sid": 609886070905927,
 															"parameters": [
 																false
 															]
@@ -2244,11 +2236,7 @@
 																		},
 																		{
 																			"callFunction": "queueGearManagement",
-																			"sid": 530233516824490
-																		},
-																		{
-																			"callFunction": "manageMods",
-																			"sid": 759946137376178,
+																			"sid": 676397932870973,
 																			"parameters": [
 																				true
 																			]
@@ -2396,11 +2384,7 @@
 																		},
 																		{
 																			"callFunction": "queueGearManagement",
-																			"sid": 950011551312166
-																		},
-																		{
-																			"callFunction": "manageMods",
-																			"sid": 274669631608298,
+																			"sid": 628677347905680,
 																			"parameters": [
 																				true
 																			]
@@ -2565,11 +2549,7 @@
 										},
 										{
 											"callFunction": "queueGearManagement",
-											"sid": 927556251758834
-										},
-										{
-											"callFunction": "manageMods",
-											"sid": 735611209322461,
+											"sid": 927556251758834,
 											"parameters": [
 												false
 											]
@@ -2732,11 +2712,7 @@
 																},
 																{
 																	"callFunction": "queueGearManagement",
-																	"sid": 335358865412951
-																},
-																{
-																	"callFunction": "manageMods",
-																	"sid": 448788296221639,
+																	"sid": 747765105945772,
 																	"parameters": [
 																		true
 																	]
@@ -2813,11 +2789,7 @@
 																},
 																{
 																	"callFunction": "queueGearManagement",
-																	"sid": 249194179735476
-																},
-																{
-																	"callFunction": "manageMods",
-																	"sid": 102792447386736,
+																	"sid": 358783801807031,
 																	"parameters": [
 																		true
 																	]
@@ -3004,11 +2976,7 @@
 																				},
 																				{
 																					"callFunction": "queueGearManagement",
-																					"sid": 421687173483183
-																				},
-																				{
-																					"callFunction": "manageMods",
-																					"sid": 922397242824812,
+																					"sid": 782381385129395,
 																					"parameters": [
 																						true
 																					]
@@ -3103,11 +3071,7 @@
 																						},
 																						{
 																							"callFunction": "queueGearManagement",
-																							"sid": 610304706525411
-																						},
-																						{
-																							"callFunction": "manageMods",
-																							"sid": 689374442970799,
+																							"sid": 342302537389585,
 																							"parameters": [
 																								true
 																							]
@@ -3182,11 +3146,7 @@
 																		},
 																		{
 																			"callFunction": "queueGearManagement",
-																			"sid": 432156743268246
-																		},
-																		{
-																			"callFunction": "manageMods",
-																			"sid": 313335070956290,
+																			"sid": 754805473304049,
 																			"parameters": [
 																				true
 																			]
@@ -3645,11 +3605,7 @@
 										},
 										{
 											"callFunction": "queueGearManagement",
-											"sid": 860603048097230
-										},
-										{
-											"callFunction": "manageMods",
-											"sid": 470642327753329,
+											"sid": 480204558792721,
 											"parameters": [
 												true
 											]
@@ -3676,10 +3632,31 @@
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
-							"functionParameters": [],
+							"functionParameters": [
+								{
+									"name": "active",
+									"type": "boolean",
+									"initialValue": "true",
+									"comment": "",
+									"sid": 653983944416797
+								}
+							],
 							"eventType": "function-block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 661364819095502,
+									"parameters": {
+										"value": "slot.type <> \"neck\" | slot.type <> \"ring\""
+									}
+								}
+							],
 							"actions": [
+								{
+									"type": "comment",
+									"text": "as long as the slot's type is not neck or ring..."
+								},
 								{
 									"id": "stop",
 									"objectClass": "player",
@@ -3698,14 +3675,59 @@
 									}
 								}
 							],
-							"sid": 819431238558145
+							"sid": 819431238558145,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 179204186824764,
+											"parameters": {
+												"variable": "active"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "manageMods",
+											"sid": 132606893568216,
+											"parameters": [
+												true
+											]
+										}
+									],
+									"sid": 847732328432390
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 197187788371514
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "manageMods",
+											"sid": 983577034004282,
+											"parameters": [
+												false
+											]
+										}
+									],
+									"sid": 761629228050916
+								}
+							]
 						},
 						{
 							"eventType": "variable",
 							"name": "allowGearManagement",
 							"type": "boolean",
 							"initialValue": "true",
-							"comment": "",
+							"comment": "Whether or not the below events are currently running.",
 							"isStatic": true,
 							"isConstant": false,
 							"sid": 925621554027701
@@ -3731,21 +3753,9 @@
 									"parameters": {
 										"variable": "allowGearManagement"
 									}
-								},
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 270461579224604,
-									"parameters": {
-										"value": "slot.type <> \"neck\" | slot.type <> \"ring\""
-									}
 								}
 							],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "as long as the slot's type is not neck or ring..."
-								},
 								{
 									"id": "pop",
 									"objectClass": "gearQueueArray",
@@ -3814,7 +3824,7 @@
 											}
 										},
 										{
-											"callFunction": "foobar",
+											"callFunction": "configureGear",
 											"sid": 940388672910115
 										}
 									],
@@ -3939,7 +3949,7 @@
 													}
 												},
 												{
-													"callFunction": "foobar",
+													"callFunction": "configureGear",
 													"sid": 242885273464823
 												}
 											],
@@ -3972,8 +3982,8 @@
 							]
 						},
 						{
-							"functionName": "foobar",
-							"functionDescription": "whizz",
+							"functionName": "configureGear",
+							"functionDescription": "",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
@@ -14780,7 +14790,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "mods",
-			"description": "",
+			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter is events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing boolean.",
 			"isActiveOnStart": true,
 			"children": [
 				{

@@ -3,6 +3,16 @@
 	"events": [
 		{
 			"eventType": "variable",
+			"name": "FADE_TIME",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "How long to fade in and out between layouts.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 101858250463059
+		},
+		{
+			"eventType": "variable",
 			"name": "targetLayout",
 			"type": "string",
 			"initialValue": "",
@@ -66,24 +76,24 @@
 				{
 					"id": "fade-volume",
 					"objectClass": "Audio",
-					"sid": 348525685149246,
+					"sid": 972625071323345,
 					"parameters": {
 						"tag": "LayoutName",
 						"db": "-100",
-						"duration": "1",
+						"duration": "FADE_TIME",
 						"ending": "stop"
 					}
 				},
 				{
 					"id": "tween-one-property",
 					"objectClass": "fader",
-					"sid": 762242601581034,
+					"sid": 404764096781546,
 					"behaviorType": "Tween",
 					"parameters": {
 						"tags": "Self.ObjectTypeName",
 						"property": "offsetOpacity",
 						"end-value": "100",
-						"time": "1",
+						"time": "FADE_TIME",
 						"ease": "noease",
 						"destroy-on-complete": "no",
 						"loop": "no",
@@ -146,13 +156,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 709091871270767,
+							"sid": 499320000632423,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "0",
-								"time": "1",
+								"time": "FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
@@ -224,13 +234,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 828540432907308,
+							"sid": 895039501608680,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "100",
-								"time": "1",
+								"time": "FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",

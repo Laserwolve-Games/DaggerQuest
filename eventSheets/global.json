@@ -713,24 +713,24 @@
 				{
 					"id": "fade-volume",
 					"objectClass": "Audio",
-					"sid": 947884638611542,
+					"sid": 465023180757823,
 					"parameters": {
 						"tag": "LayoutName",
 						"db": "0",
-						"duration": "1",
+						"duration": "FADE_TIME",
 						"ending": "keep-playing"
 					}
 				},
 				{
 					"id": "tween-one-property",
 					"objectClass": "fader",
-					"sid": 298342211694817,
+					"sid": 583174295704050,
 					"behaviorType": "Tween",
 					"parameters": {
 						"tags": "Self.ObjectTypeName",
 						"property": "offsetOpacity",
 						"end-value": "0",
-						"time": "1",
+						"time": "FADE_TIME",
 						"ease": "noease",
 						"destroy-on-complete": "no",
 						"loop": "no",

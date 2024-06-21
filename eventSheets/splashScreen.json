@@ -125,13 +125,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 823860038505084,
+							"sid": 901274633348921,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "0",
-								"time": "1",
+								"time": "FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
@@ -172,11 +172,11 @@
 						{
 							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 339567791972727,
+							"sid": 134815970171295,
 							"parameters": {
 								"tag": "LayoutName",
 								"db": "0",
-								"duration": "1",
+								"duration": "FADE_TIME",
 								"ending": "keep-playing"
 							}
 						}
@@ -278,13 +278,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 306575240141881,
+							"sid": 940671130976522,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "100",
-								"time": "1",
+								"time": "FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",

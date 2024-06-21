@@ -3620,7 +3620,7 @@
 					"eventType": "group",
 					"disabled": false,
 					"title": "gear",
-					"description": "",
+					"description": "Warning: Using variables and functions to clean up these events leads to bizarre timing issues that are hard to troubleshoot.",
 					"isActiveOnStart": true,
 					"children": [
 						{
@@ -3654,13 +3654,6 @@
 								{
 									"type": "comment",
 									"text": "as long as the slot's type is not neck or ring..."
-								},
-								{
-									"id": "stop",
-									"objectClass": "player",
-									"sid": 328253029749558,
-									"disabled": true,
-									"behaviorType": "MoveTo"
 								},
 								{
 									"id": "push",
@@ -3820,13 +3813,120 @@
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}
-										},
-										{
-											"callFunction": "configureGear",
-											"sid": 940388672910115
 										}
 									],
-									"sid": 546677173220756
+									"sid": 546677173220756,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 417520329182408,
+													"parameters": {
+														"object": "gear"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-instvar-value",
+													"objectClass": "gear",
+													"sid": 758489405623660,
+													"parameters": {
+														"instance-variable": "type",
+														"value": "slot.type"
+													}
+												},
+												{
+													"id": "add-child",
+													"objectClass": "body",
+													"sid": 770262701455793,
+													"parameters": {
+														"child": "gear",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": false,
+														"transform-o": false,
+														"transform-z-elevation": false,
+														"transform-visibility": false,
+														"destroy-with-parent": true
+													}
+												}
+											],
+											"sid": 232582795396905
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-all",
+													"objectClass": "System",
+													"sid": 556423965724456,
+													"parameters": {
+														"object": "gear"
+													}
+												},
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 438566182346342,
+													"parameters": {
+														"object": "gear",
+														"expression": "slot.type",
+														"comparison": 0,
+														"value": "gear.type"
+													}
+												},
+												{
+													"id": "pick-by-highest-lowest-value",
+													"objectClass": "System",
+													"sid": 314430464365361,
+													"parameters": {
+														"object": "gear",
+														"which": "lowest",
+														"expression": "gear.UID"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If there are now two gears that pertain to this slot, destroy the older one."
+												},
+												{
+													"callFunction": "destroyGear",
+													"sid": 934906810677846
+												}
+											],
+											"sid": 327547775356116
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 631498319308368
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 424095786786034,
+													"parameters": {
+														"variable": "allowGearManagement",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 291917537478887
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -3849,67 +3949,9 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 499012219178467,
-													"parameters": {
-														"object": "gear",
-														"expression": "slot.type",
-														"comparison": 0,
-														"value": "gear.type"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "...destroy the gear that pertains to this slot, if there is any..."
-												},
-												{
-													"id": "destroy",
-													"objectClass": "gear",
-													"sid": 262392698189695
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 607442532138358,
-													"parameters": {
-														"seconds": "0"
-													}
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 835582566602958
-												},
-												{
-													"id": "unload-object-images",
-													"objectClass": "System",
-													"sid": 511516503665768,
-													"parameters": {
-														"object": "gear"
-													}
-												},
-												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 495152307530749,
-													"parameters": {
-														"variable": "allowGearManagement",
-														"value": "true"
-													}
-												}
-											],
-											"sid": 750308344592505
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 762338136436498,
+													"sid": 940024141604911,
 													"parameters": {
 														"value": "(slot.type = \"chest\" & player.class <> \"man\") | slot.type = \"legs\" | slot.type = \"head\""
 													}
@@ -3923,7 +3965,7 @@
 												{
 													"id": "load-object-images-by-name",
 													"objectClass": "System",
-													"sid": 287750059925718,
+													"sid": 199714343318785,
 													"parameters": {
 														"object": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
 													}
@@ -3931,12 +3973,12 @@
 												{
 													"id": "wait-for-previous-actions",
 													"objectClass": "System",
-													"sid": 894376610262430
+													"sid": 417345207782363
 												},
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 529024909446615,
+													"sid": 511701545225016,
 													"parameters": {
 														"object-name": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\"",
 														"layer": "\"main\"",
@@ -3945,13 +3987,90 @@
 														"create-hierarchy": false,
 														"template-name": "\"\""
 													}
-												},
-												{
-													"callFunction": "configureGear",
-													"sid": 242885273464823
 												}
 											],
-											"sid": 131483232924820
+											"sid": 749400924663849,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 949815511554775,
+															"parameters": {
+																"object": "gear"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-instvar-value",
+															"objectClass": "gear",
+															"sid": 928945733462840,
+															"parameters": {
+																"instance-variable": "type",
+																"value": "slot.type"
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "body",
+															"sid": 385695216657978,
+															"parameters": {
+																"child": "gear",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														}
+													],
+													"sid": 883709877144829
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 987182229147591,
+															"parameters": {
+																"object": "gear",
+																"expression": "slot.type",
+																"comparison": 0,
+																"value": "gear.type"
+															}
+														},
+														{
+															"id": "pick-by-highest-lowest-value",
+															"objectClass": "System",
+															"sid": 444128082022832,
+															"parameters": {
+																"object": "gear",
+																"which": "lowest",
+																"expression": "gear.UID"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "...destroy the (non-default) gear that was affiliated with this slot. (That will be the oldest gear with the same type as this slot)"
+														},
+														{
+															"callFunction": "destroyGear",
+															"sid": 505887241414276
+														}
+													],
+													"sid": 622605866580318
+												}
+											]
 										},
 										{
 											"eventType": "block",
@@ -3959,28 +4078,38 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 386845044775760
+													"sid": 271838665518264
+												},
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 953224413768724,
+													"parameters": {
+														"object": "gear",
+														"expression": "slot.type",
+														"comparison": 0,
+														"value": "gear.type"
+													}
 												}
 											],
 											"actions": [
 												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 815413137921599,
-													"parameters": {
-														"variable": "allowGearManagement",
-														"value": "true"
-													}
+													"type": "comment",
+													"text": "If there's no default gear for this slot, just destroy the gear and then we're done"
+												},
+												{
+													"callFunction": "destroyGear",
+													"sid": 272752789369393
 												}
 											],
-											"sid": 739321768155186
+											"sid": 549938953636278
 										}
 									]
 								}
 							]
 						},
 						{
-							"functionName": "configureGear",
+							"functionName": "destroyGear",
 							"functionDescription": "",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
@@ -3988,145 +4117,45 @@
 							"functionIsAsync": false,
 							"functionParameters": [],
 							"eventType": "function-block",
-							"conditions": [
+							"conditions": [],
+							"actions": [
 								{
-									"id": "pick-last-created",
+									"id": "destroy",
+									"objectClass": "gear",
+									"sid": 663006972192688
+								},
+								{
+									"id": "wait",
 									"objectClass": "System",
-									"sid": 417102779624001,
+									"sid": 770562252570343,
+									"parameters": {
+										"seconds": "0"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 830788373725766
+								},
+								{
+									"id": "unload-object-images",
+									"objectClass": "System",
+									"sid": 301515418637741,
 									"parameters": {
 										"object": "gear"
 									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-instvar-value",
-									"objectClass": "gear",
-									"sid": 253109701210262,
-									"parameters": {
-										"instance-variable": "type",
-										"value": "slot.type"
-									}
 								},
 								{
-									"id": "add-child",
-									"objectClass": "body",
-									"sid": 474579945392178,
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 282246003704809,
 									"parameters": {
-										"child": "gear",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": true
+										"variable": "allowGearManagement",
+										"value": "true"
 									}
 								}
 							],
-							"sid": 272474325755738,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-all",
-											"objectClass": "System",
-											"sid": 448521512955856,
-											"parameters": {
-												"object": "gear"
-											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 408760511807789,
-											"parameters": {
-												"object": "gear",
-												"expression": "slot.type",
-												"comparison": 0,
-												"value": "gear.type"
-											}
-										},
-										{
-											"id": "pick-by-highest-lowest-value",
-											"objectClass": "System",
-											"sid": 664654443834845,
-											"parameters": {
-												"object": "gear",
-												"which": "lowest",
-												"expression": "gear.UID"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "If there are now two gears that pertain to this slot, destroy the older one."
-										},
-										{
-											"id": "destroy",
-											"objectClass": "gear",
-											"sid": 925209693213512
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 952618963118351,
-											"parameters": {
-												"seconds": "0"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 800877690215158
-										},
-										{
-											"id": "unload-object-images",
-											"objectClass": "System",
-											"sid": 952402846170703,
-											"parameters": {
-												"object": "gear"
-											}
-										},
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 691135580189458,
-											"parameters": {
-												"variable": "allowGearManagement",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 583666707229944
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 960890267766811
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 711910531748483,
-											"parameters": {
-												"variable": "allowGearManagement",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 743903977159582
-								}
-							]
+							"sid": 260645283777735
 						}
 					],
 					"sid": 976456797084060
@@ -12629,21 +12658,30 @@
 															}
 														},
 														{
+															"id": "log",
+															"objectClass": "browser",
+															"sid": 854686814140779,
+															"parameters": {
+																"type": "log",
+																"message": "enemy.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 906117778687448,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+															}
+														},
+														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
 															"sid": 836908037661225,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "enemy.MoveTo.MovingAngle"
-															}
-														},
-														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 199188507633963,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														},
 														{
@@ -12961,7 +12999,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "projectiles",
-			"description": "",
+			"description": "having a projectile object on the main menu in the margin prevents an issue where \"bullet - set angle of motion\" only ever sets the projectile's angle of motion to either 0 or 180. ",
 			"isActiveOnStart": true,
 			"children": [
 				{

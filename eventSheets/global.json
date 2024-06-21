@@ -481,70 +481,6 @@
 							"sid": 542261891796675
 						}
 					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 190966477344235,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "fullscreenIcon"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Use our own fullscreen icon instead of the one on Itch. This way we can start the audio context if this is the first button clicked."
-						}
-					],
-					"sid": 551410993474741,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-fullscreen",
-									"objectClass": "browser",
-									"sid": 102988732446380
-								}
-							],
-							"actions": [
-								{
-									"id": "cancel-fullscreen",
-									"objectClass": "browser",
-									"sid": 236394121614606
-								}
-							],
-							"sid": 343296602415546
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 687952442055542
-								}
-							],
-							"actions": [
-								{
-									"id": "request-fullscreen",
-									"objectClass": "browser",
-									"sid": 627588659576075,
-									"parameters": {
-										"mode": "stretch-letterbox-scale",
-										"navigation-ui": "auto"
-									}
-								}
-							],
-							"sid": 521592820833468
-						}
-					]
 				}
 			],
 			"sid": 158031389107245
@@ -767,6 +703,19 @@
 					"sid": 507334190129312,
 					"parameters": {
 						"folder": "music",
+						"audio-file-name": "LayoutName",
+						"loop": "looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "LayoutName"
+					}
+				},
+				{
+					"id": "play-by-name",
+					"objectClass": "Audio",
+					"sid": 193106767506058,
+					"parameters": {
+						"folder": "sounds",
 						"audio-file-name": "LayoutName",
 						"loop": "looping",
 						"volume": "0",

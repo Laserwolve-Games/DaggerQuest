@@ -427,37 +427,57 @@
 					}
 				},
 				{
-					"type": "fullscreenIcon",
+					"type": "projectile",
 					"properties": {
-						"svg-file": 804258221849874,
 						"initially-visible": true,
-						"origin": "top-left"
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
 					},
 					"uid": 527,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"piercing": false,
+						"range": 0,
+						"slashDamage": 0,
+						"smashDamage": 0,
+						"stabDamage": 0,
+						"coldDamage": 0,
+						"fireDamage": 0,
+						"lightningDamage": 0,
+						"arcaneDamage": 0,
+						"holyDamage": 0,
+						"corruptDamage": 0,
+						"enabled": false,
+						"knockbackDistance": 0,
+						"knockbackSpeed": 0,
+						"isMelee": false
+					},
 					"behaviors": {
-						"Anchor": {
+						"Bullet": {
 							"properties": {
-								"left-edge": "window-right",
-								"top-edge": "window-bottom",
-								"right-edge": "none",
-								"bottom-edge": "none",
+								"speed": 200,
+								"acceleration": 0,
+								"gravity": 0,
+								"bounce-off-solids": false,
+								"set-angle": false,
+								"step": false,
 								"enabled": true
 							}
 						}
 					},
 					"world": {
-						"x": 1846,
-						"y": 1006,
-						"width": 64,
-						"height": 64,
-						"originX": 0,
-						"originY": 0,
+						"x": 1858,
+						"y": -130,
+						"width": 60,
+						"height": 20,
+						"originX": 0.5,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,
 							1,
-							0.5
+							1
 						],
 						"angle": 0,
 						"zElevation": 0

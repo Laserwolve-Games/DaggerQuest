@@ -43,13 +43,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Button",
-			"name": "Button",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Keyboard",
 			"author": "Scirra",
@@ -66,6 +59,13 @@
 			"type": "plugin",
 			"id": "NinePatch",
 			"name": "9-patch",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "SVGPicture",
+			"name": "SVG Picture",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -221,7 +221,10 @@
 	"objectTypes": {
 		"items": [
 			"woodenChest",
-			"woodenChest_shadow"
+			"woodenChest_shadow",
+			"splashScreen",
+			"copyright",
+			"fullscreenIcon"
 		],
 		"subfolders": [
 			{
@@ -278,8 +281,7 @@
 						"items": [
 							"logo",
 							"versionText",
-							"mainMenuStill",
-							"launcherMessage"
+							"mainMenuStill"
 						],
 						"subfolders": [],
 						"name": "mainMenu"
@@ -289,7 +291,6 @@
 							"loadingText",
 							"loadingTextBackground",
 							"loadingScreen",
-							"loadingLogo",
 							"laserwolveGamesLogo"
 						],
 						"subfolders": [],
@@ -325,7 +326,6 @@
 					},
 					{
 						"items": [
-							"fullscreen",
 							"settingsText",
 							"tutorialText",
 							"autoEquip",
@@ -348,7 +348,6 @@
 						"items": [
 							"play",
 							"back",
-							"reset",
 							"keyBindings",
 							"settings"
 						],
@@ -428,6 +427,16 @@
 						],
 						"subfolders": [],
 						"name": "characterMenu"
+					},
+					{
+						"items": [
+							"launcherMessage",
+							"loadingBarFrame",
+							"loadingBar",
+							"loadingBarText"
+						],
+						"subfolders": [],
+						"name": "splashScreen"
 					}
 				],
 				"name": "overlay"
@@ -651,7 +660,6 @@
 			"comparisonTooltipText",
 			"door",
 			"anchorTiledBackground",
-			"anchorSprite",
 			"anchorText",
 			"checkbox",
 			"lootChest"
@@ -676,7 +684,11 @@
 			"mainMenu",
 			"global",
 			"loadingScreen",
-			"splashScreen"
+			"splashScreen",
+			"farm",
+			"windmillLevel1",
+			"windmillLevel2",
+			"cottage"
 		],
 		"subfolders": []
 	},
@@ -784,6 +796,14 @@
 					"name": "farm.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 766577083372180,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "splashScreen.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 106426856048963,
 					"file-info": {
 						"purpose": "none"
 					}
@@ -940,6 +960,14 @@
 					"name": "npcDialog.json",
 					"type": "application/json",
 					"sid": 675520489143280,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "fullscreenIcon.svg",
+					"type": "image/svg+xml",
+					"sid": 804258221849874,
 					"file-info": {
 						"purpose": "none"
 					}

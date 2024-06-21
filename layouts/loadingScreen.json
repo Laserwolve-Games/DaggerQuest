@@ -136,21 +136,6 @@
 						"uid": 497,
 						"children": [
 							{
-								"uid": 500,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								}
-							},
-							{
 								"uid": 499,
 								"flags": {
 									"x": true,
@@ -167,21 +152,6 @@
 							},
 							{
 								"uid": 498,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								}
-							},
-							{
-								"uid": 501,
 								"flags": {
 									"x": true,
 									"y": true,
@@ -322,7 +292,7 @@
 				{
 					"type": "loadingText",
 					"properties": {
-						"text": "loading...",
+						"text": "loading",
 						"enable-bbcode": true,
 						"font": "Cinzel-SemiBold",
 						"size": 46,
@@ -393,10 +363,10 @@
 					}
 				},
 				{
-					"type": "loadingLogo",
+					"type": "logo",
 					"properties": {
 						"initially-visible": true,
-						"origin": "top-left",
+						"origin": "center",
 						"wrap-horizontal": "repeat",
 						"wrap-vertical": "repeat",
 						"image-offset-x": 0,
@@ -411,7 +381,7 @@
 						"blend-margin-x": 0.1,
 						"blend-margin-y": 0.1
 					},
-					"uid": 500,
+					"uid": 522,
 					"instanceVariables": {},
 					"behaviors": {
 						"Anchor": {
@@ -424,106 +394,11 @@
 							}
 						}
 					},
-					"sceneGraphData": {
-						"parent-uid": 497,
-						"uid": 500,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": true,
-							"v": true,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
 					"world": {
-						"x": 33,
-						"y": 30,
+						"x": 427,
+						"y": 209,
 						"width": 640,
 						"height": 278,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "laserwolveGamesLogo",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Default",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 501,
-					"instanceVariables": {},
-					"behaviors": {
-						"Anchor": {
-							"properties": {
-								"left-edge": "window-right",
-								"top-edge": "window-bottom",
-								"right-edge": "none",
-								"bottom-edge": "none",
-								"enabled": true
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": 497,
-						"uid": 501,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": true,
-							"v": true,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"world": {
-						"x": 1770,
-						"y": 930,
-						"width": 200,
-						"height": 200,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

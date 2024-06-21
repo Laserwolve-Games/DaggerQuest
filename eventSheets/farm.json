@@ -1,0 +1,46 @@
+{
+	"name": "farm",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "core"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-on-screen",
+					"objectClass": "windmillFan",
+					"sid": 820084520295241
+				},
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 697128070732068,
+					"parameters": {
+						"interval-seconds": "windmillFan.AnimationSpeed / windmillFan.AnimationFrameCount"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play-at-object",
+					"objectClass": "Audio",
+					"sid": 214134321084785,
+					"parameters": {
+						"audio-file": "windmill",
+						"loop": "not-looping",
+						"volume": "0",
+						"object": "windmillFan",
+						"inner-angle": "360",
+						"outer-angle": "360",
+						"outer-gain": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 629246997832647
+		}
+	],
+	"sid": 853340695623395
+}

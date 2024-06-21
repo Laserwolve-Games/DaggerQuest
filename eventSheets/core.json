@@ -5811,8 +5811,38 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "buildingTransition",
-											"sid": 894351674578264
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 638177029875875,
+											"parameters": {
+												"instance-variable": "relocateToX",
+												"value": "door.relocateToX"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "player",
+											"sid": 666920721217678,
+											"parameters": {
+												"instance-variable": "relocateToY",
+												"value": "door.relocateToY"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 392334434204623,
+											"parameters": {
+												"variable": "isOnInteractCooldown",
+												"value": "true"
+											}
+										},
+										{
+											"callFunction": "changeLayout",
+											"sid": 905950862943501,
+											"parameters": [
+												"door.layout"
+											]
 										},
 										{
 											"id": "set-eventvar-value",
@@ -14078,7 +14108,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "initialization",
+			"title": "foobar",
 			"description": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too.",
 			"isActiveOnStart": true,
 			"children": [
@@ -14143,19 +14173,6 @@
 							"parameters": {
 								"layer": "\"mechanics\"",
 								"interactive": true
-							}
-						},
-						{
-							"id": "play-by-name",
-							"objectClass": "Audio",
-							"sid": 293311448334514,
-							"parameters": {
-								"folder": "sounds",
-								"audio-file-name": "LayoutName",
-								"loop": "not-looping",
-								"volume": "0",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
 							}
 						}
 					],
@@ -15709,70 +15726,6 @@
 					"sid": 374910180747516
 				},
 				{
-					"functionName": "buildingTransition",
-					"functionDescription": "Move the player in and out of a building.",
-					"functionCategory": "world",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "These have to be saved to variables because the door object will be inaccessible after we change layouts."
-						},
-						{
-							"id": "stop-all",
-							"objectClass": "Audio",
-							"sid": 330743482395389
-						},
-						{
-							"id": "stop",
-							"objectClass": "player",
-							"sid": 607562531417494,
-							"behaviorType": "MoveTo"
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 754258952321980,
-							"parameters": {
-								"instance-variable": "relocateToX",
-								"value": "door.relocateToX"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 976662891535172,
-							"parameters": {
-								"instance-variable": "relocateToY",
-								"value": "door.relocateToY"
-							}
-						},
-						{
-							"id": "go-to-layout-by-name",
-							"objectClass": "System",
-							"sid": 414950710571795,
-							"parameters": {
-								"layout": "door.layout"
-							}
-						},
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 210074657667276,
-							"parameters": {
-								"variable": "isOnInteractCooldown",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 605751022796155
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -15802,48 +15755,6 @@
 						}
 					],
 					"sid": 235939344330391
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-animation-frame",
-							"objectClass": "windmillFan",
-							"sid": 667520165331960,
-							"parameters": {
-								"comparison": 0,
-								"number": "0"
-							}
-						},
-						{
-							"id": "is-on-screen",
-							"objectClass": "windmillFan",
-							"sid": 820084520295241
-						},
-						{
-							"id": "trigger-once-while-true",
-							"objectClass": "System",
-							"sid": 743795091332959
-						}
-					],
-					"actions": [
-						{
-							"id": "play-at-object",
-							"objectClass": "Audio",
-							"sid": 131944976187950,
-							"parameters": {
-								"audio-file": "windmill",
-								"loop": "not-looping",
-								"volume": "0",
-								"object": "windmillFan",
-								"inner-angle": "360",
-								"outer-angle": "360",
-								"outer-gain": "0",
-								"tag-optional": "\"\""
-							}
-						}
-					],
-					"sid": 629246997832647
 				}
 			],
 			"sid": 992252066588856

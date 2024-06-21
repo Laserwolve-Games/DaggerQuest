@@ -1,0 +1,41 @@
+{
+	"name": "windmillLevel2",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "core"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 226843845959050,
+					"parameters": {
+						"interval-seconds": "windmillFan.AnimationSpeed / windmillFan.AnimationFrameCount"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play-at-object",
+					"objectClass": "Audio",
+					"sid": 716008010120562,
+					"parameters": {
+						"audio-file": "windmill",
+						"loop": "not-looping",
+						"volume": "0",
+						"object": "windmillFan",
+						"inner-angle": "360",
+						"outer-angle": "360",
+						"outer-gain": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 621058821980634
+		}
+	],
+	"sid": 451785962526459
+}

@@ -2,45 +2,16 @@
 	"name": "splashScreen",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-any-click",
-					"objectClass": "mouse",
-					"sid": 894825608071195
-				},
-				{
-					"id": "on-any-key-pressed",
-					"objectClass": "keyboard",
-					"sid": 635180610167092
-				}
-			],
-			"actions": [],
-			"sid": 102485676978826,
+			"eventType": "include",
+			"includeSheet": "global"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "splash screen",
+			"description": "in a category so we can reduce variable scope",
+			"isActiveOnStart": true,
 			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-in-preview",
-							"objectClass": "System",
-							"sid": 698969625311872,
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "request-fullscreen",
-							"objectClass": "browser",
-							"sid": 246450620517479,
-							"parameters": {
-								"mode": "stretch-letterbox-scale",
-								"navigation-ui": "auto"
-							}
-						}
-					],
-					"sid": 173818500082693
-				},
 				{
 					"eventType": "variable",
 					"name": "REQUIRED_PROTOCOL",
@@ -49,84 +20,17 @@
 					"comment": "The required protocol.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 919631719144561
+					"sid": 507517762113422
 				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 339592264047104,
-							"parameters": {
-								"first-value": "loadingprogress",
-								"comparison": 0,
-								"second-value": "1"
-							}
-						},
-						{
-							"id": "compare-text",
-							"objectClass": "launcherMessage",
-							"sid": 195301927294030,
-							"parameters": {
-								"text-to-compare": "\"Press any key\r\nto start\"",
-								"case-sensitivity": "ignore-case"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 216680130262108,
-							"parameters": {
-								"first-value": "browser.Protocol",
-								"comparison": 0,
-								"second-value": "REQUIRED_PROTOCOL"
-							}
-						},
-						{
-							"id": "evaluate-expression",
-							"objectClass": "System",
-							"sid": 309196464307879,
-							"parameters": {
-								"value": "browser.Domain = \"preview.construct.net\" | browser.Domain = \"daggerquest.netlify.app\" | browser.Domain = \"daggerquesttest.netlify.app\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Verify we are on an approved URL at which we can play DaggerQuest"
-						},
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 153173091888863,
-							"parameters": {
-								"layout": "mainMenu"
-							}
-						}
-					],
-					"sid": 360996446081703
-				}
-			],
-			"isOrBlock": true
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Updating",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
 				{
 					"eventType": "variable",
 					"name": "updateAvailable",
 					"type": "boolean",
 					"initialValue": "false",
 					"comment": "Whether or not an update is available.",
-					"isStatic": false,
+					"isStatic": true,
 					"isConstant": false,
-					"sid": 147686468549110
+					"sid": 255447198174867
 				},
 				{
 					"eventType": "comment",
@@ -138,14 +42,14 @@
 						{
 							"id": "on-update-found-sw",
 							"objectClass": "browser",
-							"sid": 222416445036858
+							"sid": 691497159284594
 						}
 					],
 					"actions": [
 						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 477854848420832,
+							"sid": 298649766153894,
 							"parameters": {
 								"variable": "updateAvailable",
 								"value": "true"
@@ -154,31 +58,13 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 318012876733101,
+							"sid": 744652312210251,
 							"parameters": {
 								"text": "\"Update available. Downloading\""
 							}
 						}
 					],
-					"sid": 714315446580847
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-update-ready-sw",
-							"objectClass": "browser",
-							"sid": 798406495320833
-						}
-					],
-					"actions": [
-						{
-							"id": "reload",
-							"objectClass": "browser",
-							"sid": 230049282543806
-						}
-					],
-					"sid": 414723963167499
+					"sid": 732686039218090
 				},
 				{
 					"eventType": "block",
@@ -186,7 +72,7 @@
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 430948190998346,
+							"sid": 438783416248417,
 							"parameters": {
 								"variable": "updateAvailable"
 							}
@@ -194,9 +80,9 @@
 						{
 							"id": "every-x-seconds",
 							"objectClass": "System",
-							"sid": 118378760087474,
+							"sid": 805116272556535,
 							"parameters": {
-								"interval-seconds": "1.0"
+								"interval-seconds": "0.5"
 							}
 						}
 					],
@@ -204,16 +90,232 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 262016826469396,
+							"sid": 820819320875258,
 							"parameters": {
 								"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
 							}
 						}
 					],
-					"sid": 589585843929598
+					"sid": 703324802027352
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-update-ready-sw",
+							"objectClass": "browser",
+							"sid": 914907367177721
+						}
+					],
+					"actions": [
+						{
+							"id": "reload",
+							"objectClass": "browser",
+							"sid": 643091263556062
+						}
+					],
+					"sid": 736856252742852
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 774700340711731
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "launcherMessage",
+							"sid": 790516563955118,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetOpacity",
+								"end-value": "10",
+								"time": "1",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "yes",
+								"ping-pong": "yes",
+								"repeat-count": "0"
+							}
+						}
+					],
+					"sid": 277147762016600
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-key-pressed",
+							"objectClass": "keyboard",
+							"sid": 151169116968630
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 350086436656584,
+							"parameters": {
+								"first-value": "keyboard.LastKeyCode",
+								"comparison": 1,
+								"second-value": "27"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 788392128759753,
+							"parameters": {
+								"first-value": "keyboard.LastKeyCode",
+								"comparison": 1,
+								"second-value": "122"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 239141489123527,
+							"parameters": {
+								"first-value": "keyboard.LastKeyCode",
+								"comparison": 1,
+								"second-value": "123"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 840931282979907,
+							"parameters": {
+								"variable": "updateAvailable"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 242104066820008,
+							"parameters": {
+								"first-value": "loadingprogress",
+								"comparison": 0,
+								"second-value": "1"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 876866161620682,
+							"parameters": {
+								"first-value": "browser.Protocol",
+								"comparison": 0,
+								"second-value": "REQUIRED_PROTOCOL"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 765310154819723,
+							"parameters": {
+								"value": "browser.Domain = \"preview.construct.net\" | browser.Domain = \"daggerquest.netlify.app\" | browser.Domain = \"daggerquesttest.netlify.app\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "If we've finished loading, there's no update, we're on an approved URL, and a key was pressed that wasn't F11, F12 or escape, start the game."
+						},
+						{
+							"id": "stop-all",
+							"objectClass": "Audio",
+							"sid": 230260368716996
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 816194191131911,
+							"parameters": {
+								"layout": "mainMenu"
+							}
+						}
+					],
+					"sid": 596130575223459
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 325307568266297,
+							"parameters": {
+								"first-value": "loadingprogress",
+								"comparison": 1,
+								"second-value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "launcherMessage",
+							"sid": 326618954085655,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingBarFrame",
+							"sid": 647600223397914,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-image-scale-x",
+							"objectClass": "loadingBar",
+							"sid": 533370799125088,
+							"parameters": {
+								"scale-x": "loadingprogress * 100"
+							}
+						}
+					],
+					"sid": 181118355525718
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 710547151992762
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "launcherMessage",
+							"sid": 471207418511441,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingBarFrame",
+							"sid": 694825951034526,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 830884642059031
 				}
 			],
-			"sid": 795842345406182
+			"sid": 297998252022528
 		}
 	],
 	"sid": 267646085855592

@@ -124,6 +124,23 @@
 					"actions": [
 						{
 							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 823860038505084,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "1",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
 							"objectClass": "launcherMessage",
 							"sid": 790516563955118,
 							"behaviorType": "Tween",
@@ -142,14 +159,25 @@
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 270153325448596,
+							"sid": 712396378924728,
 							"parameters": {
 								"folder": "music",
 								"audio-file-name": "LayoutName",
 								"loop": "looping",
-								"volume": "0",
+								"volume": "-100",
 								"stereo-pan": "0",
 								"tag-optional": "LayoutName"
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 339567791972727,
+							"parameters": {
+								"tag": "LayoutName",
+								"db": "0",
+								"duration": "1",
+								"ending": "keep-playing"
 							}
 						}
 					],
@@ -237,9 +265,37 @@
 							"text": "If we've finished loading, there's no update, we're on an approved URL, and a key was pressed that wasn't F11, F12 or escape, start the game."
 						},
 						{
-							"id": "stop-all",
+							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 230260368716996
+							"sid": 554000219513429,
+							"parameters": {
+								"tag": "LayoutName",
+								"db": "-100",
+								"duration": "1",
+								"ending": "stop"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 306575240141881,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName",
+								"property": "offsetOpacity",
+								"end-value": "100",
+								"time": "1",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 589815070034445
 						},
 						{
 							"id": "go-to-layout",

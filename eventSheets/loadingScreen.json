@@ -64,6 +64,39 @@
 					}
 				},
 				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 348525685149246,
+					"parameters": {
+						"tag": "LayoutName",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "fader",
+					"sid": 762242601581034,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "Self.ObjectTypeName",
+						"property": "offsetOpacity",
+						"end-value": "100",
+						"time": "1",
+						"ease": "noease",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 122192739986078
+				},
+				{
 					"id": "go-to-layout",
 					"objectClass": "System",
 					"sid": 342206759884725,
@@ -91,7 +124,7 @@
 					"name": "MINIMUM_LOADINGSCREEN_TIME",
 					"type": "number",
 					"initialValue": "1",
-					"comment": "The minimum amount of time to show the loading screen, in seconds.",
+					"comment": "The minimum amount of time to show the loading screen, in seconds. Doesn't include the fade in and fade out.",
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 194169361633105
@@ -110,6 +143,32 @@
 					"eventType": "block",
 					"conditions": [],
 					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 709091871270767,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "1",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "This tween is really jittery if we do it while loading, so wait until it finishes to start loading"
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 957962135869185
+						},
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
@@ -156,6 +215,33 @@
 							"parameters": {
 								"seconds": "minimumLoadingScreenExpiryTime - wallclocktime"
 							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 403237308684418
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 828540432907308,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName",
+								"property": "offsetOpacity",
+								"end-value": "100",
+								"time": "1",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 974658375890245
 						},
 						{
 							"id": "go-to-layout-by-name",

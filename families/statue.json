@@ -2,17 +2,42 @@
 	"name": "statue",
 	"plugin-id": "Sprite",
 	"sid": 516047157476380,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "originalX",
+			"type": "number",
+			"desc": "The X value of this statue when it was first created.",
+			"show": true,
+			"sid": 858845411743586
+		},
+		{
+			"name": "originalY",
+			"type": "number",
+			"desc": "The Y value of this statue when it was first created.",
+			"show": true,
+			"sid": 230255083810550
+		}
+	],
 	"behaviorTypes": [
 		{
 			"behaviorId": "Anchor",
 			"name": "Anchor",
 			"sid": 843370877623691
+		},
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 450977252402361
+		},
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 725476017815963
 		}
 	],
 	"effectTypes": [],
 	"members": [
-		"settingsMenuStatue",
+		"settingsStatue",
 		"characterStatue",
 		"inventoryStatue",
 		"equippedStatue",

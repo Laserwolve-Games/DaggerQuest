@@ -488,6 +488,154 @@
 		{
 			"eventType": "group",
 			"disabled": false,
+			"title": "statues",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "statue",
+							"sid": 654365848377800
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "statue",
+							"sid": 114128461993951,
+							"parameters": {
+								"instance-variable": "originalX",
+								"value": "Self.X"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "statue",
+							"sid": 820226298695611,
+							"parameters": {
+								"instance-variable": "originalY",
+								"value": "Self.Y"
+							}
+						}
+					],
+					"sid": 546590760396709
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "statue",
+							"sid": 921532297493206,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "statue",
+							"sid": 593508445350170,
+							"behaviorType": "Anchor",
+							"parameters": {
+								"state": "disabled"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "statue",
+							"sid": 528819643657927,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName & \" opacity tween out\"",
+								"property": "offsetOpacity",
+								"end-value": "50",
+								"time": ".2",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 853110582736759
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "statue",
+							"sid": 104810528278196,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "statue",
+							"sid": 743662017465459,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName & \" opacity tween in\"",
+								"property": "offsetOpacity",
+								"end-value": "100",
+								"time": ".2",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 217495091864071
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 447016322697626,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "double-clicked",
+								"object-clicked": "statue"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "statue",
+							"sid": 651223483898203,
+							"parameters": {
+								"x": "Self.originalX",
+								"y": "Self.originalY"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "statue",
+							"sid": 875522253676724,
+							"behaviorType": "Anchor",
+							"parameters": {
+								"state": "enabled"
+							}
+						}
+					],
+					"sid": 912446903232720
+				}
+			],
+			"sid": 380762940661044
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
 			"title": "text buttons",
 			"description": "",
 			"isActiveOnStart": true,

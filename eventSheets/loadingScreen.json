@@ -83,43 +83,92 @@
 					"sid": 784297342511893
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 291243571342097,
+			"children": [
 				{
-					"id": "stop-all",
-					"objectClass": "Audio",
-					"sid": 379327879462765
+					"eventType": "variable",
+					"name": "MINIMUM_LOADINGSCREEN_TIME",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "The minimum amount of time to show the loading screen, in seconds.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 194169361633105
 				},
 				{
-					"id": "wait",
-					"objectClass": "System",
-					"sid": 921338994895723,
-					"parameters": {
-						"seconds": "0"
-					}
+					"eventType": "variable",
+					"name": "minimumLoadingScreenExpiryTime",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The time that the loading screen should last until, at minimum.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 296354287699383
 				},
 				{
-					"id": "load-layout-images-by-name",
-					"objectClass": "System",
-					"sid": 821733952315915,
-					"parameters": {
-						"layout": "targetLayout"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 702082746454751
-				},
-				{
-					"id": "go-to-layout-by-name",
-					"objectClass": "System",
-					"sid": 723554792684211,
-					"parameters": {
-						"layout": "targetLayout"
-					}
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 440739585669825,
+							"parameters": {
+								"variable": "minimumLoadingScreenExpiryTime",
+								"value": "wallclocktime + MINIMUM_LOADINGSCREEN_TIME"
+							}
+						},
+						{
+							"id": "stop-all",
+							"objectClass": "Audio",
+							"sid": 753063338919919
+						},
+						{
+							"type": "comment",
+							"text": "This wait 0 prevents the loading from occurring before we get to the loading screen."
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 104768621326518,
+							"parameters": {
+								"seconds": "0"
+							}
+						},
+						{
+							"id": "load-layout-images-by-name",
+							"objectClass": "System",
+							"sid": 594192819577717,
+							"parameters": {
+								"layout": "targetLayout"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 476462363078746
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 823499413823762,
+							"parameters": {
+								"seconds": "minimumLoadingScreenExpiryTime - wallclocktime"
+							}
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 314961677692135,
+							"parameters": {
+								"layout": "targetLayout"
+							}
+						}
+					],
+					"sid": 266282522182230
 				}
-			],
-			"sid": 291243571342097
+			]
 		}
 	],
 	"sid": 870563530335933

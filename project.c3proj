@@ -660,12 +660,13 @@
 	},
 	"layouts": {
 		"items": [
-			"storage",
 			"farm",
-			"mainMenu",
 			"windmillLevel1",
 			"windmillLevel2",
-			"cottage"
+			"cottage",
+			"mainMenu",
+			"loadingScreen",
+			"splashScreen"
 		],
 		"subfolders": []
 	},
@@ -673,7 +674,9 @@
 		"items": [
 			"core",
 			"mainMenu",
-			"global"
+			"global",
+			"loadingScreen",
+			"splashScreen"
 		],
 		"subfolders": []
 	},
@@ -968,7 +971,7 @@
 		"pixelRounding": false,
 		"zAxisScale": "normalized",
 		"fov": 0.7853981633974483,
-		"useLoaderLayout": false,
+		"useLoaderLayout": true,
 		"fullscreenMode": "scale-inner",
 		"fullscreenQuality": "high",
 		"viewportFit": "auto",
@@ -1014,5 +1017,5 @@
 	},
 	"viewportWidth": 1920,
 	"viewportHeight": 1080,
-	"firstLayout": "mainMenu"
+	"firstLayout": "splashScreen"
 }

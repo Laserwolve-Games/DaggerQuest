@@ -107,16 +107,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "previousLayout",
-			"type": "string",
-			"initialValue": "none",
-			"comment": "The layout we were on, before this one.",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 241570996019166
-		},
-		{
-			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
@@ -14111,14 +14101,6 @@
 							}
 						},
 						{
-							"id": "set-visible",
-							"objectClass": "loadingScreen",
-							"sid": 565766658750069,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						},
-						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
 							"sid": 401680153103611,
@@ -15747,14 +15729,6 @@
 							"sid": 330743482395389
 						},
 						{
-							"id": "set-visible",
-							"objectClass": "loadingScreen",
-							"sid": 829008042264045,
-							"parameters": {
-								"visibility": "visible"
-							}
-						},
-						{
 							"id": "stop",
 							"objectClass": "player",
 							"sid": 607562531417494,
@@ -15776,15 +15750,6 @@
 							"parameters": {
 								"instance-variable": "relocateToY",
 								"value": "door.relocateToY"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 833203496811020,
-							"parameters": {
-								"variable": "previousLayout",
-								"value": "LayoutName"
 							}
 						},
 						{

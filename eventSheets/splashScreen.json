@@ -1,0 +1,220 @@
+{
+	"name": "splashScreen",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-click",
+					"objectClass": "mouse",
+					"sid": 894825608071195
+				},
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 635180610167092
+				}
+			],
+			"actions": [],
+			"sid": 102485676978826,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 698969625311872,
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "request-fullscreen",
+							"objectClass": "browser",
+							"sid": 246450620517479,
+							"parameters": {
+								"mode": "stretch-letterbox-scale",
+								"navigation-ui": "auto"
+							}
+						}
+					],
+					"sid": 173818500082693
+				},
+				{
+					"eventType": "variable",
+					"name": "REQUIRED_PROTOCOL",
+					"type": "string",
+					"initialValue": "https:",
+					"comment": "The required protocol.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 919631719144561
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 339592264047104,
+							"parameters": {
+								"first-value": "loadingprogress",
+								"comparison": 0,
+								"second-value": "1"
+							}
+						},
+						{
+							"id": "compare-text",
+							"objectClass": "launcherMessage",
+							"sid": 195301927294030,
+							"parameters": {
+								"text-to-compare": "\"Press any key\r\nto start\"",
+								"case-sensitivity": "ignore-case"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 216680130262108,
+							"parameters": {
+								"first-value": "browser.Protocol",
+								"comparison": 0,
+								"second-value": "REQUIRED_PROTOCOL"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 309196464307879,
+							"parameters": {
+								"value": "browser.Domain = \"preview.construct.net\" | browser.Domain = \"daggerquest.netlify.app\" | browser.Domain = \"daggerquesttest.netlify.app\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Verify we are on an approved URL at which we can play DaggerQuest"
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 153173091888863,
+							"parameters": {
+								"layout": "mainMenu"
+							}
+						}
+					],
+					"sid": 360996446081703
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Updating",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "updateAvailable",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "Whether or not an update is available.",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 147686468549110
+				},
+				{
+					"eventType": "comment",
+					"text": "There's no way to do an \"On update not found\" trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-update-found-sw",
+							"objectClass": "browser",
+							"sid": 222416445036858
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 477854848420832,
+							"parameters": {
+								"variable": "updateAvailable",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "launcherMessage",
+							"sid": 318012876733101,
+							"parameters": {
+								"text": "\"Update available. Downloading\""
+							}
+						}
+					],
+					"sid": 714315446580847
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-update-ready-sw",
+							"objectClass": "browser",
+							"sid": 798406495320833
+						}
+					],
+					"actions": [
+						{
+							"id": "reload",
+							"objectClass": "browser",
+							"sid": 230049282543806
+						}
+					],
+					"sid": 414723963167499
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 430948190998346,
+							"parameters": {
+								"variable": "updateAvailable"
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 118378760087474,
+							"parameters": {
+								"interval-seconds": "1.0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "launcherMessage",
+							"sid": 262016826469396,
+							"parameters": {
+								"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
+							}
+						}
+					],
+					"sid": 589585843929598
+				}
+			],
+			"sid": 795842345406182
+		}
+	],
+	"sid": 267646085855592
+}

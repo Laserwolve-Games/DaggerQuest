@@ -1,0 +1,126 @@
+{
+	"name": "loadingScreen",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "targetLayout",
+			"type": "string",
+			"initialValue": "",
+			"comment": "The layout to change to",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 359592679113279
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 578196929836979,
+					"parameters": {
+						"interval-seconds": "0.5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "loadingText",
+					"sid": 967955305651121,
+					"parameters": {
+						"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
+					}
+				}
+			],
+			"sid": 901007134028296
+		},
+		{
+			"functionName": "changeLayout",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "layoutToGoTo",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 821222262544592
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 129408778690488,
+					"parameters": {
+						"variable": "targetLayout",
+						"value": "layoutToGoTo"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 342206759884725,
+					"parameters": {
+						"layout": "loadingScreen"
+					}
+				}
+			],
+			"sid": 742658753939417
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 784297342511893
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-all",
+					"objectClass": "Audio",
+					"sid": 379327879462765
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 921338994895723,
+					"parameters": {
+						"seconds": "0"
+					}
+				},
+				{
+					"id": "load-layout-images-by-name",
+					"objectClass": "System",
+					"sid": 821733952315915,
+					"parameters": {
+						"layout": "targetLayout"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 702082746454751
+				},
+				{
+					"id": "go-to-layout-by-name",
+					"objectClass": "System",
+					"sid": 723554792684211,
+					"parameters": {
+						"layout": "targetLayout"
+					}
+				}
+			],
+			"sid": 291243571342097
+		}
+	],
+	"sid": 870563530335933
+}

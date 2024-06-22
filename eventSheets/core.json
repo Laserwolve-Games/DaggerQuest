@@ -9229,12 +9229,19 @@
 										"layer": "\"settingsMenu\""
 									},
 									"isInverted": true
+								},
+								{
+									"id": "is-dragging",
+									"objectClass": "statue",
+									"sid": 412021397375672,
+									"behaviorType": "DragDrop",
+									"isInverted": true
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "you can only open game menus when the game isn't paused"
+									"text": "you can only open game menus when the game isn't paused, and you currently aren't rearranging menus"
 								}
 							],
 							"sid": 589869390653306,
@@ -9393,7 +9400,19 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 984165709066859,
+									"parameters": {
+										"object": "statue",
+										"expression": "menuName & \"Statue\"",
+										"comparison": 0,
+										"value": "statue.ObjectTypeName"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-layer-interactive",
@@ -9433,7 +9452,19 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 457437243208774,
+									"parameters": {
+										"object": "statue",
+										"expression": "menuName & \"Statue\"",
+										"comparison": 0,
+										"value": "statue.ObjectTypeName"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-layer-interactive",

@@ -17436,7 +17436,7 @@
 					"subLayers": [],
 					"instances": [
 						{
-							"type": "inventoryStatue",
+							"type": "inventoryMenuStatue",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "Default",
@@ -19529,7 +19529,7 @@
 					"subLayers": [],
 					"instances": [
 						{
-							"type": "equippedStatue",
+							"type": "equippedMenuStatue",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "Default",
@@ -21152,1252 +21152,6 @@
 					"global": false
 				},
 				{
-					"name": "settingsMenu",
-					"overriden": 0,
-					"subLayers": [],
-					"instances": [],
-					"sid": 868603420059525,
-					"effectTypes": [],
-					"isInitiallyVisible": false,
-					"isInitiallyInteractive": false,
-					"isHTMLElementsLayer": false,
-					"color": [
-						1,
-						1,
-						1,
-						1
-					],
-					"backgroundColor": [
-						1,
-						1,
-						1,
-						1
-					],
-					"isTransparent": true,
-					"parallaxX": 0,
-					"parallaxY": 0,
-					"scaleRate": 1,
-					"forceOwnTexture": false,
-					"renderingMode": "3d",
-					"drawOrder": "z-order",
-					"useRenderCells": false,
-					"blendMode": "normal",
-					"zElevation": 0,
-					"global": false
-				},
-				{
-					"name": "tooltip",
-					"overriden": 0,
-					"subLayers": [],
-					"instances": [
-						{
-							"type": "tooltip",
-							"properties": {
-								"left-margin": 16,
-								"right-margin": 16,
-								"top-margin": 16,
-								"bottom-margin": 16,
-								"edges": "stretch",
-								"fill": "stretch",
-								"initially-visible": true,
-								"origin": "bottom",
-								"seams": "overlap"
-							},
-							"uid": 101,
-							"instanceVariables": {},
-							"behaviors": {
-								"Anchor": {
-									"properties": {
-										"left-edge": "none",
-										"top-edge": "window-bottom",
-										"right-edge": "none",
-										"bottom-edge": "none",
-										"enabled": true
-									}
-								}
-							},
-							"sceneGraphData": {
-								"parent-uid": null,
-								"uid": 101,
-								"children": [
-									{
-										"uid": 80,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 82,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 83,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 81,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 85,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									}
-								],
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": false,
-									"v": false,
-									"d": true,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 1080,
-								"width": 620,
-								"height": 300,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "tooltipDescription",
-							"properties": {
-								"text": "Just one line\nline 2\nline 3\nline 4\nline 5",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									0.9215686274509803,
-									0.8745098039215686,
-									0.6431372549019608,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "bottom",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 80,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 101,
-								"uid": 80,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 1042.5,
-								"width": 590,
-								"height": 137,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "tooltipClass",
-							"properties": {
-								"text": "Absolved, Chevalier, Mendicant",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 5,
-								"bold": false,
-								"italic": false,
-								"color": [
-									0,
-									1,
-									0,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 82,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 101,
-								"uid": 82,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 868,
-								"width": 590,
-								"height": 23,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "tooltipName",
-							"properties": {
-								"text": "Vestment of the Defiant Disciple",
-								"enable-bbcode": true,
-								"font": "Cinzel-SemiBold",
-								"size": 24,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 83,
-							"instanceVariables": {},
-							"behaviors": {},
-							"effects": {
-								"GlowHorizontal": {
-									"isEnabled": true,
-									"parameters": {
-										"intensity": 0.4
-									}
-								},
-								"GlowVertical": {
-									"isEnabled": true,
-									"parameters": {
-										"intensity": 0.4
-									}
-								}
-							},
-							"sceneGraphData": {
-								"parent-uid": 101,
-								"uid": 83,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 833,
-								"width": 590,
-								"height": 41,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "tooltipLevel",
-							"properties": {
-								"text": "Level 16",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									0,
-									0,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 81,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 101,
-								"uid": 81,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 900,
-								"width": 590,
-								"height": 19,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "tooltipLore",
-							"properties": {
-								"text": "Ere the mastre returneth! Lest it be proclaimed upon the housetops!",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBoldItalic",
-								"size": 16,
-								"line-height": 5,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "center",
-								"read-aloud": false
-							},
-							"uid": 85,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 101,
-								"uid": 85,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 1053,
-								"width": 590,
-								"height": 21,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									0.8
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						}
-					],
-					"sid": 645453808453005,
-					"effectTypes": [],
-					"isInitiallyVisible": true,
-					"isInitiallyInteractive": false,
-					"isHTMLElementsLayer": false,
-					"color": [
-						1,
-						1,
-						1,
-						1
-					],
-					"backgroundColor": [
-						1,
-						1,
-						1,
-						1
-					],
-					"isTransparent": true,
-					"parallaxX": 0,
-					"parallaxY": 0,
-					"scaleRate": 1,
-					"forceOwnTexture": false,
-					"renderingMode": "3d",
-					"drawOrder": "z-order",
-					"useRenderCells": false,
-					"blendMode": "normal",
-					"zElevation": 0,
-					"global": false
-				},
-				{
-					"name": "comparisonTooltip",
-					"overriden": 0,
-					"subLayers": [],
-					"instances": [
-						{
-							"type": "comparisonTooltip",
-							"properties": {
-								"left-margin": 16,
-								"right-margin": 16,
-								"top-margin": 16,
-								"bottom-margin": 16,
-								"edges": "stretch",
-								"fill": "stretch",
-								"initially-visible": true,
-								"origin": "bottom",
-								"seams": "overlap"
-							},
-							"uid": 35,
-							"instanceVariables": {},
-							"behaviors": {
-								"Anchor": {
-									"properties": {
-										"left-edge": "none",
-										"top-edge": "window-bottom",
-										"right-edge": "none",
-										"bottom-edge": "none",
-										"enabled": true
-									}
-								}
-							},
-							"sceneGraphData": {
-								"parent-uid": null,
-								"uid": 35,
-								"children": [
-									{
-										"uid": 37,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 38,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 48,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 49,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 50,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": false,
-											"w": false,
-											"h": false,
-											"a": false,
-											"o": true,
-											"v": true,
-											"d": false,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 95,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									}
-								],
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": false,
-									"v": false,
-									"d": true,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 780,
-								"width": 620,
-								"height": 300,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "comparisonTooltipName",
-							"properties": {
-								"text": "Vestment of the Defiant Disciple",
-								"enable-bbcode": true,
-								"font": "Cinzel-SemiBold",
-								"size": 24,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 37,
-							"instanceVariables": {},
-							"behaviors": {},
-							"effects": {
-								"GlowHorizontal": {
-									"isEnabled": true,
-									"parameters": {
-										"intensity": 0.4
-									}
-								},
-								"GlowVertical": {
-									"isEnabled": true,
-									"parameters": {
-										"intensity": 0.4
-									}
-								}
-							},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 37,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 533,
-								"width": 590,
-								"height": 41,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "comparisonTooltipClass",
-							"properties": {
-								"text": "Absolved, Chevalier, Mendicant",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									0,
-									1,
-									0,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 38,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 38,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 568,
-								"width": 590,
-								"height": 23,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "comparisonTooltipLevel",
-							"properties": {
-								"text": "Level 88",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									0,
-									0,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 48,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 48,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 600,
-								"width": 590,
-								"height": 19,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "comparisonTooltipDescription",
-							"properties": {
-								"text": "Line 1\nLine 2\nLine 3\nLine 4\nLine 5",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									0.9215686274509803,
-									0.8745098039215686,
-									0.6431372549019608,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "bottom",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "bottom",
-								"read-aloud": false
-							},
-							"uid": 49,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 49,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 742,
-								"width": 590,
-								"height": 143,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "comparisonTooltipLore",
-							"properties": {
-								"text": "Ere the mastre returneth! Lest it be proclaimed upon the housetops!",
-								"enable-bbcode": true,
-								"font": "Grenze-SemiBoldItalic",
-								"size": 16,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "center",
-								"read-aloud": false
-							},
-							"uid": 50,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 50,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": false,
-									"w": false,
-									"h": false,
-									"a": false,
-									"o": true,
-									"v": true,
-									"d": false,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 753,
-								"width": 590,
-								"height": 21,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									0.8
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "currentlyEquipped",
-							"properties": {
-								"text": "currently equipped",
-								"enable-bbcode": true,
-								"font": "cinzel-semibold",
-								"size": 18,
-								"line-height": 0,
-								"bold": false,
-								"italic": true,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "center",
-								"read-aloud": false
-							},
-							"uid": 95,
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 35,
-								"uid": 95,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"world": {
-								"x": 1200,
-								"y": 454,
-								"width": 148,
-								"height": 60,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									0.75
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						}
-					],
-					"sid": 845659943083693,
-					"effectTypes": [],
-					"isInitiallyVisible": true,
-					"isInitiallyInteractive": false,
-					"isHTMLElementsLayer": false,
-					"color": [
-						1,
-						1,
-						1,
-						1
-					],
-					"backgroundColor": [
-						1,
-						1,
-						1,
-						1
-					],
-					"isTransparent": true,
-					"parallaxX": 0,
-					"parallaxY": 0,
-					"scaleRate": 1,
-					"forceOwnTexture": false,
-					"renderingMode": "3d",
-					"drawOrder": "z-order",
-					"useRenderCells": false,
-					"blendMode": "normal",
-					"zElevation": 0,
-					"global": false
-				},
-				{
 					"name": "characterMenu",
 					"overriden": 0,
 					"subLayers": [],
@@ -22464,7 +21218,7 @@
 							}
 						},
 						{
-							"type": "characterStatue",
+							"type": "characterMenuStatue",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "Default",
@@ -26965,6 +25719,1252 @@
 					"sid": 459059172974366,
 					"effectTypes": [],
 					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						1,
+						1,
+						1,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
+					"name": "settingsMenu",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [],
+					"sid": 868603420059525,
+					"effectTypes": [],
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						1,
+						1,
+						1,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
+					"name": "tooltip",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "tooltip",
+							"properties": {
+								"left-margin": 16,
+								"right-margin": 16,
+								"top-margin": 16,
+								"bottom-margin": 16,
+								"edges": "stretch",
+								"fill": "stretch",
+								"initially-visible": true,
+								"origin": "bottom",
+								"seams": "overlap"
+							},
+							"uid": 101,
+							"instanceVariables": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "none",
+										"top-edge": "window-bottom",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 101,
+								"children": [
+									{
+										"uid": 80,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 82,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 83,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 81,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 85,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 1080,
+								"width": 620,
+								"height": 300,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipDescription",
+							"properties": {
+								"text": "Just one line\nline 2\nline 3\nline 4\nline 5",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									0.9215686274509803,
+									0.8745098039215686,
+									0.6431372549019608,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "bottom",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 80,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 80,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 1042.5,
+								"width": 590,
+								"height": 137,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipClass",
+							"properties": {
+								"text": "Absolved, Chevalier, Mendicant",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 5,
+								"bold": false,
+								"italic": false,
+								"color": [
+									0,
+									1,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 82,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 82,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 868,
+								"width": 590,
+								"height": 23,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipName",
+							"properties": {
+								"text": "Vestment of the Defiant Disciple",
+								"enable-bbcode": true,
+								"font": "Cinzel-SemiBold",
+								"size": 24,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 83,
+							"instanceVariables": {},
+							"behaviors": {},
+							"effects": {
+								"GlowHorizontal": {
+									"isEnabled": true,
+									"parameters": {
+										"intensity": 0.4
+									}
+								},
+								"GlowVertical": {
+									"isEnabled": true,
+									"parameters": {
+										"intensity": 0.4
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 83,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 833,
+								"width": 590,
+								"height": 41,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipLevel",
+							"properties": {
+								"text": "Level 16",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									0,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 81,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 81,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 900,
+								"width": 590,
+								"height": 19,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipLore",
+							"properties": {
+								"text": "Ere the mastre returneth! Lest it be proclaimed upon the housetops!",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBoldItalic",
+								"size": 16,
+								"line-height": 5,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 85,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 85,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 1053,
+								"width": 590,
+								"height": 21,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									0.8
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 645453808453005,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						1,
+						1,
+						1,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
+					"name": "comparisonTooltip",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "comparisonTooltip",
+							"properties": {
+								"left-margin": 16,
+								"right-margin": 16,
+								"top-margin": 16,
+								"bottom-margin": 16,
+								"edges": "stretch",
+								"fill": "stretch",
+								"initially-visible": true,
+								"origin": "bottom",
+								"seams": "overlap"
+							},
+							"uid": 35,
+							"instanceVariables": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "none",
+										"top-edge": "window-bottom",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 35,
+								"children": [
+									{
+										"uid": 37,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 38,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 48,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 49,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 50,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 95,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": true,
+											"v": true,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 780,
+								"width": 620,
+								"height": 300,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipName",
+							"properties": {
+								"text": "Vestment of the Defiant Disciple",
+								"enable-bbcode": true,
+								"font": "Cinzel-SemiBold",
+								"size": 24,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 37,
+							"instanceVariables": {},
+							"behaviors": {},
+							"effects": {
+								"GlowHorizontal": {
+									"isEnabled": true,
+									"parameters": {
+										"intensity": 0.4
+									}
+								},
+								"GlowVertical": {
+									"isEnabled": true,
+									"parameters": {
+										"intensity": 0.4
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 37,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 533,
+								"width": 590,
+								"height": 41,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipClass",
+							"properties": {
+								"text": "Absolved, Chevalier, Mendicant",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									0,
+									1,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 38,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 38,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 568,
+								"width": 590,
+								"height": 23,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipLevel",
+							"properties": {
+								"text": "Level 88",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									0,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 48,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 48,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 600,
+								"width": 590,
+								"height": 19,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipDescription",
+							"properties": {
+								"text": "Line 1\nLine 2\nLine 3\nLine 4\nLine 5",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									0.9215686274509803,
+									0.8745098039215686,
+									0.6431372549019608,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "bottom",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 49,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 49,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 742,
+								"width": 590,
+								"height": 143,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipLore",
+							"properties": {
+								"text": "Ere the mastre returneth! Lest it be proclaimed upon the housetops!",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBoldItalic",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 50,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 50,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 753,
+								"width": 590,
+								"height": 21,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									0.8
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "currentlyEquipped",
+							"properties": {
+								"text": "currently equipped",
+								"enable-bbcode": true,
+								"font": "cinzel-semibold",
+								"size": 18,
+								"line-height": 0,
+								"bold": false,
+								"italic": true,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 95,
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 95,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 1200,
+								"y": 454,
+								"width": 148,
+								"height": 60,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									0.75
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 845659943083693,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
 					"isInitiallyInteractive": false,
 					"isHTMLElementsLayer": false,
 					"color": [

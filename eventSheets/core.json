@@ -9425,12 +9425,11 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-opacity",
-													"objectClass": "statue",
-													"sid": 219402895125534,
+													"id": "layer-is-visible",
+													"objectClass": "System",
+													"sid": 809733836006153,
 													"parameters": {
-														"comparison": 0,
-														"opacity": "100"
+														"layer": "menuName"
 													}
 												}
 											],
@@ -9449,13 +9448,9 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-opacity",
-													"objectClass": "statue",
-													"sid": 640539605659536,
-													"parameters": {
-														"comparison": 0,
-														"opacity": "0"
-													}
+													"id": "else",
+													"objectClass": "System",
+													"sid": 175315820738506
 												}
 											],
 											"actions": [
@@ -9478,7 +9473,7 @@
 							"functionDescription": "Close the specified layer",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
-							"functionCopyPicked": true,
+							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -9518,7 +9513,7 @@
 							"functionDescription": "Open the specified layer",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
-							"functionCopyPicked": true,
+							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -9551,7 +9546,45 @@
 									}
 								}
 							],
-							"sid": 667271432738870
+							"sid": 667271432738870,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 983527644271143,
+											"parameters": {
+												"object": "statue",
+												"expression": "statue.ObjectTypeName",
+												"comparison": 0,
+												"value": "menuName & \"Statue\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-value",
+											"objectClass": "statue",
+											"sid": 590758754528240,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"layer opacity\"",
+												"start-value": "0",
+												"end-value": "100",
+												"time": ".2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										}
+									],
+									"sid": 660169148266626
+								}
+							]
 						}
 					],
 					"sid": 121445526787026

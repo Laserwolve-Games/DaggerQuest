@@ -148,9 +148,9 @@
 								{
 									"id": "set-time-scale",
 									"objectClass": "System",
-									"sid": 177951215712290,
+									"sid": 686138709181104,
 									"parameters": {
-										"time-scale": "0"
+										"time-scale": "LayoutName = \"mainMenu\" ? 1 : 0"
 									}
 								},
 								{
@@ -496,6 +496,32 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "is-playing",
+							"objectClass": "statue",
+							"sid": 297224557612608,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"layer opacity\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-opacity",
+							"objectClass": "System",
+							"sid": 228599929878785,
+							"parameters": {
+								"layer": "statue.LayerName",
+								"opacity": "statue.Tween.Value(\"layer opacity\")"
+							}
+						}
+					],
+					"sid": 209824256960056
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-created",
 							"objectClass": "statue",
 							"sid": 654365848377800
@@ -542,6 +568,10 @@
 							"parameters": {
 								"state": "disabled"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "For some reason this works, but tweening the opacity for showing/hiding menus doesn't. Probably something to do with the fact we're only going to 50 here, and we go to 0 there."
 						},
 						{
 							"id": "tween-one-property",

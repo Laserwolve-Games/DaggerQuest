@@ -4516,6 +4516,87 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "body",
+							"sid": 660773735743926
+						}
+					],
+					"actions": [
+						{
+							"id": "set-listener-object",
+							"objectClass": "Audio",
+							"sid": 627457486107616,
+							"parameters": {
+								"object": "body"
+							}
+						}
+					],
+					"sid": 769776263062447
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 812764880148303
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 312271232082273,
+							"parameters": {
+								"instance-variable": "relocateToX",
+								"comparison": 1,
+								"value": "0"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 385726181804444,
+							"parameters": {
+								"instance-variable": "relocateToY",
+								"comparison": 1,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "player",
+							"sid": 981313304182022,
+							"parameters": {
+								"x": "Self.relocateToX",
+								"y": "Self.relocateToY"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 912856374557831,
+							"parameters": {
+								"instance-variable": "relocateToX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 968516360356716,
+							"parameters": {
+								"instance-variable": "relocateToY",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 554174106514565
+				},
+				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "levels",
@@ -8303,6 +8384,10 @@
 						}
 					],
 					"sid": 121151613548917
+				},
+				{
+					"eventType": "comment",
+					"text": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
 				}
 			],
 			"sid": 254080374675516
@@ -9324,7 +9409,7 @@
 									"functionIsAsync": false,
 									"functionParameters": [
 										{
-											"name": "menu",
+											"name": "menuName",
 											"type": "string",
 											"initialValue": "",
 											"comment": "The name of the menu to manage.",
@@ -9340,11 +9425,12 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "layer-is-visible",
-													"objectClass": "System",
-													"sid": 820066369499391,
+													"id": "compare-opacity",
+													"objectClass": "statue",
+													"sid": 219402895125534,
 													"parameters": {
-														"layer": "menu"
+														"comparison": 0,
+														"opacity": "100"
 													}
 												}
 											],
@@ -9353,7 +9439,7 @@
 													"callFunction": "closeLayer",
 													"sid": 891183827140848,
 													"parameters": [
-														"menu"
+														"menuName"
 													]
 												}
 											],
@@ -9363,9 +9449,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 273346581959658
+													"id": "compare-opacity",
+													"objectClass": "statue",
+													"sid": 640539605659536,
+													"parameters": {
+														"comparison": 0,
+														"opacity": "0"
+													}
 												}
 											],
 											"actions": [
@@ -9373,7 +9463,7 @@
 													"callFunction": "openLayer",
 													"sid": 139365913309534,
 													"parameters": [
-														"menu"
+														"menuName"
 													]
 												}
 											],
@@ -9388,7 +9478,7 @@
 							"functionDescription": "Close the specified layer",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
-							"functionCopyPicked": false,
+							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -9400,19 +9490,7 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 984165709066859,
-									"parameters": {
-										"object": "statue",
-										"expression": "menuName & \"Statue\"",
-										"comparison": 0,
-										"value": "statue.ObjectTypeName"
-									}
-								}
-							],
+							"conditions": [],
 							"actions": [
 								{
 									"id": "set-layer-interactive",
@@ -9440,7 +9518,7 @@
 							"functionDescription": "Open the specified layer",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
-							"functionCopyPicked": false,
+							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -9452,19 +9530,7 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 457437243208774,
-									"parameters": {
-										"object": "statue",
-										"expression": "menuName & \"Statue\"",
-										"comparison": 0,
-										"value": "statue.ObjectTypeName"
-									}
-								}
-							],
+							"conditions": [],
 							"actions": [
 								{
 									"id": "set-layer-interactive",
@@ -9478,7 +9544,7 @@
 								{
 									"id": "set-layer-visible",
 									"objectClass": "System",
-									"sid": 667878201713297,
+									"sid": 883088108301507,
 									"parameters": {
 										"layer": "menuName",
 										"visibility": "visible"
@@ -14173,148 +14239,6 @@
 				}
 			],
 			"sid": 864124535956996
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "foobar",
-			"description": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too.",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 262069484413518
-						}
-					],
-					"actions": [
-						{
-							"id": "set-listener-object",
-							"objectClass": "Audio",
-							"sid": 465495772998915,
-							"parameters": {
-								"object": "body"
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 401680153103611,
-							"parameters": {
-								"layer": "\"main\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 509680902181029,
-							"parameters": {
-								"layer": "\"background\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 914882999189077,
-							"parameters": {
-								"layer": "\"abilityBar\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 411420289386432,
-							"parameters": {
-								"layer": "\"healthOrb\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 449092574734172,
-							"parameters": {
-								"layer": "\"manaOrb\"",
-								"interactive": true
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 577554624824329,
-							"parameters": {
-								"layer": "\"mechanics\"",
-								"interactive": true
-							}
-						}
-					],
-					"sid": 803419978161680,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 201477378188011,
-									"parameters": {
-										"instance-variable": "relocateToX",
-										"comparison": 1,
-										"value": "0"
-									}
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 162468941575852,
-									"parameters": {
-										"instance-variable": "relocateToY",
-										"comparison": 1,
-										"value": "0"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-position",
-									"objectClass": "player",
-									"sid": 933631110075681,
-									"parameters": {
-										"x": "Self.relocateToX",
-										"y": "Self.relocateToY"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 685636843515890,
-									"parameters": {
-										"instance-variable": "relocateToX",
-										"value": "0"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 179115945325969,
-									"parameters": {
-										"instance-variable": "relocateToY",
-										"value": "0"
-									}
-								}
-							],
-							"sid": 529554076428700
-						}
-					]
-				}
-			],
-			"sid": 507296452024802
 		},
 		{
 			"eventType": "group",

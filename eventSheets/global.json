@@ -105,9 +105,9 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
-									"sid": 772518494177377,
+									"sid": 614782225667901,
 									"parameters": {
-										"layer": "\"settingsMenu\""
+										"layer": "settingsMenuStatue.LayerName"
 									}
 								}
 							],
@@ -125,7 +125,7 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 571595063031532
+									"sid": 464738180195478
 								}
 							],
 							"actions": [
@@ -140,9 +140,9 @@
 								},
 								{
 									"callFunction": "openLayer",
-									"sid": 800944394233791,
+									"sid": 178233802717669,
 									"parameters": [
-										"\"settingsMenu\""
+										"settingsMenuStatue.LayerName"
 									]
 								},
 								{
@@ -160,9 +160,9 @@
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
-									"sid": 980397377152104,
+									"sid": 192533681021927,
 									"parameters": {
-										"layer": "\"abilityBar\"",
+										"layer": "abilityBarStatue.LayerName",
 										"interactive": false
 									}
 								},
@@ -177,23 +177,23 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 141827620699709,
+									"sid": 116300887455424,
 									"parameters": [
-										"\"equippedMenu\""
+										"equippedMenuStatue.LayerName"
 									]
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 688954388430835,
+									"sid": 590273202625953,
 									"parameters": [
-										"\"inventoryMenu\""
+										"inventoryMenuStatue.LayerName"
 									]
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 868727820731747,
+									"sid": 894661928468392,
 									"parameters": [
-										"\"abilitySelector\""
+										"abilitySelectorStatue.LayerName"
 									]
 								}
 							],
@@ -559,6 +559,10 @@
 								"ping-pong": "no",
 								"repeat-count": "1"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "'toolip' and all overlay layers above can't be re-organized, all overlay layers beneath it can be reorganized"
 						},
 						{
 							"id": "move-layer",

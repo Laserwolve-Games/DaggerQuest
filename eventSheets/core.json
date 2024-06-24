@@ -190,10 +190,10 @@
 								{
 									"id": "is-playing",
 									"objectClass": "portrait",
-									"sid": 256641828168431,
+									"sid": 677425039121187,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "\"fadeOut\""
+										"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\""
 									},
 									"isInverted": true
 								},
@@ -222,6 +222,31 @@
 						}
 					],
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 910099168097387
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "lazy man's solution to one of our never ending hierarchal tween opacity issues "
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "dialog",
+							"sid": 225337882686273,
+							"parameters": {
+								"opacity": "portrait.Opacity"
+							}
+						}
+					],
+					"sid": 377042677871573
 				},
 				{
 					"eventType": "block",
@@ -571,10 +596,10 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 167889325032600,
+							"sid": 714082404683541,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "\"fadeOut\"",
+								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\"",
 								"property": "offsetOpacity",
 								"end-value": "0",
 								"time": ".2",
@@ -588,7 +613,7 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 342685698941577
+							"sid": 941566309323723
 						},
 						{
 							"callFunction": "closeLayer",
@@ -601,6 +626,7 @@
 							"id": "unload-object-images",
 							"objectClass": "System",
 							"sid": 659778460881200,
+							"breakpoint": true,
 							"parameters": {
 								"object": "portrait"
 							}

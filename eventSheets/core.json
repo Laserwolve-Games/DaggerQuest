@@ -9638,7 +9638,6 @@
 									"id": "is-dragging",
 									"objectClass": "statue",
 									"sid": 626771208311706,
-									"breakpoint": true,
 									"behaviorType": "DragDrop",
 									"isInverted": true
 								}
@@ -9905,6 +9904,7 @@
 													"id": "set-opacity",
 													"objectClass": "tooltip",
 													"sid": 937645075915450,
+													"disabled": true,
 													"parameters": {
 														"opacity": "0"
 													}
@@ -9913,8 +9913,43 @@
 													"id": "set-opacity",
 													"objectClass": "comparisonTooltip",
 													"sid": 620970895579657,
+													"disabled": true,
 													"parameters": {
 														"opacity": "0"
+													}
+												},
+												{
+													"id": "tween-one-property",
+													"objectClass": "tooltip",
+													"sid": 465008506158708,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "Self.ObjectTypeName & \" opacity tween\"",
+														"property": "offsetOpacity",
+														"end-value": "0",
+														"time": ".2",
+														"ease": "noease",
+														"destroy-on-complete": "no",
+														"loop": "no",
+														"ping-pong": "no",
+														"repeat-count": "1"
+													}
+												},
+												{
+													"id": "tween-one-property",
+													"objectClass": "comparisonTooltip",
+													"sid": 498016191045926,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "Self.ObjectTypeName & \" opacity tween\"",
+														"property": "offsetOpacity",
+														"end-value": "0",
+														"time": ".2",
+														"ease": "noease",
+														"destroy-on-complete": "no",
+														"loop": "no",
+														"ping-pong": "no",
+														"repeat-count": "1"
 													}
 												}
 											],
@@ -10282,7 +10317,7 @@
 										},
 										{
 											"type": "comment",
-											"text": "If tooltip wasn't anchored, I think just setting the height would be enough. Since it is, we need to set it's Y every time we show it."
+											"text": "We can't use the anchor behavior due to how this box dynamically resizes, so just set its Y every tick."
 										},
 										{
 											"id": "set-y",
@@ -10293,7 +10328,8 @@
 											}
 										}
 									],
-									"sid": 273454201901542
+									"sid": 273454201901542,
+									"isOrBlock": true
 								},
 								{
 									"eventType": "block",
@@ -10338,11 +10374,20 @@
 											}
 										},
 										{
-											"id": "set-opacity",
+											"id": "tween-one-property",
 											"objectClass": "tooltip",
-											"sid": 306451052549903,
+											"sid": 839971062543155,
+											"behaviorType": "Tween",
 											"parameters": {
-												"opacity": "100"
+												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"property": "offsetOpacity",
+												"end-value": "100",
+												"time": ".2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
 											}
 										}
 									],
@@ -10661,11 +10706,20 @@
 											}
 										},
 										{
-											"id": "set-opacity",
+											"id": "tween-one-property",
 											"objectClass": "comparisonTooltip",
-											"sid": 665808019213538,
+											"sid": 454904984988493,
+											"behaviorType": "Tween",
 											"parameters": {
-												"opacity": "100"
+												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"property": "offsetOpacity",
+												"end-value": "100",
+												"time": ".2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
 											}
 										}
 									],

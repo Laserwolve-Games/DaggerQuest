@@ -228,6 +228,10 @@
 											"parameters": [
 												"characterMenuStatue.LayerName"
 											]
+										},
+										{
+											"type": "comment",
+											"text": "Opening the settings menu and then closing other menus with the 'closeLayer' function closes those menus without a fade out, and we couldn't figure out why. (It's not time scale related, we don't think). Even if we could get it to work, our three options would be:\n\n1. Fading out all menus before fading in the settings menu. That'd be too slow and overly dramatic.\n2. Setting the timescale to 0, then fading in the settings menu and fading out the other menus simultaneously. This would be exploit prone as it would give the player MENU_FADE_TIME amount of time to interact with menus while paused.\n3. Fading in the settings menu and fading out the other menus simultaneously, then setting the timescale to 0 after. This would be a bad experience as the player wouldn't feel the game paused as soon as they pressed the pause key (default spacebar).\n\nOur best bet is to just make visible menus not interactable while the pause menu is up.\n"
 										}
 									],
 									"sid": 909335655578482
@@ -480,9 +484,9 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 927667796878381,
+									"sid": 467344173930687,
 									"parameters": [
-										"\"settingsMenu\""
+										"settingsMenuStatue.LayerName"
 									]
 								},
 								{
@@ -497,9 +501,9 @@
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
-									"sid": 266635837888871,
+									"sid": 840362518392313,
 									"parameters": {
-										"layer": "\"abilityBar\"",
+										"layer": "abilityBarStatue.LayerName",
 										"interactive": true
 									}
 								},
@@ -548,6 +552,15 @@
 							"parameters": {
 								"layer": "statue.LayerName",
 								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "browser",
+							"sid": 797723143161323,
+							"parameters": {
+								"type": "log",
+								"message": "statue.ObjectTypeName & \" \" & statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
 							}
 						}
 					],

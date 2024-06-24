@@ -9636,6 +9636,10 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "This is used by the dialog window which doesn't have a statue"
+										},
+										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
 											"sid": 967729669743239,
@@ -9651,15 +9655,6 @@
 											"parameters": {
 												"layer": "menuName",
 												"visibility": "invisible"
-											}
-										},
-										{
-											"id": "log",
-											"objectClass": "browser",
-											"sid": 387589578760314,
-											"parameters": {
-												"type": "log",
-												"message": "\"does anything still use this?\""
 											}
 										}
 									],
@@ -9723,10 +9718,6 @@
 										}
 									],
 									"actions": [
-										{
-											"type": "comment",
-											"text": "Some experimental math to make sure fades that start during other fades don't fade for an extra long amount of time."
-										},
 										{
 											"id": "tween-value",
 											"objectClass": "statue",

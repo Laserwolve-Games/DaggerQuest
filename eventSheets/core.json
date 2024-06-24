@@ -626,7 +626,6 @@
 							"id": "unload-object-images",
 							"objectClass": "System",
 							"sid": 659778460881200,
-							"breakpoint": true,
 							"parameters": {
 								"object": "portrait"
 							}
@@ -9591,7 +9590,7 @@
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
-									"sid": 561058418895223,
+									"sid": 284534014871021,
 									"parameters": {
 										"layer": "menuName",
 										"interactive": true
@@ -9628,10 +9627,10 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 590758754528240,
+											"sid": 584406083140945,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "\"layer opacity\"",
+												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade in\"",
 												"start-value": "0",
 												"end-value": "100",
 												"time": ".2",

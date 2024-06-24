@@ -498,10 +498,10 @@
 						{
 							"id": "is-playing",
 							"objectClass": "statue",
-							"sid": 297224557612608,
+							"sid": 637863796309623,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "\"layer opacity\""
+								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade in\""
 							}
 						}
 					],
@@ -509,10 +509,10 @@
 						{
 							"id": "set-layer-opacity",
 							"objectClass": "System",
-							"sid": 228599929878785,
+							"sid": 889785932886851,
 							"parameters": {
 								"layer": "statue.LayerName",
-								"opacity": "statue.Tween.Value(\"layer opacity\")"
+								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade in\")"
 							}
 						}
 					],
@@ -544,6 +544,19 @@
 							"parameters": {
 								"instance-variable": "originalY",
 								"value": "Self.Y"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "This is so fades still work for statues when paused"
+						},
+						{
+							"id": "set-object-time-scale",
+							"objectClass": "System",
+							"sid": 855423426952033,
+							"parameters": {
+								"object": "statue",
+								"time-scale": "1.0"
 							}
 						}
 					],

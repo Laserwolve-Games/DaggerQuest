@@ -103,101 +103,136 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "layer-is-visible",
-									"objectClass": "System",
-									"sid": 614782225667901,
-									"parameters": {
-										"layer": "settingsMenuStatue.LayerName"
-									}
+									"id": "is-any-playing",
+									"objectClass": "statue",
+									"sid": 377784460082299,
+									"behaviorType": "Tween",
+									"isInverted": true
+								},
+								{
+									"id": "is-any-playing",
+									"objectClass": "fader",
+									"sid": 604210080512177,
+									"behaviorType": "Tween",
+									"isInverted": true
 								}
 							],
 							"actions": [
 								{
-									"callFunction": "closeSettings",
-									"sid": 869682882321321
+									"type": "comment",
+									"text": "The settings menu can't be opened while anything else is fading"
 								}
 							],
-							"sid": 970355155351172
-						},
-						{
-							"eventType": "block",
-							"conditions": [
+							"sid": 246816430830739,
+							"children": [
 								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 464738180195478
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 953670359020365,
+											"parameters": {
+												"layer": "settingsMenuStatue.LayerName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "closeSettings",
+											"sid": 722834857681868
+										}
+									],
+									"sid": 866828367517389
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 265671339413149
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 915194976622241,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": false
+											}
+										},
+										{
+											"callFunction": "openLayer",
+											"sid": 788316927871860,
+											"parameters": [
+												"settingsMenuStatue.LayerName"
+											]
+										},
+										{
+											"id": "set-time-scale",
+											"objectClass": "System",
+											"sid": 458608985324305,
+											"parameters": {
+												"time-scale": "LayoutName = \"mainMenu\" ? 1 : 0"
+											}
+										},
+										{
+											"callFunction": "closeDialog",
+											"sid": 808347994654634
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 806385525437943,
+											"parameters": {
+												"layer": "abilityBarStatue.LayerName",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 431040159978479,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": false
+											}
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 646699840997348,
+											"parameters": [
+												"equippedMenuStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 717723199756421,
+											"parameters": [
+												"inventoryMenuStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 704678246712086,
+											"parameters": [
+												"abilitySelectorStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 638233684157236,
+											"parameters": [
+												"characterMenuStatue.LayerName"
+											]
+										}
+									],
+									"sid": 909335655578482
 								}
-							],
-							"actions": [
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 827664605542423,
-									"parameters": {
-										"layer": "\"main\"",
-										"interactive": false
-									}
-								},
-								{
-									"callFunction": "openLayer",
-									"sid": 178233802717669,
-									"parameters": [
-										"settingsMenuStatue.LayerName"
-									]
-								},
-								{
-									"id": "set-time-scale",
-									"objectClass": "System",
-									"sid": 686138709181104,
-									"parameters": {
-										"time-scale": "LayoutName = \"mainMenu\" ? 1 : 0"
-									}
-								},
-								{
-									"callFunction": "closeDialog",
-									"sid": 608809960837067
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 192533681021927,
-									"parameters": {
-										"layer": "abilityBarStatue.LayerName",
-										"interactive": false
-									}
-								},
-								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 475080281334218,
-									"parameters": {
-										"layer": "\"background\"",
-										"interactive": false
-									}
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 116300887455424,
-									"parameters": [
-										"equippedMenuStatue.LayerName"
-									]
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 590273202625953,
-									"parameters": [
-										"inventoryMenuStatue.LayerName"
-									]
-								},
-								{
-									"callFunction": "closeLayer",
-									"sid": 894661928468392,
-									"parameters": [
-										"abilitySelectorStatue.LayerName"
-									]
-								}
-							],
-							"sid": 102249628733625
+							]
 						}
 					],
 					"isOrBlock": true
@@ -498,10 +533,10 @@
 						{
 							"id": "is-playing",
 							"objectClass": "statue",
-							"sid": 637863796309623,
+							"sid": 555843082383967,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade in\""
+								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\""
 							}
 						}
 					],
@@ -509,10 +544,10 @@
 						{
 							"id": "set-layer-opacity",
 							"objectClass": "System",
-							"sid": 889785932886851,
+							"sid": 746549321242423,
 							"parameters": {
 								"layer": "statue.LayerName",
-								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade in\")"
+								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
 							}
 						}
 					],

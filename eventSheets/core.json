@@ -9376,17 +9376,34 @@
 									"isInverted": true
 								},
 								{
+									"id": "is-any-playing",
+									"objectClass": "statue",
+									"sid": 827274792490015,
+									"behaviorType": "Tween",
+									"isInverted": true
+								},
+								{
 									"id": "is-dragging",
 									"objectClass": "statue",
-									"sid": 412021397375672,
+									"sid": 784082423952732,
 									"behaviorType": "DragDrop",
 									"isInverted": true
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 946373321700564,
+									"parameters": {
+										"first-value": "statue.PickedCount",
+										"comparison": 0,
+										"second-value": "statue.Count"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "you can only open game menus when the game isn't paused, and you currently aren't rearranging menus"
+									"text": "you can only open regular menus when the settings menu isn't open, you currently aren't rearranging menus, and no other menus are currently fading in or out"
 								}
 							],
 							"sid": 589869390653306,
@@ -9397,7 +9414,7 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 136702131059482,
+											"sid": 311596851577209,
 											"parameters": {
 												"key": 67
 											}
@@ -9406,13 +9423,13 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 734090742914611,
+											"sid": 558965859470762,
 											"parameters": [
 												"\"equippedMenu\""
 											]
 										}
 									],
-									"sid": 178878258421278
+									"sid": 327082099075401
 								},
 								{
 									"eventType": "block",
@@ -9420,7 +9437,7 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 589371201187572,
+											"sid": 394983373843370,
 											"parameters": {
 												"key": 80
 											}
@@ -9429,13 +9446,13 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 460215475667850,
+											"sid": 131314137611475,
 											"parameters": [
 												"\"characterMenu\""
 											]
 										}
 									],
-									"sid": 380635994569706
+									"sid": 533869688280642
 								},
 								{
 									"eventType": "block",
@@ -9443,7 +9460,7 @@
 										{
 											"id": "on-key-pressed",
 											"objectClass": "keyboard",
-											"sid": 400102098344263,
+											"sid": 565494016513724,
 											"parameters": {
 												"key": 73
 											}
@@ -9452,13 +9469,13 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 830898005880020,
+											"sid": 303302744057056,
 											"parameters": [
 												"\"inventoryMenu\""
 											]
 										}
 									],
-									"sid": 220547132814557
+									"sid": 227300752950169
 								},
 								{
 									"functionName": "ManageMenuWithKey",
@@ -9546,27 +9563,109 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [
+							"actions": [],
+							"sid": 475860601676582,
+							"children": [
 								{
-									"id": "set-layer-interactive",
-									"objectClass": "System",
-									"sid": 882411785524150,
-									"parameters": {
-										"layer": "menuName",
-										"interactive": false
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 272995996282725,
+											"parameters": {
+												"object": "statue",
+												"expression": "statue.ObjectTypeName",
+												"comparison": 0,
+												"value": "menuName & \"Statue\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-value",
+											"objectClass": "statue",
+											"sid": 903623499156613,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\"",
+												"start-value": "100",
+												"end-value": "0",
+												"time": ".2",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 431281652581235
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 794873982555981,
+											"parameters": {
+												"layer": "menuName",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 423507120488558,
+											"parameters": {
+												"layer": "menuName",
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 403434950977723
 								},
 								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 170936119734949,
-									"parameters": {
-										"layer": "menuName",
-										"visibility": "invisible"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 550739162715412
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 967729669743239,
+											"parameters": {
+												"layer": "menuName",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 857955720578545,
+											"parameters": {
+												"layer": "menuName",
+												"visibility": "invisible"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "browser",
+											"sid": 387589578760314,
+											"parameters": {
+												"type": "log",
+												"message": "\"does anything still use this?\""
+											}
+										}
+									],
+									"sid": 687146572059198
 								}
-							],
-							"sid": 475860601676582
+							]
 						},
 						{
 							"functionName": "openLayer",
@@ -9625,12 +9724,16 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "Some experimental math to make sure fades that start during other fades don't fade for an extra long amount of time."
+										},
+										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 584406083140945,
+											"sid": 705585990169238,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade in\"",
+												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\"",
 												"start-value": "0",
 												"end-value": "100",
 												"time": ".2",

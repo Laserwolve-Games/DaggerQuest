@@ -2522,6 +2522,23 @@
 									"parameters": {
 										"layer": "\"overlay\""
 									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "item",
+									"sid": 534792244996242,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.UID & \" opacity tween\"",
+										"property": "offsetOpacity",
+										"end-value": "70",
+										"time": ".2",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
 								}
 							],
 							"sid": 827535395163321,
@@ -2567,7 +2584,25 @@
 									"behaviorType": "DragDrop"
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "item",
+									"sid": 167885255020982,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.UID & \" opacity tween\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": ".2",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
 							"sid": 399701785813219,
 							"children": [
 								{
@@ -9603,12 +9638,7 @@
 									"id": "is-dragging",
 									"objectClass": "statue",
 									"sid": 626771208311706,
-									"behaviorType": "DragDrop"
-								},
-								{
-									"id": "is-dragging",
-									"objectClass": "item",
-									"sid": 526947840231813,
+									"breakpoint": true,
 									"behaviorType": "DragDrop",
 									"isInverted": true
 								}
@@ -9620,246 +9650,278 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 356148789006658,
+											"id": "is-dragging",
+											"objectClass": "item",
+											"sid": 905850133767904,
+											"behaviorType": "DragDrop",
+											"isInverted": true
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 653304222044674,
 											"parameters": {
-												"object": "item"
+												"first-value": "item.Count",
+												"comparison": 0,
+												"second-value": "0"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "TODO: Make sure this works with rings"
-										},
-										{
-											"callFunction": "updateTooltip",
-											"sid": 155365475036154,
-											"parameters": [
-												false,
-												"item.fullName",
-												"item.classRestrictions",
-												"item.level",
-												"item.mods",
-												"item.lore"
-											]
+											"text": "somehow 'item - is DragDrop is dragging' is neither false nor true when no Items exist"
 										}
 									],
-									"sid": 293022480364495,
+									"sid": 967900307182128,
 									"children": [
-										{
-											"eventType": "variable",
-											"name": "typeForComparison",
-											"type": "string",
-											"initialValue": "",
-											"comment": "The type of the gear that we want to compare",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 199429654753711
-										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "is-on-layer",
-													"objectClass": "item",
-													"sid": 968972630937877,
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 353381965524915,
 													"parameters": {
-														"layer": "\"inventoryMenu\""
+														"object": "item"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if the item is in the inventory, compare to the relevant equipped item, if one exists"
+													"text": "TODO: Make sure this works with rings"
 												},
 												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 936800181237617,
-													"parameters": {
-														"variable": "typeForComparison",
-														"value": "item.type"
-													}
+													"callFunction": "updateTooltip",
+													"sid": 499586444921872,
+													"parameters": [
+														false,
+														"item.fullName",
+														"item.classRestrictions",
+														"item.level",
+														"item.mods",
+														"item.lore"
+													]
 												}
 											],
-											"sid": 134711290439744,
+											"sid": 447799690088387,
 											"children": [
+												{
+													"eventType": "variable",
+													"name": "typeForComparison",
+													"type": "string",
+													"initialValue": "",
+													"comment": "The type of the gear that we want to compare",
+													"isStatic": true,
+													"isConstant": false,
+													"sid": 938654612269956
+												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-all",
-															"objectClass": "System",
-															"sid": 995540976603991,
+															"id": "is-on-layer",
+															"objectClass": "item",
+															"sid": 579029976926874,
 															"parameters": {
-																"object": "item"
-															}
-														},
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 567761675432981,
-															"parameters": {
-																"object": "item",
-																"expression": "item.LayerName",
-																"comparison": 0,
-																"value": "\"equippedMenu\""
-															}
-														},
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 544008279870791,
-															"parameters": {
-																"object": "item",
-																"expression": "item.type",
-																"comparison": 0,
-																"value": "typeForComparison"
+																"layer": "\"inventoryMenu\""
 															}
 														}
 													],
 													"actions": [
 														{
-															"callFunction": "updateComparisonTooltip",
-															"sid": 785474591401573,
-															"parameters": [
-																"item.fullName",
-																"item.classRestrictions",
-																"item.level",
-																"item.mods",
-																"item.lore"
-															]
+															"type": "comment",
+															"text": "if the item is in the inventory, compare to the relevant equipped item, if one exists"
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 315906874040765,
+															"parameters": {
+																"variable": "typeForComparison",
+																"value": "item.type"
+															}
 														}
 													],
-													"sid": 553912172387695
+													"sid": 433911383619124,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-all",
+																	"objectClass": "System",
+																	"sid": 383413155035686,
+																	"parameters": {
+																		"object": "item"
+																	}
+																},
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 347435954906914,
+																	"parameters": {
+																		"object": "item",
+																		"expression": "item.LayerName",
+																		"comparison": 0,
+																		"value": "\"equippedMenu\""
+																	}
+																},
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 859133754474563,
+																	"parameters": {
+																		"object": "item",
+																		"expression": "item.type",
+																		"comparison": 0,
+																		"value": "typeForComparison"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "updateComparisonTooltip",
+																	"sid": 313862423534013,
+																	"parameters": [
+																		"item.fullName",
+																		"item.classRestrictions",
+																		"item.level",
+																		"item.mods",
+																		"item.lore"
+																	]
+																}
+															],
+															"sid": 614370023859122
+														}
+													]
 												}
 											]
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 948335160689572
 										},
 										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 856823716603415,
-											"parameters": {
-												"object": "loot"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 740320087671390
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 896098241564343,
+													"parameters": {
+														"object": "loot"
+													}
+												},
+												{
+													"id": "pick-topbottom",
+													"objectClass": "loot",
+													"sid": 344224226879461,
+													"parameters": {
+														"which": "top"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "the \"else\" is for if we drag and hold an item over a loot"
+												},
+												{
+													"callFunction": "updateTooltip",
+													"sid": 521024696138047,
+													"parameters": [
+														false,
+														"loot.fullName",
+														"loot.classRestrictions",
+														"loot.level",
+														"loot.mods",
+														"loot.lore"
+													]
+												}
+											],
+											"sid": 815525960741839
 										},
 										{
-											"id": "pick-topbottom",
-											"objectClass": "loot",
-											"sid": 364801691474004,
-											"parameters": {
-												"which": "top"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 393589949090668
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 968992526353430,
+													"parameters": {
+														"object": "ability"
+													}
+												},
+												{
+													"id": "is-animation-playing",
+													"objectClass": "ability",
+													"sid": 416804006878313,
+													"parameters": {
+														"animation": "\"none\""
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "updateTooltip",
+													"sid": 494358489125225,
+													"parameters": [
+														true,
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"fullName\")",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"class\")",
+														"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"level\"))",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\")",
+														"\"\""
+													]
+												}
+											],
+											"sid": 888845378678553
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 107996481350656
+												},
+												{
+													"id": "trigger-once-while-true",
+													"objectClass": "System",
+													"sid": 119241200039992
+												}
+											],
+											"actions": [
+												{
+													"id": "set-opacity",
+													"objectClass": "tooltip",
+													"sid": 937645075915450,
+													"parameters": {
+														"opacity": "0"
+													}
+												},
+												{
+													"id": "set-opacity",
+													"objectClass": "comparisonTooltip",
+													"sid": 620970895579657,
+													"parameters": {
+														"opacity": "0"
+													}
+												}
+											],
+											"sid": 839419771322734
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "the \"else\" is for if we drag and hold an item over a loot"
-										},
-										{
-											"callFunction": "updateTooltip",
-											"sid": 151489366294866,
-											"parameters": [
-												false,
-												"loot.fullName",
-												"loot.classRestrictions",
-												"loot.level",
-												"loot.mods",
-												"loot.lore"
-											]
-										}
-									],
-									"sid": 172520346196441
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 630855551642675
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 513964196874786,
-											"parameters": {
-												"object": "ability"
-											}
-										},
-										{
-											"id": "is-animation-playing",
-											"objectClass": "ability",
-											"sid": 794737631436327,
-											"parameters": {
-												"animation": "\"none\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "updateTooltip",
-											"sid": 906225991855967,
-											"parameters": [
-												true,
-												"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"fullName\")",
-												"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"class\")",
-												"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"level\"))",
-												"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\")",
-												"\"\""
-											]
-										}
-									],
-									"sid": 781744860939350
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 857038141866403
-										},
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 963430570657835
-										}
-									],
-									"actions": [
-										{
-											"id": "set-opacity",
-											"objectClass": "tooltip",
-											"sid": 776500941605059,
-											"parameters": {
-												"opacity": "0"
-											}
-										},
-										{
-											"id": "set-opacity",
-											"objectClass": "comparisonTooltip",
-											"sid": 816186193702910,
-											"parameters": {
-												"opacity": "0"
-											}
-										}
-									],
-									"sid": 772778803225510
+									"isOrBlock": true
 								}
 							]
 						},

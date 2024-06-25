@@ -9563,7 +9563,21 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Prevent interaction with layer while it fades out. This is crucial to prevent interaction with menus that get closed by the settings menu opening up (and thus preventing exploits where gear/abilities could be managed while the game was paused)"
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 717158898277148,
+									"parameters": {
+										"layer": "menuName",
+										"interactive": false
+									}
+								}
+							],
 							"sid": 475860601676582,
 							"children": [
 								{
@@ -9605,15 +9619,6 @@
 											"sid": 431281652581235
 										},
 										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 794873982555981,
-											"parameters": {
-												"layer": "menuName",
-												"interactive": false
-											}
-										},
-										{
 											"id": "set-layer-visible",
 											"objectClass": "System",
 											"sid": 423507120488558,
@@ -9638,15 +9643,6 @@
 										{
 											"type": "comment",
 											"text": "This is used by the dialog window which doesn't have a statue"
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 967729669743239,
-											"parameters": {
-												"layer": "menuName",
-												"interactive": false
-											}
 										},
 										{
 											"id": "set-layer-visible",

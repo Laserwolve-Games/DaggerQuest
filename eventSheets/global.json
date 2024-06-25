@@ -156,22 +156,6 @@
 									],
 									"actions": [
 										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 915194976622241,
-											"parameters": {
-												"layer": "\"main\"",
-												"interactive": false
-											}
-										},
-										{
-											"callFunction": "openLayer",
-											"sid": 788316927871860,
-											"parameters": [
-												"settingsMenuStatue.LayerName"
-											]
-										},
-										{
 											"id": "set-time-scale",
 											"objectClass": "System",
 											"sid": 458608985324305,
@@ -180,8 +164,13 @@
 											}
 										},
 										{
-											"callFunction": "closeDialog",
-											"sid": 808347994654634
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 184844667524562,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": false
+											}
 										},
 										{
 											"id": "set-layer-interactive",
@@ -200,6 +189,10 @@
 												"layer": "\"background\"",
 												"interactive": false
 											}
+										},
+										{
+											"callFunction": "closeDialog",
+											"sid": 733171908563200
 										},
 										{
 											"callFunction": "closeLayer",
@@ -230,8 +223,11 @@
 											]
 										},
 										{
-											"type": "comment",
-											"text": "Opening the settings menu and then closing other menus with the 'closeLayer' function closes those menus without a fade out, and we couldn't figure out why. (It's not time scale related, we don't think). Even if we could get it to work, our three options would be:\n\n1. Fading out all menus before fading in the settings menu. That'd be too slow and overly dramatic.\n2. Setting the timescale to 0, then fading in the settings menu and fading out the other menus simultaneously. This would be exploit prone as it would give the player MENU_FADE_TIME amount of time to interact with menus while paused.\n3. Fading in the settings menu and fading out the other menus simultaneously, then setting the timescale to 0 after. This would be a bad experience as the player wouldn't feel the game paused as soon as they pressed the pause key (default spacebar).\n\nOur best bet is to just make visible menus not interactable while the pause menu is up.\n"
+											"callFunction": "openLayer",
+											"sid": 210621093467952,
+											"parameters": [
+												"settingsMenuStatue.LayerName"
+											]
 										}
 									],
 									"sid": 909335655578482
@@ -535,9 +531,17 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 820960587805487,
+							"parameters": {
+								"object": "statue"
+							}
+						},
+						{
 							"id": "is-playing",
 							"objectClass": "statue",
-							"sid": 555843082383967,
+							"sid": 173783793187177,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\""
@@ -546,21 +550,16 @@
 					],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "Yes, the for each is absolutely necessary here"
+						},
+						{
 							"id": "set-layer-opacity",
 							"objectClass": "System",
 							"sid": 746549321242423,
 							"parameters": {
 								"layer": "statue.LayerName",
 								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
-							}
-						},
-						{
-							"id": "log",
-							"objectClass": "browser",
-							"sid": 797723143161323,
-							"parameters": {
-								"type": "log",
-								"message": "statue.ObjectTypeName & \" \" & statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
 							}
 						}
 					],

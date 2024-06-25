@@ -475,14 +475,18 @@
 											}
 										},
 										{
+											"type": "comment",
+											"text": "TODO: This + 5 here is probably going to need to be a property of the portrait in npcDialog.json because it will be different for each portrait"
+										},
+										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 774114215263902,
+											"sid": 310543657478522,
 											"parameters": {
 												"object-name": "npc.simpleName & \"_portrait\"",
 												"layer": "\"portraits\"",
 												"x": "PORTRAIT_POSITION",
-												"y": "ViewportBottom(\"portraits\")",
+												"y": "ViewportBottom(\"portraits\") + 5",
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}

@@ -385,7 +385,7 @@
 						{
 							"id": "on-object-clicked",
 							"objectClass": "mouse",
-							"sid": 190966477344235,
+							"sid": 934940274268889,
 							"parameters": {
 								"mouse-button": "left",
 								"click-type": "clicked",
@@ -396,7 +396,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Use our own fullscreen icon instead of the one on Itch. This way we can start the audio context if this is the first button clicked."
+							"text": "Use our own fullscreen icon instead of the one on Itch. This way we can start the audio context if this is the first button clicked. We tried using an SVG for this fullscreen icon, but it caused the entire project to load before showing the loader layout. We were unable to duplicate this bug in a new project."
 						}
 					],
 					"sid": 551410993474741,

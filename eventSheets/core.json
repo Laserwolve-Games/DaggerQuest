@@ -3812,21 +3812,21 @@
 							],
 							"actions": [
 								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 578216793122315,
+									"parameters": {
+										"variable": "allowGearManagement",
+										"value": "false"
+									}
+								},
+								{
 									"id": "pop",
 									"objectClass": "gearQueueArray",
 									"sid": 810792965075179,
 									"parameters": {
 										"where": "back",
 										"axis": "x"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 222087664981646,
-									"parameters": {
-										"variable": "allowGearManagement",
-										"value": "false"
 									}
 								}
 							],
@@ -3962,8 +3962,39 @@
 													"text": "If there are now two gears that pertain to this slot, destroy the older one."
 												},
 												{
-													"callFunction": "destroyGear",
-													"sid": 934906810677846
+													"id": "destroy",
+													"objectClass": "gear",
+													"sid": 490579754262484
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 623014151542829,
+													"parameters": {
+														"seconds": "0"
+													}
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 565925561607643
+												},
+												{
+													"id": "unload-object-images",
+													"objectClass": "System",
+													"sid": 293283187130566,
+													"parameters": {
+														"object": "gear"
+													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 960151300312722,
+													"parameters": {
+														"variable": "allowGearManagement",
+														"value": "true"
+													}
 												}
 											],
 											"sid": 327547775356116
@@ -4128,8 +4159,39 @@
 															"text": "...destroy the (non-default) gear that was affiliated with this slot. (That will be the oldest gear with the same type as this slot)"
 														},
 														{
-															"callFunction": "destroyGear",
-															"sid": 505887241414276
+															"id": "destroy",
+															"objectClass": "gear",
+															"sid": 258594899750731
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 225824402279793,
+															"parameters": {
+																"seconds": "0"
+															}
+														},
+														{
+															"id": "wait-for-previous-actions",
+															"objectClass": "System",
+															"sid": 322292064059987
+														},
+														{
+															"id": "unload-object-images",
+															"objectClass": "System",
+															"sid": 339125295524975,
+															"parameters": {
+																"object": "gear"
+															}
+														},
+														{
+															"id": "set-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 834862489326055,
+															"parameters": {
+																"variable": "allowGearManagement",
+																"value": "true"
+															}
 														}
 													],
 													"sid": 622605866580318
@@ -4162,64 +4224,72 @@
 													"text": "If there's no default gear for this slot, just destroy the gear and then we're done"
 												},
 												{
-													"callFunction": "destroyGear",
-													"sid": 272752789369393
+													"id": "destroy",
+													"objectClass": "gear",
+													"sid": 823034227021281
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 956208110144381,
+													"parameters": {
+														"seconds": "0"
+													}
+												},
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 697449087303279
+												},
+												{
+													"id": "unload-object-images",
+													"objectClass": "System",
+													"sid": 513006207849111,
+													"parameters": {
+														"object": "gear"
+													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 770037719205381,
+													"parameters": {
+														"variable": "allowGearManagement",
+														"value": "true"
+													}
 												}
 											],
 											"sid": 549938953636278
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 752879802731640
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If there was no gear to destroy, the item was (probably?) unequipped before its gear could load. We don't need to do anything, except allow gear management again."
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 790696970643658,
+													"parameters": {
+														"variable": "allowGearManagement",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 734496488012300
 										}
 									]
 								}
 							]
-						},
-						{
-							"functionName": "destroyGear",
-							"functionDescription": "",
-							"functionCategory": "equipment",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "destroy",
-									"objectClass": "gear",
-									"sid": 663006972192688
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 770562252570343,
-									"parameters": {
-										"seconds": "0"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 830788373725766
-								},
-								{
-									"id": "unload-object-images",
-									"objectClass": "System",
-									"sid": 301515418637741,
-									"parameters": {
-										"object": "gear"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 282246003704809,
-									"parameters": {
-										"variable": "allowGearManagement",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 260645283777735
 						}
 					],
 					"sid": 976456797084060

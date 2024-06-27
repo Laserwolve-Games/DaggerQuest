@@ -814,6 +814,14 @@
 							"isInverted": true
 						},
 						{
+							"id": "is-effect-enabled",
+							"objectClass": "textButtons",
+							"sid": 152989179300688,
+							"parameters": {
+								"effect": "\"GlowHorizontal\""
+							}
+						},
+						{
 							"id": "trigger-once-while-true",
 							"objectClass": "System",
 							"sid": 466782544771302
@@ -839,7 +847,42 @@
 							}
 						}
 					],
-					"sid": 719878892376839
+					"sid": 719878892376839,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 239338159852543,
+									"parameters": {
+										"tag": "\"menuClose\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "We have to check if 'glowHorizontal' is enabled before running this event, or else it'll run when the first text buttons are created (on the main menu). That's ok for disabling the effects, but we don't want the mouse off sound effect to play. We also don't want the mouse off sound effect to play when the action that cause the mouse-off is the closing of a menu."
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 702551051106774,
+									"parameters": {
+										"audio-file": "mouseOff",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 230109403454654
+						}
+					]
 				},
 				{
 					"eventType": "block",
@@ -937,6 +980,18 @@
 									"parameters": {
 										"mode": "enable",
 										"effect": "\"GlowVertical\""
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 413432739922119,
+									"parameters": {
+										"audio-file": "mouseOn",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
 									}
 								}
 							],

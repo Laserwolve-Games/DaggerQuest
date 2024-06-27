@@ -9650,6 +9650,23 @@
 										"layer": "menuName",
 										"interactive": false
 									}
+								},
+								{
+									"type": "comment",
+									"text": "Don't play the menu closing sound effect for the dialog menu, since NPCs will say their goodbye line when closing that menu. Also don't play it when the men opening sound effect is currently playing (like when the setting menu opens and forces other menus to close)"
+								},
+								{
+									"id": "play-by-name",
+									"objectClass": "Audio",
+									"sid": 412513807938195,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") <> 0 ? \"\" : \"menuClose\"",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"menuClose\""
+									}
 								}
 							],
 							"sid": 475860601676582,
@@ -9767,6 +9784,23 @@
 									"parameters": {
 										"layer": "menuName",
 										"visibility": "visible"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "The NPC dialog will play as soon as the dialog window opens, so the sound wouldn't be necessary"
+								},
+								{
+									"id": "play-by-name",
+									"objectClass": "Audio",
+									"sid": 253977271223709,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "menuName = \"dialog\" ? \"\" : \"menuOpen\"",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"menuOpen\""
 									}
 								}
 							],

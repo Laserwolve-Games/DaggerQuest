@@ -325,9 +325,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "dialogText",
-									"sid": 983615769116275,
+									"sid": 211248982798476,
 									"parameters": {
-										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, \"npc\", npc.simpleName, \"message\")"
+										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName, \"message\")"
 									}
 								},
 								{
@@ -1407,7 +1407,7 @@
 											"sid": 387156835177166,
 											"parameters": {
 												"instance-variable": "fullName",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"fullName\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"fullName\")"
 											}
 										},
 										{
@@ -1416,7 +1416,7 @@
 											"sid": 740584911958729,
 											"parameters": {
 												"instance-variable": "type",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"type\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"type\")"
 											}
 										},
 										{
@@ -1425,7 +1425,7 @@
 											"sid": 360927318720871,
 											"parameters": {
 												"instance-variable": "lore",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"lore\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"lore\")"
 											}
 										},
 										{
@@ -1434,7 +1434,7 @@
 											"sid": 992658870893090,
 											"parameters": {
 												"instance-variable": "level",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"level\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"level\")"
 											}
 										},
 										{
@@ -1443,7 +1443,7 @@
 											"sid": 431466943186454,
 											"parameters": {
 												"instance-variable": "classRestrictions",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"classRestrictions\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"classRestrictions\")"
 											}
 										},
 										{
@@ -1452,7 +1452,7 @@
 											"sid": 181518222104383,
 											"parameters": {
 												"instance-variable": "modTable",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, \"simpleName\", Self.simpleName, \"modTable\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"modTable\")"
 											}
 										}
 									],
@@ -1496,7 +1496,7 @@
 													"sid": 696283491550463,
 													"parameters": {
 														"instance-variable": "mods",
-														"value": "mod &  \":\" & Functions.arrayLookup(modsArray.ObjectTypeName, \"simpleName\", mod, \"description\") & \";\""
+														"value": "((mod & \":\") & Functions.arrayLookup(modsArray.ObjectTypeName, mod, \"description\")) & \";\""
 													}
 												}
 											],
@@ -7197,7 +7197,7 @@
 																	"sid": 174392996248881,
 																	"parameters": {
 																		"instance-variable": "slashDamage",
-																		"value": "player.slashDamage + (player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER)"
+																		"value": "player.slashDamage + player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER"
 																	}
 																},
 																{
@@ -8729,7 +8729,7 @@
 													"parameters": {
 														"variable": "currentCategory",
 														"comparison": 0,
-														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"category\")"
+														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"category\")"
 													}
 												}
 											],
@@ -8800,7 +8800,7 @@
 													"sid": 331646563762280,
 													"parameters": {
 														"variable": "currentCategory",
-														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"category\")"
+														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"category\")"
 													}
 												},
 												{
@@ -10098,10 +10098,10 @@
 													"sid": 494358489125225,
 													"parameters": [
 														true,
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"fullName\")",
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"class\")",
-														"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"level\"))",
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, \"simpleName\", ability.AnimationName, \"description\")",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"fullName\")",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"class\")",
+														"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"level\"))",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\")",
 														"\"\""
 													]
 												}
@@ -14248,14 +14248,7 @@
 							"sid": 138615066068748
 						},
 						{
-							"name": "sourceColumn",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"sid": 749816088821036
-						},
-						{
-							"name": "valueToFind",
+							"name": "simpleName",
 							"type": "string",
 							"initialValue": "",
 							"comment": "",
@@ -14303,12 +14296,12 @@
 						},
 						{
 							"eventType": "variable",
-							"name": "sourceColumnNumber",
+							"name": "simpleNameColumnNumber",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
+							"comment": "simpleName is always the first column",
+							"isStatic": false,
+							"isConstant": true,
 							"sid": 959500024424395
 						},
 						{
@@ -14339,69 +14332,16 @@
 									"text": "loop through the column headers to find the columns we want"
 								},
 								{
-									"type": "comment",
-									"text": "\"stop loop\" doesn't work with the array loops. using a standard loop with arrays.width wasn't working either for some reason"
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 878163469440177,
+									"parameters": {
+										"variable": "targetColumnNumber",
+										"value": "queriedArrays.CurX"
+									}
 								}
 							],
-							"sid": 946216334824181,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-current-value",
-											"objectClass": "queriedArrays",
-											"sid": 540675478633314,
-											"parameters": {
-												"comparison": 0,
-												"value": "sourceColumn"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "this line cannot be combined into the previous line"
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 870520498246570,
-											"parameters": {
-												"variable": "sourceColumnNumber",
-												"value": "queriedArrays.CurX"
-											}
-										}
-									],
-									"sid": 660086940294346
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-current-value",
-											"objectClass": "queriedArrays",
-											"sid": 265769457322804,
-											"parameters": {
-												"comparison": 0,
-												"value": "targetColumn"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 148872933326070,
-											"parameters": {
-												"variable": "targetColumnNumber",
-												"value": "queriedArrays.CurX"
-											}
-										}
-									],
-									"sid": 567741713139032
-								}
-							]
+							"sid": 946216334824181
 						},
 						{
 							"eventType": "block",
@@ -14421,9 +14361,9 @@
 									"objectClass": "System",
 									"sid": 628104764048334,
 									"parameters": {
-										"first-value": "queriedArrays.At(sourceColumnNumber, loopindex)",
+										"first-value": "queriedArrays.At(simpleNameColumnNumber, loopindex)",
 										"comparison": 0,
-										"second-value": "valueToFind"
+										"second-value": "simpleName"
 									}
 								}
 							],

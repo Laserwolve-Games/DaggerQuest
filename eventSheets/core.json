@@ -1057,6 +1057,15 @@
 								},
 								{
 									"id": "set-instvar-value",
+									"objectClass": "item",
+									"sid": 466078975570333,
+									"parameters": {
+										"instance-variable": "sound",
+										"value": "loot.sound"
+									}
+								},
+								{
+									"id": "set-instvar-value",
 									"objectClass": "slot",
 									"sid": 818920739961129,
 									"parameters": {
@@ -1453,6 +1462,15 @@
 											"parameters": {
 												"instance-variable": "modTable",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"modTable\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 380178747402522,
+											"parameters": {
+												"instance-variable": "sound",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"sound\")"
 											}
 										}
 									],
@@ -3457,6 +3475,15 @@
 												{
 													"id": "set-instvar-value",
 													"objectClass": "loot",
+													"sid": 859963211778686,
+													"parameters": {
+														"instance-variable": "sound",
+														"value": "item.sound"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "loot",
 													"sid": 701101953006039,
 													"parameters": {
 														"instance-variable": "verticalHeight",
@@ -3927,13 +3954,35 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 556423965724456,
+													"id": "is-tag-playing",
+													"objectClass": "Audio",
+													"sid": 556741492740266,
 													"parameters": {
-														"object": "gear"
+														"tag": "item.ObjectTypeName & \" \" & item.UID & \" equip sound\""
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 356429028289520,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "item.sound & \"_equip\" & round(random(1))",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "item.ObjectTypeName & \" \" & item.UID & \" equip sound\""
 													}
-												},
+												}
+											],
+											"sid": 353334637416312
+										},
+										{
+											"eventType": "block",
+											"conditions": [
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
@@ -3944,22 +3993,12 @@
 														"comparison": 0,
 														"value": "gear.type"
 													}
-												},
-												{
-													"id": "pick-by-highest-lowest-value",
-													"objectClass": "System",
-													"sid": 314430464365361,
-													"parameters": {
-														"object": "gear",
-														"which": "lowest",
-														"expression": "gear.UID"
-													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If there are now two gears that pertain to this slot, destroy the older one."
+													"text": "This won't destroy the gear that was just created. Only gear(s) that pertained to this slot beforehand get destroyed."
 												},
 												{
 													"id": "destroy",
@@ -3998,6 +4037,10 @@
 												}
 											],
 											"sid": 327547775356116
+										},
+										{
+											"eventType": "comment",
+											"text": "We are playing the equip noise for the item that just got equipped right now, so we don't need to play an unequip noise."
 										},
 										{
 											"eventType": "block",
@@ -4141,60 +4184,93 @@
 																"comparison": 0,
 																"value": "gear.type"
 															}
-														},
-														{
-															"id": "pick-by-highest-lowest-value",
-															"objectClass": "System",
-															"sid": 444128082022832,
-															"parameters": {
-																"object": "gear",
-																"which": "lowest",
-																"expression": "gear.UID"
-															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "...destroy the (non-default) gear that was affiliated with this slot. (That will be the oldest gear with the same type as this slot)"
-														},
-														{
-															"id": "destroy",
-															"objectClass": "gear",
-															"sid": 258594899750731
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 225824402279793,
-															"parameters": {
-																"seconds": "0"
-															}
-														},
-														{
-															"id": "wait-for-previous-actions",
-															"objectClass": "System",
-															"sid": 322292064059987
-														},
-														{
-															"id": "unload-object-images",
-															"objectClass": "System",
-															"sid": 339125295524975,
-															"parameters": {
-																"object": "gear"
-															}
-														},
-														{
-															"id": "set-boolean-eventvar",
-															"objectClass": "System",
-															"sid": 834862489326055,
-															"parameters": {
-																"variable": "allowGearManagement",
-																"value": "true"
-															}
+															"text": "...destroy the (non-default) gear that was affiliated with this slot. This won't destroy the default gear that was just created."
 														}
 													],
-													"sid": 622605866580318
+													"sid": 622605866580318,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-tag-playing",
+																	"objectClass": "Audio",
+																	"sid": 939629008248107,
+																	"parameters": {
+																		"tag": "\"unequip\""
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "weird positioning because we only want the unequip audio to play if it isn't playing already, and only if non-default gear is getting destroyed, but we don't need to wait until it's unloaded from memory to play this."
+																},
+																{
+																	"id": "play-by-name",
+																	"objectClass": "Audio",
+																	"sid": 272525920134154,
+																	"parameters": {
+																		"folder": "sounds",
+																		"audio-file-name": "\"unequip\" & round(random(1))",
+																		"loop": "not-looping",
+																		"volume": "0",
+																		"stereo-pan": "0",
+																		"tag-optional": "\"unequip\""
+																	}
+																}
+															],
+															"sid": 477457434428723
+														},
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"id": "destroy",
+																	"objectClass": "gear",
+																	"sid": 731770334202317
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 529179038582809,
+																	"parameters": {
+																		"seconds": "0"
+																	}
+																},
+																{
+																	"id": "wait-for-previous-actions",
+																	"objectClass": "System",
+																	"sid": 725515237960752
+																},
+																{
+																	"id": "unload-object-images",
+																	"objectClass": "System",
+																	"sid": 332528951421909,
+																	"parameters": {
+																		"object": "gear"
+																	}
+																},
+																{
+																	"id": "set-boolean-eventvar",
+																	"objectClass": "System",
+																	"sid": 504434520995583,
+																	"parameters": {
+																		"variable": "allowGearManagement",
+																		"value": "true"
+																	}
+																}
+															],
+															"sid": 571661860624005
+														}
+													]
 												}
 											]
 										},
@@ -4222,44 +4298,87 @@
 												{
 													"type": "comment",
 													"text": "If there's no default gear for this slot, just destroy the gear and then we're done"
-												},
-												{
-													"id": "destroy",
-													"objectClass": "gear",
-													"sid": 823034227021281
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 956208110144381,
-													"parameters": {
-														"seconds": "0"
-													}
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 697449087303279
-												},
-												{
-													"id": "unload-object-images",
-													"objectClass": "System",
-													"sid": 513006207849111,
-													"parameters": {
-														"object": "gear"
-													}
-												},
-												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 770037719205381,
-													"parameters": {
-														"variable": "allowGearManagement",
-														"value": "true"
-													}
 												}
 											],
-											"sid": 549938953636278
+											"sid": 549938953636278,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-tag-playing",
+															"objectClass": "Audio",
+															"sid": 411085929005082,
+															"parameters": {
+																"tag": "\"unequip\""
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "weird positioning because we only want the unequip audio to play if it isn't playing already, and only if non-default gear is getting destroyed, but we don't need to wait until it's unloaded from memory to play this."
+														},
+														{
+															"id": "play-by-name",
+															"objectClass": "Audio",
+															"sid": 396697624814906,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "\"unequip\" & round(random(1))",
+																"loop": "not-looping",
+																"volume": "0",
+																"stereo-pan": "0",
+																"tag-optional": "\"unequip\""
+															}
+														}
+													],
+													"sid": 844672912598669
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "destroy",
+															"objectClass": "gear",
+															"sid": 463226392186588
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 649315171324961,
+															"parameters": {
+																"seconds": "0"
+															}
+														},
+														{
+															"id": "wait-for-previous-actions",
+															"objectClass": "System",
+															"sid": 612226921109791
+														},
+														{
+															"id": "unload-object-images",
+															"objectClass": "System",
+															"sid": 964096055563955,
+															"parameters": {
+																"object": "gear"
+															}
+														},
+														{
+															"id": "set-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 770412536453276,
+															"parameters": {
+																"variable": "allowGearManagement",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 806771972298266
+												}
+											]
 										},
 										{
 											"eventType": "block",
@@ -14324,6 +14443,15 @@
 									"parameters": {
 										"axes": "x"
 									}
+								},
+								{
+									"id": "compare-current-value",
+									"objectClass": "queriedArrays",
+									"sid": 156802794488655,
+									"parameters": {
+										"comparison": 0,
+										"value": "targetColumn"
+									}
 								}
 							],
 							"actions": [
@@ -16078,6 +16206,10 @@
 				}
 			],
 			"sid": 992252066588856
+		},
+		{
+			"eventType": "comment",
+			"text": "Refactors that would be cool to do, but probably wouldn't provide much benefit and might introduce some nasty bugs:\n\n1. Split the slot object into other objects so it's not so all-encompassing. https://github.com/Laserwolve-Games/DaggerQuest/issues/8\n2. Have items and loot lookup their static values from the array instead of reading them off themselves. This might be faster, it might be slower... might be confusing that some equipment properties have to be looked up, and some are stored directly on the object\n3. Move lots of variables from local/global space, onto the player.... uidOfClicked and a lot of the item re-arranging variables probably should/could get scoped onto the player"
 		}
 	],
 	"sid": 318845921999986

@@ -1166,9 +1166,46 @@
 										"ping-pong": "no",
 										"repeat-count": "1"
 									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 315389258203181
 								}
 							],
-							"sid": 629339917694708
+							"sid": 629339917694708,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 804144167636984,
+											"parameters": {
+												"tag": "loot.sound & \"_drop\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "play-by-name",
+											"objectClass": "Audio",
+											"sid": 223956066375534,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "loot.sound & \"_drop\" & round(random(1))",
+												"loop": "not-looping",
+												"volume": "0",
+												"stereo-pan": "0",
+												"tag-optional": "loot.sound & \"_drop\""
+											}
+										}
+									],
+									"sid": 384688841304585
+								}
+							]
 						},
 						{
 							"functionName": "spawnLoot",
@@ -1872,59 +1909,6 @@
 						{
 							"eventType": "comment",
 							"text": "If these are 'trigger once's instead of every tick, and item could get created while equipment interaction isn't allowed. That particular item would have its DragDrop enabled by default."
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 254457882940289,
-									"parameters": {
-										"variable": "allowEquipmentInteraction"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "item",
-									"sid": 985394843959391,
-									"behaviorType": "DragDrop",
-									"parameters": {
-										"state": "enabled"
-									}
-								}
-							],
-							"sid": 726619441309664,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 454250615014830,
-									"parameters": {
-										"variable": "allowEquipmentInteraction"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "item",
-									"sid": 563296184406537,
-									"behaviorType": "DragDrop",
-									"parameters": {
-										"state": "disabled"
-									}
-								}
-							],
-							"sid": 327641752045332,
-							"disabled": true
 						},
 						{
 							"eventType": "block",
@@ -3365,6 +3349,36 @@
 									],
 									"sid": 556251734949061,
 									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-tag-playing",
+													"objectClass": "Audio",
+													"sid": 327182850721480,
+													"parameters": {
+														"tag": "item.sound & \"_drop\""
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "play-by-name",
+													"objectClass": "Audio",
+													"sid": 499653803274527,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "item.sound & \"_drop\" & round(random(1))",
+														"loop": "not-looping",
+														"volume": "0",
+														"stereo-pan": "0",
+														"tag-optional": "item.sound & \"_drop\""
+													}
+												}
+											],
+											"sid": 917333413167732
+										},
 										{
 											"eventType": "block",
 											"conditions": [

@@ -1190,16 +1190,19 @@
 									],
 									"actions": [
 										{
-											"id": "play-by-name",
+											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 223956066375534,
+											"sid": 486635349317362,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "loot.sound & \"_drop\" & round(random(1))",
 												"loop": "not-looping",
 												"volume": "0",
-												"stereo-pan": "0",
-												"tag-optional": "loot.sound & \"_drop\""
+												"object": "loot",
+												"inner-angle": "360",
+												"outer-angle": "360",
+												"outer-gain": "0",
+												"tag-optional": "\"\""
 											}
 										}
 									],
@@ -3353,36 +3356,6 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "is-tag-playing",
-													"objectClass": "Audio",
-													"sid": 327182850721480,
-													"parameters": {
-														"tag": "item.sound & \"_drop\""
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "play-by-name",
-													"objectClass": "Audio",
-													"sid": 499653803274527,
-													"parameters": {
-														"folder": "sounds",
-														"audio-file-name": "item.sound & \"_drop\" & round(random(1))",
-														"loop": "not-looping",
-														"volume": "0",
-														"stereo-pan": "0",
-														"tag-optional": "item.sound & \"_drop\""
-													}
-												}
-											],
-											"sid": 917333413167732
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
 													"id": "pick-last-created",
 													"objectClass": "System",
 													"sid": 719006855336677,
@@ -3510,7 +3483,42 @@
 													"sid": 197838163977498
 												}
 											],
-											"sid": 496856218332598
+											"sid": 496856218332598,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-tag-playing",
+															"objectClass": "Audio",
+															"sid": 112775583560892,
+															"parameters": {
+																"tag": "loot.sound & \"_drop\""
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 204852711107632,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "loot.sound & \"_drop\" & round(random(1))",
+																"loop": "not-looping",
+																"volume": "0",
+																"object": "loot",
+																"inner-angle": "360",
+																"outer-angle": "360",
+																"outer-gain": "0",
+																"tag-optional": "\"\""
+															}
+														}
+													],
+													"sid": 460593015436497
+												}
+											]
 										}
 									]
 								}
@@ -3979,16 +3987,19 @@
 											],
 											"actions": [
 												{
-													"id": "play-by-name",
+													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 356429028289520,
+													"sid": 805348509726415,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "item.sound & \"_equip\" & round(random(1))",
 														"loop": "not-looping",
 														"volume": "0",
-														"stereo-pan": "0",
-														"tag-optional": "item.ObjectTypeName & \" \" & item.UID & \" equip sound\""
+														"object": "player",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
+														"tag-optional": "\"\""
 													}
 												}
 											],
@@ -4227,16 +4238,19 @@
 																	"text": "weird positioning because we only want the unequip audio to play if it isn't playing already, and only if non-default gear is getting destroyed, but we don't need to wait until it's unloaded from memory to play this."
 																},
 																{
-																	"id": "play-by-name",
+																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 272525920134154,
+																	"sid": 720818633523058,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"unequip\" & round(random(1))",
 																		"loop": "not-looping",
 																		"volume": "0",
-																		"stereo-pan": "0",
-																		"tag-optional": "\"unequip\""
+																		"object": "player",
+																		"inner-angle": "360",
+																		"outer-angle": "360",
+																		"outer-gain": "0",
+																		"tag-optional": "\"\""
 																	}
 																}
 															],
@@ -4335,16 +4349,19 @@
 															"text": "weird positioning because we only want the unequip audio to play if it isn't playing already, and only if non-default gear is getting destroyed, but we don't need to wait until it's unloaded from memory to play this."
 														},
 														{
-															"id": "play-by-name",
+															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 396697624814906,
+															"sid": 801817113614994,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "\"unequip\" & round(random(1))",
 																"loop": "not-looping",
 																"volume": "0",
-																"stereo-pan": "0",
-																"tag-optional": "\"unequip\""
+																"object": "player",
+																"inner-angle": "360",
+																"outer-angle": "360",
+																"outer-gain": "0",
+																"tag-optional": "\"\""
 															}
 														}
 													],
@@ -16127,7 +16144,51 @@
 							}
 						}
 					],
-					"sid": 642436103875474
+					"sid": 642436103875474,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 648410643035809,
+									"parameters": {
+										"tag": "door.ObjectTypeName"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "door",
+									"sid": 542240625155166,
+									"parameters": {
+										"comparison": 0,
+										"number": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "Audio",
+									"sid": 898042260607143,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "door.ObjectTypeName",
+										"loop": "not-looping",
+										"volume": "0",
+										"object": "door",
+										"inner-angle": "360",
+										"outer-angle": "360",
+										"outer-gain": "0",
+										"tag-optional": "door.ObjectTypeName"
+									}
+								}
+							],
+							"sid": 243907011904060
+						}
+					]
 				},
 				{
 					"eventType": "block",

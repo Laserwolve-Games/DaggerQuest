@@ -509,12 +509,12 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "parent it to the mana cover so it resizes correctly. We would use anchor, but we can't set its parameters during the runtime"
+													"text": "parent it to the dialog so it resizes correctly"
 												},
 												{
 													"id": "add-child",
-													"objectClass": "manaCover",
-													"sid": 132401957377044,
+													"objectClass": "dialog",
+													"sid": 134545547837542,
 													"parameters": {
 														"child": "portrait",
 														"transform-x": true,
@@ -6957,6 +6957,28 @@
 																		}
 																	],
 																	"sid": 426327952259254
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 479171516537938
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 702025458085632,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 263255351700109
 																}
 															]
 														}
@@ -7486,6 +7508,28 @@
 																		}
 																	],
 																	"sid": 542652828917541
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 565933486071596
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 600429134598716,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 429071242495696
 																}
 															]
 														}
@@ -8019,6 +8063,28 @@
 																		}
 																	],
 																	"sid": 610616680550048
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 622844236047644
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 636911203056375,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 986555995679630
 																}
 															]
 														}
@@ -16000,6 +16066,104 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 574164498899305,
+							"parameters": {
+								"object": "lootChest"
+							}
+						},
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "lootChest",
+							"sid": 664955286726473,
+							"parameters": {
+								"comparison": 0,
+								"number": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "lootChest",
+							"sid": 281152541001834,
+							"parameters": {
+								"effect": "\"Brightness\"",
+								"parameter-index": "0",
+								"value": "105"
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "lootChest",
+							"sid": 257696905455289,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"GlowHorizontal\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "lootChest",
+							"sid": 567118041233534,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"GlowVertical\""
+							}
+						}
+					],
+					"sid": 611239875723425
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "mouse",
+							"sid": 487414290256294,
+							"parameters": {
+								"object": "lootChest"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "lootChest",
+							"sid": 390519698793083,
+							"parameters": {
+								"effect": "\"Brightness\"",
+								"parameter-index": "0",
+								"value": "100"
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "lootChest",
+							"sid": 637437226544868,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"GlowHorizontal\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "lootChest",
+							"sid": 837401881113407,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"GlowVertical\""
+							}
+						}
+					],
+					"sid": 605986589568019
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-created",
 							"objectClass": "door",
 							"sid": 956882454928944
@@ -16200,6 +16364,10 @@
 						}
 					],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "If we mouse over two different doors very quickly, the animations might get messed up since this is an 'else', not sure"
+						},
 						{
 							"id": "set-animation-speed",
 							"objectClass": "door",

@@ -8657,6 +8657,26 @@
 									}
 								},
 								{
+									"type": "comment",
+									"text": "We shouldn't have to worry about multiple instances of this sound playing because we are already heavily regulating when the player can be blocked/stunned"
+								},
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "Audio",
+									"sid": 394554181245220,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "body.ObjectTypeName & \"_\" & animationName",
+										"loop": "not-looping",
+										"volume": "0",
+										"object": "player",
+										"inner-angle": "360",
+										"outer-angle": "360",
+										"outer-gain": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
 									"id": "wait",
 									"objectClass": "System",
 									"sid": 579412279696937,
@@ -10346,24 +10366,6 @@
 												}
 											],
 											"actions": [
-												{
-													"id": "set-opacity",
-													"objectClass": "tooltip",
-													"sid": 937645075915450,
-													"disabled": true,
-													"parameters": {
-														"opacity": "0"
-													}
-												},
-												{
-													"id": "set-opacity",
-													"objectClass": "comparisonTooltip",
-													"sid": 620970895579657,
-													"disabled": true,
-													"parameters": {
-														"opacity": "0"
-													}
-												},
 												{
 													"id": "tween-one-property",
 													"objectClass": "tooltip",

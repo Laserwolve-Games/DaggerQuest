@@ -8340,6 +8340,22 @@
 									"sid": 903194414252356
 								},
 								{
+									"id": "play-at-object-by-name",
+									"objectClass": "Audio",
+									"sid": 211318126418314,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "body.ObjectTypeName & \"_die\"",
+										"loop": "not-looping",
+										"volume": "0",
+										"object": "body",
+										"inner-angle": "360",
+										"outer-angle": "360",
+										"outer-gain": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
 									"type": "comment",
 									"text": "It's not true for the body however, so it and the gear can stick around to play the die animation after the player dies."
 								},
@@ -12314,6 +12330,22 @@
 											"parameters": {
 												"animation": "\"die_\" & enemy.degrees",
 												"from": "beginning"
+											}
+										},
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "Audio",
+											"sid": 890087344562307,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "enemy.type & \"_die_\" & round(random(1))",
+												"loop": "not-looping",
+												"volume": "0",
+												"object": "enemy",
+												"inner-angle": "360",
+												"outer-angle": "360",
+												"outer-gain": "0",
+												"tag-optional": "\"\""
 											}
 										},
 										{

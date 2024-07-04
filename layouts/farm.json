@@ -577,7 +577,7 @@
 							"instanceVariables": {
 								"simpleName": "goblinUnderling",
 								"fullName": "Goblin Underling",
-								"type": "Goblin",
+								"type": "goblin",
 								"idleX": 0,
 								"idleY": 0,
 								"movementSpeed": 300,
@@ -719,7 +719,7 @@
 							"instanceVariables": {
 								"simpleName": "goblinArcher",
 								"fullName": "Goblin Archer",
-								"type": "Goblin",
+								"type": "goblin",
 								"idleX": 0,
 								"idleY": 0,
 								"movementSpeed": 300,
@@ -861,7 +861,7 @@
 							"instanceVariables": {
 								"simpleName": "goblinWarlock",
 								"fullName": "Goblin Warlock",
-								"type": "Goblin",
+								"type": "goblin",
 								"idleX": 0,
 								"idleY": 0,
 								"movementSpeed": 300,
@@ -976,6 +976,290 @@
 							"world": {
 								"x": 1210,
 								"y": 1455,
+								"width": 78,
+								"height": 26,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "enemy",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 231,
+							"instanceVariables": {
+								"simpleName": "goblinUnderling",
+								"fullName": "Goblin Underling",
+								"type": "goblin",
+								"idleX": 0,
+								"idleY": 0,
+								"movementSpeed": 300,
+								"degrees": 0,
+								"attributes": "Unflinching",
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 10,
+								"slashDamage": 7,
+								"smashDamage": 0,
+								"stabDamage": 0,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 0,
+								"arcaneDamage": 0,
+								"corruptDamage": 0,
+								"attackRange": 150,
+								"physicalResistance": 0,
+								"coldResistance": 0,
+								"fireResistance": 0,
+								"lightningResistance": 0,
+								"arcaneResistance": 0,
+								"holyResistance": 0,
+								"attacking": false,
+								"hit": false,
+								"rerouting": "no"
+							},
+							"behaviors": {
+								"MoveTo": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": true,
+										"enabled": true
+									}
+								},
+								"Solid": {
+									"properties": {
+										"enabled": true,
+										"tags": ""
+									}
+								},
+								"knockback": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
+								},
+								"LineOfSight": {
+									"properties": {
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 231,
+								"children": [
+									{
+										"uid": 353,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": false,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 3210,
+								"y": 946,
+								"width": 78,
+								"height": 26,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "enemy",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 355,
+							"instanceVariables": {
+								"simpleName": "goblinArcher",
+								"fullName": "Goblin Archer",
+								"type": "goblin",
+								"idleX": 0,
+								"idleY": 0,
+								"movementSpeed": 300,
+								"degrees": 0,
+								"attributes": "",
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 9,
+								"slashDamage": 0,
+								"smashDamage": 0,
+								"stabDamage": 10,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 0,
+								"arcaneDamage": 0,
+								"corruptDamage": 0,
+								"attackRange": 0,
+								"physicalResistance": 0,
+								"coldResistance": 0,
+								"fireResistance": 0,
+								"lightningResistance": 0,
+								"arcaneResistance": 0,
+								"holyResistance": 0,
+								"attacking": false,
+								"hit": false,
+								"rerouting": "no"
+							},
+							"behaviors": {
+								"MoveTo": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": true,
+										"enabled": true
+									}
+								},
+								"Solid": {
+									"properties": {
+										"enabled": true,
+										"tags": ""
+									}
+								},
+								"knockback": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
+								},
+								"LineOfSight": {
+									"properties": {
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 355,
+								"children": [
+									{
+										"uid": 357,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": false,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"world": {
+								"x": 3676,
+								"y": 466,
 								"width": 78,
 								"height": 26,
 								"originX": 0.5,
@@ -3194,148 +3478,6 @@
 					}
 				},
 				{
-					"type": "enemy",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 231,
-					"instanceVariables": {
-						"simpleName": "goblinUnderling",
-						"fullName": "Goblin Underling",
-						"type": "Goblin",
-						"idleX": 0,
-						"idleY": 0,
-						"movementSpeed": 300,
-						"degrees": 0,
-						"attributes": "Unflinching",
-						"experience": 50,
-						"currentHealth": 10,
-						"maxHealth": 10,
-						"attackSpeed": 10,
-						"slashDamage": 7,
-						"smashDamage": 0,
-						"stabDamage": 0,
-						"coldDamage": 0,
-						"fireDamage": 0,
-						"lightningDamage": 0,
-						"arcaneDamage": 0,
-						"corruptDamage": 0,
-						"attackRange": 150,
-						"physicalResistance": 0,
-						"coldResistance": 0,
-						"fireResistance": 0,
-						"lightningResistance": 0,
-						"arcaneResistance": 0,
-						"holyResistance": 0,
-						"attacking": false,
-						"hit": false,
-						"rerouting": "no"
-					},
-					"behaviors": {
-						"MoveTo": {
-							"properties": {
-								"max-speed": 200,
-								"acceleration": 0,
-								"deceleration": 0,
-								"rotate-speed": 0,
-								"set-angle": false,
-								"stop-on-solids": true,
-								"enabled": true
-							}
-						},
-						"Solid": {
-							"properties": {
-								"enabled": true,
-								"tags": ""
-							}
-						},
-						"knockback": {
-							"properties": {
-								"max-speed": 200,
-								"acceleration": 0,
-								"deceleration": 0,
-								"rotate-speed": 0,
-								"set-angle": false,
-								"stop-on-solids": false,
-								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": null,
-						"uid": 231,
-						"children": [
-							{
-								"uid": 353,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": false,
-									"v": false,
-									"d": false,
-									"sm": "normal"
-								}
-							}
-						],
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": false,
-							"v": false,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"world": {
-						"x": 3210,
-						"y": 946,
-						"width": 78,
-						"height": 26,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
 					"type": "goblinUnderling_shadow",
 					"properties": {
 						"initially-visible": true,
@@ -3635,148 +3777,6 @@
 						"height": 168,
 						"originX": 0.43564356435643564,
 						"originY": 0.8690476190476191,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "enemy",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 355,
-					"instanceVariables": {
-						"simpleName": "goblinArcher",
-						"fullName": "Goblin Archer",
-						"type": "Goblin",
-						"idleX": 0,
-						"idleY": 0,
-						"movementSpeed": 300,
-						"degrees": 0,
-						"attributes": "",
-						"experience": 50,
-						"currentHealth": 10,
-						"maxHealth": 10,
-						"attackSpeed": 9,
-						"slashDamage": 0,
-						"smashDamage": 0,
-						"stabDamage": 10,
-						"coldDamage": 0,
-						"fireDamage": 0,
-						"lightningDamage": 0,
-						"arcaneDamage": 0,
-						"corruptDamage": 0,
-						"attackRange": 0,
-						"physicalResistance": 0,
-						"coldResistance": 0,
-						"fireResistance": 0,
-						"lightningResistance": 0,
-						"arcaneResistance": 0,
-						"holyResistance": 0,
-						"attacking": false,
-						"hit": false,
-						"rerouting": "no"
-					},
-					"behaviors": {
-						"MoveTo": {
-							"properties": {
-								"max-speed": 200,
-								"acceleration": 0,
-								"deceleration": 0,
-								"rotate-speed": 0,
-								"set-angle": false,
-								"stop-on-solids": true,
-								"enabled": true
-							}
-						},
-						"Solid": {
-							"properties": {
-								"enabled": true,
-								"tags": ""
-							}
-						},
-						"knockback": {
-							"properties": {
-								"max-speed": 200,
-								"acceleration": 0,
-								"deceleration": 0,
-								"rotate-speed": 0,
-								"set-angle": false,
-								"stop-on-solids": false,
-								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": null,
-						"uid": 355,
-						"children": [
-							{
-								"uid": 357,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": false,
-									"v": false,
-									"d": false,
-									"sm": "normal"
-								}
-							}
-						],
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": false,
-							"v": false,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"world": {
-						"x": 3676,
-						"y": 466,
-						"width": 78,
-						"height": 26,
-						"originX": 0.5,
-						"originY": 0.5,
 						"color": [
 							1,
 							1,

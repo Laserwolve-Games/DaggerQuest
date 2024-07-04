@@ -13889,6 +13889,10 @@
 											"text": "Hitstun the enemy, as long as they aren't Unflinching and the projectile didn't kill them."
 										},
 										{
+											"type": "comment",
+											"text": "TODO: Can enemies get stunlocked?"
+										},
+										{
 											"id": "stop",
 											"objectClass": "enemy",
 											"sid": 258415481730862,
@@ -13910,6 +13914,22 @@
 											"parameters": {
 												"animation": "\"hit_\" & enemy.degrees",
 												"from": "beginning"
+											}
+										},
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "Audio",
+											"sid": 564235910684039,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "enemy.type & \"_hit\"",
+												"loop": "not-looping",
+												"volume": "0",
+												"object": "enemy",
+												"inner-angle": "360",
+												"outer-angle": "360",
+												"outer-gain": "0",
+												"tag-optional": "\"\""
 											}
 										}
 									],

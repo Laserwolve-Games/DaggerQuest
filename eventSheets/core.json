@@ -4843,58 +4843,72 @@
 							"id": "on-start-of-layout",
 							"objectClass": "System",
 							"sid": 812764880148303
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "player",
-							"sid": 312271232082273,
-							"parameters": {
-								"instance-variable": "relocateToX",
-								"comparison": 1,
-								"value": "0"
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "player",
-							"sid": 385726181804444,
-							"parameters": {
-								"instance-variable": "relocateToY",
-								"comparison": 1,
-								"value": "0"
-							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-position",
-							"objectClass": "player",
-							"sid": 981313304182022,
-							"parameters": {
-								"x": "Self.relocateToX",
-								"y": "Self.relocateToY"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 912856374557831,
-							"parameters": {
-								"instance-variable": "relocateToX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "player",
-							"sid": 968516360356716,
-							"parameters": {
-								"instance-variable": "relocateToY",
-								"value": "0"
-							}
+							"callFunction": "restorePlayerControl",
+							"sid": 558634662959794
 						}
 					],
-					"sid": 554174106514565
+					"sid": 554174106514565,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 450487399342423,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"comparison": 1,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 587975782380855,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"comparison": 1,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "player",
+									"sid": 286533887026869,
+									"parameters": {
+										"x": "Self.relocateToX",
+										"y": "Self.relocateToY"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 171611774832362,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 187586262391599,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 946818210217819
+						}
+					]
 				},
 				{
 					"eventType": "group",
@@ -8735,49 +8749,8 @@
 									],
 									"actions": [
 										{
-											"id": "set-enabled",
-											"objectClass": "player",
-											"sid": 530208565746666,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"enabled": true
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 506463150459759,
-											"parameters": {
-												"group-name": "\"movement and interaction\"",
-												"state": "activated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 488457024164462,
-											"parameters": {
-												"group-name": "\"facings\"",
-												"state": "activated"
-											}
-										},
-										{
-											"id": "set-group-active",
-											"objectClass": "System",
-											"sid": 393557170403171,
-											"parameters": {
-												"group-name": "\"abilities\"",
-												"state": "activated"
-											}
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 233085607499440,
-											"parameters": [
-												"\"idle\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromBeginning\""
-											]
+											"callFunction": "restorePlayerControl",
+											"sid": 612176960980660
 										}
 									],
 									"sid": 484133570002695
@@ -8790,6 +8763,65 @@
 				{
 					"eventType": "comment",
 					"text": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
+				},
+				{
+					"functionName": "restorePlayerControl",
+					"functionDescription": "Reinstate the player's ability to be controlled.",
+					"functionCategory": "player",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "player",
+							"sid": 800435097808036,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"enabled": true
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 159773680715058,
+							"parameters": {
+								"group-name": "\"movement and interaction\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 409026666473738,
+							"parameters": {
+								"group-name": "\"facings\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 525324082446416,
+							"parameters": {
+								"group-name": "\"abilities\"",
+								"state": "activated"
+							}
+						},
+						{
+							"callFunction": "updateAnimations",
+							"sid": 904610353053470,
+							"parameters": [
+								"\"idle\"",
+								"player.movementSpeed / ANIMATION_DIVISOR",
+								"\"playFromBeginning\""
+							]
+						}
+					],
+					"sid": 770197937165013
 				}
 			],
 			"sid": 254080374675516

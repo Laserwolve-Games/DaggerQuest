@@ -1,0 +1,307 @@
+﻿/*
+ThemeKings
+www.themekings.net
+Todd Swift, Designer
+tswift@themekings.net
+Released: 02/2011
+Last revised: 02/2022
+Copyright 2011, All Rights Reserved
+ */
+/* ========== BODY ========== */
+body {
+	background-position: left top;
+	background-color: #2F2617;
+	font-family: Verdana;
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;
+	font-size: .8em;
+	background-image: url('../theme/top-bgnd.jpg');
+	background-repeat: repeat-x;
+}
+/* ========== CONTAINERS ========== */
+#container {
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	width: 960px;
+	position: relative;
+	overflow: hidden;
+}
+#pageBody {
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	background-image: url('../theme/body-fill.gif');
+	background-repeat: repeat-y;
+	background-position: left top;
+	width: 930px;
+	position: relative;
+}
+/* ========== HEADER TAGS ========== */
+h1 {
+	background-position: left top;
+	padding: 0px;
+	margin: 0px 0px 5px 0px;
+	font-size: 140%;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	text-indent: 15px;
+	background-image: url('../theme/h1.jpg');
+	background-repeat: no-repeat;
+	width: 666px;
+	height: 45px;
+	position: relative;
+	overflow: hidden;
+	line-height: 180%;
+}
+/* ====== Used As Vnav Title ======
+h4 {
+	font-size: 110%;
+}
+*/
+h5 {
+	font-size: 100%;
+}
+h6 {
+	font-size: 100%;
+}
+p {
+	color: #AA8B53;
+	font-size: 90%;
+	font-weight: normal;
+}
+/* ========== MISC. CLEARS ========== */
+.clear-R {
+	clear: right;
+}
+.clear-L {
+	clear: left;
+}
+.clear-B {
+	clear: both;
+}
+/* ========== HEADER ========== */
+#head {
+	background-image: url('../theme/header.jpg');
+	background-repeat: no-repeat;
+	background-position: center top;
+	padding: 0px;
+	margin: 0px;
+	width: 960px;
+	height: 139px;
+	position: relative;
+	overflow: hidden;
+}
+/* ========== HEADER NAV ========== */
+#menuBox {
+	width: 660px;
+	height: 30px;
+	position: relative;
+	margin-top: 5px;
+	margin-left: 278px;
+	padding: 0px;
+}
+#menuBox ul {
+	padding : 0px;
+	margin : 0px;
+	list-style-type : none;
+}
+#menuBox ul li {
+	padding : 0px;
+	margin : 0px;
+	display: inline;
+}
+#menuBox ul li a {
+	width : 110px;
+	height: 30px;
+	background-position: 0px 0px;
+	margin: 0px;
+	padding : 0px;
+	color: #AA8B53;
+	text-decoration : none;
+	font-size: 95%;
+	line-height : 240%;
+	text-align: center;
+	position : relative;
+	background-repeat : no-repeat;
+	background-image: url('../theme/HnavButn2.jpg');
+	float: left;
+	font-weight: bold;
+	overflow: hidden;
+}
+#menuBox li a.current {
+	background-position: 0px 0px;
+	color : #EEEEEE;
+}
+#menuBox li a:hover {
+	background-position: -110px 0px;
+	color: #000;
+	background-image : url('../theme/HnavButn2.jpg');
+	background-repeat : no-repeat;
+}
+#col-L {
+	width: 240px;
+	position: relative;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px 0px 0px 16px;
+	float: left;
+}
+#col-R {
+	width: 666px;
+	position: relative;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px 4px 0px 0px;
+	float: right;
+}
+.projecttitle {
+	margin: 0px;
+	padding: 15px 0px 0px 10px;
+	font-size: 115%;
+	width: 666px;
+	color: #fff;
+	font-weight: bold;
+}
+.projectdesc {
+	margin: 0px;
+	width: 666px;
+	color: #fff;
+	line-height: 18px;
+	padding: 5px 0px 0px 10px;
+}
+.cnt-box {
+	padding: 0px;
+	margin: 0px 0px 20px 0px;
+	width: 666px;
+	position: relative;
+	overflow: hidden;
+}
+.cnt-info {
+	color: #ffa600;
+	text-align: left;
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	width: 650px;
+	position: relative;
+	overflow: hidden;
+}
+.Vnav-Box {
+	width: 240px;
+	position: relative;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px 0px 20px 0px;
+}
+h4 {
+	margin: 0px;
+	padding: 0px;
+	width: 240px;
+	height: 45px;
+	position: relative;
+	overflow: hidden;
+	background-image: url('../theme/vnav-Header.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #ff0000;
+	text-align: left;
+	text-indent: 10px;
+	line-height: 250%;
+	font-size: 130%;
+	font-weight: bold;
+}
+.vnavBdy {
+	background-image: url('../theme/vnav-fill.png');
+	background-repeat: repeat-y;
+	background-position: left top;
+	margin: 0px;
+	padding: 0px;
+	width: 240px;
+	position: relative;
+	overflow: hidden;
+}
+.vnavFt {
+	background-image: url('../theme/vnav-ft.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding: 0px;
+	margin: 0px;
+	width: 240px;
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+}
+.vnavInfo {
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	width: 220px;
+	position: relative;
+	overflow: hidden;
+	color: #ff0000;
+}
+.vnavInfo ul {
+	padding : 0px;
+	margin : 0px;
+	list-style-type : none;
+	width : 220px;
+	position : relative;
+}
+.vnavInfo ul li a {
+	background-position : 0 0;
+	margin : 0;
+	display : inline;
+	padding : 0 0 0 15px;
+	color : #ff0000;
+	text-decoration : none;
+	line-height : 160%;
+	text-align : left;
+	position : relative;
+	background-repeat : no-repeat;
+	background-image: url('../theme/nav-arrow.jpg');
+}
+.vnavInfo li a.current {
+	background-position : left top;
+	color : #ff0000;
+}
+.vnavInfo li a:hover {
+	background-position : -220px 0;
+	color : #ffffff;
+	background-image : url('../theme/nav-arrow.jpg');
+	background-repeat : no-repeat;
+}
+#foot-Info {
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	width: 930px;
+	height: 104px;
+	position: relative;
+	overflow: hidden;
+	background-image: url('../theme/footer.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#FT-col-L {
+	width: 240px;
+	position: relative;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px 0px 0px 16px;
+	float: left;
+}
+#FT-col-L-info {
+	text-align: center;
+	padding: 0px;
+	margin: 20px auto 0px auto;
+	width: 220px;
+	position: relative;
+	line-height: 90%;
+}
+#link-bar {
+	margin-left: 762px;
+	margin-top: 70px;
+	padding : 0px;
+	width : 180px;
+	height : 30px;
+	position : relative;
+	overflow : hidden;
+}

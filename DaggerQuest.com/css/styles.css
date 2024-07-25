@@ -1,20 +1,24 @@
 ﻿header img {
 	display: block;
 	margin: 0 auto;
- }
+}
+
 body {
 	background-color: #000000;
 	font-size: .8em;
 }
+
 #container {
 	margin: 0px auto 0px auto;
 	width: 960px;
 }
+
 #pageBody {
 	margin: 0px auto 0px auto;
 	background-image: url('../theme/body-fill.png');
 	width: 930px;
 }
+
 h1 {
 	background-position: left top;
 	padding: 0px;
@@ -33,15 +37,18 @@ h1 {
 	line-height: 200%;
 	font-family: Cinzel;
 }
+
 p {
 	color: #aa9979;
 	font-family: Grenze;
 	line-height: 80%;
 	font-size: 150%;
 }
+
 .clear-B {
 	clear: both;
 }
+
 #head {
 	background-image: url('../theme/header.png');
 	background-repeat: no-repeat;
@@ -50,49 +57,58 @@ p {
 	overflow: hidden;
 	font-family: Cinzel;
 }
+
 #menuBox {
 	margin-top: 5px;
 	margin-left: 278px;
 }
+
 #menuBox ul {
-	padding : 0px;
-	margin : 0px;
-	list-style-type : none;
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
 }
+
 #logo ul {
 	position: relative;
 	bottom: 75px;
 	left: 25px;
 }
+
 #menuBox ul li a {
-	width : 110px;
+	width: 110px;
 	color: #ffffff;
-	text-decoration : none;
+	text-decoration: none;
 	font-size: 95%;
-	line-height : 240%;
+	line-height: 240%;
 	text-align: center;
 	background-image: url('../theme/HnavButn2.jpg');
 	float: left;
 	position: relative;
 	z-index: 1;
 }
+
 #menuBox li a.current {
 	background-position: 0px 0px;
-	color : #EEEEEE;
+	color: #EEEEEE;
 }
+
 #menuBox li a:hover {
 	color: #700000;
 }
+
 #col-L {
 	width: 240px;
 	margin: 0px 0px 0px 16px;
 	float: left;
 }
+
 #col-R {
 	width: 666px;
 	margin: 0px 4px 0px 0px;
 	float: right;
 }
+
 .projecttitle {
 	padding: 15px 0px 0px 10px;
 	font-size: 115%;
@@ -100,18 +116,21 @@ p {
 	color: #ffffff;
 	font-weight: bold;
 	font-family: Cinzel;
-	
+
 }
+
 .projectdesc {
 	margin: 0px;
 	width: 666px;
 	color: #ffffff;
 	padding: 0px 0px 0px 10px;
 }
+
 .cnt-info {
 	margin: 0px auto 0px auto;
 	width: 650px;
 }
+
 h4 {
 	margin: 0px;
 	background-image: url('../theme/vnav-Header.png');
@@ -121,34 +140,41 @@ h4 {
 	font-size: 130%;
 	font-family: Cinzel;
 }
+
 .vnavBdy {
 	background-image: url('../theme/vnav-fill.png');
 }
+
 .vnavFt {
 	background-image: url('../theme/vnav-ft.png');
 	height: 20px;
 }
+
 .vnavInfo {
 	margin: 0px auto 0px auto;
 	width: 220px;
 }
+
 .vnavInfo ul {
-	padding : 0px;
-	margin : 0px;
+	padding: 0px;
+	margin: 0px;
 	font-family: Cinzel;
 }
+
 .vnavInfo ul li a {
-	padding : 0 0 0 15px;
-	color : #ffffff;
-	text-decoration : none;
-	line-height : 160%;
+	padding: 0 0 0 15px;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 160%;
 	background-image: url('../theme/nav-arrow.jpg');
 }
+
 .vnavInfo li a:hover {
-	background-position : -220px 0;
-	color : #ff0000;
-	background-image : url('../theme/nav-arrow.jpg');
+	background-position: -220px 0;
+	color: #ff0000;
+	background-image: url('../theme/nav-arrow.jpg');
 }
+
 #foot-Info {
 	margin: 0px auto 0px auto;
 	width: 930px;
@@ -156,18 +182,49 @@ h4 {
 	background-image: url('../theme/footer.png');
 	font-family: Cinzel;
 }
+
 #FT-col-L {
 	width: 240px;
 	margin: 0px 0px 0px 16px;
 }
+
 #FT-col-L-info {
 	text-align: center;
 }
+
 #link-bar {
 	margin-top: 70px;
-	height : 30px;
+	height: 30px;
 }
+
 iframe {
 	display: block;
 	margin: 0 auto;
-  }
+}
+
+li::marker {
+	content: none;
+}
+
+.cnt-img {
+	float: right;
+	margin-left: 6px;
+}
+
+.iframe-container {
+	overflow: hidden;
+}
+
+@font-face {
+	font-family: 'Cinzel';
+	src: url('../fonts/cinzel-semibold.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Grenze';
+	src: url('../fonts/grenze-semibold.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}

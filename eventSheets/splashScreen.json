@@ -10,16 +10,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "REQUIRED_PROTOCOL",
-					"type": "string",
-					"initialValue": "https:",
-					"comment": "The required protocol.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 507517762113422
-				},
-				{
-					"eventType": "variable",
 					"name": "updateAvailable",
 					"type": "boolean",
 					"initialValue": "false",
@@ -239,30 +229,12 @@
 								"comparison": 0,
 								"second-value": "1"
 							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 876866161620682,
-							"parameters": {
-								"first-value": "browser.Protocol",
-								"comparison": 0,
-								"second-value": "REQUIRED_PROTOCOL"
-							}
-						},
-						{
-							"id": "evaluate-expression",
-							"objectClass": "System",
-							"sid": 765310154819723,
-							"parameters": {
-								"value": "browser.Domain = \"preview.construct.net\" | browser.Domain = \"daggerquest.netlify.app\" | browser.Domain = \"daggerquesttest.netlify.app\""
-							}
 						}
 					],
 					"actions": [
 						{
 							"type": "comment",
-							"text": "If we've finished loading, there's no update, we're on an approved URL, and a key was pressed that wasn't F11, F12 or escape, start the game."
+							"text": "If we've finished loading, there's no update, and a key was pressed that wasn't F11, F12 or escape, start the game."
 						},
 						{
 							"id": "fade-volume",

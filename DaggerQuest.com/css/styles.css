@@ -73,6 +73,8 @@ p {
 	text-align: center;
 	background-image: url('../theme/HnavButn2.jpg');
 	float: left;
+	position: relative;
+	z-index: 1;
 }
 #menuBox li a.current {
 	background-position: 0px 0px;
@@ -165,3 +167,7 @@ h4 {
 	margin-top: 70px;
 	height : 30px;
 }
+iframe {
+	display: block;
+	margin: 0 auto;
+  }

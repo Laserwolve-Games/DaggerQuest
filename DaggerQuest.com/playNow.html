@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Cache-Control" content="max-age=31536000, immutable">
+
+<head>
+	<title>DaggerQuest - Hack n' Slash Browser ARPG</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<script>
+		(async () => {
+			const headerHtml = await (await fetch('header.html')).text();
+
+			document.getElementById('header').innerHTML = headerHtml;
+		})();
+	</script>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header"></div>
+
+		<iframe title="DaggerQuest" src="DaggerQuest/index.html" width="926" height="520" frameborder="0"></iframe>
+
+	</div>
+
+	<div id="foot"></div>
+</body>
+
+</html>

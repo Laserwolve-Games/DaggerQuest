@@ -7,86 +7,42 @@
 <head>
 	<title>DaggerQuest - Hack n' Slash Browser ARPG</title>
 	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<script>
+		(async () => {
+			const headerHtml = await (await fetch('header.html')).text();
+			const leftNavHtml = await (await fetch('leftNav.html')).text();
+
+			document.getElementById('header').innerHTML = headerHtml;
+			document.getElementById('leftNav').innerHTML = leftNavHtml;
+		})();
+	</script>
 </head>
 
 <body>
 	<div id="container">
-		<div id="head">
-			<div id="link-bar">
-			</div>
-			<div id="menuBox">
-				<ul>
-					<li><a href="index.html">home</a></li>
-					<li><a href="game.html">play now!</a></li>
-					<li><a href="#">log in</a></li>
-					<li><a href="#">news</a></li>
-					<li><a href="#">screenshots</a></li>
-					<li><a href="#">support</a></li>
-				</ul>
-			</div>
-			<div id="logo">
-				<ul>
-					<li><img src="images/logo.png" alt="DaggerQuest logo"></li>
-				</ul>
-			</div>
-		</div>
+		<div id="header"></div>
 
 		<div id="pageBody">
-			<div id="col-L">
-				<div class="Vnav-Box">
-					<h4>latest updates</h4>
-					<div class="vnavBdy">
-						<div class="vnavInfo">
-							<ul>
-								<li><a href="#">alpha release 0.3.6</a></li>
-								<li><a href="#">alpha release 0.3.5</a></li>
-								<li><a href="#">alpha release 0.3.4</a></li>
-								<li><a href="#">alpha release 0.3.3</a></li>
-								<li><a href="#">alpha release 0.3.2</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="vnavFt"></div>
-				</div>
+			<div id="leftNav"></div>
 
-				<div class="Vnav-Box">
-					<h4>latest posts</h4>
-					<div class="vnavBdy">
-						<div class="vnavInfo">
-							<ul>
-								<li><a href="#">new website!</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="vnavFt"></div>
-				</div>
-			</div>
+			<div id="mainContent">
 
-			<div id="col-R">
+				<h1>welcome to daggerquest</h1>
+				<p>An old school, hack n' slash ARPG looting adventure, playable in the browser!</p>
+				<p>Currently in a prototype state; under active development.</p>
 
-				<div class="projecttitle">welcome to daggerquest</div>
-				<div class="projectdesc">
-					<p>An old school, hack n' slash ARPG looting adventure, playable in the browser!</p>
-
-					<p>Currently in a prototype state; under active development.</p>
-				</div>
 
 				<h1>new website!</h1>
-				<div class="cnt-box">
-					<div class="cnt-info">
+				<div class="cnt-info">
 
-						<p><img class="cnt-img" alt="Itch to DaggerQuest.com Transition" height="140"
-								src="images/newWebsite.png" width="200" />We're sunsetting our Itch.io page
-							and migrating to our own website.</p>
+					<p><img class="cnt-img" alt="Itch to DaggerQuest.com Transition" height="140"
+							src="images/newWebsite.png" width="200" /></p>
 
-						<p>This will give us room to grow as we expand to add more features, like user registration and
-							progress tracking/saving.</p>
-
-						<p>Stay tuned for more information!</p>
-
-					</div>
+					<p>We're sunsetting our Itch.io page
+						and migrating to our own website.<br>This will give us room to grow as we expand to add more
+						features, like user registration and
+						progress tracking/saving.<br>Stay tuned for more information!</p>
 				</div>
-
 			</div>
 
 			<div class="clear-B"></div>
@@ -94,16 +50,7 @@
 
 	</div>
 
-	<div id="foot">
-		<div id="foot-Info">
-			<div id="FT-col-L">
-				<div id="FT-col-L-info">
-					<p>Laserwolve Games</p>
-					<p>Copyright 2024 - All Rights Reserved</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div id="foot"></div>
 </body>
 
 </html>

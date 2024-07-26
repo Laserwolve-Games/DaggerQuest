@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Cache-Control" content="max-age=31536000, immutable">
+
+<head>
+	<title>DaggerQuest - Alpha Release 0.3.2</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<script>
+		(async () => {
+			const headerHtml = await (await fetch('header.html')).text();
+			const leftNavHtml = await (await fetch('leftNav.html')).text();
+
+			document.getElementById('header').innerHTML = headerHtml;
+			document.getElementById('leftNav').innerHTML = leftNavHtml;
+		})();
+	</script>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header"></div>
+
+		<div id="pageBody">
+			<div id="leftNav"></div>
+
+			<div id="mainContent">
+
+				<h1>Updates:</h1>
+				<ul>
+					<li>Made the tutorial items a little easier to pick up.</li>
+					<li>Improved performance when generating shadows.</li>
+					<li>Pressing any key will exit dialog with an NPC.</li>
+				</ul>
+				<h1>Bug fixes:</h1>
+				<p>Fixed the following issues:
+				</p>
+				<ul>
+					<li>Moved the player back to the correct starting location. (He'd been moved up by the windmill for
+						testing, and we forgot to move him back before releasing <a
+							href="alphaRelease0-3-1.html">0.3.1</a>. Oops.)
+					</li>
+					<li>The player would still deal damage with melee attacks if the player died in the middle of
+						casting them.</li>
+					<li>The player sometimes wouldn't finish their attack animation when using the basic attack.</li>
+					<li>Shadows weren't appearing for some entities.</li>
+					<li>The door to the cottage would sometimes disappear depending on the player's position.</li>
+					<li>Enemies with ranged attacks would still sometimes generate their projectile even if they were
+						stunned before it appeared.</li>
+					<li>Applied all previous bug fixes related to the player's basic attack and abilities, to all
+						abilities.</li>
+					<li>The player wouldn't rotate to face the NPC they were talking too, if they were already within
+						talking range.</li>
+				</ul>
+
+			</div>
+
+			<div class="clear-B"></div>
+		</div>
+
+	</div>
+
+	<div id="foot"></div>
+</body>
+
+</html>

@@ -1,9 +1,4 @@
-﻿header img {
-	display: block;
-	margin: 0 auto;
-}
-
-body {
+﻿body {
 	background-color: #000000;
 	font-size: .8em;
 }
@@ -41,7 +36,6 @@ h1 {
 p {
 	color: #aa9979;
 	font-family: Grenze;
-	line-height: 80%;
 	font-size: 150%;
 }
 
@@ -49,7 +43,7 @@ p {
 	clear: both;
 }
 
-#head {
+#header {
 	background-image: url('../theme/header.png');
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -71,8 +65,12 @@ p {
 
 #logo ul {
 	position: relative;
-	bottom: 75px;
+	bottom: 77px;
 	left: 25px;
+}
+
+#logo ul li::marker {
+	content: none;
 }
 
 #menuBox ul li a {
@@ -97,37 +95,19 @@ p {
 	color: #700000;
 }
 
-#col-L {
+#leftNav {
 	width: 240px;
 	margin: 0px 0px 0px 16px;
 	float: left;
 }
 
-#col-R {
+#mainContent {
 	width: 666px;
 	margin: 0px 4px 0px 0px;
 	float: right;
 }
 
-.projecttitle {
-	padding: 15px 0px 0px 10px;
-	font-size: 115%;
-	width: 666px;
-	color: #ffffff;
-	font-weight: bold;
-	font-family: Cinzel;
-
-}
-
-.projectdesc {
-	margin: 0px;
-	width: 666px;
-	color: #ffffff;
-	padding: 0px 0px 0px 10px;
-}
-
 .cnt-info {
-	margin: 0px auto 0px auto;
 	width: 650px;
 }
 
@@ -141,27 +121,27 @@ h4 {
 	font-family: Cinzel;
 }
 
-.vnavBdy {
+.leftNavBoxBody {
 	background-image: url('../theme/vnav-fill.png');
 }
 
-.vnavFt {
+.leftNavBoxFooter {
 	background-image: url('../theme/vnav-ft.png');
 	height: 20px;
 }
 
-.vnavInfo {
+.leftNavBox {
 	margin: 0px auto 0px auto;
 	width: 220px;
 }
 
-.vnavInfo ul {
+.leftNavBox ul {
 	padding: 0px;
 	margin: 0px;
 	font-family: Cinzel;
 }
 
-.vnavInfo ul li a {
+.leftNavBox ul li a {
 	padding: 0 0 0 15px;
 	color: #ffffff;
 	text-decoration: none;
@@ -169,26 +149,18 @@ h4 {
 	background-image: url('../theme/nav-arrow.jpg');
 }
 
-.vnavInfo li a:hover {
+.leftNavBox li a:hover {
 	background-position: -220px 0;
 	color: #ff0000;
 	background-image: url('../theme/nav-arrow.jpg');
 }
 
-#foot-Info {
-	margin: 0px auto 0px auto;
-	width: 930px;
-	overflow: hidden;
-	background-image: url('../theme/footer.png');
-	font-family: Cinzel;
-}
-
-#FT-col-L {
+#FT-leftNav {
 	width: 240px;
 	margin: 0px 0px 0px 16px;
 }
 
-#FT-col-L-info {
+#footer {
 	text-align: center;
 }
 
@@ -202,17 +174,20 @@ iframe {
 	margin: 0 auto;
 }
 
-li::marker {
-	content: none;
+#mainContent ul li {
+	color: #aa9979;
+	font-family: Grenze;
+	font-size: 150%;
+	width: 600px;
+}
+
+#mainContent p {
+	margin-left: 10px;
 }
 
 .cnt-img {
 	float: right;
 	margin-left: 6px;
-}
-
-.iframe-container {
-	overflow: hidden;
 }
 
 @font-face {

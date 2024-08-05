@@ -1,0 +1,3098 @@
+{
+	"file_version" : "0.6.1.0",
+	"asset_info" : {
+		"id" : "/C%3A/assets/loot/loot_leggings.duf",
+		"type" : "scene_subset",
+		"contributor" : {
+			"author" : "laserwolve",
+			"email" : "",
+			"website" : ""
+		},
+		"revision" : "1.0",
+		"modified" : "2023-03-12T05:34:18Z"
+	},
+	"image_library" : [
+		{
+			"id" : "sKWarriorPants01.jpg-2",
+			"name" : "sKWarriorPants01.jpg",
+			"map_gamma" : 0,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01.jpg",
+					"label" : "sKWarriorPants01.jpg"
+				}
+			]
+		},
+		{
+			"id" : "sKWarriorPants01S.jpg-2",
+			"name" : "sKWarriorPants01S.jpg",
+			"map_gamma" : 1,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01S.jpg",
+					"label" : "sKWarriorPants01S.jpg"
+				}
+			]
+		},
+		{
+			"id" : "sKWarriorPants01B.jpg-2",
+			"name" : "sKWarriorPants01B.jpg",
+			"map_gamma" : 1,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01B.jpg",
+					"label" : "sKWarriorPants01B.jpg"
+				}
+			]
+		}
+	],
+	"material_library" : [
+		{
+			"id" : "KWarPants_Front",
+			"type" : "Plastic",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "color",
+					"name" : "Diffuse Color",
+					"label" : "Diffuse Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"diffuse_strength" : {
+				"channel" : {
+					"id" : "diffuse_strength",
+					"type" : "float",
+					"name" : "Diffuse Strength",
+					"label" : "Diffuse Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"specular" : {
+				"channel" : {
+					"id" : "specular",
+					"type" : "color",
+					"name" : "Specular Color",
+					"label" : "Specular Color",
+					"value" : [ 0.6, 0.6, 0.6 ],
+					"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"specular_strength" : {
+				"channel" : {
+					"id" : "specular_strength",
+					"type" : "float",
+					"name" : "Specular Strength",
+					"label" : "Specular Strength",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"glossiness" : {
+				"channel" : {
+					"id" : "glossiness",
+					"type" : "float",
+					"name" : "Glossiness",
+					"label" : "Glossiness",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"ambient" : {
+				"channel" : {
+					"id" : "ambient",
+					"type" : "color",
+					"name" : "Ambient Color",
+					"label" : "Ambient Color",
+					"value" : [ 0, 0, 0 ],
+					"current_value" : [ 0, 0, 0 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"ambient_strength" : {
+				"channel" : {
+					"id" : "ambient_strength",
+					"type" : "float",
+					"name" : "Ambient Strength",
+					"label" : "Ambient Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"reflection" : {
+				"channel" : {
+					"id" : "reflection",
+					"type" : "color",
+					"name" : "Reflection Color",
+					"label" : "Reflection Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"reflection_strength" : {
+				"channel" : {
+					"id" : "reflection_strength",
+					"type" : "float",
+					"name" : "Reflection Strength",
+					"label" : "Reflection Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"refraction" : {
+				"channel" : {
+					"id" : "refraction",
+					"type" : "color",
+					"name" : "Refraction Color",
+					"label" : "Refraction Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"refraction_strength" : {
+				"channel" : {
+					"id" : "refraction_strength",
+					"type" : "float",
+					"name" : "Refraction Strength",
+					"label" : "Refraction Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"ior" : {
+				"channel" : {
+					"id" : "ior",
+					"type" : "float",
+					"name" : "Index of Refraction",
+					"label" : "Index of Refraction",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 10,
+					"clamped" : true,
+					"step_size" : 0.01
+				},
+				"group" : "/Refraction"
+			},
+			"bump" : {
+				"channel" : {
+					"id" : "bump",
+					"type" : "float",
+					"name" : "Bump Strength",
+					"label" : "Bump Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Bump"
+			},
+			"bump_min" : {
+				"channel" : {
+					"id" : "bump_min",
+					"type" : "float",
+					"name" : "Negative Bump",
+					"label" : "Negative Bump",
+					"value" : -0.01,
+					"current_value" : -0.01,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"bump_max" : {
+				"channel" : {
+					"id" : "bump_max",
+					"type" : "float",
+					"name" : "Positive Bump",
+					"label" : "Positive Bump",
+					"value" : 0.01,
+					"current_value" : 0.052,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"displacement" : {
+				"channel" : {
+					"id" : "displacement",
+					"type" : "float",
+					"name" : "Displacement Strength",
+					"label" : "Displacement Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_min" : {
+				"channel" : {
+					"id" : "displacement_min",
+					"type" : "float",
+					"name" : "Minimum Displacement",
+					"label" : "Minimum Displacement",
+					"value" : -0.1,
+					"current_value" : -0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_max" : {
+				"channel" : {
+					"id" : "displacement_max",
+					"type" : "float",
+					"name" : "Maximum Displacement",
+					"label" : "Maximum Displacement",
+					"value" : 0.1,
+					"current_value" : 0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"transparency" : {
+				"channel" : {
+					"id" : "transparency",
+					"type" : "float",
+					"name" : "Opacity Strength",
+					"label" : "Opacity Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Opacity"
+			},
+			"normal" : {
+				"channel" : {
+					"id" : "normal",
+					"type" : "image",
+					"name" : "Normal Map",
+					"label" : "Normal Map",
+					"default_image_gamma" : 1
+				},
+				"group" : "/Normal Mapping"
+			},
+			"u_offset" : {
+				"channel" : {
+					"id" : "u_offset",
+					"type" : "float",
+					"name" : "Horizontal Offset",
+					"label" : "Horizontal Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"u_scale" : {
+				"channel" : {
+					"id" : "u_scale",
+					"type" : "float",
+					"name" : "Horizontal Tiles",
+					"label" : "Horizontal Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_offset" : {
+				"channel" : {
+					"id" : "v_offset",
+					"type" : "float",
+					"name" : "Vertical Offset",
+					"label" : "Vertical Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_scale" : {
+				"channel" : {
+					"id" : "v_scale",
+					"type" : "float",
+					"name" : "Vertical Tiles",
+					"label" : "Vertical Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"extra" : [
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Multiply Specular Through Opacity",
+								"type" : "bool",
+								"label" : "Multiply Specular Through Opacity",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Specular"
+						},
+						{
+							"channel" : {
+								"id" : "Sheen Color",
+								"type" : "color",
+								"label" : "Sheen Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Scatter Color",
+								"type" : "color",
+								"label" : "Scatter Color",
+								"visible" : false,
+								"value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"current_value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Thickness",
+								"type" : "float",
+								"label" : "Thickness",
+								"visible" : false,
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Lighting Model",
+								"type" : "enum",
+								"label" : "Lighting Model",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Plastic", "Metallic", "Skin", "Glossy (Plastic)", "Matte", "Glossy (Metallic)" ]
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Lines"
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "KWarPants_Back",
+			"type" : "Plastic",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "color",
+					"name" : "Diffuse Color",
+					"label" : "Diffuse Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"diffuse_strength" : {
+				"channel" : {
+					"id" : "diffuse_strength",
+					"type" : "float",
+					"name" : "Diffuse Strength",
+					"label" : "Diffuse Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"specular" : {
+				"channel" : {
+					"id" : "specular",
+					"type" : "color",
+					"name" : "Specular Color",
+					"label" : "Specular Color",
+					"value" : [ 0.6, 0.6, 0.6 ],
+					"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"specular_strength" : {
+				"channel" : {
+					"id" : "specular_strength",
+					"type" : "float",
+					"name" : "Specular Strength",
+					"label" : "Specular Strength",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"glossiness" : {
+				"channel" : {
+					"id" : "glossiness",
+					"type" : "float",
+					"name" : "Glossiness",
+					"label" : "Glossiness",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"ambient" : {
+				"channel" : {
+					"id" : "ambient",
+					"type" : "color",
+					"name" : "Ambient Color",
+					"label" : "Ambient Color",
+					"value" : [ 0, 0, 0 ],
+					"current_value" : [ 0, 0, 0 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"ambient_strength" : {
+				"channel" : {
+					"id" : "ambient_strength",
+					"type" : "float",
+					"name" : "Ambient Strength",
+					"label" : "Ambient Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"reflection" : {
+				"channel" : {
+					"id" : "reflection",
+					"type" : "color",
+					"name" : "Reflection Color",
+					"label" : "Reflection Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"reflection_strength" : {
+				"channel" : {
+					"id" : "reflection_strength",
+					"type" : "float",
+					"name" : "Reflection Strength",
+					"label" : "Reflection Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"refraction" : {
+				"channel" : {
+					"id" : "refraction",
+					"type" : "color",
+					"name" : "Refraction Color",
+					"label" : "Refraction Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"refraction_strength" : {
+				"channel" : {
+					"id" : "refraction_strength",
+					"type" : "float",
+					"name" : "Refraction Strength",
+					"label" : "Refraction Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"ior" : {
+				"channel" : {
+					"id" : "ior",
+					"type" : "float",
+					"name" : "Index of Refraction",
+					"label" : "Index of Refraction",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 10,
+					"clamped" : true,
+					"step_size" : 0.01
+				},
+				"group" : "/Refraction"
+			},
+			"bump" : {
+				"channel" : {
+					"id" : "bump",
+					"type" : "float",
+					"name" : "Bump Strength",
+					"label" : "Bump Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Bump"
+			},
+			"bump_min" : {
+				"channel" : {
+					"id" : "bump_min",
+					"type" : "float",
+					"name" : "Negative Bump",
+					"label" : "Negative Bump",
+					"value" : -0.01,
+					"current_value" : -0.01,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"bump_max" : {
+				"channel" : {
+					"id" : "bump_max",
+					"type" : "float",
+					"name" : "Positive Bump",
+					"label" : "Positive Bump",
+					"value" : 0.01,
+					"current_value" : 0.052,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"displacement" : {
+				"channel" : {
+					"id" : "displacement",
+					"type" : "float",
+					"name" : "Displacement Strength",
+					"label" : "Displacement Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_min" : {
+				"channel" : {
+					"id" : "displacement_min",
+					"type" : "float",
+					"name" : "Minimum Displacement",
+					"label" : "Minimum Displacement",
+					"value" : -0.1,
+					"current_value" : -0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_max" : {
+				"channel" : {
+					"id" : "displacement_max",
+					"type" : "float",
+					"name" : "Maximum Displacement",
+					"label" : "Maximum Displacement",
+					"value" : 0.1,
+					"current_value" : 0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"transparency" : {
+				"channel" : {
+					"id" : "transparency",
+					"type" : "float",
+					"name" : "Opacity Strength",
+					"label" : "Opacity Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Opacity"
+			},
+			"normal" : {
+				"channel" : {
+					"id" : "normal",
+					"type" : "image",
+					"name" : "Normal Map",
+					"label" : "Normal Map",
+					"default_image_gamma" : 1
+				},
+				"group" : "/Normal Mapping"
+			},
+			"u_offset" : {
+				"channel" : {
+					"id" : "u_offset",
+					"type" : "float",
+					"name" : "Horizontal Offset",
+					"label" : "Horizontal Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"u_scale" : {
+				"channel" : {
+					"id" : "u_scale",
+					"type" : "float",
+					"name" : "Horizontal Tiles",
+					"label" : "Horizontal Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_offset" : {
+				"channel" : {
+					"id" : "v_offset",
+					"type" : "float",
+					"name" : "Vertical Offset",
+					"label" : "Vertical Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_scale" : {
+				"channel" : {
+					"id" : "v_scale",
+					"type" : "float",
+					"name" : "Vertical Tiles",
+					"label" : "Vertical Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"extra" : [
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Multiply Specular Through Opacity",
+								"type" : "bool",
+								"label" : "Multiply Specular Through Opacity",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Specular"
+						},
+						{
+							"channel" : {
+								"id" : "Sheen Color",
+								"type" : "color",
+								"label" : "Sheen Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Scatter Color",
+								"type" : "color",
+								"label" : "Scatter Color",
+								"visible" : false,
+								"value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"current_value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Thickness",
+								"type" : "float",
+								"label" : "Thickness",
+								"visible" : false,
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Lighting Model",
+								"type" : "enum",
+								"label" : "Lighting Model",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Plastic", "Metallic", "Skin", "Glossy (Plastic)", "Matte", "Glossy (Metallic)" ]
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Lines"
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "KWarPants_Belt",
+			"type" : "Plastic",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "color",
+					"name" : "Diffuse Color",
+					"label" : "Diffuse Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"diffuse_strength" : {
+				"channel" : {
+					"id" : "diffuse_strength",
+					"type" : "float",
+					"name" : "Diffuse Strength",
+					"label" : "Diffuse Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"specular" : {
+				"channel" : {
+					"id" : "specular",
+					"type" : "color",
+					"name" : "Specular Color",
+					"label" : "Specular Color",
+					"value" : [ 0.6, 0.6, 0.6 ],
+					"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"specular_strength" : {
+				"channel" : {
+					"id" : "specular_strength",
+					"type" : "float",
+					"name" : "Specular Strength",
+					"label" : "Specular Strength",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"glossiness" : {
+				"channel" : {
+					"id" : "glossiness",
+					"type" : "float",
+					"name" : "Glossiness",
+					"label" : "Glossiness",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"ambient" : {
+				"channel" : {
+					"id" : "ambient",
+					"type" : "color",
+					"name" : "Ambient Color",
+					"label" : "Ambient Color",
+					"value" : [ 0, 0, 0 ],
+					"current_value" : [ 0, 0, 0 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"ambient_strength" : {
+				"channel" : {
+					"id" : "ambient_strength",
+					"type" : "float",
+					"name" : "Ambient Strength",
+					"label" : "Ambient Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"reflection" : {
+				"channel" : {
+					"id" : "reflection",
+					"type" : "color",
+					"name" : "Reflection Color",
+					"label" : "Reflection Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"reflection_strength" : {
+				"channel" : {
+					"id" : "reflection_strength",
+					"type" : "float",
+					"name" : "Reflection Strength",
+					"label" : "Reflection Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"refraction" : {
+				"channel" : {
+					"id" : "refraction",
+					"type" : "color",
+					"name" : "Refraction Color",
+					"label" : "Refraction Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"refraction_strength" : {
+				"channel" : {
+					"id" : "refraction_strength",
+					"type" : "float",
+					"name" : "Refraction Strength",
+					"label" : "Refraction Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"ior" : {
+				"channel" : {
+					"id" : "ior",
+					"type" : "float",
+					"name" : "Index of Refraction",
+					"label" : "Index of Refraction",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 10,
+					"clamped" : true,
+					"step_size" : 0.01
+				},
+				"group" : "/Refraction"
+			},
+			"bump" : {
+				"channel" : {
+					"id" : "bump",
+					"type" : "float",
+					"name" : "Bump Strength",
+					"label" : "Bump Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Bump"
+			},
+			"bump_min" : {
+				"channel" : {
+					"id" : "bump_min",
+					"type" : "float",
+					"name" : "Negative Bump",
+					"label" : "Negative Bump",
+					"value" : -0.01,
+					"current_value" : -0.01,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"bump_max" : {
+				"channel" : {
+					"id" : "bump_max",
+					"type" : "float",
+					"name" : "Positive Bump",
+					"label" : "Positive Bump",
+					"value" : 0.01,
+					"current_value" : 0.052,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"displacement" : {
+				"channel" : {
+					"id" : "displacement",
+					"type" : "float",
+					"name" : "Displacement Strength",
+					"label" : "Displacement Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_min" : {
+				"channel" : {
+					"id" : "displacement_min",
+					"type" : "float",
+					"name" : "Minimum Displacement",
+					"label" : "Minimum Displacement",
+					"value" : -0.1,
+					"current_value" : -0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_max" : {
+				"channel" : {
+					"id" : "displacement_max",
+					"type" : "float",
+					"name" : "Maximum Displacement",
+					"label" : "Maximum Displacement",
+					"value" : 0.1,
+					"current_value" : 0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"transparency" : {
+				"channel" : {
+					"id" : "transparency",
+					"type" : "float",
+					"name" : "Opacity Strength",
+					"label" : "Opacity Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Opacity"
+			},
+			"normal" : {
+				"channel" : {
+					"id" : "normal",
+					"type" : "image",
+					"name" : "Normal Map",
+					"label" : "Normal Map",
+					"default_image_gamma" : 1
+				},
+				"group" : "/Normal Mapping"
+			},
+			"u_offset" : {
+				"channel" : {
+					"id" : "u_offset",
+					"type" : "float",
+					"name" : "Horizontal Offset",
+					"label" : "Horizontal Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"u_scale" : {
+				"channel" : {
+					"id" : "u_scale",
+					"type" : "float",
+					"name" : "Horizontal Tiles",
+					"label" : "Horizontal Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_offset" : {
+				"channel" : {
+					"id" : "v_offset",
+					"type" : "float",
+					"name" : "Vertical Offset",
+					"label" : "Vertical Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_scale" : {
+				"channel" : {
+					"id" : "v_scale",
+					"type" : "float",
+					"name" : "Vertical Tiles",
+					"label" : "Vertical Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"extra" : [
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Multiply Specular Through Opacity",
+								"type" : "bool",
+								"label" : "Multiply Specular Through Opacity",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Specular"
+						},
+						{
+							"channel" : {
+								"id" : "Sheen Color",
+								"type" : "color",
+								"label" : "Sheen Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Scatter Color",
+								"type" : "color",
+								"label" : "Scatter Color",
+								"visible" : false,
+								"value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"current_value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Thickness",
+								"type" : "float",
+								"label" : "Thickness",
+								"visible" : false,
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Lighting Model",
+								"type" : "enum",
+								"label" : "Lighting Model",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Plastic", "Metallic", "Skin", "Glossy (Plastic)", "Matte", "Glossy (Metallic)" ]
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Lines"
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						}
+					]
+				}
+			]
+		}
+	],
+	"scene" : {
+		"nodes" : [
+			{
+				"id" : "KWarrior_Pants1_13299",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#KWarrior_Pants1_13299",
+				"name" : "KWarrior_Pants1_13299",
+				"label" : "loot",
+				"geometries" : [
+					{
+						"id" : "KWarrior_Pants1",
+						"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#KWarrior_Pants1",
+						"name" : "KWarrior_Pants1",
+						"label" : "shape",
+						"type" : "polygon_mesh",
+						"extra" : [
+							{
+								"type" : "studio_geometry_channels",
+								"channels" : [
+									{
+										"channel" : {
+											"id" : "SubDRenderLevel",
+											"type" : "int",
+											"visible" : false,
+											"current_value" : 0
+										}
+									},
+									{
+										"channel" : {
+											"id" : "SubDNormalSmoothing",
+											"type" : "enum",
+											"visible" : false,
+											"current_value" : 0
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				"preview" : {
+					"type" : "figure",
+					"oriented_box" : {
+						"min" : [ -19.328, 5.11, -12.691 ],
+						"max" : [ 19.329, 153.228, 12.27 ]
+					},
+					"center_point" : [ 0, 0, 0 ],
+					"end_point" : [ 0, 103.876, 0 ],
+					"rotation_order" : "YXZ"
+				},
+				"rotation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XRotate",
+						"current_value" : -90
+					}
+				],
+				"translation" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YTranslate",
+						"current_value" : 1.245641
+					},
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZTranslate",
+						"current_value" : 70.19064
+					}
+				],
+				"scale" : [
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Fit to Mode",
+									"type" : "enum",
+									"current_value" : 0
+								},
+								"group" : "/General/Constraints"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "hip",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#hip",
+				"name" : "hip",
+				"label" : "Hip",
+				"parent" : "#KWarrior_Pants1_13299",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 103.6848, -0.1028241 ],
+					"end_point" : [ 0, 87.08881, 0.1308831 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "pelvis",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#pelvis",
+				"name" : "pelvis",
+				"label" : "Pelvis",
+				"parent" : "#hip",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -17.181, -20.78, -14.01 ],
+						"max" : [ 17.182, 1.227, 10.437 ]
+					},
+					"center_point" : [ 0, 105.6072, 1.656649 ],
+					"end_point" : [ 0, 86.96108, 1.959626 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lThigh",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#lThigh",
+				"name" : "lThigh",
+				"label" : "Left Thigh",
+				"parent" : "#pelvis",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -9.14, -42.659, -13.355 ],
+						"max" : [ 9.79, 0.314, 12.1 ]
+					},
+					"center_point" : [ 8.11819, 95.61431, 0.494624 ],
+					"end_point" : [ 10.10139, 52.89966, 0.6202926 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lShin",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#lShin",
+				"name" : "lShin",
+				"label" : "Left Shin",
+				"parent" : "#lThigh",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -8.023, -21.868, -10.976 ],
+						"max" : [ 8.17, 2.67, 7.621 ]
+					},
+					"center_point" : [ 10.10139, 52.89966, 0.6202926 ],
+					"end_point" : [ 11.04877, 8.41254, -2.461351 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lFoot",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#lFoot",
+				"name" : "lFoot",
+				"label" : "Left Foot",
+				"parent" : "#lShin",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 11.10093, 6.357071, -2.488967 ],
+					"end_point" : [ 14.16012, 2.78636, 9.065422 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rThigh",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#rThigh",
+				"name" : "rThigh",
+				"label" : "Right Thigh",
+				"parent" : "#pelvis",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -9.789, -42.659, -13.355 ],
+						"max" : [ 9.141, 0.314, 12.1 ]
+					},
+					"center_point" : [ -8.11819, 95.61431, 0.494624 ],
+					"end_point" : [ -10.10139, 52.89966, 0.6202926 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rShin",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#rShin",
+				"name" : "rShin",
+				"label" : "Right Shin",
+				"parent" : "#rThigh",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -8.169, -21.868, -10.976 ],
+						"max" : [ 8.024, 2.759, 7.621 ]
+					},
+					"center_point" : [ -10.10139, 52.89966, 0.6202926 ],
+					"end_point" : [ -11.04877, 8.41254, -2.461351 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rFoot",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#rFoot",
+				"name" : "rFoot",
+				"label" : "Right Foot",
+				"parent" : "#rShin",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -11.10093, 6.357071, -2.488967 ],
+					"end_point" : [ -14.16012, 2.78636, 9.065422 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#abdomen",
+				"name" : "abdomen",
+				"label" : "Abdomen",
+				"parent" : "#hip",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -10.288, 0.941, -6.477 ],
+						"max" : [ 5.274, 3.875, 11.665 ]
+					},
+					"center_point" : [ 0, 102.5127, -1.556905 ],
+					"end_point" : [ 0, 112.6809, -1.469721 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen2",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#abdomen2",
+				"name" : "abdomen2",
+				"label" : "Abdomen 2",
+				"parent" : "#abdomen",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 112.6809, -1.469721 ],
+					"end_point" : [ 0, 126.059, -4.673218 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "chest",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#chest",
+				"name" : "chest",
+				"label" : "Chest",
+				"parent" : "#abdomen2",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 126.059, -4.673218 ],
+					"end_point" : [ 0, 153.2278, -4.655901 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"modifiers" : [
+			{
+				"id" : "SkinBinding",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#SkinBinding",
+				"parent" : "#KWarrior_Pants1",
+				"extra" : [
+					{
+						"type" : "skin_settings",
+						"auto_normalize_general" : true,
+						"auto_normalize_local" : true,
+						"auto_normalize_scale" : true,
+						"binding_mode" : "Local",
+						"general_map_mode" : "Linear",
+						"scale_mode" : "ScaleMaps"
+					}
+				]
+			},
+			{
+				"id" : "DzMeshSmoothModifier",
+				"url" : "/data/VaL3dArt/KWarrior/Pants/KWarrior_Pants1_13299.dsf#DzMeshSmoothModifier",
+				"parent" : "#KWarrior_Pants1_13299",
+				"extra" : [
+					{
+						"type" : "studio/modifier/smoothing"
+					}
+				]
+			}
+		],
+		"materials" : [
+			{
+				"id" : "KWarPants_Front-1",
+				"url" : "#KWarPants_Front",
+				"geometry" : "#KWarrior_Pants1",
+				"groups" : [ "KWarPants_Front" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "color",
+						"name" : "Diffuse Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01.jpg"
+					}
+				},
+				"diffuse_strength" : {
+					"channel" : {
+						"id" : "diffuse_strength",
+						"type" : "float",
+						"name" : "Diffuse Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"specular" : {
+					"channel" : {
+						"id" : "specular",
+						"type" : "color",
+						"name" : "Specular Color",
+						"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+						"image" : null
+					}
+				},
+				"specular_strength" : {
+					"channel" : {
+						"id" : "specular_strength",
+						"type" : "float",
+						"name" : "Specular Strength",
+						"current_value" : 0.75,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01S.jpg"
+					}
+				},
+				"glossiness" : {
+					"channel" : {
+						"id" : "glossiness",
+						"type" : "float",
+						"name" : "Glossiness",
+						"current_value" : 0.75,
+						"image" : null
+					}
+				},
+				"ambient" : {
+					"channel" : {
+						"id" : "ambient",
+						"type" : "color",
+						"name" : "Ambient Color",
+						"current_value" : [ 0, 0, 0 ],
+						"image" : null
+					}
+				},
+				"ambient_strength" : {
+					"channel" : {
+						"id" : "ambient_strength",
+						"type" : "float",
+						"name" : "Ambient Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"reflection" : {
+					"channel" : {
+						"id" : "reflection",
+						"type" : "color",
+						"name" : "Reflection Color",
+						"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+						"image" : null
+					}
+				},
+				"reflection_strength" : {
+					"channel" : {
+						"id" : "reflection_strength",
+						"type" : "float",
+						"name" : "Reflection Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"refraction" : {
+					"channel" : {
+						"id" : "refraction",
+						"type" : "color",
+						"name" : "Refraction Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image" : null
+					}
+				},
+				"refraction_strength" : {
+					"channel" : {
+						"id" : "refraction_strength",
+						"type" : "float",
+						"name" : "Refraction Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"ior" : {
+					"channel" : {
+						"id" : "ior",
+						"type" : "float",
+						"name" : "Index of Refraction",
+						"current_value" : 0
+					}
+				},
+				"bump" : {
+					"channel" : {
+						"id" : "bump",
+						"type" : "float",
+						"name" : "Bump Strength",
+						"current_value" : 1,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01B.jpg"
+					}
+				},
+				"bump_min" : {
+					"channel" : {
+						"id" : "bump_min",
+						"type" : "float",
+						"name" : "Negative Bump",
+						"current_value" : -0.01
+					}
+				},
+				"bump_max" : {
+					"channel" : {
+						"id" : "bump_max",
+						"type" : "float",
+						"name" : "Positive Bump",
+						"current_value" : 0.052
+					}
+				},
+				"displacement" : {
+					"channel" : {
+						"id" : "displacement",
+						"type" : "float",
+						"name" : "Displacement Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"displacement_min" : {
+					"channel" : {
+						"id" : "displacement_min",
+						"type" : "float",
+						"name" : "Minimum Displacement",
+						"current_value" : -0.1
+					}
+				},
+				"displacement_max" : {
+					"channel" : {
+						"id" : "displacement_max",
+						"type" : "float",
+						"name" : "Maximum Displacement",
+						"current_value" : 0.1
+					}
+				},
+				"transparency" : {
+					"channel" : {
+						"id" : "transparency",
+						"type" : "float",
+						"name" : "Opacity Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"normal" : {
+					"channel" : {
+						"id" : "normal",
+						"type" : "image",
+						"name" : "Normal Map",
+						"image" : null
+					}
+				},
+				"u_offset" : {
+					"channel" : {
+						"id" : "u_offset",
+						"type" : "float",
+						"name" : "Horizontal Offset",
+						"current_value" : 0
+					}
+				},
+				"u_scale" : {
+					"channel" : {
+						"id" : "u_scale",
+						"type" : "float",
+						"name" : "Horizontal Tiles",
+						"current_value" : 1
+					}
+				},
+				"v_offset" : {
+					"channel" : {
+						"id" : "v_offset",
+						"type" : "float",
+						"name" : "Vertical Offset",
+						"current_value" : 0
+					}
+				},
+				"v_scale" : {
+					"channel" : {
+						"id" : "v_scale",
+						"type" : "float",
+						"name" : "Vertical Tiles",
+						"current_value" : 1
+					}
+				},
+				"uv_set" : "/data/VaL3dArt/KWarrior/Pants/UV%20Sets/VaL3dArt/Base/default.dsf#default"
+			},
+			{
+				"id" : "KWarPants_Back-1",
+				"url" : "#KWarPants_Back",
+				"geometry" : "#KWarrior_Pants1",
+				"groups" : [ "KWarPants_Back" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "color",
+						"name" : "Diffuse Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01.jpg"
+					}
+				},
+				"diffuse_strength" : {
+					"channel" : {
+						"id" : "diffuse_strength",
+						"type" : "float",
+						"name" : "Diffuse Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"specular" : {
+					"channel" : {
+						"id" : "specular",
+						"type" : "color",
+						"name" : "Specular Color",
+						"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+						"image" : null
+					}
+				},
+				"specular_strength" : {
+					"channel" : {
+						"id" : "specular_strength",
+						"type" : "float",
+						"name" : "Specular Strength",
+						"current_value" : 0.75,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01S.jpg"
+					}
+				},
+				"glossiness" : {
+					"channel" : {
+						"id" : "glossiness",
+						"type" : "float",
+						"name" : "Glossiness",
+						"current_value" : 0.75,
+						"image" : null
+					}
+				},
+				"ambient" : {
+					"channel" : {
+						"id" : "ambient",
+						"type" : "color",
+						"name" : "Ambient Color",
+						"current_value" : [ 0, 0, 0 ],
+						"image" : null
+					}
+				},
+				"ambient_strength" : {
+					"channel" : {
+						"id" : "ambient_strength",
+						"type" : "float",
+						"name" : "Ambient Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"reflection" : {
+					"channel" : {
+						"id" : "reflection",
+						"type" : "color",
+						"name" : "Reflection Color",
+						"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+						"image" : null
+					}
+				},
+				"reflection_strength" : {
+					"channel" : {
+						"id" : "reflection_strength",
+						"type" : "float",
+						"name" : "Reflection Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"refraction" : {
+					"channel" : {
+						"id" : "refraction",
+						"type" : "color",
+						"name" : "Refraction Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image" : null
+					}
+				},
+				"refraction_strength" : {
+					"channel" : {
+						"id" : "refraction_strength",
+						"type" : "float",
+						"name" : "Refraction Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"ior" : {
+					"channel" : {
+						"id" : "ior",
+						"type" : "float",
+						"name" : "Index of Refraction",
+						"current_value" : 0
+					}
+				},
+				"bump" : {
+					"channel" : {
+						"id" : "bump",
+						"type" : "float",
+						"name" : "Bump Strength",
+						"current_value" : 1,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01B.jpg"
+					}
+				},
+				"bump_min" : {
+					"channel" : {
+						"id" : "bump_min",
+						"type" : "float",
+						"name" : "Negative Bump",
+						"current_value" : -0.01
+					}
+				},
+				"bump_max" : {
+					"channel" : {
+						"id" : "bump_max",
+						"type" : "float",
+						"name" : "Positive Bump",
+						"current_value" : 0.052
+					}
+				},
+				"displacement" : {
+					"channel" : {
+						"id" : "displacement",
+						"type" : "float",
+						"name" : "Displacement Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"displacement_min" : {
+					"channel" : {
+						"id" : "displacement_min",
+						"type" : "float",
+						"name" : "Minimum Displacement",
+						"current_value" : -0.1
+					}
+				},
+				"displacement_max" : {
+					"channel" : {
+						"id" : "displacement_max",
+						"type" : "float",
+						"name" : "Maximum Displacement",
+						"current_value" : 0.1
+					}
+				},
+				"transparency" : {
+					"channel" : {
+						"id" : "transparency",
+						"type" : "float",
+						"name" : "Opacity Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"normal" : {
+					"channel" : {
+						"id" : "normal",
+						"type" : "image",
+						"name" : "Normal Map",
+						"image" : null
+					}
+				},
+				"u_offset" : {
+					"channel" : {
+						"id" : "u_offset",
+						"type" : "float",
+						"name" : "Horizontal Offset",
+						"current_value" : 0
+					}
+				},
+				"u_scale" : {
+					"channel" : {
+						"id" : "u_scale",
+						"type" : "float",
+						"name" : "Horizontal Tiles",
+						"current_value" : 1
+					}
+				},
+				"v_offset" : {
+					"channel" : {
+						"id" : "v_offset",
+						"type" : "float",
+						"name" : "Vertical Offset",
+						"current_value" : 0
+					}
+				},
+				"v_scale" : {
+					"channel" : {
+						"id" : "v_scale",
+						"type" : "float",
+						"name" : "Vertical Tiles",
+						"current_value" : 1
+					}
+				},
+				"uv_set" : "/data/VaL3dArt/KWarrior/Pants/UV%20Sets/VaL3dArt/Base/default.dsf#default"
+			},
+			{
+				"id" : "KWarPants_Belt-1",
+				"url" : "#KWarPants_Belt",
+				"geometry" : "#KWarrior_Pants1",
+				"groups" : [ "KWarPants_Belt" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "color",
+						"name" : "Diffuse Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01.jpg"
+					}
+				},
+				"diffuse_strength" : {
+					"channel" : {
+						"id" : "diffuse_strength",
+						"type" : "float",
+						"name" : "Diffuse Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"specular" : {
+					"channel" : {
+						"id" : "specular",
+						"type" : "color",
+						"name" : "Specular Color",
+						"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+						"image" : null
+					}
+				},
+				"specular_strength" : {
+					"channel" : {
+						"id" : "specular_strength",
+						"type" : "float",
+						"name" : "Specular Strength",
+						"current_value" : 0.75,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01S.jpg"
+					}
+				},
+				"glossiness" : {
+					"channel" : {
+						"id" : "glossiness",
+						"type" : "float",
+						"name" : "Glossiness",
+						"current_value" : 0.75,
+						"image" : null
+					}
+				},
+				"ambient" : {
+					"channel" : {
+						"id" : "ambient",
+						"type" : "color",
+						"name" : "Ambient Color",
+						"current_value" : [ 0, 0, 0 ],
+						"image" : null
+					}
+				},
+				"ambient_strength" : {
+					"channel" : {
+						"id" : "ambient_strength",
+						"type" : "float",
+						"name" : "Ambient Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"reflection" : {
+					"channel" : {
+						"id" : "reflection",
+						"type" : "color",
+						"name" : "Reflection Color",
+						"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+						"image" : null
+					}
+				},
+				"reflection_strength" : {
+					"channel" : {
+						"id" : "reflection_strength",
+						"type" : "float",
+						"name" : "Reflection Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"refraction" : {
+					"channel" : {
+						"id" : "refraction",
+						"type" : "color",
+						"name" : "Refraction Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image" : null
+					}
+				},
+				"refraction_strength" : {
+					"channel" : {
+						"id" : "refraction_strength",
+						"type" : "float",
+						"name" : "Refraction Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"ior" : {
+					"channel" : {
+						"id" : "ior",
+						"type" : "float",
+						"name" : "Index of Refraction",
+						"current_value" : 0
+					}
+				},
+				"bump" : {
+					"channel" : {
+						"id" : "bump",
+						"type" : "float",
+						"name" : "Bump Strength",
+						"current_value" : 1,
+						"image_file" : "/Runtime/textures/Sarsa/KWarrior/sKWarriorPants01B.jpg"
+					}
+				},
+				"bump_min" : {
+					"channel" : {
+						"id" : "bump_min",
+						"type" : "float",
+						"name" : "Negative Bump",
+						"current_value" : -0.01
+					}
+				},
+				"bump_max" : {
+					"channel" : {
+						"id" : "bump_max",
+						"type" : "float",
+						"name" : "Positive Bump",
+						"current_value" : 0.052
+					}
+				},
+				"displacement" : {
+					"channel" : {
+						"id" : "displacement",
+						"type" : "float",
+						"name" : "Displacement Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"displacement_min" : {
+					"channel" : {
+						"id" : "displacement_min",
+						"type" : "float",
+						"name" : "Minimum Displacement",
+						"current_value" : -0.1
+					}
+				},
+				"displacement_max" : {
+					"channel" : {
+						"id" : "displacement_max",
+						"type" : "float",
+						"name" : "Maximum Displacement",
+						"current_value" : 0.1
+					}
+				},
+				"transparency" : {
+					"channel" : {
+						"id" : "transparency",
+						"type" : "float",
+						"name" : "Opacity Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"normal" : {
+					"channel" : {
+						"id" : "normal",
+						"type" : "image",
+						"name" : "Normal Map",
+						"image" : null
+					}
+				},
+				"u_offset" : {
+					"channel" : {
+						"id" : "u_offset",
+						"type" : "float",
+						"name" : "Horizontal Offset",
+						"current_value" : 0
+					}
+				},
+				"u_scale" : {
+					"channel" : {
+						"id" : "u_scale",
+						"type" : "float",
+						"name" : "Horizontal Tiles",
+						"current_value" : 1
+					}
+				},
+				"v_offset" : {
+					"channel" : {
+						"id" : "v_offset",
+						"type" : "float",
+						"name" : "Vertical Offset",
+						"current_value" : 0
+					}
+				},
+				"v_scale" : {
+					"channel" : {
+						"id" : "v_scale",
+						"type" : "float",
+						"name" : "Vertical Tiles",
+						"current_value" : 1
+					}
+				},
+				"uv_set" : "/data/VaL3dArt/KWarrior/Pants/UV%20Sets/VaL3dArt/Base/default.dsf#default"
+			}
+		]
+	}
+}

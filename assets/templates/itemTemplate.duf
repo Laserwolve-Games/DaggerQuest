@@ -1,0 +1,4750 @@
+{
+	"file_version" : "0.6.1.0",
+	"asset_info" : {
+		"id" : "/C%3A/assets/templates/itemTemplate.duf",
+		"type" : "scene",
+		"contributor" : {
+			"author" : "laserwolve",
+			"email" : "",
+			"website" : ""
+		},
+		"revision" : "1.0",
+		"modified" : "2023-03-12T22:20:36Z"
+	},
+	"node_library" : [
+		{
+			"id" : "Tonemapper Options",
+			"name" : "Tonemapper Options",
+			"type" : "node",
+			"label" : "Tonemapper Options",
+			"rotation_order" : "XYZ",
+			"inherits_scale" : true,
+			"center_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrigin",
+					"label" : "X Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrigin",
+					"label" : "Y Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrigin",
+					"label" : "Z Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"end_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xEnd",
+					"label" : "X End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yEnd",
+					"label" : "Y End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zEnd",
+					"label" : "Z End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"orientation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrientation",
+					"label" : "X Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrientation",
+					"label" : "Y Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrientation",
+					"label" : "Z Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"rotation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XRotate",
+					"label" : "X Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YRotate",
+					"label" : "Y Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZRotate",
+					"label" : "Z Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				}
+			],
+			"translation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XTranslate",
+					"label" : "X Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YTranslate",
+					"label" : "Y Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZTranslate",
+					"label" : "Z Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				}
+			],
+			"scale" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XScale",
+					"label" : "X Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YScale",
+					"label" : "Y Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZScale",
+					"label" : "Z Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				}
+			],
+			"general_scale" : {
+				"id" : "general_scale",
+				"type" : "float",
+				"name" : "Scale",
+				"label" : "Scale",
+				"value" : 1,
+				"current_value" : 1,
+				"min" : -10000,
+				"max" : 10000,
+				"display_as_percent" : true,
+				"step_size" : 0.005
+			},
+			"extra" : [
+				{
+					"type" : "studio/node/tone_mapper"
+				},
+				{
+					"type" : "studio_node_channels",
+					"version" : 4,
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Disable Transform",
+								"type" : "bool",
+								"label" : "Disable Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Ignore Local Transform",
+								"type" : "bool",
+								"label" : "Ignore Local Transform",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Point At",
+								"type" : "numeric_node",
+								"label" : "Point At",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"needs_node" : true,
+								"node" : null
+							},
+							"group" : "/General/Constraints"
+						},
+						{
+							"channel" : {
+								"id" : "Visible",
+								"type" : "bool",
+								"label" : "Visible",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Viewport",
+								"type" : "bool",
+								"label" : "Visible in Viewport",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Selectable",
+								"type" : "bool",
+								"label" : "Selectable (in Viewport)",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Renderable",
+								"type" : "bool",
+								"label" : "Visible in Render",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Cast Shadows",
+								"type" : "bool",
+								"label" : "Cast Shadows",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Simulation",
+								"type" : "bool",
+								"label" : "Visible in Simulation",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Simulation"
+						},
+						{
+							"channel" : {
+								"id" : "Tone Mapping Enable",
+								"type" : "bool",
+								"label" : "Tone Mapping Enable",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Exposure Value",
+								"type" : "float",
+								"label" : "Exposure Value",
+								"value" : 13,
+								"current_value" : 13,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Shutter Speed",
+								"type" : "float",
+								"label" : "Shutter Speed (1/x)",
+								"value" : 128,
+								"current_value" : 128,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Aperture",
+								"type" : "float",
+								"label" : "F/Stop",
+								"value" : 8,
+								"current_value" : 8,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Film ISO",
+								"type" : "float",
+								"label" : "Film ISO",
+								"value" : 100,
+								"current_value" : 100,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 50
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "cm2 Factor",
+								"type" : "float",
+								"label" : "cm^2 Factor",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Vignetting",
+								"type" : "float",
+								"label" : "Vignetting",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "White Point Scale",
+								"type" : "float",
+								"label" : "White Point Scale",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "White Point",
+								"type" : "float_color",
+								"label" : "White Point",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Burn Highlights Per Component",
+								"type" : "bool",
+								"label" : "Burn Highlights Per Component",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Burn Highlights",
+								"type" : "float",
+								"label" : "Burn Highlights",
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Crush Blacks",
+								"type" : "float",
+								"label" : "Crush Blacks",
+								"value" : 0.2,
+								"current_value" : 0.2,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Saturation",
+								"type" : "float",
+								"label" : "Saturation",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Gamma",
+								"type" : "float",
+								"label" : "Gamma",
+								"value" : 2.2,
+								"current_value" : 2.2,
+								"min" : 0,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.1
+							},
+							"group" : "/Tone Mapping",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.3333333, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "Environment Options",
+			"name" : "Environment Options",
+			"type" : "node",
+			"label" : "Environment Options",
+			"rotation_order" : "XYZ",
+			"inherits_scale" : true,
+			"center_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrigin",
+					"label" : "X Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrigin",
+					"label" : "Y Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrigin",
+					"label" : "Z Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"end_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xEnd",
+					"label" : "X End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yEnd",
+					"label" : "Y End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zEnd",
+					"label" : "Z End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"orientation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrientation",
+					"label" : "X Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrientation",
+					"label" : "Y Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrientation",
+					"label" : "Z Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"rotation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XRotate",
+					"label" : "X Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YRotate",
+					"label" : "Y Rotate",
+					"value" : 0,
+					"current_value" : 315,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZRotate",
+					"label" : "Z Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				}
+			],
+			"translation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XTranslate",
+					"label" : "X Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YTranslate",
+					"label" : "Y Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZTranslate",
+					"label" : "Z Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				}
+			],
+			"scale" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XScale",
+					"label" : "X Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YScale",
+					"label" : "Y Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZScale",
+					"label" : "Z Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				}
+			],
+			"general_scale" : {
+				"id" : "general_scale",
+				"type" : "float",
+				"name" : "Scale",
+				"label" : "Scale",
+				"value" : 1,
+				"current_value" : 1,
+				"min" : -10000,
+				"max" : 10000,
+				"display_as_percent" : true,
+				"step_size" : 0.005
+			},
+			"extra" : [
+				{
+					"type" : "studio/node/environment"
+				},
+				{
+					"type" : "studio_node_channels",
+					"version" : 4,
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Disable Transform",
+								"type" : "bool",
+								"label" : "Disable Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Ignore Local Transform",
+								"type" : "bool",
+								"label" : "Ignore Local Transform",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Point At",
+								"type" : "numeric_node",
+								"label" : "Point At",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"needs_node" : true,
+								"node" : null
+							},
+							"group" : "/General/Constraints"
+						},
+						{
+							"channel" : {
+								"id" : "Visible",
+								"type" : "bool",
+								"label" : "Visible",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Viewport",
+								"type" : "bool",
+								"label" : "Visible in Viewport",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Selectable",
+								"type" : "bool",
+								"label" : "Selectable (in Viewport)",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Renderable",
+								"type" : "bool",
+								"label" : "Visible in Render",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Cast Shadows",
+								"type" : "bool",
+								"label" : "Cast Shadows",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Simulation",
+								"type" : "bool",
+								"label" : "Visible in Simulation",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Simulation"
+						},
+						{
+							"channel" : {
+								"id" : "Environment Mode",
+								"type" : "enum",
+								"label" : "Environment Mode",
+								"value" : 0,
+								"current_value" : 3,
+								"enum_values" : [ "Dome and Scene", "Dome Only", "Sun-Sky Only", "Scene Only" ]
+							},
+							"group" : "/Environment",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Mode",
+								"type" : "enum",
+								"label" : "Dome Mode",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Infinite Sphere", "Infinite Sphere w/ Ground", "Finite Sphere", "Finite Sphere w/ Ground", "Finite Box", "Finite Box w/ Ground" ]
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Draw Dome",
+								"type" : "bool",
+								"label" : "Draw Dome",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Visualize Finite Dome",
+								"type" : "bool",
+								"label" : "Visualize Finite Dome",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Environment Intensity",
+								"type" : "float",
+								"label" : "Environment Intensity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Environment Map",
+								"type" : "float",
+								"label" : "Environment Map",
+								"visible" : false,
+								"value" : 2,
+								"current_value" : 2,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Environment Tint",
+								"type" : "float_color",
+								"label" : "Environment Tint",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Environment Lighting Resolution",
+								"type" : "int",
+								"label" : "Environment Lighting Resolution",
+								"value" : 512,
+								"current_value" : 512,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Environment Lighting Blur",
+								"type" : "bool",
+								"label" : "Environment Lighting Blur",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Scale Multiplier",
+								"type" : "float",
+								"label" : "Dome Scale Multiplier",
+								"visible" : false,
+								"value" : 100,
+								"current_value" : 100,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 10
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Radius",
+								"type" : "float",
+								"label" : "Dome Radius",
+								"visible" : false,
+								"value" : 100,
+								"current_value" : 100,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Width",
+								"type" : "float",
+								"label" : "Dome Width",
+								"visible" : false,
+								"value" : 200,
+								"current_value" : 200,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Height",
+								"type" : "float",
+								"label" : "Dome Height",
+								"visible" : false,
+								"value" : 200,
+								"current_value" : 200,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Depth",
+								"type" : "float",
+								"label" : "Dome Depth",
+								"visible" : false,
+								"value" : 200,
+								"current_value" : 200,
+								"min" : 0,
+								"max" : 0,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Origin X",
+								"type" : "float",
+								"label" : "Dome Origin X",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Origin Y",
+								"type" : "float",
+								"label" : "Dome Origin Y",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Origin Z",
+								"type" : "float",
+								"label" : "Dome Origin Z",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Orientation X",
+								"type" : "float",
+								"label" : "Dome Orientation X",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Orientation Y",
+								"type" : "float",
+								"label" : "Dome Orientation Y",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Orientation Z",
+								"type" : "float",
+								"label" : "Dome Orientation Z",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dome Rotation",
+								"type" : "float",
+								"label" : "Dome Rotation",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 360,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Sun Direction",
+								"type" : "node",
+								"label" : "SS Sun Node",
+								"visible" : false
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Latitude",
+								"type" : "float",
+								"label" : "SS Latitude",
+								"visible" : false,
+								"value" : 40.76426,
+								"current_value" : 40.76426,
+								"min" : -90,
+								"max" : 90,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Longitude",
+								"type" : "float",
+								"label" : "SS Longitude",
+								"visible" : false,
+								"value" : -111.8972,
+								"current_value" : -111.8972,
+								"min" : -180,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Day",
+								"type" : "int",
+								"label" : "SS Day",
+								"visible" : false,
+								"value" : 2457092,
+								"current_value" : 2457092,
+								"min" : 0,
+								"max" : 2147483647,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Time",
+								"type" : "int",
+								"label" : "SS Time",
+								"visible" : false,
+								"value" : 64800,
+								"current_value" : 46800,
+								"min" : 0,
+								"max" : 86399,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS UTC Offset",
+								"type" : "float",
+								"label" : "SS UTC Offset (hrs)",
+								"visible" : false,
+								"value" : -6,
+								"current_value" : -6,
+								"min" : -14,
+								"max" : 14,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Direction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Sun Disk Intensity",
+								"type" : "float",
+								"label" : "SS Sun Disk Intensity",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sun",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Sun Disk Scale",
+								"type" : "float",
+								"label" : "SS Sun Disk Scale",
+								"visible" : false,
+								"value" : 4,
+								"current_value" : 4,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sun",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Sun Glow Intensity",
+								"type" : "float",
+								"label" : "SS Sun Glow Intensity",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sun",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Physically Scaled Sun",
+								"type" : "bool",
+								"label" : "SS Physically Scaled Sun",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sun",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Haze",
+								"type" : "float",
+								"label" : "SS Haze",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 15,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Blue-Red Tint",
+								"type" : "float",
+								"label" : "SS Blue-Red Tint",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -1,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Saturation",
+								"type" : "float",
+								"label" : "SS Saturation",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Horizon Height",
+								"type" : "float",
+								"label" : "SS Horizon Height",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Horizon Blur",
+								"type" : "float",
+								"label" : "SS Horizon Blur",
+								"visible" : false,
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 10,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Night Color",
+								"type" : "float_color",
+								"label" : "SS Night Color",
+								"visible" : false,
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Sky",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Multiplier",
+								"type" : "float",
+								"label" : "SS Multiplier",
+								"visible" : false,
+								"value" : 0.10132,
+								"current_value" : 0.10132,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Intensity",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS RGB Unit Conversion",
+								"type" : "float",
+								"label" : "SS RGB Unit Conversion",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Intensity",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SS Ground Color",
+								"type" : "float_color",
+								"label" : "SS Ground Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Dome/Sun-Sky/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0.8 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Texture Scale",
+								"type" : "float",
+								"label" : "Ground Texture Scale",
+								"visible" : false,
+								"value" : 100,
+								"current_value" : 100,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Position Mode",
+								"type" : "enum",
+								"label" : "Ground Position Mode",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Auto", "Manual" ]
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Origin X",
+								"type" : "float",
+								"label" : "Ground Origin X",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Origin Y",
+								"type" : "float",
+								"label" : "Ground Origin Y",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Origin Z",
+								"type" : "float",
+								"label" : "Ground Origin Z",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Draw Ground",
+								"type" : "bool",
+								"label" : "Draw Ground",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Reflectivity",
+								"type" : "float_color",
+								"label" : "Ground Reflectivity",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Glossiness",
+								"type" : "float",
+								"label" : "Ground Glossiness",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 100000,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Shadow Intensity",
+								"type" : "float",
+								"label" : "Ground Shadow Intensity",
+								"value" : 1,
+								"current_value" : 0.6,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Visible from Below",
+								"type" : "bool",
+								"label" : "Ground Visible from Below",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Environment/Ground",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.8, 0.6, 0.4 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog",
+								"type" : "bool",
+								"label" : "Matte Fog",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog Visibility",
+								"type" : "float",
+								"label" : "Matte Fog Visibility (m)",
+								"visible" : false,
+								"value" : 10000,
+								"current_value" : 10000,
+								"min" : 0,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog Visibility Tint",
+								"type" : "float_color",
+								"label" : "Matte Fog Visibility Tint",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog Brightness",
+								"type" : "float",
+								"label" : "Matte Fog Brightness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog Brightness Relative to Environment",
+								"type" : "bool",
+								"label" : "Matte Fog Brightness Relative to Environment",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Matte Fog Brightness Tint",
+								"type" : "float_color",
+								"label" : "Matte Fog Brightness Tint",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Matte Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.7529412, 0.7529412, 0.7529412 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog",
+								"type" : "bool",
+								"label" : "Ground Fog",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Albedo",
+								"type" : "float_color",
+								"label" : "Ground Fog Albedo",
+								"visible" : false,
+								"value" : [ 0.6705883, 0.682353, 0.6901961 ],
+								"current_value" : [ 0.6705883, 0.682353, 0.6901961 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Decay Start",
+								"type" : "float",
+								"label" : "Ground Fog Decay Start",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Density Start Scale",
+								"type" : "float",
+								"label" : "Ground Fog Density Start Scale",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Density Start",
+								"type" : "float_color",
+								"label" : "Ground Fog Density Start",
+								"visible" : false,
+								"value" : [ 0.990859, 0.990859, 0.990859 ],
+								"current_value" : [ 0.990859, 0.990859, 0.990859 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Decay Height",
+								"type" : "float",
+								"label" : "Ground Fog Decay Height",
+								"visible" : false,
+								"value" : 91.44,
+								"current_value" : 91.44,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Density End Scale",
+								"type" : "float",
+								"label" : "Ground Fog Density End Scale",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Density End",
+								"type" : "float_color",
+								"label" : "Ground Fog Density End",
+								"visible" : false,
+								"value" : [ 0.01519911, 0.01519911, 0.01519911 ],
+								"current_value" : [ 0.01519911, 0.01519911, 0.01519911 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Ground Fog Anisotropy",
+								"type" : "float",
+								"label" : "Ground Fog Anisotropy",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -1,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.1
+							},
+							"group" : "/Environment/Atmospheric Ground Fog",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.6705882, 0.6823529, 0.6901961 ] ]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "itemCamera",
+			"name" : "itemCamera",
+			"type" : "camera",
+			"label" : "itemCamera",
+			"rotation_order" : "XYZ",
+			"inherits_scale" : true,
+			"perspective" : {
+				"znear" : 5,
+				"zfar" : 4000,
+				"yfov" : 0.5403064,
+				"focal_length" : 65,
+				"depth_of_field" : false,
+				"focal_distance" : 54.15245,
+				"fstop" : 22
+			},
+			"center_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrigin",
+					"label" : "X Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrigin",
+					"label" : "Y Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrigin",
+					"label" : "Z Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"end_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xEnd",
+					"label" : "X End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yEnd",
+					"label" : "Y End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zEnd",
+					"label" : "Z End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : -1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"orientation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrientation",
+					"label" : "X Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrientation",
+					"label" : "Y Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrientation",
+					"label" : "Z Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"rotation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XRotate",
+					"label" : "X Rotate",
+					"value" : 0,
+					"current_value" : -89.99957,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YRotate",
+					"label" : "Y Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZRotate",
+					"label" : "Z Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				}
+			],
+			"translation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XTranslate",
+					"label" : "X Translate",
+					"value" : 0,
+					"current_value" : 0.2130489,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YTranslate",
+					"label" : "Y Translate",
+					"value" : 0,
+					"current_value" : 71.83757,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZTranslate",
+					"label" : "Z Translate",
+					"value" : 0,
+					"current_value" : -1.396876,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				}
+			],
+			"scale" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XScale",
+					"label" : "X Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YScale",
+					"label" : "Y Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZScale",
+					"label" : "Z Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				}
+			],
+			"general_scale" : {
+				"id" : "general_scale",
+				"type" : "float",
+				"name" : "Scale",
+				"label" : "Scale",
+				"value" : 1,
+				"current_value" : 1,
+				"min" : -10000,
+				"max" : 10000,
+				"display_as_percent" : true,
+				"step_size" : 0.005
+			},
+			"presentation" : {
+				"type" : "Camera",
+				"label" : "",
+				"description" : "",
+				"icon_large" : "",
+				"colors" : [ [ 0.3529412, 0.3529412, 0.3529412 ], [ 1, 1, 1 ] ]
+			},
+			"extra" : [
+				{
+					"type" : "studio_node_channels",
+					"version" : 4,
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Disable Transform",
+								"type" : "bool",
+								"label" : "Disable Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Ignore Local Transform",
+								"type" : "bool",
+								"label" : "Ignore Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Point At",
+								"type" : "numeric_node",
+								"label" : "Point At",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"needs_node" : true,
+								"node" : null
+							},
+							"group" : "/General/Constraints"
+						},
+						{
+							"channel" : {
+								"id" : "Visible",
+								"type" : "bool",
+								"label" : "Visible",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Viewport",
+								"type" : "bool",
+								"label" : "Visible in Viewport",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Selectable",
+								"type" : "bool",
+								"label" : "Selectable (in Viewport)",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Renderable",
+								"type" : "bool",
+								"label" : "Visible in Render",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Cast Shadows",
+								"type" : "bool",
+								"label" : "Cast Shadows",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Simulation",
+								"type" : "bool",
+								"label" : "Visible in Simulation",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Simulation"
+						},
+						{
+							"channel" : {
+								"id" : "Perspective",
+								"type" : "bool",
+								"label" : "Perspective",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "Frame Width",
+								"type" : "float",
+								"label" : "Frame Width (mm)",
+								"value" : 36,
+								"current_value" : 36,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "Focal Length",
+								"type" : "float",
+								"label" : "Focal Length (mm)",
+								"value" : 65,
+								"current_value" : 65,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "DOF",
+								"type" : "bool",
+								"label" : "Depth of Field",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "Depth of Field",
+								"type" : "float",
+								"label" : "Focal Distance",
+								"value" : 450,
+								"current_value" : 54.15245,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "Aperature",
+								"type" : "float",
+								"label" : "F/Stop",
+								"value" : 22,
+								"current_value" : 22,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Camera"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Thickness",
+								"type" : "float",
+								"label" : "Lens Thickness (mm)",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Radial Bias",
+								"type" : "float",
+								"label" : "Lens Radial Bias",
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Shift X",
+								"type" : "float",
+								"label" : "Lens Shift X (mm)",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Shift Y",
+								"type" : "float",
+								"label" : "Lens Shift Y (mm)",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Stereo Offset",
+								"type" : "float",
+								"label" : "Lens Stereo Offset (mm)",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion Type",
+								"type" : "enum",
+								"label" : "Lens Distortion Type",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "none", "spherical", "cylindrical", "poly3", "inv_poly3", "poly5", "inv_poly5", "ptlens", "inv_ptlens", "brown", "inv_brown", "equidistant" ]
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion K1",
+								"type" : "float",
+								"label" : "Lens Distortion K1",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion K2",
+								"type" : "float",
+								"label" : "Lens Distortion K2",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion K3",
+								"type" : "float",
+								"label" : "Lens Distortion K3",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion K4",
+								"type" : "float",
+								"label" : "Lens Distortion K4",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion K5",
+								"type" : "float",
+								"label" : "Lens Distortion K5",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Distortion Scale",
+								"type" : "float",
+								"label" : "Lens Distortion Scale",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Lens Maximum FOV",
+								"type" : "float",
+								"label" : "Lens Maximum FOV",
+								"value" : 6.283185,
+								"current_value" : 6.283185,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lens"
+						},
+						{
+							"channel" : {
+								"id" : "Aperture Blades",
+								"type" : "int",
+								"label" : "Aperture Blades",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -2147483648,
+								"max" : 2147483647,
+								"step_size" : 1
+							},
+							"group" : "/Blades"
+						},
+						{
+							"channel" : {
+								"id" : "Aperture Blade Rotation",
+								"type" : "float",
+								"label" : "Aperture Blade Rotation",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Blades"
+						},
+						{
+							"channel" : {
+								"id" : "Local Dimensions",
+								"type" : "bool",
+								"label" : "Use Local Dimensions",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Dimensions"
+						},
+						{
+							"channel" : {
+								"id" : "Dimension Preset",
+								"type" : "string",
+								"label" : "Dimension Preset",
+								"visible" : false,
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/Dimensions"
+						},
+						{
+							"channel" : {
+								"id" : "Pixel Size",
+								"type" : "int2",
+								"label" : "Pixel Size",
+								"visible" : false,
+								"value" : [ 1800, 1200 ],
+								"current_value" : [ 1800, 1200 ],
+								"min" : 1,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Dimensions"
+						},
+						{
+							"channel" : {
+								"id" : "Aspect Ratio",
+								"type" : "float2",
+								"label" : "Aspect Ratio",
+								"visible" : false,
+								"value" : [ 3, 2 ],
+								"current_value" : [ 3, 2 ],
+								"min" : 0.0001,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Dimensions"
+						},
+						{
+							"channel" : {
+								"id" : "Constrain Proportions",
+								"type" : "bool",
+								"label" : "Constrain Proportions",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Dimensions"
+						},
+						{
+							"channel" : {
+								"id" : "HeadlampMode",
+								"type" : "enum",
+								"label" : "Headlamp Mode",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Auto", "On", "Off" ]
+							},
+							"group" : "/Headlamp"
+						},
+						{
+							"channel" : {
+								"id" : "Headlamp Intensity",
+								"type" : "float",
+								"label" : "Headlamp Intensity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Headlamp"
+						},
+						{
+							"channel" : {
+								"id" : "XHeadlampOffset",
+								"type" : "float",
+								"label" : "X Headlamp Offset",
+								"value" : -30,
+								"current_value" : -30,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Headlamp/Offset"
+						},
+						{
+							"channel" : {
+								"id" : "YHeadlamp",
+								"type" : "float",
+								"label" : "Y Headlamp Offset",
+								"value" : 20,
+								"current_value" : 20,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Headlamp/Offset"
+						},
+						{
+							"channel" : {
+								"id" : "ZHeadlampOffset",
+								"type" : "float",
+								"label" : "Z Headlamp Offset",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 1
+							},
+							"group" : "/Headlamp/Offset"
+						},
+						{
+							"channel" : {
+								"id" : "Display Persistence",
+								"type" : "bool",
+								"label" : "Display Persistence",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View/Misc"
+						},
+						{
+							"channel" : {
+								"id" : "Sight Line Opacity",
+								"type" : "float",
+								"label" : "Sight Line Opacity",
+								"value" : 0.3,
+								"current_value" : 0.3,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Display/Scene View/Line of Sight"
+						},
+						{
+							"channel" : {
+								"id" : "Focal Point Scale",
+								"type" : "float",
+								"label" : "Focal Point Scale",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 2,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Display/Scene View/Line of Sight"
+						},
+						{
+							"channel" : {
+								"id" : "FOV Color",
+								"type" : "color",
+								"label" : "FOV Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Display/Scene View/Field of View"
+						},
+						{
+							"channel" : {
+								"id" : "FOV Opacity",
+								"type" : "float",
+								"label" : "FOV Opacity",
+								"value" : 0.3,
+								"current_value" : 0.3,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Display/Scene View/Field of View"
+						},
+						{
+							"channel" : {
+								"id" : "FOV Length",
+								"type" : "float",
+								"label" : "FOV Length",
+								"value" : 5,
+								"current_value" : 5,
+								"min" : 0,
+								"max" : 100,
+								"clamped" : true,
+								"step_size" : 0.1
+							},
+							"group" : "/Display/Scene View/Field of View"
+						},
+						{
+							"channel" : {
+								"id" : "DOF Plane Visibility",
+								"type" : "bool",
+								"label" : "DOF Plane Visibility",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Scene View/Depth Of Field"
+						},
+						{
+							"channel" : {
+								"id" : "DOF Plane Color",
+								"type" : "color",
+								"label" : "DOF Plane Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Display/Scene View/Depth Of Field"
+						},
+						{
+							"channel" : {
+								"id" : "DOF Overlay Color",
+								"type" : "color",
+								"label" : "DOF Overlay Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Display/Camera View/Depth Of Field"
+						},
+						{
+							"channel" : {
+								"id" : "DOF Overlay Opacity",
+								"type" : "float",
+								"label" : "DOF Overlay Opacity",
+								"value" : 0.05,
+								"current_value" : 0.05,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Display/Camera View/Depth Of Field"
+						},
+						{
+							"channel" : {
+								"id" : "Near DOF Plane Visibility",
+								"type" : "bool",
+								"label" : "Near DOF Plane Visibility",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Display/Camera View/Depth Of Field"
+						},
+						{
+							"channel" : {
+								"id" : "Far DOF Plane Visibility",
+								"type" : "bool",
+								"label" : "Far DOF Plane Visibility",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Display/Camera View/Depth Of Field"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "light",
+			"name" : "light",
+			"type" : "light",
+			"label" : "light",
+			"rotation_order" : "XYZ",
+			"inherits_scale" : true,
+			"color" : [ 1, 1, 1 ],
+			"directional" : {
+				"intensity" : 1,
+				"shadow_type" : "none",
+				"shadow_softness" : 0,
+				"shadow_bias" : 1
+			},
+			"on" : true,
+			"center_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrigin",
+					"label" : "X Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrigin",
+					"label" : "Y Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrigin",
+					"label" : "Z Origin",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"end_point" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xEnd",
+					"label" : "X End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yEnd",
+					"label" : "Y End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zEnd",
+					"label" : "Z End",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : -1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"orientation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "xOrientation",
+					"label" : "X Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "yOrientation",
+					"label" : "Y Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "zOrientation",
+					"label" : "Z Orientation",
+					"visible" : false,
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				}
+			],
+			"rotation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XRotate",
+					"label" : "X Rotate",
+					"value" : 0,
+					"current_value" : -74.99999,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YRotate",
+					"label" : "Y Rotate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZRotate",
+					"label" : "Z Rotate",
+					"value" : 0,
+					"current_value" : -15,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.5
+				}
+			],
+			"translation" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XTranslate",
+					"label" : "X Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YTranslate",
+					"label" : "Y Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZTranslate",
+					"label" : "Z Translate",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 1
+				}
+			],
+			"scale" : [
+				{
+					"id" : "x",
+					"type" : "float",
+					"name" : "XScale",
+					"label" : "X Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "y",
+					"type" : "float",
+					"name" : "YScale",
+					"label" : "Y Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				},
+				{
+					"id" : "z",
+					"type" : "float",
+					"name" : "ZScale",
+					"label" : "Z Scale",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"display_as_percent" : true,
+					"step_size" : 0.005
+				}
+			],
+			"general_scale" : {
+				"id" : "general_scale",
+				"type" : "float",
+				"name" : "Scale",
+				"label" : "Scale",
+				"value" : 1,
+				"current_value" : 1,
+				"min" : -10000,
+				"max" : 10000,
+				"display_as_percent" : true,
+				"step_size" : 0.005
+			},
+			"presentation" : {
+				"type" : "Light",
+				"label" : "",
+				"description" : "",
+				"icon_large" : "",
+				"colors" : [ [ 0.3529412, 0.3529412, 0.3529412 ], [ 1, 1, 1 ] ]
+			},
+			"extra" : [
+				{
+					"type" : "studio_node_channels",
+					"version" : 4,
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Disable Transform",
+								"type" : "bool",
+								"label" : "Disable Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Ignore Local Transform",
+								"type" : "bool",
+								"label" : "Ignore Local Transform",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Transforms"
+						},
+						{
+							"channel" : {
+								"id" : "Point At",
+								"type" : "numeric_node",
+								"label" : "Point At",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"needs_node" : true,
+								"node" : null
+							},
+							"group" : "/General/Constraints"
+						},
+						{
+							"channel" : {
+								"id" : "Visible",
+								"type" : "bool",
+								"label" : "Visible",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Viewport",
+								"type" : "bool",
+								"label" : "Visible in Viewport",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Selectable",
+								"type" : "bool",
+								"label" : "Selectable (in Viewport)",
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Display/Scene View"
+						},
+						{
+							"channel" : {
+								"id" : "Renderable",
+								"type" : "bool",
+								"label" : "Visible in Render",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Cast Shadows",
+								"type" : "bool",
+								"label" : "Cast Shadows",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Display/Rendering"
+						},
+						{
+							"channel" : {
+								"id" : "Visible in Simulation",
+								"type" : "bool",
+								"label" : "Visible in Simulation",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Display/Simulation"
+						},
+						{
+							"channel" : {
+								"id" : "Categories",
+								"type" : "string",
+								"label" : "Categories",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Shadow Type",
+								"type" : "enum",
+								"label" : "Shadow Type",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "None", "Deep Shadow Map", "Raytraced (Software Only)" ]
+							},
+							"group" : "/Light/Shadow/Biased Render"
+						},
+						{
+							"channel" : {
+								"id" : "Illumination",
+								"type" : "enum",
+								"label" : "Illumination",
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Off", "Diffuse Only", "Specular Only", "On" ]
+							},
+							"group" : "/Light"
+						},
+						{
+							"channel" : {
+								"id" : "Color",
+								"type" : "color",
+								"label" : "Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Light"
+						},
+						{
+							"channel" : {
+								"id" : "Intensity",
+								"type" : "float",
+								"label" : "Intensity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 2,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Light"
+						},
+						{
+							"channel" : {
+								"id" : "Intensity Scale",
+								"type" : "float",
+								"label" : "Intensity Scale",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100
+							},
+							"group" : "/Light"
+						},
+						{
+							"channel" : {
+								"id" : "Photometric Mode",
+								"type" : "bool",
+								"label" : "Photometric Mode",
+								"value" : false,
+								"current_value" : true
+							},
+							"group" : "/Light"
+						},
+						{
+							"channel" : {
+								"id" : "Light Geometry",
+								"type" : "enum",
+								"label" : "Light Geometry",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Point", "Rectangle", "Disc", "Sphere", "Cylinder" ]
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Height",
+								"type" : "float",
+								"label" : "Height (Diameter)",
+								"visible" : false,
+								"value" : 10,
+								"current_value" : 10,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Width",
+								"type" : "float",
+								"label" : "Width",
+								"visible" : false,
+								"value" : 10,
+								"current_value" : 10,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.1
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Light Portal",
+								"type" : "bool",
+								"label" : "Light Portal",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Two Sided",
+								"type" : "bool",
+								"label" : "Two Sided",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Render Emitter",
+								"type" : "bool",
+								"label" : "Render Emitter",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Light/Area"
+						},
+						{
+							"channel" : {
+								"id" : "Flux",
+								"type" : "float",
+								"label" : "Luminous Flux (Lumen)",
+								"value" : 1500,
+								"current_value" : 130000,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 100
+							},
+							"group" : "/Light/Photometrics"
+						},
+						{
+							"channel" : {
+								"id" : "Temperature",
+								"type" : "float",
+								"label" : "Temperature (K)",
+								"value" : 6500,
+								"current_value" : 5000,
+								"min" : 0,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 100
+							},
+							"group" : "/Light/Photometrics"
+						},
+						{
+							"channel" : {
+								"id" : "Shadow Color",
+								"type" : "color",
+								"label" : "Shadow Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Light/Shadow/Biased Render"
+						},
+						{
+							"channel" : {
+								"id" : "Shadow Intensity",
+								"type" : "float",
+								"label" : "Shadow Intensity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Light/Shadow/Biased Render"
+						},
+						{
+							"channel" : {
+								"id" : "Shadow Softness",
+								"type" : "float",
+								"label" : "Shadow Softness",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"display_as_percent" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Light/Shadow/Biased Render"
+						},
+						{
+							"channel" : {
+								"id" : "Shadow Bias",
+								"type" : "float",
+								"label" : "Shadow Bias",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0.01,
+								"max" : 20,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Light/Shadow/Biased Render"
+						}
+					]
+				}
+			]
+		}
+	],
+	"image_library" : [
+		{
+			"id" : "DTHDR-RuinsB-500.hdr-1",
+			"name" : "DTHDR-RuinsB-500.hdr",
+			"map_gamma" : 1,
+			"map_type" : "LatLong",
+			"map" : [
+				{
+					"url" : "/resources/DTHDR-RuinsB-500.hdr",
+					"label" : "DTHDR-RuinsB-500.hdr"
+				}
+			]
+		}
+	],
+	"scene" : {
+		"nodes" : [
+			{
+				"id" : "Tonemapper Options-1",
+				"url" : "#Tonemapper%20Options",
+				"name" : "Tonemapper Options",
+				"label" : "Tonemapper Options",
+				"extra" : [
+					{
+						"type" : "studio/node/tone_mapper"
+					},
+					{
+						"type" : "studio_node_channels",
+						"version" : 4
+					}
+				]
+			},
+			{
+				"id" : "Environment Options-1",
+				"url" : "#Environment%20Options",
+				"name" : "Environment Options",
+				"label" : "Environment Options",
+				"extra" : [
+					{
+						"type" : "studio/node/environment"
+					},
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Environment Map",
+									"type" : "float",
+									"current_value" : 2,
+									"image_file" : "/resources/DTHDR-RuinsB-500.hdr"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "itemCamera-1",
+				"url" : "#itemCamera",
+				"name" : "itemCamera",
+				"label" : "itemCamera",
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4
+					}
+				]
+			},
+			{
+				"id" : "light-1",
+				"url" : "#light",
+				"name" : "light",
+				"label" : "light",
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4
+					}
+				]
+			}
+		],
+		"current_camera" : "#itemCamera-1",
+		"extra" : [
+			{
+				"type" : "studio_scene_settings",
+				"animation_settings" : {
+					"current_time" : 0,
+					"current_frames_per_second" : 30,
+					"animation_range" : [ 0, 4.166667 ],
+					"play_range" : [ 0, 4.166667 ]
+				},
+				"background_color" : [ 1, 1, 1 ],
+				"backdrop_visible" : false,
+				"backdrop_visible_in_render" : true
+			},
+			{
+				"type" : "studio_render_settings",
+				"render_options" : {
+					"active_renderer" : "DzIrayRenderer",
+					"aspect_ratio" : [ 1, 1 ],
+					"startTime" : 0,
+					"endTime" : 4.166667,
+					"renderMovToId" : "ImageSeries",
+					"renderViewport" : false,
+					"isAspectConstrained" : true,
+					"imageSize" : [ 62, 62 ],
+					"renderType" : "Software",
+					"renderStyle" : "Normal",
+					"rayTraceDepth" : 1,
+					"openGLPasses" : 4,
+					"useGLSL" : false,
+					"isCurrentFrameRender" : true,
+					"useMotionBlur" : false,
+					"motionBlurPct" : 100,
+					"motionBlurSamples" : 2,
+					"xPixelSamples" : 16,
+					"yPixelSamples" : 16,
+					"shadowSamples" : 24,
+					"shadingRate" : 0.75,
+					"doubleSided" : true,
+					"gain" : 1,
+					"gamma" : 1.15,
+					"pixelFilter" : "Sinc",
+					"xFilterWidth" : 6,
+					"yFilterWidth" : 6,
+					"gammaCorrection" : "GCOff",
+					"render_elements" : [
+						{
+							"id" : "General Render",
+							"channels" : [
+								{
+									"channel" : {
+										"id" : "Auto Headlamp",
+										"type" : "enum",
+										"current_value" : 0
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Process Script",
+										"type" : "file",
+										"current_value" : "C:/DazStudioScripts/src/deleteCanvases.dsa",
+										"file_type" : "file_open",
+										"file_display_text" : "",
+										"file_filter" : "DAZ Script (*.dsa *.dsb *.dse)"
+									}
+								}
+							]
+						},
+						{
+							"id" : "NVIDIA Iray Render Options",
+							"channels" : [
+								{
+									"channel" : {
+										"id" : "Render Mode",
+										"type" : "enum",
+										"current_value" : 0
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Min Samples",
+										"type" : "int",
+										"current_value" : 5
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Max Samples",
+										"type" : "int",
+										"current_value" : 5000
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Max Time",
+										"type" : "int",
+										"current_value" : 7200
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Rendering Quality Enable",
+										"type" : "bool",
+										"current_value" : true
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Rendering Quality SSIM",
+										"type" : "bool",
+										"visible" : false,
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Rendering Quality",
+										"type" : "float",
+										"current_value" : 1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Rendering Converged Ratio",
+										"type" : "float",
+										"current_value" : 0.95,
+										"display_as_percent" : true
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post SSIM Available",
+										"type" : "bool",
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post SSIM Enable",
+										"type" : "bool",
+										"visible" : false,
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post SSIM Predict Target",
+										"type" : "float",
+										"visible" : false,
+										"current_value" : 0.98,
+										"display_as_percent" : true
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post SSIM Max Memory",
+										"type" : "int",
+										"visible" : false,
+										"current_value" : 1024
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Pixel Filter",
+										"type" : "enum",
+										"value" : 2,
+										"current_value" : 2
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Pixel Filter Radius",
+										"type" : "float",
+										"current_value" : 1.5
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Denoiser Available",
+										"type" : "bool",
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Denoiser Enable",
+										"type" : "bool",
+										"visible" : false,
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Denoiser Start Iteration",
+										"type" : "int",
+										"visible" : false,
+										"current_value" : 8
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Denoiser Max Memory",
+										"type" : "int",
+										"visible" : false,
+										"current_value" : 1024
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Post Denoiser Denoise Alpha",
+										"type" : "bool",
+										"visible" : false,
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "White Mode Enable",
+										"type" : "bool",
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "White Mode Color",
+										"type" : "float_color",
+										"visible" : false,
+										"value" : [ 0.7019608, 0.7019608, 0.7019608 ],
+										"current_value" : [ 0.7019608, 0.7019608, 0.7019608 ]
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Section Caps Enabled",
+										"type" : "bool",
+										"current_value" : false
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Section Caps Color",
+										"type" : "float_color",
+										"visible" : false,
+										"value" : [ 0.8627451, 0.3529412, 0.254902 ],
+										"current_value" : [ 0.8627451, 0.3529412, 0.254902 ]
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Active Canvas",
+										"type" : "enum",
+										"current_value" : 0
+									}
+								}
+							],
+							"children" : [
+								{
+									"id" : "NVIDIA Iray Photoreal Options",
+									"channels" : [
+										{
+											"channel" : {
+												"id" : "Min Update Samples",
+												"type" : "int",
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Update Interval",
+												"type" : "float",
+												"current_value" : 5
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Default Alpha LPE",
+												"type" : "enum",
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Custom Alpha LPE",
+												"type" : "string",
+												"visible" : false,
+												"current_value" : ""
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Max Path Length",
+												"type" : "int",
+												"current_value" : -1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Caustic Sampler",
+												"type" : "bool",
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Guided Sampling",
+												"type" : "bool",
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Instancing Optimization",
+												"type" : "enum",
+												"value" : 2,
+												"current_value" : 2
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ray Tracing Low Memory",
+												"type" : "enum",
+												"value" : 1,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Firefly Filter Enable",
+												"type" : "bool",
+												"current_value" : true
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Nominal Luminance",
+												"type" : "float",
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Noise Degrain Filtering",
+												"type" : "int",
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Noise Degrain Radius",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 3
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Noise Degrain Blur Difference",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 0.05
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Bloom Filter Enable",
+												"type" : "bool",
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Bloom Filter Radius",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 0.05
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Bloom Filter Threshold",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 2000
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Bloom Filter Brightness Scale",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Spectral Rendering Enable",
+												"type" : "bool",
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Spectral Conversion Color Space",
+												"type" : "enum",
+												"visible" : false,
+												"value" : 1,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Spectral Conversion Intent",
+												"type" : "enum",
+												"visible" : false,
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Spectral Observer",
+												"type" : "enum",
+												"visible" : false,
+												"current_value" : 0
+											}
+										}
+									]
+								},
+								{
+									"id" : "NVIDIA Iray Interactive Options",
+									"channels" : [
+										{
+											"channel" : {
+												"id" : "Occlusion Mode",
+												"type" : "enum",
+												"visible" : false,
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Intensity",
+												"type" : "float_color",
+												"visible" : false,
+												"current_value" : [ 0, 0, 0 ]
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Falloff Min Distance",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 100000
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Falloff Max Distance",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 100000
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Falloff",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Falloff Distance Space",
+												"type" : "enum",
+												"visible" : false,
+												"current_value" : 0
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Indirect Light Mode",
+												"type" : "enum",
+												"visible" : false,
+												"value" : 2,
+												"current_value" : 2
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Indirect Outlier Rejection",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : true
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ambient Shadow Mode",
+												"type" : "enum",
+												"visible" : false,
+												"value" : 1,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Shadows",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : true
+											}
+										},
+										{
+											"channel" : {
+												"id" : "IBL Falloff",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Refinement Mode",
+												"type" : "enum",
+												"visible" : false,
+												"value" : 1,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Max Ray Bounces",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 16
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Max Reflection Bounces",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 8
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Max Refraction Bounces",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 8
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Ray Importance Threshold",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 0.02
+											}
+										},
+										{
+											"channel" : {
+												"id" : "First Frame Antialiasing",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Area As Point Lights",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Environment Max Resolution",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 2048
+											}
+										},
+										{
+											"channel" : {
+												"id" : "Path Space Filtering (PSF)",
+												"type" : "bool",
+												"visible" : false,
+												"current_value" : false
+											}
+										},
+										{
+											"channel" : {
+												"id" : "PSF Geometry Filter",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "PSF Lighting Filter",
+												"type" : "float",
+												"visible" : false,
+												"current_value" : 1
+											}
+										},
+										{
+											"channel" : {
+												"id" : "PSF Convergence Frame",
+												"type" : "int",
+												"visible" : false,
+												"current_value" : 50
+											}
+										}
+									]
+								}
+							],
+							"extra" : [
+								{
+									"type" : "studio/element_data/iray_settings",
+									"render_to_canvases" : false,
+									"canvases" : [
+										{
+											"id" : "theCanvas",
+											"type" : "Beauty",
+											"has_alpha" : true,
+											"lpe" : "",
+											"mask" : "visibleNodes"
+										}
+									],
+									"node_lists" : [
+										{ "id" : "visibleNodes", "nodes" : [ ] }
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"type" : "studio_simulation_settings",
+				"simulation_options" : {
+					"active_engine" : "DzDForceEngine",
+					"simulation_elements" : [
+						{
+							"id" : "dForce Simulation Options",
+							"channels" : [
+								{
+									"channel" : {
+										"id" : "Gravity",
+										"type" : "float",
+										"current_value" : 1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Air Resistance",
+										"type" : "float",
+										"current_value" : 0.15
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Velocity Limit",
+										"type" : "float",
+										"current_value" : 32.2
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Initialization Time",
+										"type" : "float",
+										"current_value" : 0
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Start Bones From Memorized Pose",
+										"type" : "bool",
+										"current_value" : true
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Pose Transition Time",
+										"type" : "float",
+										"current_value" : 1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Frames To Simulate",
+										"type" : "enum",
+										"current_value" : 0
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Stabilization Time",
+										"type" : "float",
+										"current_value" : 1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Simulation Range",
+										"type" : "int2",
+										"current_value" : [ 1, 30 ]
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Frames Per Second Multiplier",
+										"type" : "int",
+										"current_value" : 2
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Subframes",
+										"type" : "int",
+										"current_value" : 8
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Iterations",
+										"type" : "int",
+										"current_value" : 32
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Collision Mesh Resolution",
+										"type" : "enum",
+										"current_value" : 0
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Collision Mode",
+										"type" : "enum",
+										"current_value" : 1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Collision Iterations",
+										"type" : "int",
+										"current_value" : 4
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Repulse Depth Ratio",
+										"type" : "float",
+										"current_value" : 0.1
+									}
+								},
+								{
+									"channel" : {
+										"id" : "Repulse Stiffness Control",
+										"type" : "float",
+										"current_value" : 10000
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}

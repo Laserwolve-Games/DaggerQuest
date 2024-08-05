@@ -1,0 +1,4278 @@
+{
+	"file_version" : "0.6.1.0",
+	"asset_info" : {
+		"id" : "/C%3A/assets/loot/loot_simpleGloves.duf",
+		"type" : "scene_subset",
+		"contributor" : {
+			"author" : "laserwolve",
+			"email" : "",
+			"website" : ""
+		},
+		"revision" : "1.0",
+		"modified" : "2023-03-12T05:45:54Z"
+	},
+	"image_library" : [
+		{
+			"id" : "sVoyLongGlove05.jpg-1",
+			"name" : "sVoyLongGlove05.jpg",
+			"map_gamma" : 0,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGlove05.jpg",
+					"label" : "sVoyLongGlove05.jpg"
+				}
+			]
+		},
+		{
+			"id" : "sVoyLongGloveS.jpg-1",
+			"name" : "sVoyLongGloveS.jpg",
+			"map_gamma" : 0,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveS.jpg",
+					"label" : "sVoyLongGloveS.jpg"
+				}
+			]
+		},
+		{
+			"id" : "sVoyLongGloveB.jpg-1",
+			"name" : "sVoyLongGloveB.jpg",
+			"map_gamma" : 1,
+			"map" : [
+				{
+					"url" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveB.jpg",
+					"label" : "sVoyLongGloveB.jpg"
+				}
+			]
+		}
+	],
+	"material_library" : [
+		{
+			"id" : "LLongGlove",
+			"type" : "Plastic",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "color",
+					"name" : "Diffuse Color",
+					"label" : "Diffuse Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"diffuse_strength" : {
+				"channel" : {
+					"id" : "diffuse_strength",
+					"type" : "float",
+					"name" : "Diffuse Strength",
+					"label" : "Diffuse Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"specular" : {
+				"channel" : {
+					"id" : "specular",
+					"type" : "color",
+					"name" : "Specular Color",
+					"label" : "Specular Color",
+					"value" : [ 0.6, 0.6, 0.6 ],
+					"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"specular_strength" : {
+				"channel" : {
+					"id" : "specular_strength",
+					"type" : "float",
+					"name" : "Specular Strength",
+					"label" : "Specular Strength",
+					"value" : 1,
+					"current_value" : 0.1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"glossiness" : {
+				"channel" : {
+					"id" : "glossiness",
+					"type" : "float",
+					"name" : "Glossiness",
+					"label" : "Glossiness",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"ambient" : {
+				"channel" : {
+					"id" : "ambient",
+					"type" : "color",
+					"name" : "Ambient Color",
+					"label" : "Ambient Color",
+					"value" : [ 0, 0, 0 ],
+					"current_value" : [ 0.09019608, 0.09019608, 0.09019608 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"ambient_strength" : {
+				"channel" : {
+					"id" : "ambient_strength",
+					"type" : "float",
+					"name" : "Ambient Strength",
+					"label" : "Ambient Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"reflection" : {
+				"channel" : {
+					"id" : "reflection",
+					"type" : "color",
+					"name" : "Reflection Color",
+					"label" : "Reflection Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"reflection_strength" : {
+				"channel" : {
+					"id" : "reflection_strength",
+					"type" : "float",
+					"name" : "Reflection Strength",
+					"label" : "Reflection Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"refraction" : {
+				"channel" : {
+					"id" : "refraction",
+					"type" : "color",
+					"name" : "Refraction Color",
+					"label" : "Refraction Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"refraction_strength" : {
+				"channel" : {
+					"id" : "refraction_strength",
+					"type" : "float",
+					"name" : "Refraction Strength",
+					"label" : "Refraction Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"ior" : {
+				"channel" : {
+					"id" : "ior",
+					"type" : "float",
+					"name" : "Index of Refraction",
+					"label" : "Index of Refraction",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 10,
+					"clamped" : true,
+					"step_size" : 0.01
+				},
+				"group" : "/Refraction"
+			},
+			"bump" : {
+				"channel" : {
+					"id" : "bump",
+					"type" : "float",
+					"name" : "Bump Strength",
+					"label" : "Bump Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Bump"
+			},
+			"bump_min" : {
+				"channel" : {
+					"id" : "bump_min",
+					"type" : "float",
+					"name" : "Negative Bump",
+					"label" : "Negative Bump",
+					"value" : -0.01,
+					"current_value" : -0.01,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"bump_max" : {
+				"channel" : {
+					"id" : "bump_max",
+					"type" : "float",
+					"name" : "Positive Bump",
+					"label" : "Positive Bump",
+					"value" : 0.01,
+					"current_value" : 0.052,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"displacement" : {
+				"channel" : {
+					"id" : "displacement",
+					"type" : "float",
+					"name" : "Displacement Strength",
+					"label" : "Displacement Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_min" : {
+				"channel" : {
+					"id" : "displacement_min",
+					"type" : "float",
+					"name" : "Minimum Displacement",
+					"label" : "Minimum Displacement",
+					"value" : -0.1,
+					"current_value" : -0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_max" : {
+				"channel" : {
+					"id" : "displacement_max",
+					"type" : "float",
+					"name" : "Maximum Displacement",
+					"label" : "Maximum Displacement",
+					"value" : 0.1,
+					"current_value" : 0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"transparency" : {
+				"channel" : {
+					"id" : "transparency",
+					"type" : "float",
+					"name" : "Opacity Strength",
+					"label" : "Opacity Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Opacity"
+			},
+			"normal" : {
+				"channel" : {
+					"id" : "normal",
+					"type" : "image",
+					"name" : "Normal Map",
+					"label" : "Normal Map",
+					"default_image_gamma" : 1
+				},
+				"group" : "/Normal Mapping"
+			},
+			"u_offset" : {
+				"channel" : {
+					"id" : "u_offset",
+					"type" : "float",
+					"name" : "Horizontal Offset",
+					"label" : "Horizontal Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"u_scale" : {
+				"channel" : {
+					"id" : "u_scale",
+					"type" : "float",
+					"name" : "Horizontal Tiles",
+					"label" : "Horizontal Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_offset" : {
+				"channel" : {
+					"id" : "v_offset",
+					"type" : "float",
+					"name" : "Vertical Offset",
+					"label" : "Vertical Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_scale" : {
+				"channel" : {
+					"id" : "v_scale",
+					"type" : "float",
+					"name" : "Vertical Tiles",
+					"label" : "Vertical Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"extra" : [
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Multiply Specular Through Opacity",
+								"type" : "bool",
+								"label" : "Multiply Specular Through Opacity",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Specular"
+						},
+						{
+							"channel" : {
+								"id" : "Sheen Color",
+								"type" : "color",
+								"label" : "Sheen Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Scatter Color",
+								"type" : "color",
+								"label" : "Scatter Color",
+								"visible" : false,
+								"value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"current_value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Thickness",
+								"type" : "float",
+								"label" : "Thickness",
+								"visible" : false,
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Lighting Model",
+								"type" : "enum",
+								"label" : "Lighting Model",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Plastic", "Metallic", "Skin", "Glossy (Plastic)", "Matte", "Glossy (Metallic)" ]
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Lines"
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "RLongGlove",
+			"type" : "Plastic",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "color",
+					"name" : "Diffuse Color",
+					"label" : "Diffuse Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"diffuse_strength" : {
+				"channel" : {
+					"id" : "diffuse_strength",
+					"type" : "float",
+					"name" : "Diffuse Strength",
+					"label" : "Diffuse Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Diffuse"
+			},
+			"specular" : {
+				"channel" : {
+					"id" : "specular",
+					"type" : "color",
+					"name" : "Specular Color",
+					"label" : "Specular Color",
+					"value" : [ 0.6, 0.6, 0.6 ],
+					"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"specular_strength" : {
+				"channel" : {
+					"id" : "specular_strength",
+					"type" : "float",
+					"name" : "Specular Strength",
+					"label" : "Specular Strength",
+					"value" : 1,
+					"current_value" : 0.1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"glossiness" : {
+				"channel" : {
+					"id" : "glossiness",
+					"type" : "float",
+					"name" : "Glossiness",
+					"label" : "Glossiness",
+					"value" : 1,
+					"current_value" : 0.75,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Specular"
+			},
+			"ambient" : {
+				"channel" : {
+					"id" : "ambient",
+					"type" : "color",
+					"name" : "Ambient Color",
+					"label" : "Ambient Color",
+					"value" : [ 0, 0, 0 ],
+					"current_value" : [ 0.09019608, 0.09019608, 0.09019608 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"ambient_strength" : {
+				"channel" : {
+					"id" : "ambient_strength",
+					"type" : "float",
+					"name" : "Ambient Strength",
+					"label" : "Ambient Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Ambient"
+			},
+			"reflection" : {
+				"channel" : {
+					"id" : "reflection",
+					"type" : "color",
+					"name" : "Reflection Color",
+					"label" : "Reflection Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"reflection_strength" : {
+				"channel" : {
+					"id" : "reflection_strength",
+					"type" : "float",
+					"name" : "Reflection Strength",
+					"label" : "Reflection Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Reflection"
+			},
+			"refraction" : {
+				"channel" : {
+					"id" : "refraction",
+					"type" : "color",
+					"name" : "Refraction Color",
+					"label" : "Refraction Color",
+					"value" : [ 1, 1, 1 ],
+					"current_value" : [ 1, 1, 1 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"refraction_strength" : {
+				"channel" : {
+					"id" : "refraction_strength",
+					"type" : "float",
+					"name" : "Refraction Strength",
+					"label" : "Refraction Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Refraction"
+			},
+			"ior" : {
+				"channel" : {
+					"id" : "ior",
+					"type" : "float",
+					"name" : "Index of Refraction",
+					"label" : "Index of Refraction",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 10,
+					"clamped" : true,
+					"step_size" : 0.01
+				},
+				"group" : "/Refraction"
+			},
+			"bump" : {
+				"channel" : {
+					"id" : "bump",
+					"type" : "float",
+					"name" : "Bump Strength",
+					"label" : "Bump Strength",
+					"value" : 0,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Bump"
+			},
+			"bump_min" : {
+				"channel" : {
+					"id" : "bump_min",
+					"type" : "float",
+					"name" : "Negative Bump",
+					"label" : "Negative Bump",
+					"value" : -0.01,
+					"current_value" : -0.01,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"bump_max" : {
+				"channel" : {
+					"id" : "bump_max",
+					"type" : "float",
+					"name" : "Positive Bump",
+					"label" : "Positive Bump",
+					"value" : 0.01,
+					"current_value" : 0.052,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Bump"
+			},
+			"displacement" : {
+				"channel" : {
+					"id" : "displacement",
+					"type" : "float",
+					"name" : "Displacement Strength",
+					"label" : "Displacement Strength",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : 0,
+					"max" : 2,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true,
+					"invalid_without_map" : true
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_min" : {
+				"channel" : {
+					"id" : "displacement_min",
+					"type" : "float",
+					"name" : "Minimum Displacement",
+					"label" : "Minimum Displacement",
+					"value" : -0.1,
+					"current_value" : -0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"displacement_max" : {
+				"channel" : {
+					"id" : "displacement_max",
+					"type" : "float",
+					"name" : "Maximum Displacement",
+					"label" : "Maximum Displacement",
+					"value" : 0.1,
+					"current_value" : 0.1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Displacement"
+			},
+			"transparency" : {
+				"channel" : {
+					"id" : "transparency",
+					"type" : "float",
+					"name" : "Opacity Strength",
+					"label" : "Opacity Strength",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"display_as_percent" : true,
+					"step_size" : 0.01,
+					"default_image_gamma" : 1,
+					"mappable" : true
+				},
+				"group" : "/Opacity"
+			},
+			"normal" : {
+				"channel" : {
+					"id" : "normal",
+					"type" : "image",
+					"name" : "Normal Map",
+					"label" : "Normal Map",
+					"default_image_gamma" : 1
+				},
+				"group" : "/Normal Mapping"
+			},
+			"u_offset" : {
+				"channel" : {
+					"id" : "u_offset",
+					"type" : "float",
+					"name" : "Horizontal Offset",
+					"label" : "Horizontal Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"u_scale" : {
+				"channel" : {
+					"id" : "u_scale",
+					"type" : "float",
+					"name" : "Horizontal Tiles",
+					"label" : "Horizontal Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_offset" : {
+				"channel" : {
+					"id" : "v_offset",
+					"type" : "float",
+					"name" : "Vertical Offset",
+					"label" : "Vertical Offset",
+					"value" : 0,
+					"current_value" : 0,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"v_scale" : {
+				"channel" : {
+					"id" : "v_scale",
+					"type" : "float",
+					"name" : "Vertical Tiles",
+					"label" : "Vertical Tiles",
+					"value" : 1,
+					"current_value" : 1,
+					"min" : -10000,
+					"max" : 10000,
+					"step_size" : 0.01
+				},
+				"group" : "/Tiling"
+			},
+			"extra" : [
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Multiply Specular Through Opacity",
+								"type" : "bool",
+								"label" : "Multiply Specular Through Opacity",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Specular"
+						},
+						{
+							"channel" : {
+								"id" : "Sheen Color",
+								"type" : "color",
+								"label" : "Sheen Color",
+								"visible" : false,
+								"value" : [ 0.4, 0.4, 0.4 ],
+								"current_value" : [ 0.4, 0.4, 0.4 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Scatter Color",
+								"type" : "color",
+								"label" : "Scatter Color",
+								"visible" : false,
+								"value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"current_value" : [ 0.8, 0.1490196, 0.05882353 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Thickness",
+								"type" : "float",
+								"label" : "Thickness",
+								"visible" : false,
+								"value" : 0.25,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Subsurface"
+						},
+						{
+							"channel" : {
+								"id" : "Lighting Model",
+								"type" : "enum",
+								"label" : "Lighting Model",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Plastic", "Metallic", "Skin", "Glossy (Plastic)", "Matte", "Glossy (Metallic)" ]
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Lines"
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Lines/Generation"
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						}
+					]
+				}
+			]
+		}
+	],
+	"scene" : {
+		"nodes" : [
+			{
+				"id" : "UVLLongGlove",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#UVLLongGlove",
+				"name" : "UVLLongGlove",
+				"label" : "loot",
+				"geometries" : [
+					{
+						"id" : "geometry",
+						"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#geometry",
+						"name" : "UVLLongGlove",
+						"label" : "shape",
+						"type" : "polygon_mesh",
+						"extra" : [
+							{
+								"type" : "studio_geometry_channels",
+								"channels" : [
+									{
+										"channel" : {
+											"id" : "SubDRenderLevel",
+											"type" : "int",
+											"visible" : false,
+											"current_value" : 0
+										}
+									},
+									{
+										"channel" : {
+											"id" : "SubDNormalSmoothing",
+											"type" : "enum",
+											"visible" : false,
+											"current_value" : 0
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				"preview" : {
+					"type" : "figure",
+					"oriented_box" : {
+						"min" : [ -2.716, 87.087, -7.389 ],
+						"max" : [ 84.6, 153.228, 18.704 ]
+					},
+					"center_point" : [ 0, 0, 0 ],
+					"end_point" : [ 0, 103.876, 0 ],
+					"rotation_order" : "YXZ"
+				},
+				"translation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XTranslate",
+						"current_value" : -68.35899
+					},
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YTranslate",
+						"current_value" : -142.5868
+					},
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZTranslate",
+						"current_value" : -8.990067
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.9887767
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Fit to Mode",
+									"type" : "enum",
+									"current_value" : 0
+								},
+								"group" : "/General/Constraints"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "hip",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#hip",
+				"name" : "hip",
+				"label" : "Hip",
+				"parent" : "#UVLLongGlove",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 103.6848, -0.1028241 ],
+					"end_point" : [ 0, 87.08881, 0.1308831 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#abdomen",
+				"name" : "abdomen",
+				"label" : "Abdomen",
+				"parent" : "#hip",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 102.5127, -1.556905 ],
+					"end_point" : [ 0, 112.6809, -1.469721 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#abdomen2",
+				"name" : "abdomen2",
+				"label" : "Abdomen 2",
+				"parent" : "#abdomen",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 112.6809, -1.469721 ],
+					"end_point" : [ 0, 126.059, -4.673218 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "chest",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#chest",
+				"name" : "chest",
+				"label" : "Chest",
+				"parent" : "#abdomen2",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 126.059, -4.673218 ],
+					"end_point" : [ 0, 153.2278, -4.655901 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lCollar",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lCollar",
+				"name" : "lCollar",
+				"label" : "Left Collar",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 1.78918, 145.7785, 0.05650234 ],
+					"end_point" : [ 15.73757, 149.4498, -5.123279 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lShldr",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lShldr",
+				"name" : "lShldr",
+				"label" : "Left Shoulder",
+				"parent" : "#lCollar",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 36.289, -0.388, -3.09 ],
+						"max" : [ 37.519, 0.142, 0.143 ]
+					},
+					"center_point" : [ 17.55981, 145.818, -5.932636 ],
+					"end_point" : [ 45.66903, 144.567, -3.036857 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lForeArm",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lForeArm",
+				"name" : "lForeArm",
+				"label" : "Left ForeArm",
+				"parent" : "#lShldr",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 7.393, -6.955, -6.355 ],
+						"max" : [ 24.519, 6.135, 5.166 ]
+					},
+					"center_point" : [ 45.66903, 144.567, -3.036857 ],
+					"end_point" : [ 67.15113, 144.53, 6.923792 ],
+					"rotation_order" : "XZY"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lHand",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lHand",
+				"name" : "lHand",
+				"label" : "Left Hand",
+				"parent" : "#lForeArm",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -1.885, -8.214, -4.613 ],
+						"max" : [ 11.232, 3.209, 5.206 ]
+					},
+					"center_point" : [ 67.91809, 144.3782, 7.371127 ],
+					"end_point" : [ 72.71238, 144.7475, 9.624483 ],
+					"rotation_order" : "XYZ"
+				},
+				"rotation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XRotate",
+						"current_value" : 8.044693
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lThumb1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lThumb1",
+				"name" : "lThumb1",
+				"label" : "Left Thumb 1",
+				"parent" : "#lHand",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -1.032, -4.825, -3.007 ],
+						"max" : [ 5.312, 3.498, 3.24 ]
+					},
+					"center_point" : [ 69.29735, 144.0431, 10.55597 ],
+					"end_point" : [ 69.43927, 143.2316, 15.07393 ],
+					"rotation_order" : "XZY"
+				},
+				"rotation" : [
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZRotate",
+						"current_value" : 17.09496
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lThumb2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lThumb2",
+				"name" : "lThumb2",
+				"label" : "Left Thumb 2",
+				"parent" : "#lThumb1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.264, -6.691, -1.31 ],
+						"max" : [ 3.089, 5.732, 1.435 ]
+					},
+					"center_point" : [ 69.43927, 143.2316, 15.07393 ],
+					"end_point" : [ 70.80707, 142.5982, 17.69802 ],
+					"rotation_order" : "XZY"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lThumb3",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lThumb3",
+				"name" : "lThumb3",
+				"label" : "Left Thumb 3",
+				"parent" : "#lThumb2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.629, -0.5, -1.141 ],
+						"max" : [ 0.226, 0.597, 0.838 ]
+					},
+					"center_point" : [ 70.80707, 142.5982, 17.69802 ],
+					"end_point" : [ 71.7533, 142.272, 20.56082 ],
+					"rotation_order" : "XZY"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lCarpal1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lCarpal1",
+				"name" : "lCarpal1",
+				"label" : "Left Carpal 1",
+				"parent" : "#lHand",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 69.50938, 145.1263, 9.615395 ],
+					"end_point" : [ 75.89178, 145.2592, 13.88041 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lIndex1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lIndex1",
+				"name" : "lIndex1",
+				"label" : "Left Index 1",
+				"parent" : "#lCarpal1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.706, -1.564, -1.148 ],
+						"max" : [ 3.563, 1.74, 1.643 ]
+					},
+					"center_point" : [ 74.55836, 145.6544, 14.31552 ],
+					"end_point" : [ 77.54543, 145.5369, 16.72152 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lIndex2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lIndex2",
+				"name" : "lIndex2",
+				"label" : "Left Index 2",
+				"parent" : "#lIndex1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.286, -0.638, 1.025 ],
+						"max" : [ -0.179, 0.01, 1.329 ]
+					},
+					"center_point" : [ 77.45522, 145.8451, 16.56497 ],
+					"end_point" : [ 79.38516, 145.1871, 18.11169 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lMid1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lMid1",
+				"name" : "lMid1",
+				"label" : "Left Mid 1",
+				"parent" : "#lCarpal1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.848, -1.673, -1.335 ],
+						"max" : [ 3.899, 1.561, 1.492 ]
+					},
+					"center_point" : [ 76.005, 145.5102, 12.34505 ],
+					"end_point" : [ 79.78557, 145.5657, 14.36191 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lMid2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lMid2",
+				"name" : "lMid2",
+				"label" : "Left Mid 2",
+				"parent" : "#lMid1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.448, -0.26, -0.161 ],
+						"max" : [ -0.37, -0.252, 0.075 ]
+					},
+					"center_point" : [ 79.54757, 145.6224, 14.23586 ],
+					"end_point" : [ 81.75615, 145.1838, 15.59818 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lMid3",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lMid3",
+				"name" : "lMid3",
+				"label" : "Left Mid 3",
+				"parent" : "#lMid2",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 81.75615, 145.1838, 15.59818 ],
+					"end_point" : [ 84.19901, 144.674, 16.92346 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lCarpal2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lCarpal2",
+				"name" : "lCarpal2",
+				"label" : "Left Carpal 2",
+				"parent" : "#lHand",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 70.78847, 144.648, 7.298461 ],
+					"end_point" : [ 77.75864, 143.9372, 9.486719 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lRing1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lRing1",
+				"name" : "lRing1",
+				"label" : "Left Ring 1",
+				"parent" : "#lCarpal2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.72, -1.733, -1.429 ],
+						"max" : [ 3.264, 2.155, 1.375 ]
+					},
+					"center_point" : [ 76.71188, 144.7547, 10.32043 ],
+					"end_point" : [ 80.18541, 144.4577, 11.61202 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lRing2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lRing2",
+				"name" : "lRing2",
+				"label" : "Left Ring 2",
+				"parent" : "#lRing1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 80.28329, 144.6296, 11.6422 ],
+					"end_point" : [ 82.40737, 143.9646, 12.63481 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lPinky1",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lPinky1",
+				"name" : "lPinky1",
+				"label" : "Left Pinky 1",
+				"parent" : "#lCarpal2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.837, -1.608, -0.847 ],
+						"max" : [ 2.973, 1.374, 1.411 ]
+					},
+					"center_point" : [ 76.75441, 143.5265, 8.17288 ],
+					"end_point" : [ 79.59739, 143.3427, 8.975636 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lPinky2",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#lPinky2",
+				"name" : "lPinky2",
+				"label" : "Left Pinky 2",
+				"parent" : "#lPinky1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.197, -0.03, -0.606 ],
+						"max" : [ -0.106, 0.015, -0.411 ]
+					},
+					"center_point" : [ 79.59739, 143.3427, 8.975636 ],
+					"end_point" : [ 81.1953, 142.6876, 9.669131 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "UVRLongGlove",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#UVRLongGlove",
+				"name" : "UVRLongGlove",
+				"label" : "UVRLongGlove",
+				"parent" : "#UVLLongGlove",
+				"geometries" : [
+					{
+						"id" : "geometry-1",
+						"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#geometry",
+						"name" : "UVRLongGlove",
+						"label" : "shape",
+						"type" : "polygon_mesh",
+						"extra" : [
+							{
+								"type" : "studio_geometry_channels",
+								"channels" : [
+									{
+										"channel" : {
+											"id" : "SubDRenderLevel",
+											"type" : "int",
+											"visible" : false,
+											"current_value" : 0
+										}
+									},
+									{
+										"channel" : {
+											"id" : "SubDNormalSmoothing",
+											"type" : "enum",
+											"visible" : false,
+											"current_value" : 0
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				"preview" : {
+					"type" : "figure",
+					"oriented_box" : {
+						"min" : [ -84.593, 87.087, -7.389 ],
+						"max" : [ 2.717, 153.228, 18.785 ]
+					},
+					"center_point" : [ 0, 0, 0 ],
+					"end_point" : [ 0, 103.876, 0 ],
+					"rotation_order" : "YXZ"
+				},
+				"translation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XTranslate",
+						"current_value" : 130.9536
+					},
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YTranslate",
+						"current_value" : -1.075733
+					},
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZTranslate",
+						"current_value" : 3.156754
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 1.011351
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Fit to Mode",
+									"type" : "enum",
+									"current_value" : 0
+								},
+								"group" : "/General/Constraints"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "hip-1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#hip",
+				"name" : "hip",
+				"label" : "Hip",
+				"parent" : "#UVRLongGlove",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 103.6848, -0.1028241 ],
+					"end_point" : [ 0, 87.08881, 0.1308831 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen-1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#abdomen",
+				"name" : "abdomen",
+				"label" : "Abdomen",
+				"parent" : "#hip-1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 102.5127, -1.556905 ],
+					"end_point" : [ 0, 112.6809, -1.469721 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen2-1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#abdomen2",
+				"name" : "abdomen2",
+				"label" : "Abdomen 2",
+				"parent" : "#abdomen-1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 112.6809, -1.469721 ],
+					"end_point" : [ 0, 126.059, -4.673218 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "chest-1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#chest",
+				"name" : "chest",
+				"label" : "Chest",
+				"parent" : "#abdomen2-1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 126.059, -4.673218 ],
+					"end_point" : [ 0, 153.2278, -4.655901 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rCollar",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rCollar",
+				"name" : "rCollar",
+				"label" : "Right Collar",
+				"parent" : "#chest-1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -1.78918, 145.7785, 0.05650234 ],
+					"end_point" : [ -15.73757, 149.4498, -5.123279 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rShldr",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rShldr",
+				"name" : "rShldr",
+				"label" : "Right Shoulder",
+				"parent" : "#rCollar",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -37.518, -0.364, -3.109 ],
+						"max" : [ -36.287, 0.098, 0.139 ]
+					},
+					"center_point" : [ -17.55981, 145.818, -5.932636 ],
+					"end_point" : [ -45.66903, 144.567, -3.036857 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rForeArm",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rForeArm",
+				"name" : "rForeArm",
+				"label" : "Right ForeArm",
+				"parent" : "#rShldr",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -24.521, -6.665, -6.36 ],
+						"max" : [ -7.375, 5.907, 5.183 ]
+					},
+					"center_point" : [ -45.66903, 144.567, -3.036857 ],
+					"end_point" : [ -67.15113, 144.53, 6.923792 ],
+					"rotation_order" : "XZY"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rHand",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rHand",
+				"name" : "rHand",
+				"label" : "Right Hand",
+				"parent" : "#rForeArm",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -11.232, -8.094, -4.614 ],
+						"max" : [ 1.884, 3.986, 5.183 ]
+					},
+					"center_point" : [ -67.91809, 144.3782, 7.371127 ],
+					"end_point" : [ -72.71238, 144.7475, 9.624483 ],
+					"rotation_order" : "XYZ"
+				},
+				"rotation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XRotate",
+						"current_value" : 7.039108
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rThumb1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rThumb1",
+				"name" : "rThumb1",
+				"label" : "Right Thumb 1",
+				"parent" : "#rHand",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -5.302, -4.4, -3.036 ],
+						"max" : [ 1.052, 3.396, 3.307 ]
+					},
+					"center_point" : [ -69.29735, 144.0431, 10.55597 ],
+					"end_point" : [ -69.43927, 143.2316, 15.07393 ],
+					"rotation_order" : "XZY"
+				},
+				"rotation" : [
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZRotate",
+						"current_value" : -20.11172
+					}
+				],
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rThumb2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rThumb2",
+				"name" : "rThumb2",
+				"label" : "Right Thumb 2",
+				"parent" : "#rThumb1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -3.094, -6.677, -1.326 ],
+						"max" : [ 0.274, 5.755, 1.473 ]
+					},
+					"center_point" : [ -69.43927, 143.2316, 15.07393 ],
+					"end_point" : [ -70.80707, 142.5982, 17.69802 ],
+					"rotation_order" : "XZY"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rThumb3",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rThumb3",
+				"name" : "rThumb3",
+				"label" : "Right Thumb 3",
+				"parent" : "#rThumb2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -0.228, -0.497, -1.146 ],
+						"max" : [ 0.627, 0.596, 0.862 ]
+					},
+					"center_point" : [ -70.80707, 142.5982, 17.69802 ],
+					"end_point" : [ -71.7533, 142.272, 20.56082 ],
+					"rotation_order" : "XZY"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rCarpal1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rCarpal1",
+				"name" : "rCarpal1",
+				"label" : "Right Carpal 1",
+				"parent" : "#rHand",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -69.50938, 145.1263, 9.615395 ],
+					"end_point" : [ -75.89178, 145.2592, 13.88041 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rIndex1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rIndex1",
+				"name" : "rIndex1",
+				"label" : "Right Index 1",
+				"parent" : "#rCarpal1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -3.58, -3.879, -1.168 ],
+						"max" : [ -0.709, 2.192, 1.648 ]
+					},
+					"center_point" : [ -74.55836, 145.6544, 14.31552 ],
+					"end_point" : [ -77.54543, 145.5369, 16.72152 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rIndex2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rIndex2",
+				"name" : "rIndex2",
+				"label" : "Right Index 2",
+				"parent" : "#rIndex1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.178, -0.153, 1.026 ],
+						"max" : [ 0.352, 0.023, 1.358 ]
+					},
+					"center_point" : [ -77.45522, 145.8451, 16.56497 ],
+					"end_point" : [ -79.38516, 145.1871, 18.11169 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rMid1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rMid1",
+				"name" : "rMid1",
+				"label" : "Right Mid 1",
+				"parent" : "#rCarpal1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -3.902, -2.658, -1.355 ],
+						"max" : [ -0.833, 1.435, 1.501 ]
+					},
+					"center_point" : [ -76.005, 145.5102, 12.34505 ],
+					"end_point" : [ -79.78557, 145.5657, 14.36191 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rMid2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rMid2",
+				"name" : "rMid2",
+				"label" : "Right Mid 2",
+				"parent" : "#rMid1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.364, -0.254, -0.161 ],
+						"max" : [ 0.446, -0.233, 0.074 ]
+					},
+					"center_point" : [ -79.54757, 145.6224, 14.23586 ],
+					"end_point" : [ -81.75615, 145.1838, 15.59818 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rMid3",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rMid3",
+				"name" : "rMid3",
+				"label" : "Right Mid 3",
+				"parent" : "#rMid2",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -81.75615, 145.1838, 15.59818 ],
+					"end_point" : [ -84.19901, 144.674, 16.92346 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rCarpal2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rCarpal2",
+				"name" : "rCarpal2",
+				"label" : "Right Carpal 2",
+				"parent" : "#rHand",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -70.78847, 144.648, 7.298461 ],
+					"end_point" : [ -77.75864, 143.9372, 9.486719 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rRing1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rRing1",
+				"name" : "rRing1",
+				"label" : "Right Ring 1",
+				"parent" : "#rCarpal2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -3.266, -1.49, -1.44 ],
+						"max" : [ -0.722, 2.733, 1.403 ]
+					},
+					"center_point" : [ -76.71188, 144.7547, 10.32043 ],
+					"end_point" : [ -80.18541, 144.4577, 11.61202 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rRing2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rRing2",
+				"name" : "rRing2",
+				"label" : "Right Ring 2",
+				"parent" : "#rRing1",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -80.28329, 144.6296, 11.6422 ],
+					"end_point" : [ -82.40737, 143.9646, 12.63481 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rPinky1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rPinky1",
+				"name" : "rPinky1",
+				"label" : "Right Pinky 1",
+				"parent" : "#rCarpal2",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -2.975, -1.391, -0.852 ],
+						"max" : [ -0.836, 1.205, 1.412 ]
+					},
+					"center_point" : [ -76.75441, 143.5265, 8.17288 ],
+					"end_point" : [ -79.59739, 143.3427, 8.975636 ],
+					"rotation_order" : "XYZ"
+				},
+				"scale" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rPinky2",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#rPinky2",
+				"name" : "rPinky2",
+				"label" : "Right Pinky 2",
+				"parent" : "#rPinky1",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ 0.107, -0.033, -0.611 ],
+						"max" : [ 0.196, 0.014, -0.412 ]
+					},
+					"center_point" : [ -79.59739, 143.3427, 8.975636 ],
+					"end_point" : [ -81.1953, 142.6876, 9.669131 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"modifiers" : [
+			{
+				"id" : "SkinBinding",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#SkinBinding",
+				"parent" : "#geometry",
+				"extra" : [
+					{
+						"type" : "skin_settings",
+						"auto_normalize_general" : true,
+						"auto_normalize_local" : true,
+						"auto_normalize_scale" : true,
+						"binding_mode" : "Local",
+						"general_map_mode" : "Linear",
+						"scale_mode" : "ScaleMaps"
+					}
+				]
+			},
+			{
+				"id" : "DzMeshSmoothModifier",
+				"url" : "/data/umblefugly/Voyager/UVLLongGlove/UVLLongGlove.dsf#DzMeshSmoothModifier",
+				"parent" : "#UVLLongGlove",
+				"extra" : [
+					{
+						"type" : "studio/modifier/smoothing"
+					}
+				]
+			},
+			{
+				"id" : "SkinBinding-1",
+				"url" : "/data/umblefugly/Voyager/UVRLongGlove/UVRLongGlove.dsf#SkinBinding",
+				"parent" : "#geometry-1",
+				"extra" : [
+					{
+						"type" : "skin_settings",
+						"auto_normalize_general" : true,
+						"auto_normalize_local" : true,
+						"auto_normalize_scale" : true,
+						"binding_mode" : "Local",
+						"general_map_mode" : "Linear",
+						"scale_mode" : "ScaleMaps"
+					}
+				]
+			}
+		],
+		"materials" : [
+			{
+				"id" : "LLongGlove-1",
+				"url" : "#LLongGlove",
+				"geometry" : "#geometry",
+				"groups" : [ "LLongGlove" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "color",
+						"name" : "Diffuse Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGlove05.jpg"
+					}
+				},
+				"diffuse_strength" : {
+					"channel" : {
+						"id" : "diffuse_strength",
+						"type" : "float",
+						"name" : "Diffuse Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"specular" : {
+					"channel" : {
+						"id" : "specular",
+						"type" : "color",
+						"name" : "Specular Color",
+						"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveS.jpg"
+					}
+				},
+				"specular_strength" : {
+					"channel" : {
+						"id" : "specular_strength",
+						"type" : "float",
+						"name" : "Specular Strength",
+						"current_value" : 0.1,
+						"image" : null
+					}
+				},
+				"glossiness" : {
+					"channel" : {
+						"id" : "glossiness",
+						"type" : "float",
+						"name" : "Glossiness",
+						"current_value" : 0.75,
+						"image" : null
+					}
+				},
+				"ambient" : {
+					"channel" : {
+						"id" : "ambient",
+						"type" : "color",
+						"name" : "Ambient Color",
+						"current_value" : [ 0.09019608, 0.09019608, 0.09019608 ],
+						"image" : null
+					}
+				},
+				"ambient_strength" : {
+					"channel" : {
+						"id" : "ambient_strength",
+						"type" : "float",
+						"name" : "Ambient Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"reflection" : {
+					"channel" : {
+						"id" : "reflection",
+						"type" : "color",
+						"name" : "Reflection Color",
+						"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+						"image" : null
+					}
+				},
+				"reflection_strength" : {
+					"channel" : {
+						"id" : "reflection_strength",
+						"type" : "float",
+						"name" : "Reflection Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"refraction" : {
+					"channel" : {
+						"id" : "refraction",
+						"type" : "color",
+						"name" : "Refraction Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image" : null
+					}
+				},
+				"refraction_strength" : {
+					"channel" : {
+						"id" : "refraction_strength",
+						"type" : "float",
+						"name" : "Refraction Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"ior" : {
+					"channel" : {
+						"id" : "ior",
+						"type" : "float",
+						"name" : "Index of Refraction",
+						"current_value" : 0
+					}
+				},
+				"bump" : {
+					"channel" : {
+						"id" : "bump",
+						"type" : "float",
+						"name" : "Bump Strength",
+						"current_value" : 1,
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveB.jpg"
+					}
+				},
+				"bump_min" : {
+					"channel" : {
+						"id" : "bump_min",
+						"type" : "float",
+						"name" : "Negative Bump",
+						"current_value" : -0.01
+					}
+				},
+				"bump_max" : {
+					"channel" : {
+						"id" : "bump_max",
+						"type" : "float",
+						"name" : "Positive Bump",
+						"current_value" : 0.052
+					}
+				},
+				"displacement" : {
+					"channel" : {
+						"id" : "displacement",
+						"type" : "float",
+						"name" : "Displacement Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"displacement_min" : {
+					"channel" : {
+						"id" : "displacement_min",
+						"type" : "float",
+						"name" : "Minimum Displacement",
+						"current_value" : -0.1
+					}
+				},
+				"displacement_max" : {
+					"channel" : {
+						"id" : "displacement_max",
+						"type" : "float",
+						"name" : "Maximum Displacement",
+						"current_value" : 0.1
+					}
+				},
+				"transparency" : {
+					"channel" : {
+						"id" : "transparency",
+						"type" : "float",
+						"name" : "Opacity Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"normal" : {
+					"channel" : {
+						"id" : "normal",
+						"type" : "image",
+						"name" : "Normal Map",
+						"image" : null
+					}
+				},
+				"u_offset" : {
+					"channel" : {
+						"id" : "u_offset",
+						"type" : "float",
+						"name" : "Horizontal Offset",
+						"current_value" : 0
+					}
+				},
+				"u_scale" : {
+					"channel" : {
+						"id" : "u_scale",
+						"type" : "float",
+						"name" : "Horizontal Tiles",
+						"current_value" : 1
+					}
+				},
+				"v_offset" : {
+					"channel" : {
+						"id" : "v_offset",
+						"type" : "float",
+						"name" : "Vertical Offset",
+						"current_value" : 0
+					}
+				},
+				"v_scale" : {
+					"channel" : {
+						"id" : "v_scale",
+						"type" : "float",
+						"name" : "Vertical Tiles",
+						"current_value" : 1
+					}
+				},
+				"uv_set" : "/data/umblefugly/Voyager/UVLLongGlove/UV%20Sets/umblefugly/Base/default.dsf#default"
+			},
+			{
+				"id" : "RLongGlove-1",
+				"url" : "#RLongGlove",
+				"geometry" : "#geometry-1",
+				"groups" : [ "RLongGlove" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "color",
+						"name" : "Diffuse Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGlove05.jpg"
+					}
+				},
+				"diffuse_strength" : {
+					"channel" : {
+						"id" : "diffuse_strength",
+						"type" : "float",
+						"name" : "Diffuse Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"specular" : {
+					"channel" : {
+						"id" : "specular",
+						"type" : "color",
+						"name" : "Specular Color",
+						"current_value" : [ 0.9921569, 0.9921569, 0.9921569 ],
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveS.jpg"
+					}
+				},
+				"specular_strength" : {
+					"channel" : {
+						"id" : "specular_strength",
+						"type" : "float",
+						"name" : "Specular Strength",
+						"current_value" : 0.1,
+						"image" : null
+					}
+				},
+				"glossiness" : {
+					"channel" : {
+						"id" : "glossiness",
+						"type" : "float",
+						"name" : "Glossiness",
+						"current_value" : 0.75,
+						"image" : null
+					}
+				},
+				"ambient" : {
+					"channel" : {
+						"id" : "ambient",
+						"type" : "color",
+						"name" : "Ambient Color",
+						"current_value" : [ 0.09019608, 0.09019608, 0.09019608 ],
+						"image" : null
+					}
+				},
+				"ambient_strength" : {
+					"channel" : {
+						"id" : "ambient_strength",
+						"type" : "float",
+						"name" : "Ambient Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"reflection" : {
+					"channel" : {
+						"id" : "reflection",
+						"type" : "color",
+						"name" : "Reflection Color",
+						"current_value" : [ 0.454902, 0.4392157, 0.4078431 ],
+						"image" : null
+					}
+				},
+				"reflection_strength" : {
+					"channel" : {
+						"id" : "reflection_strength",
+						"type" : "float",
+						"name" : "Reflection Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"refraction" : {
+					"channel" : {
+						"id" : "refraction",
+						"type" : "color",
+						"name" : "Refraction Color",
+						"current_value" : [ 1, 1, 1 ],
+						"image" : null
+					}
+				},
+				"refraction_strength" : {
+					"channel" : {
+						"id" : "refraction_strength",
+						"type" : "float",
+						"name" : "Refraction Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"ior" : {
+					"channel" : {
+						"id" : "ior",
+						"type" : "float",
+						"name" : "Index of Refraction",
+						"current_value" : 0
+					}
+				},
+				"bump" : {
+					"channel" : {
+						"id" : "bump",
+						"type" : "float",
+						"name" : "Bump Strength",
+						"current_value" : 1,
+						"image_file" : "/Runtime/textures/Sarsa/Voyager/sVoyLongGloveB.jpg"
+					}
+				},
+				"bump_min" : {
+					"channel" : {
+						"id" : "bump_min",
+						"type" : "float",
+						"name" : "Negative Bump",
+						"current_value" : -0.01
+					}
+				},
+				"bump_max" : {
+					"channel" : {
+						"id" : "bump_max",
+						"type" : "float",
+						"name" : "Positive Bump",
+						"current_value" : 0.052
+					}
+				},
+				"displacement" : {
+					"channel" : {
+						"id" : "displacement",
+						"type" : "float",
+						"name" : "Displacement Strength",
+						"current_value" : 0,
+						"image" : null
+					}
+				},
+				"displacement_min" : {
+					"channel" : {
+						"id" : "displacement_min",
+						"type" : "float",
+						"name" : "Minimum Displacement",
+						"current_value" : -0.1
+					}
+				},
+				"displacement_max" : {
+					"channel" : {
+						"id" : "displacement_max",
+						"type" : "float",
+						"name" : "Maximum Displacement",
+						"current_value" : 0.1
+					}
+				},
+				"transparency" : {
+					"channel" : {
+						"id" : "transparency",
+						"type" : "float",
+						"name" : "Opacity Strength",
+						"current_value" : 1,
+						"image" : null
+					}
+				},
+				"normal" : {
+					"channel" : {
+						"id" : "normal",
+						"type" : "image",
+						"name" : "Normal Map",
+						"image" : null
+					}
+				},
+				"u_offset" : {
+					"channel" : {
+						"id" : "u_offset",
+						"type" : "float",
+						"name" : "Horizontal Offset",
+						"current_value" : 0
+					}
+				},
+				"u_scale" : {
+					"channel" : {
+						"id" : "u_scale",
+						"type" : "float",
+						"name" : "Horizontal Tiles",
+						"current_value" : 1
+					}
+				},
+				"v_offset" : {
+					"channel" : {
+						"id" : "v_offset",
+						"type" : "float",
+						"name" : "Vertical Offset",
+						"current_value" : 0
+					}
+				},
+				"v_scale" : {
+					"channel" : {
+						"id" : "v_scale",
+						"type" : "float",
+						"name" : "Vertical Tiles",
+						"current_value" : 1
+					}
+				},
+				"uv_set" : "/data/umblefugly/Voyager/UVRLongGlove/UV%20Sets/umblefugly/Base/default.dsf#default"
+			}
+		]
+	}
+}

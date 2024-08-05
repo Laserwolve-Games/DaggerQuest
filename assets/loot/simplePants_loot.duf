@@ -1,0 +1,6500 @@
+{
+	"file_version" : "0.6.1.0",
+	"asset_info" : {
+		"id" : "/C%3A/assets/loot/simplePants_loot.duf",
+		"type" : "scene_subset",
+		"contributor" : {
+			"author" : "laserwolve",
+			"email" : "",
+			"website" : ""
+		},
+		"revision" : "1.0",
+		"modified" : "2023-04-07T18:13:43Z"
+	},
+	"modifier_library" : [
+		{
+			"id" : "DzMeshSmoothModifier",
+			"name" : "DzMeshSmoothModifier",
+			"parent" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#TroubadourPants_7924",
+			"extra" : [
+				{
+					"type" : "studio/modifier/smoothing"
+				},
+				{
+					"type" : "studio_modifier_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Enable Smoothing",
+								"type" : "bool",
+								"label" : "Enable Smoothing",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smoothing Type",
+								"type" : "enum",
+								"label" : "Smoothing Type",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Base Shape Matching", "Generic" ]
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Smoothing Iterations",
+								"type" : "int",
+								"label" : "Smoothing Iterations",
+								"value" : 2,
+								"current_value" : 2,
+								"min" : 0,
+								"max" : 200,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Weight",
+								"type" : "float",
+								"label" : "Weight",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Secondary Weight",
+								"type" : "float",
+								"label" : "Secondary Weight",
+								"visible" : false,
+								"value" : -0.5,
+								"current_value" : -0.5,
+								"min" : -1,
+								"max" : 0,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Lock Distance",
+								"type" : "float",
+								"label" : "Lock Distance",
+								"visible" : false,
+								"value" : 0.001,
+								"current_value" : 0.001,
+								"min" : 0,
+								"max" : 0.1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Length Influence",
+								"type" : "float",
+								"label" : "Length Influence",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Interactive Update",
+								"type" : "bool",
+								"label" : "Interactive Update",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General/Mesh Smoothing"
+						},
+						{
+							"channel" : {
+								"id" : "Collision Item",
+								"type" : "node",
+								"label" : "Collision Item"
+							},
+							"group" : "/General/Mesh Smoothing/Collision"
+						},
+						{
+							"channel" : {
+								"id" : "Collision Iterations",
+								"type" : "int",
+								"label" : "Collision Iterations",
+								"value" : 3,
+								"current_value" : 3,
+								"min" : 0,
+								"max" : 100,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/General/Mesh Smoothing/Collision"
+						},
+						{
+							"channel" : {
+								"id" : "Collision Smoothing Interval",
+								"type" : "int",
+								"label" : "Collision Smoothing Interval",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 1,
+								"max" : 20,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/General/Mesh Smoothing/Collision"
+						}
+					]
+				}
+			]
+		}
+	],
+	"image_library" : [
+		{
+			"id" : "01_TroubadorPants.jpg-1",
+			"name" : "01_TroubadorPants.jpg",
+			"map_gamma" : 0,
+			"map" : [
+				{
+					"url" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg",
+					"label" : "01_TroubadorPants.jpg"
+				}
+			]
+		},
+		{
+			"id" : "01_TroubadorPantsB.jpg-1",
+			"name" : "01_TroubadorPantsB.jpg",
+			"map_gamma" : 1,
+			"map" : [
+				{
+					"url" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsB.jpg",
+					"label" : "01_TroubadorPantsB.jpg"
+				}
+			]
+		},
+		{
+			"id" : "01_TroubadorPantsD.jpg-1",
+			"name" : "01_TroubadorPantsD.jpg",
+			"map_gamma" : 1,
+			"map" : [
+				{
+					"url" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsD.jpg",
+					"label" : "01_TroubadorPantsD.jpg"
+				}
+			]
+		}
+	],
+	"material_library" : [
+		{
+			"id" : "Belt",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "float_color",
+					"name" : "Diffuse Color",
+					"label" : "Base Color",
+					"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+					"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"step_size" : 1,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Base/Diffuse/Reflection",
+				"presentation" : {
+					"type" : "",
+					"label" : "",
+					"description" : "",
+					"icon_large" : "",
+					"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+				}
+			},
+			"extra" : [
+				{
+					"type" : "studio/material/uber_iray",
+					"version" : "1.1.0.0"
+				},
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Base Mixing",
+								"type" : "enum",
+								"label" : "Base Mixing",
+								"value" : 0,
+								"current_value" : 2,
+								"enum_values" : [ "PBR Metallicity/Roughness", "PBR Specular/Glossiness", "Weighted" ]
+							},
+							"group" : "/Base/Mixing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Weight",
+								"type" : "float",
+								"label" : "Metallicity",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Weight",
+								"type" : "float",
+								"label" : "Diffuse Weight",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Strength",
+								"type" : "float",
+								"label" : "Diffuse Strength",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Roughness",
+								"type" : "float",
+								"label" : "Diffuse Roughness",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Weight",
+								"type" : "float",
+								"label" : "Diffuse Overlay Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Weight Squared",
+								"type" : "bool",
+								"label" : "Diffuse Overlay Weight Squared",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Color",
+								"type" : "float_color",
+								"label" : "Diffuse Overlay Color",
+								"visible" : false,
+								"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+								"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Color Effect",
+								"type" : "enum",
+								"label" : "Diffuse Overlay Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Roughness",
+								"type" : "float",
+								"label" : "Diffuse Overlay Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Translucency Weight",
+								"type" : "float",
+								"label" : "Translucency Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Color Effect",
+								"type" : "enum",
+								"label" : "Base Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Translucency Color",
+								"type" : "float_color",
+								"label" : "Translucency Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Invert Transmission Normal",
+								"type" : "bool",
+								"label" : "Invert Transmission Normal",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Reflectance Tint",
+								"type" : "float_color",
+								"label" : "SSS Reflectance Tint",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Weight",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Reflectivity",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 1 Roughness",
+								"type" : "float",
+								"label" : "Specular Lobe 1 Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 2 Roughness",
+								"type" : "float",
+								"label" : "Specular Lobe 2 Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 1 Glossiness",
+								"type" : "float",
+								"label" : "Specular Lobe 1 Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 2 Glossiness",
+								"type" : "float",
+								"label" : "Specular Lobe 2 Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Ratio",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Ratio",
+								"visible" : false,
+								"value" : 0.85,
+								"current_value" : 0.85,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Weight",
+								"type" : "float",
+								"label" : "Glossy Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Layered Weight",
+								"type" : "float",
+								"label" : "Glossy Layered Weight",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Share Glossy Inputs",
+								"type" : "bool",
+								"label" : "Share Glossy Inputs",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Color",
+								"type" : "float_color",
+								"label" : "Glossy Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Color Effect",
+								"type" : "enum",
+								"label" : "Glossy Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Reflectivity",
+								"type" : "float",
+								"label" : "Glossy Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Specular",
+								"type" : "float_color",
+								"label" : "Glossy Specular",
+								"visible" : false,
+								"value" : [ 0.2313726, 0.2313726, 0.2313726 ],
+								"current_value" : [ 0.2313726, 0.2313726, 0.2313726 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Roughness",
+								"type" : "float",
+								"label" : "Glossy Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0.8,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossiness",
+								"type" : "float",
+								"label" : "Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Anisotropy",
+								"type" : "float",
+								"label" : "Glossy Anisotropy",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Weight",
+								"type" : "float",
+								"label" : "Backscattering Weight",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Color",
+								"type" : "float_color",
+								"label" : "Backscattering Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Roughness",
+								"type" : "float",
+								"label" : "Backscattering Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Glossiness",
+								"type" : "float",
+								"label" : "Backscattering Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Anisotropy",
+								"type" : "float",
+								"label" : "Backscattering Anisotropy",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0.6,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Index",
+								"type" : "float",
+								"label" : "Refraction Index",
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Weight",
+								"type" : "float",
+								"label" : "Refraction Weight",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Color",
+								"type" : "float_color",
+								"label" : "Refraction Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Roughness",
+								"type" : "float",
+								"label" : "Refraction Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Glossiness",
+								"type" : "float",
+								"label" : "Refraction Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Abbe",
+								"type" : "float",
+								"label" : "Abbe",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 100,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Anisotropy Rotations",
+								"type" : "float",
+								"label" : "Glossy Anisotropy Rotations",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Thin Film",
+								"type" : "float",
+								"label" : "Base Thin Film",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Thin Film IOR",
+								"type" : "float",
+								"label" : "Base Thin Film IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Bump Strength",
+								"type" : "float",
+								"label" : "Base Bump",
+								"value" : 1,
+								"current_value" : 4,
+								"min" : 0,
+								"max" : 50,
+								"display_as_percent" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Base/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Normal Map",
+								"type" : "float",
+								"label" : "Normal Map",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Base/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Weight",
+								"type" : "float",
+								"label" : "Metallic Flakes Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Color",
+								"type" : "float_color",
+								"label" : "Metallic Flakes Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Color Effect",
+								"type" : "enum",
+								"label" : "Metallic Flakes Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Roughness",
+								"type" : "float",
+								"label" : "Metallic Flakes Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Glossiness",
+								"type" : "float",
+								"label" : "Metallic Flakes Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Size",
+								"type" : "float",
+								"label" : "Metallic Flakes Size",
+								"visible" : false,
+								"value" : 0.001,
+								"current_value" : 0.001,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.001,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Strength",
+								"type" : "float",
+								"label" : "Metallic Flakes Strength",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Density",
+								"type" : "float",
+								"label" : "Metallic Flakes Density",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Thin Film",
+								"type" : "float",
+								"label" : "Metallic Flakes Thin Film",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Thin Film IOR",
+								"type" : "float",
+								"label" : "Metallic Flakes Thin Film IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Weight",
+								"type" : "float",
+								"label" : "Top Coat Weight",
+								"value" : 0,
+								"current_value" : 0.05,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Color",
+								"type" : "float_color",
+								"label" : "Top Coat Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Color Effect",
+								"type" : "enum",
+								"label" : "Top Coat Color Effect",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Roughness",
+								"type" : "float",
+								"label" : "Top Coat Roughness",
+								"value" : 0,
+								"current_value" : 0.6,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Glossiness",
+								"type" : "float",
+								"label" : "Top Coat Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Layering Mode",
+								"type" : "enum",
+								"label" : "Top Coat Layering Mode",
+								"value" : 0,
+								"current_value" : 1,
+								"enum_values" : [ "Reflectivity", "Weighted", "Fresnel", "Custom Curve" ]
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Reflectivity",
+								"type" : "float",
+								"label" : "Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat IOR",
+								"type" : "float",
+								"label" : "Top Coat IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Normal",
+								"type" : "float",
+								"label" : "Top Coat Curve 0",
+								"visible" : false,
+								"value" : 0.04,
+								"current_value" : 0.04,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Grazing",
+								"type" : "float",
+								"label" : "Top Coat Curve 90",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Exponent",
+								"type" : "float",
+								"label" : "Top Coat Curve Exponent",
+								"visible" : false,
+								"value" : 5,
+								"current_value" : 5,
+								"min" : 0,
+								"max" : 10,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Anisotropy",
+								"type" : "float",
+								"label" : "Top Coat Anisotropy",
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Rotations",
+								"type" : "float",
+								"label" : "Top Coat Rotations",
+								"value" : 0,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Thin Film",
+								"type" : "float",
+								"label" : "Top Coat Thin Film",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Thin Film IOR",
+								"type" : "float",
+								"label" : "Top Coat Thin Film IOR",
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Bump Mode",
+								"type" : "enum",
+								"label" : "Top Coat Bump Mode",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Height Map", "Normal Map" ]
+							},
+							"group" : "/Top Coat/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Bump",
+								"type" : "float",
+								"label" : "Top Coat Bump",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 50,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Top Coat/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Thin Walled",
+								"type" : "bool",
+								"label" : "Thin Walled",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Volume/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Transmitted Measurement Distance",
+								"type" : "float",
+								"label" : "Transmitted Measurement Distance",
+								"visible" : false,
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Transmission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Transmitted Color",
+								"type" : "float_color",
+								"label" : "Transmitted Color",
+								"visible" : false,
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Volume/Transmission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Mode",
+								"type" : "enum",
+								"label" : "SSS Mode",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Mono", "Chromatic" ]
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Scattering Measurement Distance",
+								"type" : "float",
+								"label" : "Scattering Measurement Distance",
+								"visible" : false,
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Amount",
+								"type" : "float",
+								"label" : "SSS Amount",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Color",
+								"type" : "float_color",
+								"label" : "SSS Color",
+								"visible" : false,
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Direction",
+								"type" : "float",
+								"label" : "SSS Direction",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -1,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Color",
+								"type" : "float_color",
+								"label" : "Emission Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Temperature",
+								"type" : "float",
+								"label" : "Emission Temperature (K)",
+								"visible" : false,
+								"value" : 6500,
+								"current_value" : 6500,
+								"min" : 0,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 100
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Two Sided Light",
+								"type" : "bool",
+								"label" : "Two Sided Light",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Profile",
+								"type" : "file",
+								"label" : "Emission Profile",
+								"visible" : false,
+								"value" : "",
+								"current_value" : "",
+								"file_type" : "file_open",
+								"file_display_text" : "",
+								"file_filter" : "IES (*.ies)"
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminance",
+								"type" : "float",
+								"label" : "Luminance",
+								"visible" : false,
+								"value" : 1500,
+								"current_value" : 1500,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 50,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminance Units",
+								"type" : "enum",
+								"label" : "Luminance Units",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "cd/m^2", "kcd/m^2", "cd/ft^2", "cd/cm^2", "lm", "W" ]
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminous Efficacy",
+								"type" : "float",
+								"label" : "Luminous Efficacy (lm/W)",
+								"visible" : false,
+								"value" : 15,
+								"current_value" : 15,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 5
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Cutout Opacity",
+								"type" : "float",
+								"label" : "Cutout Opacity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Geometry/Cutout",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Displacement Strength",
+								"type" : "float",
+								"label" : "Displacement Strength",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 2,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Minimum Displacement",
+								"type" : "float",
+								"label" : "Minimum Displacement",
+								"value" : -0.1,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Maximum Displacement",
+								"type" : "float",
+								"label" : "Maximum Displacement",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SubD Displacement Level",
+								"type" : "int",
+								"label" : "SubD Displacement Level",
+								"value" : 0,
+								"current_value" : 4,
+								"min" : 0,
+								"max" : 12,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Horizontal Tiles",
+								"type" : "float",
+								"label" : "Horizontal Tiles",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Horizontal Offset",
+								"type" : "float",
+								"label" : "Horizontal Offset",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Vertical Tiles",
+								"type" : "float",
+								"label" : "Vertical Tiles",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Vertical Offset",
+								"type" : "float",
+								"label" : "Vertical Offset",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Radius",
+								"type" : "float",
+								"label" : "Round Corners Radius",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Across Materials",
+								"type" : "bool",
+								"label" : "Round Corners Across Materials",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Roundness",
+								"type" : "float",
+								"label" : "Round Corners Roundness",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Roughness Squared",
+								"type" : "bool",
+								"label" : "Roughness Squared",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossiness Squared",
+								"type" : "bool",
+								"label" : "Glossiness Squared",
+								"visible" : false,
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "BSDF Type",
+								"type" : "enum",
+								"label" : "BSDF Type",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Standard Glossy", "Beckmann Smith", "GGX Smith", "Beckmann VCavities", "GGX VCavities", "Ward Geisler Moroder" ]
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "OutlineColorID",
+								"type" : "color",
+								"label" : "Material ID",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Exclude From White Mode",
+								"type" : "bool",
+								"label" : "Exclude From White Mode",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id" : "Pants",
+			"diffuse" : {
+				"channel" : {
+					"id" : "diffuse",
+					"type" : "float_color",
+					"name" : "Diffuse Color",
+					"label" : "Base Color",
+					"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+					"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+					"min" : 0,
+					"max" : 1,
+					"clamped" : true,
+					"step_size" : 1,
+					"default_image_gamma" : 0,
+					"mappable" : true
+				},
+				"group" : "/Base/Diffuse/Reflection",
+				"presentation" : {
+					"type" : "",
+					"label" : "",
+					"description" : "",
+					"icon_large" : "",
+					"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+				}
+			},
+			"extra" : [
+				{
+					"type" : "studio/material/uber_iray",
+					"version" : "1.1.0.0"
+				},
+				{
+					"type" : "studio_material_channels",
+					"channels" : [
+						{
+							"channel" : {
+								"id" : "Tags",
+								"type" : "string",
+								"label" : "Tags",
+								"value" : "",
+								"current_value" : ""
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Smooth On",
+								"type" : "bool",
+								"label" : "Smooth",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Smooth Angle",
+								"type" : "float",
+								"label" : "Angle",
+								"value" : 89.9,
+								"current_value" : 89.9,
+								"min" : 0,
+								"max" : 180,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line Preview Color",
+								"type" : "color",
+								"label" : "Line Preview Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line Start Width",
+								"type" : "float",
+								"label" : "Line Start Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line End Width",
+								"type" : "float",
+								"label" : "Line End Width (mm)",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Line UV Width",
+								"type" : "float",
+								"label" : "Line UV Width",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Lines",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Render Priority",
+								"type" : "enum",
+								"label" : "Render Priority",
+								"visible" : false,
+								"value" : 3,
+								"current_value" : 3,
+								"enum_values" : [ "Lowest", "Low", "Below Normal", "Normal", "Above Normal", "High", "Highest" ]
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Propagate Priority",
+								"type" : "bool",
+								"label" : "Propagate Priority",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Render Priority"
+						},
+						{
+							"channel" : {
+								"id" : "Base Mixing",
+								"type" : "enum",
+								"label" : "Base Mixing",
+								"value" : 0,
+								"current_value" : 2,
+								"enum_values" : [ "PBR Metallicity/Roughness", "PBR Specular/Glossiness", "Weighted" ]
+							},
+							"group" : "/Base/Mixing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Weight",
+								"type" : "float",
+								"label" : "Metallicity",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Weight",
+								"type" : "float",
+								"label" : "Diffuse Weight",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Strength",
+								"type" : "float",
+								"label" : "Diffuse Strength",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Roughness",
+								"type" : "float",
+								"label" : "Diffuse Roughness",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Weight",
+								"type" : "float",
+								"label" : "Diffuse Overlay Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Weight Squared",
+								"type" : "bool",
+								"label" : "Diffuse Overlay Weight Squared",
+								"visible" : false,
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Color",
+								"type" : "float_color",
+								"label" : "Diffuse Overlay Color",
+								"visible" : false,
+								"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+								"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Color Effect",
+								"type" : "enum",
+								"label" : "Diffuse Overlay Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Diffuse Overlay Roughness",
+								"type" : "float",
+								"label" : "Diffuse Overlay Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Overlay",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Translucency Weight",
+								"type" : "float",
+								"label" : "Translucency Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Color Effect",
+								"type" : "enum",
+								"label" : "Base Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Translucency Color",
+								"type" : "float_color",
+								"label" : "Translucency Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Invert Transmission Normal",
+								"type" : "bool",
+								"label" : "Invert Transmission Normal",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Reflectance Tint",
+								"type" : "float_color",
+								"label" : "SSS Reflectance Tint",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Base/Diffuse/Translucency",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Weight",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Reflectivity",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 1 Roughness",
+								"type" : "float",
+								"label" : "Specular Lobe 1 Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 2 Roughness",
+								"type" : "float",
+								"label" : "Specular Lobe 2 Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 1 Glossiness",
+								"type" : "float",
+								"label" : "Specular Lobe 1 Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Specular Lobe 2 Glossiness",
+								"type" : "float",
+								"label" : "Specular Lobe 2 Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Dual Lobe Specular Ratio",
+								"type" : "float",
+								"label" : "Dual Lobe Specular Ratio",
+								"visible" : false,
+								"value" : 0.85,
+								"current_value" : 0.85,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Dual Lobe Specular",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 0 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Weight",
+								"type" : "float",
+								"label" : "Glossy Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Layered Weight",
+								"type" : "float",
+								"label" : "Glossy Layered Weight",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Share Glossy Inputs",
+								"type" : "bool",
+								"label" : "Share Glossy Inputs",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Color",
+								"type" : "float_color",
+								"label" : "Glossy Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Color Effect",
+								"type" : "enum",
+								"label" : "Glossy Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Reflectivity",
+								"type" : "float",
+								"label" : "Glossy Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Specular",
+								"type" : "float_color",
+								"label" : "Glossy Specular",
+								"visible" : false,
+								"value" : [ 0.2313726, 0.2313726, 0.2313726 ],
+								"current_value" : [ 0.2313726, 0.2313726, 0.2313726 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Roughness",
+								"type" : "float",
+								"label" : "Glossy Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0.8,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossiness",
+								"type" : "float",
+								"label" : "Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Anisotropy",
+								"type" : "float",
+								"label" : "Glossy Anisotropy",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Reflection",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Weight",
+								"type" : "float",
+								"label" : "Backscattering Weight",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Color",
+								"type" : "float_color",
+								"label" : "Backscattering Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Roughness",
+								"type" : "float",
+								"label" : "Backscattering Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Glossiness",
+								"type" : "float",
+								"label" : "Backscattering Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Backscattering Anisotropy",
+								"type" : "float",
+								"label" : "Backscattering Anisotropy",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0.6,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Backscattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Index",
+								"type" : "float",
+								"label" : "Refraction Index",
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Weight",
+								"type" : "float",
+								"label" : "Refraction Weight",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Color",
+								"type" : "float_color",
+								"label" : "Refraction Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Roughness",
+								"type" : "float",
+								"label" : "Refraction Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Refraction Glossiness",
+								"type" : "float",
+								"label" : "Refraction Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Abbe",
+								"type" : "float",
+								"label" : "Abbe",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 100,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Base/Glossy/Refraction",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossy Anisotropy Rotations",
+								"type" : "float",
+								"label" : "Glossy Anisotropy Rotations",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Glossy/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Thin Film",
+								"type" : "float",
+								"label" : "Base Thin Film",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Base Thin Film IOR",
+								"type" : "float",
+								"label" : "Base Thin Film IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Base/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Bump Strength",
+								"type" : "float",
+								"label" : "Base Bump",
+								"value" : 1,
+								"current_value" : 4,
+								"min" : 0,
+								"max" : 50,
+								"display_as_percent" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Base/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Normal Map",
+								"type" : "float",
+								"label" : "Normal Map",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Base/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.345098, 0.5019608, 0.6588235 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Weight",
+								"type" : "float",
+								"label" : "Metallic Flakes Weight",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Color",
+								"type" : "float_color",
+								"label" : "Metallic Flakes Color",
+								"visible" : false,
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Color Effect",
+								"type" : "enum",
+								"label" : "Metallic Flakes Color Effect",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Roughness",
+								"type" : "float",
+								"label" : "Metallic Flakes Roughness",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Glossiness",
+								"type" : "float",
+								"label" : "Metallic Flakes Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Size",
+								"type" : "float",
+								"label" : "Metallic Flakes Size",
+								"visible" : false,
+								"value" : 0.001,
+								"current_value" : 0.001,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.001,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Strength",
+								"type" : "float",
+								"label" : "Metallic Flakes Strength",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Density",
+								"type" : "float",
+								"label" : "Metallic Flakes Density",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Flakes",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Thin Film",
+								"type" : "float",
+								"label" : "Metallic Flakes Thin Film",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Metallic Flakes Thin Film IOR",
+								"type" : "float",
+								"label" : "Metallic Flakes Thin Film IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Metallic Flakes/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.8, 0.6, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Weight",
+								"type" : "float",
+								"label" : "Top Coat Weight",
+								"value" : 0,
+								"current_value" : 0.05,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Color",
+								"type" : "float_color",
+								"label" : "Top Coat Color",
+								"value" : [ 1, 1, 1 ],
+								"current_value" : [ 1, 1, 1 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Color Effect",
+								"type" : "enum",
+								"label" : "Top Coat Color Effect",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Scatter Only", "Scatter & Transmit", "Scatter & Transmit Intensity" ]
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Roughness",
+								"type" : "float",
+								"label" : "Top Coat Roughness",
+								"value" : 0,
+								"current_value" : 0.6,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Glossiness",
+								"type" : "float",
+								"label" : "Top Coat Glossiness",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Layering Mode",
+								"type" : "enum",
+								"label" : "Top Coat Layering Mode",
+								"value" : 0,
+								"current_value" : 1,
+								"enum_values" : [ "Reflectivity", "Weighted", "Fresnel", "Custom Curve" ]
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Reflectivity",
+								"type" : "float",
+								"label" : "Reflectivity",
+								"visible" : false,
+								"value" : 0.5,
+								"current_value" : 0.5,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat IOR",
+								"type" : "float",
+								"label" : "Top Coat IOR",
+								"visible" : false,
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Normal",
+								"type" : "float",
+								"label" : "Top Coat Curve 0",
+								"visible" : false,
+								"value" : 0.04,
+								"current_value" : 0.04,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Grazing",
+								"type" : "float",
+								"label" : "Top Coat Curve 90",
+								"visible" : false,
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Curve Exponent",
+								"type" : "float",
+								"label" : "Top Coat Curve Exponent",
+								"visible" : false,
+								"value" : 5,
+								"current_value" : 5,
+								"min" : 0,
+								"max" : 10,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Anisotropy",
+								"type" : "float",
+								"label" : "Top Coat Anisotropy",
+								"value" : 0,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Rotations",
+								"type" : "float",
+								"label" : "Top Coat Rotations",
+								"value" : 0,
+								"current_value" : 0.25,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Anisotropy",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Thin Film",
+								"type" : "float",
+								"label" : "Top Coat Thin Film",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 100,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Thin Film IOR",
+								"type" : "float",
+								"label" : "Top Coat Thin Film IOR",
+								"value" : 1.5,
+								"current_value" : 1.5,
+								"min" : 1,
+								"max" : 5,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Top Coat/Thin Film",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 1, 1, 1 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Bump Mode",
+								"type" : "enum",
+								"label" : "Top Coat Bump Mode",
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Height Map", "Normal Map" ]
+							},
+							"group" : "/Top Coat/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Top Coat Bump",
+								"type" : "float",
+								"label" : "Top Coat Bump",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 50,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Top Coat/Bump",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4, 0.5882353, 0.4 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Thin Walled",
+								"type" : "bool",
+								"label" : "Thin Walled",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Volume/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Transmitted Measurement Distance",
+								"type" : "float",
+								"label" : "Transmitted Measurement Distance",
+								"visible" : false,
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Transmission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Transmitted Color",
+								"type" : "float_color",
+								"label" : "Transmitted Color",
+								"visible" : false,
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Volume/Transmission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Mode",
+								"type" : "enum",
+								"label" : "SSS Mode",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Mono", "Chromatic" ]
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Scattering Measurement Distance",
+								"type" : "float",
+								"label" : "Scattering Measurement Distance",
+								"visible" : false,
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Amount",
+								"type" : "float",
+								"label" : "SSS Amount",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Color",
+								"type" : "float_color",
+								"label" : "SSS Color",
+								"visible" : false,
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SSS Direction",
+								"type" : "float",
+								"label" : "SSS Direction",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -1,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Volume/Scattering",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.4941176, 0.4039216, 0.5882353 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Color",
+								"type" : "float_color",
+								"label" : "Emission Color",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 0,
+								"mappable" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Temperature",
+								"type" : "float",
+								"label" : "Emission Temperature (K)",
+								"visible" : false,
+								"value" : 6500,
+								"current_value" : 6500,
+								"min" : 0,
+								"max" : 10000,
+								"clamped" : true,
+								"step_size" : 100
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Two Sided Light",
+								"type" : "bool",
+								"label" : "Two Sided Light",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Emission Profile",
+								"type" : "file",
+								"label" : "Emission Profile",
+								"visible" : false,
+								"value" : "",
+								"current_value" : "",
+								"file_type" : "file_open",
+								"file_display_text" : "",
+								"file_filter" : "IES (*.ies)"
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminance",
+								"type" : "float",
+								"label" : "Luminance",
+								"visible" : false,
+								"value" : 1500,
+								"current_value" : 1500,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 50,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminance Units",
+								"type" : "enum",
+								"label" : "Luminance Units",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "cd/m^2", "kcd/m^2", "cd/ft^2", "cd/cm^2", "lm", "W" ]
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Luminous Efficacy",
+								"type" : "float",
+								"label" : "Luminous Efficacy (lm/W)",
+								"visible" : false,
+								"value" : 15,
+								"current_value" : 15,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 5
+							},
+							"group" : "/Emission",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 1, 1, 0.8 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Cutout Opacity",
+								"type" : "float",
+								"label" : "Cutout Opacity",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 1,
+								"default_image_gamma" : 1,
+								"mappable" : true
+							},
+							"group" : "/Geometry/Cutout",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Displacement Strength",
+								"type" : "float",
+								"label" : "Displacement Strength",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 2,
+								"clamped" : true,
+								"step_size" : 0.01,
+								"default_image_gamma" : 1,
+								"mappable" : true,
+								"invalid_without_map" : true
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Minimum Displacement",
+								"type" : "float",
+								"label" : "Minimum Displacement",
+								"value" : -0.1,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Maximum Displacement",
+								"type" : "float",
+								"label" : "Maximum Displacement",
+								"value" : 0.1,
+								"current_value" : 0.1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "SubD Displacement Level",
+								"type" : "int",
+								"label" : "SubD Displacement Level",
+								"value" : 0,
+								"current_value" : 4,
+								"min" : 0,
+								"max" : 12,
+								"clamped" : true,
+								"step_size" : 1
+							},
+							"group" : "/Geometry/Displacement",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Horizontal Tiles",
+								"type" : "float",
+								"label" : "Horizontal Tiles",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Horizontal Offset",
+								"type" : "float",
+								"label" : "Horizontal Offset",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Vertical Tiles",
+								"type" : "float",
+								"label" : "Vertical Tiles",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Vertical Offset",
+								"type" : "float",
+								"label" : "Vertical Offset",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : -10000,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Tiling",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Radius",
+								"type" : "float",
+								"label" : "Round Corners Radius",
+								"value" : 0,
+								"current_value" : 0,
+								"min" : 0,
+								"max" : 10000,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Across Materials",
+								"type" : "bool",
+								"label" : "Round Corners Across Materials",
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Round Corners Roundness",
+								"type" : "float",
+								"label" : "Round Corners Roundness",
+								"value" : 1,
+								"current_value" : 1,
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true,
+								"step_size" : 0.01
+							},
+							"group" : "/Geometry/Smoothing",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Roughness Squared",
+								"type" : "bool",
+								"label" : "Roughness Squared",
+								"visible" : false,
+								"value" : true,
+								"current_value" : true
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Glossiness Squared",
+								"type" : "bool",
+								"label" : "Glossiness Squared",
+								"visible" : false,
+								"value" : true,
+								"current_value" : false
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "BSDF Type",
+								"type" : "enum",
+								"label" : "BSDF Type",
+								"visible" : false,
+								"value" : 0,
+								"current_value" : 0,
+								"enum_values" : [ "Standard Glossy", "Beckmann Smith", "GGX Smith", "Beckmann VCavities", "GGX VCavities", "Ward Geisler Moroder" ]
+							},
+							"group" : "/Settings",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "OutlineColorID",
+								"type" : "color",
+								"label" : "Material ID",
+								"value" : [ 0, 0, 0 ],
+								"current_value" : [ 0, 0, 0 ],
+								"min" : 0,
+								"max" : 1,
+								"clamped" : true
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						},
+						{
+							"channel" : {
+								"id" : "Exclude From White Mode",
+								"type" : "bool",
+								"label" : "Exclude From White Mode",
+								"value" : false,
+								"current_value" : false
+							},
+							"group" : "/General",
+							"presentation" : {
+								"type" : "",
+								"label" : "",
+								"description" : "",
+								"icon_large" : "",
+								"colors" : [ [ 0.5019608, 0.5019608, 0.5019608 ], [ 0.5019608, 0.5019608, 0.5019608 ] ]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"scene" : {
+		"nodes" : [
+			{
+				"id" : "TroubadourPants_7924",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#TroubadourPants_7924",
+				"name" : "TroubadourPants_7924",
+				"label" : "loot",
+				"geometries" : [
+					{
+						"id" : "TroubadourPants",
+						"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#TroubadourPants",
+						"name" : "TroubadourPants",
+						"label" : "shape",
+						"type" : "subdivision_surface",
+						"current_subdivision_level" : 1,
+						"edge_interpolation_mode" : "edges_only",
+						"subd_normal_smoothing_mode" : "smooth_all_normals",
+						"extra" : [
+							{
+								"type" : "studio_geometry_channels",
+								"channels" : [
+									{
+										"channel" : {
+											"id" : "SubDRenderLevel",
+											"type" : "int",
+											"current_value" : 0
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				"preview" : {
+					"type" : "figure",
+					"oriented_box" : {
+						"min" : [ -18.347, 1.219, -12.429 ],
+						"max" : [ 17.855, 162.479, 16.366 ]
+					},
+					"center_point" : [ 0, 0, 0 ],
+					"end_point" : [ 0, 103.876, 0 ],
+					"rotation_order" : "YXZ"
+				},
+				"rotation" : [
+					{
+						"id" : "x",
+						"type" : "float",
+						"name" : "XRotate",
+						"current_value" : -90
+					}
+				],
+				"translation" : [
+					{
+						"id" : "y",
+						"type" : "float",
+						"name" : "YTranslate",
+						"current_value" : 1.491546
+					},
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZTranslate",
+						"current_value" : 82.2911
+					}
+				],
+				"scale" : [
+					{
+						"id" : "z",
+						"type" : "float",
+						"name" : "ZScale",
+						"current_value" : 0.12
+					}
+				],
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Fit to Mode",
+									"type" : "enum",
+									"current_value" : 0
+								},
+								"group" : "/General/Constraints"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "hip",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#hip",
+				"name" : "hip",
+				"label" : "Hip",
+				"parent" : "#TroubadourPants_7924",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 103.6848, -0.1028241 ],
+					"end_point" : [ 0, 87.08881, 0.1308831 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "pelvis",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#pelvis",
+				"name" : "pelvis",
+				"label" : "Pelvis",
+				"parent" : "#hip",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -17.383, -21.032, -13.922 ],
+						"max" : [ 17.362, 2.441, 10.495 ]
+					},
+					"center_point" : [ 0, 105.6072, 1.656649 ],
+					"end_point" : [ 0, 86.96108, 1.959626 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lThigh",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lThigh",
+				"name" : "lThigh",
+				"label" : "Left Thigh",
+				"parent" : "#pelvis",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -9.334, -42.667, -13.078 ],
+						"max" : [ 9.069, -0.325, 10.652 ]
+					},
+					"center_point" : [ 8.11819, 95.61431, 0.494624 ],
+					"end_point" : [ 10.10139, 52.89966, 0.6202926 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lShin",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lShin",
+				"name" : "lShin",
+				"label" : "Left Shin",
+				"parent" : "#lThigh",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -6.689, -40.721, -9.691 ],
+						"max" : [ 7.563, 3.522, 6.403 ]
+					},
+					"center_point" : [ 10.10139, 52.89966, 0.6202926 ],
+					"end_point" : [ 11.04877, 8.41254, -2.461351 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : false
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lFoot",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lFoot",
+				"name" : "lFoot",
+				"label" : "Left Foot",
+				"parent" : "#lShin",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -1.058, 0.129, -2.963 ],
+						"max" : [ 1.103, 7.942, 0.547 ]
+					},
+					"center_point" : [ 11.10093, 6.357071, -2.488967 ],
+					"end_point" : [ 14.16012, 2.78636, 9.065422 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : false
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lToe",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lToe",
+				"name" : "lToe",
+				"label" : "Left Toes",
+				"parent" : "#lFoot",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 14.57013, 1.906616, 9.488194 ],
+					"end_point" : [ 16.31206, 0.8429939, 16.0564 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rThigh",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rThigh",
+				"name" : "rThigh",
+				"label" : "Right Thigh",
+				"parent" : "#pelvis",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -9.117, -42.642, -13.095 ],
+						"max" : [ 9.66, -0.223, 10.665 ]
+					},
+					"center_point" : [ -8.11819, 95.61431, 0.494624 ],
+					"end_point" : [ -10.10139, 52.89966, 0.6202926 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rShin",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rShin",
+				"name" : "rShin",
+				"label" : "Right Shin",
+				"parent" : "#rThigh",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -8.231, -41, -10.283 ],
+						"max" : [ 6.649, 3.709, 6.387 ]
+					},
+					"center_point" : [ -10.10139, 52.89966, 0.6202926 ],
+					"end_point" : [ -11.04877, 8.41254, -2.461351 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : false
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rFoot",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rFoot",
+				"name" : "rFoot",
+				"label" : "Right Foot",
+				"parent" : "#rShin",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -1.121, 0.35, -3.385 ],
+						"max" : [ 0.796, 7.68, 1.755 ]
+					},
+					"center_point" : [ -11.10093, 6.357071, -2.488967 ],
+					"end_point" : [ -14.16012, 2.78636, 9.065422 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : false
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rToe",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rToe",
+				"name" : "rToe",
+				"label" : "Right Toes",
+				"parent" : "#rFoot",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -14.57013, 1.906616, 9.488194 ],
+					"end_point" : [ -16.31206, 0.8429939, 16.0564 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#abdomen",
+				"name" : "abdomen",
+				"label" : "Abdomen",
+				"parent" : "#hip",
+				"preview" : {
+					"type" : "bone",
+					"oriented_box" : {
+						"min" : [ -14.474, 0.916, -6.626 ],
+						"max" : [ 14.397, 6.701, 13.757 ]
+					},
+					"center_point" : [ 0, 102.5127, -1.556905 ],
+					"end_point" : [ 0, 112.6809, -1.469721 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : false
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "abdomen2",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#abdomen2",
+				"name" : "abdomen2",
+				"label" : "Abdomen 2",
+				"parent" : "#abdomen",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 112.6809, -1.469721 ],
+					"end_point" : [ 0, 126.059, -4.673218 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "chest",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#chest",
+				"name" : "chest",
+				"label" : "Chest",
+				"parent" : "#abdomen2",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 126.059, -4.673218 ],
+					"end_point" : [ 0, 153.2278, -4.655901 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "neck",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#neck",
+				"name" : "neck",
+				"label" : "Neck",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 0, 153.5817, -4.22459 ],
+					"end_point" : [ 0, 162.2025, -2.025626 ],
+					"rotation_order" : "YZX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rCollar",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rCollar",
+				"name" : "rCollar",
+				"label" : "Right Collar",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -1.78918, 145.7785, 0.05650234 ],
+					"end_point" : [ -15.73757, 149.4498, -5.123279 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lCollar",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lCollar",
+				"name" : "lCollar",
+				"label" : "Left Collar",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 1.78918, 145.7785, 0.05650234 ],
+					"end_point" : [ 15.73757, 149.4498, -5.123279 ],
+					"rotation_order" : "XYZ"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "rPectoral",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#rPectoral",
+				"name" : "rPectoral",
+				"label" : "Right Pectoral",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ -3.451847, 130.5286, -8.995966 ],
+					"end_point" : [ -10.50645, 134.6824, 8.896883 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "lPectoral",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#lPectoral",
+				"name" : "lPectoral",
+				"label" : "Left Pectoral",
+				"parent" : "#chest",
+				"preview" : {
+					"type" : "bone",
+					"center_point" : [ 3.451847, 130.5286, -8.995966 ],
+					"end_point" : [ 10.50645, 134.6824, 8.896883 ],
+					"rotation_order" : "ZYX"
+				},
+				"extra" : [
+					{
+						"type" : "studio_node_channels",
+						"version" : 4,
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Point At",
+									"type" : "numeric_node",
+									"current_value" : 1,
+									"needs_node" : true,
+									"node" : null
+								},
+								"group" : "/General/Constraints"
+							},
+							{
+								"channel" : {
+									"id" : "Visible",
+									"type" : "bool",
+									"current_value" : true
+								},
+								"group" : "/Display"
+							},
+							{
+								"channel" : {
+									"id" : "Selectable",
+									"type" : "bool",
+									"label" : "Selectable (in Viewport)",
+									"current_value" : true
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"modifiers" : [
+			{
+				"id" : "Wrinkles_HD",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/Morphs/Mada/Base/Wrinkles_HD.dsf#Wrinkles_HD",
+				"parent" : "#TroubadourPants",
+				"channel" : {
+					"id" : "value",
+					"type" : "float",
+					"name" : "Value",
+					"current_value" : 1
+				},
+				"region" : "Actor",
+				"group" : "/Adjustments"
+			},
+			{
+				"id" : "BootsTuckIn",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/Morphs/Mada/Base/BootsTuckIn.dsf#BootsTuckIn",
+				"parent" : "#TroubadourPants",
+				"channel" : {
+					"id" : "value",
+					"type" : "float",
+					"name" : "Value",
+					"current_value" : 1
+				},
+				"region" : "Actor",
+				"group" : "/Morphs/Morph Loader"
+			},
+			{
+				"id" : "SkinBinding",
+				"url" : "/data/Mada/Troubadour/Troubadour%20Pants/TroubadourPants_7924.dsf#SkinBinding",
+				"parent" : "#TroubadourPants",
+				"extra" : [
+					{
+						"type" : "skin_settings",
+						"auto_normalize_general" : true,
+						"auto_normalize_local" : true,
+						"auto_normalize_scale" : true,
+						"binding_mode" : "Local",
+						"general_map_mode" : "Linear",
+						"scale_mode" : "ScaleMaps"
+					}
+				]
+			},
+			{
+				"id" : "DzMeshSmoothModifier-1",
+				"url" : "#DzMeshSmoothModifier",
+				"parent" : "#TroubadourPants_7924",
+				"extra" : [
+					{
+						"type" : "studio/modifier/smoothing"
+					}
+				]
+			}
+		],
+		"materials" : [
+			{
+				"id" : "Belt-1",
+				"url" : "#Belt",
+				"geometry" : "#TroubadourPants",
+				"groups" : [ "Belt" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "float_color",
+						"name" : "Diffuse Color",
+						"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+						"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+						"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+					}
+				},
+				"uv_set" : "/data/Mada/Troubadour/Troubadour%20Pants/UV%20Sets/Mada/Base/default.dsf#default",
+				"extra" : [
+					{
+						"type" : "studio/material/uber_iray",
+						"version" : "1.1.0.0"
+					},
+					{
+						"type" : "studio_material_channels",
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Glossy Color",
+									"type" : "float_color",
+									"current_value" : [ 1, 1, 1 ],
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Bump Strength",
+									"type" : "float",
+									"current_value" : 4,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsB.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Top Coat Weight",
+									"type" : "float",
+									"current_value" : 0.05,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Displacement Strength",
+									"type" : "float",
+									"current_value" : 1,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsD.jpg"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id" : "Pants-1",
+				"url" : "#Pants",
+				"geometry" : "#TroubadourPants",
+				"groups" : [ "Pants" ],
+				"diffuse" : {
+					"channel" : {
+						"id" : "diffuse",
+						"type" : "float_color",
+						"name" : "Diffuse Color",
+						"value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+						"current_value" : [ 0.7529412, 0.7529412, 0.7529412 ],
+						"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+					}
+				},
+				"uv_set" : "/data/Mada/Troubadour/Troubadour%20Pants/UV%20Sets/Mada/Base/default.dsf#default",
+				"extra" : [
+					{
+						"type" : "studio/material/uber_iray",
+						"version" : "1.1.0.0"
+					},
+					{
+						"type" : "studio_material_channels",
+						"channels" : [
+							{
+								"channel" : {
+									"id" : "Glossy Color",
+									"type" : "float_color",
+									"current_value" : [ 1, 1, 1 ],
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Bump Strength",
+									"type" : "float",
+									"current_value" : 4,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsB.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Top Coat Weight",
+									"type" : "float",
+									"current_value" : 0.05,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPants.jpg"
+								}
+							},
+							{
+								"channel" : {
+									"id" : "Displacement Strength",
+									"type" : "float",
+									"current_value" : 1,
+									"image_file" : "/Runtime/Textures/ShanasSoulmate/Troubador/01_TroubadorPantsD.jpg"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

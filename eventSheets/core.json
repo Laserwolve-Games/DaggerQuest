@@ -146,20 +146,9 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "mouse-button-is-down",
+							"id": "on-any-click",
 							"objectClass": "mouse",
-							"sid": 919419578550358,
-							"parameters": {
-								"mouse-button": "left"
-							}
-						},
-						{
-							"id": "mouse-button-is-down",
-							"objectClass": "mouse",
-							"sid": 647126079709070,
-							"parameters": {
-								"mouse-button": "right"
-							}
+							"sid": 986117436968797
 						},
 						{
 							"id": "on-any-key-pressed",
@@ -179,18 +168,9 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "cursor-is-over-object",
-									"objectClass": "mouse",
-									"sid": 671569229951174,
-									"parameters": {
-										"object": "npcBody"
-									},
-									"isInverted": true
-								},
-								{
 									"id": "is-playing",
 									"objectClass": "portrait",
-									"sid": 677425039121187,
+									"sid": 904602926977304,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\""
@@ -198,27 +178,103 @@
 									"isInverted": true
 								},
 								{
-									"id": "compare-two-values",
+									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 849051413122214,
+									"sid": 242168802837663,
 									"parameters": {
-										"first-value": "portrait.Count",
-										"comparison": 1,
-										"second-value": "0"
+										"object": "npc",
+										"expression": "npc.simpleName",
+										"comparison": 0,
+										"value": "tokenat(portrait.ObjectTypeName, 0, \"_\")"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "if we click anywhere that's not an NPC, and there's a portrait up (that's not currently fading out), close the dialog"
-								},
-								{
-									"callFunction": "closeDialog",
-									"sid": 797106228050498
+									"text": "Hacky way to get the simpleName of the NPC we're talking to. Won't execute if there's no portrait, or if the portrait is fading out"
 								}
 							],
-							"sid": 507640600485547
+							"sid": 669652012078468,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "npc",
+											"sid": 262831996207456,
+											"parameters": {
+												"instance-variable": "dialogCounter",
+												"comparison": 2,
+												"value": "Self.totalNumberOfDialogs"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 120307659554405,
+											"parameters": {
+												"tag": "\"dialog\""
+											}
+										},
+										{
+											"id": "add-to-instvar",
+											"objectClass": "npc",
+											"sid": 220986704829244,
+											"parameters": {
+												"instance-variable": "dialogCounter",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "dialogText",
+											"sid": 458695618403142,
+											"parameters": {
+												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & \"-\" & npc.dialogCounter, \"message\")"
+											}
+										},
+										{
+											"id": "play-by-name",
+											"objectClass": "Audio",
+											"sid": 245700396720765,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "npc.simpleName & \"-\" & npc.dialogCounter",
+												"loop": "not-looping",
+												"volume": "0",
+												"stereo-pan": "0",
+												"tag-optional": "\"dialog\""
+											}
+										}
+									],
+									"sid": 122273772861190
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 238872463714918
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if this NPC doesn't have any more dialog, close the dialog"
+										},
+										{
+											"callFunction": "closeDialog",
+											"sid": 858216172980631
+										}
+									],
+									"sid": 480718852451277
+								}
+							]
 						}
 					],
 					"isOrBlock": true
@@ -325,21 +381,18 @@
 								{
 									"id": "set-text",
 									"objectClass": "dialogText",
-									"sid": 211248982798476,
+									"sid": 393301845846510,
 									"parameters": {
-										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName, \"message\")"
+										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & \"-\" & npc.dialogCounter, \"message\")"
 									}
 								},
 								{
-									"type": "comment",
-									"text": "TODO: This will need a refactor for chaining dialogs"
-								},
-								{
-									"id": "play",
+									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 812468966864708,
+									"sid": 443303467024708,
 									"parameters": {
-										"audio-file": "welcomeToDaggerquest",
+										"folder": "sounds",
+										"audio-file-name": "npc.simpleName & \"-\" & npc.dialogCounter",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -584,7 +637,19 @@
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
-					"conditions": [],
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 456642456581571,
+							"parameters": {
+								"object": "npc",
+								"expression": "npc.simpleName",
+								"comparison": 0,
+								"value": "tokenat(portrait.ObjectTypeName, 0, \"_\")"
+							}
+						}
+					],
 					"actions": [
 						{
 							"id": "fade-volume",
@@ -595,6 +660,15 @@
 								"db": "-100",
 								"duration": ".2",
 								"ending": "stop"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "npc",
+							"sid": 749519782918544,
+							"parameters": {
+								"instance-variable": "dialogCounter",
+								"value": "1"
 							}
 						},
 						{
@@ -627,6 +701,14 @@
 							]
 						},
 						{
+							"id": "set-text",
+							"objectClass": "dialogText",
+							"sid": 714648981532825,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
 							"id": "unload-object-images",
 							"objectClass": "System",
 							"sid": 659778460881200,
@@ -636,6 +718,27 @@
 						}
 					],
 					"sid": 396375011211115
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-height",
+							"objectClass": "dialogText",
+							"sid": 586932421352978,
+							"parameters": {
+								"comparison": 2,
+								"height": "Self.TextHeight"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "if the dialog text doesn't fit in the dialog box..."
+						}
+					],
+					"sid": 181299880680297
 				}
 			],
 			"sid": 217312584951758
@@ -5677,6 +5780,16 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 488381926979635,
+											"parameters": {
+												"first-value": "portrait.Count",
+												"comparison": 0,
+												"second-value": "0"
+											}
+										},
+										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
 											"sid": 844520078268042,
@@ -10210,6 +10323,16 @@
 									"sid": 626771208311706,
 									"behaviorType": "DragDrop",
 									"isInverted": true
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 521850753428329,
+									"parameters": {
+										"first-value": "portrait.Count",
+										"comparison": 0,
+										"second-value": "0"
+									}
 								}
 							],
 							"actions": [],
@@ -14943,7 +15066,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "mods",
-			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter is events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing boolean.",
+			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter is events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing a boolean.",
 			"isActiveOnStart": true,
 			"children": [
 				{

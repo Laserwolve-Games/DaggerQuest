@@ -676,12 +676,13 @@
 						},
 						{
 							"type": "comment",
-							"text": "'toolip' and all overlay layers above can't be re-organized, all overlay layers beneath it can be reorganized"
+							"text": "'toolip' and all overlay layers above can't be re-organized, all overlay layers beneath it can be reorganized. If we change layouts with this event enabled, overlay sprites get sent to the wrong layer (since global sprites go to their matching layout number, and re-organizing layers messes with their number).\n\nThe ability to dynamically sort layers would require a refactor of overlay layers to put all their content on one layer."
 						},
 						{
 							"id": "move-layer",
 							"objectClass": "System",
 							"sid": 640757650997869,
+							"disabled": true,
 							"parameters": {
 								"layer": "statue.LayerName",
 								"insert-by": "\"tooltip\"",

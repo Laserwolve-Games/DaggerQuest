@@ -89,7 +89,7 @@
 			"eventType": "variable",
 			"name": "nextAvailableIdentifier",
 			"type": "number",
-			"initialValue": "5",
+			"initialValue": "1",
 			"comment": "Stores the next available identifier, to be assigned to equipment",
 			"isStatic": false,
 			"isConstant": false,
@@ -1227,6 +1227,41 @@
 							]
 						},
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "loot",
+									"sid": 198963619407955
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "This isn't a part of the 'spawnLoot' function because we need it to work for loot that's already in a layout."
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "loot",
+									"sid": 500570871920815,
+									"parameters": {
+										"instance-variable": "identifier",
+										"value": "nextAvailableIdentifier"
+									}
+								},
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 292727294235481,
+									"parameters": {
+										"variable": "nextAvailableIdentifier",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 328634154225649
+						},
+						{
 							"functionName": "spawnLoot",
 							"functionDescription": "spawn loot at the specified location",
 							"functionCategory": "equipment",
@@ -1437,24 +1472,6 @@
 											"parameters": {
 												"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
 												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 500570871920815,
-											"parameters": {
-												"instance-variable": "identifier",
-												"value": "nextAvailableIdentifier"
-											}
-										},
-										{
-											"id": "add-to-eventvar",
-											"objectClass": "System",
-											"sid": 292727294235481,
-											"parameters": {
-												"variable": "nextAvailableIdentifier",
-												"value": "1"
 											}
 										},
 										{
@@ -8400,6 +8417,36 @@
 								}
 							],
 							"sid": 835072886302918
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-animation-finished",
+									"objectClass": "body",
+									"sid": 923412821682976
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 773254931052533,
+									"parameters": {
+										"first-value": "find(body.AnimationName, \"die\")",
+										"comparison": 1,
+										"second-value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "changeLayout",
+									"sid": 568044559066518,
+									"parameters": [
+										"\"mainMenu\""
+									]
+								}
+							],
+							"sid": 585228322466707
 						},
 						{
 							"eventType": "block",

@@ -139,12 +139,22 @@
 									"sid": 604210080512177,
 									"behaviorType": "Tween",
 									"isInverted": true
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 348238499112665,
+									"parameters": {
+										"first-value": "portrait.Count",
+										"comparison": 0,
+										"second-value": "0"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "The settings menu can't be opened while anything else is fading"
+									"text": "The settings menu can't be opened while anything else is fading, or while dialog is open"
 								}
 							],
 							"sid": 246816430830739,

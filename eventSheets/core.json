@@ -9977,12 +9977,22 @@
 										"comparison": 0,
 										"second-value": "statue.Count"
 									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 360007847870647,
+									"parameters": {
+										"first-value": "portrait.Count",
+										"comparison": 0,
+										"second-value": "0"
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "you can only open regular menus when the settings menu isn't open, you currently aren't rearranging menus, and no other menus are currently fading in or out"
+									"text": "you can only open regular menus when the settings menu isn't open, you currently aren't rearranging menus, there's no open dialog, and no other menus are currently fading in or out"
 								}
 							],
 							"sid": 589869390653306,

@@ -131,7 +131,7 @@ if (nTotalNumberOfInstances)
 				if (sAnimationName !== 'default') sAngleSuffix = '_' + nConstructAngle;
 
 				var sFinalFilePath;
-				if (bIsNewConstructObject) sFinalFilePath = 'C:/DaggerQuest/assets/output/' + sName + sNameSuffix + '/' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				if (bIsNewConstructObject) sFinalFilePath = 'C:/DaggerQuest/assets/output/' + sName + sNameSuffix + '/' + sAnimationName + sAngleSuffix + '/' + ("000"+ nFrame).slice(-3) + '.png';
 				else sFinalFilePath = 'C:/DaggerQuest/images/' + sName + sNameSuffix + '-' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
 
 				if (oInputDirectory.exists(sFinalFilePath) && bSkipExistingImages) continue;	// If the image we're going to make already exists, skip it if we have flagged as such.

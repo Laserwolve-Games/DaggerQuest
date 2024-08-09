@@ -6470,6 +6470,42 @@
 										}
 									],
 									"sid": 571517915827350
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-moving",
+											"objectClass": "player",
+											"sid": 120440326067983,
+											"behaviorType": "MoveTo",
+											"isInverted": true
+										},
+										{
+											"id": "every-x-seconds",
+											"objectClass": "System",
+											"sid": 137589272368104,
+											"parameters": {
+												"interval-seconds": "0.5"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Reset `uidOfClicked` if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects the player is immediately next to."
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 524158241389758,
+											"parameters": {
+												"variable": "uidOfClicked",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 266905876334575
 								}
 							]
 						},
@@ -6512,6 +6548,65 @@
 								}
 							],
 							"sid": 736875311258128
+						},
+						{
+							"functionName": "restorePlayerControl",
+							"functionDescription": "Reinstate the player's ability to be controlled.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "player",
+									"sid": 643399585083089,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"enabled": true
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 383649548141485,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 533556035067991,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 333285596495495,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "activated"
+									}
+								},
+								{
+									"callFunction": "updateAnimations",
+									"sid": 292802945507973,
+									"parameters": [
+										"\"idle\"",
+										"player.movementSpeed / ANIMATION_DIVISOR",
+										"\"playFromBeginning\""
+									]
+								}
+							],
+							"sid": 361057401424902
 						}
 					],
 					"sid": 914713205483917
@@ -8442,6 +8537,15 @@
 										"player.movementSpeed / ANIMATION_DIVISOR",
 										"\"playFromBeginning\""
 									]
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 947122063729597,
+									"parameters": {
+										"variable": "uidOfClicked",
+										"value": "0"
+									}
 								}
 							],
 							"sid": 626061452344026
@@ -8923,65 +9027,6 @@
 				{
 					"eventType": "comment",
 					"text": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
-				},
-				{
-					"functionName": "restorePlayerControl",
-					"functionDescription": "Reinstate the player's ability to be controlled.",
-					"functionCategory": "player",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-enabled",
-							"objectClass": "player",
-							"sid": 800435097808036,
-							"behaviorType": "MoveTo",
-							"parameters": {
-								"enabled": true
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 159773680715058,
-							"parameters": {
-								"group-name": "\"movement and interaction\"",
-								"state": "activated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 409026666473738,
-							"parameters": {
-								"group-name": "\"facings\"",
-								"state": "activated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 525324082446416,
-							"parameters": {
-								"group-name": "\"abilities\"",
-								"state": "activated"
-							}
-						},
-						{
-							"callFunction": "updateAnimations",
-							"sid": 904610353053470,
-							"parameters": [
-								"\"idle\"",
-								"player.movementSpeed / ANIMATION_DIVISOR",
-								"\"playFromBeginning\""
-							]
-						}
-					],
-					"sid": 770197937165013
 				}
 			],
 			"sid": 254080374675516

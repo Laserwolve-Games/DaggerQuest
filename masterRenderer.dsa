@@ -1,11 +1,11 @@
 var oContentMgr = App.getContentMgr();
 var nTotalNumberOfInstances = App.scriptArgs[0];
-oContentMgr.openFile('C:/assets/templates/masterTemplate.duf', false);
+oContentMgr.openFile('C:/DaggerQuest/assets/templates/masterTemplate.duf', false);
 
 if (nTotalNumberOfInstances)
 {
 	var nInstanceNumber = App.instanceName();
-	var oInputDirectory = new DzDir('C:/assets/input');
+	var oInputDirectory = new DzDir('C:/DaggerQuest/assets/input');
 	var aSubjects = oInputDirectory.getFilesFromDir(['*_subject.duf'], true);
 	var aAnimations = oInputDirectory.getFilesFromDir(['*_animation.duf'], true);
 	var aGear = oInputDirectory.getFilesFromDir(['*_gear.duf'], true);
@@ -27,7 +27,8 @@ if (nTotalNumberOfInstances)
 	var nTicksPerFrame = nDAZ_TICKS / nFrameRate;
 	var oRoot = Scene.findNodeByLabel('root');
 	var oShadowPlane = Scene.findNodeByLabel('shadowPlane');
-	var bIsNewConstructObject = true;
+	var bIsNewConstructObject = true; 	// if this is false, the below should also be false.
+	var bSkipExistingImages = false;	// We will always be replacing existing images when we are exporting to the images folder.
 
 	/*********************************************************************/
 	function getName(sFileName) // Obtain the desired name out of a filepath or filename.
@@ -129,14 +130,11 @@ if (nTotalNumberOfInstances)
 				if (bIsShadow) sNameSuffix += '_shadow';
 				if (sAnimationName !== 'default') sAngleSuffix = '_' + nConstructAngle;
 
-				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
-				var bImageAlreadyExists = oInputDirectory.exists(sFinalFilePath);
+				var sFinalFilePath;
+				if (bIsNewConstructObject) sFinalFilePath = 'C:/DaggerQuest/assets/output/' + sName + sNameSuffix + '/' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
+				else sFinalFilePath = 'C:/DaggerQuest/images/' + sName + sNameSuffix + '-' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
 
-				// If we're making a new Construct object, and this particular image already exists, skip it.
-				// Applicable situations: Power outages, breaking a large render into chunks, needing to pause a render
-				// If we're replacing an existing object, and this particular image doesn't exist, skip it as well.
-				//Applicable situations: Rendering an object with less frames than it previously had, rendering an object with less than nAngles angles.
-				if ((!bIsNewConstructObject && !oInputDirectory.exists(sFinalFilePath)) || (bIsNewConstructObject && bImageAlreadyExists)) continue;
+				if (oInputDirectory.exists(sFinalFilePath) && bSkipExistingImages) continue;	// If the image we're going to make already exists, skip it if we have flagged as such.
 				oRenderOptions.renderImgFilename = sFinalFilePath; // Set the filepath.
 
 				Scene.setFrame(nFrame);

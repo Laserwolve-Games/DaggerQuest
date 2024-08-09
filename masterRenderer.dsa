@@ -2,7 +2,8 @@ var oContentMgr = App.getContentMgr();
 var nTotalNumberOfInstances = App.scriptArgs[0];
 oContentMgr.openFile('C:/assets/templates/masterTemplate.duf', false);
 
-if (nTotalNumberOfInstances) {
+if (nTotalNumberOfInstances)
+{
 	var nInstanceNumber = App.instanceName();
 	var oInputDirectory = new DzDir('C:/assets/input');
 	var aSubjects = oInputDirectory.getFilesFromDir(['*_subject.duf'], true);
@@ -35,16 +36,18 @@ if (nTotalNumberOfInstances) {
 	}
 	/*********************************************************************/
 	function setMatte(bBool) // Set the Matte Parameter of a subject and its children.
-	{
+	{	
 		if (oSubjectMatteParameter) oSubjectMatteParameter.setValue(bBool);
-
-		for (var i = 0; i != aSubjectChildren.length; i++) {
+		
+		for (var i = 0; i != aSubjectChildren.length; i++)
+		{
 			var oChildMatteParameter = aSubjectChildren[i].findPropertyByLabel('Enable Iray Matte');
 			if (oChildMatteParameter) oChildMatteParameter.setValue(bBool);
 		}
 	}
 	/*********************************************************************/
-	function renderCore(sName, sAnimationName, bIsGear, bIsShadow) {
+	function renderCore(sName, sAnimationName, bIsGear, bIsShadow)
+	{
 		if (aChildPropertyControllers) for (var i = 0; i != aChildPropertyControllers.length; i++) // then for each of the child property controllers...
 		{
 			/* 
@@ -64,7 +67,7 @@ if (nTotalNumberOfInstances) {
 			var oTarget;
 			if (sTargetMaterial) oTarget = oSceneHelper.findPropertyOnMaterialByLabel(sTargetPropertyName, oTargetNode.getObject().getCurrentShape().findMaterial(sTargetMaterial));
 			else oTarget = oSceneHelper.findPropertyOnNodeByLabel(sTargetPropertyName, oTargetNode);
-
+			
 			oTarget.linkTo(oChildPropertyController);
 		}
 
@@ -74,7 +77,8 @@ if (nTotalNumberOfInstances) {
 		for (var nAngle = 0; nAngle != nDEGREES_IN_CIRCLE; nAngle = nAngle + nDegrees) // Loop through each angle...
 		{
 			var nConstructAngle;
-			switch (nAngle) {
+			switch (nAngle)
+			{
 				// Construct's 0 degrees is east, Daz is south.
 				// Construct's degrees rotate counter-clockwise, Daz rotates clockwise.
 				// Construct degrees range from -180 to 180, or 0 to 360, depending on the system. Daz can accept either but defaults to 0 to 360.
@@ -110,7 +114,7 @@ if (nTotalNumberOfInstances) {
 					break;
 				case 337.5: nConstructAngle = 112.5;
 					break;
-			}
+			}			
 			for (var nFrame = 0; nFrame <= nFramesTotal; nFrame++) // Loop through each frame...
 			{
 				// subtract 1 from the instance number to make it 0 based.
@@ -125,7 +129,7 @@ if (nTotalNumberOfInstances) {
 				if (bIsShadow) sNameSuffix += '_shadow';
 				if (sAnimationName !== 'default') sAngleSuffix = '_' + nConstructAngle;
 
-				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix + '-' + sAnimationName + sAngleSuffix + '-' + ("000" + nFrame).slice(-3) + '.png';
+				var sFinalFilePath = 'C:/DaggerQuest/imagesStaging/' + sName + sNameSuffix  + '-' + sAnimationName + sAngleSuffix + '-' + ("000"+ nFrame).slice(-3) + '.png';
 				var bImageAlreadyExists = oInputDirectory.exists(sFinalFilePath);
 
 				// If we're making a new Construct object, and this particular image already exists, skip it.
@@ -138,29 +142,31 @@ if (nTotalNumberOfInstances) {
 				Scene.setFrame(nFrame);
 				oRoot.getYRotControl().setValue(nAngle); // Do this every frame, or else it will interpolate.
 
-				if (bIsShadow) {
+				if (bIsShadow)
+				{
 					oEnvironmentModeProperty.setValue(3); // Scene Only
 					oDrawGroundProperty.setValue(true);
 					oShadowPlane.setVisible(true);
 					oActiveCanvasProperty.setValue(0);
 					if (bIsGear) setMatte(true);
 				}
-				else {
+				else
+				{
 					oEnvironmentModeProperty.setValue(2); // Sun-Sky Only
 					oDrawGroundProperty.setValue(false);
 					oShadowPlane.setVisible(false);
 					setMatte(false);
 					if (bIsGear) oActiveCanvasProperty.setValue(1);
 				}
-
-				while (backgroundProgressIsActive()) processEvents();		// Wait for everything else to finish first, specifically the mesh smoother, then render.
+				
+				while(backgroundProgressIsActive()) processEvents();		// Wait for everything else to finish first, specifically the mesh smoother, then render.
 				oRenderMgr.doRender();
 
 				var oCanvasDirectory = DzDir(sFinalFilePath.replace('.png', '_canvases'));
 
 				if (oCanvasDirectory.exists())  // If a canvases were made, delete all of them, then delete the canvas folder.
 				{
-					var aCanvases = oCanvasDirectory.getFilesFromDir(['*.exr'], true);
+					var aCanvases = oCanvasDirectory.getFilesFromDir(['*.exr'], true); 
 					for (var i = 0; i != aCanvases.length; i++) oCanvasDirectory.remove(aCanvases[i]);
 					oCanvasDirectory.rmdir();
 				}
@@ -212,7 +218,7 @@ if (nTotalNumberOfInstances) {
 				var aGearChildren = oGear.getNodeChildren(false);
 
 				oIrayOptions.addNodeToNodeList('visibleNodes', oGear); // Add the gear to the canvas.
-
+				
 				for (var ii = 0; ii != aGearChildren.length; ii++) oIrayOptions.addNodeToNodeList('visibleNodes', aGearChildren[ii]); // Add all gear children to the canvas as well.
 
 				renderCore(sSubjectName + '_' + sGearName, sAnimationName, true, false);

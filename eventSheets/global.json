@@ -139,21 +139,16 @@
 									"sid": 604210080512177,
 									"behaviorType": "Tween",
 									"isInverted": true
-								},
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "player",
-									"sid": 112465714218820,
-									"parameters": {
-										"instance-variable": "talkingToNpc"
-									},
-									"isInverted": true
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "The settings menu can't be opened while anything else is fading, or while dialog is open"
+									"text": "The settings menu can't be opened while anything else is fading"
+								},
+								{
+									"callFunction": "closeDialog",
+									"sid": 957012793684221
 								}
 							],
 							"sid": 246816430830739,

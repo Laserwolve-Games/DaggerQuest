@@ -393,7 +393,7 @@
 								"relocateToX": 0,
 								"relocateToY": 0,
 								"busyCastingAbility": false,
-								"talkingToNpc": false
+								"talkingToNpc": "none"
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -509,10 +509,11 @@
 								"simpleName": "guide",
 								"fullName": "The Guide",
 								"degrees": 0,
-								"interactRange": 250,
+								"interactRange": 260,
 								"dialogCounter": 1,
 								"totalNumberOfDialogs": 2,
-								"isMerchant": false
+								"isMerchant": false,
+								"storeRange": 0
 							},
 							"behaviors": {
 								"Solid": {
@@ -1320,10 +1321,11 @@
 								"simpleName": "merchant",
 								"fullName": "The Merchant",
 								"degrees": 0,
-								"interactRange": 250,
+								"interactRange": 125,
 								"dialogCounter": 1,
 								"totalNumberOfDialogs": 2,
-								"isMerchant": true
+								"isMerchant": true,
+								"storeRange": 250
 							},
 							"behaviors": {
 								"Solid": {
@@ -1384,7 +1386,7 @@
 							},
 							"world": {
 								"x": 3219,
-								"y": 3775,
+								"y": 3848,
 								"width": 80,
 								"height": 26.666667,
 								"originX": 0.5,
@@ -10743,7 +10745,7 @@
 					},
 					"world": {
 						"x": 3219,
-						"y": 3775,
+						"y": 3848,
 						"width": 61,
 						"height": 216,
 						"originX": 0.5901639344262295,
@@ -18295,6 +18297,23 @@
 							"sceneGraphData": {
 								"parent-uid": 26,
 								"uid": 111,
+								"children": [
+									{
+										"uid": 209,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -18319,6 +18338,10 @@
 									"transformO": 0,
 									"previewSceneGraph": false
 								}
+							},
+							"instanceFolderItem": {
+								"sid": 199030048786937,
+								"expanded": true
 							},
 							"world": {
 								"x": 1515,
@@ -19920,6 +19943,93 @@
 								"angle": 0,
 								"zElevation": 0
 							}
+						},
+						{
+							"type": "coins_item",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 209,
+							"sid": 762489487599156,
+							"tags": "",
+							"instanceVariables": {
+								"identifier": 1,
+								"simpleName": "coins",
+								"fullName": "Coins",
+								"type": "coins",
+								"lore": "Just a few more...",
+								"level": 0,
+								"mods": "",
+								"classRestrictions": "",
+								"modTable": "",
+								"sound": "",
+								"quantity": 10
+							},
+							"behaviors": {
+								"DragDrop": {
+									"properties": {
+										"axes": "both",
+										"enabled": true
+									}
+								},
+								"Tween": {
+									"properties": {
+										"enabled": true
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": 111,
+								"uid": 209,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 762489487599156,
+								"expanded": true
+							},
+							"world": {
+								"x": 1515,
+								"y": 45,
+								"width": 62,
+								"height": 62,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
 						}
 					],
 					"sid": 596748886235930,
@@ -19970,7 +20080,8 @@
 							"tags": "",
 							"instanceVariables": {
 								"originalX": 0,
-								"originalY": 0
+								"originalY": 0,
+								"merchantStore": "none"
 							},
 							"behaviors": {
 								"Anchor": {
@@ -30144,7 +30255,7 @@
 					"sid": 527861190726981,
 					"effectTypes": [],
 					"isInitiallyVisible": true,
-					"isInitiallyInteractive": false,
+					"isInitiallyInteractive": true,
 					"isHTMLElementsLayer": false,
 					"color": [
 						1,

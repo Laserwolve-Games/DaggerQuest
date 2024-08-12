@@ -89,7 +89,7 @@
 			"eventType": "variable",
 			"name": "nextAvailableIdentifier",
 			"type": "number",
-			"initialValue": "1",
+			"initialValue": "2",
 			"comment": "Stores the next available identifier, to be assigned to equipment",
 			"isStatic": false,
 			"isConstant": false,
@@ -136,14 +136,90 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-any-click",
-							"objectClass": "mouse",
-							"sid": 986117436968797
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 865837950108649,
+							"parameters": {
+								"object": "npc",
+								"expression": "merchantMenuStatue.merchantStore",
+								"comparison": 0,
+								"value": "npc.simpleName"
+							}
 						},
 						{
-							"id": "on-any-key-pressed",
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 458572986276943,
+							"parameters": {
+								"first-value": "Functions.isometrify(npc.storeRange, angle(player.X, player.Y, npc.X, npc.Y))",
+								"comparison": 2,
+								"second-value": "distance(player.X, player.Y, npc.X, npc.Y)"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 482924763540793,
+							"parameters": {
+								"layer": "\"merchantMenu\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Close the merchant menu if the player gets too far away from the merchant to whose shop is being displayed."
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 799974808803615,
+							"parameters": [
+								"\"merchantMenu\""
+							]
+						}
+					],
+					"sid": 549858707087405
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
 							"objectClass": "keyboard",
-							"sid": 480959912190824
+							"sid": 280294846069741,
+							"parameters": {
+								"key": 13
+							}
+						},
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 647453279262523,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "dialog"
+							}
+						},
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 554414079782006,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "dialogNpcName"
+							}
+						},
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 176350553987176,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "portrait"
+							}
 						}
 					],
 					"actions": [
@@ -170,19 +246,19 @@
 								{
 									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 242168802837663,
+									"sid": 757972126913951,
 									"parameters": {
 										"object": "npc",
 										"expression": "npc.simpleName",
 										"comparison": 0,
-										"value": "tokenat(portrait.ObjectTypeName, 0, \"_\")"
+										"value": "player.talkingToNpc"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Hacky way to get the simpleName of the NPC we're talking to. Won't execute if there's no portrait, or if the portrait is fading out"
+									"text": "Don't execute if the portrait is fading out"
 								}
 							],
 							"sid": 669652012078468,
@@ -309,13 +385,13 @@
 							}
 						},
 						{
-							"id": "compare-instance-variable",
-							"objectClass": "npc",
-							"sid": 540272031370500,
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 923163265375557,
 							"parameters": {
-								"instance-variable": "interactRange",
+								"first-value": "Functions.isometrify(npc.interactRange, angle(player.X, player.Y, npc.X, npc.Y))",
 								"comparison": 5,
-								"value": "distance(Self.X, Self.Y, player.X, player.Y)"
+								"second-value": "distance(player.X, player.Y, npc.X, npc.Y)"
 							}
 						},
 						{
@@ -497,12 +573,12 @@
 									}
 								},
 								{
-									"id": "set-boolean-instvar",
+									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 231928147750024,
+									"sid": 517051858009772,
 									"parameters": {
 										"instance-variable": "talkingToNpc",
-										"value": "true"
+										"value": "npc.simpleName"
 									}
 								},
 								{
@@ -528,6 +604,15 @@
 								}
 							],
 							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "merchantMenuStatue",
+									"sid": 364088315942513,
+									"parameters": {
+										"instance-variable": "merchantStore",
+										"value": "npc.simpleName"
+									}
+								},
 								{
 									"callFunction": "openLayer",
 									"sid": 866546316811041,
@@ -602,12 +687,12 @@
 						{
 							"id": "pick-by-comparison",
 							"objectClass": "System",
-							"sid": 456642456581571,
+							"sid": 757408856145196,
 							"parameters": {
 								"object": "npc",
 								"expression": "npc.simpleName",
 								"comparison": 0,
-								"value": "tokenat(portrait.ObjectTypeName, 0, \"_\")"
+								"value": "player.talkingToNpc"
 							}
 						}
 					],
@@ -634,23 +719,9 @@
 						},
 						{
 							"callFunction": "closeLayer",
-							"sid": 960705276928343,
-							"parameters": [
-								"\"merchantMenu\""
-							]
-						},
-						{
-							"callFunction": "closeLayer",
 							"sid": 150349941126726,
 							"parameters": [
 								"\"dialog\""
-							]
-						},
-						{
-							"callFunction": "closeLayer",
-							"sid": 912539705917997,
-							"parameters": [
-								"\"inventoryMenu\""
 							]
 						},
 						{
@@ -704,12 +775,12 @@
 							}
 						},
 						{
-							"id": "set-boolean-instvar",
+							"id": "set-instvar-value",
 							"objectClass": "player",
-							"sid": 988368374422397,
+							"sid": 615059103889778,
 							"parameters": {
 								"instance-variable": "talkingToNpc",
-								"value": "false"
+								"value": "\"none\""
 							}
 						}
 					],
@@ -2041,10 +2112,6 @@
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "If these are 'trigger once's instead of every tick, and item could get created while equipment interaction isn't allowed. That particular item would have its DragDrop enabled by default."
-						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -5776,15 +5843,6 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "player",
-											"sid": 447092544960098,
-											"parameters": {
-												"instance-variable": "talkingToNpc"
-											},
-											"isInverted": true
-										},
-										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
 											"sid": 844520078268042,
@@ -5817,6 +5875,15 @@
 											"sid": 886180726251542,
 											"parameters": {
 												"object": "9PatchInvalidLocations"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 752194359354038,
+											"parameters": {
+												"object": "portrait"
 											},
 											"isInverted": true
 										}
@@ -6530,6 +6597,10 @@
 							"eventType": "function-block",
 							"conditions": [],
 							"actions": [
+								{
+									"callFunction": "closeDialog",
+									"sid": 675672935428082
+								},
 								{
 									"id": "move-to-position",
 									"objectClass": "player",
@@ -9968,15 +10039,6 @@
 									"isInverted": true
 								},
 								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "player",
-									"sid": 189632306545423,
-									"parameters": {
-										"instance-variable": "talkingToNpc"
-									},
-									"isInverted": true
-								},
-								{
 									"id": "compare-two-values",
 									"objectClass": "System",
 									"sid": 946373321700564,
@@ -10016,7 +10078,32 @@
 											]
 										}
 									],
-									"sid": 327082099075401
+									"sid": 327082099075401,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "layer-is-visible",
+													"objectClass": "System",
+													"sid": 520281694235723,
+													"parameters": {
+														"layer": "\"merchantMenu\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "closeLayer",
+													"sid": 265640195185106,
+													"parameters": [
+														"\"merchantMenu\""
+													]
+												}
+											],
+											"sid": 258013987645693
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -10171,10 +10258,10 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 305620390420393,
+									"sid": 610124151086384,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "player.talkingToNpc | Audio.PlaybackTime(\"menuOpen\") > 0 ? \"\" : \"menuClose\"",
+										"audio-file-name": "player.talkingToNpc <> \"none\" | Audio.PlaybackTime(\"menuOpen\") > 0 ? \"\" : \"menuClose\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -10306,10 +10393,10 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 521476192018536,
+									"sid": 516506592388012,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "player.talkingToNpc > 0 ? \"\" : \"menuOpen\"",
+										"audio-file-name": "player.talkingToNpc <> \"none\" ? \"\" : \"menuOpen\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -10384,15 +10471,6 @@
 									"objectClass": "statue",
 									"sid": 626771208311706,
 									"behaviorType": "DragDrop",
-									"isInverted": true
-								},
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "player",
-									"sid": 549780201015159,
-									"parameters": {
-										"instance-variable": "talkingToNpc"
-									},
 									"isInverted": true
 								}
 							],

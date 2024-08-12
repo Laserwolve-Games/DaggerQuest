@@ -141,14 +141,13 @@
 									"isInverted": true
 								},
 								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 348238499112665,
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "player",
+									"sid": 112465714218820,
 									"parameters": {
-										"first-value": "portrait.Count",
-										"comparison": 0,
-										"second-value": "0"
-									}
+										"instance-variable": "talkingToNpc"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [
@@ -1063,10 +1062,10 @@
 				{
 					"id": "fade-volume",
 					"objectClass": "Audio",
-					"sid": 465023180757823,
+					"sid": 455037978494125,
 					"parameters": {
 						"tag": "LayoutName",
-						"db": "0",
+						"db": "-10",
 						"duration": "FADE_TIME",
 						"ending": "keep-playing"
 					}

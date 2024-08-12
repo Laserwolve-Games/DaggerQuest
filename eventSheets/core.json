@@ -124,16 +124,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "dialogOpen",
-					"type": "boolean",
-					"initialValue": "false",
-					"comment": "Whether or not the player is talking to an NPC",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 716778298221880
-				},
-				{
-					"eventType": "variable",
 					"name": "PORTRAIT_POSITION",
 					"type": "number",
 					"initialValue": "1280",
@@ -353,276 +343,247 @@
 								"variable": "uidOfClicked",
 								"value": "0"
 							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "npc",
+							"sid": 495876452183269,
+							"parameters": {
+								"instance-variable": "degrees",
+								"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "dialogNpcName",
+							"sid": 228783782150172,
+							"parameters": {
+								"text": "lowercase(npc.fullName)"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "dialogText",
+							"sid": 527413904870532,
+							"parameters": {
+								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & \"-\" & npc.dialogCounter, \"message\")"
+							}
+						},
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 713594692786856,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "\"dialog/\" & npc.simpleName & \"-\" & npc.dialogCounter",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"dialog\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "npc",
+							"sid": 599211582277082,
+							"parameters": {
+								"instance-variable": "degrees",
+								"value": "Self.degrees = -HALF_CIRCLE ? HALF_CIRCLE : Self.degrees"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "npcBody",
+							"sid": 518867995994817,
+							"parameters": {
+								"animation": "\"idle_\" & npc.degrees",
+								"from": "current-frame"
+							}
+						},
+						{
+							"callFunction": "updateFacing",
+							"sid": 308186343635600,
+							"parameters": [
+								"npc.X",
+								"npc.Y"
+							]
+						},
+						{
+							"callFunction": "updateAnimations",
+							"sid": 750511475664798,
+							"parameters": [
+								"\"idle\"",
+								"player.movementSpeed / ANIMATION_DIVISOR",
+								"\"playFromBeginning\""
+							]
+						},
+						{
+							"type": "comment",
+							"text": "TODO: This + 5 here is probably going to need to be a property of the portrait in npcDialog.json because it will be different for each portrait"
+						},
+						{
+							"id": "create-object-by-name",
+							"objectClass": "System",
+							"sid": 615399486461175,
+							"parameters": {
+								"object-name": "npc.simpleName & \"_portrait\"",
+								"layer": "\"portraits\"",
+								"x": "PORTRAIT_POSITION",
+								"y": "ViewportBottom(\"portraits\") + 5",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
 						}
 					],
 					"sid": 421647053250642,
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "pick-last-created",
+									"objectClass": "System",
+									"sid": 243855207346801,
+									"parameters": {
+										"object": "portrait"
+									}
+								}
+							],
 							"actions": [
 								{
-									"id": "set-instvar-value",
-									"objectClass": "npc",
-									"sid": 672567292116154,
+									"type": "comment",
+									"text": "parent it to the dialog so it resizes correctly"
+								},
+								{
+									"id": "add-child",
+									"objectClass": "dialog",
+									"sid": 595127476977745,
 									"parameters": {
-										"instance-variable": "degrees",
-										"value": "round(angle(Self.X, Self.Y, player.X, player.Y) / ARC) * ARC"
+										"child": "portrait",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": false,
+										"transform-h": false,
+										"transform-a": false,
+										"transform-o": false,
+										"transform-z-elevation": false,
+										"transform-visibility": false,
+										"destroy-with-parent": false
 									}
 								},
 								{
-									"id": "set-text",
-									"objectClass": "dialogNpcName",
-									"sid": 623015538201956,
+									"id": "set-opacity",
+									"objectClass": "portrait",
+									"sid": 581317999554329,
 									"parameters": {
-										"text": "lowercase(npc.fullName)"
+										"opacity": "0"
 									}
 								},
 								{
-									"id": "set-text",
-									"objectClass": "dialogText",
-									"sid": 393301845846510,
+									"id": "tween-one-property",
+									"objectClass": "portrait",
+									"sid": 713657227500156,
+									"behaviorType": "Tween",
 									"parameters": {
-										"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & \"-\" & npc.dialogCounter, \"message\")"
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": ".2",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
 									}
 								},
 								{
-									"id": "play-by-name",
-									"objectClass": "Audio",
-									"sid": 514305992683013,
+									"id": "set-boolean-instvar",
+									"objectClass": "player",
+									"sid": 231928147750024,
 									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "\"dialog/\" & npc.simpleName & \"-\" & npc.dialogCounter",
-										"loop": "not-looping",
-										"volume": "0",
-										"stereo-pan": "0",
-										"tag-optional": "\"dialog\""
-									}
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 169684764025575,
-									"parameters": {
-										"seconds": "0"
+										"instance-variable": "talkingToNpc",
+										"value": "true"
 									}
 								},
 								{
 									"callFunction": "openLayer",
-									"sid": 998129604283940,
+									"sid": 127175509926959,
 									"parameters": [
 										"\"dialog\""
 									]
 								}
 							],
-							"sid": 417477370892388,
+							"sid": 547973787915997
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "npc",
+									"sid": 562723409565951,
+									"parameters": {
+										"instance-variable": "isMerchant"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "openLayer",
+									"sid": 866546316811041,
+									"parameters": [
+										"\"merchantMenu\""
+									]
+								}
+							],
+							"sid": 112943394436478,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "npc",
-											"sid": 973170998418364,
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 522633786102803,
 											"parameters": {
-												"instance-variable": "degrees",
-												"comparison": 0,
-												"value": "-HALF_CIRCLE"
+												"layer": "\"equippedMenu\""
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "set-instvar-value",
-											"objectClass": "npc",
-											"sid": 187806332354271,
-											"parameters": {
-												"instance-variable": "degrees",
-												"value": "HALF_CIRCLE"
-											}
-										}
-									],
-									"sid": 108561176223195
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "npcBody",
-											"sid": 399604877450603,
-											"parameters": {
-												"animation": "\"idle_\" & npc.degrees",
-												"from": "current-frame"
-											}
-										},
-										{
-											"callFunction": "updateFacing",
-											"sid": 262392189082691,
+											"callFunction": "closeLayer",
+											"sid": 392761074199444,
 											"parameters": [
-												"npc.X",
-												"npc.Y"
-											]
-										},
-										{
-											"callFunction": "updateAnimations",
-											"sid": 394541616736890,
-											"parameters": [
-												"\"idle\"",
-												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromBeginning\""
+												"\"equippedMenu\""
 											]
 										}
 									],
-									"sid": 481803048668382
+									"sid": 625180142345685
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-by-comparison",
+											"id": "layer-is-visible",
 											"objectClass": "System",
-											"sid": 603290908201890,
+											"sid": 475539151099004,
 											"parameters": {
-												"object": "portrait",
-												"expression": "portrait.ObjectTypeName",
-												"comparison": 0,
-												"value": "npc.simpleName & \"_portrait\""
-											}
+												"layer": "\"inventoryMenu\""
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "...if a portrait for it already exists, do nothing"
+											"callFunction": "openLayer",
+											"sid": 623449632814768,
+											"parameters": [
+												"\"inventoryMenu\""
+											]
 										}
 									],
-									"sid": 883759055452889
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 645696004310006
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "…otherwise, destroy all portraits, and spawn a portrait for this NPC"
-										},
-										{
-											"id": "destroy",
-											"objectClass": "portrait",
-											"sid": 829592231566676
-										},
-										{
-											"id": "unload-object-images",
-											"objectClass": "System",
-											"sid": 185891587069654,
-											"parameters": {
-												"object": "portrait"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "TODO: This + 5 here is probably going to need to be a property of the portrait in npcDialog.json because it will be different for each portrait"
-										},
-										{
-											"id": "create-object-by-name",
-											"objectClass": "System",
-											"sid": 310543657478522,
-											"parameters": {
-												"object-name": "npc.simpleName & \"_portrait\"",
-												"layer": "\"portraits\"",
-												"x": "PORTRAIT_POSITION",
-												"y": "ViewportBottom(\"portraits\") + 5",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 652814247398785,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 555011027746852,
-													"parameters": {
-														"object": "portrait"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "parent it to the dialog so it resizes correctly"
-												},
-												{
-													"id": "add-child",
-													"objectClass": "dialog",
-													"sid": 134545547837542,
-													"parameters": {
-														"child": "portrait",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": false,
-														"transform-o": false,
-														"transform-z-elevation": false,
-														"transform-visibility": false,
-														"destroy-with-parent": false
-													}
-												},
-												{
-													"type": "comment",
-													"text": "override the global timescale so we can still fade out on pause"
-												},
-												{
-													"id": "set-object-time-scale",
-													"objectClass": "System",
-													"sid": 360251454789608,
-													"parameters": {
-														"object": "portrait",
-														"time-scale": "1.0"
-													}
-												},
-												{
-													"id": "set-opacity",
-													"objectClass": "portrait",
-													"sid": 765430493810951,
-													"parameters": {
-														"opacity": "0"
-													}
-												},
-												{
-													"id": "tween-one-property",
-													"objectClass": "portrait",
-													"sid": 784007058105138,
-													"behaviorType": "Tween",
-													"parameters": {
-														"tags": "\"\"",
-														"property": "offsetOpacity",
-														"end-value": "100",
-														"time": ".2",
-														"ease": "noease",
-														"destroy-on-complete": "no",
-														"loop": "no",
-														"ping-pong": "no",
-														"repeat-count": "1"
-													}
-												}
-											],
-											"sid": 943916627642006
-										}
-									]
+									"sid": 488359596355318
 								}
 							]
 						}
@@ -672,6 +633,27 @@
 							}
 						},
 						{
+							"callFunction": "closeLayer",
+							"sid": 960705276928343,
+							"parameters": [
+								"\"merchantMenu\""
+							]
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 150349941126726,
+							"parameters": [
+								"\"dialog\""
+							]
+						},
+						{
+							"callFunction": "closeLayer",
+							"sid": 912539705917997,
+							"parameters": [
+								"\"inventoryMenu\""
+							]
+						},
+						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
 							"sid": 714082404683541,
@@ -694,13 +676,6 @@
 							"sid": 941566309323723
 						},
 						{
-							"callFunction": "closeLayer",
-							"sid": 452768771181338,
-							"parameters": [
-								"\"dialog\""
-							]
-						},
-						{
 							"id": "set-text",
 							"objectClass": "dialogText",
 							"sid": 714648981532825,
@@ -709,11 +684,32 @@
 							}
 						},
 						{
+							"type": "comment",
+							"text": "This wait being the official recommended method to unload an object after destroying it."
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 667796081139953,
+							"parameters": {
+								"seconds": "0"
+							}
+						},
+						{
 							"id": "unload-object-images",
 							"objectClass": "System",
 							"sid": 659778460881200,
 							"parameters": {
 								"object": "portrait"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "player",
+							"sid": 988368374422397,
+							"parameters": {
+								"instance-variable": "talkingToNpc",
+								"value": "false"
 							}
 						}
 					],
@@ -5780,14 +5776,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 488381926979635,
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "player",
+											"sid": 447092544960098,
 											"parameters": {
-												"first-value": "portrait.Count",
-												"comparison": 0,
-												"second-value": "0"
-											}
+												"instance-variable": "talkingToNpc"
+											},
+											"isInverted": true
 										},
 										{
 											"id": "layer-is-visible",
@@ -6548,68 +6543,72 @@
 								}
 							],
 							"sid": 736875311258128
-						},
-						{
-							"functionName": "restorePlayerControl",
-							"functionDescription": "Reinstate the player's ability to be controlled.",
-							"functionCategory": "player",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "player",
-									"sid": 643399585083089,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"enabled": true
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 383649548141485,
-									"parameters": {
-										"group-name": "\"movement and interaction\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 533556035067991,
-									"parameters": {
-										"group-name": "\"facings\"",
-										"state": "activated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 333285596495495,
-									"parameters": {
-										"group-name": "\"abilities\"",
-										"state": "activated"
-									}
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 292802945507973,
-									"parameters": [
-										"\"idle\"",
-										"player.movementSpeed / ANIMATION_DIVISOR",
-										"\"playFromBeginning\""
-									]
-								}
-							],
-							"sid": 361057401424902
 						}
 					],
 					"sid": 914713205483917
+				},
+				{
+					"functionName": "restorePlayerControl",
+					"functionDescription": "Reinstate the player's ability to be controlled.",
+					"functionCategory": "player",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "this function can't be inside of 'movement and interaction'"
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "player",
+							"sid": 392986170340383,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"enabled": true
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 780931063976395,
+							"parameters": {
+								"group-name": "\"movement and interaction\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 799495312628293,
+							"parameters": {
+								"group-name": "\"facings\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 495574645647684,
+							"parameters": {
+								"group-name": "\"abilities\"",
+								"state": "activated"
+							}
+						},
+						{
+							"callFunction": "updateAnimations",
+							"sid": 904672664768414,
+							"parameters": [
+								"\"idle\"",
+								"player.movementSpeed / ANIMATION_DIVISOR",
+								"\"playFromBeginning\""
+							]
+						}
+					],
+					"sid": 985297277756848
 				},
 				{
 					"eventType": "group",
@@ -9969,6 +9968,15 @@
 									"isInverted": true
 								},
 								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "player",
+									"sid": 189632306545423,
+									"parameters": {
+										"instance-variable": "talkingToNpc"
+									},
+									"isInverted": true
+								},
+								{
 									"id": "compare-two-values",
 									"objectClass": "System",
 									"sid": 946373321700564,
@@ -9976,16 +9984,6 @@
 										"first-value": "statue.PickedCount",
 										"comparison": 0,
 										"second-value": "statue.Count"
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 360007847870647,
-									"parameters": {
-										"first-value": "portrait.Count",
-										"comparison": 0,
-										"second-value": "0"
 									}
 								}
 							],
@@ -10168,15 +10166,15 @@
 								},
 								{
 									"type": "comment",
-									"text": "Don't play the menu closing sound effect for the dialog menu, since NPCs will say their goodbye line when closing that menu. Also don't play it when the men opening sound effect is currently playing (like when the setting menu opens and forces other menus to close)"
+									"text": "Don't play the menu closing sound effect for any menus involved with dialogs, since NPCs will say their goodbye line when closing that menu. Also don't play it when the men opening sound effect is currently playing (like when the setting menu opens and forces other menus to close)"
 								},
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 412513807938195,
+									"sid": 305620390420393,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") <> 0 ? \"\" : \"menuClose\"",
+										"audio-file-name": "player.talkingToNpc | Audio.PlaybackTime(\"menuOpen\") > 0 ? \"\" : \"menuClose\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -10303,15 +10301,15 @@
 								},
 								{
 									"type": "comment",
-									"text": "The NPC dialog will play as soon as the dialog window opens, so the sound wouldn't be necessary"
+									"text": "The NPC dialog will play as soon as the dialog window opens, so the menu open sound wouldn't be necessary"
 								},
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 253977271223709,
+									"sid": 521476192018536,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" ? \"\" : \"menuOpen\"",
+										"audio-file-name": "player.talkingToNpc > 0 ? \"\" : \"menuOpen\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -10337,6 +10335,15 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "set-layer-opacity",
+											"objectClass": "System",
+											"sid": 318882430883252,
+											"parameters": {
+												"layer": "statue.LayerName",
+												"opacity": "0"
+											}
+										},
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
@@ -10380,14 +10387,13 @@
 									"isInverted": true
 								},
 								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 521850753428329,
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "player",
+									"sid": 549780201015159,
 									"parameters": {
-										"first-value": "portrait.Count",
-										"comparison": 0,
-										"second-value": "0"
-									}
+										"instance-variable": "talkingToNpc"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [],

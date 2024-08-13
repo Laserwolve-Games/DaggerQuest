@@ -184,84 +184,70 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-key-pressed",
-							"objectClass": "keyboard",
-							"sid": 280294846069741,
+							"id": "is-playing",
+							"objectClass": "portrait",
+							"sid": 507225872154479,
+							"behaviorType": "Tween",
 							"parameters": {
-								"key": 13
+								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\""
+							},
+							"isInverted": true
+						},
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 569871185373821,
+							"parameters": {
+								"object": "npc",
+								"expression": "npc.simpleName",
+								"comparison": 0,
+								"value": "player.talkingToNpc"
 							}
 						},
 						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 647453279262523,
+							"id": "pick-children",
+							"objectClass": "npc",
+							"sid": 141990365338759,
 							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "dialog"
-							}
-						},
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 554414079782006,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "dialogNpcName"
-							}
-						},
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 176350553987176,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "portrait"
+								"child": "npcBody",
+								"which": "own"
 							}
 						}
 					],
 					"actions": [
 						{
 							"type": "comment",
-							"text": "TODO: Make sure that the key that was pressed to close the dialog isn't whatever key we decide to use to skip through dialog. Also when we add merchant NPCs, we need to permit mouse usage."
+							"text": "Don't execute if the portrait is fading out. Pick only the NPC and corresponding body that the player is talking to, to check if they were clicked in the next subevent."
 						}
 					],
-					"sid": 607267948456563,
+					"sid": 976300196461213,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-playing",
-									"objectClass": "portrait",
-									"sid": 904602926977304,
-									"behaviorType": "Tween",
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 365632780391333,
 									"parameters": {
-										"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\""
-									},
-									"isInverted": true
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "dialog"
+									}
 								},
 								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 757972126913951,
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 673643516057644,
 									"parameters": {
-										"object": "npc",
-										"expression": "npc.simpleName",
-										"comparison": 0,
-										"value": "player.talkingToNpc"
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "portrait"
 									}
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Don't execute if the portrait is fading out"
-								}
-							],
-							"sid": 669652012078468,
+							"actions": [],
+							"sid": 413801469471723,
 							"children": [
 								{
 									"eventType": "block",
@@ -269,7 +255,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "npc",
-											"sid": 262831996207456,
+											"sid": 201582184752954,
 											"parameters": {
 												"instance-variable": "dialogCounter",
 												"comparison": 2,
@@ -281,7 +267,7 @@
 										{
 											"id": "stop",
 											"objectClass": "Audio",
-											"sid": 120307659554405,
+											"sid": 865795706750829,
 											"parameters": {
 												"tag": "\"dialog\""
 											}
@@ -289,7 +275,7 @@
 										{
 											"id": "add-to-instvar",
 											"objectClass": "npc",
-											"sid": 220986704829244,
+											"sid": 786664198588895,
 											"parameters": {
 												"instance-variable": "dialogCounter",
 												"value": "1"
@@ -298,7 +284,7 @@
 										{
 											"id": "set-text",
 											"objectClass": "dialogText",
-											"sid": 458695618403142,
+											"sid": 903408887080024,
 											"parameters": {
 												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & \"-\" & npc.dialogCounter, \"message\")"
 											}
@@ -306,7 +292,7 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "Audio",
-											"sid": 706407490686820,
+											"sid": 872476359734218,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "\"dialog/\" & npc.simpleName & \"-\" & npc.dialogCounter",
@@ -317,7 +303,7 @@
 											}
 										}
 									],
-									"sid": 122273772861190
+									"sid": 311090975793726
 								},
 								{
 									"eventType": "block",
@@ -325,7 +311,7 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 238872463714918
+											"sid": 343554691022423
 										}
 									],
 									"actions": [
@@ -335,15 +321,15 @@
 										},
 										{
 											"callFunction": "closeDialog",
-											"sid": 858216172980631
+											"sid": 625554042063782
 										}
 									],
-									"sid": 480718852451277
+									"sid": 455608331835792
 								}
-							]
+							],
+							"isOrBlock": true
 						}
-					],
-					"isOrBlock": true
+					]
 				},
 				{
 					"eventType": "block",
@@ -422,6 +408,15 @@
 						},
 						{
 							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 843563941878163,
+							"parameters": {
+								"instance-variable": "talkingToNpc",
+								"value": "npc.simpleName"
+							}
+						},
+						{
+							"id": "set-instvar-value",
 							"objectClass": "npc",
 							"sid": 495876452183269,
 							"parameters": {
@@ -491,6 +486,13 @@
 								"\"idle\"",
 								"player.movementSpeed / ANIMATION_DIVISOR",
 								"\"playFromBeginning\""
+							]
+						},
+						{
+							"callFunction": "openLayer",
+							"sid": 557918979499813,
+							"parameters": [
+								"\"dialog\""
 							]
 						},
 						{
@@ -571,22 +573,6 @@
 										"ping-pong": "no",
 										"repeat-count": "1"
 									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 517051858009772,
-									"parameters": {
-										"instance-variable": "talkingToNpc",
-										"value": "npc.simpleName"
-									}
-								},
-								{
-									"callFunction": "openLayer",
-									"sid": 127175509926959,
-									"parameters": [
-										"\"dialog\""
-									]
 								}
 							],
 							"sid": 547973787915997
@@ -5912,6 +5898,16 @@
 														"parent": "npc",
 														"which": "own"
 													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 218676865060788,
+													"parameters": {
+														"instance-variable": "talkingToNpc",
+														"comparison": 1,
+														"value": "npc.simpleName"
+													}
 												}
 											],
 											"actions": [
@@ -10253,15 +10249,15 @@
 								},
 								{
 									"type": "comment",
-									"text": "Don't play the menu closing sound effect for any menus involved with dialogs, since NPCs will say their goodbye line when closing that menu. Also don't play it when the men opening sound effect is currently playing (like when the setting menu opens and forces other menus to close)"
+									"text": "Don't play the menu closing sound effect for the merchant menu, or while talking to an NPC, or while the menu open sound is playing."
 								},
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 610124151086384,
+									"sid": 535179798884341,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "player.talkingToNpc <> \"none\" | Audio.PlaybackTime(\"menuOpen\") > 0 ? \"\" : \"menuClose\"",
+										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = \"merchantMenu\" ? \"\" : \"menuClose\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -10393,10 +10389,10 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 516506592388012,
+									"sid": 144655623407699,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "player.talkingToNpc <> \"none\" ? \"\" : \"menuOpen\"",
+										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = \"merchantMenu\" ? \"\" : \"menuOpen\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",

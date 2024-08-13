@@ -835,17 +835,17 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "swapID",
+					"name": "swapIdentifier",
 					"type": "number",
 					"initialValue": "0",
-					"comment": "the identifier of the equipped item, so we can swap it",
+					"comment": "The saved identifier for swapping.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 841899330934363
 				},
 				{
 					"eventType": "variable",
-					"name": "swapSlotUID",
+					"name": "swapSlotUid",
 					"type": "number",
 					"initialValue": "0",
 					"comment": "the UID of the original slot in a swap",
@@ -855,7 +855,7 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "draggedOriginSlotUID",
+					"name": "draggedOriginSlotUid",
 					"type": "number",
 					"initialValue": "0",
 					"comment": "the UID of the slot the drag originated from",
@@ -865,7 +865,7 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "dragCacheItemUID",
+					"name": "draggedItemUid",
 					"type": "number",
 					"initialValue": "0",
 					"comment": "the UID of the item we're dragging",
@@ -875,7 +875,7 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "dragCacheSlotUID",
+					"name": "droppedOnSlotUid",
 					"type": "number",
 					"initialValue": "0",
 					"comment": "the UID of the slot we dropped on",
@@ -2221,15 +2221,6 @@
 														{
 															"type": "comment",
 															"text": "check to see if there's any empty inventory slots the item can go into"
-														},
-														{
-															"id": "log",
-															"objectClass": "browser",
-															"sid": 428559804667070,
-															"parameters": {
-																"type": "log",
-																"message": "\"found \" & slot.PickedCount & \" slots that this item could go into\""
-															}
 														}
 													],
 													"sid": 981840489879166,
@@ -2264,15 +2255,6 @@
 																{
 																	"callFunction": "detachItem",
 																	"sid": 976236384669403
-																},
-																{
-																	"id": "log",
-																	"objectClass": "browser",
-																	"sid": 318390165395322,
-																	"parameters": {
-																		"type": "log",
-																		"message": "\"Detached from slot \" & slot.UID"
-																	}
 																},
 																{
 																	"callFunction": "queueGearManagement",
@@ -2331,15 +2313,6 @@
 																{
 																	"callFunction": "attachItem",
 																	"sid": 319295054930313
-																},
-																{
-																	"id": "log",
-																	"objectClass": "browser",
-																	"sid": 312342151951349,
-																	"parameters": {
-																		"type": "log",
-																		"message": "\"Attached to slot \" & slot.UID"
-																	}
 																}
 															],
 															"sid": 970455209255850
@@ -2596,7 +2569,7 @@
 																			"objectClass": "System",
 																			"sid": 710675432835199,
 																			"parameters": {
-																				"variable": "swapID",
+																				"variable": "swapIdentifier",
 																				"value": "slot.identifier"
 																			}
 																		}
@@ -2635,7 +2608,7 @@
 																					"objectClass": "System",
 																					"sid": 813671614071552,
 																					"parameters": {
-																						"variable": "swapSlotUID",
+																						"variable": "swapSlotUid",
 																						"value": "slot.UID"
 																					}
 																				},
@@ -2722,7 +2695,7 @@
 																									"parameters": {
 																										"instance-variable": "identifier",
 																										"comparison": 0,
-																										"value": "swapID"
+																										"value": "swapIdentifier"
 																									}
 																								},
 																								{
@@ -2809,12 +2782,11 @@
 									"behaviorType": "DragDrop"
 								},
 								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 102305348394096,
+									"id": "compare-instance-variable",
+									"objectClass": "slot",
+									"sid": 660907865564922,
 									"parameters": {
-										"object": "slot",
-										"expression": "slot.identifier",
+										"instance-variable": "identifier",
 										"comparison": 0,
 										"value": "item.identifier"
 									}
@@ -2830,7 +2802,7 @@
 									"objectClass": "System",
 									"sid": 886968429260276,
 									"parameters": {
-										"variable": "draggedOriginSlotUID",
+										"variable": "draggedOriginSlotUid",
 										"value": "slot.UID"
 									}
 								},
@@ -2874,20 +2846,18 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
+											"id": "is-on-layer",
 											"objectClass": "slot",
-											"sid": 379527898253552,
+											"sid": 818512128132809,
 											"parameters": {
-												"instance-variable": "type",
-												"comparison": 1,
-												"value": "\"none\""
+												"layer": "equippedMenuStatue.LayerName"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if it came from a character slot, manage the gear appropriately"
+											"text": "if it was on the equipped menu, manage the gear appropriately"
 										},
 										{
 											"callFunction": "queueGearManagement",
@@ -2938,7 +2908,7 @@
 										{
 											"id": "cursor-is-over-object",
 											"objectClass": "mouse",
-											"sid": 695387306087932,
+											"sid": 940744174099667,
 											"parameters": {
 												"object": "slot"
 											}
@@ -2947,215 +2917,81 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if the cursor was over a slot"
+											"text": "if the item was dropped over a slot..."
 										}
 									],
-									"sid": 741566376291973,
+									"sid": 975172186095144,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "evaluate-expression",
+													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 670569213014739,
+													"sid": 653827654958201,
 													"parameters": {
-														"value": "slot.type <> item.type & slot.type <> \"none\" "
-													}
-												},
-												{
-													"id": "evaluate-expression",
-													"objectClass": "System",
-													"sid": 685936448807156,
-													"parameters": {
-														"value": "findCase(item.classRestrictions, \"All Classes\") = - 1 & find(item.classRestrictions, body.ObjectTypeName) = -1 & slot.type <> \"none\""
-													}
-												},
-												{
-													"id": "evaluate-expression",
-													"objectClass": "System",
-													"sid": 247968772606905,
-													"parameters": {
-														"value": "item.level > player.level & slot.type <> \"none\""
+														"first-value": "Functions.canThisItemGoIntoThisSlot",
+														"comparison": 0,
+														"second-value": "1"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "and the item can't go into that slot, because of one of the following reasons:"
-												},
-												{
-													"type": "comment",
-													"text": "that slot's type doesn't match the item's type, and that slot's type is also not \"none\""
-												},
-												{
-													"type": "comment",
-													"text": "that item's class doesn't match the player's class, and the item's class is not \"All Classes\", and that slot's type is not \"none\""
-												},
-												{
-													"type": "comment",
-													"text": "that item's level is higher than the player's level, and that slot's type is not \"none\""
-												},
-												{
-													"type": "comment",
-													"text": "extracting \"slot.type <> \"none\"\" to a parent event doesn't allow the 'else' event to properly fire, if none of these conditions are met",
-													"text-color": [
-														0,
-														0,
-														0,
-														1
-													],
-													"background-color": [
-														1,
-														1,
-														0,
-														1
-													]
+													"text": "and that slot's type was none, or it's the same as the item's type, and the player meets all the requirements to equip it..."
 												}
 											],
-											"sid": 354664591457687,
+											"sid": 109270735818354,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-all",
-															"objectClass": "System",
-															"sid": 588064325410315,
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 859840723380552,
 															"parameters": {
-																"object": "slot"
-															}
-														},
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 920546490074711,
-															"parameters": {
-																"object": "slot",
-																"expression": "slot.UID",
+																"instance-variable": "identifier",
 																"comparison": 0,
-																"value": "draggedOriginSlotUID"
+																"value": "0"
 															}
 														}
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "send the item back to the slot it came from"
-														},
-														{
 															"callFunction": "attachItem",
-															"sid": 695133067571701
+															"sid": 774512884771591
 														}
 													],
-													"sid": 947341262946449,
+													"sid": 177525206568447,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "compare-two-values",
-																	"objectClass": "System",
-																	"sid": 645834984413462,
+																	"id": "is-on-layer",
+																	"objectClass": "slot",
+																	"sid": 377454948759415,
 																	"parameters": {
-																		"first-value": "slot.type",
-																		"comparison": 1,
-																		"second-value": "\"none\""
+																		"layer": "equippedMenuStatue.LayerName"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "if it came from a character slot, manage the gear and mods appropriately"
+																	"text": "If the item is now in an equipped menu slot, manage the gear and mods appropriately"
 																},
 																{
 																	"callFunction": "queueGearManagement",
-																	"sid": 747765105945772,
+																	"sid": 425692638313526,
 																	"parameters": [
 																		true
 																	]
 																}
 															],
-															"sid": 223805058340345
-														}
-													]
-												}
-											],
-											"isOrBlock": true
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 608914029557085
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "and that slot was a character slot that matches the item's type, or is \"none\""
-												}
-											],
-											"sid": 562006739050960,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 597140209712336,
-															"parameters": {
-																"first-value": "slot.identifier",
-																"comparison": 0,
-																"second-value": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "and that slot is empty, attach the item to it"
-														},
-														{
-															"callFunction": "attachItem",
-															"sid": 596960974351479
-														}
-													],
-													"sid": 870440945063066,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-two-values",
-																	"objectClass": "System",
-																	"sid": 484854148540705,
-																	"parameters": {
-																		"first-value": "slot.type",
-																		"comparison": 1,
-																		"second-value": "\"none\""
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "if it came from a character slot, manage the gear and mods appropriately"
-																},
-																{
-																	"callFunction": "queueGearManagement",
-																	"sid": 358783801807031,
-																	"parameters": [
-																		true
-																	]
-																}
-															],
-															"sid": 194707231346571
+															"sid": 309363626440421
 														}
 													]
 												},
@@ -3165,7 +3001,17 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 187631772142266
+															"sid": 496882349748845
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 163642128357752,
+															"parameters": {
+																"instance-variable": "identifier",
+																"comparison": 1,
+																"value": "0"
+															}
 														}
 													],
 													"actions": [
@@ -3176,32 +3022,32 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 771700832397227,
+															"sid": 157039967499116,
 															"parameters": {
-																"variable": "swapID",
+																"variable": "swapIdentifier",
 																"value": "slot.identifier"
 															}
 														},
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 546789526977430,
+															"sid": 547250842785804,
 															"parameters": {
-																"variable": "dragCacheItemUID",
+																"variable": "draggedItemUid",
 																"value": "item.UID"
 															}
 														},
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 307351783282285,
+															"sid": 533328348066860,
 															"parameters": {
-																"variable": "dragCacheSlotUID",
+																"variable": "droppedOnSlotUid",
 																"value": "slot.UID"
 															}
 														}
 													],
-													"sid": 925008931677699,
+													"sid": 923553543124138,
 													"children": [
 														{
 															"eventType": "block",
@@ -3209,47 +3055,43 @@
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 553011608764114,
+																	"sid": 793281014319154,
 																	"parameters": {
 																		"object": "item"
 																	}
 																},
 																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 844624818434821,
+																	"id": "compare-instance-variable",
+																	"objectClass": "item",
+																	"sid": 238228534220555,
 																	"parameters": {
-																		"object": "item",
-																		"expression": "item.identifier",
+																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "swapID"
+																		"value": "swapIdentifier"
 																	}
 																},
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 293651261702794,
+																	"sid": 899760682837755,
 																	"parameters": {
 																		"object": "slot"
 																	}
 																},
 																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 885275044218798,
+																	"id": "pick-by-unique-id",
+																	"objectClass": "slot",
+																	"sid": 826261579093807,
 																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.UID",
-																		"comparison": 0,
-																		"value": "draggedOriginSlotUID"
+																		"unique-id": "draggedOriginSlotUID"
 																	}
 																},
 																{
 																	"id": "evaluate-expression",
 																	"objectClass": "System",
-																	"sid": 480143029988135,
+																	"sid": 291521274342397,
 																	"parameters": {
-																		"value": "slot.type = item.type | slot.type = \"none\""
+																		"value": "slot.type = item.type | slot.type = NONE_KEYWORD"
 																	}
 																}
 															],
@@ -3259,7 +3101,7 @@
 																	"text": "check if the item can go back to the origin slot"
 																}
 															],
-															"sid": 464026553237280,
+															"sid": 337841391405174,
 															"children": [
 																{
 																	"eventType": "block",
@@ -3267,39 +3109,33 @@
 																		{
 																			"id": "pick-all",
 																			"objectClass": "System",
-																			"sid": 689549450637590,
+																			"sid": 235109937151193,
 																			"parameters": {
 																				"object": "item"
 																			}
 																		},
 																		{
-																			"id": "pick-by-comparison",
-																			"objectClass": "System",
-																			"sid": 337029179692317,
+																			"id": "pick-by-unique-id",
+																			"objectClass": "item",
+																			"sid": 512258973382956,
 																			"parameters": {
-																				"object": "item",
-																				"expression": "item.UID",
-																				"comparison": 0,
-																				"value": "dragCacheItemUID"
+																				"unique-id": "draggedItemUid"
 																			}
 																		},
 																		{
 																			"id": "pick-all",
 																			"objectClass": "System",
-																			"sid": 637546061687633,
+																			"sid": 666901460752446,
 																			"parameters": {
 																				"object": "slot"
 																			}
 																		},
 																		{
-																			"id": "pick-by-comparison",
-																			"objectClass": "System",
-																			"sid": 155336612958381,
+																			"id": "pick-by-unique-id",
+																			"objectClass": "slot",
+																			"sid": 630815598395228,
 																			"parameters": {
-																				"object": "slot",
-																				"expression": "slot.UID",
-																				"comparison": 0,
-																				"value": "dragCacheSlotUID"
+																				"unique-id": "droppedOnSlotUid"
 																			}
 																		}
 																	],
@@ -3310,39 +3146,37 @@
 																		},
 																		{
 																			"callFunction": "attachItem",
-																			"sid": 678899096500546
+																			"sid": 879128537548830
 																		}
 																	],
-																	"sid": 212308422475292,
+																	"sid": 645440854485517,
 																	"children": [
 																		{
 																			"eventType": "block",
 																			"conditions": [
 																				{
-																					"id": "compare-two-values",
-																					"objectClass": "System",
-																					"sid": 838789578714350,
+																					"id": "is-on-layer",
+																					"objectClass": "slot",
+																					"sid": 670518224846457,
 																					"parameters": {
-																						"first-value": "slot.type",
-																						"comparison": 1,
-																						"second-value": "\"none\""
+																						"layer": "equippedMenuStatue.LayerName"
 																					}
 																				}
 																			],
 																			"actions": [
 																				{
 																					"type": "comment",
-																					"text": "if it came from a character slot, manage the gear and mods appropriately"
+																					"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
 																				},
 																				{
 																					"callFunction": "queueGearManagement",
-																					"sid": 782381385129395,
+																					"sid": 858450812470616,
 																					"parameters": [
 																						true
 																					]
 																				}
 																			],
-																			"sid": 676092927805364
+																			"sid": 859253333399301
 																		},
 																		{
 																			"eventType": "block",
@@ -3350,39 +3184,35 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 312271844596524,
+																					"sid": 221637586007934,
 																					"parameters": {
 																						"object": "item"
 																					}
 																				},
 																				{
-																					"id": "pick-by-comparison",
-																					"objectClass": "System",
-																					"sid": 553159868067061,
+																					"id": "compare-instance-variable",
+																					"objectClass": "item",
+																					"sid": 677403738575022,
 																					"parameters": {
-																						"object": "item",
-																						"expression": "item.identifier",
+																						"instance-variable": "identifier",
 																						"comparison": 0,
-																						"value": "swapID"
+																						"value": "swapIdentifier"
 																					}
 																				},
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 428620782307139,
+																					"sid": 527046520047376,
 																					"parameters": {
 																						"object": "slot"
 																					}
 																				},
 																				{
-																					"id": "pick-by-comparison",
-																					"objectClass": "System",
-																					"sid": 248876190255851,
+																					"id": "pick-by-unique-id",
+																					"objectClass": "slot",
+																					"sid": 909685261080487,
 																					"parameters": {
-																						"object": "slot",
-																						"expression": "slot.UID",
-																						"comparison": 0,
-																						"value": "draggedOriginSlotUID"
+																						"unique-id": "draggedOriginSlotUid"
 																					}
 																				}
 																			],
@@ -3394,50 +3224,48 @@
 																				{
 																					"id": "remove-from-parent",
 																					"objectClass": "item",
-																					"sid": 992757793937793
+																					"sid": 514285137657194
 																				},
 																				{
 																					"callFunction": "manageMods",
-																					"sid": 589077264734930,
+																					"sid": 633348175215570,
 																					"parameters": [
 																						false
 																					]
 																				},
 																				{
 																					"callFunction": "attachItem",
-																					"sid": 589004778395882
+																					"sid": 757628680092096
 																				}
 																			],
-																			"sid": 762906856022523,
+																			"sid": 164852198893279,
 																			"children": [
 																				{
 																					"eventType": "block",
 																					"conditions": [
 																						{
-																							"id": "compare-two-values",
-																							"objectClass": "System",
-																							"sid": 829910294078159,
+																							"id": "is-on-layer",
+																							"objectClass": "slot",
+																							"sid": 176058816053288,
 																							"parameters": {
-																								"first-value": "slot.type",
-																								"comparison": 1,
-																								"second-value": "\"none\""
+																								"layer": "equippedMenuStatue.LayerName"
 																							}
 																						}
 																					],
 																					"actions": [
 																						{
 																							"type": "comment",
-																							"text": "if it came from a character slot, manage the gear and mods appropriately"
+																							"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
 																						},
 																						{
 																							"callFunction": "queueGearManagement",
-																							"sid": 342302537389585,
+																							"sid": 719377728835123,
 																							"parameters": [
 																								true
 																							]
 																						}
 																					],
-																					"sid": 142763226872703
+																					"sid": 947732253329855
 																				}
 																			]
 																		}
@@ -3451,25 +3279,22 @@
 																{
 																	"id": "else",
 																	"objectClass": "System",
-																	"sid": 213136981060223
+																	"sid": 115449626626232
 																},
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 367739148944933,
+																	"sid": 337357315852136,
 																	"parameters": {
 																		"object": "slot"
 																	}
 																},
 																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 356724652666509,
+																	"id": "pick-by-unique-id",
+																	"objectClass": "slot",
+																	"sid": 434130549854896,
 																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.UID",
-																		"comparison": 0,
-																		"value": "draggedOriginSlotUID"
+																		"unique-id": "draggedOriginSlotUid"
 																	}
 																}
 															],
@@ -3480,39 +3305,37 @@
 																},
 																{
 																	"callFunction": "attachItem",
-																	"sid": 208792725258952
+																	"sid": 981720519974591
 																}
 															],
-															"sid": 328654190933021,
+															"sid": 210374922234155,
 															"children": [
 																{
 																	"eventType": "block",
 																	"conditions": [
 																		{
-																			"id": "compare-two-values",
-																			"objectClass": "System",
-																			"sid": 630410726847750,
+																			"id": "is-on-layer",
+																			"objectClass": "slot",
+																			"sid": 792862669032369,
 																			"parameters": {
-																				"first-value": "slot.type",
-																				"comparison": 1,
-																				"second-value": "\"none\""
+																				"layer": "equippedMenuStatue.LayerName"
 																			}
 																		}
 																	],
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "if it came from a character slot, manage the gear and mods appropriately"
+																			"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
 																		},
 																		{
 																			"callFunction": "queueGearManagement",
-																			"sid": 754805473304049,
+																			"sid": 105929138880464,
 																			"parameters": [
 																				true
 																			]
 																		}
 																	],
-																	"sid": 813365229432282
+																	"sid": 901931296015534
 																}
 															]
 														}
@@ -3522,9 +3345,69 @@
 										},
 										{
 											"eventType": "block",
-											"conditions": [],
-											"actions": [],
-											"sid": 320051214841384
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 839852839292939
+												},
+												{
+													"id": "pick-all",
+													"objectClass": "System",
+													"sid": 398319339639814,
+													"parameters": {
+														"object": "slot"
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "slot",
+													"sid": 422055310588522,
+													"parameters": {
+														"unique-id": "draggedOriginSlotUID"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "send the item back to the slot it came from"
+												},
+												{
+													"callFunction": "attachItem",
+													"sid": 205979422756122
+												}
+											],
+											"sid": 771584118890591,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-on-layer",
+															"objectClass": "slot",
+															"sid": 553150911799005,
+															"parameters": {
+																"layer": "equippedMenuStatue.LayerName"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
+														},
+														{
+															"callFunction": "queueGearManagement",
+															"sid": 756720428923938,
+															"parameters": [
+																true
+															]
+														}
+													],
+													"sid": 683553748469086
+												}
+											]
 										}
 									]
 								},
@@ -3534,257 +3417,275 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 430044180804925
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 754410337887077,
-											"parameters": {
-												"object": "invalidLocation"
-											}
+											"sid": 819452010239969
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if the cursor was over an invalid location, send the item back to the slot it came from"
-										},
-										{
-											"callFunction": "returnItem",
-											"sid": 830932401995178
+											"text": "Can't have an else condition in an OR block"
 										}
 									],
-									"sid": 173613641132192
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 807845078693595
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 848638687292153,
-											"parameters": {
-												"object": "prop"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "returnItem",
-											"sid": 188046764195015
-										}
-									],
-									"sid": 681043468436456
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 351119690702053
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 142829702532871,
-											"parameters": {
-												"object": "9PatchInvalidLocations"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "returnItem",
-											"sid": 760097941165216
-										}
-									],
-									"sid": 655650270015638
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 746631595027754
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "mouse",
-											"sid": 219299045904732,
-											"parameters": {
-												"object": "background"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "if the cursor was over the game world background, spawn its loot"
-										},
-										{
-											"id": "create-object-by-name",
-											"objectClass": "System",
-											"sid": 627793945948014,
-											"parameters": {
-												"object-name": "item.simpleName & \"_loot\"",
-												"layer": "\"background\"",
-												"x": "mouse.X",
-												"y": "mouse.Y",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										}
-									],
-									"sid": 556251734949061,
+									"sid": 589012115814521,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 719006855336677,
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 143217342965722,
 													"parameters": {
-														"object": "loot"
+														"object": "invalidLocation"
+													}
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 283074474173400,
+													"parameters": {
+														"object": "prop"
+													}
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 609127198070053,
+													"parameters": {
+														"object": "9PatchInvalidLocations"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "transfer data from item to loot, then destroy the item"
-												},
-												{
-													"id": "set-animation",
-													"objectClass": "loot",
-													"sid": 500499623414376,
-													"parameters": {
-														"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
-														"from": "beginning"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 981668832353211,
-													"parameters": {
-														"instance-variable": "identifier",
-														"value": "item.identifier"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 959227679172870,
-													"parameters": {
-														"instance-variable": "simpleName",
-														"value": "item.simpleName"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 388357061755415,
-													"parameters": {
-														"instance-variable": "fullName",
-														"value": "item.fullName"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 914179442486360,
-													"parameters": {
-														"instance-variable": "type",
-														"value": "item.type"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 902484779634297,
-													"parameters": {
-														"instance-variable": "lore",
-														"value": "item.lore"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 362669929305554,
-													"parameters": {
-														"instance-variable": "level",
-														"value": "item.level"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 571714791507665,
-													"parameters": {
-														"instance-variable": "mods",
-														"value": "item.mods"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 212656048331637,
-													"parameters": {
-														"instance-variable": "classRestrictions",
-														"value": "item.classRestrictions"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 855866223536522,
-													"parameters": {
-														"instance-variable": "modTable",
-														"value": "item.modTable"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 859963211778686,
-													"parameters": {
-														"instance-variable": "sound",
-														"value": "item.sound"
-													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "loot",
-													"sid": 701101953006039,
-													"parameters": {
-														"instance-variable": "verticalHeight",
-														"value": "0"
-													}
-												},
-												{
-													"id": "destroy",
-													"objectClass": "item",
-													"sid": 197838163977498
+													"text": "if the item was dropped on an invalid location, send the item back to the slot it came from"
 												}
 											],
-											"sid": 496856218332598,
+											"sid": 730960747189332,
 											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-unique-id",
+															"objectClass": "slot",
+															"sid": 858824243785238,
+															"parameters": {
+																"unique-id": "draggedOriginSlotUID"
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "attachItem",
+															"sid": 393789573471667
+														}
+													],
+													"sid": 772458645342609,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-on-layer",
+																	"objectClass": "slot",
+																	"sid": 659942609974434,
+																	"parameters": {
+																		"layer": "equippedMenuStatue.LayerName"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
+																},
+																{
+																	"callFunction": "queueGearManagement",
+																	"sid": 201808565281580,
+																	"parameters": [
+																		true
+																	]
+																}
+															],
+															"sid": 538165469765856
+														}
+													]
+												}
+											],
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 692673207200540
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "if the item is dropped anywhere else, turn it into loot"
+												},
+												{
+													"id": "create-object-by-name",
+													"objectClass": "System",
+													"sid": 530528793366786,
+													"parameters": {
+														"object-name": "item.simpleName & \"_loot\"",
+														"layer": "\"background\"",
+														"x": "mouse.X",
+														"y": "mouse.Y",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												}
+											],
+											"sid": 131335017684878,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 401210540621586,
+															"parameters": {
+																"object": "loot"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "transfer data from item to loot, then destroy the item"
+														},
+														{
+															"id": "set-animation",
+															"objectClass": "loot",
+															"sid": 455412466954669,
+															"parameters": {
+																"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
+																"from": "beginning"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 436549342660758,
+															"parameters": {
+																"instance-variable": "identifier",
+																"value": "item.identifier"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 940214577653810,
+															"parameters": {
+																"instance-variable": "simpleName",
+																"value": "item.simpleName"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 609318629333019,
+															"parameters": {
+																"instance-variable": "fullName",
+																"value": "item.fullName"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 706705149091083,
+															"parameters": {
+																"instance-variable": "type",
+																"value": "item.type"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 527832429101211,
+															"parameters": {
+																"instance-variable": "lore",
+																"value": "item.lore"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 624606486964256,
+															"parameters": {
+																"instance-variable": "level",
+																"value": "item.level"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 990786707769387,
+															"parameters": {
+																"instance-variable": "mods",
+																"value": "item.mods"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 222537070982038,
+															"parameters": {
+																"instance-variable": "classRestrictions",
+																"value": "item.classRestrictions"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 372579724498442,
+															"parameters": {
+																"instance-variable": "modTable",
+																"value": "item.modTable"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 651883566374374,
+															"parameters": {
+																"instance-variable": "sound",
+																"value": "item.sound"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
+															"sid": 240008030508494,
+															"parameters": {
+																"instance-variable": "verticalHeight",
+																"value": "0"
+															}
+														},
+														{
+															"id": "destroy",
+															"objectClass": "item",
+															"sid": 994504075540251
+														}
+													],
+													"sid": 134994942053203
+												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
 															"id": "is-tag-playing",
 															"objectClass": "Audio",
-															"sid": 112775583560892,
+															"sid": 660562335418045,
 															"parameters": {
 																"tag": "loot.sound & \"_drop\""
 															},
@@ -3795,7 +3696,7 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 204852711107632,
+															"sid": 592701064279149,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "loot.sound & \"_drop\" & round(random(1))",
@@ -3809,11 +3710,70 @@
 															}
 														}
 													],
-													"sid": 460593015436497
+													"sid": 813480458593952
 												}
 											]
 										}
 									]
+								}
+							]
+						},
+						{
+							"functionName": "canThisItemGoIntoThisSlot",
+							"functionDescription": "Determine whether a specified item can go into a specified slot. Returns 1 for true and 0 for false.",
+							"functionCategory": "equipment",
+							"functionReturnType": "number",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 459864711907091,
+									"parameters": {
+										"value": "0"
+									}
+								}
+							],
+							"sid": 890908719073071,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "slot",
+											"sid": 677432910697048,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "NONE_KEYWORD"
+											}
+										},
+										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 896521922917274,
+											"parameters": {
+												"value": "slot.type = item.type & (findCase(item.classRestrictions, \"All Classes\") <> - 1 | find(item.classRestrictions, body.ObjectTypeName) <> -1) & item.level <= player.level"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 758990715165183,
+											"parameters": {
+												"value": "1"
+											}
+										}
+									],
+									"sid": 382330715404624,
+									"isOrBlock": true
 								}
 							]
 						},
@@ -3955,67 +3915,6 @@
 										}
 									],
 									"sid": 417363291653191
-								}
-							]
-						},
-						{
-							"functionName": "returnItem",
-							"functionDescription": "Send an item back to whatever it came from, if it was dropped in an ineligible location.",
-							"functionCategory": "equipment",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 790003971076737,
-									"parameters": {
-										"object": "slot",
-										"expression": "slot.UID",
-										"comparison": 0,
-										"value": "draggedOriginSlotUID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "attachItem",
-									"sid": 257549238666092
-								}
-							],
-							"sid": 669193285438587,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "slot",
-											"sid": 947465263058252,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 1,
-												"value": "\"\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "if it came from a character slot, manage the gear and mods appropriately"
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 480204558792721,
-											"parameters": [
-												true
-											]
-										}
-									],
-									"sid": 137910405971042
 								}
 							]
 						}

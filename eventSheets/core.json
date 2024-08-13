@@ -77,6 +77,26 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "NONE_KEYWORD",
+			"type": "string",
+			"initialValue": "none",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 389311828403507
+		},
+		{
+			"eventType": "variable",
+			"name": "ALL_CLASSES_KEYWORD",
+			"type": "string",
+			"initialValue": "All Classes",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 882619457243399
+		},
+		{
+			"eventType": "variable",
 			"name": "PERCENTAGE_DIVIDER",
 			"type": "number",
 			"initialValue": "100",
@@ -90,7 +110,7 @@
 			"name": "nextAvailableIdentifier",
 			"type": "number",
 			"initialValue": "2",
-			"comment": "Stores the next available identifier, to be assigned to equipment",
+			"comment": "Stores the next available identifier, to be assigned to equipment. 1 is used by the coins in the starting inventory.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 995721705060518
@@ -2112,37 +2132,25 @@
 									}
 								},
 								{
-									"id": "layer-is-interactive",
-									"objectClass": "System",
-									"sid": 431089794413979,
-									"parameters": {
-										"layer": "\"equippedMenu\""
-									}
+									"id": "is-dragging",
+									"objectClass": "item",
+									"sid": 675429861860402,
+									"behaviorType": "DragDrop",
+									"isInverted": true
 								},
 								{
 									"id": "layer-is-interactive",
 									"objectClass": "System",
-									"sid": 771285086035772,
+									"sid": 486767379155893,
 									"parameters": {
-										"layer": "\"inventoryMenu\""
-									}
-								},
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 560608246182680,
-									"parameters": {
-										"object": "slot",
-										"expression": "slot.identifier",
-										"comparison": 0,
-										"value": "item.identifier"
+										"layer": "inventoryMenuStatue.LayerName"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "if an item is right clicked, and both the inventory and character menus are open, pick the slot the item is in"
+									"text": "if an item is right clicked while it's not being dragged, and the inventory menu is open, pick its slot..."
 								}
 							],
 							"sid": 437401110381303,
@@ -2151,94 +2159,80 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "slot",
-											"sid": 610832630764773,
+											"id": "layer-is-interactive",
+											"objectClass": "System",
+											"sid": 370469379854644,
 											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "item.type"
+												"layer": "equippedMenuStatue.LayerName"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if the item is in the character menu"
+											"text": "...if the equipped menu is open..."
 										}
 									],
-									"sid": 550305845027586,
+									"sid": 387038011414598,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 484307946857076,
+													"id": "is-on-layer",
+													"objectClass": "item",
+													"sid": 586499795115539,
 													"parameters": {
-														"object": "slot"
-													}
-												},
-												{
-													"id": "pick-by-evaluate",
-													"objectClass": "System",
-													"sid": 604194622057872,
-													"parameters": {
-														"object": "slot",
-														"expression": "slot.type = \"none\" & slot.identifier = 0"
+														"layer": "equippedMenuStatue.LayerName"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "check to see if there's any empty inventory slots the item can go into"
+													"text": "...and the item is in the equipped menu..."
 												}
 											],
-											"sid": 220568365792590,
+											"sid": 958553783605150,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-all",
-															"objectClass": "System",
-															"sid": 469443065346884,
+															"id": "is-on-layer",
+															"objectClass": "slot",
+															"sid": 353293255959100,
 															"parameters": {
-																"object": "slot"
+																"layer": "inventoryMenuStatue.LayerName"
 															}
 														},
 														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 352754287175001,
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 540020639899996,
 															"parameters": {
-																"object": "slot",
-																"expression": "slot.identifier",
+																"instance-variable": "identifier",
 																"comparison": 0,
-																"value": "item.identifier"
+																"value": "0"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "if there are, detach the item from its current slot"
+															"text": "check to see if there's any empty inventory slots the item can go into"
 														},
 														{
-															"callFunction": "detachItem",
-															"sid": 835207460693215
-														},
-														{
-															"callFunction": "queueGearManagement",
-															"sid": 609886070905927,
-															"parameters": [
-																false
-															]
+															"id": "log",
+															"objectClass": "browser",
+															"sid": 428559804667070,
+															"parameters": {
+																"type": "log",
+																"message": "\"found \" & slot.PickedCount & \" slots that this item could go into\""
+															}
 														}
 													],
-													"sid": 152222844229358,
+													"sid": 981840489879166,
 													"children": [
 														{
 															"eventType": "block",
@@ -2246,24 +2240,83 @@
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 828249338222470,
+																	"sid": 967100600881977,
 																	"parameters": {
 																		"object": "slot"
 																	}
 																},
 																{
-																	"id": "pick-by-evaluate",
-																	"objectClass": "System",
-																	"sid": 248233827646714,
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 420370887790646,
 																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.type = \"none\" & slot.identifier = 0"
+																		"instance-variable": "identifier",
+																		"comparison": 0,
+																		"value": "item.identifier"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "if there are, detach the item from its current slot"
+																},
+																{
+																	"callFunction": "detachItem",
+																	"sid": 976236384669403
+																},
+																{
+																	"id": "log",
+																	"objectClass": "browser",
+																	"sid": 318390165395322,
+																	"parameters": {
+																		"type": "log",
+																		"message": "\"Detached from slot \" & slot.UID"
+																	}
+																},
+																{
+																	"callFunction": "queueGearManagement",
+																	"sid": 983135837530950,
+																	"parameters": [
+																		false
+																	]
+																}
+															],
+															"sid": 210791630171640
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-all",
+																	"objectClass": "System",
+																	"sid": 325794955793776,
+																	"parameters": {
+																		"object": "slot"
+																	}
+																},
+																{
+																	"id": "is-on-layer",
+																	"objectClass": "slot",
+																	"sid": 197315172449561,
+																	"parameters": {
+																		"layer": "inventoryMenuStatue.LayerName"
+																	}
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 762608276082863,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 0,
+																		"value": "0"
 																	}
 																},
 																{
 																	"id": "pick-nth-instance",
 																	"objectClass": "System",
-																	"sid": 480399471336736,
+																	"sid": 428379743805368,
 																	"parameters": {
 																		"object": "slot",
 																		"instance": "0"
@@ -2277,165 +2330,256 @@
 																},
 																{
 																	"callFunction": "attachItem",
-																	"sid": 113775732412119
+																	"sid": 319295054930313
+																},
+																{
+																	"id": "log",
+																	"objectClass": "browser",
+																	"sid": 312342151951349,
+																	"parameters": {
+																		"type": "log",
+																		"message": "\"Attached to slot \" & slot.UID"
+																	}
 																}
 															],
-															"sid": 800622303427423
+															"sid": 970455209255850
 														}
 													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 248967517781303
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "\"I can't carry any more\""
+														}
+													],
+													"sid": 414338400107824
 												}
 											]
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 441782255501353
 										},
-										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
-											"sid": 341490887870542,
-											"parameters": {
-												"value": "find(item.classRestrictions, player.class) <> -1 | findCase(item.classRestrictions, \"All Classes\") <> - 1"
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 610017096337653,
-											"parameters": {
-												"instance-variable": "level",
-												"comparison": 5,
-												"value": "item.level"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "if the item is in the inventory menu, and can be equipped"
-										}
-									],
-									"sid": 469557265898529,
-									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-all",
+													"id": "else",
 													"objectClass": "System",
-													"sid": 561748002048200,
-													"parameters": {
-														"object": "slot"
-													}
+													"sid": 385313078762621
 												},
 												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 821642348770305,
+													"id": "is-on-layer",
+													"objectClass": "item",
+													"sid": 729264934787620,
 													"parameters": {
-														"object": "slot",
-														"expression": "slot.type",
-														"comparison": 0,
-														"value": "item.type"
+														"layer": "inventoryMenuStatue.LayerName"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "pick the slots that match the item's type"
+													"text": "...and the item is in the in the inventory menu...\nThis else is necessary so that only one thing happens to the item per right click."
 												}
 											],
-											"sid": 373573424048934,
+											"sid": 882291626232232,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-by-comparison",
+															"id": "evaluate-expression",
 															"objectClass": "System",
-															"sid": 980800715661354,
+															"sid": 386992346119858,
 															"parameters": {
-																"object": "slot",
-																"expression": "slot.identifier",
-																"comparison": 0,
-																"value": "0"
+																"value": "find(item.classRestrictions, player.class) <> -1 | findCase(item.classRestrictions, \"All Classes\") <> - 1"
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "player",
+															"sid": 680193358453070,
+															"parameters": {
+																"instance-variable": "level",
+																"comparison": 5,
+																"value": "item.level"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "of those slots, check if any are empty"
+															"text": "...and can be equipped..."
 														}
 													],
-													"sid": 141790148535618,
+													"sid": 684701253016862,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "pick-all",
-																	"objectClass": "System",
-																	"sid": 127707970504769,
+																	"id": "is-on-layer",
+																	"objectClass": "slot",
+																	"sid": 164288986936068,
 																	"parameters": {
-																		"object": "slot"
+																		"layer": "equippedMenuStatue.LayerName"
 																	}
 																},
 																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 916325906161856,
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 685589380855051,
 																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.identifier",
+																		"instance-variable": "type",
 																		"comparison": 0,
-																		"value": "item.identifier"
+																		"value": "item.type"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "now that we know there's an empty character slot for this item, go back to the slot holding our item, and detach"
-																},
-																{
-																	"callFunction": "detachItem",
-																	"sid": 214449577715308
+																	"text": "pick the equipped menu slots that match the item's type"
 																}
 															],
-															"sid": 887468038183702,
+															"sid": 859526918998112,
 															"children": [
 																{
 																	"eventType": "block",
 																	"conditions": [
 																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 354047122038983,
+																			"id": "compare-instance-variable",
+																			"objectClass": "slot",
+																			"sid": 402004705666400,
 																			"parameters": {
-																				"object": "slot"
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "0"
 																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "of those slots, check if any are empty"
+																		}
+																	],
+																	"sid": 584524437449542,
+																	"children": [
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "pick-all",
+																					"objectClass": "System",
+																					"sid": 298277470443778,
+																					"parameters": {
+																						"object": "slot"
+																					}
+																				},
+																				{
+																					"id": "compare-instance-variable",
+																					"objectClass": "slot",
+																					"sid": 346789242479960,
+																					"parameters": {
+																						"instance-variable": "identifier",
+																						"comparison": 0,
+																						"value": "item.identifier"
+																					}
+																				}
+																			],
+																			"actions": [
+																				{
+																					"type": "comment",
+																					"text": "now that we know there's an empty equipped menu slot for this item, go back to the inventory menu slot holding our item, and detach"
+																				},
+																				{
+																					"callFunction": "detachItem",
+																					"sid": 286736681058617
+																				}
+																			],
+																			"sid": 406259428576198
 																		},
 																		{
-																			"id": "pick-by-evaluate",
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "pick-all",
+																					"objectClass": "System",
+																					"sid": 120851367945323,
+																					"parameters": {
+																						"object": "slot"
+																					}
+																				},
+																				{
+																					"id": "compare-instance-variable",
+																					"objectClass": "slot",
+																					"sid": 864323895026726,
+																					"parameters": {
+																						"instance-variable": "type",
+																						"comparison": 0,
+																						"value": "item.type"
+																					}
+																				},
+																				{
+																					"id": "compare-instance-variable",
+																					"objectClass": "slot",
+																					"sid": 737496815031200,
+																					"parameters": {
+																						"instance-variable": "identifier",
+																						"comparison": 0,
+																						"value": "0"
+																					}
+																				},
+																				{
+																					"id": "pick-nth-instance",
+																					"objectClass": "System",
+																					"sid": 190051375838399,
+																					"parameters": {
+																						"object": "slot",
+																						"instance": "0"
+																					}
+																				}
+																			],
+																			"actions": [
+																				{
+																					"type": "comment",
+																					"text": "re-pick the first empty equipped menu slot that matches the item's type, and attach to it"
+																				},
+																				{
+																					"callFunction": "attachItem",
+																					"sid": 474495935863623
+																				},
+																				{
+																					"callFunction": "queueGearManagement",
+																					"sid": 526985513260373,
+																					"parameters": [
+																						true
+																					]
+																				}
+																			],
+																			"sid": 858282065180832
+																		}
+																	]
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
 																			"objectClass": "System",
-																			"sid": 301471495040907,
-																			"parameters": {
-																				"object": "slot",
-																				"expression": "slot.type = item.type & slot.identifier = 0"
-																			}
+																			"sid": 370458544984623
 																		},
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 318274835792837,
+																			"sid": 774994155254802,
 																			"parameters": {
 																				"object": "slot",
 																				"instance": "0"
@@ -2445,21 +2589,188 @@
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "re-pick the first empty character slot that matches the item's type, and attach to it"
+																			"text": "if no slots are empty, start a swap. pick the first equipped menu slot (necessary in the case of rings, because there are two slots) and store its identifier, which is also the identifier of the item in it"
 																		},
 																		{
-																			"callFunction": "attachItem",
-																			"sid": 383335703408057
-																		},
-																		{
-																			"callFunction": "queueGearManagement",
-																			"sid": 676397932870973,
-																			"parameters": [
-																				true
-																			]
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 710675432835199,
+																			"parameters": {
+																				"variable": "swapID",
+																				"value": "slot.identifier"
+																			}
 																		}
 																	],
-																	"sid": 919076443516843
+																	"sid": 865519833954885,
+																	"children": [
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "pick-all",
+																					"objectClass": "System",
+																					"sid": 907178658700082,
+																					"parameters": {
+																						"object": "slot"
+																					}
+																				},
+																				{
+																					"id": "compare-instance-variable",
+																					"objectClass": "slot",
+																					"sid": 487158427399085,
+																					"parameters": {
+																						"instance-variable": "identifier",
+																						"comparison": 0,
+																						"value": "item.identifier"
+																					}
+																				}
+																			],
+																			"actions": [
+																				{
+																					"type": "comment",
+																					"text": "go back to the slot holding our item, and detach. save this slots UID so we know where to put the other item"
+																				},
+																				{
+																					"id": "set-eventvar-value",
+																					"objectClass": "System",
+																					"sid": 813671614071552,
+																					"parameters": {
+																						"variable": "swapSlotUID",
+																						"value": "slot.UID"
+																					}
+																				},
+																				{
+																					"callFunction": "detachItem",
+																					"sid": 730443479438802
+																				}
+																			],
+																			"sid": 523979712197140,
+																			"children": [
+																				{
+																					"eventType": "block",
+																					"conditions": [
+																						{
+																							"id": "pick-all",
+																							"objectClass": "System",
+																							"sid": 842777594068911,
+																							"parameters": {
+																								"object": "slot"
+																							}
+																						},
+																						{
+																							"id": "is-on-layer",
+																							"objectClass": "slot",
+																							"sid": 933501400520161,
+																							"parameters": {
+																								"layer": "equippedMenuStatue.LayerName"
+																							}
+																						},
+																						{
+																							"id": "compare-instance-variable",
+																							"objectClass": "slot",
+																							"sid": 652064791183353,
+																							"parameters": {
+																								"instance-variable": "type",
+																								"comparison": 0,
+																								"value": "item.type"
+																							}
+																						},
+																						{
+																							"id": "pick-nth-instance",
+																							"objectClass": "System",
+																							"sid": 671686784717211,
+																							"parameters": {
+																								"object": "slot",
+																								"instance": "0"
+																							}
+																						}
+																					],
+																					"actions": [
+																						{
+																							"type": "comment",
+																							"text": "re-pick the first equipped menu slot that matches the item's type, and attach to it, even though it has an different item in it"
+																						},
+																						{
+																							"callFunction": "attachItem",
+																							"sid": 622102280527600
+																						},
+																						{
+																							"callFunction": "queueGearManagement",
+																							"sid": 885967995803903,
+																							"parameters": [
+																								true
+																							]
+																						}
+																					],
+																					"sid": 271063288318763,
+																					"children": [
+																						{
+																							"eventType": "block",
+																							"conditions": [
+																								{
+																									"id": "pick-all",
+																									"objectClass": "System",
+																									"sid": 302238072181755,
+																									"parameters": {
+																										"object": "item"
+																									}
+																								},
+																								{
+																									"id": "compare-instance-variable",
+																									"objectClass": "item",
+																									"sid": 730096883609620,
+																									"parameters": {
+																										"instance-variable": "identifier",
+																										"comparison": 0,
+																										"value": "swapID"
+																									}
+																								},
+																								{
+																									"id": "pick-all",
+																									"objectClass": "System",
+																									"sid": 679986489106443,
+																									"parameters": {
+																										"object": "slot"
+																									}
+																								},
+																								{
+																									"id": "pick-by-unique-id",
+																									"objectClass": "slot",
+																									"sid": 503067139980552,
+																									"parameters": {
+																										"unique-id": "swapSlotUID"
+																									}
+																								}
+																							],
+																							"actions": [
+																								{
+																									"type": "comment",
+																									"text": "now we have both items in the same slot. we'll detach the item that shouldn't be there, picking it with swapID. We don't need to clear the identifier value because it was already set correctly in the previous event"
+																								},
+																								{
+																									"id": "remove-from-parent",
+																									"objectClass": "item",
+																									"sid": 101030448664840
+																								},
+																								{
+																									"callFunction": "manageMods",
+																									"sid": 618522200547554,
+																									"parameters": [
+																										false
+																									]
+																								},
+																								{
+																									"callFunction": "attachItem",
+																									"sid": 537259202952296
+																								}
+																							],
+																							"sid": 409967882417319
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
 																}
 															]
 														}
@@ -2471,219 +2782,16 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 796533398948327
-														},
-														{
-															"id": "pick-nth-instance",
-															"objectClass": "System",
-															"sid": 577614967156832,
-															"parameters": {
-																"object": "slot",
-																"instance": "0"
-															}
+															"sid": 104412510614568
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "if no slots are empty, start the *swap*: pick the first slot and store its identifier, which is also the identifier of the item in it"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 526168207309239,
-															"parameters": {
-																"variable": "swapID",
-																"value": "slot.identifier"
-															}
+															"text": "\"I don't meet the requirements for this item\""
 														}
 													],
-													"sid": 499823969870056,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "pick-all",
-																	"objectClass": "System",
-																	"sid": 263997570996260,
-																	"parameters": {
-																		"object": "slot"
-																	}
-																},
-																{
-																	"id": "pick-by-comparison",
-																	"objectClass": "System",
-																	"sid": 725741161718299,
-																	"parameters": {
-																		"object": "slot",
-																		"expression": "slot.identifier",
-																		"comparison": 0,
-																		"value": "item.identifier"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "go back to the slot holding our item, and detach. save this slots UID so we know where to put the other item"
-																},
-																{
-																	"id": "set-eventvar-value",
-																	"objectClass": "System",
-																	"sid": 834702856921462,
-																	"parameters": {
-																		"variable": "swapSlotUID",
-																		"value": "slot.UID"
-																	}
-																},
-																{
-																	"type": "comment",
-																	"text": "for some reason this isn't a function and I'm too scared to change it to one"
-																},
-																{
-																	"id": "set-instvar-value",
-																	"objectClass": "slot",
-																	"sid": 718669814539874,
-																	"parameters": {
-																		"instance-variable": "identifier",
-																		"value": "0"
-																	}
-																},
-																{
-																	"id": "remove-from-parent",
-																	"objectClass": "item",
-																	"sid": 295226669901879
-																}
-															],
-															"sid": 240232231168794,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 836733709612203,
-																			"parameters": {
-																				"object": "slot"
-																			}
-																		},
-																		{
-																			"id": "pick-by-comparison",
-																			"objectClass": "System",
-																			"sid": 330368232721342,
-																			"parameters": {
-																				"object": "slot",
-																				"expression": "slot.type",
-																				"comparison": 0,
-																				"value": "item.type"
-																			}
-																		},
-																		{
-																			"id": "pick-nth-instance",
-																			"objectClass": "System",
-																			"sid": 555943012192629,
-																			"parameters": {
-																				"object": "slot",
-																				"instance": "0"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"type": "comment",
-																			"text": "re-pick the first character slot that matches the item's type, and attach to it, even though it has an different item in it"
-																		},
-																		{
-																			"callFunction": "attachItem",
-																			"sid": 937442492661944
-																		},
-																		{
-																			"callFunction": "queueGearManagement",
-																			"sid": 628677347905680,
-																			"parameters": [
-																				true
-																			]
-																		}
-																	],
-																	"sid": 933613637577582,
-																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "pick-all",
-																					"objectClass": "System",
-																					"sid": 231628781161458,
-																					"parameters": {
-																						"object": "item"
-																					}
-																				},
-																				{
-																					"id": "pick-by-comparison",
-																					"objectClass": "System",
-																					"sid": 193745971658093,
-																					"parameters": {
-																						"object": "item",
-																						"expression": "item.identifier",
-																						"comparison": 0,
-																						"value": "swapID"
-																					}
-																				},
-																				{
-																					"id": "pick-all",
-																					"objectClass": "System",
-																					"sid": 408955921587844,
-																					"parameters": {
-																						"object": "slot"
-																					}
-																				},
-																				{
-																					"id": "pick-by-comparison",
-																					"objectClass": "System",
-																					"sid": 408279037831258,
-																					"parameters": {
-																						"object": "slot",
-																						"expression": "slot.UID",
-																						"comparison": 0,
-																						"value": "swapSlotUID"
-																					}
-																				}
-																			],
-																			"actions": [
-																				{
-																					"type": "comment",
-																					"text": "now we have both items in the same slot. we'll detach the item that shouldn't be there, picking it with swapID. We don't need to clear the identifier value because it was already set correctly in the previous event"
-																				},
-																				{
-																					"id": "remove-from-parent",
-																					"objectClass": "item",
-																					"sid": 507288274410844
-																				},
-																				{
-																					"callFunction": "manageMods",
-																					"sid": 573056621137338,
-																					"parameters": [
-																						false
-																					]
-																				},
-																				{
-																					"type": "comment",
-																					"text": "it'll go where the other item left, which we have saved in previousLocationUID"
-																				},
-																				{
-																					"callFunction": "attachItem",
-																					"sid": 672428174704793
-																				}
-																			],
-																			"sid": 404133702259918
-																		}
-																	]
-																}
-															]
-														}
-													]
+													"sid": 811934175907862
 												}
 											]
 										}

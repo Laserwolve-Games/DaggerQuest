@@ -2124,7 +2124,7 @@
 								{
 									"id": "on-object-clicked",
 									"objectClass": "mouse",
-									"sid": 935398605095828,
+									"sid": 902624678400026,
 									"parameters": {
 										"mouse-button": "right",
 										"click-type": "clicked",
@@ -2134,14 +2134,14 @@
 								{
 									"id": "is-dragging",
 									"objectClass": "item",
-									"sid": 675429861860402,
+									"sid": 559873276613647,
 									"behaviorType": "DragDrop",
 									"isInverted": true
 								},
 								{
 									"id": "layer-is-interactive",
 									"objectClass": "System",
-									"sid": 486767379155893,
+									"sid": 543470329738268,
 									"parameters": {
 										"layer": "inventoryMenuStatue.LayerName"
 									}
@@ -2153,7 +2153,7 @@
 									"text": "if an item is right clicked while it's not being dragged, and the inventory menu is open..."
 								}
 							],
-							"sid": 437401110381303,
+							"sid": 516496370527557,
 							"children": [
 								{
 									"eventType": "block",
@@ -2161,7 +2161,7 @@
 										{
 											"id": "layer-is-interactive",
 											"objectClass": "System",
-											"sid": 370469379854644,
+											"sid": 261625433778583,
 											"parameters": {
 												"layer": "equippedMenuStatue.LayerName"
 											}
@@ -2173,7 +2173,7 @@
 											"text": "...if the equipped menu is open..."
 										}
 									],
-									"sid": 387038011414598,
+									"sid": 141483461589071,
 									"children": [
 										{
 											"eventType": "block",
@@ -2181,7 +2181,7 @@
 												{
 													"id": "is-on-layer",
 													"objectClass": "item",
-													"sid": 586499795115539,
+													"sid": 373666143811986,
 													"parameters": {
 														"layer": "equippedMenuStatue.LayerName"
 													}
@@ -2193,7 +2193,7 @@
 													"text": "...and the item is in the equipped menu..."
 												}
 											],
-											"sid": 958553783605150,
+											"sid": 259729607655343,
 											"children": [
 												{
 													"eventType": "block",
@@ -2201,7 +2201,7 @@
 														{
 															"id": "is-on-layer",
 															"objectClass": "slot",
-															"sid": 353293255959100,
+															"sid": 204483611763530,
 															"parameters": {
 																"layer": "inventoryMenuStatue.LayerName"
 															}
@@ -2209,7 +2209,7 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "slot",
-															"sid": 540020639899996,
+															"sid": 464335822734662,
 															"parameters": {
 																"instance-variable": "identifier",
 																"comparison": 0,
@@ -2223,7 +2223,7 @@
 															"text": "check to see if there's any empty inventory slots the item can go into"
 														}
 													],
-													"sid": 981840489879166,
+													"sid": 615870837667651,
 													"children": [
 														{
 															"eventType": "block",
@@ -2231,7 +2231,7 @@
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 967100600881977,
+																	"sid": 143397265739429,
 																	"parameters": {
 																		"object": "slot"
 																	}
@@ -2239,7 +2239,7 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 420370887790646,
+																	"sid": 354642036138383,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
@@ -2254,17 +2254,17 @@
 																},
 																{
 																	"callFunction": "detachItem",
-																	"sid": 976236384669403
+																	"sid": 188966051254299
 																},
 																{
 																	"callFunction": "queueGearManagement",
-																	"sid": 983135837530950,
+																	"sid": 363078917521227,
 																	"parameters": [
 																		false
 																	]
 																}
 															],
-															"sid": 210791630171640
+															"sid": 327329318397352
 														},
 														{
 															"eventType": "block",
@@ -2272,7 +2272,7 @@
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 325794955793776,
+																	"sid": 904084341283974,
 																	"parameters": {
 																		"object": "slot"
 																	}
@@ -2280,7 +2280,7 @@
 																{
 																	"id": "is-on-layer",
 																	"objectClass": "slot",
-																	"sid": 197315172449561,
+																	"sid": 812399325623394,
 																	"parameters": {
 																		"layer": "inventoryMenuStatue.LayerName"
 																	}
@@ -2288,7 +2288,7 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 762608276082863,
+																	"sid": 926916826114853,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
@@ -2298,7 +2298,7 @@
 																{
 																	"id": "pick-nth-instance",
 																	"objectClass": "System",
-																	"sid": 428379743805368,
+																	"sid": 497017517327860,
 																	"parameters": {
 																		"object": "slot",
 																		"instance": "0"
@@ -2312,10 +2312,10 @@
 																},
 																{
 																	"callFunction": "attachItem",
-																	"sid": 319295054930313
+																	"sid": 234862840931038
 																}
 															],
-															"sid": 970455209255850
+															"sid": 286487193984274
 														}
 													]
 												},
@@ -2325,7 +2325,7 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 248967517781303
+															"sid": 243958853211203
 														}
 													],
 													"actions": [
@@ -2334,7 +2334,7 @@
 															"text": "\"I can't carry any more\""
 														}
 													],
-													"sid": 414338400107824
+													"sid": 179465482061357
 												}
 											]
 										},
@@ -2344,12 +2344,12 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 385313078762621
+													"sid": 882475673725979
 												},
 												{
 													"id": "is-on-layer",
 													"objectClass": "item",
-													"sid": 729264934787620,
+													"sid": 210850705213818,
 													"parameters": {
 														"layer": "inventoryMenuStatue.LayerName"
 													}
@@ -2361,7 +2361,7 @@
 													"text": "...and the item is in the in the inventory menu...\nThis else is necessary so that only one thing happens to the item per right click."
 												}
 											],
-											"sid": 882291626232232,
+											"sid": 179130591788354,
 											"children": [
 												{
 													"eventType": "block",
@@ -2369,7 +2369,7 @@
 														{
 															"id": "evaluate-expression",
 															"objectClass": "System",
-															"sid": 386992346119858,
+															"sid": 884186158924799,
 															"parameters": {
 																"value": "find(item.classRestrictions, player.class) <> -1 | findCase(item.classRestrictions, \"All Classes\") <> - 1"
 															}
@@ -2377,7 +2377,7 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "player",
-															"sid": 680193358453070,
+															"sid": 979390650824515,
 															"parameters": {
 																"instance-variable": "level",
 																"comparison": 5,
@@ -2391,7 +2391,7 @@
 															"text": "...and can be equipped..."
 														}
 													],
-													"sid": 684701253016862,
+													"sid": 816224069253620,
 													"children": [
 														{
 															"eventType": "block",
@@ -2399,7 +2399,7 @@
 																{
 																	"id": "is-on-layer",
 																	"objectClass": "slot",
-																	"sid": 164288986936068,
+																	"sid": 456376101268231,
 																	"parameters": {
 																		"layer": "equippedMenuStatue.LayerName"
 																	}
@@ -2407,7 +2407,7 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 685589380855051,
+																	"sid": 572823768934564,
 																	"parameters": {
 																		"instance-variable": "type",
 																		"comparison": 0,
@@ -2421,7 +2421,7 @@
 																	"text": "pick the equipped menu slots that match the item's type"
 																}
 															],
-															"sid": 859526918998112,
+															"sid": 502572037153546,
 															"children": [
 																{
 																	"eventType": "block",
@@ -2429,7 +2429,7 @@
 																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "slot",
-																			"sid": 402004705666400,
+																			"sid": 135844910243692,
 																			"parameters": {
 																				"instance-variable": "identifier",
 																				"comparison": 0,
@@ -2443,7 +2443,7 @@
 																			"text": "of those slots, check if any are empty"
 																		}
 																	],
-																	"sid": 584524437449542,
+																	"sid": 611656446932646,
 																	"children": [
 																		{
 																			"eventType": "block",
@@ -2451,7 +2451,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 298277470443778,
+																					"sid": 813888886156308,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -2459,7 +2459,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 346789242479960,
+																					"sid": 416730467022575,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -2474,10 +2474,10 @@
 																				},
 																				{
 																					"callFunction": "detachItem",
-																					"sid": 286736681058617
+																					"sid": 131421743767293
 																				}
 																			],
-																			"sid": 406259428576198
+																			"sid": 195533417383285
 																		},
 																		{
 																			"eventType": "block",
@@ -2485,7 +2485,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 120851367945323,
+																					"sid": 156477775914989,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -2493,7 +2493,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 864323895026726,
+																					"sid": 585688927479561,
 																					"parameters": {
 																						"instance-variable": "type",
 																						"comparison": 0,
@@ -2503,7 +2503,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 737496815031200,
+																					"sid": 999243174386320,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -2513,7 +2513,7 @@
 																				{
 																					"id": "pick-nth-instance",
 																					"objectClass": "System",
-																					"sid": 190051375838399,
+																					"sid": 381623664014871,
 																					"parameters": {
 																						"object": "slot",
 																						"instance": "0"
@@ -2527,17 +2527,17 @@
 																				},
 																				{
 																					"callFunction": "attachItem",
-																					"sid": 474495935863623
+																					"sid": 327984834416614
 																				},
 																				{
 																					"callFunction": "queueGearManagement",
-																					"sid": 526985513260373,
+																					"sid": 263057565458828,
 																					"parameters": [
 																						true
 																					]
 																				}
 																			],
-																			"sid": 858282065180832
+																			"sid": 218558563544337
 																		}
 																	]
 																},
@@ -2547,12 +2547,12 @@
 																		{
 																			"id": "else",
 																			"objectClass": "System",
-																			"sid": 370458544984623
+																			"sid": 572019427785162
 																		},
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 774994155254802,
+																			"sid": 390815014546678,
 																			"parameters": {
 																				"object": "slot",
 																				"instance": "0"
@@ -2567,14 +2567,14 @@
 																		{
 																			"id": "set-eventvar-value",
 																			"objectClass": "System",
-																			"sid": 710675432835199,
+																			"sid": 604084880763839,
 																			"parameters": {
 																				"variable": "swapIdentifier",
 																				"value": "slot.identifier"
 																			}
 																		}
 																	],
-																	"sid": 865519833954885,
+																	"sid": 210265590913200,
 																	"children": [
 																		{
 																			"eventType": "block",
@@ -2582,7 +2582,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 907178658700082,
+																					"sid": 752533324952199,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -2590,7 +2590,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 487158427399085,
+																					"sid": 381204298338618,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -2606,7 +2606,7 @@
 																				{
 																					"id": "set-eventvar-value",
 																					"objectClass": "System",
-																					"sid": 813671614071552,
+																					"sid": 311564767470210,
 																					"parameters": {
 																						"variable": "swapSlotUid",
 																						"value": "slot.UID"
@@ -2614,10 +2614,10 @@
 																				},
 																				{
 																					"callFunction": "detachItem",
-																					"sid": 730443479438802
+																					"sid": 836662842091155
 																				}
 																			],
-																			"sid": 523979712197140,
+																			"sid": 215652186379056,
 																			"children": [
 																				{
 																					"eventType": "block",
@@ -2625,7 +2625,7 @@
 																						{
 																							"id": "pick-all",
 																							"objectClass": "System",
-																							"sid": 842777594068911,
+																							"sid": 336836206895685,
 																							"parameters": {
 																								"object": "slot"
 																							}
@@ -2633,7 +2633,7 @@
 																						{
 																							"id": "is-on-layer",
 																							"objectClass": "slot",
-																							"sid": 933501400520161,
+																							"sid": 592571561211843,
 																							"parameters": {
 																								"layer": "equippedMenuStatue.LayerName"
 																							}
@@ -2641,7 +2641,7 @@
 																						{
 																							"id": "compare-instance-variable",
 																							"objectClass": "slot",
-																							"sid": 652064791183353,
+																							"sid": 217011974300001,
 																							"parameters": {
 																								"instance-variable": "type",
 																								"comparison": 0,
@@ -2651,7 +2651,7 @@
 																						{
 																							"id": "pick-nth-instance",
 																							"objectClass": "System",
-																							"sid": 671686784717211,
+																							"sid": 539048875567544,
 																							"parameters": {
 																								"object": "slot",
 																								"instance": "0"
@@ -2665,14 +2665,14 @@
 																						},
 																						{
 																							"callFunction": "attachItem",
-																							"sid": 622102280527600
+																							"sid": 173606397215514
 																						},
 																						{
 																							"callFunction": "conditionallyUpdateGear",
-																							"sid": 691136040616052
+																							"sid": 380133124349271
 																						}
 																					],
-																					"sid": 271063288318763,
+																					"sid": 208754529740190,
 																					"children": [
 																						{
 																							"eventType": "block",
@@ -2680,7 +2680,7 @@
 																								{
 																									"id": "pick-all",
 																									"objectClass": "System",
-																									"sid": 302238072181755,
+																									"sid": 692479422454669,
 																									"parameters": {
 																										"object": "item"
 																									}
@@ -2688,7 +2688,7 @@
 																								{
 																									"id": "compare-instance-variable",
 																									"objectClass": "item",
-																									"sid": 730096883609620,
+																									"sid": 271581528396390,
 																									"parameters": {
 																										"instance-variable": "identifier",
 																										"comparison": 0,
@@ -2698,7 +2698,7 @@
 																								{
 																									"id": "pick-all",
 																									"objectClass": "System",
-																									"sid": 679986489106443,
+																									"sid": 677226589270042,
 																									"parameters": {
 																										"object": "slot"
 																									}
@@ -2706,7 +2706,7 @@
 																								{
 																									"id": "pick-by-unique-id",
 																									"objectClass": "slot",
-																									"sid": 503067139980552,
+																									"sid": 285745312141678,
 																									"parameters": {
 																										"unique-id": "swapSlotUID"
 																									}
@@ -2720,21 +2720,21 @@
 																								{
 																									"id": "remove-from-parent",
 																									"objectClass": "item",
-																									"sid": 101030448664840
+																									"sid": 238096414769910
 																								},
 																								{
 																									"callFunction": "manageMods",
-																									"sid": 618522200547554,
+																									"sid": 582563508271707,
 																									"parameters": [
 																										false
 																									]
 																								},
 																								{
 																									"callFunction": "attachItem",
-																									"sid": 537259202952296
+																									"sid": 389391319527430
 																								}
 																							],
-																							"sid": 409967882417319
+																							"sid": 216178085774942
 																						}
 																					]
 																				}
@@ -2752,7 +2752,7 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 104412510614568
+															"sid": 872168138322245
 														}
 													],
 													"actions": [
@@ -2761,7 +2761,407 @@
 															"text": "\"I don't meet the requirements for this item\""
 														}
 													],
-													"sid": 811934175907862
+													"sid": 715392308037857
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-interactive",
+											"objectClass": "System",
+											"sid": 951140948527553,
+											"parameters": {
+												"layer": "merchantMenuStatue.LayerName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "...if the merchant menu is open..."
+										}
+									],
+									"sid": 305621605690708,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-on-layer",
+													"objectClass": "item",
+													"sid": 153342285769272,
+													"parameters": {
+														"layer": "merchantMenuStatue.LayerName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "...and the item is in the merchant menu..."
+												}
+											],
+											"sid": 494713688753610,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-on-layer",
+															"objectClass": "slot",
+															"sid": 829655037631147,
+															"parameters": {
+																"layer": "inventoryMenuStatue.LayerName"
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 935302164198032,
+															"parameters": {
+																"instance-variable": "identifier",
+																"comparison": 0,
+																"value": "0"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "check to see if there's any empty inventory slots the item can go into"
+														}
+													],
+													"sid": 181754026692635,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "check if the player can purchase the item and perform the transaction here"
+																}
+															],
+															"sid": 580986029317286,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 342955611112313,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "slot",
+																			"sid": 436704766403690,
+																			"parameters": {
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "item.identifier"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "if there are, detach the item from its current slot"
+																		},
+																		{
+																			"callFunction": "detachItem",
+																			"sid": 131505584950739
+																		}
+																	],
+																	"sid": 518708578055429
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 512394241193415,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "is-on-layer",
+																			"objectClass": "slot",
+																			"sid": 741939023261402,
+																			"parameters": {
+																				"layer": "inventoryMenuStatue.LayerName"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "slot",
+																			"sid": 435381455243604,
+																			"parameters": {
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "pick-nth-instance",
+																			"objectClass": "System",
+																			"sid": 797247422144166,
+																			"parameters": {
+																				"object": "slot",
+																				"instance": "0"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "then attach it to the first empty inventory slot"
+																		},
+																		{
+																			"callFunction": "attachItem",
+																			"sid": 539107870797046
+																		}
+																	],
+																	"sid": 364953540658440
+																}
+															]
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 402232361581370
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "\"I have insufficient gold\" - we possibly could include this in the transaction function"
+																}
+															],
+															"sid": 894028079555078
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 271667908446741
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "\"I can't carry any more\" or \"I have no room for this purchase\""
+														}
+													],
+													"sid": 643614221231479
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 972375055810035
+												},
+												{
+													"id": "is-on-layer",
+													"objectClass": "item",
+													"sid": 326718653324686,
+													"parameters": {
+														"layer": "inventoryMenuStatue.LayerName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "...and the item is in the in the inventory menu...\nThis else is necessary so that only one thing happens to the item per right click."
+												}
+											],
+											"sid": 464545087234551,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-on-layer",
+															"objectClass": "slot",
+															"sid": 273213334054707,
+															"parameters": {
+																"layer": "merchantMenuStatue.LayerName"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "pick the slots on the merchant menu"
+														}
+													],
+													"sid": 395523626453058,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 185416270970694,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "pick the empty slots"
+																}
+															],
+															"sid": 123784696618458,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 882135933696076,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "slot",
+																			"sid": 973313787830797,
+																			"parameters": {
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "item.identifier"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "now that we know there's an empty merchant menu slot for this item, go back to the inventory menu slot holding our item, and detach"
+																		},
+																		{
+																			"callFunction": "detachItem",
+																			"sid": 491360834332678
+																		}
+																	],
+																	"sid": 574364136361459
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 574433549571399,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "is-on-layer",
+																			"objectClass": "slot",
+																			"sid": 453776050558308,
+																			"parameters": {
+																				"layer": "merchantMenuStatue.LayerName"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "slot",
+																			"sid": 402308270095072,
+																			"parameters": {
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "pick-nth-instance",
+																			"objectClass": "System",
+																			"sid": 870824738355914,
+																			"parameters": {
+																				"object": "slot",
+																				"instance": "0"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "re-pick the first empty merchant menu slot that matches the item's type, and attach to it, and TODO: give the player money for the item they just sold"
+																		},
+																		{
+																			"callFunction": "attachItem",
+																			"sid": 469748168894396
+																		}
+																	],
+																	"sid": 278144136058467
+																}
+															]
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 764775576450374
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "if there's no empty slots on the merchant menu, the merchant plays the dialog line \"I have no more room to purchase items\""
+																}
+															],
+															"sid": 374919461999711
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 815553133475659
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "\"I don't meet the requirements for this item\""
+														}
+													],
+													"sid": 103414643103367
 												}
 											]
 										}

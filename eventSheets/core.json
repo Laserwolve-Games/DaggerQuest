@@ -2150,7 +2150,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "if an item is right clicked while it's not being dragged, and the inventory menu is open, pick its slot..."
+									"text": "if an item is right clicked while it's not being dragged, and the inventory menu is open..."
 								}
 							],
 							"sid": 437401110381303,
@@ -2668,11 +2668,8 @@
 																							"sid": 622102280527600
 																						},
 																						{
-																							"callFunction": "queueGearManagement",
-																							"sid": 885967995803903,
-																							"parameters": [
-																								true
-																							]
+																							"callFunction": "conditionallyUpdateGear",
+																							"sid": 691136040616052
 																						}
 																					],
 																					"sid": 271063288318763,
@@ -2838,6 +2835,10 @@
 										"ping-pong": "no",
 										"repeat-count": "1"
 									}
+								},
+								{
+									"callFunction": "conditionallyUpdateGear",
+									"sid": 981694049167373
 								}
 							],
 							"sid": 827535395163321,
@@ -2962,38 +2963,13 @@
 														{
 															"callFunction": "attachItem",
 															"sid": 774512884771591
+														},
+														{
+															"callFunction": "conditionallyUpdateGear",
+															"sid": 169342615619639
 														}
 													],
-													"sid": 177525206568447,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "is-on-layer",
-																	"objectClass": "slot",
-																	"sid": 377454948759415,
-																	"parameters": {
-																		"layer": "equippedMenuStatue.LayerName"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "If the item is now in an equipped menu slot, manage the gear and mods appropriately"
-																},
-																{
-																	"callFunction": "queueGearManagement",
-																	"sid": 425692638313526,
-																	"parameters": [
-																		true
-																	]
-																}
-															],
-															"sid": 309363626440421
-														}
-													]
+													"sid": 177525206568447
 												},
 												{
 													"eventType": "block",
@@ -3147,37 +3123,14 @@
 																		{
 																			"callFunction": "attachItem",
 																			"sid": 879128537548830
+																		},
+																		{
+																			"callFunction": "conditionallyUpdateGear",
+																			"sid": 573980392891519
 																		}
 																	],
 																	"sid": 645440854485517,
 																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "is-on-layer",
-																					"objectClass": "slot",
-																					"sid": 670518224846457,
-																					"parameters": {
-																						"layer": "equippedMenuStatue.LayerName"
-																					}
-																				}
-																			],
-																			"actions": [
-																				{
-																					"type": "comment",
-																					"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
-																				},
-																				{
-																					"callFunction": "queueGearManagement",
-																					"sid": 858450812470616,
-																					"parameters": [
-																						true
-																					]
-																				}
-																			],
-																			"sid": 859253333399301
-																		},
 																		{
 																			"eventType": "block",
 																			"conditions": [
@@ -3236,38 +3189,13 @@
 																				{
 																					"callFunction": "attachItem",
 																					"sid": 757628680092096
+																				},
+																				{
+																					"callFunction": "conditionallyUpdateGear",
+																					"sid": 228242793130107
 																				}
 																			],
-																			"sid": 164852198893279,
-																			"children": [
-																				{
-																					"eventType": "block",
-																					"conditions": [
-																						{
-																							"id": "is-on-layer",
-																							"objectClass": "slot",
-																							"sid": 176058816053288,
-																							"parameters": {
-																								"layer": "equippedMenuStatue.LayerName"
-																							}
-																						}
-																					],
-																					"actions": [
-																						{
-																							"type": "comment",
-																							"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
-																						},
-																						{
-																							"callFunction": "queueGearManagement",
-																							"sid": 719377728835123,
-																							"parameters": [
-																								true
-																							]
-																						}
-																					],
-																					"sid": 947732253329855
-																				}
-																			]
+																			"sid": 164852198893279
 																		}
 																	]
 																}
@@ -3306,38 +3234,13 @@
 																{
 																	"callFunction": "attachItem",
 																	"sid": 981720519974591
+																},
+																{
+																	"callFunction": "conditionallyUpdateGear",
+																	"sid": 849091078841848
 																}
 															],
-															"sid": 210374922234155,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "is-on-layer",
-																			"objectClass": "slot",
-																			"sid": 792862669032369,
-																			"parameters": {
-																				"layer": "equippedMenuStatue.LayerName"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"type": "comment",
-																			"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
-																		},
-																		{
-																			"callFunction": "queueGearManagement",
-																			"sid": 105929138880464,
-																			"parameters": [
-																				true
-																			]
-																		}
-																	],
-																	"sid": 901931296015534
-																}
-															]
+															"sid": 210374922234155
 														}
 													]
 												}
@@ -3376,38 +3279,13 @@
 												{
 													"callFunction": "attachItem",
 													"sid": 205979422756122
+												},
+												{
+													"callFunction": "conditionallyUpdateGear",
+													"sid": 472365152023152
 												}
 											],
-											"sid": 771584118890591,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-on-layer",
-															"objectClass": "slot",
-															"sid": 553150911799005,
-															"parameters": {
-																"layer": "equippedMenuStatue.LayerName"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
-														},
-														{
-															"callFunction": "queueGearManagement",
-															"sid": 756720428923938,
-															"parameters": [
-																true
-															]
-														}
-													],
-													"sid": 683553748469086
-												}
-											]
+											"sid": 771584118890591
 										}
 									]
 								},
@@ -3480,38 +3358,13 @@
 														{
 															"callFunction": "attachItem",
 															"sid": 393789573471667
+														},
+														{
+															"callFunction": "conditionallyUpdateGear",
+															"sid": 501471416512354
 														}
 													],
-													"sid": 772458645342609,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "is-on-layer",
-																	"objectClass": "slot",
-																	"sid": 659942609974434,
-																	"parameters": {
-																		"layer": "equippedMenuStatue.LayerName"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "if it came from an equipped menu slot, manage the gear and mods appropriately"
-																},
-																{
-																	"callFunction": "queueGearManagement",
-																	"sid": 201808565281580,
-																	"parameters": [
-																		true
-																	]
-																}
-															],
-															"sid": 538165469765856
-														}
-													]
+													"sid": 772458645342609
 												}
 											],
 											"isOrBlock": true
@@ -3717,6 +3570,36 @@
 									]
 								}
 							]
+						},
+						{
+							"functionName": "conditionallyUpdateGear",
+							"functionDescription": "Check if the slot in question is on the equipment menu, and manage gear if it is.",
+							"functionCategory": "equipment",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "is-on-layer",
+									"objectClass": "slot",
+									"sid": 514952213875653,
+									"parameters": {
+										"layer": "equippedMenuStatue.LayerName"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "queueGearManagement",
+									"sid": 362020203469505,
+									"parameters": [
+										true
+									]
+								}
+							],
+							"sid": 891859710990912
 						},
 						{
 							"functionName": "canThisItemGoIntoThisSlot",

@@ -3268,6 +3268,15 @@
 										{
 											"type": "comment",
 											"text": "if the item was dropped over a slot..."
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 596354897933685,
+											"parameters": {
+												"variable": "droppedOnSlotUid",
+												"value": "slot.UID"
+											}
 										}
 									],
 									"sid": 975172186095144,
@@ -3279,6 +3288,7 @@
 													"id": "compare-two-values",
 													"objectClass": "System",
 													"sid": 653827654958201,
+													"breakpoint": true,
 													"parameters": {
 														"first-value": "Functions.canThisItemGoIntoThisSlot",
 														"comparison": 0,
@@ -3295,248 +3305,54 @@
 											"sid": 109270735818354,
 											"children": [
 												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "slot",
-															"sid": 859840723380552,
-															"parameters": {
-																"instance-variable": "identifier",
-																"comparison": 0,
-																"value": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "attachItem",
-															"sid": 774512884771591
-														}
-													],
-													"sid": 177525206568447
+													"eventType": "comment",
+													"text": "Observation: you can't re-arrange items on the merchant menu."
 												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 496882349748845
-														},
-														{
-															"id": "compare-instance-variable",
+															"id": "is-on-layer",
 															"objectClass": "slot",
-															"sid": 163642128357752,
+															"sid": 688397402341653,
 															"parameters": {
-																"instance-variable": "identifier",
-																"comparison": 1,
-																"value": "0"
+																"layer": "merchantMenuStatue.LayerName"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "and that slot is not empty, save its identifier (which is also its item's identifier) so we can overwrite it"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 157039967499116,
-															"parameters": {
-																"variable": "swapIdentifier",
-																"value": "slot.identifier"
-															}
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 547250842785804,
-															"parameters": {
-																"variable": "draggedItemUid",
-																"value": "item.UID"
-															}
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 533328348066860,
-															"parameters": {
-																"variable": "droppedOnSlotUid",
-																"value": "slot.UID"
-															}
+															"text": "if the slot that was dropped over is on the merchant menu..."
 														}
 													],
-													"sid": 923553543124138,
+													"sid": 658673599562839,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "pick-all",
-																	"objectClass": "System",
-																	"sid": 793281014319154,
-																	"parameters": {
-																		"object": "item"
-																	}
-																},
-																{
 																	"id": "compare-instance-variable",
-																	"objectClass": "item",
-																	"sid": 238228534220555,
+																	"objectClass": "slot",
+																	"sid": 180794855633957,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "swapIdentifier"
-																	}
-																},
-																{
-																	"id": "pick-all",
-																	"objectClass": "System",
-																	"sid": 899760682837755,
-																	"parameters": {
-																		"object": "slot"
-																	}
-																},
-																{
-																	"id": "pick-by-unique-id",
-																	"objectClass": "slot",
-																	"sid": 826261579093807,
-																	"parameters": {
-																		"unique-id": "draggedOriginSlotUID"
-																	}
-																},
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 291521274342397,
-																	"parameters": {
-																		"value": "slot.type = item.type | slot.type = NONE_KEYWORD"
+																		"value": "0"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "check if the item can go back to the origin slot"
+																	"text": "...and it's empty, put the item there and TODO: give the player money for the item"
+																},
+																{
+																	"callFunction": "attachItem",
+																	"sid": 599867682290781
 																}
 															],
-															"sid": 337841391405174,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 235109937151193,
-																			"parameters": {
-																				"object": "item"
-																			}
-																		},
-																		{
-																			"id": "pick-by-unique-id",
-																			"objectClass": "item",
-																			"sid": 512258973382956,
-																			"parameters": {
-																				"unique-id": "draggedItemUid"
-																			}
-																		},
-																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 666901460752446,
-																			"parameters": {
-																				"object": "slot"
-																			}
-																		},
-																		{
-																			"id": "pick-by-unique-id",
-																			"objectClass": "slot",
-																			"sid": 630815598395228,
-																			"parameters": {
-																				"unique-id": "droppedOnSlotUid"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"type": "comment",
-																			"text": "if it can, re-pick the item being dragged, and the slot we dropped it on, and attach them"
-																		},
-																		{
-																			"callFunction": "attachItem",
-																			"sid": 879128537548830
-																		}
-																	],
-																	"sid": 645440854485517,
-																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "pick-all",
-																					"objectClass": "System",
-																					"sid": 221637586007934,
-																					"parameters": {
-																						"object": "item"
-																					}
-																				},
-																				{
-																					"id": "compare-instance-variable",
-																					"objectClass": "item",
-																					"sid": 677403738575022,
-																					"parameters": {
-																						"instance-variable": "identifier",
-																						"comparison": 0,
-																						"value": "swapIdentifier"
-																					}
-																				},
-																				{
-																					"id": "pick-all",
-																					"objectClass": "System",
-																					"sid": 527046520047376,
-																					"parameters": {
-																						"object": "slot"
-																					}
-																				},
-																				{
-																					"id": "pick-by-unique-id",
-																					"objectClass": "slot",
-																					"sid": 909685261080487,
-																					"parameters": {
-																						"unique-id": "draggedOriginSlotUid"
-																					}
-																				}
-																			],
-																			"actions": [
-																				{
-																					"type": "comment",
-																					"text": "now pick and detach the overlapped item that shouldn't be there (but the slot's identifier is OK), and pick the origin slot, and attach the two"
-																				},
-																				{
-																					"id": "remove-from-parent",
-																					"objectClass": "item",
-																					"sid": 514285137657194
-																				},
-																				{
-																					"callFunction": "manageMods",
-																					"sid": 633348175215570,
-																					"parameters": [
-																						false
-																					]
-																				},
-																				{
-																					"callFunction": "attachItem",
-																					"sid": 757628680092096
-																				}
-																			],
-																			"sid": 164852198893279
-																		}
-																	]
-																}
-															]
+															"sid": 742996182313594
 														},
 														{
 															"eventType": "block",
@@ -3544,12 +3360,81 @@
 																{
 																	"id": "else",
 																	"objectClass": "System",
-																	"sid": 115449626626232
+																	"sid": 228069300484542
 																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 380955082769886,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 1,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "returnItem",
+																	"sid": 657989560447870
+																},
+																{
+																	"type": "comment",
+																	"text": "...and it's not empty. send the item back. We don't swap items from the merchant menu."
+																}
+															],
+															"sid": 199153147600887
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 569988289496927
+														},
+														{
+															"id": "pick-all",
+															"objectClass": "System",
+															"sid": 226638190597145,
+															"parameters": {
+																"object": "slot"
+															}
+														},
+														{
+															"id": "pick-by-unique-id",
+															"objectClass": "slot",
+															"sid": 557132173559795,
+															"parameters": {
+																"unique-id": "draggedOriginSlotUid"
+															}
+														},
+														{
+															"id": "is-on-layer",
+															"objectClass": "slot",
+															"sid": 234984840404105,
+															"parameters": {
+																"layer": "merchantMenuStatue.LayerName"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "if the item that was dropped came from the merchant menu..."
+														}
+													],
+													"sid": 285398140168474,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
 																{
 																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 337357315852136,
+																	"sid": 575172335793380,
 																	"parameters": {
 																		"object": "slot"
 																	}
@@ -3557,23 +3442,373 @@
 																{
 																	"id": "pick-by-unique-id",
 																	"objectClass": "slot",
-																	"sid": 434130549854896,
+																	"sid": 451809780090832,
 																	"parameters": {
-																		"unique-id": "draggedOriginSlotUid"
+																		"unique-id": "droppedOnSlotUid"
+																	}
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 476129399617223,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 0,
+																		"value": "0"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "if it can't, don't swap, and send the item being dragged back to the origin slot"
+																	"text": "...and it was dropped an an empty slot, put it there and TODO: charge the player for it"
 																},
 																{
 																	"callFunction": "attachItem",
-																	"sid": 981720519974591
+																	"sid": 284004420893470
 																}
 															],
-															"sid": 210374922234155
+															"sid": 549102013202866
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 779522646713748
+																},
+																{
+																	"id": "pick-all",
+																	"objectClass": "System",
+																	"sid": 534191303572532,
+																	"parameters": {
+																		"object": "slot"
+																	}
+																},
+																{
+																	"id": "pick-by-unique-id",
+																	"objectClass": "slot",
+																	"sid": 899811999325995,
+																	"parameters": {
+																		"unique-id": "droppedOnSlotUid"
+																	}
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 763220475970033,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 1,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "...and it was dropped on a slot that wasn't empty, return it. No swapping from the merchant menu."
+																},
+																{
+																	"callFunction": "returnItem",
+																	"sid": 737496615976106
+																}
+															],
+															"sid": 784485727885849
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 444701618560179
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "only allow drag and drop swapping when neither the origin or destination slot are on the merchant menu"
+														}
+													],
+													"sid": 800442567316545,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 673896809220318,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "attachItem",
+																	"sid": 876885722662709
+																}
+															],
+															"sid": 256926424981849
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 965803415258555
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "slot",
+																	"sid": 960652851844416,
+																	"parameters": {
+																		"instance-variable": "identifier",
+																		"comparison": 1,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "and that slot is not empty, save its identifier (which is also its item's identifier) so we can overwrite it"
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 711223640044608,
+																	"parameters": {
+																		"variable": "swapIdentifier",
+																		"value": "slot.identifier"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 938359797690223,
+																	"parameters": {
+																		"variable": "draggedItemUid",
+																		"value": "item.UID"
+																	}
+																}
+															],
+															"sid": 538398876781851,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 871040984737131,
+																			"parameters": {
+																				"object": "item"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "item",
+																			"sid": 596248838749628,
+																			"parameters": {
+																				"instance-variable": "identifier",
+																				"comparison": 0,
+																				"value": "swapIdentifier"
+																			}
+																		},
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 615199949178196,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "pick-by-unique-id",
+																			"objectClass": "slot",
+																			"sid": 435196364225877,
+																			"parameters": {
+																				"unique-id": "draggedOriginSlotUID"
+																			}
+																		},
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 638525709696283,
+																			"parameters": {
+																				"value": "slot.type = item.type | slot.type = NONE_KEYWORD"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "check if the item can go back to the origin slot"
+																		}
+																	],
+																	"sid": 125981301750550,
+																	"children": [
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "pick-all",
+																					"objectClass": "System",
+																					"sid": 923964156028970,
+																					"parameters": {
+																						"object": "item"
+																					}
+																				},
+																				{
+																					"id": "pick-by-unique-id",
+																					"objectClass": "item",
+																					"sid": 982419229705179,
+																					"parameters": {
+																						"unique-id": "draggedItemUid"
+																					}
+																				},
+																				{
+																					"id": "pick-all",
+																					"objectClass": "System",
+																					"sid": 481784894716348,
+																					"parameters": {
+																						"object": "slot"
+																					}
+																				},
+																				{
+																					"id": "pick-by-unique-id",
+																					"objectClass": "slot",
+																					"sid": 864542111705744,
+																					"parameters": {
+																						"unique-id": "droppedOnSlotUid"
+																					}
+																				}
+																			],
+																			"actions": [
+																				{
+																					"type": "comment",
+																					"text": "if it can, re-pick the item being dragged, and the slot we dropped it on, and attach them"
+																				},
+																				{
+																					"callFunction": "attachItem",
+																					"sid": 109330069133877
+																				}
+																			],
+																			"sid": 956003647143740,
+																			"children": [
+																				{
+																					"eventType": "block",
+																					"conditions": [
+																						{
+																							"id": "pick-all",
+																							"objectClass": "System",
+																							"sid": 782601427504381,
+																							"parameters": {
+																								"object": "item"
+																							}
+																						},
+																						{
+																							"id": "compare-instance-variable",
+																							"objectClass": "item",
+																							"sid": 891620420442663,
+																							"parameters": {
+																								"instance-variable": "identifier",
+																								"comparison": 0,
+																								"value": "swapIdentifier"
+																							}
+																						},
+																						{
+																							"id": "pick-all",
+																							"objectClass": "System",
+																							"sid": 871716533242601,
+																							"parameters": {
+																								"object": "slot"
+																							}
+																						},
+																						{
+																							"id": "pick-by-unique-id",
+																							"objectClass": "slot",
+																							"sid": 470434966871125,
+																							"parameters": {
+																								"unique-id": "draggedOriginSlotUid"
+																							}
+																						}
+																					],
+																					"actions": [
+																						{
+																							"type": "comment",
+																							"text": "now pick and detach the overlapped item that shouldn't be there (but the slot's identifier is OK), and pick the origin slot, and attach the two"
+																						},
+																						{
+																							"id": "remove-from-parent",
+																							"objectClass": "item",
+																							"sid": 716732211753505
+																						},
+																						{
+																							"callFunction": "manageMods",
+																							"sid": 906665275106208,
+																							"parameters": [
+																								false
+																							]
+																						},
+																						{
+																							"callFunction": "attachItem",
+																							"sid": 914241056139398
+																						}
+																					],
+																					"sid": 709309740092848
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 254573820810304
+																		},
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 388487288238395,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "pick-by-unique-id",
+																			"objectClass": "slot",
+																			"sid": 449302265931478,
+																			"parameters": {
+																				"unique-id": "draggedOriginSlotUid"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "if it can't, don't swap, and send the item being dragged back to the origin slot"
+																		},
+																		{
+																			"callFunction": "attachItem",
+																			"sid": 502563268648869
+																		}
+																	],
+																	"sid": 298617583833361
+																}
+															]
 														}
 													]
 												}
@@ -3586,22 +3821,6 @@
 													"id": "else",
 													"objectClass": "System",
 													"sid": 839852839292939
-												},
-												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 398319339639814,
-													"parameters": {
-														"object": "slot"
-													}
-												},
-												{
-													"id": "pick-by-unique-id",
-													"objectClass": "slot",
-													"sid": 422055310588522,
-													"parameters": {
-														"unique-id": "draggedOriginSlotUID"
-													}
 												}
 											],
 											"actions": [
@@ -3610,8 +3829,8 @@
 													"text": "send the item back to the slot it came from"
 												},
 												{
-													"callFunction": "attachItem",
-													"sid": 205979422756122
+													"callFunction": "returnItem",
+													"sid": 867884544509701
 												}
 											],
 											"sid": 771584118890591
@@ -3667,31 +3886,13 @@
 												{
 													"type": "comment",
 													"text": "if the item was dropped on an invalid location, send the item back to the slot it came from"
+												},
+												{
+													"callFunction": "returnItem",
+													"sid": 662644883081418
 												}
 											],
 											"sid": 730960747189332,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-unique-id",
-															"objectClass": "slot",
-															"sid": 858824243785238,
-															"parameters": {
-																"unique-id": "draggedOriginSlotUID"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "attachItem",
-															"sid": 393789573471667
-														}
-													],
-													"sid": 772458645342609
-												}
-											],
 											"isOrBlock": true
 										},
 										{
@@ -3907,14 +4108,6 @@
 													"id": "else",
 													"objectClass": "System",
 													"sid": 298877847229759
-												},
-												{
-													"id": "pick-by-unique-id",
-													"objectClass": "slot",
-													"sid": 695746799688440,
-													"parameters": {
-														"unique-id": "draggedOriginSlotUID"
-													}
 												}
 											],
 											"actions": [
@@ -3923,8 +4116,8 @@
 													"text": "its actually possible to drop items outside the game window, and they'll turn into loot wherever the in-game equivalent location would've been."
 												},
 												{
-													"callFunction": "attachItem",
-													"sid": 684362071788808
+													"callFunction": "returnItem",
+													"sid": 364509381859564
 												}
 											],
 											"sid": 327474167530248
@@ -3993,6 +4186,41 @@
 							]
 						},
 						{
+							"functionName": "returnItem",
+							"functionDescription": "Send a dragged item back to the slot from which it came.",
+							"functionCategory": "equipment",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "pick-all",
+									"objectClass": "System",
+									"sid": 187101144035540,
+									"parameters": {
+										"object": "slot"
+									}
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "slot",
+									"sid": 607616016334312,
+									"parameters": {
+										"unique-id": "draggedOriginSlotUID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "attachItem",
+									"sid": 796892767703320
+								}
+							],
+							"sid": 785533791417044
+						},
+						{
 							"functionName": "attachItem",
 							"functionDescription": "attaches an item to a slot",
 							"functionCategory": "equipment",
@@ -4004,12 +4232,12 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "set-position",
+									"id": "set-position-to-another-object",
 									"objectClass": "item",
-									"sid": 775239099829963,
+									"sid": 888715407713644,
 									"parameters": {
-										"x": "slot.X",
-										"y": "slot.Y"
+										"object": "slot",
+										"image-point-optional": "0"
 									}
 								},
 								{
@@ -4114,7 +4342,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "slot",
-									"sid": 714493473542525,
+									"sid": 988043997215968,
 									"parameters": {
 										"instance-variable": "identifier",
 										"value": "0"
@@ -4123,10 +4351,10 @@
 								{
 									"id": "remove-from-parent",
 									"objectClass": "item",
-									"sid": 226225276438894
+									"sid": 580210031479108
 								}
 							],
-							"sid": 881944124391655,
+							"sid": 312257914941975,
 							"children": [
 								{
 									"eventType": "block",
@@ -4134,7 +4362,7 @@
 										{
 											"id": "pick-overlapping-point",
 											"objectClass": "System",
-											"sid": 140983841569789,
+											"sid": 553031951461940,
 											"parameters": {
 												"object": "placeholder",
 												"x": "item.X",
@@ -4146,13 +4374,13 @@
 										{
 											"id": "set-visible",
 											"objectClass": "placeholder",
-											"sid": 174570673259630,
+											"sid": 857116200654787,
 											"parameters": {
 												"visibility": "visible"
 											}
 										}
 									],
-									"sid": 417363291653191
+									"sid": 417652766240155
 								},
 								{
 									"eventType": "block",
@@ -4160,7 +4388,7 @@
 										{
 											"id": "is-on-layer",
 											"objectClass": "slot",
-											"sid": 107628489153644,
+											"sid": 339780433114922,
 											"parameters": {
 												"layer": "equippedMenuStatue.LayerName"
 											}
@@ -4169,13 +4397,13 @@
 									"actions": [
 										{
 											"callFunction": "queueGearManagement",
-											"sid": 644538265808687,
+											"sid": 685089990900130,
 											"parameters": [
 												false
 											]
 										}
 									],
-									"sid": 759816276112774
+									"sid": 425680196320642
 								}
 							]
 						}

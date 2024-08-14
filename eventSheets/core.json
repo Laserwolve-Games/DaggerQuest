@@ -3288,7 +3288,6 @@
 													"id": "compare-two-values",
 													"objectClass": "System",
 													"sid": 653827654958201,
-													"breakpoint": true,
 													"parameters": {
 														"first-value": "Functions.canThisItemGoIntoThisSlot",
 														"comparison": 0,
@@ -4281,9 +4280,34 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "pick-children",
+											"objectClass": "item",
+											"sid": 932335286149322,
+											"parameters": {
+												"child": "quantity",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "move-to-layer",
+											"objectClass": "quantity",
+											"sid": 220114251111468,
+											"parameters": {
+												"layer": "item.LayerName"
+											}
+										}
+									],
+									"sid": 554238670862256
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
 											"id": "pick-overlapping-point",
 											"objectClass": "System",
-											"sid": 776138648900020,
+											"sid": 746031527290853,
 											"parameters": {
 												"object": "placeholder",
 												"x": "item.X",
@@ -4295,13 +4319,13 @@
 										{
 											"id": "set-visible",
 											"objectClass": "placeholder",
-											"sid": 422365193427941,
+											"sid": 253648163462631,
 											"parameters": {
 												"visibility": "invisible"
 											}
 										}
 									],
-									"sid": 554238670862256
+									"sid": 109730520509292
 								},
 								{
 									"eventType": "block",

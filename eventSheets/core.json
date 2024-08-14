@@ -2255,13 +2255,6 @@
 																{
 																	"callFunction": "detachItem",
 																	"sid": 188966051254299
-																},
-																{
-																	"callFunction": "queueGearManagement",
-																	"sid": 363078917521227,
-																	"parameters": [
-																		false
-																	]
 																}
 															],
 															"sid": 327329318397352
@@ -2528,13 +2521,6 @@
 																				{
 																					"callFunction": "attachItem",
 																					"sid": 327984834416614
-																				},
-																				{
-																					"callFunction": "queueGearManagement",
-																					"sid": 263057565458828,
-																					"parameters": [
-																						true
-																					]
 																				}
 																			],
 																			"sid": 218558563544337
@@ -2666,10 +2652,6 @@
 																						{
 																							"callFunction": "attachItem",
 																							"sid": 173606397215514
-																						},
-																						{
-																							"callFunction": "conditionallyUpdateGear",
-																							"sid": 380133124349271
 																						}
 																					],
 																					"sid": 208754529740190,
@@ -2706,9 +2688,9 @@
 																								{
 																									"id": "pick-by-unique-id",
 																									"objectClass": "slot",
-																									"sid": 285745312141678,
+																									"sid": 348968224795269,
 																									"parameters": {
-																										"unique-id": "swapSlotUID"
+																										"unique-id": "swapSlotUid"
 																									}
 																								}
 																							],
@@ -3235,42 +3217,9 @@
 										"ping-pong": "no",
 										"repeat-count": "1"
 									}
-								},
-								{
-									"callFunction": "conditionallyUpdateGear",
-									"sid": 981694049167373
 								}
 							],
-							"sid": 827535395163321,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-on-layer",
-											"objectClass": "slot",
-											"sid": 818512128132809,
-											"parameters": {
-												"layer": "equippedMenuStatue.LayerName"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "if it was on the equipped menu, manage the gear appropriately"
-										},
-										{
-											"callFunction": "queueGearManagement",
-											"sid": 927556251758834,
-											"parameters": [
-												false
-											]
-										}
-									],
-									"sid": 653685186723326
-								}
-							]
+							"sid": 827535395163321
 						},
 						{
 							"eventType": "block",
@@ -3363,10 +3312,6 @@
 														{
 															"callFunction": "attachItem",
 															"sid": 774512884771591
-														},
-														{
-															"callFunction": "conditionallyUpdateGear",
-															"sid": 169342615619639
 														}
 													],
 													"sid": 177525206568447
@@ -3523,10 +3468,6 @@
 																		{
 																			"callFunction": "attachItem",
 																			"sid": 879128537548830
-																		},
-																		{
-																			"callFunction": "conditionallyUpdateGear",
-																			"sid": 573980392891519
 																		}
 																	],
 																	"sid": 645440854485517,
@@ -3589,10 +3530,6 @@
 																				{
 																					"callFunction": "attachItem",
 																					"sid": 757628680092096
-																				},
-																				{
-																					"callFunction": "conditionallyUpdateGear",
-																					"sid": 228242793130107
 																				}
 																			],
 																			"sid": 164852198893279
@@ -3634,10 +3571,6 @@
 																{
 																	"callFunction": "attachItem",
 																	"sid": 981720519974591
-																},
-																{
-																	"callFunction": "conditionallyUpdateGear",
-																	"sid": 849091078841848
 																}
 															],
 															"sid": 210374922234155
@@ -3679,10 +3612,6 @@
 												{
 													"callFunction": "attachItem",
 													"sid": 205979422756122
-												},
-												{
-													"callFunction": "conditionallyUpdateGear",
-													"sid": 472365152023152
 												}
 											],
 											"sid": 771584118890591
@@ -3758,10 +3687,6 @@
 														{
 															"callFunction": "attachItem",
 															"sid": 393789573471667
-														},
-														{
-															"callFunction": "conditionallyUpdateGear",
-															"sid": 501471416512354
 														}
 													],
 													"sid": 772458645342609
@@ -3776,12 +3701,20 @@
 													"id": "else",
 													"objectClass": "System",
 													"sid": 692673207200540
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 164393393233569,
+													"parameters": {
+														"object": "background"
+													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if the item is dropped anywhere else, turn it into loot"
+													"text": "if the item is dropped over the background, turn it into loot."
 												},
 												{
 													"id": "create-object-by-name",
@@ -3966,40 +3899,39 @@
 													"sid": 813480458593952
 												}
 											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 298877847229759
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "slot",
+													"sid": 695746799688440,
+													"parameters": {
+														"unique-id": "draggedOriginSlotUID"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "its actually possible to drop items outside the game window, and they'll turn into loot wherever the in-game equivalent location would've been."
+												},
+												{
+													"callFunction": "attachItem",
+													"sid": 684362071788808
+												}
+											],
+											"sid": 327474167530248
 										}
 									]
 								}
 							]
-						},
-						{
-							"functionName": "conditionallyUpdateGear",
-							"functionDescription": "Check if the slot in question is on the equipment menu, and manage gear if it is.",
-							"functionCategory": "equipment",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [
-								{
-									"id": "is-on-layer",
-									"objectClass": "slot",
-									"sid": 514952213875653,
-									"parameters": {
-										"layer": "equippedMenuStatue.LayerName"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "queueGearManagement",
-									"sid": 362020203469505,
-									"parameters": [
-										true
-									]
-								}
-							],
-							"sid": 891859710990912
 						},
 						{
 							"functionName": "canThisItemGoIntoThisSlot",
@@ -4142,6 +4074,29 @@
 										}
 									],
 									"sid": 554238670862256
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-on-layer",
+											"objectClass": "slot",
+											"sid": 574448825085483,
+											"parameters": {
+												"layer": "equippedMenuStatue.LayerName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 419629290552279,
+											"parameters": [
+												true
+											]
+										}
+									],
+									"sid": 150732631465097
 								}
 							]
 						},
@@ -4198,6 +4153,29 @@
 										}
 									],
 									"sid": 417363291653191
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-on-layer",
+											"objectClass": "slot",
+											"sid": 107628489153644,
+											"parameters": {
+												"layer": "equippedMenuStatue.LayerName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "queueGearManagement",
+											"sid": 644538265808687,
+											"parameters": [
+												false
+											]
+										}
+									],
+									"sid": 759816276112774
 								}
 							]
 						}
@@ -6351,17 +6329,53 @@
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "pick-all",
+													"objectClass": "System",
+													"sid": 273856019683302,
+													"parameters": {
+														"object": "item"
+													}
+												},
+												{
+													"id": "is-dragging",
+													"objectClass": "item",
+													"sid": 268543328021518,
+													"behaviorType": "DragDrop"
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "only allow movement when no items are being dragged"
+												}
+											],
+											"sid": 568416994144019
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 480529889420195
+												},
+												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 455872059231958,
+													"sid": 480275073248378,
 													"parameters": {
 														"object": "player"
 													},
 													"isInverted": true
 												}
 											],
-											"actions": [],
-											"sid": 568416994144019,
+											"actions": [
+												{
+													"type": "comment",
+													"text": "'cursor is not over player' is a quick and dirty solution to prevent a glitchy animation when the mouse is held down very near player.x and player.y. The reason it's here and not with the other 'cursor is over' checkers to making picking up loot under the player easier.\n\nTechnically it should be an isometric circle around the player. The size of this isometric circle would be based on the players movement speed; the faster the player is moving, the larger the circle would need to be to prevent this animation.\n\nMaybe with a very high movement speed, the circle would get too big and feel bad to use?"
+												}
+											],
+											"sid": 390542893653536,
 											"children": [
 												{
 													"eventType": "block",
@@ -6369,7 +6383,7 @@
 														{
 															"id": "mouse-button-is-down",
 															"objectClass": "mouse",
-															"sid": 886023708674629,
+															"sid": 544083824055063,
 															"parameters": {
 																"mouse-button": "right"
 															}
@@ -6383,7 +6397,7 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 798933237432196,
+															"sid": 480578707404527,
 															"parameters": {
 																"variable": "uidOfClicked",
 																"value": "0"
@@ -6391,14 +6405,14 @@
 														},
 														{
 															"callFunction": "moveToLocation",
-															"sid": 853024230693833,
+															"sid": 800715069665899,
 															"parameters": [
 																"mouse.X",
 																"mouse.Y"
 															]
 														}
 													],
-													"sid": 616090096106922
+													"sid": 385135479439605
 												},
 												{
 													"eventType": "block",
@@ -6406,14 +6420,14 @@
 														{
 															"id": "mouse-button-is-down",
 															"objectClass": "mouse",
-															"sid": 392493237748483,
+															"sid": 842301323408620,
 															"parameters": {
 																"mouse-button": "left"
 															}
 														}
 													],
 													"actions": [],
-													"sid": 562650531510635,
+													"sid": 251039767195007,
 													"children": [
 														{
 															"eventType": "block",
@@ -6421,7 +6435,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 730658468748834,
+																	"sid": 310616379297893,
 																	"parameters": {
 																		"object": "npcBody"
 																	},
@@ -6430,7 +6444,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 222773159887017,
+																	"sid": 935659161401123,
 																	"parameters": {
 																		"object": "enemyBody"
 																	},
@@ -6439,7 +6453,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 659138964629686,
+																	"sid": 295687394680588,
 																	"parameters": {
 																		"object": "loot"
 																	},
@@ -6448,7 +6462,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 887722893563606,
+																	"sid": 857588471423663,
 																	"parameters": {
 																		"object": "door"
 																	},
@@ -6457,7 +6471,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 630283028114606,
+																	"sid": 702426213936407,
 																	"parameters": {
 																		"object": "lootChest"
 																	},
@@ -6468,7 +6482,7 @@
 																{
 																	"id": "set-eventvar-value",
 																	"objectClass": "System",
-																	"sid": 412136936476001,
+																	"sid": 704737483191580,
 																	"parameters": {
 																		"variable": "uidOfClicked",
 																		"value": "0"
@@ -6476,14 +6490,14 @@
 																},
 																{
 																	"callFunction": "moveToLocation",
-																	"sid": 122469423883515,
+																	"sid": 957280767915363,
 																	"parameters": [
 																		"mouse.X",
 																		"mouse.Y"
 																	]
 																}
 															],
-															"sid": 112537948417270
+															"sid": 965651956818810
 														},
 														{
 															"eventType": "block",
@@ -6491,7 +6505,7 @@
 																{
 																	"id": "compare-boolean-eventvar",
 																	"objectClass": "System",
-																	"sid": 110680587794995,
+																	"sid": 688365902885389,
 																	"parameters": {
 																		"variable": "isOnInteractCooldown"
 																	},
@@ -6500,7 +6514,7 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 898126592540758,
+																	"sid": 595101736513250,
 																	"parameters": {
 																		"object": "enemyBody"
 																	}
@@ -6508,7 +6522,7 @@
 																{
 																	"id": "pick-topbottom",
 																	"objectClass": "enemyBody",
-																	"sid": 526049155049224,
+																	"sid": 131903471408561,
 																	"parameters": {
 																		"which": "top"
 																	}
@@ -6516,7 +6530,7 @@
 																{
 																	"id": "pick-parent",
 																	"objectClass": "enemyBody",
-																	"sid": 194969037014112,
+																	"sid": 534855859345445,
 																	"parameters": {
 																		"parent": "enemy",
 																		"which": "own"
@@ -6527,7 +6541,7 @@
 																{
 																	"id": "set-eventvar-value",
 																	"objectClass": "System",
-																	"sid": 701185362739958,
+																	"sid": 541478825081252,
 																	"parameters": {
 																		"variable": "uidOfClicked",
 																		"value": "enemy.UID"
@@ -6535,14 +6549,14 @@
 																},
 																{
 																	"callFunction": "moveToLocation",
-																	"sid": 307701980469008,
+																	"sid": 485950347925945,
 																	"parameters": [
 																		"enemy.X",
 																		"enemy.y"
 																	]
 																}
 															],
-															"sid": 251943983229445
+															"sid": 133649345780508
 														}
 													]
 												}

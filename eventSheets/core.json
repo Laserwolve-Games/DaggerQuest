@@ -2167,6 +2167,28 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "vendors",
+							"description": "There can only be one vendor per layout. We generate/refresh that vendor's inventory (the merchant menu) on the start of that layout.",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-start-of-layout",
+											"objectClass": "System",
+											"sid": 607174205309859
+										}
+									],
+									"actions": [],
+									"sid": 746576205425298
+								}
+							],
+							"sid": 717055253183813
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2869,11 +2891,31 @@
 													"children": [
 														{
 															"eventType": "block",
-															"conditions": [],
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "item",
+																	"sid": 326474860562062,
+																	"parameters": {
+																		"instance-variable": "value",
+																		"comparison": 3,
+																		"value": "player.coins"
+																	}
+																}
+															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "check if the player can purchase the item and perform the transaction here"
+																	"text": "Check if the player can pay for the item, and if so, charge them"
+																},
+																{
+																	"id": "subtract-from-instvar",
+																	"objectClass": "player",
+																	"sid": 526847057139408,
+																	"parameters": {
+																		"instance-variable": "coins",
+																		"value": "item.value"
+																	}
 																}
 															],
 															"sid": 580986029317286,
@@ -3151,6 +3193,15 @@
 																		{
 																			"callFunction": "attachItem",
 																			"sid": 469748168894396
+																		},
+																		{
+																			"id": "add-to-instvar",
+																			"objectClass": "player",
+																			"sid": 220199546620661,
+																			"parameters": {
+																				"instance-variable": "coins",
+																				"value": "item.value"
+																			}
 																		}
 																	],
 																	"sid": 278144136058467
@@ -3352,10 +3403,6 @@
 											"sid": 109270735818354,
 											"children": [
 												{
-													"eventType": "comment",
-													"text": "Observation: you can't re-arrange items on the merchant menu."
-												},
-												{
 													"eventType": "block",
 													"conditions": [
 														{
@@ -3392,14 +3439,62 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "...and it's empty, put the item there and TODO: give the player money for the item"
+																	"text": "...and it's empty, put the item there..."
 																},
 																{
 																	"callFunction": "attachItem",
 																	"sid": 599867682290781
 																}
 															],
-															"sid": 742996182313594
+															"sid": 742996182313594,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "pick-all",
+																			"objectClass": "System",
+																			"sid": 329422040405669,
+																			"parameters": {
+																				"object": "slot"
+																			}
+																		},
+																		{
+																			"id": "pick-by-unique-id",
+																			"objectClass": "slot",
+																			"sid": 380561836624216,
+																			"parameters": {
+																				"unique-id": "draggedOriginSlotUid"
+																			}
+																		},
+																		{
+																			"id": "is-on-layer",
+																			"objectClass": "slot",
+																			"sid": 139247012700056,
+																			"parameters": {
+																				"layer": "merchantMenuStatue.LayerName"
+																			},
+																			"isInverted": true
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "and give the player the appropriate amount of coins if the item didn't originally also come from the merchant menu"
+																		},
+																		{
+																			"id": "add-to-instvar",
+																			"objectClass": "player",
+																			"sid": 837791978400585,
+																			"parameters": {
+																				"instance-variable": "coins",
+																				"value": "item.value"
+																			}
+																		}
+																	],
+																	"sid": 711415580749517
+																}
+															]
 														},
 														{
 															"eventType": "block",
@@ -3508,14 +3603,64 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "...and it was dropped an an empty slot, put it there and TODO: charge the player for it"
-																},
-																{
-																	"callFunction": "attachItem",
-																	"sid": 284004420893470
+																	"text": "...and it was dropped an an empty slot..."
 																}
 															],
-															"sid": 549102013202866
+															"sid": 549102013202866,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "item",
+																			"sid": 941630635583079,
+																			"parameters": {
+																				"instance-variable": "value",
+																				"comparison": 3,
+																				"value": "player.coins"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "charge the player for the item and give it to them, provided they have enough coins"
+																		},
+																		{
+																			"callFunction": "attachItem",
+																			"sid": 253809529660030
+																		},
+																		{
+																			"id": "subtract-from-instvar",
+																			"objectClass": "player",
+																			"sid": 128779680962990,
+																			"parameters": {
+																				"instance-variable": "coins",
+																				"value": "item.value"
+																			}
+																		}
+																	],
+																	"sid": 745206024162352
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 525823638673718
+																		}
+																	],
+																	"actions": [
+																		{
+																			"type": "comment",
+																			"text": "\"I don't have enough coins for this purchase\""
+																		}
+																	],
+																	"sid": 770628791762358
+																}
+															]
 														},
 														{
 															"eventType": "block",
@@ -3957,12 +4102,37 @@
 													"parameters": {
 														"object": "background"
 													}
+												},
+												{
+													"id": "pick-all",
+													"objectClass": "System",
+													"sid": 164190723268839,
+													"parameters": {
+														"object": "slot"
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "slot",
+													"sid": 606953233684230,
+													"parameters": {
+														"unique-id": "draggedOriginSlotUID"
+													}
+												},
+												{
+													"id": "is-on-layer",
+													"objectClass": "slot",
+													"sid": 789640874482342,
+													"parameters": {
+														"layer": "merchantMenuStatue.LayerName"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if the item is dropped over the background, turn it into loot."
+													"text": "if the item is dropped over the background, and it didn't come from the merchant menu, turn it into loot."
 												},
 												{
 													"id": "create-object-by-name",
@@ -4169,7 +4339,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "its actually possible to drop items outside the game window, and they'll turn into loot wherever the in-game equivalent location would've been."
+													"text": "Prevent items from being dropped outside the game window."
 												},
 												{
 													"callFunction": "returnItem",
@@ -10398,9 +10568,23 @@
 									"parameters": {
 										"layer": "inventoryMenuStatue.LayerName"
 									}
+								},
+								{
+									"id": "compare-text",
+									"objectClass": "coinsTotal",
+									"sid": 252604516247867,
+									"parameters": {
+										"text-to-compare": "str(player.coins)",
+										"case-sensitivity": "ignore-case"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [
+								{
+									"type": "comment",
+									"text": "Only update the displayed value for coins when the inventory menu is visible, and the current amount isn't accurate."
+								},
 								{
 									"id": "set-text",
 									"objectClass": "coinsTotal",

@@ -660,13 +660,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "statue",
-							"sid": 528819643657927,
+							"sid": 549899973747568,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" opacity tween out\"",
 								"property": "offsetOpacity",
 								"end-value": "50",
-								"time": ".2",
+								"time": "MENU_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
@@ -706,13 +706,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "statue",
-							"sid": 743662017465459,
+							"sid": 392011800619103,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" opacity tween in\"",
 								"property": "offsetOpacity",
 								"end-value": "100",
-								"time": ".2",
+								"time": "MENU_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
@@ -1057,7 +1057,7 @@
 					"parameters": {
 						"tag": "LayoutName",
 						"db": "-10",
-						"duration": "FADE_TIME",
+						"duration": "LAYOUT_FADE_TIME",
 						"ending": "keep-playing"
 					}
 				},
@@ -1070,7 +1070,7 @@
 						"tags": "Self.ObjectTypeName",
 						"property": "offsetOpacity",
 						"end-value": "0",
-						"time": "FADE_TIME",
+						"time": "LAYOUT_FADE_TIME",
 						"ease": "noease",
 						"destroy-on-complete": "no",
 						"loop": "no",

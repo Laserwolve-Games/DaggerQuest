@@ -393,7 +393,8 @@
 								"relocateToX": 0,
 								"relocateToY": 0,
 								"busyCastingAbility": false,
-								"talkingToNpc": "none"
+								"talkingToNpc": "none",
+								"coins": 0
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -9270,17 +9271,18 @@
 					"tags": "",
 					"instanceVariables": {
 						"identifier": 1,
+						"verticalHeight": 75,
+						"destinationX": 0,
+						"destinationY": 0,
+						"level": 1,
+						"value": 5,
 						"simpleName": "simpleSword",
 						"fullName": "Simple Sword",
 						"type": "mainHand",
 						"lore": "The first of many",
-						"level": 1,
 						"mods": "flatSlash:+{3} Slash Damage;",
 						"classRestrictions": "All Classes",
 						"modTable": "simple1hWeapon",
-						"verticalHeight": 75,
-						"destinationX": 0,
-						"destinationY": 0,
 						"sound": "metalBlade"
 					},
 					"behaviors": {
@@ -9349,17 +9351,18 @@
 					"tags": "",
 					"instanceVariables": {
 						"identifier": 2,
+						"verticalHeight": 75,
+						"destinationX": 0,
+						"destinationY": 0,
+						"level": 1,
+						"value": 5,
 						"simpleName": "simpleShield",
 						"fullName": "Simple Shield",
 						"type": "offHand",
 						"lore": "No respite for the scorned",
-						"level": 1,
 						"mods": "flatBlockChance:+{1.0}% Block Chance;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleShield",
-						"verticalHeight": 75,
-						"destinationX": 0,
-						"destinationY": 0,
 						"sound": "metal"
 					},
 					"behaviors": {
@@ -9428,17 +9431,18 @@
 					"tags": "",
 					"instanceVariables": {
 						"identifier": 3,
+						"verticalHeight": 75,
+						"destinationX": 0,
+						"destinationY": 0,
+						"level": 1,
+						"value": 5,
 						"simpleName": "simpleShirt",
 						"fullName": "Simple Shirt",
 						"type": "chest",
 						"lore": "Deep in the midst, you conceal him",
-						"level": 1,
 						"mods": "flatHealth:+{2} Health;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleArmor",
-						"verticalHeight": 75,
-						"destinationX": 0,
-						"destinationY": 0,
 						"sound": "cloth"
 					},
 					"behaviors": {
@@ -9507,17 +9511,18 @@
 					"tags": "",
 					"instanceVariables": {
 						"identifier": 4,
+						"verticalHeight": 75,
+						"destinationX": 0,
+						"destinationY": 0,
+						"level": 1,
+						"value": 5,
 						"simpleName": "simplePants",
 						"fullName": "Simple Pants",
 						"type": "legs",
 						"lore": "Whoso is simple, let him perish!",
-						"level": 1,
 						"mods": "flatManaRegen:+{1} Mana Regeneration;",
 						"classRestrictions": "All Classes",
 						"modTable": "simpleArmor",
-						"verticalHeight": 75,
-						"destinationX": 0,
-						"destinationY": 0,
 						"sound": "cloth"
 					},
 					"behaviors": {
@@ -18567,6 +18572,36 @@
 											"d": true,
 											"sm": "normal"
 										}
+									},
+									{
+										"uid": 211,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 212,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
 									}
 								],
 								"flags": {
@@ -18593,6 +18628,10 @@
 									"transformO": 0,
 									"previewSceneGraph": false
 								}
+							},
+							"instanceFolderItem": {
+								"sid": 819588673973716,
+								"expanded": true
 							},
 							"world": {
 								"x": 1425,
@@ -20259,6 +20298,148 @@
 									1,
 									0.7843137254901961,
 									0.7843137254901961,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "coinsIcon",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Default",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 211,
+							"sid": 486660598456247,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 26,
+								"uid": 211,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 486660598456247,
+								"expanded": true
+							},
+							"world": {
+								"x": 1501,
+								"y": 481,
+								"width": 62,
+								"height": 62,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "coinsTotal",
+							"properties": {
+								"text": "3",
+								"enable-bbcode": true,
+								"font": "cinzel-semibold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									0,
+									1
+								],
+								"horizontal-alignment": "left",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "left",
+								"read-aloud": false
+							},
+							"uid": 212,
+							"sid": 955997696735344,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 26,
+								"uid": 212,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 955997696735344,
+								"expanded": true
+							},
+							"world": {
+								"x": 1545,
+								"y": 480,
+								"width": 281,
+								"height": 24,
+								"originX": 0,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
 									1
 								],
 								"angle": 0,
@@ -29054,6 +29235,21 @@
 											"d": false,
 											"sm": "normal"
 										}
+									},
+									{
+										"uid": 209,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
 									}
 								],
 								"flags": {
@@ -29081,6 +29277,10 @@
 									"previewSceneGraph": false
 								}
 							},
+							"instanceFolderItem": {
+								"sid": 120829320511955,
+								"expanded": true
+							},
 							"world": {
 								"x": 1200,
 								"y": 1080,
@@ -29103,7 +29303,7 @@
 							"properties": {
 								"text": "Placeholder tooltip line 1\nPlaceholder tooltip line 2\nPlaceholder tooltip line 3\nPlaceholder tooltip line 4\nPlaceholder tooltip line 5",
 								"enable-bbcode": true,
-								"font": "Grenze-SemiBold",
+								"font": "grenze-semibold",
 								"size": 16,
 								"line-height": 0,
 								"bold": false,
@@ -29158,9 +29358,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 1042,
+								"y": 1045,
 								"width": 590,
-								"height": 143,
+								"height": 140,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29180,7 +29380,7 @@
 								"enable-bbcode": true,
 								"font": "Grenze-SemiBold",
 								"size": 16,
-								"line-height": 5,
+								"line-height": 12,
 								"bold": false,
 								"italic": false,
 								"color": [
@@ -29233,9 +29433,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 868,
+								"y": 880,
 								"width": 590,
-								"height": 23,
+								"height": 25,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29322,9 +29522,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 833,
+								"y": 830,
 								"width": 590,
-								"height": 41,
+								"height": 35,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29397,9 +29597,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 900,
+								"y": 905,
 								"width": 590,
-								"height": 19,
+								"height": 25,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29434,7 +29634,7 @@
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 85,
@@ -29472,16 +29672,95 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 1053,
+								"y": 1065,
 								"width": 590,
-								"height": 21,
+								"height": 20,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
 									1,
 									0.8
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "tooltipValue",
+							"properties": {
+								"text": "Placeholder tooltip value",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 12,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 209,
+							"sid": 325084195536425,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 101,
+								"uid": 209,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 325084195536425,
+								"expanded": true
+							},
+							"world": {
+								"x": 1200,
+								"y": 855,
+								"width": 590,
+								"height": 25,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
 								],
 								"angle": 0,
 								"zElevation": 0
@@ -29639,6 +29918,21 @@
 											"d": true,
 											"sm": "normal"
 										}
+									},
+									{
+										"uid": 210,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": false,
+											"h": false,
+											"a": false,
+											"o": true,
+											"v": true,
+											"d": false,
+											"sm": "normal"
+										}
 									}
 								],
 								"flags": {
@@ -29665,6 +29959,10 @@
 									"transformO": 0,
 									"previewSceneGraph": false
 								}
+							},
+							"instanceFolderItem": {
+								"sid": 102578367372019,
+								"expanded": true
 							},
 							"world": {
 								"x": 1200,
@@ -29757,9 +30055,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 533,
+								"y": 530,
 								"width": 590,
-								"height": 41,
+								"height": 35,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29775,7 +30073,7 @@
 						{
 							"type": "comparisonTooltipClass",
 							"properties": {
-								"text": "placeholder comparison classes",
+								"text": "Placeholder comparison classes",
 								"enable-bbcode": true,
 								"font": "Grenze-SemiBold",
 								"size": 16,
@@ -29832,9 +30130,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 568,
+								"y": 580,
 								"width": 590,
-								"height": 23,
+								"height": 25,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29850,7 +30148,7 @@
 						{
 							"type": "comparisonTooltipLevel",
 							"properties": {
-								"text": "placeholder comparison level",
+								"text": "Placeholder comparison level",
 								"enable-bbcode": true,
 								"font": "Grenze-SemiBold",
 								"size": 16,
@@ -29907,9 +30205,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 600,
+								"y": 605,
 								"width": 590,
-								"height": 19,
+								"height": 25,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -29982,9 +30280,9 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 742,
+								"y": 745,
 								"width": 590,
-								"height": 143,
+								"height": 140,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -30019,7 +30317,7 @@
 								"text-direction": "ltr",
 								"icon-set": -1,
 								"initially-visible": true,
-								"origin": "center",
+								"origin": "bottom",
 								"read-aloud": false
 							},
 							"uid": 50,
@@ -30057,11 +30355,11 @@
 							},
 							"world": {
 								"x": 1200,
-								"y": 753,
+								"y": 765,
 								"width": 590,
-								"height": 21,
+								"height": 20,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,
@@ -30142,6 +30440,85 @@
 									1,
 									1,
 									0.75
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "comparisonTooltipValue",
+							"properties": {
+								"text": "Placeholder comparison value",
+								"enable-bbcode": true,
+								"font": "Grenze-SemiBold",
+								"size": 16,
+								"line-height": 0,
+								"bold": false,
+								"italic": false,
+								"color": [
+									1,
+									1,
+									0,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "bottom",
+								"read-aloud": false
+							},
+							"uid": 210,
+							"sid": 383541463679680,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": 35,
+								"uid": 210,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": false,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 383541463679680,
+								"expanded": true
+							},
+							"world": {
+								"x": 1200,
+								"y": 555,
+								"width": 590,
+								"height": 25,
+								"originX": 0.5,
+								"originY": 1,
+								"color": [
+									1,
+									1,
+									1,
+									1
 								],
 								"angle": 0,
 								"zElevation": 0

@@ -10,17 +10,37 @@
 			"name": "INTERACT_COOLDOWN",
 			"type": "number",
 			"initialValue": "0.3",
-			"comment": "How frequently (in seconds) to let the player interact with things.",
+			"comment": "How frequently to let the player interact with things, in seconds.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 319367684950517
 		},
 		{
 			"eventType": "variable",
+			"name": "MENU_FADE_TIME",
+			"type": "number",
+			"initialValue": "0.2",
+			"comment": "The duration of fade-ins and fade-outs of menus, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 362007502373957
+		},
+		{
+			"eventType": "variable",
+			"name": "LAYOUT_FADE_TIME",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The duration of the fade-in and fade-out between layouts, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 536894991799042
+		},
+		{
+			"eventType": "variable",
 			"name": "ANIMATION_DIVISOR",
 			"type": "number",
 			"initialValue": "7",
-			"comment": "number by which to divide the movement speed to obtain the animation speed",
+			"comment": "The number by which to divide the movement speed to obtain the animation speed.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 274670126082924
@@ -30,7 +50,7 @@
 			"name": "TICKS_PER_SECOND",
 			"type": "number",
 			"initialValue": "60",
-			"comment": "",
+			"comment": "How many ticks per second at which the game runs. Unclear how this ties into actual framerate, browser FPS limitations, and monitor refresh rate.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 884640693658179
@@ -50,7 +70,7 @@
 			"name": "QUARTER_CIRCLE",
 			"type": "number",
 			"initialValue": "90",
-			"comment": "",
+			"comment": "The number of degrees in a quarter of a circle.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 883872539904860
@@ -60,7 +80,7 @@
 			"name": "HALF_CIRCLE",
 			"type": "number",
 			"initialValue": "180",
-			"comment": "",
+			"comment": "The number of degrees in half of a circle.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 192320948206579
@@ -70,17 +90,27 @@
 			"name": "ISOMETRIC_DIVIDER",
 			"type": "number",
 			"initialValue": "3",
-			"comment": "The number by which to divide projectile's and character's height to be properly isometric",
+			"comment": "The number by which to divide projectile's and character's height to be properly isometric.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 449892706850942
 		},
 		{
 			"eventType": "variable",
+			"name": "PERCENTAGE_DIVIDER",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "Used when converting percentage modifiers to flat values.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 372911249857549
+		},
+		{
+			"eventType": "variable",
 			"name": "NONE_KEYWORD",
 			"type": "string",
 			"initialValue": "none",
-			"comment": "",
+			"comment": "Used as a default or empty value for various other variables.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 389311828403507
@@ -90,20 +120,10 @@
 			"name": "ALL_CLASSES_KEYWORD",
 			"type": "string",
 			"initialValue": "All Classes",
-			"comment": "",
+			"comment": "Used when checking if the player can equip an item or not.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 882619457243399
-		},
-		{
-			"eventType": "variable",
-			"name": "PERCENTAGE_DIVIDER",
-			"type": "number",
-			"initialValue": "100",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 444792278907568
 		},
 		{
 			"eventType": "variable",
@@ -120,20 +140,30 @@
 			"name": "uidOfClicked",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "the UID of the object that was clicked",
+			"comment": "The UID of the object that the player clicked.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 849112042530215
 		},
 		{
 			"eventType": "variable",
+			"name": "targetLayout",
+			"type": "string",
+			"initialValue": "",
+			"comment": "The layout to which to change.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 175140439511758
+		},
+		{
+			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
-			"comment": "",
+			"comment": "Whether or not the player is allowed to interact with objects.",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 822176132467234
+			"sid": 918997179558722
 		},
 		{
 			"eventType": "group",
@@ -580,13 +610,13 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "portrait",
-									"sid": 713657227500156,
+									"sid": 165459076919538,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "\"\"",
 										"property": "offsetOpacity",
 										"end-value": "100",
-										"time": ".2",
+										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
@@ -733,13 +763,13 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 714082404683541,
+							"sid": 534290965390064,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" opacity fade out\"",
 								"property": "offsetOpacity",
 								"end-value": "0",
-								"time": ".2",
+								"time": "MENU_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "yes",
 								"loop": "no",
@@ -896,7 +926,7 @@
 								{
 									"id": "on-key-pressed",
 									"objectClass": "keyboard",
-									"sid": 144933746826998,
+									"sid": 629756992293274,
 									"parameters": {
 										"key": 83
 									}
@@ -904,7 +934,7 @@
 								{
 									"id": "is-in-preview",
 									"objectClass": "System",
-									"sid": 316513976740974
+									"sid": 814944312378252
 								}
 							],
 							"actions": [
@@ -1191,6 +1221,15 @@
 									"parameters": {
 										"instance-variable": "fullName",
 										"value": "loot.fullName"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "item",
+									"sid": 762874512826659,
+									"parameters": {
+										"instance-variable": "value",
+										"value": "loot.value"
 									}
 								},
 								{
@@ -1693,6 +1732,15 @@
 											"parameters": {
 												"instance-variable": "level",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"level\")"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 341407944527451,
+											"parameters": {
+												"instance-variable": "value",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"value\")"
 											}
 										},
 										{
@@ -3204,13 +3252,13 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 534792244996242,
+									"sid": 408939210599875,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "Self.UID & \" opacity tween\"",
 										"property": "offsetOpacity",
 										"end-value": "70",
-										"time": ".2",
+										"time": "LAYOUT_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
@@ -3235,13 +3283,13 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 167885255020982,
+									"sid": 709919241960901,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "Self.UID & \" opacity tween\"",
 										"property": "offsetOpacity",
 										"end-value": "100",
-										"time": ".2",
+										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
@@ -3988,6 +4036,15 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "loot",
+															"sid": 477524337490032,
+															"parameters": {
+																"instance-variable": "value",
+																"value": "item.value"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "loot",
 															"sid": 706705149091083,
 															"parameters": {
 																"instance-variable": "type",
@@ -4276,31 +4333,6 @@
 							],
 							"sid": 437730535233655,
 							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-children",
-											"objectClass": "item",
-											"sid": 932335286149322,
-											"parameters": {
-												"child": "quantity",
-												"which": "own"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "move-to-layer",
-											"objectClass": "quantity",
-											"sid": 220114251111468,
-											"parameters": {
-												"layer": "item.LayerName"
-											}
-										}
-									],
-									"sid": 554238670862256
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -10362,6 +10394,30 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
+									"sid": 982850324259442,
+									"parameters": {
+										"layer": "inventoryMenuStatue.LayerName"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "coinsTotal",
+									"sid": 307756311885998,
+									"parameters": {
+										"text": "player.coins"
+									}
+								}
+							],
+							"sid": 939991445799526
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
 									"sid": 482827758455036,
 									"parameters": {
 										"layer": "\"characterMenu\""
@@ -10842,13 +10898,13 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 903623499156613,
+											"sid": 729768240608127,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\"",
 												"start-value": "100",
 												"end-value": "0",
-												"time": ".2",
+												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
@@ -10986,13 +11042,13 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 705585990169238,
+											"sid": 903982235256939,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\"",
 												"start-value": "0",
 												"end-value": "100",
-												"time": ".2",
+												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
@@ -11077,14 +11133,15 @@
 												},
 												{
 													"callFunction": "updateTooltip",
-													"sid": 499586444921872,
+													"sid": 395853606521323,
 													"parameters": [
 														false,
 														"item.fullName",
 														"item.classRestrictions",
 														"item.level",
 														"item.mods",
-														"item.lore"
+														"item.lore",
+														"item.value"
 													]
 												}
 											],
@@ -11166,13 +11223,14 @@
 															"actions": [
 																{
 																	"callFunction": "updateComparisonTooltip",
-																	"sid": 313862423534013,
+																	"sid": 418177036584371,
 																	"parameters": [
 																		"item.fullName",
 																		"item.classRestrictions",
 																		"item.level",
 																		"item.mods",
-																		"item.lore"
+																		"item.lore",
+																		"item.value"
 																	]
 																}
 															],
@@ -11221,14 +11279,15 @@
 												},
 												{
 													"callFunction": "updateTooltip",
-													"sid": 521024696138047,
+													"sid": 664320364953238,
 													"parameters": [
 														false,
 														"loot.fullName",
 														"loot.classRestrictions",
 														"loot.level",
 														"loot.mods",
-														"loot.lore"
+														"loot.lore",
+														"loot.value"
 													]
 												}
 											],
@@ -11270,7 +11329,8 @@
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"class\")",
 														"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"level\"))",
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\")",
-														"\"\""
+														"\"\"",
+														"0"
 													]
 												}
 											],
@@ -11294,13 +11354,13 @@
 												{
 													"id": "tween-one-property",
 													"objectClass": "tooltip",
-													"sid": 465008506158708,
+													"sid": 343011591349913,
 													"behaviorType": "Tween",
 													"parameters": {
 														"tags": "Self.ObjectTypeName & \" opacity tween\"",
 														"property": "offsetOpacity",
 														"end-value": "0",
-														"time": ".2",
+														"time": "MENU_FADE_TIME",
 														"ease": "noease",
 														"destroy-on-complete": "no",
 														"loop": "no",
@@ -11311,13 +11371,13 @@
 												{
 													"id": "tween-one-property",
 													"objectClass": "comparisonTooltip",
-													"sid": 498016191045926,
+													"sid": 991437960706868,
 													"behaviorType": "Tween",
 													"parameters": {
 														"tags": "Self.ObjectTypeName & \" opacity tween\"",
 														"property": "offsetOpacity",
 														"end-value": "0",
-														"time": ".2",
+														"time": "MENU_FADE_TIME",
 														"ease": "noease",
 														"destroy-on-complete": "no",
 														"loop": "no",
@@ -11332,6 +11392,36 @@
 									"isOrBlock": true
 								}
 							]
+						},
+						{
+							"eventType": "variable",
+							"name": "TOOLTIP_VERTICAL_PADDING",
+							"type": "number",
+							"initialValue": "20",
+							"comment": "How far to vertically pad the tooltip so it comfortably contains all its information, in pixels.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 487008030740011
+						},
+						{
+							"eventType": "variable",
+							"name": "TOOLTIP_HORIZONTAL_PADDING",
+							"type": "number",
+							"initialValue": "50",
+							"comment": "How far to horizontally pad the tooltip so it comfortably contains all its information, in pixels.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 494084332547451
+						},
+						{
+							"eventType": "variable",
+							"name": "TOOLTIP_VERTICAL_TEXT_PADDING",
+							"type": "number",
+							"initialValue": "15",
+							"comment": "How far to pad the tooltip description away from the rest of the tooltip info, in pixels.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 628934883307504
 						},
 						{
 							"functionName": "updateTooltip",
@@ -11382,6 +11472,13 @@
 									"initialValue": "",
 									"comment": "",
 									"sid": 824750967220550
+								},
+								{
+									"name": "value",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The value of the object to which for show the tooltip, in coins.",
+									"sid": 548489733334983
 								}
 							],
 							"eventType": "function-block",
@@ -11401,6 +11498,14 @@
 									"sid": 522948856064234,
 									"parameters": {
 										"text": "class"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "tooltipValue",
+									"sid": 180937092196065,
+									"parameters": {
+										"text": "value & \" Coins\""
 									}
 								},
 								{
@@ -11458,6 +11563,14 @@
 											"parameters": {
 												"color": "rgb(235, 223, 164)"
 											}
+										},
+										{
+											"id": "set-visible",
+											"objectClass": "tooltipValue",
+											"sid": 268242035567656,
+											"parameters": {
+												"visibility": "invisible"
+											}
 										}
 									],
 									"sid": 763060192049106,
@@ -11510,6 +11623,14 @@
 											"sid": 450876267436261,
 											"parameters": {
 												"text": "\"\""
+											}
+										},
+										{
+											"id": "set-visible",
+											"objectClass": "tooltipValue",
+											"sid": 538459935507907,
+											"parameters": {
+												"visibility": "visible"
 											}
 										}
 									],
@@ -11641,39 +11762,43 @@
 									]
 								},
 								{
-									"eventType": "comment",
-									"text": "tooltipLore is along the bottom, so it's OK where it's at. The bottom of tooltipDescription has been aligned with the top of tooltipLore, in the editor."
-								},
-								{
 									"eventType": "block",
 									"conditions": [],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Align everything above tooltipDescription, cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
+											"text": "tooltipLore is along the bottom, so it's OK where it's at. Align everything above tooltipDescription, cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
 										},
 										{
 											"id": "set-y",
 											"objectClass": "tooltipLevel",
-											"sid": 985401344682367,
+											"sid": 754242804605589,
 											"parameters": {
-												"y": "tooltipDescription.BBoxBottom - tooltipDescription.TextHeight - 15"
+												"y": "tooltipDescription.BBoxBottom - tooltipDescription.TextHeight - TOOLTIP_VERTICAL_TEXT_PADDING"
 											}
 										},
 										{
 											"id": "set-y",
 											"objectClass": "tooltipClass",
-											"sid": 996569943533462,
+											"sid": 303382449594785,
 											"parameters": {
 												"y": "tooltipLevel.BBoxTop"
 											}
 										},
 										{
 											"id": "set-y",
-											"objectClass": "tooltipName",
-											"sid": 436680755485236,
+											"objectClass": "tooltipValue",
+											"sid": 252059974546138,
 											"parameters": {
 												"y": "tooltipClass.BBoxTop"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltipName",
+											"sid": 153220410089423,
+											"parameters": {
+												"y": "tooltipValue.BBoxTop"
 											}
 										},
 										{
@@ -11683,9 +11808,9 @@
 										{
 											"id": "set-height",
 											"objectClass": "tooltip",
-											"sid": 932319951334630,
+											"sid": 522541162903732,
 											"parameters": {
-												"height": "Self.Y - tooltipName.Y + tooltipName.TextHeight + 20"
+												"height": "Self.Y - tooltipName.Y + tooltipName.TextHeight + TOOLTIP_VERTICAL_PADDING"
 											}
 										},
 										{
@@ -11722,9 +11847,9 @@
 										{
 											"id": "set-width",
 											"objectClass": "tooltip",
-											"sid": 712796239397574,
+											"sid": 438374178945166,
 											"parameters": {
-												"width": "tooltipText.TextWidth + 50"
+												"width": "tooltipText.TextWidth + TOOLTIP_HORIZONTAL_PADDING"
 											}
 										}
 									],
@@ -11749,13 +11874,13 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "tooltip",
-											"sid": 839971062543155,
+											"sid": 958066190449578,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" opacity tween\"",
 												"property": "offsetOpacity",
 												"end-value": "100",
-												"time": ".2",
+												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
@@ -11810,6 +11935,13 @@
 									"initialValue": "",
 									"comment": "",
 									"sid": 711926424267286
+								},
+								{
+									"name": "value",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The value of the object for which to show the comparison tooltip, in coins.",
+									"sid": 966010385466510
 								}
 							],
 							"eventType": "function-block",
@@ -11833,6 +11965,14 @@
 									"sid": 543527112959690,
 									"parameters": {
 										"text": "class"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "comparisonTooltipValue",
+									"sid": 668673812564956,
+									"parameters": {
+										"text": "value & \" Coins\""
 									}
 								},
 								{
@@ -12004,33 +12144,41 @@
 										{
 											"id": "set-y",
 											"objectClass": "comparisonTooltipLevel",
-											"sid": 728337224561583,
+											"sid": 771702357831128,
 											"parameters": {
-												"y": "comparisonTooltipDescription.BBoxBottom - comparisonTooltipDescription.TextHeight - 15"
+												"y": "comparisonTooltipDescription.BBoxBottom - comparisonTooltipDescription.TextHeight - TOOLTIP_VERTICAL_TEXT_PADDING"
 											}
 										},
 										{
 											"id": "set-y",
 											"objectClass": "comparisonTooltipClass",
-											"sid": 121561601808493,
+											"sid": 354567237299271,
 											"parameters": {
 												"y": "comparisonTooltipLevel.BBoxTop"
 											}
 										},
 										{
 											"id": "set-y",
-											"objectClass": "comparisonTooltipName",
-											"sid": 886399482367159,
+											"objectClass": "comparisonTooltipValue",
+											"sid": 397947812972779,
 											"parameters": {
 												"y": "comparisonTooltipClass.BBoxTop"
 											}
 										},
 										{
+											"id": "set-y",
+											"objectClass": "comparisonTooltipName",
+											"sid": 320436660469028,
+											"parameters": {
+												"y": "comparisonTooltipValue.BBoxTop"
+											}
+										},
+										{
 											"id": "set-height",
 											"objectClass": "comparisonTooltip",
-											"sid": 401237268836532,
+											"sid": 376178786703762,
 											"parameters": {
-												"height": "Self.Y - comparisonTooltipName.Y + comparisonTooltipName.TextHeight + 20"
+												"height": "Self.Y - comparisonTooltipName.Y + comparisonTooltipName.TextHeight + TOOLTIP_VERTICAL_PADDING"
 											}
 										}
 									],
@@ -12054,9 +12202,9 @@
 										{
 											"id": "set-width",
 											"objectClass": "comparisonTooltip",
-											"sid": 115456399313237,
+											"sid": 600400404613481,
 											"parameters": {
-												"width": "comparisonTooltipText.TextWidth + 50"
+												"width": "comparisonTooltipText.TextWidth + TOOLTIP_HORIZONTAL_PADDING"
 											}
 										}
 									],
@@ -12081,13 +12229,13 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "comparisonTooltip",
-											"sid": 454904984988493,
+											"sid": 627320863589328,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" opacity tween\"",
 												"property": "offsetOpacity",
 												"end-value": "100",
-												"time": ".2",
+												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",

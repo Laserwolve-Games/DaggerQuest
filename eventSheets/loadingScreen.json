@@ -2,26 +2,6 @@
 	"name": "loadingScreen",
 	"events": [
 		{
-			"eventType": "variable",
-			"name": "FADE_TIME",
-			"type": "number",
-			"initialValue": "1",
-			"comment": "How long to fade in and out between layouts.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 101858250463059
-		},
-		{
-			"eventType": "variable",
-			"name": "targetLayout",
-			"type": "string",
-			"initialValue": "",
-			"comment": "The layout to change to",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 359592679113279
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -80,7 +60,7 @@
 					"parameters": {
 						"tag": "LayoutName",
 						"db": "-100",
-						"duration": "FADE_TIME",
+						"duration": "LAYOUT_FADE_TIME",
 						"ending": "stop"
 					}
 				},
@@ -93,7 +73,7 @@
 						"tags": "Self.ObjectTypeName",
 						"property": "offsetOpacity",
 						"end-value": "100",
-						"time": "FADE_TIME",
+						"time": "LAYOUT_FADE_TIME",
 						"ease": "noease",
 						"destroy-on-complete": "no",
 						"loop": "no",
@@ -162,7 +142,7 @@
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "0",
-								"time": "FADE_TIME",
+								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
@@ -240,7 +220,7 @@
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
 								"end-value": "100",
-								"time": "FADE_TIME",
+								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",

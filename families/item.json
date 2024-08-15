@@ -6,37 +6,9 @@
 		{
 			"name": "identifier",
 			"type": "number",
-			"desc": "",
+			"desc": "The game-wide identifier of this item.",
 			"show": true,
 			"sid": 694792924989129
-		},
-		{
-			"name": "simpleName",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 138957465351105
-		},
-		{
-			"name": "fullName",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 251180674419477
-		},
-		{
-			"name": "type",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 577864770798792
-		},
-		{
-			"name": "lore",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 498814568997332
 		},
 		{
 			"name": "level",
@@ -46,30 +18,65 @@
 			"sid": 920270367282967
 		},
 		{
+			"name": "value",
+			"type": "number",
+			"desc": "How much this item is worth, in coins.",
+			"show": true,
+			"sid": 174778950195391
+		},
+		{
+			"name": "simpleName",
+			"type": "string",
+			"desc": "The internally referenced name of this item.",
+			"show": true,
+			"sid": 138957465351105
+		},
+		{
+			"name": "fullName",
+			"type": "string",
+			"desc": "The beautified name of this item.",
+			"show": true,
+			"sid": 251180674419477
+		},
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "The overarching type of this item. e.g. head, offHand, etc.",
+			"show": true,
+			"sid": 577864770798792
+		},
+		{
+			"name": "lore",
+			"type": "string",
+			"desc": "The cosmetic only lore for this item. No gameplay impact.",
+			"show": true,
+			"sid": 498814568997332
+		},
+		{
 			"name": "mods",
 			"type": "string",
-			"desc": "the mods this item has",
+			"desc": "Which mods this item posesses.",
 			"show": true,
 			"sid": 211376162777081
 		},
 		{
 			"name": "classRestrictions",
 			"type": "string",
-			"desc": "which classes can use this item",
+			"desc": "Which classes are allowed to utilize this item.",
 			"show": true,
 			"sid": 428245296572838
 		},
 		{
 			"name": "modTable",
 			"type": "string",
-			"desc": "",
+			"desc": "Which mod table this item rolls its mods off of.",
 			"show": true,
 			"sid": 793429604844845
 		},
 		{
 			"name": "sound",
 			"type": "string",
-			"desc": "",
+			"desc": "Which type of sound to play regarding this item.",
 			"show": true,
 			"sid": 329068039773703
 		}

@@ -2169,8 +2169,8 @@
 						{
 							"eventType": "group",
 							"disabled": false,
-							"title": "vendors",
-							"description": "There can only be one vendor per layout. We generate/refresh that vendor's inventory (the merchant menu) on the start of that layout.",
+							"title": "merchants",
+							"description": "There can only be one merchants per layout. We generate/refresh that merchant's inventory (the merchant menu) on the start of that layout.",
 							"isActiveOnStart": true,
 							"children": [
 								{
@@ -2180,9 +2180,43 @@
 											"id": "on-start-of-layout",
 											"objectClass": "System",
 											"sid": 607174205309859
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "npc",
+											"sid": 177131204117234,
+											"parameters": {
+												"instance-variable": "isMerchant"
+											}
+										},
+										{
+											"id": "is-on-layer",
+											"objectClass": "slot",
+											"sid": 832317720319855,
+											"parameters": {
+												"layer": "merchantMenuStatue.LayerName"
+											}
+										},
+										{
+											"id": "is-on-layer",
+											"objectClass": "item",
+											"sid": 573466018144373,
+											"parameters": {
+												"layer": "merchantMenuStatue.LayerName"
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "At the start of each layout, if this layout has a merchant NPC, pick all the slots and items on the merchant menu. Destroy all the items that are currently on there, if any; they're from the previous layout."
+										},
+										{
+											"id": "destroy",
+											"objectClass": "item",
+											"sid": 131283347821390
+										}
+									],
 									"sid": 746576205425298
 								}
 							],
@@ -14837,90 +14871,76 @@
 									"id": "else",
 									"objectClass": "System",
 									"sid": 710553164941548
-								}
-							],
-							"actions": [
+								},
 								{
-									"callFunction": "spawnShadows",
-									"sid": 475098654613508
-								}
-							],
-							"sid": 922237215237393
-						}
-					]
-				},
-				{
-					"functionName": "spawnShadows",
-					"functionDescription": "Spawn the shadow of an object.",
-					"functionCategory": "world",
-					"functionReturnType": "none",
-					"functionCopyPicked": true,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "load-object-images-by-name",
-							"objectClass": "System",
-							"sid": 484150809102070,
-							"parameters": {
-								"object": "hasShadow.ObjectTypeName & \"_shadow\""
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 643821352284372
-						},
-						{
-							"id": "create-object-by-name",
-							"objectClass": "System",
-							"sid": 831182460755693,
-							"parameters": {
-								"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
-								"layer": "hasShadow.LayerName",
-								"x": "hasShadow.X",
-								"y": "hasShadow.Y - 1",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
-						}
-					],
-					"sid": 231167600570761,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-last-created",
-									"objectClass": "System",
-									"sid": 358212810680298,
-									"parameters": {
-										"object": "shadow"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "add-child",
+									"id": "is-boolean-instance-variable-set",
 									"objectClass": "hasShadow",
-									"sid": 274144026742843,
+									"sid": 331127415234228,
 									"parameters": {
-										"child": "shadow",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": true,
-										"transform-o": true,
-										"transform-z-elevation": true,
-										"transform-visibility": true,
-										"destroy-with-parent": true
+										"instance-variable": "createShadow"
 									}
 								}
 							],
-							"sid": 418516007527361
+							"actions": [
+								{
+									"id": "create-object-by-name",
+									"objectClass": "System",
+									"sid": 127793252940447,
+									"parameters": {
+										"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
+										"layer": "hasShadow.LayerName",
+										"x": "hasShadow.X",
+										"y": "hasShadow.Y - 1",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "browser",
+									"sid": 266308560204337,
+									"parameters": {
+										"type": "log",
+										"message": "\"Created shadow for \" & hasShadow.ObjectTypeName"
+									}
+								}
+							],
+							"sid": 922237215237393,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 738691775554172,
+											"parameters": {
+												"object": "shadow"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-child",
+											"objectClass": "hasShadow",
+											"sid": 741621168246062,
+											"parameters": {
+												"child": "shadow",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": true,
+												"transform-z-elevation": true,
+												"transform-visibility": true,
+												"destroy-with-parent": true
+											}
+										}
+									],
+									"sid": 974179425393640
+								}
+							]
 						}
 					]
 				},

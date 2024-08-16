@@ -47,16 +47,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "TICKS_PER_SECOND",
-			"type": "number",
-			"initialValue": "60",
-			"comment": "How many ticks per second at which the game runs. Unclear how this ties into actual framerate, browser FPS limitations, and monitor refresh rate.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 884640693658179
-		},
-		{
-			"eventType": "variable",
 			"name": "ARC",
 			"type": "number",
 			"initialValue": "22.5",
@@ -448,12 +438,11 @@
 							"behaviorType": "MoveTo"
 						},
 						{
-							"id": "set-eventvar-value",
+							"id": "reset-eventvar",
 							"objectClass": "System",
-							"sid": 139133966391319,
+							"sid": 655217773003387,
 							"parameters": {
-								"variable": "uidOfClicked",
-								"value": "0"
+								"variable": "uidOfClicked"
 							}
 						},
 						{
@@ -530,7 +519,7 @@
 							]
 						},
 						{
-							"callFunction": "updateAnimations",
+							"callFunction": "updateAnimation",
 							"sid": 750511475664798,
 							"parameters": [
 								"\"idle\"",
@@ -2032,12 +2021,11 @@
 																	}
 																},
 																{
-																	"id": "set-eventvar-value",
+																	"id": "reset-eventvar",
 																	"objectClass": "System",
-																	"sid": 161370364305718,
+																	"sid": 195781823527184,
 																	"parameters": {
-																		"variable": "total",
-																		"value": "0"
+																		"variable": "total"
 																	}
 																}
 															],
@@ -4896,17 +4884,17 @@
 												{
 													"id": "add-child",
 													"objectClass": "body",
-													"sid": 770262701455793,
+													"sid": 514856245612226,
 													"parameters": {
 														"child": "gear",
 														"transform-x": true,
 														"transform-y": true,
 														"transform-w": false,
 														"transform-h": false,
-														"transform-a": false,
-														"transform-o": false,
-														"transform-z-elevation": false,
-														"transform-visibility": false,
+														"transform-a": true,
+														"transform-o": true,
+														"transform-z-elevation": true,
+														"transform-visibility": true,
 														"destroy-with-parent": true
 													}
 												}
@@ -5120,17 +5108,17 @@
 														{
 															"id": "add-child",
 															"objectClass": "body",
-															"sid": 385695216657978,
+															"sid": 470891141814071,
 															"parameters": {
 																"child": "gear",
 																"transform-x": true,
 																"transform-y": true,
 																"transform-w": false,
 																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
+																"transform-a": true,
+																"transform-o": true,
+																"transform-z-elevation": true,
+																"transform-visibility": true,
 																"destroy-with-parent": true
 															}
 														}
@@ -6308,7 +6296,7 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 918004471777489,
+									"sid": 310663245428299,
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"comparison": 4,
@@ -6318,7 +6306,7 @@
 								{
 									"id": "every-x-seconds",
 									"objectClass": "System",
-									"sid": 945005244314587,
+									"sid": 595736339474715,
 									"parameters": {
 										"interval-seconds": "1.0"
 									}
@@ -6330,7 +6318,7 @@
 									"text": "Regenerate health and mana while not at the maximum values."
 								}
 							],
-							"sid": 668684290774718,
+							"sid": 257908268855159,
 							"children": [
 								{
 									"eventType": "block",
@@ -6338,7 +6326,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 854256445918559,
+											"sid": 227461622060153,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"comparison": 2,
@@ -6348,7 +6336,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 362708406627703,
+											"sid": 673823781424710,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"comparison": 1,
@@ -6364,14 +6352,14 @@
 										{
 											"id": "add-to-instvar",
 											"objectClass": "player",
-											"sid": 230359381703937,
+											"sid": 680192376169141,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"value": "Self.healthRegen"
 											}
 										}
 									],
-									"sid": 675573875826434
+									"sid": 702126267068577
 								},
 								{
 									"eventType": "block",
@@ -6379,7 +6367,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 463626831502173,
+											"sid": 995008637185060,
 											"parameters": {
 												"instance-variable": "currentMana",
 												"comparison": 2,
@@ -6391,14 +6379,119 @@
 										{
 											"id": "add-to-instvar",
 											"objectClass": "player",
-											"sid": 678430866172172,
+											"sid": 831745432658274,
 											"parameters": {
 												"instance-variable": "currentMana",
 												"value": "Self.ManaRegen"
 											}
 										}
 									],
-									"sid": 510763216032454
+									"sid": 162428372958565
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 211795541469612,
+									"parameters": {
+										"instance-variable": "currentHealth",
+										"comparison": 3,
+										"value": "0"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 428474450953551
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "Audio",
+									"sid": 956897193812549,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "body.ObjectTypeName & \"_die\"",
+										"loop": "not-looping",
+										"volume": "0",
+										"object": "body",
+										"inner-angle": "360",
+										"outer-angle": "360",
+										"outer-gain": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"callFunction": "removePlayerControl",
+									"sid": 806693191738100
+								}
+							],
+							"sid": 631777258825799,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "We need the melee projectiles destroyed as soon as the player dies, not at the end of the death animation. If we combine these events, the 'player pick own children projectile' condition would prevent the event from executing if there weren't any player projectiles."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-children",
+											"objectClass": "player",
+											"sid": 616906564021456,
+											"parameters": {
+												"child": "projectile",
+												"which": "own"
+											}
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "projectile",
+											"sid": 705670235643340,
+											"parameters": {
+												"instance-variable": "isMelee"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "projectile",
+											"sid": 187159717065772
+										}
+									],
+									"sid": 524782072182495
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "updateAnimationAndWait",
+											"sid": 236098933925687,
+											"parameters": [
+												"\"die\""
+											]
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 813028496539058
+										},
+										{
+											"callFunction": "changeLayout",
+											"sid": 615714761735097,
+											"parameters": [
+												"\"mainMenu\""
+											]
+										}
+									],
+									"sid": 330357163527660
 								}
 							]
 						}
@@ -6883,12 +6976,11 @@
 															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
 														},
 														{
-															"id": "set-eventvar-value",
+															"id": "reset-eventvar",
 															"objectClass": "System",
-															"sid": 480578707404527,
+															"sid": 625913891285005,
 															"parameters": {
-																"variable": "uidOfClicked",
-																"value": "0"
+																"variable": "uidOfClicked"
 															}
 														},
 														{
@@ -6968,12 +7060,11 @@
 															],
 															"actions": [
 																{
-																	"id": "set-eventvar-value",
+																	"id": "reset-eventvar",
 																	"objectClass": "System",
-																	"sid": 704737483191580,
+																	"sid": 904272718557646,
 																	"parameters": {
-																		"variable": "uidOfClicked",
-																		"value": "0"
+																		"variable": "uidOfClicked"
 																	}
 																},
 																{
@@ -7109,12 +7200,11 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "reset-eventvar",
 											"objectClass": "System",
-											"sid": 641852746905644,
+											"sid": 346908793014977,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
+												"variable": "uidOfClicked"
 											}
 										},
 										{
@@ -7171,12 +7261,11 @@
 											"sid": 728141715517524
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "reset-eventvar",
 											"objectClass": "System",
-											"sid": 114187256365570,
+											"sid": 726407275983507,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
+												"variable": "uidOfClicked"
 											}
 										}
 									],
@@ -7249,12 +7338,11 @@
 											]
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "reset-eventvar",
 											"objectClass": "System",
-											"sid": 394862477378289,
+											"sid": 635898589656765,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
+												"variable": "uidOfClicked"
 											}
 										}
 									],
@@ -7310,12 +7398,11 @@
 											]
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "reset-eventvar",
 											"objectClass": "System",
-											"sid": 474106579705788,
+											"sid": 353763200418633,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
+												"variable": "uidOfClicked"
 											}
 										}
 									],
@@ -7346,12 +7433,11 @@
 											"text": "Reset `uidOfClicked` if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects the player is immediately next to."
 										},
 										{
-											"id": "set-eventvar-value",
+											"id": "reset-eventvar",
 											"objectClass": "System",
-											"sid": 524158241389758,
+											"sid": 214493384981726,
 											"parameters": {
-												"variable": "uidOfClicked",
-												"value": "0"
+												"variable": "uidOfClicked"
 											}
 										}
 									],
@@ -7407,6 +7493,56 @@
 					"sid": 914713205483917
 				},
 				{
+					"functionName": "removePlayerControl",
+					"functionDescription": "Prevent the player from doing anything.",
+					"functionCategory": "player",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "player",
+							"sid": 771670356722238,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"enabled": false
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 919458007647707,
+							"parameters": {
+								"group-name": "\"movement and interaction\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 172655499978699,
+							"parameters": {
+								"group-name": "\"abilities\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 769600853195239,
+							"parameters": {
+								"group-name": "\"facings\"",
+								"state": "deactivated"
+							}
+						}
+					],
+					"sid": 920903738678207
+				},
+				{
 					"functionName": "restorePlayerControl",
 					"functionDescription": "Reinstate the player's ability to be controlled.",
 					"functionCategory": "player",
@@ -7458,7 +7594,7 @@
 							}
 						},
 						{
-							"callFunction": "updateAnimations",
+							"callFunction": "updateAnimation",
 							"sid": 904672664768414,
 							"parameters": [
 								"\"idle\"",
@@ -7781,10 +7917,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 510844565494314,
+													"sid": 230779608587133,
 													"parameters": {
 														"variable": "waitPeriod",
-														"value": "TICKS_PER_SECOND / body.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
 													}
 												},
 												{
@@ -7793,22 +7929,6 @@
 													"sid": 882465482479987,
 													"parameters": {
 														"seconds": "waitPeriod"
-													}
-												},
-												{
-													"id": "play-at-object-by-name",
-													"objectClass": "Audio",
-													"sid": 497705826848879,
-													"parameters": {
-														"folder": "sounds",
-														"audio-file-name": "\"basicAttack\" & round(random(1))",
-														"loop": "not-looping",
-														"volume": "0",
-														"object": "gear",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
 													}
 												}
 											],
@@ -7839,6 +7959,22 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 628451600184260,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "\"basicAttack\" & round(random(1))",
+																"loop": "not-looping",
+																"volume": "0",
+																"object": "gear",
+																"inner-angle": "360",
+																"outer-angle": "360",
+																"outer-gain": "0",
+																"tag-optional": "\"\""
+															}
+														},
 														{
 															"id": "create-object",
 															"objectClass": "System",
@@ -8051,7 +8187,7 @@
 																			}
 																		},
 																		{
-																			"callFunction": "updateAnimations",
+																			"callFunction": "updateAnimation",
 																			"sid": 650550032251601,
 																			"parameters": [
 																				"\"idle\"",
@@ -8260,12 +8396,11 @@
 													"behaviorType": "MoveTo"
 												},
 												{
-													"id": "set-eventvar-value",
+													"id": "reset-eventvar",
 													"objectClass": "System",
-													"sid": 554829003786200,
+													"sid": 410250178907080,
 													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
+														"variable": "uidOfClicked"
 													}
 												},
 												{
@@ -8332,10 +8467,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 134787444557260,
+													"sid": 306189987410331,
 													"parameters": {
 														"variable": "waitPeriod",
-														"value": "TICKS_PER_SECOND / body.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
 													}
 												},
 												{
@@ -8344,22 +8479,6 @@
 													"sid": 927289292114547,
 													"parameters": {
 														"seconds": "waitPeriod"
-													}
-												},
-												{
-													"id": "play-at-object-by-name",
-													"objectClass": "Audio",
-													"sid": 500587264791376,
-													"parameters": {
-														"folder": "sounds",
-														"audio-file-name": "\"heroicStrike\" & round(random(1))",
-														"loop": "not-looping",
-														"volume": "0",
-														"object": "gear",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
 													}
 												}
 											],
@@ -8390,6 +8509,22 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 559323768849333,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "\"heroicStrike\" & round(random(1))",
+																"loop": "not-looping",
+																"volume": "0",
+																"object": "gear",
+																"inner-angle": "360",
+																"outer-angle": "360",
+																"outer-gain": "0",
+																"tag-optional": "\"\""
+															}
+														},
 														{
 															"id": "create-object",
 															"objectClass": "System",
@@ -8602,7 +8737,7 @@
 																			}
 																		},
 																		{
-																			"callFunction": "updateAnimations",
+																			"callFunction": "updateAnimation",
 																			"sid": 605119858749567,
 																			"parameters": [
 																				"\"idle\"",
@@ -8800,12 +8935,11 @@
 													"behaviorType": "MoveTo"
 												},
 												{
-													"id": "set-eventvar-value",
+													"id": "reset-eventvar",
 													"objectClass": "System",
-													"sid": 750017637587517,
+													"sid": 515165528890104,
 													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "0"
+														"variable": "uidOfClicked"
 													}
 												},
 												{
@@ -8872,10 +9006,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 818473485472813,
+													"sid": 378053105891781,
 													"parameters": {
 														"variable": "waitPeriod",
-														"value": "TICKS_PER_SECOND / body.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
 													}
 												},
 												{
@@ -9157,7 +9291,7 @@
 																			}
 																		},
 																		{
-																			"callFunction": "updateAnimations",
+																			"callFunction": "updateAnimation",
 																			"sid": 620348401939089,
 																			"parameters": [
 																				"\"idle\"",
@@ -9304,7 +9438,7 @@
 											"text": "if they were idling, start the animation from the beginning"
 										},
 										{
-											"callFunction": "updateAnimations",
+											"callFunction": "updateAnimation",
 											"sid": 578053085308020,
 											"parameters": [
 												"\"walk\"",
@@ -9340,7 +9474,7 @@
 											"text": "if they were already walking, play the animation from the current frame"
 										},
 										{
-											"callFunction": "updateAnimations",
+											"callFunction": "updateAnimation",
 											"sid": 936336099945621,
 											"parameters": [
 												"\"walk\"",
@@ -9388,7 +9522,7 @@
 									"text": "If the player isn't moving and not dead, and they were previously walking, make him start idling."
 								},
 								{
-									"callFunction": "updateAnimations",
+									"callFunction": "updateAnimation",
 									"sid": 344445240607023,
 									"parameters": [
 										"\"idle\"",
@@ -9397,12 +9531,11 @@
 									]
 								},
 								{
-									"id": "set-eventvar-value",
+									"id": "reset-eventvar",
 									"objectClass": "System",
-									"sid": 947122063729597,
+									"sid": 484329641237898,
 									"parameters": {
-										"variable": "uidOfClicked",
-										"value": "0"
+										"variable": "uidOfClicked"
 									}
 								}
 							],
@@ -9410,12 +9543,18 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 279353670384368
+								}
+							],
 							"actions": [
 								{
 									"id": "set-animation",
 									"objectClass": "gear",
-									"sid": 918420809278874,
+									"sid": 732369910470954,
 									"parameters": {
 										"animation": "body.AnimationName",
 										"from": "current-frame"
@@ -9424,134 +9563,14 @@
 								{
 									"id": "set-animation-frame",
 									"objectClass": "gear",
-									"sid": 985026365790824,
+									"sid": 293859831908245,
 									"parameters": {
 										"frame-number": "body.AnimationFrame"
 									}
-								}
-							],
-							"sid": 568021042849555
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 649110140556211,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 3,
-										"value": "0"
-									}
-								},
-								{
-									"id": "trigger-once-while-true",
-									"objectClass": "System",
-									"sid": 853324147301031
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "'Destroy with parent' is true for projectiles that are children of the player, so we don't need to destroy them here"
-								},
-								{
-									"id": "destroy",
-									"objectClass": "player",
-									"sid": 903194414252356
-								},
-								{
-									"id": "play-at-object-by-name",
-									"objectClass": "Audio",
-									"sid": 211318126418314,
-									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & \"_die\"",
-										"loop": "not-looping",
-										"volume": "0",
-										"object": "body",
-										"inner-angle": "360",
-										"outer-angle": "360",
-										"outer-gain": "0",
-										"tag-optional": "\"\""
-									}
 								},
 								{
 									"type": "comment",
-									"text": "It's not true for the body however, so it and the gear can stick around to play the die animation after the player dies."
-								},
-								{
-									"callFunction": "updateAnimations",
-									"sid": 977255149789450,
-									"parameters": [
-										"\"die\"",
-										"player.movementSpeed / ANIMATION_DIVISOR",
-										"\"playFromBeginning\""
-									]
-								}
-							],
-							"sid": 835072886302918
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-any-animation-finished",
-									"objectClass": "body",
-									"sid": 923412821682976
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 773254931052533,
-									"parameters": {
-										"first-value": "find(body.AnimationName, \"die\")",
-										"comparison": 1,
-										"second-value": "-1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "changeLayout",
-									"sid": 568044559066518,
-									"parameters": [
-										"\"mainMenu\""
-									]
-								}
-							],
-							"sid": 585228322466707
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-animation-frame-changed",
-									"objectClass": "body",
-									"sid": 409557183449858
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "To completely get rid of the incorrect height and width values, we need to have this run every tick, however, there's no actual different outcome"
-								},
-								{
-									"type": "comment",
-									"text": "https://github.com/Scirra/Construct-3-bugs/issues/5895",
-									"text-color": [
-										0,
-										0,
-										1,
-										1
-									],
-									"background-color": [
-										1,
-										1,
-										1,
-										1
-									]
+									"text": "Compensate for floating point math: https://github.com/Scirra/Construct-3-bugs/issues/5895"
 								},
 								{
 									"id": "set-scale",
@@ -9573,7 +9592,7 @@
 							"sid": 560213321966011
 						},
 						{
-							"functionName": "updateAnimations",
+							"functionName": "updateAnimation",
 							"functionDescription": "Change the player's animation.",
 							"functionCategory": "player",
 							"functionReturnType": "none",
@@ -9761,6 +9780,45 @@
 							]
 						},
 						{
+							"functionName": "updateAnimationAndWait",
+							"functionDescription": "Play the specified animation, then wait for that animation to finish.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": true,
+							"functionParameters": [
+								{
+									"name": "animationName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The name of the animation to play.",
+									"sid": 493871136915743
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "updateAnimation",
+									"sid": 640708118100527,
+									"parameters": [
+										"animationName",
+										"body.OriginalAnimationSpeed",
+										"\"playFromBeginning\""
+									]
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 276377283657472,
+									"parameters": {
+										"seconds": "body.AnimationFrameCount / body.AnimationSpeed"
+									}
+								}
+							],
+							"sid": 954433910198299
+						},
+						{
 							"functionName": "channeledAnimation",
 							"functionDescription": "Play an animation where the player is uncontrollable.",
 							"functionCategory": "player",
@@ -9780,58 +9838,9 @@
 							"conditions": [],
 							"actions": [
 								{
-									"callFunction": "updateAnimations",
-									"sid": 592922038118624,
-									"parameters": [
-										"animationName",
-										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
-									]
-								},
-								{
-									"id": "set-enabled",
-									"objectClass": "player",
-									"sid": 771670356722238,
-									"behaviorType": "MoveTo",
-									"parameters": {
-										"enabled": false
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 919458007647707,
-									"parameters": {
-										"group-name": "\"movement and interaction\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 172655499978699,
-									"parameters": {
-										"group-name": "\"abilities\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"id": "set-group-active",
-									"objectClass": "System",
-									"sid": 769600853195239,
-									"parameters": {
-										"group-name": "\"facings\"",
-										"state": "deactivated"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "We shouldn't have to worry about multiple instances of this sound playing because we are already heavily regulating when the player can be blocked/stunned"
-								},
-								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 394554181245220,
+									"sid": 519911995880126,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "body.ObjectTypeName & \"_\" & animationName",
@@ -9845,12 +9854,20 @@
 									}
 								},
 								{
-									"id": "wait",
+									"callFunction": "removePlayerControl",
+									"sid": 603059532156381
+								},
+								{
+									"callFunction": "updateAnimationAndWait",
+									"sid": 450782499767217,
+									"parameters": [
+										"animationName"
+									]
+								},
+								{
+									"id": "wait-for-previous-actions",
 									"objectClass": "System",
-									"sid": 579412279696937,
-									"parameters": {
-										"seconds": "body.AnimationFrameCount / body.AnimationSpeed"
-									}
+									"sid": 794970220260145
 								}
 							],
 							"sid": 241724089671820,
@@ -13906,9 +13923,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 661077253537304,
+											"sid": 996803575058886,
 											"parameters": {
-												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed"
 											}
 										}
 									],
@@ -14204,9 +14221,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 922785798570809,
+											"sid": 378700698176597,
 											"parameters": {
-												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND - projectileManifestationTime"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
 											}
 										}
 									],
@@ -14557,9 +14574,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 342374240170874,
+											"sid": 665976515388519,
 											"parameters": {
-												"seconds": "TICKS_PER_SECOND / enemyBody.AnimationSpeed *  MANIFESTATION_FRAME / TICKS_PER_SECOND - projectileManifestationTime"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
 											}
 										}
 									],
@@ -14757,7 +14774,7 @@
 																{
 																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 849616309913054,
+																	"sid": 765602987188973,
 																	"parameters": {
 																		"audio-file": "lightningOrb",
 																		"loop": "looping",
@@ -14766,7 +14783,7 @@
 																		"inner-angle": "360",
 																		"outer-angle": "360",
 																		"outer-gain": "0",
-																		"tag-optional": "str(projectile.IID)"
+																		"tag-optional": "str(projectile.UID)"
 																	}
 																}
 															],
@@ -14782,6 +14799,31 @@
 						}
 					],
 					"sid": 353498742385237
+				},
+				{
+					"eventType": "comment",
+					"text": "TODO: Move this and some related events in 'behaviors' into an 'animations' group. Possibly refactor those events to use in-line waits instead of 'on any animation finished' + find() triggers."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 416867077403493
+						}
+					],
+					"actions": [
+						{
+							"id": "set-scale",
+							"objectClass": "enemyBody",
+							"sid": 733169762547762,
+							"parameters": {
+								"scale": "1"
+							}
+						}
+					],
+					"sid": 597119466905778
 				}
 			],
 			"sid": 617251843840566
@@ -14999,6 +15041,28 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-end-of-layout",
+							"objectClass": "System",
+							"sid": 628499402402762
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Projectiles are already destroyed when a layout ends because they aren't global. This quote-unquote 'natural' destroy takes place after this event sheet loses authority, so to speak, so the below event doesn't get to run. This event will trigger before we've completely transitioned off of the layout, so projectile audio will properly cease to play."
+						},
+						{
+							"id": "destroy",
+							"objectClass": "projectile",
+							"sid": 794027424251130
+						}
+					],
+					"sid": 724152661026630
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-destroyed",
 							"objectClass": "projectile",
 							"sid": 866847254131652
@@ -15008,9 +15072,9 @@
 						{
 							"id": "stop",
 							"objectClass": "Audio",
-							"sid": 972199210143218,
+							"sid": 158935877118093,
 							"parameters": {
-								"tag": "str(projectile.IID)"
+								"tag": "str(projectile.UID)"
 							}
 						}
 					],

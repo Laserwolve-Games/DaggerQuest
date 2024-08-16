@@ -43,475 +43,362 @@
 			"sid": 387251329612208
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 946803817926759
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "versionText",
-					"sid": 395672233428559,
-					"parameters": {
-						"text": "projectversion"
-					}
-				},
-				{
-					"id": "set-looping",
-					"objectClass": "video",
-					"sid": 104726872888800,
-					"parameters": {
-						"mode": "looping"
-					}
-				},
-				{
-					"type": "comment",
-					"text": "load and parse out data"
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 956434365266252,
-					"parameters": {
-						"tag": "\"dialog\"",
-						"file": "npcDialog.json"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 295735231419875
-				},
-				{
-					"id": "load",
-					"objectClass": "npcDialogArray",
-					"sid": 844317280094480,
-					"parameters": {
-						"json": "AJAX.LastData"
-					}
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 506562656656289,
-					"parameters": {
-						"tag": "\"abilities\"",
-						"file": "abilities.json"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 398902564116133
-				},
-				{
-					"id": "load",
-					"objectClass": "abilitiesArray",
-					"sid": 396459081626329,
-					"parameters": {
-						"json": "AJAX.LastData"
-					}
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 146287302423642,
-					"parameters": {
-						"tag": "\"equipment\"",
-						"file": "equipment.json"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 782418614714510
-				},
-				{
-					"id": "load",
-					"objectClass": "equipmentArray",
-					"sid": 363015208101347,
-					"parameters": {
-						"json": "AJAX.LastData"
-					}
-				},
-				{
-					"id": "createProbabilityTable",
-					"objectClass": "advancedRandom",
-					"sid": 589755637315110,
-					"parameters": {
-						"name": "\"equipment\""
-					}
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 645465400982240,
-					"parameters": {
-						"tag": "\"mods\"",
-						"file": "mods.json"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 652608021910300
-				},
-				{
-					"id": "load",
-					"objectClass": "modsArray",
-					"sid": 222374248368866,
-					"parameters": {
-						"json": "AJAX.LastData"
-					}
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 902746416325749,
-					"parameters": {
-						"tag": "\"modRelationships\"",
-						"file": "modRelationships.json"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 137711395224364
-				},
-				{
-					"id": "load",
-					"objectClass": "modRelationshipsArray",
-					"sid": 884939669111498,
-					"parameters": {
-						"json": "AJAX.LastData"
-					}
-				},
-				{
-					"id": "createProbabilityTable",
-					"objectClass": "advancedRandom",
-					"sid": 713064954756824,
-					"parameters": {
-						"name": "\"modValues\""
-					}
-				},
-				{
-					"type": "comment",
-					"text": "map function mods - equipment mods"
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 254514418201188,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatHealth\"",
-						"function": "flatHealth"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 939799022125051,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatSlash\"",
-						"function": "flatSlash"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 822091172055206,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatStab\"",
-						"function": "flatStab"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 446904202464671,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatSmash\"",
-						"function": "flatSmash"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 380356685921001,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatBlockChance\"",
-						"function": "flatBlockChance"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 926182812600624,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatManaRegen\"",
-						"function": "flatManaRegen"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 794618406892867,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatSlashAndStab\"",
-						"function": "flatSlashAndStab"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 381104098226937,
-					"parameters": {
-						"name": "\"equipmentMods\"",
-						"string": "\"flatPhysical\"",
-						"function": "flatPhysical"
-					}
-				},
-				{
-					"type": "comment",
-					"text": "map function mods - player abilities"
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 787774835828130,
-					"parameters": {
-						"name": "\"playerAbilities\"",
-						"string": "\"basicAttack\"",
-						"function": "basicAttack"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 226644337331128,
-					"parameters": {
-						"name": "\"playerAbilities\"",
-						"string": "\"heroicStrike\"",
-						"function": "heroicStrike"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 613298493664662,
-					"parameters": {
-						"name": "\"playerAbilities\"",
-						"string": "\"kick\"",
-						"function": "kick"
-					}
-				},
-				{
-					"type": "comment",
-					"text": "map function mods - enemy abilities"
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 914116114384026,
-					"parameters": {
-						"name": "\"enemyAbilities\"",
-						"string": "\"goblinUnderling\"",
-						"function": "goblinUnderling"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 549277776160813,
-					"parameters": {
-						"name": "\"enemyAbilities\"",
-						"string": "\"goblinWarlock\"",
-						"function": "goblinWarlock"
-					}
-				},
-				{
-					"id": "map-function",
-					"objectClass": "Functions",
-					"sid": 995116517244533,
-					"parameters": {
-						"name": "\"enemyAbilities\"",
-						"string": "\"goblinArcher\"",
-						"function": "goblinArcher"
-					}
-				},
-				{
-					"id": "setProbabilityTable",
-					"objectClass": "advancedRandom",
-					"sid": 906294426028736,
-					"parameters": {
-						"name": "\"equipment\""
-					}
-				}
-			],
-			"sid": 585119083439075,
+			"eventType": "group",
+			"disabled": false,
+			"title": "loading",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "for",
-							"objectClass": "System",
-							"sid": 445529993828927,
-							"parameters": {
-								"name": "\"\"",
-								"start-index": "1",
-								"end-index": "equipmentArray.Height - 1"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Generate equipment probability table"
-						},
-						{
-							"id": "addProbabilityEntry",
-							"objectClass": "advancedRandom",
-							"sid": 987104752454297,
-							"parameters": {
-								"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
-								"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
-							}
-						}
-					],
-					"sid": 534768195790150
-				},
-				{
 					"eventType": "variable",
-					"name": "modTableName",
-					"type": "string",
-					"initialValue": "",
-					"comment": "The name of the modTable to create and use",
+					"name": "loaded",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "Whether or not the game has loaded all the necessary data.",
 					"isStatic": true,
 					"isConstant": false,
-					"sid": 985469923213391
+					"sid": 641838771726063
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "for",
+							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 733076679683202,
-							"parameters": {
-								"name": "\"\"",
-								"start-index": "1",
-								"end-index": "equipmentArray.Height - 1"
-							}
+							"sid": 280553362269890
 						}
 					],
 					"actions": [
 						{
-							"type": "comment",
-							"text": "Populate the modTableNamesArray with the values from the modTable column in the equipmentArray"
+							"id": "set-looping",
+							"objectClass": "video",
+							"sid": 943770953649697,
+							"parameters": {
+								"mode": "looping"
+							}
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 955464002989486,
+							"id": "set-text",
+							"objectClass": "versionText",
+							"sid": 130196031881065,
 							"parameters": {
-								"variable": "modTableName",
-								"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"modTable\"), loopindex)"
+								"text": "projectversion"
 							}
+						},
+						{
+							"id": "reset-persisted-objects",
+							"objectClass": "System",
+							"sid": 383318699225370
 						}
 					],
-					"sid": 802888496706870,
+					"sid": 475031808944228,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "contains-value",
-									"objectClass": "modTableNamesArray",
-									"sid": 421985059327183,
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 909372855366922,
 									"parameters": {
-										"value": "modTableName"
+										"variable": "loaded"
 									},
 									"isInverted": true
 								}
 							],
 							"actions": [
 								{
-									"id": "push",
-									"objectClass": "modTableNamesArray",
-									"sid": 263662159621660,
+									"type": "comment",
+									"text": "load and parse out data"
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 943392785633072,
 									"parameters": {
-										"where": "back",
-										"value": "modTableName",
-										"axis": "x"
+										"tag": "\"dialog\"",
+										"file": "npcDialog.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 321790768315881
+								},
+								{
+									"id": "load",
+									"objectClass": "npcDialogArray",
+									"sid": 496280029421627,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 911357131649593,
+									"parameters": {
+										"tag": "\"abilities\"",
+										"file": "abilities.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 276688710645355
+								},
+								{
+									"id": "load",
+									"objectClass": "abilitiesArray",
+									"sid": 969867669212830,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 907623854789481,
+									"parameters": {
+										"tag": "\"equipment\"",
+										"file": "equipment.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 843781569837880
+								},
+								{
+									"id": "load",
+									"objectClass": "equipmentArray",
+									"sid": 585457567309906,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "createProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 374638145798475,
+									"parameters": {
+										"name": "\"equipment\""
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 416228032421235,
+									"parameters": {
+										"tag": "\"mods\"",
+										"file": "mods.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 883427897522150
+								},
+								{
+									"id": "load",
+									"objectClass": "modsArray",
+									"sid": 177226726155263,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 825348823945335,
+									"parameters": {
+										"tag": "\"modRelationships\"",
+										"file": "modRelationships.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 971989125191395
+								},
+								{
+									"id": "load",
+									"objectClass": "modRelationshipsArray",
+									"sid": 481220893407228,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "createProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 955922198741065,
+									"parameters": {
+										"name": "\"modValues\""
+									}
+								},
+								{
+									"type": "comment",
+									"text": "map function mods - equipment mods"
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 933875424615998,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatHealth\"",
+										"function": "flatHealth"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 486222802802486,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatSlash\"",
+										"function": "flatSlash"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 777752632456560,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatStab\"",
+										"function": "flatStab"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 649117407951002,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatSmash\"",
+										"function": "flatSmash"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 784859483234855,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatBlockChance\"",
+										"function": "flatBlockChance"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 952588512250575,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatManaRegen\"",
+										"function": "flatManaRegen"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 350207663005171,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatSlashAndStab\"",
+										"function": "flatSlashAndStab"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 461757540573326,
+									"parameters": {
+										"name": "\"equipmentMods\"",
+										"string": "\"flatPhysical\"",
+										"function": "flatPhysical"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "map function mods - player abilities"
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 640529371129873,
+									"parameters": {
+										"name": "\"playerAbilities\"",
+										"string": "\"basicAttack\"",
+										"function": "basicAttack"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 891027073622863,
+									"parameters": {
+										"name": "\"playerAbilities\"",
+										"string": "\"heroicStrike\"",
+										"function": "heroicStrike"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 402793429247606,
+									"parameters": {
+										"name": "\"playerAbilities\"",
+										"string": "\"kick\"",
+										"function": "kick"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "map function mods - enemy abilities"
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 734296163821967,
+									"parameters": {
+										"name": "\"enemyAbilities\"",
+										"string": "\"goblinUnderling\"",
+										"function": "goblinUnderling"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 897492598844005,
+									"parameters": {
+										"name": "\"enemyAbilities\"",
+										"string": "\"goblinWarlock\"",
+										"function": "goblinWarlock"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 657269335711789,
+									"parameters": {
+										"name": "\"enemyAbilities\"",
+										"string": "\"goblinArcher\"",
+										"function": "goblinArcher"
+									}
+								},
+								{
+									"id": "setProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 281686190169043,
+									"parameters": {
+										"name": "\"equipment\""
 									}
 								}
 							],
-							"sid": 588116558642709
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "for-each-element",
-							"objectClass": "modTableNamesArray",
-							"sid": 956533924844134,
-							"parameters": {
-								"axes": "x"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 987951528959915,
-							"parameters": {
-								"variable": "modTableName",
-								"value": "modTableNamesArray.CurValue"
-							}
-						},
-						{
-							"id": "createProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 290537714462890,
-							"parameters": {
-								"name": "modTableName"
-							}
-						},
-						{
-							"id": "setProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 137630922500358,
-							"parameters": {
-								"name": "modTableName"
-							}
-						}
-					],
-					"sid": 250804452104542,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "modName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 612258051814023
+							"sid": 669852930751747
 						},
 						{
 							"eventType": "block",
@@ -519,21 +406,110 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 880258983478922,
+									"sid": 259693014542558,
 									"parameters": {
 										"name": "\"\"",
 										"start-index": "1",
-										"end-index": "modRelationshipsArray.Height - 1"
+										"end-index": "equipmentArray.Height - 1"
 									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Generate equipment probability table"
 								},
 								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 924487497853598,
+									"id": "addProbabilityEntry",
+									"objectClass": "advancedRandom",
+									"sid": 152382661494705,
 									"parameters": {
-										"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"modTableName\"), loopindex)",
-										"comparison": 0,
-										"second-value": "modTableName"
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
+										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
+									}
+								}
+							],
+							"sid": 708291088059670
+						},
+						{
+							"eventType": "variable",
+							"name": "modTableName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The name of the modTable to create and use",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 794936449231233
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 626562598598578,
+									"parameters": {
+										"name": "\"\"",
+										"start-index": "1",
+										"end-index": "equipmentArray.Height - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Populate the modTableNamesArray with the values from the modTable column in the equipmentArray"
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 250152308596497,
+									"parameters": {
+										"variable": "modTableName",
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"modTable\"), loopindex)"
+									}
+								}
+							],
+							"sid": 198194523041034,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "contains-value",
+											"objectClass": "modTableNamesArray",
+											"sid": 129058780068467,
+											"parameters": {
+												"value": "modTableName"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "push",
+											"objectClass": "modTableNamesArray",
+											"sid": 361365670792911,
+											"parameters": {
+												"where": "back",
+												"value": "modTableName",
+												"axis": "x"
+											}
+										}
+									],
+									"sid": 244880678943330
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each-element",
+									"objectClass": "modTableNamesArray",
+									"sid": 612811685425021,
+									"parameters": {
+										"axes": "x"
 									}
 								}
 							],
@@ -541,27 +517,109 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 118127450779178,
+									"sid": 846926241750471,
 									"parameters": {
-										"variable": "modName",
-										"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"mod\"), loopindex)"
+										"variable": "modTableName",
+										"value": "modTableNamesArray.CurValue"
 									}
 								},
 								{
-									"id": "addProbabilityEntry",
+									"id": "createProbabilityTable",
 									"objectClass": "advancedRandom",
-									"sid": 402993156548665,
+									"sid": 159112311803177,
 									"parameters": {
-										"value": "modName",
-										"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, \"rarity\"))"
+										"name": "modTableName"
+									}
+								},
+								{
+									"id": "setProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 322204565790443,
+									"parameters": {
+										"name": "modTableName"
 									}
 								}
 							],
-							"sid": 653951801548831
+							"sid": 155366958864033,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "modName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 874508455618828
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 343124333156482,
+											"parameters": {
+												"name": "\"\"",
+												"start-index": "1",
+												"end-index": "modRelationshipsArray.Height - 1"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 295868153116152,
+											"parameters": {
+												"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"modTableName\"), loopindex)",
+												"comparison": 0,
+												"second-value": "modTableName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 297966973984186,
+											"parameters": {
+												"variable": "modName",
+												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"mod\"), loopindex)"
+											}
+										},
+										{
+											"id": "addProbabilityEntry",
+											"objectClass": "advancedRandom",
+											"sid": 552365618561851,
+											"parameters": {
+												"value": "modName",
+												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, \"rarity\"))"
+											}
+										}
+									],
+									"sid": 488973014231295
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 319083896793989,
+									"parameters": {
+										"variable": "loaded",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 676903710536363
 						}
 					]
 				}
-			]
+			],
+			"sid": 608494637955654
 		}
 	],
 	"sid": 722961205554376

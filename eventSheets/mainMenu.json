@@ -100,6 +100,7 @@
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
 									"sid": 909372855366922,
+									"breakpoint": true,
 									"parameters": {
 										"variable": "loaded"
 									},
@@ -173,6 +174,7 @@
 									"id": "load",
 									"objectClass": "equipmentArray",
 									"sid": 585457567309906,
+									"breakpoint": true,
 									"parameters": {
 										"json": "AJAX.LastData"
 									}
@@ -398,159 +400,48 @@
 									}
 								}
 							],
-							"sid": 669852930751747
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 259693014542558,
-									"parameters": {
-										"name": "\"\"",
-										"start-index": "1",
-										"end-index": "equipmentArray.Height - 1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Generate equipment probability table"
-								},
-								{
-									"id": "addProbabilityEntry",
-									"objectClass": "advancedRandom",
-									"sid": 152382661494705,
-									"parameters": {
-										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
-										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
-									}
-								}
-							],
-							"sid": 708291088059670
-						},
-						{
-							"eventType": "variable",
-							"name": "modTableName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The name of the modTable to create and use",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 794936449231233
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 626562598598578,
-									"parameters": {
-										"name": "\"\"",
-										"start-index": "1",
-										"end-index": "equipmentArray.Height - 1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Populate the modTableNamesArray with the values from the modTable column in the equipmentArray"
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 250152308596497,
-									"parameters": {
-										"variable": "modTableName",
-										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"modTable\"), loopindex)"
-									}
-								}
-							],
-							"sid": 198194523041034,
+							"sid": 669852930751747,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "contains-value",
-											"objectClass": "modTableNamesArray",
-											"sid": 129058780068467,
+											"id": "for",
+											"objectClass": "System",
+											"sid": 322178378053729,
 											"parameters": {
-												"value": "modTableName"
-											},
-											"isInverted": true
+												"name": "\"\"",
+												"start-index": "1",
+												"end-index": "equipmentArray.Height - 1"
+											}
 										}
 									],
 									"actions": [
 										{
-											"id": "push",
-											"objectClass": "modTableNamesArray",
-											"sid": 361365670792911,
+											"type": "comment",
+											"text": "Generate equipment probability table"
+										},
+										{
+											"id": "addProbabilityEntry",
+											"objectClass": "advancedRandom",
+											"sid": 234594204760114,
 											"parameters": {
-												"where": "back",
-												"value": "modTableName",
-												"axis": "x"
+												"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"simpleName\"), loopindex)",
+												"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"rarity\"), loopindex)"
 											}
 										}
 									],
-									"sid": 244880678943330
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each-element",
-									"objectClass": "modTableNamesArray",
-									"sid": 612811685425021,
-									"parameters": {
-										"axes": "x"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 846926241750471,
-									"parameters": {
-										"variable": "modTableName",
-										"value": "modTableNamesArray.CurValue"
-									}
+									"sid": 351912409350261
 								},
-								{
-									"id": "createProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 159112311803177,
-									"parameters": {
-										"name": "modTableName"
-									}
-								},
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 322204565790443,
-									"parameters": {
-										"name": "modTableName"
-									}
-								}
-							],
-							"sid": 155366958864033,
-							"children": [
 								{
 									"eventType": "variable",
-									"name": "modName",
+									"name": "modTableName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The name of the modTable to create and use",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 874508455618828
+									"sid": 205222637925247
 								},
 								{
 									"eventType": "block",
@@ -558,21 +449,69 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 343124333156482,
+											"sid": 639961029873970,
 											"parameters": {
 												"name": "\"\"",
 												"start-index": "1",
-												"end-index": "modRelationshipsArray.Height - 1"
+												"end-index": "equipmentArray.Height - 1"
 											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Populate the modTableNamesArray with the values from the modTable column in the equipmentArray"
 										},
 										{
-											"id": "compare-two-values",
+											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 295868153116152,
+											"sid": 185414848490887,
 											"parameters": {
-												"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"modTableName\"), loopindex)",
-												"comparison": 0,
-												"second-value": "modTableName"
+												"variable": "modTableName",
+												"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"modTable\"), loopindex)"
+											}
+										}
+									],
+									"sid": 301970969486142,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "contains-value",
+													"objectClass": "modTableNamesArray",
+													"sid": 427946086247819,
+													"parameters": {
+														"value": "modTableName"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "push",
+													"objectClass": "modTableNamesArray",
+													"sid": 952579233336443,
+													"parameters": {
+														"where": "back",
+														"value": "modTableName",
+														"axis": "x"
+													}
+												}
+											],
+											"sid": 759491499710711
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each-element",
+											"objectClass": "modTableNamesArray",
+											"sid": 677580914077003,
+											"parameters": {
+												"axes": "x"
 											}
 										}
 									],
@@ -580,41 +519,106 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 297966973984186,
+											"sid": 752816997128339,
 											"parameters": {
-												"variable": "modName",
-												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"mod\"), loopindex)"
+												"variable": "modTableName",
+												"value": "modTableNamesArray.CurValue"
 											}
 										},
 										{
-											"id": "addProbabilityEntry",
+											"id": "createProbabilityTable",
 											"objectClass": "advancedRandom",
-											"sid": 552365618561851,
+											"sid": 898345679800080,
 											"parameters": {
-												"value": "modName",
-												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, \"rarity\"))"
+												"name": "modTableName"
+											}
+										},
+										{
+											"id": "setProbabilityTable",
+											"objectClass": "advancedRandom",
+											"sid": 708027438120809,
+											"parameters": {
+												"name": "modTableName"
 											}
 										}
 									],
-									"sid": 488973014231295
+									"sid": 278472304995417,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "modName",
+											"type": "string",
+											"initialValue": "",
+											"comment": "",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 237504923686517
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 933014822286969,
+													"parameters": {
+														"name": "\"\"",
+														"start-index": "1",
+														"end-index": "modRelationshipsArray.Height - 1"
+													}
+												},
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 607288151416917,
+													"parameters": {
+														"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"modTableName\"), loopindex)",
+														"comparison": 0,
+														"second-value": "modTableName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 370862915860782,
+													"parameters": {
+														"variable": "modName",
+														"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, \"mod\"), loopindex)"
+													}
+												},
+												{
+													"id": "addProbabilityEntry",
+													"objectClass": "advancedRandom",
+													"sid": 548947496073028,
+													"parameters": {
+														"value": "modName",
+														"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, \"rarity\"))"
+													}
+												}
+											],
+											"sid": 932943336582143
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 136648051497766,
+											"parameters": {
+												"variable": "loaded",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 457393435126076
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 319083896793989,
-									"parameters": {
-										"variable": "loaded",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 676903710536363
 						}
 					]
 				}

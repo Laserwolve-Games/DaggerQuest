@@ -9,37 +9,59 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "is-on-screen",
+					"id": "on-any-animation-finished",
 					"objectClass": "windmillFan",
-					"sid": 820084520295241
+					"sid": 451452687128011
 				},
 				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 697128070732068,
-					"parameters": {
-						"interval-seconds": "windmillFan.AnimationSpeed / windmillFan.AnimationFrameCount"
-					}
+					"id": "is-on-screen",
+					"objectClass": "windmillFan",
+					"sid": 573103026332073
 				}
 			],
 			"actions": [
 				{
 					"id": "play-at-object",
 					"objectClass": "Audio",
-					"sid": 214134321084785,
+					"sid": 717588640272189,
 					"parameters": {
-						"audio-file": "windmill",
+						"audio-file": "windmillFan",
 						"loop": "not-looping",
 						"volume": "0",
 						"object": "windmillFan",
 						"inner-angle": "360",
 						"outer-angle": "360",
 						"outer-gain": "0",
-						"tag-optional": "\"\""
+						"tag-optional": "windmillFan.ObjectTypeName"
 					}
 				}
 			],
-			"sid": 629246997832647
+			"sid": 881027336628216
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "windmillFan",
+					"sid": 399005655300368
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Simulate the windmill having continued to spin on other layouts."
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "windmillFan",
+					"sid": 183116902426695,
+					"parameters": {
+						"frame-number": "floor(lerp(0, Self.AnimationFrameCount - 1, time)) % Self.AnimationFrameCount"
+					}
+				}
+			],
+			"sid": 740741743892503
 		}
 	],
 	"sid": 853340695623395

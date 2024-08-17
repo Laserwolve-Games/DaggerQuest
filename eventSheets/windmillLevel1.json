@@ -9,11 +9,13 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "every-x-seconds",
+					"id": "compare-two-values",
 					"objectClass": "System",
-					"sid": 461809550116073,
+					"sid": 743344883509825,
 					"parameters": {
-						"interval-seconds": "windmillFan.AnimationSpeed / windmillFan.AnimationFrameCount"
+						"first-value": "time % windmillFan.AnimationFrameCount / windmillFan.AnimationSpeed",
+						"comparison": 0,
+						"second-value": "0"
 					}
 				}
 			],
@@ -23,7 +25,7 @@
 					"objectClass": "Audio",
 					"sid": 985960110625926,
 					"parameters": {
-						"audio-file": "windmill",
+						"audio-file": "windmillFan",
 						"loop": "not-looping",
 						"volume": "0",
 						"object": "windmillFan",

@@ -141,6 +141,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "GLOBAL_FLAG",
+			"type": "string",
+			"initialValue": "g",
+			"comment": "The regular expression global flag.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 730854171899467
+		},
+		{
+			"eventType": "variable",
 			"name": "SEPARATOR",
 			"type": "string",
 			"initialValue": "_",
@@ -221,14 +231,13 @@
 							}
 						},
 						{
-							"id": "compare-two-values",
+							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 458572986276943,
+							"sid": 345089837569363,
 							"parameters": {
-								"first-value": "Functions.isometrify(npc.storeRange, angle(player.X, player.Y, npc.X, npc.Y))",
-								"comparison": 2,
-								"second-value": "distance(player.X, player.Y, npc.X, npc.Y)"
-							}
+								"value": "Functions.isInRange(npc.interactRange, npc.X, npc.Y)"
+							},
+							"isInverted": true
 						},
 						{
 							"id": "layer-is-visible",
@@ -455,13 +464,11 @@
 							}
 						},
 						{
-							"id": "compare-two-values",
+							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 923163265375557,
+							"sid": 952942383531514,
 							"parameters": {
-								"first-value": "Functions.isometrify(npc.interactRange, angle(player.X, player.Y, npc.X, npc.Y))",
-								"comparison": 5,
-								"second-value": "distance(player.X, player.Y, npc.X, npc.Y)"
+								"value": "Functions.isInRange(npc.interactRange, npc.X, npc.Y)"
 							}
 						},
 						{
@@ -1883,11 +1890,11 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 114331841409558,
+													"sid": 687052612854134,
 													"parameters": {
 														"name": "\"\"",
 														"start-index": "1",
-														"end-index": "RegexMatchCount(loot.mods, MOD_VALUE_REGEX, \"g\")"
+														"end-index": "RegexMatchCount(loot.mods, MOD_VALUE_REGEX, GLOBAL_FLAG)"
 													}
 												}
 											],
@@ -1899,10 +1906,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 809453843635835,
+													"sid": 492423809492847,
 													"parameters": {
 														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, MOD_VALUE_REGEX, \"\", 0), \"\\[|]\", \"g\", \"\")"
+														"value": "RegexReplace(RegexMatchAt(loot.mods, MOD_VALUE_REGEX, \"\", 0), \"\\[|]\", GLOBAL_FLAG, \"\")"
 													}
 												}
 											],
@@ -2053,9 +2060,9 @@
 																{
 																	"id": "addProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 526391445067413,
+																	"sid": 280324114067515,
 																	"parameters": {
-																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", \"g\"))",
+																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", GLOBAL_FLAG))",
 																		"weight": "Functions.standardizeModValue(lowerLimit, upperLimit, loopindex) / total"
 																	}
 																},
@@ -2112,9 +2119,9 @@
 																{
 																	"id": "removeProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 235462776396470,
+																	"sid": 823594325901357,
 																	"parameters": {
-																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", \"g\"))",
+																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", GLOBAL_FLAG))",
 																		"weight": "0"
 																	}
 																}
@@ -7224,13 +7231,11 @@
 											"isInverted": true
 										},
 										{
-											"id": "compare-two-values",
+											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 504025445902873,
+											"sid": 450141745828720,
 											"parameters": {
-												"first-value": "Functions.isometrify(player.attackRange, angle(player.X, player.Y, enemy.X, enemy.Y))",
-												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, enemy.X, enemy.Y)"
+												"value": "Functions.isInRange(player.attackRange, enemy.X, enemy.Y)"
 											}
 										}
 									],
@@ -7281,13 +7286,11 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
+											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 566842914011511,
+											"sid": 653750243369573,
 											"parameters": {
-												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, loot.X, loot.Y))",
-												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, loot.X, loot.Y) - max(loot.Width, loot.Height) - loot.verticalHeight"
+												"value": "Functions.isInRange((player.pickupRange + max(loot.Width, loot.Height)) + loot.verticalHeight, loot.X, loot.Y)"
 											}
 										}
 									],
@@ -7332,13 +7335,11 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
+											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 351145895360370,
+											"sid": 517000259303208,
 											"parameters": {
-												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1)))",
-												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, door.ImagePointX(1), door.ImagePointY(1)) - max(door.Width, door.Height)"
+												"value": "Functions.isInRange(player.pickupRange + max(door.Width, door.Height), door.ImagePointX(1), door.ImagePointY(1))"
 											}
 										}
 									],
@@ -7409,13 +7410,11 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
+											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 435066524308366,
+											"sid": 135959271880097,
 											"parameters": {
-												"first-value": "Functions.isometrify(player.pickupRange, angle(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)))",
-												"comparison": 5,
-												"second-value": "distance(player.X, player.Y, lootChest.ImagePointX(1), lootChest.ImagePointY(1)) - max(lootChest.Width, lootChest.Height)"
+												"value": "Functions.isInRange(player.pickupRange + max(lootChest.Width, lootChest.Height), lootChest.ImagePointX(1), lootChest.ImagePointY(1))"
 											}
 										}
 									],
@@ -11956,9 +11955,9 @@
 												{
 													"id": "append-text",
 													"objectClass": "tooltipDescription",
-													"sid": 406451035312540,
+													"sid": 933618582858828,
 													"parameters": {
-														"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", \"g\", \"\") & newline "
+														"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", GLOBAL_FLAG, \"\") & newline "
 													}
 												}
 											],
@@ -12322,9 +12321,9 @@
 										{
 											"id": "append-text",
 											"objectClass": "comparisonTooltipDescription",
-											"sid": 265087721775888,
+											"sid": 535693760590707,
 											"parameters": {
-												"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", \"g\", \"\") & newline "
+												"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", GLOBAL_FLAG, \"\") & newline "
 											}
 										}
 									],
@@ -13550,14 +13549,12 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-by-comparison",
+													"id": "pick-by-evaluate",
 													"objectClass": "System",
-													"sid": 440773945161690,
+													"sid": 535624580317632,
 													"parameters": {
 														"object": "enemy",
-														"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
-														"comparison": 5,
-														"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
+														"expression": "Functions.isInRange(enemy.attackRange, enemy.X, enemy.Y)"
 													}
 												},
 												{
@@ -13613,12 +13610,12 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 832417679741642,
+													"sid": 527481045276851,
 													"parameters": {
 														"object": "enemy",
-														"expression": "Functions.isometrify(enemy.attackRange, angle(enemy.X, enemy.Y, player.X, player.Y))",
-														"comparison": 2,
-														"value": "distance(enemy.X, enemy.Y, player.X, player.Y)"
+														"expression": "Functions.isInRange(enemy.attackRange, enemy.X, enemy.Y)",
+														"comparison": 0,
+														"value": "0"
 													}
 												}
 											],
@@ -15841,6 +15838,50 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "isInRange",
+					"functionDescription": "Check if the player is in range of a point.",
+					"functionCategory": "world",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "range",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The length to which to compare the distance.",
+							"sid": 258859109546499
+						},
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The X coordinate of the location.",
+							"sid": 289627900828855
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The Y coordinate of the location.",
+							"sid": 142640056398958
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 812887588448363,
+							"parameters": {
+								"value": "Functions.isometrify(range, angle(player.X, player.Y, x, y)) >= distance(player.X, player.Y, x, y)"
+							}
+						}
+					],
+					"sid": 184329559850783
+				},
+				{
 					"functionName": "arrayLookup",
 					"functionDescription": "look up a value in an array",
 					"functionCategory": "data",
@@ -16517,9 +16558,9 @@
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
-							"sid": 231109643138954,
+							"sid": 335682315029429,
 							"parameters": {
-								"value": "RegexReplace(RegexMatchAt(mod, \"\\{.*?\\}\", \"g\", index), \"\\{|}\", \"g\", \"\")"
+								"value": "RegexReplace(RegexMatchAt(mod, \"\\{.*?\\}\", GLOBAL_FLAG, index), \"\\{|}\", GLOBAL_FLAG, \"\")"
 							}
 						}
 					],
@@ -17588,6 +17629,66 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "variable",
+					"name": "DEFAULT_BRIGHTNESS",
+					"type": "number",
+					"initialValue": "100",
+					"comment": "The default brightness of objects that can change brightness.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 793731029590109
+				},
+				{
+					"eventType": "variable",
+					"name": "BRIGHTNESS_PARAMETER",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The parameter of the brightness effect which controls intensity.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 801595102514290
+				},
+				{
+					"eventType": "variable",
+					"name": "MODIFIED_BRIGHTNESS",
+					"type": "number",
+					"initialValue": "105",
+					"comment": "The modified brightness of objects that can change brightness.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 630696981830673
+				},
+				{
+					"eventType": "variable",
+					"name": "BRIGHTNESS_KEYWORD",
+					"type": "string",
+					"initialValue": "Brightness",
+					"comment": "The name of the effect that modifies brightness on an object.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 872731707980412
+				},
+				{
+					"eventType": "variable",
+					"name": "GLOWHORIZONTAL_KEYWORD",
+					"type": "string",
+					"initialValue": "GlowHorizontal",
+					"comment": "The name of the effect that modifies the horizontal glow on an object.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 954132583967269
+				},
+				{
+					"eventType": "variable",
+					"name": "GLOWVERTICAL_KEYWORD",
+					"type": "string",
+					"initialValue": "GlowVertical",
+					"comment": "The name of the effect that modifies the vertical glow on an object.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 840719667925553
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -17630,29 +17731,29 @@
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "lootChest",
-							"sid": 281152541001834,
+							"sid": 216492329937281,
 							"parameters": {
-								"effect": "\"Brightness\"",
-								"parameter-index": "0",
-								"value": "105"
+								"effect": "BRIGHTNESS_KEYWORD",
+								"parameter-index": "BRIGHTNESS_PARAMETER",
+								"value": "MODIFIED_BRIGHTNESS"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 257696905455289,
+							"sid": 447265671821930,
 							"parameters": {
 								"mode": "enable",
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 567118041233534,
+							"sid": 897000134081696,
 							"parameters": {
 								"mode": "enable",
-								"effect": "\"GlowVertical\""
+								"effect": "GLOWVERTICAL_KEYWORD"
 							}
 						}
 					],
@@ -17675,29 +17776,29 @@
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "lootChest",
-							"sid": 390519698793083,
+							"sid": 803683098717272,
 							"parameters": {
-								"effect": "\"Brightness\"",
-								"parameter-index": "0",
-								"value": "100"
+								"effect": "BRIGHTNESS_KEYWORD",
+								"parameter-index": "BRIGHTNESS_PARAMETER",
+								"value": "DEFAULT_BRIGHTNESS"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 637437226544868,
+							"sid": 760139089985433,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 837401881113407,
+							"sid": 357784612057613,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowVertical\""
+								"effect": "GLOWVERTICAL_KEYWORD"
 							}
 						}
 					],
@@ -17825,29 +17926,29 @@
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "door",
-							"sid": 158957851345472,
+							"sid": 557147059603167,
 							"parameters": {
-								"effect": "\"Brightness\"",
-								"parameter-index": "0",
-								"value": "105"
+								"effect": "BRIGHTNESS_KEYWORD",
+								"parameter-index": "BRIGHTNESS_PARAMETER",
+								"value": "MODIFIED_BRIGHTNESS"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 101629265069819,
+							"sid": 753768738845522,
 							"parameters": {
 								"mode": "enable",
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 132631010688828,
+							"sid": 839999534381491,
 							"parameters": {
 								"mode": "enable",
-								"effect": "\"GlowVertical\""
+								"effect": "GLOWVERTICAL_KEYWORD"
 							}
 						}
 					],
@@ -17931,29 +18032,29 @@
 						{
 							"id": "set-effect-parameter",
 							"objectClass": "door",
-							"sid": 197037995400365,
+							"sid": 432392318419800,
 							"parameters": {
-								"effect": "\"Brightness\"",
-								"parameter-index": "0",
-								"value": "100"
+								"effect": "BRIGHTNESS_KEYWORD",
+								"parameter-index": "BRIGHTNESS_PARAMETER",
+								"value": "DEFAULT_BRIGHTNESS"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 861807936677556,
+							"sid": 373259415617830,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 148024402444128,
+							"sid": 938886009902335,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowVertical\""
+								"effect": "GLOWVERTICAL_KEYWORD"
 							}
 						}
 					],

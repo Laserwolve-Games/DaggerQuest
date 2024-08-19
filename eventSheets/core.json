@@ -97,6 +97,56 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "TWEEN_REPEAT_COUNT",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "How many times that tweens should repeat.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 383073602324081
+		},
+		{
+			"eventType": "variable",
+			"name": "INFINITE_REPEAT_COUNT",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The value needed for a tween to repeat forever.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 928779320160083
+		},
+		{
+			"eventType": "variable",
+			"name": "SOLID_OPACITY",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "The opacity value of complete solidity.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 216164760347691
+		},
+		{
+			"eventType": "variable",
+			"name": "TRANSPARENT_OPACITY",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The opacity value of complete transparency.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 435045371395537
+		},
+		{
+			"eventType": "variable",
+			"name": "SILENT",
+			"type": "number",
+			"initialValue": "-100",
+			"comment": "The decibel value necessary for audio to make no sound.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 215341091767557
+		},
+		{
+			"eventType": "variable",
 			"name": "PERCENTAGE_DIVIDER",
 			"type": "number",
 			"initialValue": "100",
@@ -141,13 +191,33 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "FOLDER_SEPARATOR",
+			"type": "string",
+			"initialValue": "/",
+			"comment": "The character used when drilling into project folders.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 876900590270143
+		},
+		{
+			"eventType": "variable",
 			"name": "GLOBAL_FLAG",
 			"type": "string",
 			"initialValue": "g",
 			"comment": "The regular expression global flag.",
 			"isStatic": false,
-			"isConstant": false,
+			"isConstant": true,
 			"sid": 730854171899467
+		},
+		{
+			"eventType": "variable",
+			"name": "IDLE_KEYWORD",
+			"type": "string",
+			"initialValue": "idle",
+			"comment": "Used for calling the idle animation for the player, NPCs, and some enemies.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 387354454309791
 		},
 		{
 			"eventType": "variable",
@@ -208,13 +278,33 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "PORTRAIT_KEYWORD",
+					"type": "string",
+					"initialValue": "portrait",
+					"comment": "Used for interacting with the portrait layer. Can't use the layerName sprite property because there's nothing on this layer originally.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 455865873325850
+				},
+				{
+					"eventType": "variable",
+					"name": "MESSAGE_COLUMN_HEADER",
+					"type": "string",
+					"initialValue": "message",
+					"comment": "The header of the column that contains NPC messages.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 877254390736495
+				},
+				{
+					"eventType": "variable",
 					"name": "PORTRAIT_POSITION",
 					"type": "number",
 					"initialValue": "1280",
 					"comment": "The position on the X axis of where the portrait should spawn",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 795195881715473
+					"sid": 785902534963935
 				},
 				{
 					"eventType": "block",
@@ -350,9 +440,9 @@
 										{
 											"id": "stop",
 											"objectClass": "Audio",
-											"sid": 865795706750829,
+											"sid": 899283685607790,
 											"parameters": {
-												"tag": "\"dialog\""
+												"tag": "dialog.ObjectTypeName"
 											}
 										},
 										{
@@ -367,22 +457,22 @@
 										{
 											"id": "set-text",
 											"objectClass": "dialogText",
-											"sid": 784518046064995,
+											"sid": 442519897528395,
 											"parameters": {
-												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, \"message\")"
+												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, MESSAGE_COLUMN_HEADER)"
 											}
 										},
 										{
 											"id": "play-by-name",
 											"objectClass": "Audio",
-											"sid": 151883750832974,
+											"sid": 273916108673699,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "\"dialog/\" & npc.simpleName & npc.dialogCounter",
+												"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 												"loop": "not-looping",
 												"volume": "0",
 												"stereo-pan": "0",
-												"tag-optional": "\"dialog\""
+												"tag-optional": "dialog.ObjectTypeName"
 											}
 										}
 									],
@@ -400,7 +490,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if this NPC doesn't have any more dialog, close the dialog"
+											"text": "If this NPC doesn't have any more dialog, close the dialog."
 										},
 										{
 											"callFunction": "closeDialog",
@@ -426,7 +516,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "lazy man's solution to one of our never ending hierarchal tween opacity issues "
+							"text": "Lazy man's solution to one of our never ending hierarchal tween opacity issues."
 						},
 						{
 							"id": "set-opacity",
@@ -525,30 +615,34 @@
 						{
 							"id": "set-text",
 							"objectClass": "dialogText",
-							"sid": 738404392683710,
+							"sid": 707074591197997,
 							"parameters": {
-								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, \"message\")"
+								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, MESSAGE_COLUMN_HEADER)"
 							}
 						},
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 262620342313745,
+							"sid": 604341015575843,
 							"parameters": {
 								"folder": "sounds",
-								"audio-file-name": "\"dialog/\" & npc.simpleName & npc.dialogCounter",
+								"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 								"loop": "not-looping",
 								"volume": "0",
 								"stereo-pan": "0",
-								"tag-optional": "\"dialog\""
+								"tag-optional": "dialog.ObjectTypeName"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "TODO: If all NPCs never have anything more than just the idle animation, we can change this to self.animationName"
 						},
 						{
 							"id": "set-animation",
 							"objectClass": "npcBody",
-							"sid": 113163065694164,
+							"sid": 822083562626807,
 							"parameters": {
-								"animation": "\"idle\" & SEPARATOR & npc.degrees",
+								"animation": "IDLE_KEYWORD & SEPARATOR & npc.degrees",
 								"from": "current-frame"
 							}
 						},
@@ -562,29 +656,29 @@
 						},
 						{
 							"callFunction": "updateAnimation",
-							"sid": 750511475664798,
+							"sid": 752654015306162,
 							"parameters": [
-								"\"idle\"",
-								"player.movementSpeed / ANIMATION_DIVISOR",
+								"IDLE_KEYWORD",
+								"player.OriginalAnimationSpeed",
 								true
 							]
 						},
 						{
 							"callFunction": "openLayer",
-							"sid": 557918979499813,
+							"sid": 799311368365338,
 							"parameters": [
-								"\"dialog\""
+								"dialog.LayerName"
 							]
 						},
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 344790767052863,
+							"sid": 891102382434836,
 							"parameters": {
-								"object-name": "npc.simpleName & SEPARATOR & \"portrait\"",
-								"layer": "\"portraits\"",
+								"object-name": "npc.simpleName & SEPARATOR & PORTRAIT_KEYWORD",
+								"layer": "PORTRAIT_KEYWORD",
 								"x": "PORTRAIT_POSITION",
-								"y": "ViewportBottom(\"portraits\") + VIEWPORT_OFFSET",
+								"y": "ViewportBottom(PORTRAIT_KEYWORD) + VIEWPORT_OFFSET",
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
@@ -637,18 +731,18 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "portrait",
-									"sid": 165459076919538,
+									"sid": 104343722716157,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "\"\"",
 										"property": "offsetOpacity",
-										"end-value": "100",
+										"end-value": "SOLID_OPACITY",
 										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no",
-										"repeat-count": "1"
+										"repeat-count": "TWEEN_REPEAT_COUNT"
 									}
 								}
 							],
@@ -763,10 +857,10 @@
 						{
 							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 509285309432356,
+							"sid": 205747362782141,
 							"parameters": {
-								"tag": "\"dialog\"",
-								"db": "-100",
+								"tag": "dialog.ObjectTypeName",
+								"db": "SILENT",
 								"duration": "AUDIO_FADE_TIME",
 								"ending": "stop"
 							}
@@ -782,15 +876,15 @@
 						},
 						{
 							"callFunction": "closeLayer",
-							"sid": 150349941126726,
+							"sid": 365371944002769,
 							"parameters": [
-								"\"dialog\""
+								"dialog.LayerName"
 							]
 						},
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 598313878528393,
+							"sid": 721008389757100,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & OPACITY_FADE_OUT_KEYWORD",
@@ -801,7 +895,7 @@
 								"destroy-on-complete": "yes",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{
@@ -1411,7 +1505,7 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "loot",
-									"sid": 235375886758818,
+									"sid": 762815302576746,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "\"\"",
@@ -1422,7 +1516,7 @@
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no",
-										"repeat-count": "1"
+										"repeat-count": "TWEEN_REPEAT_COUNT"
 									}
 								},
 								{
@@ -1658,7 +1752,7 @@
 										{
 											"id": "tween-two-properties",
 											"objectClass": "loot",
-											"sid": 426061561589021,
+											"sid": 756068517063396,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"\"",
@@ -1670,13 +1764,13 @@
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										},
 										{
 											"id": "tween-one-property",
 											"objectClass": "loot",
-											"sid": 906550384634452,
+											"sid": 543001927251178,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"\"",
@@ -1687,13 +1781,13 @@
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										},
 										{
 											"id": "tween-one-property",
 											"objectClass": "loot",
-											"sid": 908264258762765,
+											"sid": 817143358327985,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"ascension\"",
@@ -1704,7 +1798,7 @@
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										},
 										{
@@ -3391,7 +3485,7 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 408939210599875,
+									"sid": 409070851396123,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "Self.UID & \" opacity tween\"",
@@ -3402,7 +3496,7 @@
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no",
-										"repeat-count": "1"
+										"repeat-count": "TWEEN_REPEAT_COUNT"
 									}
 								}
 							],
@@ -3422,18 +3516,18 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 709919241960901,
+									"sid": 186155943538353,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "Self.UID & \" opacity tween\"",
 										"property": "offsetOpacity",
-										"end-value": "100",
+										"end-value": "SOLID_OPACITY",
 										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no",
-										"repeat-count": "1"
+										"repeat-count": "TWEEN_REPEAT_COUNT"
 									}
 								}
 							],
@@ -11199,18 +11293,18 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 267915711085585,
+											"sid": 397251717331617,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\"",
-												"start-value": "100",
-												"end-value": "0",
+												"start-value": "SOLID_OPACITY",
+												"end-value": "TRANSPARENT_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										},
 										{
@@ -11343,18 +11437,18 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 447809449353549,
+											"sid": 249912570977518,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\"",
-												"start-value": "0",
-												"end-value": "100",
+												"start-value": "TRANSPARENT_OPACITY",
+												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										}
 									],
@@ -11655,7 +11749,7 @@
 												{
 													"id": "tween-one-property",
 													"objectClass": "tooltip",
-													"sid": 343011591349913,
+													"sid": 191485082268368,
 													"behaviorType": "Tween",
 													"parameters": {
 														"tags": "Self.ObjectTypeName & \" opacity tween\"",
@@ -11666,13 +11760,13 @@
 														"destroy-on-complete": "no",
 														"loop": "no",
 														"ping-pong": "no",
-														"repeat-count": "1"
+														"repeat-count": "TWEEN_REPEAT_COUNT"
 													}
 												},
 												{
 													"id": "tween-one-property",
 													"objectClass": "comparisonTooltip",
-													"sid": 991437960706868,
+													"sid": 469125864642544,
 													"behaviorType": "Tween",
 													"parameters": {
 														"tags": "Self.ObjectTypeName & \" opacity tween\"",
@@ -11683,7 +11777,7 @@
 														"destroy-on-complete": "no",
 														"loop": "no",
 														"ping-pong": "no",
-														"repeat-count": "1"
+														"repeat-count": "TWEEN_REPEAT_COUNT"
 													}
 												}
 											],
@@ -12175,18 +12269,18 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "tooltip",
-											"sid": 958066190449578,
+											"sid": 427385961829676,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" opacity tween\"",
 												"property": "offsetOpacity",
-												"end-value": "100",
+												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										}
 									],
@@ -12530,7 +12624,7 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "comparisonTooltip",
-											"sid": 627320863589328,
+											"sid": 612387940576623,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "Self.ObjectTypeName & \" opacity tween\"",
@@ -12541,7 +12635,7 @@
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										}
 									],
@@ -12654,11 +12748,20 @@
 											}
 										},
 										{
-											"id": "set-opacity",
+											"id": "tween-one-property",
 											"objectClass": "enemyHealthFrame",
-											"sid": 725478292957384,
+											"sid": 342805001372878,
+											"behaviorType": "Tween",
 											"parameters": {
-												"opacity": "100"
+												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"property": "offsetOpacity",
+												"end-value": "SOLID_OPACITY",
+												"time": "MENU_FADE_TIME",
+												"ease": "noease",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										}
 									],
@@ -12791,11 +12894,20 @@
 							],
 							"actions": [
 								{
-									"id": "set-opacity",
+									"id": "tween-one-property",
 									"objectClass": "enemyHealthFrame",
-									"sid": 977522645063873,
+									"sid": 636148833014106,
+									"behaviorType": "Tween",
 									"parameters": {
-										"opacity": "0"
+										"tags": "Self.ObjectTypeName & \" opacity tween\"",
+										"property": "offsetOpacity",
+										"end-value": "TRANSPARENT_OPACITY",
+										"time": "MENU_FADE_TIME",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "TWEEN_REPEAT_COUNT"
 									}
 								}
 							],
@@ -13776,6 +13888,16 @@
 							"sid": 839354063176527
 						},
 						{
+							"eventType": "variable",
+							"name": "ENEMY_DEATH_FADE_OUT_TIME",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How long to fade out the body of a dead enemy, in seconds.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 970931894317934
+						},
+						{
 							"bookmark": true,
 							"eventType": "block",
 							"conditions": [
@@ -13810,18 +13932,18 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "enemyBody",
-											"sid": 891888202943728,
+											"sid": 672382654027524,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "\"\"",
+												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & \"deathFade\"",
 												"property": "offsetOpacity",
 												"end-value": "0",
-												"time": "1",
+												"time": "ENEMY_DEATH_FADE_OUT_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "yes",
 												"loop": "no",
 												"ping-pong": "no",
-												"repeat-count": "1"
+												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
 										}
 									],

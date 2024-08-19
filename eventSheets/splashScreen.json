@@ -10,6 +10,66 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "ELLIPSIS_UPDATE_INTERVAL",
+					"type": "number",
+					"initialValue": "0.5",
+					"comment": "How often to add an additional ellipsis dot, in seconds.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 268099722653388
+				},
+				{
+					"eventType": "variable",
+					"name": "LAUNCHER_TEXT_TWEEN_SPEED",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "How fast the launcher text should complete an opacity tween, in seconds.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 619882278694665
+				},
+				{
+					"eventType": "variable",
+					"name": "FINISHED_LOADING_PROGRESS_VALUE",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "The value of LoadingProgress when loading has completed.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 856980012090467
+				},
+				{
+					"eventType": "variable",
+					"name": "LAUNCHER_TEXT_OPACITY",
+					"type": "number",
+					"initialValue": "10",
+					"comment": "The opacity that the launcher text should tween until.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 901041560284651
+				},
+				{
+					"eventType": "variable",
+					"name": "ELLIPSIS_DOT",
+					"type": "string",
+					"initialValue": ".",
+					"comment": "The character used to form ellipses.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 999104870172556
+				},
+				{
+					"eventType": "variable",
+					"name": "UPDATE_AVAILABLE_TEXT",
+					"type": "string",
+					"initialValue": "Update available. Downloading",
+					"comment": "The text to display when an update is available and is currently being downloaded.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 488745938124197
+				},
+				{
+					"eventType": "variable",
 					"name": "updateAvailable",
 					"type": "boolean",
 					"initialValue": "false",
@@ -44,9 +104,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 744652312210251,
+							"sid": 649009066183731,
 							"parameters": {
-								"text": "\"Update available. Downloading\""
+								"text": "UPDATE_AVAILABLE_TEXT"
 							}
 						}
 					],
@@ -66,9 +126,9 @@
 						{
 							"id": "every-x-seconds",
 							"objectClass": "System",
-							"sid": 805116272556535,
+							"sid": 535289092471855,
 							"parameters": {
-								"interval-seconds": "0.5"
+								"interval-seconds": "ELLIPSIS_UPDATE_INTERVAL"
 							}
 						}
 					],
@@ -76,9 +136,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 820819320875258,
+							"sid": 932093525646889,
 							"parameters": {
-								"text": "Self.Text = \"Update available. Downloading...\" ? \"Update available. Downloading\" : Self.Text & \".\""
+								"text": "Self.Text = UPDATE_AVAILABLE_TEXT & ELLIPSIS_DOT & ELLIPSIS_DOT & ELLIPSIS_DOT ? UPDATE_AVAILABLE_TEXT : Self.Text & ELLIPSIS_DOT"
 							}
 						}
 					],
@@ -115,46 +175,46 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 901274633348921,
+							"sid": 500512084369184,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
-								"end-value": "0",
+								"end-value": "TRANSPARENT_OPACITY",
 								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{
 							"id": "tween-one-property",
 							"objectClass": "launcherMessage",
-							"sid": 790516563955118,
+							"sid": 622772192414724,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "\"\"",
+								"tags": "Self.ObjectTypeName & SEPARATOR & \"opacity tween\"",
 								"property": "offsetOpacity",
-								"end-value": "10",
-								"time": "1",
+								"end-value": "LAUNCHER_TEXT_OPACITY",
+								"time": "LAUNCHER_TEXT_TWEEN_SPEED",
 								"ease": "easeinoutsine",
 								"destroy-on-complete": "no",
 								"loop": "yes",
 								"ping-pong": "yes",
-								"repeat-count": "0"
+								"repeat-count": "INFINITE_REPEAT_COUNT"
 							}
 						},
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 712396378924728,
+							"sid": 766804983639934,
 							"parameters": {
 								"folder": "music",
 								"audio-file-name": "LayoutName",
 								"loop": "looping",
-								"volume": "-100",
+								"volume": "SILENT",
 								"stereo-pan": "0",
 								"tag-optional": "LayoutName"
 							}
@@ -182,36 +242,6 @@
 							"sid": 151169116968630
 						},
 						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 350086436656584,
-							"parameters": {
-								"first-value": "keyboard.LastKeyCode",
-								"comparison": 1,
-								"second-value": "27"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 788392128759753,
-							"parameters": {
-								"first-value": "keyboard.LastKeyCode",
-								"comparison": 1,
-								"second-value": "122"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 239141489123527,
-							"parameters": {
-								"first-value": "keyboard.LastKeyCode",
-								"comparison": 1,
-								"second-value": "123"
-							}
-						},
-						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
 							"sid": 840931282979907,
@@ -223,26 +253,26 @@
 						{
 							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 242104066820008,
+							"sid": 808063268364941,
 							"parameters": {
 								"first-value": "loadingprogress",
 								"comparison": 0,
-								"second-value": "1"
+								"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
 							}
 						}
 					],
 					"actions": [
 						{
 							"type": "comment",
-							"text": "If we've finished loading, there's no update, and a key was pressed that wasn't F11, F12 or escape, start the game."
+							"text": "If we've finished loading and there's no update, start the game."
 						},
 						{
 							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 554000219513429,
+							"sid": 883669664601768,
 							"parameters": {
 								"tag": "LayoutName",
-								"db": "-100",
+								"db": "SILENT",
 								"duration": "1",
 								"ending": "stop"
 							}
@@ -250,18 +280,18 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 940671130976522,
+							"sid": 761929905829487,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
-								"end-value": "100",
+								"end-value": "SOLID_OPACITY",
 								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{
@@ -286,11 +316,11 @@
 						{
 							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 325307568266297,
+							"sid": 522764544748935,
 							"parameters": {
 								"first-value": "loadingprogress",
 								"comparison": 1,
-								"second-value": "1"
+								"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
 							}
 						}
 					],

@@ -56,10 +56,10 @@
 				{
 					"id": "fade-volume",
 					"objectClass": "Audio",
-					"sid": 972625071323345,
+					"sid": 547189499906200,
 					"parameters": {
 						"tag": "LayoutName",
-						"db": "-100",
+						"db": "SILENT",
 						"duration": "LAYOUT_FADE_TIME",
 						"ending": "stop"
 					}
@@ -67,7 +67,7 @@
 				{
 					"id": "tween-one-property",
 					"objectClass": "fader",
-					"sid": 404764096781546,
+					"sid": 762044917466146,
 					"behaviorType": "Tween",
 					"parameters": {
 						"tags": "Self.ObjectTypeName",
@@ -78,7 +78,7 @@
 						"destroy-on-complete": "no",
 						"loop": "no",
 						"ping-pong": "no",
-						"repeat-count": "1"
+						"repeat-count": "TWEEN_REPEAT_COUNT"
 					}
 				},
 				{
@@ -136,7 +136,7 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 499320000632423,
+							"sid": 579747482400236,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
@@ -147,7 +147,7 @@
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{
@@ -214,18 +214,18 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 895039501608680,
+							"sid": 186993165045282,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
-								"end-value": "100",
+								"end-value": "SOLID_OPACITY",
 								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{

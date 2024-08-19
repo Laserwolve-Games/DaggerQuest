@@ -660,7 +660,7 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "statue",
-							"sid": 549899973747568,
+							"sid": 885506892615012,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" opacity tween out\"",
@@ -671,7 +671,7 @@
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						},
 						{
@@ -681,11 +681,11 @@
 						{
 							"id": "move-layer",
 							"objectClass": "System",
-							"sid": 640757650997869,
+							"sid": 718982744012077,
 							"disabled": true,
 							"parameters": {
 								"layer": "statue.LayerName",
-								"insert-by": "\"tooltip\"",
+								"insert-by": "tooltip.LayerName",
 								"where": "below"
 							}
 						}
@@ -706,7 +706,7 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "statue",
-							"sid": 392011800619103,
+							"sid": 175329331113477,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & \" opacity tween in\"",
@@ -717,7 +717,7 @@
 								"destroy-on-complete": "no",
 								"loop": "no",
 								"ping-pong": "no",
-								"repeat-count": "1"
+								"repeat-count": "TWEEN_REPEAT_COUNT"
 							}
 						}
 					],
@@ -1040,12 +1040,12 @@
 				{
 					"id": "play-by-name",
 					"objectClass": "Audio",
-					"sid": 110162837917985,
+					"sid": 661753574386375,
 					"parameters": {
 						"folder": "music",
 						"audio-file-name": "LayoutName",
 						"loop": "looping",
-						"volume": "-100",
+						"volume": "SILENT",
 						"stereo-pan": "0",
 						"tag-optional": "LayoutName"
 					}
@@ -1064,7 +1064,7 @@
 				{
 					"id": "tween-one-property",
 					"objectClass": "fader",
-					"sid": 583174295704050,
+					"sid": 654605882780079,
 					"behaviorType": "Tween",
 					"parameters": {
 						"tags": "Self.ObjectTypeName",
@@ -1075,7 +1075,7 @@
 						"destroy-on-complete": "no",
 						"loop": "no",
 						"ping-pong": "no",
-						"repeat-count": "1"
+						"repeat-count": "TWEEN_REPEAT_COUNT"
 					}
 				}
 			],

@@ -2,10 +2,14 @@
 	"name": "splashScreen",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "allLayouts"
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "splash screen",
-			"description": "in a category so we can reduce variable scope",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -205,30 +209,6 @@
 								"ping-pong": "yes",
 								"repeat-count": "INFINITE_REPEAT_COUNT"
 							}
-						},
-						{
-							"id": "play-by-name",
-							"objectClass": "Audio",
-							"sid": 766804983639934,
-							"parameters": {
-								"folder": "music",
-								"audio-file-name": "LayoutName",
-								"loop": "looping",
-								"volume": "SILENT",
-								"stereo-pan": "0",
-								"tag-optional": "LayoutName"
-							}
-						},
-						{
-							"id": "fade-volume",
-							"objectClass": "Audio",
-							"sid": 697666494018136,
-							"parameters": {
-								"tag": "LayoutName",
-								"db": "-10",
-								"duration": "LAYOUT_FADE_TIME",
-								"ending": "keep-playing"
-							}
 						}
 					],
 					"sid": 277147762016600
@@ -267,45 +247,12 @@
 							"text": "If we've finished loading and there's no update, start the game."
 						},
 						{
-							"id": "fade-volume",
-							"objectClass": "Audio",
-							"sid": 883669664601768,
-							"parameters": {
-								"tag": "LayoutName",
-								"db": "SILENT",
-								"duration": "1",
-								"ending": "stop"
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "fader",
-							"sid": 761929905829487,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "Self.ObjectTypeName",
-								"property": "offsetOpacity",
-								"end-value": "SOLID_OPACITY",
-								"time": "LAYOUT_FADE_TIME",
-								"ease": "noease",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "TWEEN_REPEAT_COUNT"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 589815070034445
-						},
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 816194191131911,
-							"parameters": {
-								"layout": "mainMenu"
-							}
+							"callFunction": "changeLayout",
+							"sid": 792806521331426,
+							"parameters": [
+								"\"mainMenu\"",
+								true
+							]
 						}
 					],
 					"sid": 596130575223459
@@ -398,7 +345,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Use our own fullscreen icon instead of the one on Itch. This way we can start the audio context if this is the first button clicked. We tried using an SVG for this fullscreen icon, but it caused the entire project to load before showing the loader layout. We were unable to duplicate this bug in a new project."
+							"text": "We tried using an SVG for this fullscreen icon, but it caused the entire project to load before showing the loader layout. We were unable to duplicate this bug in a new project."
 						}
 					],
 					"sid": 551410993474741,

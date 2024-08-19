@@ -2,249 +2,319 @@
 	"name": "loadingScreen",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 578196929836979,
-					"parameters": {
-						"interval-seconds": "0.5"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "loadingText",
-					"sid": 967955305651121,
-					"parameters": {
-						"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
-					}
-				}
-			],
-			"sid": 901007134028296
+			"eventType": "include",
+			"includeSheet": "allLayouts"
 		},
 		{
-			"functionName": "changeLayout",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "layoutToGoTo",
-					"type": "string",
-					"initialValue": "",
-					"comment": "",
-					"sid": 821222262544592
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 129408778690488,
-					"parameters": {
-						"variable": "targetLayout",
-						"value": "layoutToGoTo"
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 547189499906200,
-					"parameters": {
-						"tag": "LayoutName",
-						"db": "SILENT",
-						"duration": "LAYOUT_FADE_TIME",
-						"ending": "stop"
-					}
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "fader",
-					"sid": 762044917466146,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "Self.ObjectTypeName",
-						"property": "offsetOpacity",
-						"end-value": "100",
-						"time": "LAYOUT_FADE_TIME",
-						"ease": "noease",
-						"destroy-on-complete": "no",
-						"loop": "no",
-						"ping-pong": "no",
-						"repeat-count": "TWEEN_REPEAT_COUNT"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 122192739986078
-				},
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 342206759884725,
-					"parameters": {
-						"layout": "loadingScreen"
-					}
-				}
-			],
-			"sid": 742658753939417
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 784297342511893
-				}
-			],
-			"actions": [],
-			"sid": 291243571342097,
+			"eventType": "group",
+			"disabled": false,
+			"title": "loading screen",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "MINIMUM_LOADINGSCREEN_TIME",
-					"type": "number",
-					"initialValue": "1",
-					"comment": "The minimum amount of time to show the loading screen, in seconds. Doesn't include the fade in and fade out.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 194169361633105
-				},
-				{
-					"eventType": "variable",
-					"name": "minimumLoadingScreenExpiryTime",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The time that the loading screen should last until, at minimum.",
+					"name": "targetLayout",
+					"type": "string",
+					"initialValue": "",
+					"comment": "The layout to which to change.",
 					"isStatic": true,
 					"isConstant": false,
-					"sid": 296354287699383
+					"sid": 482850086025600
 				},
 				{
 					"eventType": "block",
-					"conditions": [],
-					"actions": [
+					"conditions": [
 						{
-							"id": "tween-one-property",
-							"objectClass": "fader",
-							"sid": 579747482400236,
-							"behaviorType": "Tween",
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 978068326904035,
 							"parameters": {
-								"tags": "Self.ObjectTypeName",
-								"property": "offsetOpacity",
-								"end-value": "0",
-								"time": "LAYOUT_FADE_TIME",
-								"ease": "noease",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "TWEEN_REPEAT_COUNT"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "This tween is really jittery if we do it while loading, so wait until it finishes to start loading"
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 957962135869185
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 440739585669825,
-							"parameters": {
-								"variable": "minimumLoadingScreenExpiryTime",
-								"value": "wallclocktime + MINIMUM_LOADINGSCREEN_TIME"
-							}
-						},
-						{
-							"id": "stop-all",
-							"objectClass": "Audio",
-							"sid": 753063338919919
-						},
-						{
-							"type": "comment",
-							"text": "This wait 0 prevents the loading from occurring before we get to the loading screen."
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 104768621326518,
-							"parameters": {
-								"seconds": "0"
-							}
-						},
-						{
-							"id": "load-layout-images-by-name",
-							"objectClass": "System",
-							"sid": 594192819577717,
-							"parameters": {
-								"layout": "targetLayout"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 476462363078746
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 823499413823762,
-							"parameters": {
-								"seconds": "minimumLoadingScreenExpiryTime - wallclocktime"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 403237308684418
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "fader",
-							"sid": 186993165045282,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "Self.ObjectTypeName",
-								"property": "offsetOpacity",
-								"end-value": "SOLID_OPACITY",
-								"time": "LAYOUT_FADE_TIME",
-								"ease": "noease",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "TWEEN_REPEAT_COUNT"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 974658375890245
-						},
-						{
-							"id": "go-to-layout-by-name",
-							"objectClass": "System",
-							"sid": 314961677692135,
-							"parameters": {
-								"layout": "targetLayout"
+								"interval-seconds": "0.5"
 							}
 						}
 					],
-					"sid": 266282522182230
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "loadingText",
+							"sid": 160146940996166,
+							"parameters": {
+								"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
+							}
+						}
+					],
+					"sid": 839995727724483
+				},
+				{
+					"functionName": "changeLayout",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "layoutToGoTo",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 821222262544592
+						},
+						{
+							"name": "skipLoadingScreen",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Whether or not to utilize the loading screen when changing layouts.",
+							"sid": 282619342181581
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 485935399708907,
+							"parameters": {
+								"variable": "targetLayout",
+								"value": "layoutToGoTo"
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 479078283166225,
+							"parameters": {
+								"tag": "LayoutName",
+								"db": "SILENT",
+								"duration": "LAYOUT_FADE_TIME",
+								"ending": "stop"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 754499954531401,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "Self.ObjectTypeName",
+								"property": "offsetOpacity",
+								"end-value": "100",
+								"time": "LAYOUT_FADE_TIME",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "TWEEN_REPEAT_COUNT"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 335360550525160
+						}
+					],
+					"sid": 576492001106875,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 455638481846457,
+									"parameters": {
+										"variable": "skipLoadingScreen"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 761693346019549,
+									"parameters": {
+										"layout": "targetLayout"
+									}
+								}
+							],
+							"sid": 533020430053535
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 164629978924540
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 772767400566558,
+									"parameters": {
+										"layout": "loadingScreen"
+									}
+								}
+							],
+							"sid": 627141324572798
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 362670556863653
+						}
+					],
+					"actions": [],
+					"sid": 903567358812001,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "MINIMUM_LOADING_SCREEN_TIME",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The minimum amount of time to show the loading screen, in seconds. Doesn't include the fade in and fade out.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 226344356070531
+						},
+						{
+							"eventType": "variable",
+							"name": "minimumLoadingScreenExpiryTime",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The time that the loading screen should last until, at minimum.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 512276463734796
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "fader",
+									"sid": 830014511580583,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.ObjectTypeName",
+										"property": "offsetOpacity",
+										"end-value": "TRANSPARENT_OPACITY",
+										"time": "LAYOUT_FADE_TIME",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "TWEEN_REPEAT_COUNT"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "This tween is really jittery if we do it while loading, so wait until it finishes to start loading"
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 619492319823379
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 670045706177657,
+									"parameters": {
+										"variable": "minimumLoadingScreenExpiryTime",
+										"value": "wallclocktime + MINIMUM_LOADING_SCREEN_TIME"
+									}
+								},
+								{
+									"id": "stop-all",
+									"objectClass": "Audio",
+									"sid": 952130503059462
+								},
+								{
+									"type": "comment",
+									"text": "This wait 0 prevents the loading from occurring before we get to the loading screen."
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 230995441789194,
+									"parameters": {
+										"seconds": "0"
+									}
+								},
+								{
+									"id": "load-layout-images-by-name",
+									"objectClass": "System",
+									"sid": 817635621225749,
+									"parameters": {
+										"layout": "targetLayout"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 274581498886322
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 687451725087615,
+									"parameters": {
+										"seconds": "minimumLoadingScreenExpiryTime - wallclocktime"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 759417018378618
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "fader",
+									"sid": 395209436691242,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.ObjectTypeName",
+										"property": "offsetOpacity",
+										"end-value": "SOLID_OPACITY",
+										"time": "LAYOUT_FADE_TIME",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "TWEEN_REPEAT_COUNT"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 444700606548816
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 102816903838693,
+									"parameters": {
+										"layout": "targetLayout"
+									}
+								}
+							],
+							"sid": 425305069935900
+						}
+					]
 				}
-			]
+			],
+			"sid": 238638394426884
 		}
 	],
 	"sid": 870563530335933

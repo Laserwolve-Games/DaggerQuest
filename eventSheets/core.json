@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "global"
+			"includeSheet": "allLayouts"
 		},
 		{
 			"eventType": "variable",
@@ -142,8 +142,28 @@
 			"initialValue": "-100",
 			"comment": "The decibel value necessary for audio to make no sound.",
 			"isStatic": false,
-			"isConstant": false,
+			"isConstant": true,
 			"sid": 215341091767557
+		},
+		{
+			"eventType": "variable",
+			"name": "DEFAULT_STEREO_PAN",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The default value for the stereo pan audio parameter.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 330959037365992
+		},
+		{
+			"eventType": "variable",
+			"name": "PAUSED",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The value of the timescale when the game is paused.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 706772403489350
 		},
 		{
 			"eventType": "variable",
@@ -241,6 +261,36 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "interfaceVolume",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "How loudly to place interface sound effects, in decibels.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 893632809318913
+		},
+		{
+			"eventType": "variable",
+			"name": "effectsVolume",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "How loudly to play sound effects, in decibels.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 283128008255808
+		},
+		{
+			"eventType": "variable",
+			"name": "musicVolume",
+			"type": "number",
+			"initialValue": "-10",
+			"comment": "How loudly to play the music, in decibels.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 655012730729813
+		},
+		{
+			"eventType": "variable",
 			"name": "uidOfClicked",
 			"type": "number",
 			"initialValue": "0",
@@ -248,16 +298,6 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 849112042530215
-		},
-		{
-			"eventType": "variable",
-			"name": "targetLayout",
-			"type": "string",
-			"initialValue": "",
-			"comment": "The layout to which to change.",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 175140439511758
 		},
 		{
 			"eventType": "variable",
@@ -465,13 +505,13 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "Audio",
-											"sid": 273916108673699,
+											"sid": 641214046664571,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 												"loop": "not-looping",
 												"volume": "0",
-												"stereo-pan": "0",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
 												"tag-optional": "dialog.ObjectTypeName"
 											}
 										}
@@ -623,13 +663,13 @@
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 604341015575843,
+							"sid": 245078810640833,
 							"parameters": {
 								"folder": "sounds",
 								"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 								"loop": "not-looping",
 								"volume": "0",
-								"stereo-pan": "0",
+								"stereo-pan": "DEFAULT_STEREO_PAN",
 								"tag-optional": "dialog.ObjectTypeName"
 							}
 						},
@@ -1262,22 +1302,6 @@
 												"create-hierarchy": false,
 												"template-name": "\"\""
 											}
-										},
-										{
-											"id": "play-at-object-by-name",
-											"objectClass": "Audio",
-											"sid": 492012900473711,
-											"parameters": {
-												"folder": "sounds",
-												"audio-file-name": "\"obtainedItem\" & SEPARATOR & Functions.randomInteger(1)",
-												"loop": "not-looping",
-												"volume": "0",
-												"object": "player",
-												"inner-angle": "360",
-												"outer-angle": "360",
-												"outer-gain": "0",
-												"tag-optional": "\"\""
-											}
 										}
 									],
 									"sid": 658192619640202,
@@ -1295,6 +1319,22 @@
 												}
 											],
 											"actions": [
+												{
+													"id": "play-at-object-by-name",
+													"objectClass": "Audio",
+													"sid": 586195115034095,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "\"obtainedItem\" & SEPARATOR & Functions.randomInteger(1)",
+														"loop": "not-looping",
+														"volume": "effectsVolume",
+														"object": "player",
+														"inner-angle": "360",
+														"outer-angle": "360",
+														"outer-gain": "0",
+														"tag-optional": "\"obtainedItem\" & SEPARATOR & item.ObjectTypeName & SEPARATOR & item.UID"
+													}
+												},
 												{
 													"callFunction": "setItemVariables",
 													"sid": 356730110629027
@@ -1544,12 +1584,12 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 400509601630556,
+											"sid": 918147626445485,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 												"loop": "not-looping",
-												"volume": "0",
+												"volume": "effectsVolume",
 												"object": "loot",
 												"inner-angle": "360",
 												"outer-angle": "360",
@@ -4491,12 +4531,12 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 530548632531840,
+															"sid": 371486252252853,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
-																"volume": "0",
+																"volume": "effectsVolume",
 																"object": "loot",
 																"inner-angle": "360",
 																"outer-angle": "360",
@@ -5078,12 +5118,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 475801855647441,
+													"sid": 203007902864213,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "item.sound & SEPARATOR & \"equip\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "player",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -5329,12 +5369,12 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 981608742752562,
+																	"sid": 709772901564764,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
-																		"volume": "0",
+																		"volume": "effectsVolume",
 																		"object": "player",
 																		"inner-angle": "360",
 																		"outer-angle": "360",
@@ -5440,12 +5480,12 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 511207994768119,
+															"sid": 489012642095379,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
-																"volume": "0",
+																"volume": "effectsVolume",
 																"object": "player",
 																"inner-angle": "360",
 																"outer-angle": "360",
@@ -5677,9 +5717,9 @@
 								{
 									"id": "is-animation-playing",
 									"objectClass": "man_simpleSword_gear",
-									"sid": 755476965331208,
+									"sid": 681403102700361,
 									"parameters": {
-										"animation": "\"idle_157.5\""
+										"animation": "IDLE_KEYWORD & SEPARATOR & \"157.5\""
 									}
 								}
 							],
@@ -6242,11 +6282,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 942919002777203,
+									"sid": 211871602301078,
 									"parameters": {
 										"first-value": "timescale",
 										"comparison": 1,
-										"second-value": "0"
+										"second-value": "PAUSED"
 									}
 								}
 							],
@@ -6583,12 +6623,12 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 890143091516991,
+									"sid": 383148241459171,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "body.ObjectTypeName & SEPARATOR & \"die\"",
 										"loop": "not-looping",
-										"volume": "0",
+										"volume": "effectsVolume",
 										"object": "body",
 										"inner-angle": "360",
 										"outer-angle": "360",
@@ -6765,12 +6805,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 517347621080577,
+													"sid": 733389800785606,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep0\"",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "body",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -6803,12 +6843,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 177009978573720,
+													"sid": 549437707081433,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "body",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -7475,7 +7515,8 @@
 											"callFunction": "changeLayout",
 											"sid": 905950862943501,
 											"parameters": [
-												"door.layout"
+												"door.layout",
+												false
 											]
 										},
 										{
@@ -7734,10 +7775,10 @@
 						},
 						{
 							"callFunction": "updateAnimation",
-							"sid": 904672664768414,
+							"sid": 982045603185694,
 							"parameters": [
-								"\"idle\"",
-								"player.movementSpeed / ANIMATION_DIVISOR",
+								"IDLE_KEYWORD",
+								"body.OriginalAnimationSpeed",
 								true
 							]
 						}
@@ -8098,12 +8139,12 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 694819124622085,
+																	"sid": 506304080658368,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
-																		"volume": "0",
+																		"volume": "effectsVolume",
 																		"object": "gear",
 																		"inner-angle": "360",
 																		"outer-angle": "360",
@@ -8322,10 +8363,10 @@
 																				},
 																				{
 																					"callFunction": "updateAnimation",
-																					"sid": 794069302254510,
+																					"sid": 477291465593192,
 																					"parameters": [
-																						"\"idle\"",
-																						"player.movementSpeed / ANIMATION_DIVISOR",
+																						"IDLE_KEYWORD",
+																						"body.OriginalAnimationSpeed",
 																						true
 																					]
 																				},
@@ -8636,12 +8677,12 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 709184613520681,
+																	"sid": 819481681755141,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"heroicStrike\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
-																		"volume": "0",
+																		"volume": "effectsVolume",
 																		"object": "gear",
 																		"inner-angle": "360",
 																		"outer-angle": "360",
@@ -8860,10 +8901,10 @@
 																				},
 																				{
 																					"callFunction": "updateAnimation",
-																					"sid": 250773605661799,
+																					"sid": 814095692282935,
 																					"parameters": [
-																						"\"idle\"",
-																						"player.movementSpeed / ANIMATION_DIVISOR",
+																						"IDLE_KEYWORD",
+																						"body.OriginalAnimationSpeed",
 																						true
 																					]
 																				},
@@ -9402,10 +9443,10 @@
 																				},
 																				{
 																					"callFunction": "updateAnimation",
-																					"sid": 992208017771673,
+																					"sid": 643402702523778,
 																					"parameters": [
-																						"\"idle\"",
-																						"player.movementSpeed / ANIMATION_DIVISOR",
+																						"IDLE_KEYWORD",
+																						"body.OriginalAnimationSpeed",
 																						true
 																					]
 																				},
@@ -9533,9 +9574,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 112756392308528,
+											"sid": 192504297908711,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"idle\")\n"
+												"value": "Functions.isAnimationPlaying(IDLE_KEYWORD)\n"
 											}
 										}
 									],
@@ -9615,25 +9656,35 @@
 									}
 								},
 								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 126464817908642,
+									"parameters": {
+										"first-value": "timescale",
+										"comparison": 1,
+										"second-value": "PAUSED"
+									}
+								},
+								{
 									"id": "evaluate-expression",
 									"objectClass": "System",
-									"sid": 761965253308537,
+									"sid": 529828692673536,
 									"parameters": {
-										"value": "Functions.isAnimationPlaying(\"walk\")\n"
+										"value": "Functions.isAnimationPlaying(\"walk\")"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "If the player isn't moving and not dead, and they were previously walking, make him start idling."
+									"text": "If the player isn't moving and not dead, and they were previously walking, (and the game isn't paused) make him start idling."
 								},
 								{
 									"callFunction": "updateAnimation",
-									"sid": 344445240607023,
+									"sid": 261265776951408,
 									"parameters": [
-										"\"idle\"",
-										"player.movementSpeed / ANIMATION_DIVISOR",
+										"IDLE_KEYWORD",
+										"body.OriginalAnimationSpeed",
 										true
 									]
 								},
@@ -9729,12 +9780,8 @@
 									],
 									"actions": [
 										{
-											"callFunction": "changeLayout",
-											"sid": 615714761735097,
-											"disabled": true,
-											"parameters": [
-												"\"mainMenu\""
-											]
+											"type": "comment",
+											"text": "TODO: restart the level or send the player somewhere and revive them"
 										}
 									],
 									"sid": 379379093595967
@@ -9811,12 +9858,12 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 751036244806746,
+									"sid": 267954466207751,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "body.ObjectTypeName & SEPARATOR & animationName",
 										"loop": "not-looping",
-										"volume": "0",
+										"volume": "effectsVolume",
 										"object": "player",
 										"inner-angle": "360",
 										"outer-angle": "360",
@@ -11261,13 +11308,13 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 615947235495752,
+									"sid": 468797062544477,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuClose\"",
 										"loop": "not-looping",
 										"volume": "0",
-										"stereo-pan": "0",
+										"stereo-pan": "DEFAULT_STEREO_PAN",
 										"tag-optional": "\"menuClose\""
 									}
 								}
@@ -11396,13 +11443,13 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 313797936373778,
+									"sid": 822279806650062,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuOpen\"",
 										"loop": "not-looping",
 										"volume": "0",
-										"stereo-pan": "0",
+										"stereo-pan": "DEFAULT_STEREO_PAN",
 										"tag-optional": "\"menuOpen\""
 									}
 								}
@@ -12915,6 +12962,755 @@
 						}
 					],
 					"sid": 407220405598445
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "settings",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 788644910307958,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "checkbox"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 523175943705179,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "checkbox",
+											"sid": 595847815966304,
+											"parameters": {
+												"animation": "\"checked\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "checkbox",
+											"sid": 757913467832603,
+											"parameters": {
+												"animation": "\"unchecked\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 803477319672571,
+											"parameters": {
+												"audio-file": "uncheck",
+												"loop": "not-looping",
+												"volume": "interfaceVolume",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
+												"tag-optional": "\"\""
+											}
+										}
+									],
+									"sid": 242886779246573
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 160180378950240
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "checkbox",
+											"sid": 555167822301620,
+											"parameters": {
+												"animation": "\"checked\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 838215901803452,
+											"parameters": {
+												"audio-file": "check",
+												"loop": "not-looping",
+												"volume": "interfaceVolume",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
+												"tag-optional": "\"\""
+											}
+										}
+									],
+									"sid": 481722811100812
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 748124666756608,
+									"parameters": {
+										"key": 32
+									}
+								},
+								{
+									"id": "is-any-playing",
+									"objectClass": "statue",
+									"sid": 547306812257313,
+									"behaviorType": "Tween",
+									"isInverted": true
+								},
+								{
+									"id": "is-any-playing",
+									"objectClass": "fader",
+									"sid": 448930757734690,
+									"behaviorType": "Tween",
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "The settings menu can't be opened while anything else is fading"
+								}
+							],
+							"sid": 523105908918023,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 694307768566811,
+											"parameters": {
+												"layer": "settingsMenuStatue.LayerName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "closeSettings",
+											"sid": 426429163528662
+										}
+									],
+									"sid": 742240280522348
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 249415301243006
+										}
+									],
+									"actions": [
+										{
+											"id": "set-time-scale",
+											"objectClass": "System",
+											"sid": 851296553141354,
+											"parameters": {
+												"time-scale": "0"
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 852683088486420,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 115592063285771,
+											"parameters": {
+												"layer": "abilityBarStatue.LayerName",
+												"interactive": false
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 259119409880904,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": false
+											}
+										},
+										{
+											"callFunction": "closeDialog",
+											"sid": 227155259177360
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 363219135868759,
+											"parameters": [
+												"equippedMenuStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 165993740378783,
+											"parameters": [
+												"inventoryMenuStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 440272284419070,
+											"parameters": [
+												"abilitySelectorStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 129664861089245,
+											"parameters": [
+												"characterMenuStatue.LayerName"
+											]
+										},
+										{
+											"callFunction": "openLayer",
+											"sid": 489084137274119,
+											"parameters": [
+												"settingsMenuStatue.LayerName"
+											]
+										}
+									],
+									"sid": 520857936134325
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 203853855942491,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "back"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "closeSettings",
+									"sid": 431466487026583
+								}
+							],
+							"sid": 720992934545758
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 643567039363702,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "abilityKeybinder"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If none of the abilityKeybinders are waiting to receive an input..."
+								}
+							],
+							"sid": 713480100974908,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 406514684073326,
+											"parameters": {
+												"object": "abilityKeybinder"
+											}
+										},
+										{
+											"id": "compare-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 275095952793900,
+											"parameters": {
+												"text-to-compare": "\"...\"",
+												"case-sensitivity": "ignore-case"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 379220276263228
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 684890181660628
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 870576430824464,
+											"parameters": {
+												"text": "\"...\""
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "abilityKeybinder",
+											"sid": 104849985541415,
+											"parameters": {
+												"instance-variable": "keycode",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 209007120016131
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 570830043676926
+								},
+								{
+									"id": "compare-text",
+									"objectClass": "abilityKeybinder",
+									"sid": 796424527758225,
+									"parameters": {
+										"text-to-compare": "\"...\"",
+										"case-sensitivity": "ignore-case"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "When a key is pressed, and there's an abilityKeybinder waiting to receive input..."
+								}
+							],
+							"sid": 929528626556521,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 370753037980012,
+											"parameters": {
+												"object": "abilityKeybinder"
+											}
+										},
+										{
+											"id": "compare-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 707086472921270,
+											"parameters": {
+												"text-to-compare": "keyboard.TypedKey",
+												"case-sensitivity": "ignore-case"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "...And the key that was pressed isn't already bound..."
+										}
+									],
+									"sid": 624381061161863
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 909037105655847
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "abilityKeybinder",
+											"sid": 546505687649169,
+											"parameters": {
+												"text": "uppercase(keyboard.TypedKey)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "abilityKeybinder",
+											"sid": 908548169808163,
+											"parameters": {
+												"instance-variable": "keycode",
+												"value": "keyboard.LastKeyCode"
+											}
+										}
+									],
+									"sid": 508602824145830
+								}
+							]
+						},
+						{
+							"functionName": "closeSettings",
+							"functionDescription": "Close the settings menu.",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 452820815904708,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 485925053949018,
+											"parameters": {
+												"object": "abilityKeybinder",
+												"expression": "abilityKeybinder.PlainText",
+												"comparison": 0,
+												"value": "\"...\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Only allow closure of the settings menu if we aren't currently rebinding a key"
+										}
+									],
+									"sid": 206585683324567
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 596743601932199
+										}
+									],
+									"actions": [
+										{
+											"id": "set-time-scale",
+											"objectClass": "System",
+											"sid": 954329498888035,
+											"parameters": {
+												"time-scale": "1"
+											}
+										},
+										{
+											"callFunction": "closeLayer",
+											"sid": 426349975998364,
+											"parameters": [
+												"settingsMenuStatue.LayerName"
+											]
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 908768718816704,
+											"parameters": {
+												"layer": "\"main\"",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 942303176079170,
+											"parameters": {
+												"layer": "abilityBarStatue.LayerName",
+												"interactive": true
+											}
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 758881988579384,
+											"parameters": {
+												"layer": "\"background\"",
+												"interactive": true
+											}
+										}
+									],
+									"sid": 724626689544662
+								}
+							]
+						}
+					],
+					"sid": 925547222458167
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "statues",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 518817606338522,
+									"parameters": {
+										"object": "statue"
+									}
+								},
+								{
+									"id": "is-playing",
+									"objectClass": "statue",
+									"sid": 929662784964018,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Yes, the for each is absolutely necessary here"
+								},
+								{
+									"id": "set-layer-opacity",
+									"objectClass": "System",
+									"sid": 923764386018574,
+									"parameters": {
+										"layer": "statue.LayerName",
+										"opacity": "statue.Tween.Value(statue.ObjectTypeName & SEPARATOR & statue.UID & \" fade\")"
+									}
+								}
+							],
+							"sid": 432506324857230
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "statue",
+									"sid": 319590783319583
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "statue",
+									"sid": 165910146363182,
+									"parameters": {
+										"instance-variable": "originalX",
+										"value": "Self.X"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "statue",
+									"sid": 959915078054956,
+									"parameters": {
+										"instance-variable": "originalY",
+										"value": "Self.Y"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "This is so fades still work for statues when paused"
+								},
+								{
+									"id": "set-object-time-scale",
+									"objectClass": "System",
+									"sid": 600029646028441,
+									"parameters": {
+										"object": "statue",
+										"time-scale": "1.0"
+									}
+								}
+							],
+							"sid": 502899049216928
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-drag-start",
+									"objectClass": "statue",
+									"sid": 243525080075900,
+									"behaviorType": "DragDrop"
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "statue",
+									"sid": 223147705922705,
+									"behaviorType": "Anchor",
+									"parameters": {
+										"state": "disabled"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "For some reason this works, but tweening the opacity for showing/hiding menus doesn't. Probably something to do with the fact we're only going to 50 here, and we go to 0 there."
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "statue",
+									"sid": 646236188087339,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.ObjectTypeName & \" opacity tween out\"",
+										"property": "offsetOpacity",
+										"end-value": "50",
+										"time": "MENU_FADE_TIME",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "TWEEN_REPEAT_COUNT"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "'toolip' and all overlay layers above can't be re-organized, all overlay layers beneath it can be reorganized. If we change layouts with this event enabled, overlay sprites get sent to the wrong layer (since global sprites go to their matching layout number, and re-organizing layers messes with their number).\n\nThe ability to dynamically sort layers would require a refactor of overlay layers to put all their content on one layer."
+								},
+								{
+									"id": "move-layer",
+									"objectClass": "System",
+									"sid": 583418070821051,
+									"disabled": true,
+									"parameters": {
+										"layer": "statue.LayerName",
+										"insert-by": "tooltip.LayerName",
+										"where": "below"
+									}
+								}
+							],
+							"sid": 462994720905216
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-drop",
+									"objectClass": "statue",
+									"sid": 904770788709315,
+									"behaviorType": "DragDrop"
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "statue",
+									"sid": 689612699917278,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "Self.ObjectTypeName & \" opacity tween in\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": "MENU_FADE_TIME",
+										"ease": "noease",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "TWEEN_REPEAT_COUNT"
+									}
+								}
+							],
+							"sid": 979508492213436
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 940732654549276,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "double-clicked",
+										"object-clicked": "statue"
+									}
+								},
+								{
+									"id": "pick-topbottom",
+									"objectClass": "statue",
+									"sid": 855042222664613,
+									"parameters": {
+										"which": "top"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "statue",
+									"sid": 782379482693970,
+									"parameters": {
+										"x": "Self.originalX",
+										"y": "Self.originalY"
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "statue",
+									"sid": 174249010982823,
+									"behaviorType": "Anchor",
+									"parameters": {
+										"state": "enabled"
+									}
+								}
+							],
+							"sid": 251720373653722
+						}
+					],
+					"sid": 229570565825876
 				}
 			],
 			"sid": 491413826418283
@@ -13089,12 +13885,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 382318423638994,
+													"sid": 669958404545796,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "enemyBody",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -13127,12 +13923,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 610048696104273,
+													"sid": 320042853501724,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "enemyBody",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -13822,12 +14618,12 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 536137478333745,
+											"sid": 344354434116828,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "enemy.type & SEPARATOR & \"die\" & SEPARATOR & Functions.randomInteger(1)",
 												"loop": "not-looping",
-												"volume": "0",
+												"volume": "effectsVolume",
 												"object": "enemy",
 												"inner-angle": "360",
 												"outer-angle": "360",
@@ -14171,12 +14967,12 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 481709764969456,
+													"sid": 772493070883940,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
-														"volume": "0",
+														"volume": "effectsVolume",
 														"object": "enemyBody",
 														"inner-angle": "360",
 														"outer-angle": "360",
@@ -14643,11 +15439,11 @@
 																{
 																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 936442780199264,
+																	"sid": 584007818722894,
 																	"parameters": {
 																		"audio-file": "arrowShot",
 																		"loop": "not-looping",
-																		"volume": "0",
+																		"volume": "effectsVolume",
 																		"object": "crossbowBolt",
 																		"inner-angle": "360",
 																		"outer-angle": "360",
@@ -14979,11 +15775,11 @@
 																{
 																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 765602987188973,
+																	"sid": 556828490531861,
 																	"parameters": {
 																		"audio-file": "lightningOrb",
 																		"loop": "looping",
-																		"volume": "0",
+																		"volume": "effectsVolume",
 																		"object": "lightningOrb",
 																		"inner-angle": "360",
 																		"outer-angle": "360",
@@ -15446,12 +16242,12 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 199767264879792,
+											"sid": 602539422695341,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "enemy.type & SEPARATOR & \"hit\"",
 												"loop": "not-looping",
-												"volume": "0",
+												"volume": "effectsVolume",
 												"object": "enemy",
 												"inner-angle": "360",
 												"outer-angle": "360",
@@ -18102,12 +18898,12 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 898042260607143,
+									"sid": 466267700006944,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "door.ObjectTypeName",
 										"loop": "not-looping",
-										"volume": "0",
+										"volume": "effectsVolume",
 										"object": "door",
 										"inner-angle": "360",
 										"outer-angle": "360",

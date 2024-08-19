@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "global"
+			"includeSheet": "allLayouts"
 		},
 		{
 			"eventType": "block",
@@ -23,12 +23,12 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 597672597795281,
+					"sid": 297891505762881,
 					"parameters": {
 						"audio-file": "menuOpen",
 						"loop": "not-looping",
-						"volume": "0",
-						"stereo-pan": "0",
+						"volume": "interfaceVolume",
+						"stereo-pan": "DEFAULT_STEREO_PAN",
 						"tag-optional": "\"\""
 					}
 				},
@@ -36,7 +36,8 @@
 					"callFunction": "changeLayout",
 					"sid": 518189369285921,
 					"parameters": [
-						"\"farm\""
+						"\"farm\"",
+						false
 					]
 				}
 			],

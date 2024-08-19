@@ -565,10 +565,10 @@
 						{
 							"id": "is-playing",
 							"objectClass": "statue",
-							"sid": 173783793187177,
+							"sid": 812413534580416,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "Self.ObjectTypeName & \" \" & Self.UID & \" fade\""
+								"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\""
 							}
 						}
 					],
@@ -580,10 +580,10 @@
 						{
 							"id": "set-layer-opacity",
 							"objectClass": "System",
-							"sid": 746549321242423,
+							"sid": 362610873866431,
 							"parameters": {
 								"layer": "statue.LayerName",
-								"opacity": "statue.Tween.Value(statue.ObjectTypeName & \" \" & statue.UID & \" fade\")"
+								"opacity": "statue.Tween.Value(statue.ObjectTypeName & SEPARATOR & statue.UID & \" fade\")"
 							}
 						}
 					],

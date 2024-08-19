@@ -6878,7 +6878,7 @@
 					"tags": "",
 					"instanceVariables": {
 						"yValue": 0,
-						"createShadow": true
+						"createShadow": false
 					},
 					"behaviors": {
 						"Solid": {
@@ -6903,21 +6903,6 @@
 									"a": false,
 									"o": true,
 									"v": true,
-									"d": true,
-									"sm": "normal"
-								}
-							},
-							{
-								"uid": 402,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": false,
-									"v": false,
 									"d": true,
 									"sm": "normal"
 								}
@@ -7056,89 +7041,6 @@
 							1,
 							1,
 							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "cottageExterior_shadow",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Default",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 402,
-					"sid": 108549372728080,
-					"tags": "",
-					"instanceVariables": {
-						"yValue": 0
-					},
-					"behaviors": {
-						"Persist": {
-							"properties": {}
-						}
-					},
-					"effects": {
-						"BlurHorizontal": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 0.75
-							}
-						},
-						"BlurVertical": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 0.75
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": 190,
-						"uid": 402,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": false,
-							"v": false,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 108549372728080,
-						"expanded": false
-					},
-					"world": {
-						"x": 733,
-						"y": 493,
-						"width": 109,
-						"height": 187,
-						"originX": 9.091743119266056,
-						"originY": 0.9786096256684492,
-						"color": [
-							1,
-							1,
-							1,
-							0.5
 						],
 						"angle": 0,
 						"zElevation": 0

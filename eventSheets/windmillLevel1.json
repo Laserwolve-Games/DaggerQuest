@@ -9,34 +9,21 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "compare-two-values",
+					"id": "every-x-seconds",
 					"objectClass": "System",
-					"sid": 743344883509825,
+					"sid": 306722158246178,
 					"parameters": {
-						"first-value": "time % windmillFan.AnimationFrameCount / windmillFan.AnimationSpeed",
-						"comparison": 0,
-						"second-value": "0"
+						"interval-seconds": "Functions.getWindmillFanRotationSpeed"
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "play-at-object",
-					"objectClass": "Audio",
-					"sid": 985960110625926,
-					"parameters": {
-						"audio-file": "windmillFan",
-						"loop": "not-looping",
-						"volume": "0",
-						"object": "windmillFan",
-						"inner-angle": "360",
-						"outer-angle": "360",
-						"outer-gain": "0",
-						"tag-optional": "\"\""
-					}
+					"callFunction": "playWindmillFanSound",
+					"sid": 544331710703595
 				}
 			],
-			"sid": 939955307891146
+			"sid": 485041667897425
 		}
 	],
 	"sid": 804627828090973

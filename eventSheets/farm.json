@@ -6,62 +6,164 @@
 			"includeSheet": "core"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "windmillFan",
+			"description": "AnimationSpeed, OriginalAnimationSpeed, and AnimationFrameCount are 0 when the sprite in reference isn't on the layout, so this group is to reduce the scope of the necessary variables.",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-any-animation-finished",
-					"objectClass": "windmillFan",
-					"sid": 451452687128011
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-animation-finished",
+							"objectClass": "windmillFan",
+							"sid": 111642575795229
+						},
+						{
+							"id": "is-on-screen",
+							"objectClass": "windmillFan",
+							"sid": 711994299487126
+						}
+					],
+					"actions": [
+						{
+							"id": "play-at-object",
+							"objectClass": "Audio",
+							"sid": 204823402751746,
+							"parameters": {
+								"audio-file": "windmillFan",
+								"loop": "not-looping",
+								"volume": "0",
+								"object": "windmillFan",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "windmillFan.ObjectTypeName"
+							}
+						}
+					],
+					"sid": 984475005173115
 				},
 				{
-					"id": "is-on-screen",
-					"objectClass": "windmillFan",
-					"sid": 573103026332073
-				}
-			],
-			"actions": [
-				{
-					"id": "play-at-object",
-					"objectClass": "Audio",
-					"sid": 717588640272189,
-					"parameters": {
-						"audio-file": "windmillFan",
-						"loop": "not-looping",
-						"volume": "0",
-						"object": "windmillFan",
-						"inner-angle": "360",
-						"outer-angle": "360",
-						"outer-gain": "0",
-						"tag-optional": "windmillFan.ObjectTypeName"
-					}
-				}
-			],
-			"sid": 881027336628216
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-created",
-					"objectClass": "windmillFan",
-					"sid": 399005655300368
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "Simulate the windmill having continued to spin on other layouts."
+					"eventType": "comment",
+					"text": "Hardcoding the original values of the windmill fan so we can debug windmill layouts."
 				},
 				{
-					"id": "set-animation-frame",
-					"objectClass": "windmillFan",
-					"sid": 183116902426695,
-					"parameters": {
-						"frame-number": "floor(lerp(0, Self.AnimationFrameCount - 1, time)) % Self.AnimationFrameCount"
-					}
+					"eventType": "variable",
+					"name": "windmillFanAnimationFrameCount",
+					"type": "number",
+					"initialValue": "30",
+					"comment": "The number of frames in the windmill fan's animation.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 967333695555734
+				},
+				{
+					"eventType": "variable",
+					"name": "windmillFanAnimationSpeed",
+					"type": "number",
+					"initialValue": "30",
+					"comment": "The animation speed of the windmill fan.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 696656068406327
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-end-of-layout",
+							"objectClass": "System",
+							"sid": 435247187382722
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Save the windmill fan's animation speed and frame count to use on other layouts."
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 984505290547137,
+							"parameters": {
+								"variable": "windmillFanAnimationFrameCount",
+								"value": "windmillFan.AnimationFrameCount"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 462462238235600,
+							"parameters": {
+								"variable": "windmillFanAnimationSpeed",
+								"value": "windmillFan.AnimationSpeed"
+							}
+						}
+					],
+					"sid": 155940923534084
+				},
+				{
+					"functionName": "getWindmillFanRotationSpeed",
+					"functionDescription": "How long it takes the windmill fan to complete a rotation, in seconds.",
+					"functionCategory": "world",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 726416504284433,
+							"parameters": {
+								"value": "windmillFanAnimationFrameCount / windmillFanAnimationSpeed"
+							}
+						}
+					],
+					"sid": 141631521856555
+				},
+				{
+					"functionName": "playWindmillFanSound",
+					"functionDescription": "Play the windmill fan sound effect, for layouts where the fan isn't actually present.",
+					"functionCategory": "world",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "is-tag-playing",
+							"objectClass": "Audio",
+							"sid": 859780203448040,
+							"parameters": {
+								"tag": "windmillFan.ObjectTypeName"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 368868232918433,
+							"parameters": {
+								"audio-file": "windmillFan",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "windmillFan.ObjectTypeName"
+							}
+						}
+					],
+					"sid": 276726859743507
 				}
 			],
-			"sid": 740741743892503
+			"sid": 546243110343476
 		}
 	],
 	"sid": 853340695623395

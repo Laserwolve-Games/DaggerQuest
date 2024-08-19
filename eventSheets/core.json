@@ -1764,6 +1764,26 @@
 									"children": [
 										{
 											"eventType": "variable",
+											"name": "MIN_MODS",
+											"type": "number",
+											"initialValue": "1",
+											"comment": "The minimum number of mods an item can have.",
+											"isStatic": true,
+											"isConstant": true,
+											"sid": 331110515125803
+										},
+										{
+											"eventType": "variable",
+											"name": "MAX_MODS",
+											"type": "number",
+											"initialValue": "4",
+											"comment": "The maximum number of mods an item can have.",
+											"isStatic": true,
+											"isConstant": true,
+											"sid": 161080292351024
+										},
+										{
+											"eventType": "variable",
 											"name": "mod",
 											"type": "string",
 											"initialValue": "",
@@ -1778,9 +1798,9 @@
 												{
 													"id": "repeat",
 													"objectClass": "System",
-													"sid": 448899714769576,
+													"sid": 869657056641050,
 													"parameters": {
-														"count": "round(random(1,4))"
+														"count": "round(random(MIN_MODS, MAX_MODS))"
 													}
 												}
 											],
@@ -1808,7 +1828,7 @@
 										},
 										{
 											"eventType": "variable",
-											"name": "modValueRegex",
+											"name": "MOD_VALUE_REGEX",
 											"type": "string",
 											"initialValue": "\\[.*?\\]",
 											"comment": "the regex that will return the first mod value",
@@ -1836,7 +1856,7 @@
 													"parameters": {
 														"name": "\"\"",
 														"start-index": "1",
-														"end-index": "RegexMatchCount(loot.mods, modValueRegex, \"g\")"
+														"end-index": "RegexMatchCount(loot.mods, MOD_VALUE_REGEX, \"g\")"
 													}
 												}
 											],
@@ -1851,7 +1871,7 @@
 													"sid": 809453843635835,
 													"parameters": {
 														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, modValueRegex, \"\", 0), \"\\[|]\", \"g\", \"\")"
+														"value": "RegexReplace(RegexMatchAt(loot.mods, MOD_VALUE_REGEX, \"\", 0), \"\\[|]\", \"g\", \"\")"
 													}
 												}
 											],
@@ -2015,7 +2035,7 @@
 																	"sid": 461098221041892,
 																	"parameters": {
 																		"instance-variable": "mods",
-																		"value": "RegexReplace(Self.mods, modValueRegex, \"\", \"{\" & advancedRandom.Weighted & \"}\")"
+																		"value": "RegexReplace(Self.mods, MOD_VALUE_REGEX, \"\", \"{\" & advancedRandom.Weighted & \"}\")"
 																	}
 																},
 																{
@@ -2086,7 +2106,7 @@
 															"sid": 835948514084487,
 															"parameters": {
 																"instance-variable": "mods",
-																"value": "RegexReplace(Self.mods, modValueRegex, \"\", \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
+																"value": "RegexReplace(Self.mods, MOD_VALUE_REGEX, \"\", \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
 															}
 														}
 													],
@@ -14968,15 +14988,6 @@
 										"y": "hasShadow.Y - 1",
 										"create-hierarchy": false,
 										"template-name": "\"\""
-									}
-								},
-								{
-									"id": "log",
-									"objectClass": "browser",
-									"sid": 266308560204337,
-									"parameters": {
-										"type": "log",
-										"message": "\"Created shadow for \" & hasShadow.ObjectTypeName"
 									}
 								}
 							],

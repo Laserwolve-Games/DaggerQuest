@@ -106,6 +106,10 @@
 			"sid": 372911249857549
 		},
 		{
+			"eventType": "comment",
+			"text": "Whitespace at the start or end of a string variable isn't obvious in the editor, so don't use any."
+		},
+		{
 			"eventType": "variable",
 			"name": "NONE_KEYWORD",
 			"type": "string",
@@ -119,7 +123,7 @@
 			"eventType": "variable",
 			"name": "OPACITY_FADE_OUT_KEYWORD",
 			"type": "string",
-			"initialValue": " opacity fade out",
+			"initialValue": "opacity fade out",
 			"comment": "Used for opacity tween tags.",
 			"isStatic": false,
 			"isConstant": true,
@@ -535,9 +539,9 @@
 						{
 							"id": "set-animation",
 							"objectClass": "npcBody",
-							"sid": 518867995994817,
+							"sid": 113163065694164,
 							"parameters": {
-								"animation": "\"idle_\" & npc.degrees",
+								"animation": "\"idle\" & SEPARATOR & npc.degrees",
 								"from": "current-frame"
 							}
 						},
@@ -555,7 +559,7 @@
 							"parameters": [
 								"\"idle\"",
 								"player.movementSpeed / ANIMATION_DIVISOR",
-								"\"playFromBeginning\""
+								true
 							]
 						},
 						{
@@ -568,9 +572,9 @@
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 670566430558375,
+							"sid": 344790767052863,
 							"parameters": {
-								"object-name": "npc.simpleName & \"_portrait\"",
+								"object-name": "npc.simpleName & SEPARATOR & \"portrait\"",
 								"layer": "\"portraits\"",
 								"x": "PORTRAIT_POSITION",
 								"y": "ViewportBottom(\"portraits\") + VIEWPORT_OFFSET",
@@ -1058,10 +1062,10 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 339502509864802,
+											"sid": 398020693258984,
 											"parameters": {
-												"object-name": "loot.simpleName & \"_item\"",
-												"layer": "\"equippedMenu\"",
+												"object-name": "loot.simpleName & SEPARATOR & \"item\"",
+												"layer": "equippedMenuStatue.LayerName",
 												"x": "slot.X",
 												"y": "slot.Y",
 												"create-hierarchy": false,
@@ -1148,9 +1152,9 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 885272990136247,
+											"sid": 798281714699929,
 											"parameters": {
-												"object-name": "loot.simpleName & \"_item\"",
+												"object-name": "loot.simpleName & SEPARATOR & \"item\"",
 												"layer": "\"inventoryMenu\"",
 												"x": "slot.X",
 												"y": "slot.Y",
@@ -1161,10 +1165,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 506636770644404,
+											"sid": 492012900473711,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "\"obtainedItem_\" & Functions.randomInteger(1)",
+												"audio-file-name": "\"obtainedItem\" & SEPARATOR & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "0",
 												"object": "player",
@@ -1428,9 +1432,9 @@
 										{
 											"id": "is-tag-playing",
 											"objectClass": "Audio",
-											"sid": 804144167636984,
+											"sid": 856409981033477,
 											"parameters": {
-												"tag": "loot.sound & \"_drop\""
+												"tag": "loot.sound & SEPARATOR & \"drop\""
 											},
 											"isInverted": true
 										}
@@ -1439,10 +1443,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 723642048513418,
+											"sid": 400509601630556,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "loot.sound & \"_drop\" & Functions.randomInteger(1)",
+												"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "0",
 												"object": "loot",
@@ -1536,9 +1540,9 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 210734168625939,
+									"sid": 540828135145071,
 									"parameters": {
-										"object-name": "advancedRandom.WeightedByName(\"equipment\") & \"_loot\"",
+										"object-name": "advancedRandom.WeightedByName(\"equipment\") & SEPARATOR & \"loot\"",
 										"layer": "\"background\"",
 										"x": "x",
 										"y": "y",
@@ -1699,19 +1703,19 @@
 										{
 											"id": "set-animation",
 											"objectClass": "loot",
-											"sid": 874150850325430,
+											"sid": 159724866634822,
 											"parameters": {
-												"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
+												"animation": "\"static\" & SEPARATOR & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
 												"from": "beginning"
 											}
 										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 937896836624100,
+											"sid": 813112745444296,
 											"parameters": {
 												"instance-variable": "simpleName",
-												"value": "tokenat(loot.ObjectTypeName, 0, \"_\")"
+												"value": "tokenat(loot.ObjectTypeName, 0, SEPARATOR)"
 											}
 										},
 										{
@@ -4214,9 +4218,9 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 530528793366786,
+													"sid": 888264810397615,
 													"parameters": {
-														"object-name": "item.simpleName & \"_loot\"",
+														"object-name": "item.simpleName & SEPARATOR & \"loot\"",
 														"layer": "\"background\"",
 														"x": "mouse.X",
 														"y": "mouse.Y",
@@ -4247,9 +4251,9 @@
 														{
 															"id": "set-animation",
 															"objectClass": "loot",
-															"sid": 455412466954669,
+															"sid": 744370381012752,
 															"parameters": {
-																"animation": "\"static_\" & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
+																"animation": "\"static\" & SEPARATOR & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
 																"from": "beginning"
 															}
 														},
@@ -4375,9 +4379,9 @@
 														{
 															"id": "is-tag-playing",
 															"objectClass": "Audio",
-															"sid": 660562335418045,
+															"sid": 400251055892536,
 															"parameters": {
-																"tag": "loot.sound & \"_drop\""
+																"tag": "loot.sound & SEPARATOR & \"drop\""
 															},
 															"isInverted": true
 														}
@@ -4386,10 +4390,10 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 844334759266429,
+															"sid": 530548632531840,
 															"parameters": {
 																"folder": "sounds",
-																"audio-file-name": "loot.sound & \"_drop\" & Functions.randomInteger(1)",
+																"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
 																"volume": "0",
 																"object": "loot",
@@ -4888,9 +4892,9 @@
 										{
 											"id": "load-object-images-by-name",
 											"objectClass": "System",
-											"sid": 794676870111503,
+											"sid": 983347934388622,
 											"parameters": {
-												"object": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\""
+												"object": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & \"gear\""
 											}
 										},
 										{
@@ -4901,9 +4905,9 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 160314852164560,
+											"sid": 800938788786593,
 											"parameters": {
-												"object-name": "body.ObjectTypeName & \"_\" & item.simpleName & \"_gear\"",
+												"object-name": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & \"gear\"",
 												"layer": "\"main\"",
 												"x": "player.X",
 												"y": "player.Y",
@@ -4973,10 +4977,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 682937610407731,
+													"sid": 475801855647441,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "item.sound & \"_equip\" & Functions.randomInteger(1)",
+														"audio-file-name": "item.sound & SEPARATOR & \"equip\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
 														"volume": "0",
 														"object": "player",
@@ -5112,9 +5116,9 @@
 												{
 													"id": "load-object-images-by-name",
 													"objectClass": "System",
-													"sid": 199714343318785,
+													"sid": 331786883170624,
 													"parameters": {
-														"object": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\""
+														"object": "body.ObjectTypeName & SEPARATOR & slot.type & \"Default\" & SEPARATOR & \"gear\""
 													}
 												},
 												{
@@ -5125,9 +5129,9 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 511701545225016,
+													"sid": 451234734111323,
 													"parameters": {
-														"object-name": "body.ObjectTypeName & \"_\" & slot.type & \"Default_gear\"",
+														"object-name": "body.ObjectTypeName & SEPARATOR & slot.type & \"Default\" & SEPARATOR & \"gear\"",
 														"layer": "\"main\"",
 														"x": "player.X",
 														"y": "player.Y",
@@ -6478,10 +6482,10 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 956897193812549,
+									"sid": 890143091516991,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & \"_die\"",
+										"audio-file-name": "body.ObjectTypeName & SEPARATOR & \"die\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"object": "body",
@@ -6497,7 +6501,7 @@
 									"parameters": [
 										"\"die\"",
 										"body.OriginalAnimationSpeed",
-										"\"playFromBeginning\""
+										true
 									]
 								},
 								{
@@ -7641,7 +7645,7 @@
 							"parameters": [
 								"\"idle\"",
 								"player.movementSpeed / ANIMATION_DIVISOR",
-								"\"playFromBeginning\""
+								true
 							]
 						}
 					],
@@ -7952,7 +7956,7 @@
 															"parameters": [
 																"\"downwardSlash\"",
 																"player.actionSpeed",
-																"\"playFromBeginning\""
+																true
 															]
 														},
 														{
@@ -8229,7 +8233,7 @@
 																					"parameters": [
 																						"\"idle\"",
 																						"player.movementSpeed / ANIMATION_DIVISOR",
-																						"\"playFromBeginning\""
+																						true
 																					]
 																				},
 																				{
@@ -8490,7 +8494,7 @@
 															"parameters": [
 																"\"upwardSlash\"",
 																"player.actionSpeed",
-																"\"playFromBeginning\""
+																true
 															]
 														},
 														{
@@ -8767,7 +8771,7 @@
 																					"parameters": [
 																						"\"idle\"",
 																						"player.movementSpeed / ANIMATION_DIVISOR",
-																						"\"playFromBeginning\""
+																						true
 																					]
 																				},
 																				{
@@ -9017,7 +9021,7 @@
 															"parameters": [
 																"\"kick\"",
 																"player.actionSpeed",
-																"\"playFromBeginning\""
+																true
 															]
 														},
 														{
@@ -9309,7 +9313,7 @@
 																					"parameters": [
 																						"\"idle\"",
 																						"player.movementSpeed / ANIMATION_DIVISOR",
-																						"\"playFromBeginning\""
+																						true
 																					]
 																				},
 																				{
@@ -9457,7 +9461,7 @@
 											"parameters": [
 												"\"walk\"",
 												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromBeginning\""
+												true
 											]
 										}
 									],
@@ -9487,11 +9491,11 @@
 										},
 										{
 											"callFunction": "updateAnimation",
-											"sid": 936336099945621,
+											"sid": 892167997746673,
 											"parameters": [
 												"\"walk\"",
 												"player.movementSpeed / ANIMATION_DIVISOR",
-												"\"playFromCurrentFrame\""
+												false
 											]
 										}
 									],
@@ -9537,7 +9541,7 @@
 									"parameters": [
 										"\"idle\"",
 										"player.movementSpeed / ANIMATION_DIVISOR",
-										"\"playFromBeginning\""
+										true
 									]
 								},
 								{
@@ -9714,10 +9718,10 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 154768264294975,
+									"sid": 751036244806746,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & \"_\" & animationName",
+										"audio-file-name": "body.ObjectTypeName & SEPARATOR & animationName",
 										"loop": "not-looping",
 										"volume": "0",
 										"object": "player",
@@ -9737,7 +9741,7 @@
 									"parameters": [
 										"animationName",
 										"player.actionSpeed",
-										"\"playFromBeginning\""
+										true
 									]
 								}
 							],
@@ -9766,11 +9770,11 @@
 									"sid": 938843169588506
 								},
 								{
-									"name": "startPoint",
-									"type": "string",
-									"initialValue": "playFromBeginning",
-									"comment": "",
-									"sid": 930634823243599
+									"name": "playFromBeginning",
+									"type": "boolean",
+									"initialValue": "true",
+									"comment": "Whether or not to play this animation from its beginning.",
+									"sid": 685712486598414
 								}
 							],
 							"eventType": "function-block",
@@ -9787,13 +9791,11 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-eventvar",
+											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 393489959159725,
+											"sid": 676021054324303,
 											"parameters": {
-												"variable": "startPoint",
-												"comparison": 0,
-												"value": "\"playFromBeginning\""
+												"variable": "playFromBeginning"
 											}
 										}
 									],
@@ -9816,9 +9818,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 843331586165991,
+													"sid": 903900758870073,
 													"parameters": {
-														"animation": "animationName & \"Unarmed_\" & player.degrees",
+														"animation": "animationName & \"Unarmed\" & SEPARATOR & player.degrees",
 														"from": "beginning"
 													}
 												}
@@ -9838,9 +9840,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 946758532313313,
+													"sid": 466049922766969,
 													"parameters": {
-														"animation": "animationName & \"_\" & player.degrees",
+														"animation": "animationName & SEPARATOR & player.degrees",
 														"from": "beginning"
 													}
 												}
@@ -9877,9 +9879,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 183192181446713,
+													"sid": 105314978461315,
 													"parameters": {
-														"animation": "animationName & \"Unarmed_\" & player.degrees",
+														"animation": "animationName & \"Unarmed\" & SEPARATOR & player.degrees",
 														"from": "current-frame"
 													}
 												}
@@ -9899,9 +9901,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 576241052775671,
+													"sid": 123325782222777,
 													"parameters": {
-														"animation": "animationName & \"_\" & player.degrees",
+														"animation": "animationName & SEPARATOR & player.degrees",
 														"from": "current-frame"
 													}
 												}
@@ -11166,10 +11168,10 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 535179798884341,
+									"sid": 615947235495752,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = \"merchantMenu\" ? \"\" : \"menuClose\"",
+										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuClose\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -11301,10 +11303,10 @@
 								{
 									"id": "play-by-name",
 									"objectClass": "Audio",
-									"sid": 144655623407699,
+									"sid": 313797936373778,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = \"merchantMenu\" ? \"\" : \"menuOpen\"",
+										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuOpen\"",
 										"loop": "not-looping",
 										"volume": "0",
 										"stereo-pan": "0",
@@ -13483,9 +13485,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 335713613889849,
+											"sid": 381982893284719,
 											"parameters": {
-												"animation": "\"walk_\" & enemy.degrees",
+												"animation": "\"walk\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -13702,19 +13704,19 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 239197059439331,
+											"sid": 923279803323912,
 											"parameters": {
-												"animation": "\"die_\" & enemy.degrees",
+												"animation": "\"die\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 628934459724818,
+											"sid": 536137478333745,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "enemy.type & \"_die_\" & Functions.randomInteger(1)",
+												"audio-file-name": "enemy.type & SEPARATOR & \"die\" & SEPARATOR & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "0",
 												"object": "enemy",
@@ -13994,9 +13996,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 240705091466775,
+											"sid": 829534488452180,
 											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
+												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -14292,9 +14294,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 396083681322291,
+											"sid": 678140530799704,
 											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
+												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -14649,9 +14651,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 579305051478491,
+											"sid": 949336452701223,
 											"parameters": {
-												"animation": "\"attack_\" & enemy.degrees",
+												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -14986,9 +14988,9 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 127793252940447,
+									"sid": 630802698871575,
 									"parameters": {
-										"object-name": "hasShadow.ObjectTypeName & \"_shadow\"",
+										"object-name": "hasShadow.ObjectTypeName & SEPARATOR & \"shadow\"",
 										"layer": "hasShadow.LayerName",
 										"x": "hasShadow.X",
 										"y": "hasShadow.Y - 1",
@@ -15316,19 +15318,19 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 922100931737719,
+											"sid": 773190845541458,
 											"parameters": {
-												"animation": "\"hit_\" & enemy.degrees",
+												"animation": "\"hit\" & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 564235910684039,
+											"sid": 199767264879792,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "enemy.type & \"_hit\"",
+												"audio-file-name": "enemy.type & SEPARATOR & \"hit\"",
 												"loop": "not-looping",
 												"volume": "0",
 												"object": "enemy",

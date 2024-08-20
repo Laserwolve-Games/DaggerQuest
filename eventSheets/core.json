@@ -15883,6 +15883,10 @@
 							"sid": 306819096486497
 						},
 						{
+							"eventType": "comment",
+							"text": "If we change this boolean to affirm positive instead of negative (e.g., changing it to 'createShadow'), newly created hasShadows won't have shadows created for them since booleans for items that don't already exist on a layout are false."
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -15895,8 +15899,9 @@
 									"objectClass": "hasShadow",
 									"sid": 331127415234228,
 									"parameters": {
-										"instance-variable": "createShadow"
-									}
+										"instance-variable": "doNotCreateShadow"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [

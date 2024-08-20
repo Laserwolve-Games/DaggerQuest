@@ -7,6 +7,86 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "ANIMATION_DIVISOR",
+			"type": "number",
+			"initialValue": "7",
+			"comment": "The number by which to divide the movement speed to obtain the animation speed.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 692404595559537
+		},
+		{
+			"eventType": "variable",
+			"name": "ARC",
+			"type": "number",
+			"initialValue": "22.5",
+			"comment": "The number of degrees in a circle divided by the number of angles our assets have.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 213899219855985
+		},
+		{
+			"eventType": "variable",
+			"name": "AUDIO_FADE_TIME",
+			"type": "number",
+			"initialValue": "0.2",
+			"comment": "The duration of audio fade-ins and fade-outs, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 494001863696311
+		},
+		{
+			"eventType": "variable",
+			"name": "DEFAULT_STEREO_PAN",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The default value for the stereo pan audio parameter.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 573783858156188
+		},
+		{
+			"eventType": "variable",
+			"name": "ELLIPSIS_UPDATE_INTERVAL",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "How often to add an additional ellipsis dot, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 988041226389280
+		},
+		{
+			"eventType": "variable",
+			"name": "END_OF_TICK",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The amount of time remaining until the end of the current tick, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 806922775978421
+		},
+		{
+			"eventType": "variable",
+			"name": "HALF_CIRCLE",
+			"type": "number",
+			"initialValue": "180",
+			"comment": "The number of degrees in half of a circle.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 803001208803525
+		},
+		{
+			"eventType": "variable",
+			"name": "INFINITE_REPEAT_COUNT",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The value needed for a tween to repeat forever.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 526484753142314
+		},
+		{
+			"eventType": "variable",
 			"name": "INTERACT_COOLDOWN",
 			"type": "number",
 			"initialValue": "0.3",
@@ -17,23 +97,13 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "MENU_FADE_TIME",
+			"name": "ISOMETRIC_DIVIDER",
 			"type": "number",
-			"initialValue": "0.2",
-			"comment": "The duration of fade-ins and fade-outs of menus, in seconds.",
+			"initialValue": "3",
+			"comment": "The number by which to divide projectile's and character's height to be properly isometric.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 362007502373957
-		},
-		{
-			"eventType": "variable",
-			"name": "AUDIO_FADE_TIME",
-			"type": "number",
-			"initialValue": "0.2",
-			"comment": "The duration of audio fade-ins and fade-outs, in seconds.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 176656048732287
+			"sid": 983537810411046
 		},
 		{
 			"eventType": "variable",
@@ -43,27 +113,87 @@
 			"comment": "The duration of the fade-in and fade-out between layouts, in seconds.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 536894991799042
+			"sid": 263381679705757
 		},
 		{
 			"eventType": "variable",
-			"name": "ANIMATION_DIVISOR",
+			"name": "LOOP_OFFSET",
 			"type": "number",
-			"initialValue": "7",
-			"comment": "The number by which to divide the movement speed to obtain the animation speed.",
+			"initialValue": "1",
+			"comment": "For loops that need to either start or end at an offset.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 274670126082924
+			"sid": 357634044398496
 		},
 		{
 			"eventType": "variable",
-			"name": "ARC",
+			"name": "LOOP_DEFAULT",
 			"type": "number",
-			"initialValue": "22.5",
-			"comment": "The number of degrees in a circle divided by the number of angles our assets have.",
+			"initialValue": "0",
+			"comment": "The default number for loops to start at.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 363141446243930
+			"sid": 466747400312638
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_FADE_TIME",
+			"type": "number",
+			"initialValue": "0.2",
+			"comment": "The duration of fade-ins and fade-outs of menus, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 161617575985135
+		},
+		{
+			"eventType": "variable",
+			"name": "NON_DIRECTIONAL_INNER_ANGLE",
+			"type": "number",
+			"initialValue": "360",
+			"comment": "The inner angle audio parameter for non-directional position-based sound.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 533423398885011
+		},
+		{
+			"eventType": "variable",
+			"name": "NON_DIRECTIONAL_OUTER_ANGLE",
+			"type": "number",
+			"initialValue": "360",
+			"comment": "The outer angle audio parameter for non-directional position-based sound.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 927589564646020
+		},
+		{
+			"eventType": "variable",
+			"name": "NON_DIRECTIONAL_OUTER_GAIN",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The outer gain audio parameter for non-directional position-based sound.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 106253158252611
+		},
+		{
+			"eventType": "variable",
+			"name": "PAUSED",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The value of the timescale when the game is paused.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 381019961345734
+		},
+		{
+			"eventType": "variable",
+			"name": "PERCENTAGE_DIVIDER",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "Used when converting percentage modifiers to flat values.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 189197195863473
 		},
 		{
 			"eventType": "variable",
@@ -77,23 +207,33 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "HALF_CIRCLE",
+			"name": "SILENT",
 			"type": "number",
-			"initialValue": "180",
-			"comment": "The number of degrees in half of a circle.",
+			"initialValue": "-100",
+			"comment": "The decibel value necessary for audio to make no sound.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 192320948206579
+			"sid": 605325154578760
 		},
 		{
 			"eventType": "variable",
-			"name": "ISOMETRIC_DIVIDER",
+			"name": "SOLID_OPACITY",
 			"type": "number",
-			"initialValue": "3",
-			"comment": "The number by which to divide projectile's and character's height to be properly isometric.",
+			"initialValue": "100",
+			"comment": "The opacity value of complete solidity.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 449892706850942
+			"sid": 704655151568304
+		},
+		{
+			"eventType": "variable",
+			"name": "TRANSPARENT_OPACITY",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The opacity value of complete transparency.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 990730382221712
 		},
 		{
 			"eventType": "variable",
@@ -107,77 +247,183 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "INFINITE_REPEAT_COUNT",
+			"name": "ALL_CLASSES_KEYWORD",
+			"type": "string",
+			"initialValue": "All Classes",
+			"comment": "Used when checking if the player can equip an item or not.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 706323902886489
+		},
+		{
+			"eventType": "variable",
+			"name": "BLANK",
+			"type": "string",
+			"initialValue": "",
+			"comment": "Used for clearing text.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 988159326066054
+		},
+		{
+			"eventType": "variable",
+			"name": "CHECKED_KEYWORD",
+			"type": "string",
+			"initialValue": "checked",
+			"comment": "Used for checking the animation of checkboxes.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 426225136879304
+		},
+		{
+			"eventType": "variable",
+			"name": "ELLIPSIS_DOT",
+			"type": "string",
+			"initialValue": ".",
+			"comment": "The character used to form ellipses.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 809926812492391
+		},
+		{
+			"eventType": "variable",
+			"name": "EMPTY",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "The value needed for a tween to repeat forever.",
+			"comment": "The slot identifier value that indicates this slot is empty.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 928779320160083
+			"sid": 125344247350922
 		},
 		{
 			"eventType": "variable",
-			"name": "SOLID_OPACITY",
-			"type": "number",
-			"initialValue": "100",
-			"comment": "The opacity value of complete solidity.",
+			"name": "ENEMY_ABILITIES_FUNCTION_MAP",
+			"type": "string",
+			"initialValue": "enemyAbilities",
+			"comment": "The name of the enemy abilities function map.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 216164760347691
+			"sid": 899271516105043
 		},
 		{
 			"eventType": "variable",
-			"name": "TRANSPARENT_OPACITY",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "The opacity value of complete transparency.",
+			"name": "EQUIPMENT_MODS_FUNCTION_MAP",
+			"type": "string",
+			"initialValue": "equipmentMods",
+			"comment": "The name of the equipment mods function map.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 435045371395537
+			"sid": 954951949438130
 		},
 		{
 			"eventType": "variable",
-			"name": "SILENT",
-			"type": "number",
-			"initialValue": "-100",
-			"comment": "The decibel value necessary for audio to make no sound.",
+			"name": "EQUIPMENT_PROBABILITY_TABLE",
+			"type": "string",
+			"initialValue": "equipment",
+			"comment": "The name of the equipment probability table.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 215341091767557
+			"sid": 553775390233972
 		},
 		{
 			"eventType": "variable",
-			"name": "DEFAULT_STEREO_PAN",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "The default value for the stereo pan audio parameter.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 330959037365992
-		},
-		{
-			"eventType": "variable",
-			"name": "PAUSED",
+			"name": "FIRST",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "The value of the timescale when the game is paused.",
+			"comment": "The index of first instance of the current picked objects.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 706772403489350
+			"sid": 993556990283208
 		},
 		{
 			"eventType": "variable",
-			"name": "PERCENTAGE_DIVIDER",
-			"type": "number",
-			"initialValue": "100",
-			"comment": "Used when converting percentage modifiers to flat values.",
+			"name": "FOLDER_SEPARATOR",
+			"type": "string",
+			"initialValue": "/",
+			"comment": "The character used when drilling into project folders.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 372911249857549
+			"sid": 297381401422630
 		},
 		{
-			"eventType": "comment",
-			"text": "Whitespace at the start or end of a string variable isn't obvious in the editor, so don't use any."
+			"eventType": "variable",
+			"name": "GLOBAL_FLAG",
+			"type": "string",
+			"initialValue": "g",
+			"comment": "The regular expression global flag.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 193700957264664
+		},
+		{
+			"eventType": "variable",
+			"name": "GLOWHORIZONTAL_KEYWORD",
+			"type": "string",
+			"initialValue": "GlowHorizontal",
+			"comment": "The name of the effect that modifies the horizontal glow on an object.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 422695806366164
+		},
+		{
+			"eventType": "variable",
+			"name": "GLOWVERTICAL_KEYWORD",
+			"type": "string",
+			"initialValue": "GlowVertical",
+			"comment": "The name of the effect that modifies the vertical glow on an object.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 330764945802149
+		},
+		{
+			"eventType": "variable",
+			"name": "IDLE_KEYWORD",
+			"type": "string",
+			"initialValue": "idle",
+			"comment": "Used for calling the idle animation for the player, NPCs, and some enemies.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 451141474041007
+		},
+		{
+			"eventType": "variable",
+			"name": "ITEM_KEYWORD",
+			"type": "string",
+			"initialValue": "item",
+			"comment": "Used when creating items.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 145962909649336
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_CLOSE_TAG",
+			"type": "string",
+			"initialValue": "menuClose",
+			"comment": "Audio tag to use for the menu close sound effect.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 832917534857256
+		},
+		{
+			"eventType": "variable",
+			"name": "MOD_VALUES_PROBABILITY_TABLE",
+			"type": "string",
+			"initialValue": "modValues",
+			"comment": "The name of the mod values probability table.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 959774609386186
+		},
+		{
+			"eventType": "variable",
+			"name": "MOD_TABLE_KEYWORD",
+			"type": "string",
+			"initialValue": "modTable",
+			"comment": "Used for creating and fetching mod tables.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 134765242497473
 		},
 		{
 			"eventType": "variable",
@@ -191,6 +437,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "NOT_USED",
+			"type": "string",
+			"initialValue": "",
+			"comment": "Value to use when this field isn't utilized.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 560592691025862
+		},
+		{
+			"eventType": "variable",
 			"name": "OPACITY_FADE_OUT_KEYWORD",
 			"type": "string",
 			"initialValue": "opacity fade out",
@@ -201,43 +457,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ALL_CLASSES_KEYWORD",
+			"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 			"type": "string",
-			"initialValue": "All Classes",
-			"comment": "Used when checking if the player can equip an item or not.",
+			"initialValue": "playerAbilities",
+			"comment": "The name of the player abilities function map.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 882619457243399
+			"sid": 690282116498680
 		},
 		{
 			"eventType": "variable",
-			"name": "FOLDER_SEPARATOR",
+			"name": "UNCHECKED_KEYWORD",
 			"type": "string",
-			"initialValue": "/",
-			"comment": "The character used when drilling into project folders.",
+			"initialValue": "unchecked",
+			"comment": "Used for checking the animation of checkboxes.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 876900590270143
-		},
-		{
-			"eventType": "variable",
-			"name": "GLOBAL_FLAG",
-			"type": "string",
-			"initialValue": "g",
-			"comment": "The regular expression global flag.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 730854171899467
-		},
-		{
-			"eventType": "variable",
-			"name": "IDLE_KEYWORD",
-			"type": "string",
-			"initialValue": "idle",
-			"comment": "Used for calling the idle animation for the player, NPCs, and some enemies.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 387354454309791
+			"sid": 952337172111195
 		},
 		{
 			"eventType": "variable",
@@ -251,23 +487,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "nextAvailableIdentifier",
-			"type": "number",
-			"initialValue": "1",
-			"comment": "Stores the next available identifier, to be assigned to equipment.",
+			"name": "SIMPLE_NAME_KEYWORD",
+			"type": "string",
+			"initialValue": "simpleName",
+			"comment": "Used for looking up simple names out of arrays.",
 			"isStatic": false,
-			"isConstant": false,
-			"sid": 995721705060518
+			"isConstant": true,
+			"sid": 386319026003665
 		},
 		{
 			"eventType": "variable",
-			"name": "interfaceVolume",
+			"name": "dialogVolume",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "How loudly to place interface sound effects, in decibels.",
+			"comment": "How loudly to play dialog, in decibels.",
 			"isStatic": false,
-			"isConstant": false,
-			"sid": 893632809318913
+			"isConstant": true,
+			"sid": 548864640941147
 		},
 		{
 			"eventType": "variable",
@@ -277,7 +513,17 @@
 			"comment": "How loudly to play sound effects, in decibels.",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 283128008255808
+			"sid": 744743610103626
+		},
+		{
+			"eventType": "variable",
+			"name": "interfaceVolume",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "How loudly to place interface sound effects, in decibels.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 235684735055744
 		},
 		{
 			"eventType": "variable",
@@ -287,7 +533,17 @@
 			"comment": "How loudly to play the music, in decibels.",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 655012730729813
+			"sid": 538656584188157
+		},
+		{
+			"eventType": "variable",
+			"name": "nextAvailableIdentifier",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "Stores the next available identifier, to be assigned to equipment.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 995721705060518
 		},
 		{
 			"eventType": "variable",
@@ -307,7 +563,7 @@
 			"comment": "Whether or not the player is allowed to interact with objects.",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 918997179558722
+			"sid": 411032501509247
 		},
 		{
 			"eventType": "group",
@@ -321,7 +577,7 @@
 					"name": "PORTRAIT_KEYWORD",
 					"type": "string",
 					"initialValue": "portrait",
-					"comment": "Used for interacting with the portrait layer. Can't use the layerName sprite property because there's nothing on this layer originally.",
+					"comment": "Used for interacting with the portrait layer.",
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 455865873325850
@@ -463,6 +719,16 @@
 							"sid": 413801469471723,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "DIALOG_COUNTER_INCREMENTER",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "By how much to increase the dialog counter for each NPC dialog.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 127504278995474
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -488,10 +754,10 @@
 										{
 											"id": "add-to-instvar",
 											"objectClass": "npc",
-											"sid": 786664198588895,
+											"sid": 251274529179193,
 											"parameters": {
 												"instance-variable": "dialogCounter",
-												"value": "1"
+												"value": "DIALOG_COUNTER_INCREMENTER"
 											}
 										},
 										{
@@ -505,12 +771,12 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "Audio",
-											"sid": 641214046664571,
+											"sid": 156889263494670,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 												"loop": "not-looping",
-												"volume": "0",
+												"volume": "dialogVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
 												"tag-optional": "dialog.ObjectTypeName"
 											}
@@ -663,12 +929,12 @@
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 245078810640833,
+							"sid": 314723946411425,
 							"parameters": {
 								"folder": "sounds",
 								"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 								"loop": "not-looping",
-								"volume": "0",
+								"volume": "dialogVolume",
 								"stereo-pan": "DEFAULT_STEREO_PAN",
 								"tag-optional": "dialog.ObjectTypeName"
 							}
@@ -713,14 +979,14 @@
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 891102382434836,
+							"sid": 278456294093376,
 							"parameters": {
 								"object-name": "npc.simpleName & SEPARATOR & PORTRAIT_KEYWORD",
 								"layer": "PORTRAIT_KEYWORD",
 								"x": "PORTRAIT_POSITION",
 								"y": "ViewportBottom(PORTRAIT_KEYWORD) + VIEWPORT_OFFSET",
 								"create-hierarchy": false,
-								"template-name": "\"\""
+								"template-name": "NOT_USED"
 							}
 						}
 					],
@@ -872,6 +1138,16 @@
 					]
 				},
 				{
+					"eventType": "variable",
+					"name": "INITIAL_DIALOG_COUNTER_VALUE",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "The number at which the dialog counter begins.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 497889437328492
+				},
+				{
 					"functionName": "closeDialog",
 					"functionDescription": "End dialog with an NPC.",
 					"functionCategory": "world",
@@ -908,10 +1184,10 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "npc",
-							"sid": 749519782918544,
+							"sid": 731803030608537,
 							"parameters": {
 								"instance-variable": "dialogCounter",
-								"value": "1"
+								"value": "INITIAL_DIALOG_COUNTER_VALUE"
 							}
 						},
 						{
@@ -924,12 +1200,12 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 721008389757100,
+							"sid": 697733232428865,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & OPACITY_FADE_OUT_KEYWORD",
 								"property": "offsetOpacity",
-								"end-value": "0",
+								"end-value": "TRANSPARENT_OPACITY",
 								"time": "MENU_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "yes",
@@ -946,9 +1222,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "dialogText",
-							"sid": 714648981532825,
+							"sid": 361022811840171,
 							"parameters": {
-								"text": "\"\""
+								"text": "BLANK"
 							}
 						},
 						{
@@ -958,9 +1234,9 @@
 						{
 							"id": "wait",
 							"objectClass": "System",
-							"sid": 667796081139953,
+							"sid": 337903059839948,
 							"parameters": {
-								"seconds": "0"
+								"seconds": "END_OF_TICK"
 							}
 						},
 						{
@@ -982,27 +1258,6 @@
 						}
 					],
 					"sid": 396375011211115
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-height",
-							"objectClass": "dialogText",
-							"sid": 586932421352978,
-							"parameters": {
-								"comparison": 2,
-								"height": "Self.TextHeight"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "if the dialog text doesn't fit in the dialog box..."
-						}
-					],
-					"sid": 181299880680297
 				}
 			],
 			"sid": 217312584951758
@@ -1140,9 +1395,9 @@
 										{
 											"id": "is-animation-playing",
 											"objectClass": "autoEquip",
-											"sid": 488279947558139,
+											"sid": 365873304171778,
 											"parameters": {
-												"animation": "\"checked\""
+												"animation": "CHECKED_KEYWORD"
 											}
 										},
 										{
@@ -1177,21 +1432,21 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 492799500541261,
+											"sid": 865087243427093,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.identifier",
 												"comparison": 0,
-												"value": "0"
+												"value": "EMPTY"
 											}
 										},
 										{
 											"id": "pick-nth-instance",
 											"objectClass": "System",
-											"sid": 452173619109154,
+											"sid": 278818684369493,
 											"parameters": {
 												"object": "slot",
-												"instance": "0"
+												"instance": "FIRST"
 											}
 										}
 									],
@@ -1203,14 +1458,14 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 398020693258984,
+											"sid": 739943959379217,
 											"parameters": {
-												"object-name": "loot.simpleName & SEPARATOR & \"item\"",
+												"object-name": "loot.simpleName & SEPARATOR & ITEM_KEYWORD",
 												"layer": "equippedMenuStatue.LayerName",
 												"x": "slot.X",
 												"y": "slot.Y",
 												"create-hierarchy": false,
-												"template-name": "\"\""
+												"template-name": "NOT_USED"
 											}
 										}
 									],
@@ -1246,6 +1501,16 @@
 									]
 								},
 								{
+									"eventType": "variable",
+									"name": "OBTAINED_ITEM_KEYWORD",
+									"type": "string",
+									"initialValue": "obtainedItem",
+									"comment": "Used for playing the sound effect when an item is obtained.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 945721419857123
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -1267,21 +1532,21 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 772858798512530,
+											"sid": 780434101023296,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.identifier",
 												"comparison": 0,
-												"value": "0"
+												"value": "EMPTY"
 											}
 										},
 										{
 											"id": "pick-nth-instance",
 											"objectClass": "System",
-											"sid": 196356171794867,
+											"sid": 856106359161882,
 											"parameters": {
 												"object": "slot",
-												"instance": "0"
+												"instance": "FIRST"
 											}
 										}
 									],
@@ -1293,14 +1558,30 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 798281714699929,
+											"sid": 567414363646546,
 											"parameters": {
-												"object-name": "loot.simpleName & SEPARATOR & \"item\"",
-												"layer": "\"inventoryMenu\"",
+												"object-name": "loot.simpleName & SEPARATOR & ITEM_KEYWORD",
+												"layer": "inventoryMenuStatue.LayerName",
 												"x": "slot.X",
 												"y": "slot.Y",
 												"create-hierarchy": false,
-												"template-name": "\"\""
+												"template-name": "NOT_USED"
+											}
+										},
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "Audio",
+											"sid": 791590199238192,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "OBTAINED_ITEM_KEYWORD & Functions.randomInteger(1)",
+												"loop": "not-looping",
+												"volume": "effectsVolume",
+												"object": "player",
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "NOT_USED"
 											}
 										}
 									],
@@ -1319,22 +1600,6 @@
 												}
 											],
 											"actions": [
-												{
-													"id": "play-at-object-by-name",
-													"objectClass": "Audio",
-													"sid": 586195115034095,
-													"parameters": {
-														"folder": "sounds",
-														"audio-file-name": "\"obtainedItem\" & SEPARATOR & Functions.randomInteger(1)",
-														"loop": "not-looping",
-														"volume": "effectsVolume",
-														"object": "player",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"obtainedItem\" & SEPARATOR & item.ObjectTypeName & SEPARATOR & item.UID"
-													}
-												},
 												{
 													"callFunction": "setItemVariables",
 													"sid": 356730110629027
@@ -1584,17 +1849,17 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 918147626445485,
+											"sid": 399745629414735,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "loot",
-												"inner-angle": "360",
-												"outer-angle": "360",
-												"outer-gain": "0",
-												"tag-optional": "\"\""
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "NOT_USED"
 											}
 										}
 									],
@@ -1681,14 +1946,14 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 540828135145071,
+									"sid": 854871205715515,
 									"parameters": {
-										"object-name": "advancedRandom.WeightedByName(\"equipment\") & SEPARATOR & \"loot\"",
+										"object-name": "advancedRandom.WeightedByName(EQUIPMENT_PROBABILITY_TABLE) & SEPARATOR & \"loot\"",
 										"layer": "\"background\"",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": false,
-										"template-name": "\"\""
+										"template-name": "NOT_USED"
 									}
 								},
 								{
@@ -1916,10 +2181,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 181518222104383,
+											"sid": 486702809255199,
 											"parameters": {
 												"instance-variable": "modTable",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"modTable\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, MOD_TABLE_KEYWORD)"
 											}
 										},
 										{
@@ -2024,10 +2289,10 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 687052612854134,
+													"sid": 610433628665566,
 													"parameters": {
-														"name": "\"\"",
-														"start-index": "1",
+														"name": "NOT_USED",
+														"start-index": "LOOP_OFFSET",
 														"end-index": "RegexMatchCount(loot.mods, MOD_VALUE_REGEX, GLOBAL_FLAG)"
 													}
 												}
@@ -2117,9 +2382,9 @@
 														{
 															"id": "setProbabilityTable",
 															"objectClass": "advancedRandom",
-															"sid": 264346351548282,
+															"sid": 478449621893124,
 															"parameters": {
-																"name": "\"modValues\""
+																"name": "MOD_VALUES_PROBABILITY_TABLE"
 															}
 														}
 													],
@@ -4531,17 +4796,17 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 371486252252853,
+															"sid": 771884951598958,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
 																"volume": "effectsVolume",
 																"object": "loot",
-																"inner-angle": "360",
-																"outer-angle": "360",
-																"outer-gain": "0",
-																"tag-optional": "\"\""
+																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																"tag-optional": "NOT_USED"
 															}
 														}
 													],
@@ -5118,17 +5383,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 203007902864213,
+													"sid": 128124889522963,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "item.sound & SEPARATOR & \"equip\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "player",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -5162,9 +5427,9 @@
 												{
 													"id": "wait",
 													"objectClass": "System",
-													"sid": 623014151542829,
+													"sid": 940584177632114,
 													"parameters": {
-														"seconds": "0"
+														"seconds": "END_OF_TICK"
 													}
 												},
 												{
@@ -5369,17 +5634,17 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 709772901564764,
+																	"sid": 482654152290768,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "player",
-																		"inner-angle": "360",
-																		"outer-angle": "360",
-																		"outer-gain": "0",
-																		"tag-optional": "\"\""
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "NOT_USED"
 																	}
 																}
 															],
@@ -5397,9 +5662,9 @@
 																{
 																	"id": "wait",
 																	"objectClass": "System",
-																	"sid": 529179038582809,
+																	"sid": 782401797582376,
 																	"parameters": {
-																		"seconds": "0"
+																		"seconds": "END_OF_TICK"
 																	}
 																},
 																{
@@ -5480,17 +5745,17 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 489012642095379,
+															"sid": 104655560015408,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
 																"volume": "effectsVolume",
-																"object": "player",
-																"inner-angle": "360",
-																"outer-angle": "360",
-																"outer-gain": "0",
-																"tag-optional": "\"\""
+																"object": "body",
+																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																"tag-optional": "NOT_USED"
 															}
 														}
 													],
@@ -5508,9 +5773,9 @@
 														{
 															"id": "wait",
 															"objectClass": "System",
-															"sid": 649315171324961,
+															"sid": 786894593534729,
 															"parameters": {
-																"seconds": "0"
+																"seconds": "END_OF_TICK"
 															}
 														},
 														{
@@ -6623,17 +6888,17 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 383148241459171,
+									"sid": 820595795067396,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "body.ObjectTypeName & SEPARATOR & \"die\"",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
 										"object": "body",
-										"inner-angle": "360",
-										"outer-angle": "360",
-										"outer-gain": "0",
-										"tag-optional": "\"\""
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "NOT_USED"
 									}
 								},
 								{
@@ -6805,17 +7070,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 733389800785606,
+													"sid": 338785786768714,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep0\"",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "body",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -6843,17 +7108,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 549437707081433,
+													"sid": 699245565986625,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "body",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -7395,9 +7660,9 @@
 										{
 											"id": "call-mapped-function",
 											"objectClass": "Functions",
-											"sid": 701899096196063,
+											"sid": 139467647554715,
 											"parameters": {
-												"name": "\"playerAbilities\"",
+												"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 												"string": "\"basicAttack\"",
 												"forward-params": "0"
 											}
@@ -7874,9 +8139,9 @@
 										{
 											"id": "call-mapped-function",
 											"objectClass": "Functions",
-											"sid": 482627881379365,
+											"sid": 513018893369462,
 											"parameters": {
-												"name": "\"playerAbilities\"",
+												"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 												"string": "ability.AnimationName",
 												"forward-params": "0"
 											}
@@ -8139,17 +8404,17 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 506304080658368,
+																	"sid": 562163190607455,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "gear",
-																		"inner-angle": "360",
-																		"outer-angle": "360",
-																		"outer-gain": "0",
-																		"tag-optional": "\"\""
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "NOT_USED"
 																	}
 																},
 																{
@@ -8677,17 +8942,17 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 819481681755141,
+																	"sid": 388389198812716,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "\"heroicStrike\" & Functions.randomInteger(1)",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "gear",
-																		"inner-angle": "360",
-																		"outer-angle": "360",
-																		"outer-gain": "0",
-																		"tag-optional": "\"\""
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "NOT_USED"
 																	}
 																},
 																{
@@ -9858,17 +10123,17 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 267954466207751,
+									"sid": 213955208509759,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "body.ObjectTypeName & SEPARATOR & animationName",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
-										"object": "player",
-										"inner-angle": "360",
-										"outer-angle": "360",
-										"outer-gain": "0",
-										"tag-optional": "\"\""
+										"object": "body",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "NOT_USED"
 									}
 								},
 								{
@@ -10406,11 +10671,11 @@
 														{
 															"id": "for",
 															"objectClass": "System",
-															"sid": 770594899934171,
+															"sid": 371631756316751,
 															"parameters": {
-																"name": "\"\"",
-																"start-index": "1",
-																"end-index": "abilitiesArray.Height - 1"
+																"name": "NOT_USED",
+																"start-index": "LOOP_OFFSET",
+																"end-index": "abilitiesArray.Height - LOOP_OFFSET"
 															}
 														},
 														{
@@ -10448,10 +10713,10 @@
 														{
 															"id": "push",
 															"objectClass": "abilityOptionsArray",
-															"sid": 257492307908906,
+															"sid": 265215651227434,
 															"parameters": {
 																"where": "front",
-																"value": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"simpleName\"), loopindex)",
+																"value": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
 																"axis": "x"
 															}
 														}
@@ -11300,27 +11565,63 @@
 										"layer": "menuName",
 										"interactive": false
 									}
-								},
-								{
-									"type": "comment",
-									"text": "Don't play the menu closing sound effect for the merchant menu, or while talking to an NPC, or while the menu open sound is playing."
-								},
-								{
-									"id": "play-by-name",
-									"objectClass": "Audio",
-									"sid": 468797062544477,
-									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuClose\"",
-										"loop": "not-looping",
-										"volume": "0",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "\"menuClose\""
-									}
 								}
 							],
 							"sid": 475860601676582,
 							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 719695767407431,
+											"parameters": {
+												"variable": "menuName",
+												"comparison": 1,
+												"value": "dialog.LayerName"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 711512130075887,
+											"parameters": {
+												"variable": "menuName",
+												"comparison": 1,
+												"value": "merchantMenuStatue.LayerName"
+											}
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 472011115859769,
+											"parameters": {
+												"tag": "\"menuOpen\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Don't play the menu closing sound effect for the merchant menu, or while talking to an NPC, or while the menu open sound is playing."
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 170999643709418,
+											"parameters": {
+												"audio-file": "menuClose",
+												"loop": "not-looping",
+												"volume": "interfaceVolume",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
+												"tag-optional": "MENU_CLOSE_TAG"
+											}
+										}
+									],
+									"sid": 385843217020995
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -12023,11 +12324,11 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 776102274245743,
+													"sid": 423691448439511,
 													"parameters": {
-														"name": "\"\"",
-														"start-index": "1",
-														"end-index": "tokencount(text, \"{\") - 1"
+														"name": "NOT_USED",
+														"start-index": "LOOP_OFFSET",
+														"end-index": "tokencount(text, \"{\") - LOOP_OFFSET"
 													}
 												}
 											],
@@ -12084,10 +12385,10 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 401957080157648,
+													"sid": 943760755735943,
 													"parameters": {
-														"name": "\"\"",
-														"start-index": "0",
+														"name": "NOT_USED",
+														"start-index": "LOOP_DEFAULT",
 														"end-index": "tokencount(text, \";\") - 2"
 													}
 												}
@@ -12308,9 +12609,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 694290287195429,
+											"sid": 837721359401634,
 											"parameters": {
-												"seconds": "0"
+												"seconds": "END_OF_TICK"
 											}
 										},
 										{
@@ -12450,10 +12751,10 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 829112719816767,
+											"sid": 200024989005898,
 											"parameters": {
-												"name": "\"\"",
-												"start-index": "0",
+												"name": "NOT_USED",
+												"start-index": "LOOP_DEFAULT",
 												"end-index": "tokencount(text, \";\") - 2"
 											}
 										}
@@ -12663,9 +12964,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 958235739280331,
+											"sid": 229744424860900,
 											"parameters": {
-												"seconds": "0"
+												"seconds": "END_OF_TICK"
 											}
 										},
 										{
@@ -12762,10 +13063,10 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 317603452927616,
+											"sid": 435697347659170,
 											"parameters": {
-												"name": "\"\"",
-												"start-index": "0",
+												"name": "NOT_USED",
+												"start-index": "LOOP_DEFAULT",
 												"end-index": "tokencount(attributes, \",\")"
 											}
 										}
@@ -12789,9 +13090,9 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 875991590626014,
+											"sid": 775717457560251,
 											"parameters": {
-												"seconds": "0"
+												"seconds": "END_OF_TICK"
 											}
 										},
 										{
@@ -13885,17 +14186,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 669958404545796,
+													"sid": 860583535438506,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -13923,17 +14224,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 320042853501724,
+													"sid": 250990859281471,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -14502,9 +14803,9 @@
 												{
 													"id": "call-mapped-function",
 													"objectClass": "Functions",
-													"sid": 431341891608649,
+													"sid": 562580727856947,
 													"parameters": {
-														"name": "\"enemyAbilities\"",
+														"name": "ENEMY_ABILITIES_FUNCTION_MAP",
 														"string": "enemy.simpleName",
 														"forward-params": "0"
 													}
@@ -14618,17 +14919,17 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 344354434116828,
+											"sid": 203241271417830,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "enemy.type & SEPARATOR & \"die\" & SEPARATOR & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
-												"object": "enemy",
-												"inner-angle": "360",
-												"outer-angle": "360",
-												"outer-gain": "0",
-												"tag-optional": "\"\""
+												"object": "enemyBody",
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "NOT_USED"
 											}
 										},
 										{
@@ -14967,17 +15268,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 772493070883940,
+													"sid": 913064543609633,
 													"parameters": {
 														"folder": "sounds",
 														"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
-														"inner-angle": "360",
-														"outer-angle": "360",
-														"outer-gain": "0",
-														"tag-optional": "\"\""
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "NOT_USED"
 													}
 												}
 											],
@@ -15439,16 +15740,16 @@
 																{
 																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 584007818722894,
+																	"sid": 834701785986661,
 																	"parameters": {
 																		"audio-file": "arrowShot",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "crossbowBolt",
-																		"inner-angle": "360",
-																		"outer-angle": "360",
-																		"outer-gain": "0",
-																		"tag-optional": "\"\""
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "NOT_USED"
 																	}
 																}
 															],
@@ -15775,15 +16076,15 @@
 																{
 																	"id": "play-at-object",
 																	"objectClass": "Audio",
-																	"sid": 556828490531861,
+																	"sid": 418124371483830,
 																	"parameters": {
 																		"audio-file": "lightningOrb",
 																		"loop": "looping",
 																		"volume": "effectsVolume",
 																		"object": "lightningOrb",
-																		"inner-angle": "360",
-																		"outer-angle": "360",
-																		"outer-gain": "0",
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
 																		"tag-optional": "str(projectile.UID)"
 																	}
 																}
@@ -16247,17 +16548,17 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 602539422695341,
+											"sid": 279145108647548,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "enemy.type & SEPARATOR & \"hit\"",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
-												"object": "enemy",
-												"inner-angle": "360",
-												"outer-angle": "360",
-												"outer-gain": "0",
-												"tag-optional": "\"\""
+												"object": "enemyBody",
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "NOT_USED"
 											}
 										}
 									],
@@ -16930,10 +17231,10 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 572601404125749,
+									"sid": 801859324295177,
 									"parameters": {
-										"name": "\"\"",
-										"start-index": "1",
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
 										"end-index": "queriedArrays.Height"
 									}
 								},
@@ -17294,7 +17595,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "mods",
-			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter is events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing a boolean.",
+			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter in events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing a boolean.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -17334,10 +17635,10 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 195257844547582,
+									"sid": 248899962728085,
 									"parameters": {
-										"name": "\"\"",
-										"start-index": "0",
+										"name": "NOT_USED",
+										"start-index": "LOOP_DEFAULT",
 										"end-index": "tokencount(item.mods, \";\") - 2"
 									}
 								}
@@ -17442,9 +17743,9 @@
 						{
 							"id": "call-mapped-function",
 							"objectClass": "Functions",
-							"sid": 314460352638117,
+							"sid": 266238388553156,
 							"parameters": {
-								"name": "\"equipmentMods\"",
+								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
 								"string": "modName",
 								"forward-params": "0"
 							}
@@ -18592,26 +18893,6 @@
 					"sid": 872731707980412
 				},
 				{
-					"eventType": "variable",
-					"name": "GLOWHORIZONTAL_KEYWORD",
-					"type": "string",
-					"initialValue": "GlowHorizontal",
-					"comment": "The name of the effect that modifies the horizontal glow on an object.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 954132583967269
-				},
-				{
-					"eventType": "variable",
-					"name": "GLOWVERTICAL_KEYWORD",
-					"type": "string",
-					"initialValue": "GlowVertical",
-					"comment": "The name of the effect that modifies the vertical glow on an object.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 840719667925553
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -18903,16 +19184,16 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 466267700006944,
+									"sid": 430676073928392,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "door.ObjectTypeName",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
 										"object": "door",
-										"inner-angle": "360",
-										"outer-angle": "360",
-										"outer-gain": "0",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
 										"tag-optional": "door.ObjectTypeName"
 									}
 								}

@@ -14,16 +14,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "ELLIPSIS_UPDATE_INTERVAL",
-					"type": "number",
-					"initialValue": "0.5",
-					"comment": "How often to add an additional ellipsis dot, in seconds.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 268099722653388
-				},
-				{
-					"eventType": "variable",
 					"name": "LAUNCHER_TEXT_TWEEN_SPEED",
 					"type": "number",
 					"initialValue": "1",
@@ -54,16 +44,6 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "ELLIPSIS_DOT",
-					"type": "string",
-					"initialValue": ".",
-					"comment": "The character used to form ellipses.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 999104870172556
-				},
-				{
-					"eventType": "variable",
 					"name": "UPDATE_AVAILABLE_TEXT",
 					"type": "string",
 					"initialValue": "Update available. Downloading",
@@ -80,11 +60,48 @@
 					"comment": "Whether or not an update is available.",
 					"isStatic": true,
 					"isConstant": false,
-					"sid": 255447198174867
+					"sid": 983562992983771
 				},
 				{
 					"eventType": "comment",
 					"text": "There's no way to do an \"On update not found\" trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+				},
+				{
+					"functionName": "ellipsisGenerator",
+					"functionDescription": "Append ellipsis dots to text, and reset when necessary. Should be the action to an 'every X seconds' condition.",
+					"functionCategory": "data",
+					"functionReturnType": "string",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "originalText",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The text to which to append a cycling ellipsis.",
+							"sid": 893703571208641
+						},
+						{
+							"name": "currentText",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The current text of the text object.",
+							"sid": 798387152295043
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 978417023123326,
+							"parameters": {
+								"value": "CurrentText  = originalText & ELLIPSIS_DOT & ELLIPSIS_DOT & ELLIPSIS_DOT ? originalText : currentText & ELLIPSIS_DOT"
+							}
+						}
+					],
+					"sid": 730078160248149
 				},
 				{
 					"eventType": "block",
@@ -140,9 +157,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 932093525646889,
+							"sid": 686738267190354,
 							"parameters": {
-								"text": "Self.Text = UPDATE_AVAILABLE_TEXT & ELLIPSIS_DOT & ELLIPSIS_DOT & ELLIPSIS_DOT ? UPDATE_AVAILABLE_TEXT : Self.Text & ELLIPSIS_DOT"
+								"text": "Functions.ellipsisGenerator(UPDATE_AVAILABLE_TEXT, Self.Text)"
 							}
 						}
 					],
@@ -179,10 +196,10 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 500512084369184,
+							"sid": 267546962280234,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "Self.ObjectTypeName",
+								"tags": "NOT_USED",
 								"property": "offsetOpacity",
 								"end-value": "TRANSPARENT_OPACITY",
 								"time": "LAYOUT_FADE_TIME",
@@ -196,10 +213,10 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "launcherMessage",
-							"sid": 622772192414724,
+							"sid": 896556127119609,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "Self.ObjectTypeName & SEPARATOR & \"opacity tween\"",
+								"tags": "NOT_USED",
 								"property": "offsetOpacity",
 								"end-value": "LAUNCHER_TEXT_OPACITY",
 								"time": "LAUNCHER_TEXT_TWEEN_SPEED",
@@ -212,6 +229,16 @@
 						}
 					],
 					"sid": 277147762016600
+				},
+				{
+					"eventType": "variable",
+					"name": "LAYOUT_AFTER_SPLASH_SCREEN",
+					"type": "string",
+					"initialValue": "mainMenu",
+					"comment": "The layout to go to after the splash screen.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 254759703089513
 				},
 				{
 					"eventType": "block",
@@ -248,9 +275,9 @@
 						},
 						{
 							"callFunction": "changeLayout",
-							"sid": 792806521331426,
+							"sid": 605767462194444,
 							"parameters": [
-								"\"mainMenu\"",
+								"LAYOUT_AFTER_SPLASH_SCREEN",
 								true
 							]
 						}
@@ -291,9 +318,9 @@
 						{
 							"id": "set-image-scale-x",
 							"objectClass": "loadingBar",
-							"sid": 533370799125088,
+							"sid": 757641771238630,
 							"parameters": {
-								"scale-x": "loadingprogress * 100"
+								"scale-x": "loadingprogress * PERCENTAGE_DIVIDER"
 							}
 						}
 					],

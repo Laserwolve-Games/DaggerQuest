@@ -14,6 +14,16 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "LOADING_TEXT",
+					"type": "string",
+					"initialValue": "loading",
+					"comment": "The text to display when loading is being performed.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 369425940790804
+				},
+				{
+					"eventType": "variable",
 					"name": "targetLayout",
 					"type": "string",
 					"initialValue": "",
@@ -28,9 +38,9 @@
 						{
 							"id": "every-x-seconds",
 							"objectClass": "System",
-							"sid": 978068326904035,
+							"sid": 438620818678362,
 							"parameters": {
-								"interval-seconds": "0.5"
+								"interval-seconds": "ELLIPSIS_UPDATE_INTERVAL"
 							}
 						}
 					],
@@ -38,9 +48,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "loadingText",
-							"sid": 160146940996166,
+							"sid": 794164128756294,
 							"parameters": {
-								"text": "Self.Text = \"loading...\" ? \"loading\" : Self.Text & \".\""
+								"text": "Functions.ellipsisGenerator(LOADING_TEXT, Self.Text)"
 							}
 						}
 					],
@@ -95,12 +105,12 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 754499954531401,
+							"sid": 482883570043796,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "Self.ObjectTypeName",
 								"property": "offsetOpacity",
-								"end-value": "100",
+								"end-value": "SOLID_OPACITY",
 								"time": "LAYOUT_FADE_TIME",
 								"ease": "noease",
 								"destroy-on-complete": "no",
@@ -247,9 +257,9 @@
 								{
 									"id": "wait",
 									"objectClass": "System",
-									"sid": 230995441789194,
+									"sid": 152331703388609,
 									"parameters": {
-										"seconds": "0"
+										"seconds": "END_OF_TICK"
 									}
 								},
 								{

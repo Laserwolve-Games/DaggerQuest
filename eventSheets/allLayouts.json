@@ -72,9 +72,9 @@
 						{
 							"id": "is-effect-enabled",
 							"objectClass": "textButtons",
-							"sid": 152989179300688,
+							"sid": 746790366745132,
 							"parameters": {
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
@@ -87,19 +87,19 @@
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "textButtons",
-							"sid": 769190371290502,
+							"sid": 316920856703849,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowHorizontal\""
+								"effect": "GLOWHORIZONTAL_KEYWORD"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "textButtons",
-							"sid": 308855638953782,
+							"sid": 879945630760749,
 							"parameters": {
 								"mode": "disable",
-								"effect": "\"GlowVertical\""
+								"effect": "GLOWVERTICAL_KEYWORD"
 							}
 						}
 					],
@@ -111,9 +111,9 @@
 								{
 									"id": "is-tag-playing",
 									"objectClass": "Audio",
-									"sid": 239338159852543,
+									"sid": 361473182067264,
 									"parameters": {
-										"tag": "\"menuClose\""
+										"tag": "MENU_CLOSE_TAG"
 									},
 									"isInverted": true
 								}
@@ -126,13 +126,13 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 462378884067279,
+									"sid": 160349662240894,
 									"parameters": {
 										"audio-file": "mouseOff",
 										"loop": "not-looping",
 										"volume": "interfaceVolume",
 										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "\"\""
+										"tag-optional": "NOT_USED"
 									}
 								}
 							],
@@ -165,6 +165,16 @@
 						}
 					],
 					"sid": 145346222786557
+				},
+				{
+					"eventType": "variable",
+					"name": "SIZE_REDUCTION_MULTIPLIER",
+					"type": "number",
+					"initialValue": "0.9",
+					"comment": "How much to multiply the text button font size by when clicked.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 621349730210888
 				},
 				{
 					"eventType": "block",
@@ -202,9 +212,9 @@
 								{
 									"id": "set-font-size",
 									"objectClass": "textButtons",
-									"sid": 407272484417269,
+									"sid": 355850426316569,
 									"parameters": {
-										"size-pt": "Self.FaceSize * .9"
+										"size-pt": "Self.FaceSize * SIZE_REDUCTION_MULTIPLIER"
 									}
 								}
 							],
@@ -223,31 +233,31 @@
 								{
 									"id": "set-effect-enabled",
 									"objectClass": "textButtons",
-									"sid": 707362724140933,
+									"sid": 414640392062028,
 									"parameters": {
 										"mode": "enable",
-										"effect": "\"GlowHorizontal\""
+										"effect": "GLOWHORIZONTAL_KEYWORD"
 									}
 								},
 								{
 									"id": "set-effect-enabled",
 									"objectClass": "textButtons",
-									"sid": 117393214391281,
+									"sid": 638808815219969,
 									"parameters": {
 										"mode": "enable",
-										"effect": "\"GlowVertical\""
+										"effect": "GLOWVERTICAL_KEYWORD"
 									}
 								},
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 266290067975912,
+									"sid": 385899549110229,
 									"parameters": {
 										"audio-file": "mouseOn",
 										"loop": "not-looping",
 										"volume": "interfaceVolume",
 										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "\"\""
+										"tag-optional": "NOT_USED"
 									}
 								}
 							],

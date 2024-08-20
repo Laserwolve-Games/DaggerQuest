@@ -9,7 +9,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "windmillFan",
-			"description": "AnimationSpeed, OriginalAnimationSpeed, and AnimationFrameCount are 0 when the sprite in reference isn't on the layout, so this group is to reduce the scope of the necessary variables.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -30,15 +30,15 @@
 						{
 							"id": "play-at-object",
 							"objectClass": "Audio",
-							"sid": 606013089447598,
+							"sid": 266599733238998,
 							"parameters": {
 								"audio-file": "windmillFan",
 								"loop": "not-looping",
 								"volume": "effectsVolume",
 								"object": "windmillFan",
-								"inner-angle": "360",
-								"outer-angle": "360",
-								"outer-gain": "0",
+								"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+								"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+								"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
 								"tag-optional": "windmillFan.ObjectTypeName"
 							}
 						}
@@ -81,7 +81,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Save the windmill fan's animation speed and frame count to use on other layouts."
+							"text": "AnimationSpeed, OriginalAnimationSpeed, and AnimationFrameCount are 0 when the sprite in reference isn't on the layout, so save the windmill fan's animation speed and frame count to use on other layouts."
 						},
 						{
 							"id": "set-eventvar-value",

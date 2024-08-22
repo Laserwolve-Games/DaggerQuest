@@ -1390,6 +1390,16 @@
 							"sid": 653257849123262,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "OBTAINED_ITEM_KEYWORD",
+									"type": "string",
+									"initialValue": "obtainedItem",
+									"comment": "Used for playing the sound effect when an item is obtained.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 864883324875308
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -1501,22 +1511,12 @@
 									]
 								},
 								{
-									"eventType": "variable",
-									"name": "OBTAINED_ITEM_KEYWORD",
-									"type": "string",
-									"initialValue": "obtainedItem",
-									"comment": "Used for playing the sound effect when an item is obtained.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 945721419857123
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 341369713051807
+											"sid": 700525651386697
 										},
 										{
 											"id": "pick-by-comparison",
@@ -17142,8 +17142,8 @@
 							"objectClass": "System",
 							"sid": 787369920357309,
 							"parameters": {
-								"object": "queriedArrays",
-								"expression": "queriedArrays.ObjectTypeName",
+								"object": "queriedArray",
+								"expression": "queriedArray.ObjectTypeName",
 								"comparison": 0,
 								"value": "array"
 							}
@@ -17192,7 +17192,7 @@
 							"conditions": [
 								{
 									"id": "for-each-element",
-									"objectClass": "queriedArrays",
+									"objectClass": "queriedArray",
 									"sid": 165803417552242,
 									"parameters": {
 										"axes": "x"
@@ -17200,7 +17200,7 @@
 								},
 								{
 									"id": "compare-current-value",
-									"objectClass": "queriedArrays",
+									"objectClass": "queriedArray",
 									"sid": 156802794488655,
 									"parameters": {
 										"comparison": 0,
@@ -17219,7 +17219,7 @@
 									"sid": 878163469440177,
 									"parameters": {
 										"variable": "targetColumnNumber",
-										"value": "queriedArrays.CurX"
+										"value": "queriedArray.CurX"
 									}
 								}
 							],
@@ -17235,7 +17235,7 @@
 									"parameters": {
 										"name": "NOT_USED",
 										"start-index": "LOOP_OFFSET",
-										"end-index": "queriedArrays.Height"
+										"end-index": "queriedArray.Height"
 									}
 								},
 								{
@@ -17243,7 +17243,7 @@
 									"objectClass": "System",
 									"sid": 628104764048334,
 									"parameters": {
-										"first-value": "queriedArrays.At(simpleNameColumnNumber, loopindex)",
+										"first-value": "queriedArray.At(simpleNameColumnNumber, loopindex)",
 										"comparison": 0,
 										"second-value": "simpleName"
 									}
@@ -17260,7 +17260,7 @@
 									"sid": 134057885551602,
 									"parameters": {
 										"variable": "returnValue",
-										"value": "queriedArrays.At(targetColumnNumber, loopindex)"
+										"value": "queriedArray.At(targetColumnNumber, loopindex)"
 									}
 								}
 							],
@@ -17335,15 +17335,15 @@
 							"objectClass": "System",
 							"sid": 969157735323348,
 							"parameters": {
-								"object": "queriedArrays",
-								"expression": "queriedArrays.ObjectTypeName",
+								"object": "queriedArray",
+								"expression": "queriedArray.ObjectTypeName",
 								"comparison": 0,
 								"value": "array"
 							}
 						},
 						{
 							"id": "for-each-element",
-							"objectClass": "queriedArrays",
+							"objectClass": "queriedArray",
 							"sid": 809142578541249,
 							"parameters": {
 								"axes": "x"
@@ -17351,7 +17351,7 @@
 						},
 						{
 							"id": "compare-current-value",
-							"objectClass": "queriedArrays",
+							"objectClass": "queriedArray",
 							"sid": 807903728824992,
 							"parameters": {
 								"comparison": 0,
@@ -17365,7 +17365,7 @@
 							"objectClass": "Functions",
 							"sid": 874778872234686,
 							"parameters": {
-								"value": "queriedArrays.CurX"
+								"value": "queriedArray.CurX"
 							}
 						}
 					],
@@ -17401,15 +17401,15 @@
 							"objectClass": "System",
 							"sid": 435052508819299,
 							"parameters": {
-								"object": "queriedArrays",
-								"expression": "queriedArrays.ObjectTypeName",
+								"object": "queriedArray",
+								"expression": "queriedArray.ObjectTypeName",
 								"comparison": 0,
 								"value": "nameArray"
 							}
 						},
 						{
 							"id": "for-each-element",
-							"objectClass": "queriedArrays",
+							"objectClass": "queriedArray",
 							"sid": 587115061092778,
 							"parameters": {
 								"axes": "xy"
@@ -17417,7 +17417,7 @@
 						},
 						{
 							"id": "compare-current-value",
-							"objectClass": "queriedArrays",
+							"objectClass": "queriedArray",
 							"sid": 480528147530679,
 							"parameters": {
 								"comparison": 0,
@@ -17431,7 +17431,7 @@
 							"objectClass": "Functions",
 							"sid": 166673294832581,
 							"parameters": {
-								"value": "queriedArrays.CurY"
+								"value": "queriedArray.CurY"
 							}
 						}
 					],
@@ -17503,6 +17503,37 @@
 						}
 					],
 					"sid": 711240350113436
+				},
+				{
+					"functionName": "randomInteger2",
+					"functionDescription": "Returns a random integer, from (and including) 0, up to the specified number, inclusive.",
+					"functionCategory": "data",
+					"functionReturnType": "string",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "soundEffectName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The name of the sound effect that we want to play a random variation of.",
+							"sid": 662028994708675
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 375404927529574,
+							"parameters": {
+								"value": "soundEffectName & floor(random(Functions.countSoundVarations(soundEffectName)))"
+							}
+						}
+					],
+					"sid": 264605795288639,
+					"disabled": true
 				},
 				{
 					"functionName": "getDegrees",

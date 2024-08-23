@@ -14,6 +14,16 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "RARITY_KEYWORD",
+					"type": "string",
+					"initialValue": "rarity",
+					"comment": "Used for looking up rarity in an array.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 713133308773562
+				},
+				{
+					"eventType": "variable",
 					"name": "FIRST_GAME_LAYOUT",
 					"type": "string",
 					"initialValue": "farm",
@@ -525,486 +535,403 @@
 								"string": "\"goblinArcher\"",
 								"function": "goblinArcher"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "Create the mod values probability table, which gets populated during loot generation"
+						},
+						{
+							"id": "createProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 476973755860885,
+							"parameters": {
+								"name": "MOD_VALUES_PROBABILITY_TABLE"
+							}
+						},
+						{
+							"id": "check-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 655505197572964,
+							"parameters": {
+								"key": "localStorageDictionary.ObjectTypeName"
+							}
 						}
 					],
-					"sid": 475031808944228,
+					"sid": 475031808944228
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 277614582725019,
+							"parameters": {
+								"key": "localStorageDictionary.ObjectTypeName"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "load",
+							"objectClass": "localStorageDictionary",
+							"sid": 376966467105197,
+							"parameters": {
+								"json": "LocalStorage.ItemValue"
+							}
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 904127192881310,
+							"parameters": {
+								"name": "EQUIPMENT_PROBABILITY_TABLE",
+								"json": "localStorageDictionary.Get(EQUIPMENT_PROBABILITY_TABLE)"
+							}
+						},
+						{
+							"id": "load",
+							"objectClass": "modTablesArray",
+							"sid": 734010742244167,
+							"parameters": {
+								"json": "localStorageDictionary.Get(modTablesArray.ObjectTypeName)"
+							}
+						}
+					],
+					"sid": 823012996253306,
 					"children": [
-						{
-							"eventType": "variable",
-							"name": "GENERATE_PROBABILITY_TABLES",
-							"type": "boolean",
-							"initialValue": "true",
-							"comment": "Whether or not the probability tables should be generated.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 559775166330324
-						},
-						{
-							"eventType": "variable",
-							"name": "DOWNLOAD_PROBABILITY_TABLES",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Whether or not the probability tables should be downloaded.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 310104714503477
-						},
-						{
-							"eventType": "variable",
-							"name": "RARITY_KEYWORD",
-							"type": "string",
-							"initialValue": "rarity",
-							"comment": "Used for looking up rarity in an array.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 445651323638160
-						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 367429865092761,
+									"id": "for-each-element",
+									"objectClass": "modTablesArray",
+									"sid": 720487385246145,
 									"parameters": {
-										"variable": "GENERATE_PROBABILITY_TABLES"
+										"axes": "x"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "createProbabilityTable",
+									"id": "createProbabilityTableFromJSON",
 									"objectClass": "advancedRandom",
-									"sid": 235327548805565,
+									"sid": 191556229213238,
 									"parameters": {
-										"name": "EQUIPMENT_PROBABILITY_TABLE"
-									}
-								},
-								{
-									"id": "createProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 320432116419012,
-									"parameters": {
-										"name": "MOD_VALUES_PROBABILITY_TABLE"
-									}
-								},
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 349620709801923,
-									"parameters": {
-										"name": "EQUIPMENT_PROBABILITY_TABLE"
+										"name": "modTablesArray.CurValue",
+										"json": "localStorageDictionary.Get(modTablesArray.CurValue)"
 									}
 								}
 							],
-							"sid": 335524571368899,
+							"sid": 508851672498607
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 269541345627265,
+							"parameters": {
+								"key": "localStorageDictionary.ObjectTypeName"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "createProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 785984218437475,
+							"parameters": {
+								"name": "EQUIPMENT_PROBABILITY_TABLE"
+							}
+						},
+						{
+							"id": "setProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 493172574422822,
+							"parameters": {
+								"name": "EQUIPMENT_PROBABILITY_TABLE"
+							}
+						}
+					],
+					"sid": 568163851112755,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 712062377668744,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "equipmentArray.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Generate equipment probability table"
+								},
+								{
+									"id": "addProbabilityEntry",
+									"objectClass": "advancedRandom",
+									"sid": 777403388709065,
+									"parameters": {
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, RARITY_KEYWORD), loopindex)"
+									}
+								}
+							],
+							"sid": 983645403528728
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-key",
+									"objectClass": "localStorageDictionary",
+									"sid": 515040049425417,
+									"parameters": {
+										"key": "EQUIPMENT_PROBABILITY_TABLE",
+										"value": "advancedRandom.ProbabilityTableAsJSON"
+									}
+								}
+							],
+							"sid": 220148979746840
+						},
+						{
+							"eventType": "variable",
+							"name": "modTable",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The name of the modTable to create and use",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 679500708336622
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 743767806453054,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "equipmentArray.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Populate the modTablesArray with the unique values from the modTable column in the equipmentArray"
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 692677019107933,
+									"parameters": {
+										"variable": "modTable",
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)"
+									}
+								}
+							],
+							"sid": 721446798873208,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 177456059315022,
-											"parameters": {
-												"name": "NOT_USED",
-												"start-index": "LOOP_OFFSET",
-												"end-index": "equipmentArray.Height - LOOP_OFFSET"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "Generate equipment probability table"
-										},
-										{
-											"id": "addProbabilityEntry",
-											"objectClass": "advancedRandom",
-											"sid": 947040387101255,
-											"parameters": {
-												"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-												"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, RARITY_KEYWORD), loopindex)"
-											}
-										}
-									],
-									"sid": 234030274658108
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 985262531238022,
-											"parameters": {
-												"variable": "DOWNLOAD_PROBABILITY_TABLES"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "invoke-download-of-string",
-											"objectClass": "browser",
-											"sid": 225717738854325,
-											"parameters": {
-												"string": "advancedRandom.ProbabilityTableAsJSON",
-												"mime-type": "\"application/json\"",
-												"filename": "EQUIPMENT_PROBABILITY_TABLE & \"ProbabilityTable.json\""
-											}
-										}
-									],
-									"sid": 406035776482747
-								},
-								{
-									"eventType": "variable",
-									"name": "modTable",
-									"type": "string",
-									"initialValue": "",
-									"comment": "The name of the modTable to create and use",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 662514325939781
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 707323230909668,
-											"parameters": {
-												"name": "NOT_USED",
-												"start-index": "LOOP_OFFSET",
-												"end-index": "equipmentArray.Height - LOOP_OFFSET"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "Populate the modTablesArray with the values from the modTable column in the equipmentArray"
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 855411229394035,
-											"parameters": {
-												"variable": "modTable",
-												"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)"
-											}
-										}
-									],
-									"sid": 221362586254812,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "contains-value",
-													"objectClass": "modTablesArray",
-													"sid": 624886044474560,
-													"parameters": {
-														"value": "modTable"
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "push",
-													"objectClass": "modTablesArray",
-													"sid": 728978950932798,
-													"parameters": {
-														"where": "back",
-														"value": "modTable",
-														"axis": "x"
-													}
-												}
-											],
-											"sid": 996614483716115
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each-element",
+											"id": "contains-value",
 											"objectClass": "modTablesArray",
-											"sid": 393895190148182,
+											"sid": 395811978102875,
 											"parameters": {
-												"axes": "x"
-											}
+												"value": "modTable"
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 856094402780710,
+											"id": "push",
+											"objectClass": "modTablesArray",
+											"sid": 989311020118705,
 											"parameters": {
-												"variable": "modTable",
-												"value": "modTablesArray.CurValue"
-											}
-										},
-										{
-											"id": "createProbabilityTable",
-											"objectClass": "advancedRandom",
-											"sid": 724732691073866,
-											"parameters": {
-												"name": "modTable"
-											}
-										},
-										{
-											"id": "setProbabilityTable",
-											"objectClass": "advancedRandom",
-											"sid": 536747733696066,
-											"parameters": {
-												"name": "modTable"
+												"where": "back",
+												"value": "modTable",
+												"axis": "x"
 											}
 										}
 									],
-									"sid": 298492903623870,
-									"children": [
-										{
-											"eventType": "variable",
-											"name": "MOD_KEYWORD",
-											"type": "string",
-											"initialValue": "mod",
-											"comment": "Used when adding mods to mod tables.",
-											"isStatic": false,
-											"isConstant": true,
-											"sid": 310638455172707
-										},
-										{
-											"eventType": "variable",
-											"name": "modName",
-											"type": "string",
-											"initialValue": "",
-											"comment": "",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 223612865773296
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 411044588651144,
-													"parameters": {
-														"name": "NOT_USED",
-														"start-index": "LOOP_OFFSET",
-														"end-index": "modRelationshipsArray.Height - LOOP_OFFSET"
-													}
-												},
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 456983716876357,
-													"parameters": {
-														"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)",
-														"comparison": 0,
-														"second-value": "modTable"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 553623892817381,
-													"parameters": {
-														"variable": "modName",
-														"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_KEYWORD), loopindex)"
-													}
-												},
-												{
-													"id": "addProbabilityEntry",
-													"objectClass": "advancedRandom",
-													"sid": 872728716218362,
-													"parameters": {
-														"value": "modName",
-														"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD))"
-													}
-												}
-											],
-											"sid": 602870476891885
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 572225210885687,
-													"parameters": {
-														"variable": "DOWNLOAD_PROBABILITY_TABLES"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "invoke-download-of-string",
-													"objectClass": "browser",
-													"sid": 406145705376078,
-													"parameters": {
-														"string": "advancedRandom.ProbabilityTableAsJSON",
-														"mime-type": "\"application/json\"",
-														"filename": "modTable & \"ProbabilityTable.json\""
-													}
-												}
-											],
-											"sid": 437452669281429
-										}
-									]
+									"sid": 679957316318850
 								}
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Not usable until https://github.com/Scirra/Construct-bugs/issues/8189 is resolved"
-						},
-						{
-							"eventType": "variable",
-							"name": "PROBABILITY_TABLES_FOLDER_NAME",
-							"type": "string",
-							"initialValue": "probabilityTables",
-							"comment": "The name of the folder in which the probability tables are kept.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 831046748567115
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-key",
+									"objectClass": "localStorageDictionary",
+									"sid": 448510921064220,
+									"parameters": {
+										"key": "modTablesArray.ObjectTypeName",
+										"value": "modTablesArray.AsJSON"
+									}
+								}
+							],
+							"sid": 662977497641478
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 300603842901002
+									"id": "for-each-element",
+									"objectClass": "modTablesArray",
+									"sid": 196257015915289,
+									"parameters": {
+										"axes": "x"
+									}
 								}
 							],
 							"actions": [
 								{
-									"id": "request-url",
-									"objectClass": "AJAX",
-									"sid": 650598136162739,
-									"parameters": {
-										"tag": "NOT_USED",
-										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & EQUIPMENT_PROBABILITY_TABLE & \"ProbabilityTable.json\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
+									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 699795638227158
+									"sid": 504520450983131,
+									"parameters": {
+										"variable": "modTable",
+										"value": "modTablesArray.CurValue"
+									}
 								},
 								{
-									"id": "createProbabilityTableFromJSON",
+									"id": "createProbabilityTable",
 									"objectClass": "advancedRandom",
-									"sid": 597357839888068,
+									"sid": 264906053479819,
 									"parameters": {
-										"name": "EQUIPMENT_PROBABILITY_TABLE",
-										"json": "AJAX.LastData"
+										"name": "modTable"
 									}
 								},
 								{
-									"id": "request-url",
-									"objectClass": "AJAX",
-									"sid": 411723718821617,
-									"parameters": {
-										"tag": "NOT_USED",
-										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"maraudersProbabilityTable.json\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 983834499531810
-								},
-								{
-									"id": "createProbabilityTableFromJSON",
+									"id": "setProbabilityTable",
 									"objectClass": "advancedRandom",
-									"sid": 450314058929456,
+									"sid": 493231458881833,
 									"parameters": {
-										"name": "\"marauders\"",
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-url",
-									"objectClass": "AJAX",
-									"sid": 176432157266674,
-									"parameters": {
-										"tag": "NOT_USED",
-										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simple1hWeaponProbabilityTable.json\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 562635429311626
-								},
-								{
-									"id": "createProbabilityTableFromJSON",
-									"objectClass": "advancedRandom",
-									"sid": 307039422757491,
-									"parameters": {
-										"name": "\"simple1hWeapon\"",
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-url",
-									"objectClass": "AJAX",
-									"sid": 429924313193705,
-									"parameters": {
-										"tag": "NOT_USED",
-										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simpleArmorProbabilityTable.json\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 105978904259835
-								},
-								{
-									"id": "createProbabilityTableFromJSON",
-									"objectClass": "advancedRandom",
-									"sid": 539898607755439,
-									"parameters": {
-										"name": "\"simpleArmor\"",
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-url",
-									"objectClass": "AJAX",
-									"sid": 203576408549679,
-									"parameters": {
-										"tag": "NOT_USED",
-										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simpleShieldProbabilityTable.json\""
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 493194327271634
-								},
-								{
-									"id": "createProbabilityTableFromJSON",
-									"objectClass": "advancedRandom",
-									"sid": 699893153655664,
-									"parameters": {
-										"name": "\"simpleShield\"",
-										"json": "AJAX.LastData"
+										"name": "modTable"
 									}
 								}
 							],
-							"sid": 644165788543452,
-							"disabled": true
+							"sid": 927471251848430,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "MOD_KEYWORD",
+									"type": "string",
+									"initialValue": "mod",
+									"comment": "Used when adding mods to mod tables.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 740422663919558
+								},
+								{
+									"eventType": "variable",
+									"name": "modName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 980837917848128
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 114918819476246,
+											"parameters": {
+												"name": "NOT_USED",
+												"start-index": "LOOP_OFFSET",
+												"end-index": "modRelationshipsArray.Height - LOOP_OFFSET"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 398814046826398,
+											"parameters": {
+												"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)",
+												"comparison": 0,
+												"second-value": "modTable"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 229940860752355,
+											"parameters": {
+												"variable": "modName",
+												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_KEYWORD), loopindex)"
+											}
+										},
+										{
+											"id": "addProbabilityEntry",
+											"objectClass": "advancedRandom",
+											"sid": 502948481852683,
+											"parameters": {
+												"value": "modName",
+												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD))"
+											}
+										}
+									],
+									"sid": 155290990287587
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "add-key",
+											"objectClass": "localStorageDictionary",
+											"sid": 349243004234116,
+											"parameters": {
+												"key": "modTable",
+												"value": "advancedRandom.ProbabilityTableAsJSON"
+											}
+										}
+									],
+									"sid": 776561116968351
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-item",
+									"objectClass": "LocalStorage",
+									"sid": 228519452301981,
+									"parameters": {
+										"key": "localStorageDictionary.ObjectTypeName",
+										"value": "localStorageDictionary.AsJSON"
+									}
+								}
+							],
+							"sid": 852797252785754
 						}
 					]
 				}

@@ -1946,14 +1946,6 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 583245095565362,
-									"parameters": {
-										"name": "\"loot\""
-									}
-								},
-								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
 									"sid": 854871205715515,
@@ -2231,10 +2223,10 @@
 										},
 										{
 											"eventType": "variable",
-											"name": "mod",
+											"name": "chosenMod",
 											"type": "string",
 											"initialValue": "",
-											"comment": "",
+											"comment": "The mod chosen to be added to this loot.",
 											"isStatic": true,
 											"isConstant": false,
 											"sid": 246965271765553
@@ -2257,7 +2249,7 @@
 													"objectClass": "System",
 													"sid": 446693176521729,
 													"parameters": {
-														"variable": "mod",
+														"variable": "chosenMod",
 														"value": "advancedRandom.WeightedByName(loot.modTable)"
 													}
 												},
@@ -2267,7 +2259,7 @@
 													"sid": 696283491550463,
 													"parameters": {
 														"instance-variable": "mods",
-														"value": "((mod & \":\") & Functions.arrayLookup(modsArray.ObjectTypeName, mod, \"description\")) & \";\""
+														"value": "((chosenMod & \":\") & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, \"description\")) & \";\""
 													}
 												}
 											],
@@ -2393,6 +2385,7 @@
 															"id": "setProbabilityTable",
 															"objectClass": "advancedRandom",
 															"sid": 478449621893124,
+															"breakpoint": true,
 															"parameters": {
 																"name": "MOD_VALUES_PROBABILITY_TABLE"
 															}

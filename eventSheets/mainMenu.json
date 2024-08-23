@@ -262,7 +262,7 @@
 						},
 						{
 							"type": "comment",
-							"text": "Load and parse out data. We can't put these into a 'for each queriedArray' loop because 'Wait for previous actions to complete' doesn't hold up a loop.\n\nWe also tried `AJAX On any completed' with `Pick queriedArray where queriedArray.ObjectTypeName = AJAX.tag`, but the probability table generation loops executed before the AJAX requests had finished."
+							"text": "Load and parse out data. We can't put these into a 'for each queriedArray' loop because 'Wait for previous actions to complete' doesn't hold up a loop.\n\nWe also tried `AJAX On any completed' with `Pick queriedArray where queriedArray.ObjectTypeName = AJAX.tag`, but the probability table generation loops executed before the AJAX requests had finished. That might not be an issue once we start importing tables instead of generating them?"
 						},
 						{
 							"id": "request-project-file",
@@ -533,11 +533,21 @@
 							"eventType": "variable",
 							"name": "GENERATE_PROBABILITY_TABLES",
 							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Whether or not the probability tables should be generated and downloaded.",
+							"initialValue": "true",
+							"comment": "Whether or not the probability tables should be generated.",
 							"isStatic": false,
 							"isConstant": true,
-							"sid": 542190543174957
+							"sid": 559775166330324
+						},
+						{
+							"eventType": "variable",
+							"name": "DOWNLOAD_PROBABILITY_TABLES",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Whether or not the probability tables should be downloaded.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 310104714503477
 						},
 						{
 							"eventType": "variable",
@@ -622,7 +632,16 @@
 								},
 								{
 									"eventType": "block",
-									"conditions": [],
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 985262531238022,
+											"parameters": {
+												"variable": "DOWNLOAD_PROBABILITY_TABLES"
+											}
+										}
+									],
 									"actions": [
 										{
 											"id": "invoke-download-of-string",
@@ -816,7 +835,16 @@
 										},
 										{
 											"eventType": "block",
-											"conditions": [],
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 572225210885687,
+													"parameters": {
+														"variable": "DOWNLOAD_PROBABILITY_TABLES"
+													}
+												}
+											],
 											"actions": [
 												{
 													"id": "invoke-download-of-string",
@@ -836,6 +864,20 @@
 							]
 						},
 						{
+							"eventType": "comment",
+							"text": "Not usable until https://github.com/Scirra/Construct-bugs/issues/8189 is resolved"
+						},
+						{
+							"eventType": "variable",
+							"name": "PROBABILITY_TABLES_FOLDER_NAME",
+							"type": "string",
+							"initialValue": "probabilityTables",
+							"comment": "The name of the folder in which the probability tables are kept.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 831046748567115
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -846,16 +888,12 @@
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "https://github.com/Scirra/Construct-bugs/issues/8189"
-								},
-								{
 									"id": "request-url",
 									"objectClass": "AJAX",
-									"sid": 434650261108072,
+									"sid": 650598136162739,
 									"parameters": {
 										"tag": "NOT_USED",
-										"url": "\"probabilityTables\" & FOLDER_SEPARATOR & EQUIPMENT_PROBABILITY_TABLE & \"ProbabilityTable.json\""
+										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & EQUIPMENT_PROBABILITY_TABLE & \"ProbabilityTable.json\""
 									}
 								},
 								{
@@ -875,10 +913,10 @@
 								{
 									"id": "request-url",
 									"objectClass": "AJAX",
-									"sid": 780192065356470,
+									"sid": 411723718821617,
 									"parameters": {
 										"tag": "NOT_USED",
-										"url": "\"probabilityTables\" & FOLDER_SEPARATOR & \"maraudersProbabilityTable.json\""
+										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"maraudersProbabilityTable.json\""
 									}
 								},
 								{
@@ -894,9 +932,79 @@
 										"name": "\"marauders\"",
 										"json": "AJAX.LastData"
 									}
+								},
+								{
+									"id": "request-url",
+									"objectClass": "AJAX",
+									"sid": 176432157266674,
+									"parameters": {
+										"tag": "NOT_USED",
+										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simple1hWeaponProbabilityTable.json\""
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 562635429311626
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 307039422757491,
+									"parameters": {
+										"name": "\"simple1hWeapon\"",
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-url",
+									"objectClass": "AJAX",
+									"sid": 429924313193705,
+									"parameters": {
+										"tag": "NOT_USED",
+										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simpleArmorProbabilityTable.json\""
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 105978904259835
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 539898607755439,
+									"parameters": {
+										"name": "\"simpleArmor\"",
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-url",
+									"objectClass": "AJAX",
+									"sid": 203576408549679,
+									"parameters": {
+										"tag": "NOT_USED",
+										"url": "PROBABILITY_TABLES_FOLDER_NAME & FOLDER_SEPARATOR & \"simpleShieldProbabilityTable.json\""
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 493194327271634
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 699893153655664,
+									"parameters": {
+										"name": "\"simpleShield\"",
+										"json": "AJAX.LastData"
+									}
 								}
 							],
-							"sid": 644165788543452
+							"sid": 644165788543452,
+							"disabled": true
 						}
 					]
 				}

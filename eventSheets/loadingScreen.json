@@ -44,17 +44,56 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 839995727724483,
+					"children": [
 						{
-							"id": "set-text",
-							"objectClass": "loadingText",
-							"sid": 794164128756294,
-							"parameters": {
-								"text": "Functions.ellipsisGenerator(LOADING_TEXT, Self.Text)"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-text",
+									"objectClass": "loadingText",
+									"sid": 825312194659706,
+									"parameters": {
+										"text-to-compare": "LOADING_TEXT & ELLIPSIS",
+										"case-sensitivity": "ignore-case"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "loadingText",
+									"sid": 445714598217099,
+									"parameters": {
+										"text": "LOADING_TEXT"
+									}
+								}
+							],
+							"sid": 604161167584792
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 142840463988686
+								}
+							],
+							"actions": [
+								{
+									"id": "append-text",
+									"objectClass": "loadingText",
+									"sid": 308244809474431,
+									"parameters": {
+										"text": "ELLIPSIS_DOT"
+									}
+								}
+							],
+							"sid": 448796330367520
 						}
-					],
-					"sid": 839995727724483
+					]
 				},
 				{
 					"functionName": "changeLayout",

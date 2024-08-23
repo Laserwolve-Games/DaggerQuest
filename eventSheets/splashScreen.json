@@ -67,43 +67,6 @@
 					"text": "There's no way to do an \"On update not found\" trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
 				},
 				{
-					"functionName": "ellipsisGenerator",
-					"functionDescription": "Append ellipsis dots to text, and reset when necessary. Should be the action to an 'every X seconds' condition.",
-					"functionCategory": "data",
-					"functionReturnType": "string",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "originalText",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The text to which to append a cycling ellipsis.",
-							"sid": 893703571208641
-						},
-						{
-							"name": "currentText",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The current text of the text object.",
-							"sid": 798387152295043
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 978417023123326,
-							"parameters": {
-								"value": "CurrentText  = originalText & ELLIPSIS_DOT & ELLIPSIS_DOT & ELLIPSIS_DOT ? originalText : currentText & ELLIPSIS_DOT"
-							}
-						}
-					],
-					"sid": 730078160248149
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -153,17 +116,56 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 703324802027352,
+					"children": [
 						{
-							"id": "set-text",
-							"objectClass": "launcherMessage",
-							"sid": 686738267190354,
-							"parameters": {
-								"text": "Functions.ellipsisGenerator(UPDATE_AVAILABLE_TEXT, Self.Text)"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-text",
+									"objectClass": "launcherMessage",
+									"sid": 600525300154423,
+									"parameters": {
+										"text-to-compare": "UPDATE_AVAILABLE_TEXT & ELLIPSIS",
+										"case-sensitivity": "ignore-case"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "launcherMessage",
+									"sid": 767496929204803,
+									"parameters": {
+										"text": "UPDATE_AVAILABLE_TEXT"
+									}
+								}
+							],
+							"sid": 542895579608959
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 711196193848480
+								}
+							],
+							"actions": [
+								{
+									"id": "append-text",
+									"objectClass": "launcherMessage",
+									"sid": 240829588494119,
+									"parameters": {
+										"text": "ELLIPSIS_DOT"
+									}
+								}
+							],
+							"sid": 478527113691950
 						}
-					],
-					"sid": 703324802027352
+					]
 				},
 				{
 					"eventType": "block",

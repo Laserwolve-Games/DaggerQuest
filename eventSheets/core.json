@@ -93,6 +93,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "DOUBLE_OFFSET",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "Used in loops when going from 1- to 0-based, also compensating for an extra token at the end.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 546866166719344
+		},
+		{
+			"eventType": "variable",
 			"name": "ELLIPSIS_UPDATE_INTERVAL",
 			"type": "number",
 			"initialValue": "0.5",
@@ -483,13 +493,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "MOD_VALUES_PROBABILITY_TABLE",
+			"name": "MOD_NAME_SEPARATOR",
 			"type": "string",
-			"initialValue": "modValues",
-			"comment": "The name of the mod values probability table.",
+			"initialValue": ":",
+			"comment": "The character the separates a mod's name from its description.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 959774609386186
+			"sid": 779475842838106
+		},
+		{
+			"eventType": "variable",
+			"name": "MOD_SEPARATOR",
+			"type": "string",
+			"initialValue": ";",
+			"comment": "The character that separates mods.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 984245048466264
 		},
 		{
 			"eventType": "variable",
@@ -499,7 +519,17 @@
 			"comment": "Used for creating and fetching mod tables.",
 			"isStatic": false,
 			"isConstant": true,
-			"sid": 134765242497473
+			"sid": 777004151880179
+		},
+		{
+			"eventType": "variable",
+			"name": "MOD_VALUES_PROBABILITY_TABLE",
+			"type": "string",
+			"initialValue": "modValues",
+			"comment": "The name of the mod values probability table.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 959774609386186
 		},
 		{
 			"eventType": "variable",
@@ -2322,10 +2352,10 @@
 												{
 													"id": "add-to-instvar",
 													"objectClass": "loot",
-													"sid": 786855261758441,
+													"sid": 660661043104183,
 													"parameters": {
 														"instance-variable": "mods",
-														"value": "((chosenMod & \":\") & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, \"description\")) & \";\""
+														"value": "((chosenMod & MOD_NAME_SEPARATOR) & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, \"description\")) & MOD_SEPARATOR"
 													}
 												}
 											],
@@ -2394,7 +2424,7 @@
 												},
 												{
 													"eventType": "variable",
-													"name": "MOD_SEPARATOR",
+													"name": "MOD_VALUE_SEPARATOR",
 													"type": "string",
 													"initialValue": "-",
 													"comment": "The character used to indicate a range in a numerical mod value.",
@@ -2420,7 +2450,7 @@
 															"objectClass": "System",
 															"sid": 396929285345061,
 															"parameters": {
-																"value": "Functions.contains(modValue, MOD_SEPARATOR)"
+																"value": "Functions.contains(modValue, MOD_VALUE_SEPARATOR)"
 															}
 														}
 													],
@@ -2435,7 +2465,7 @@
 															"sid": 228898022150574,
 															"parameters": {
 																"variable": "lowerLimit",
-																"value": "int(tokenat(modValue, 0, MOD_SEPARATOR)) * loot.level"
+																"value": "int(tokenat(modValue, 0, MOD_VALUE_SEPARATOR)) * loot.level"
 															}
 														},
 														{
@@ -2444,7 +2474,7 @@
 															"sid": 834090507415118,
 															"parameters": {
 																"variable": "upperLimit",
-																"value": "int(tokenat(modValue, 1, MOD_SEPARATOR)) * loot.level"
+																"value": "int(tokenat(modValue, 1, MOD_VALUE_SEPARATOR)) * loot.level"
 															}
 														},
 														{
@@ -12480,11 +12510,11 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 943760755735943,
+													"sid": 651191869819956,
 													"parameters": {
 														"name": "NOT_USED",
 														"start-index": "LOOP_DEFAULT",
-														"end-index": "tokencount(text, \";\") - 2"
+														"end-index": "tokencount(text, MOD_SEPARATOR) - DOUBLE_OFFSET"
 													}
 												}
 											],
@@ -12492,9 +12522,9 @@
 												{
 													"id": "append-text",
 													"objectClass": "tooltipDescription",
-													"sid": 329698586072237,
+													"sid": 120653382215069,
 													"parameters": {
-														"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
+														"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), 1, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
 													}
 												}
 											],
@@ -12846,11 +12876,11 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 200024989005898,
+											"sid": 391526961137309,
 											"parameters": {
 												"name": "NOT_USED",
 												"start-index": "LOOP_DEFAULT",
-												"end-index": "tokencount(text, \";\") - 2"
+												"end-index": "tokencount(text, MOD_SEPARATOR) - DOUBLE_OFFSET"
 											}
 										}
 									],
@@ -12858,9 +12888,9 @@
 										{
 											"id": "append-text",
 											"objectClass": "comparisonTooltipDescription",
-											"sid": 954050863639588,
+											"sid": 336166011179449,
 											"parameters": {
-												"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
+												"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), 1, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
 											}
 										}
 									],
@@ -17866,7 +17896,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter in events, and call the next function accordingly.",
+					"text": "We can't pass boolean parameters between non-mapped functions, so we have to evaluate the boolean parameter in events, and call the next function accordingly.",
 					"text-color": [
 						0.7843137254901961,
 						0.7843137254901961,
@@ -17882,7 +17912,7 @@
 				},
 				{
 					"functionName": "manageMods",
-					"functionDescription": "activate or deactivate the mods of an item to the player",
+					"functionDescription": "Activate or deactivate the mods of an item.",
 					"functionCategory": "mods",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
@@ -17917,11 +17947,11 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 248899962728085,
+									"sid": 279138871422595,
 									"parameters": {
 										"name": "NOT_USED",
 										"start-index": "LOOP_DEFAULT",
-										"end-index": "tokencount(item.mods, \";\") - 2"
+										"end-index": "tokencount(item.mods, MOD_SEPARATOR) - DOUBLE_OFFSET"
 									}
 								}
 							],
@@ -17929,15 +17959,51 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 144624815497568,
+									"sid": 186469235570453,
 									"parameters": {
 										"variable": "mod",
-										"value": "tokenat(item.mods, loopindex, \";\")"
+										"value": "tokenat(item.mods, loopindex, MOD_SEPARATOR)"
 									}
 								}
 							],
 							"sid": 867779511144806,
 							"children": [
+								{
+									"eventType": "comment",
+									"text": "We have to call an intermediary function because we can't forward function parameters that don't exist in the original function; we have to parse 'mod' into its name and description components.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								},
+								{
+									"eventType": "variable",
+									"name": "DESCRIPTION_INDEX",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The index of the description of the mod.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 971110566132811
+								},
+								{
+									"eventType": "variable",
+									"name": "NAME_INDEX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The index of the name of the mod.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 830741968104748
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -17953,11 +18019,11 @@
 									"actions": [
 										{
 											"callFunction": "modCaller",
-											"sid": 828874850314975,
+											"sid": 768889427966747,
 											"parameters": [
 												true,
-												"tokenat(mod, 1, \":\")",
-												"tokenat(mod, 0, \":\")"
+												"tokenat(mod, DESCRIPTION_INDEX, MOD_NAME_SEPARATOR)",
+												"tokenat(mod, NAME_INDEX, MOD_NAME_SEPARATOR)"
 											]
 										}
 									],
@@ -17975,11 +18041,11 @@
 									"actions": [
 										{
 											"callFunction": "modCaller",
-											"sid": 735049010108810,
+											"sid": 110292418413939,
 											"parameters": [
 												false,
-												"tokenat(mod, 1, \":\")",
-												"tokenat(mod, 0, \":\")"
+												"tokenat(mod, DESCRIPTION_INDEX, MOD_NAME_SEPARATOR)",
+												"tokenat(mod, NAME_INDEX, MOD_NAME_SEPARATOR)"
 											]
 										}
 									],
@@ -18022,6 +18088,22 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "We can't rearrange the parameter order here because they get passed and applied to the individual mod functions in the same order.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0.39215686274509803,
+								0,
+								0,
+								1
+							]
+						},
 						{
 							"id": "call-mapped-function",
 							"objectClass": "Functions",

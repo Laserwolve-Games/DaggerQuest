@@ -2,8 +2,54 @@
 	"name": "core",
 	"events": [
 		{
+			"eventType": "comment",
+			"text": "Red comments explain something that's seems counter intuitive.",
+			"text-color": [
+				0.7843137254901961,
+				0.7843137254901961,
+				0.7843137254901961,
+				1
+			],
+			"background-color": [
+				0.39215686274509803,
+				0,
+				0,
+				1
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "Blue comments are something we could try.",
+			"text-color": [
+				0.7843137254901961,
+				0.7843137254901961,
+				0.7843137254901961,
+				1
+			],
+			"background-color": [
+				0,
+				0,
+				0.39215686274509803,
+				1
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "Default formatted comments are brief summaries of functionality in plain English."
+		},
+		{
 			"eventType": "include",
 			"includeSheet": "allLayouts"
+		},
+		{
+			"eventType": "variable",
+			"name": "ALL_PARAMETERS",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The index of the parameter to forward in function calls in order to forward all parameters.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 335516532065310
 		},
 		{
 			"eventType": "variable",
@@ -260,7 +306,7 @@
 			"name": "BLANK",
 			"type": "string",
 			"initialValue": "",
-			"comment": "Used for clearing text.",
+			"comment": "Empty text.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 988159326066054
@@ -274,6 +320,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 426225136879304
+		},
+		{
+			"eventType": "variable",
+			"name": "EITHER_CURLY_BRACKET_REGEX",
+			"type": "string",
+			"initialValue": "\\{|}",
+			"comment": "A regular expression to match either curly bracket.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 105258110546296
 		},
 		{
 			"eventType": "variable",
@@ -337,7 +393,7 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "FIRST",
+			"name": "FIRST_INSTANCE",
 			"type": "number",
 			"initialValue": "0",
 			"comment": "The index of first instance of the current picked objects.",
@@ -1466,7 +1522,7 @@
 											"sid": 278818684369493,
 											"parameters": {
 												"object": "slot",
-												"instance": "FIRST"
+												"instance": "FIRST_INSTANCE"
 											}
 										}
 									],
@@ -1556,7 +1612,7 @@
 											"sid": 856106359161882,
 											"parameters": {
 												"object": "slot",
-												"instance": "FIRST"
+												"instance": "FIRST_INSTANCE"
 											}
 										}
 									],
@@ -1848,9 +1904,9 @@
 										{
 											"id": "is-tag-playing",
 											"objectClass": "Audio",
-											"sid": 856409981033477,
+											"sid": 863538374301791,
 											"parameters": {
-												"tag": "loot.sound & SEPARATOR & \"drop\""
+												"tag": "loot.sound & \"Drop\""
 											},
 											"isInverted": true
 										}
@@ -1859,10 +1915,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 399745629414735,
+											"sid": 885571692630410,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
+												"audio-file-name": "loot.sound & \"Drop\" & Functions.randomInteger(1)",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "loot",
@@ -2267,10 +2323,10 @@
 										},
 										{
 											"eventType": "variable",
-											"name": "MOD_VALUE_REGEX",
+											"name": "SQUARE_BRACKET_REGEX",
 											"type": "string",
 											"initialValue": "\\[.*?\\]",
-											"comment": "the regex that will return the first mod value",
+											"comment": "A regular expression to get everything between square brackets.",
 											"isStatic": true,
 											"isConstant": true,
 											"sid": 168471026558236
@@ -2280,7 +2336,7 @@
 											"name": "modValue",
 											"type": "string",
 											"initialValue": "",
-											"comment": "The text inside the brackets of a given mod",
+											"comment": "The text inside the brackets of a given mod.",
 											"isStatic": true,
 											"isConstant": false,
 											"sid": 675449617154846
@@ -2295,7 +2351,7 @@
 													"parameters": {
 														"name": "NOT_USED",
 														"start-index": "LOOP_OFFSET",
-														"end-index": "RegexMatchCount(loot.mods, MOD_VALUE_REGEX, GLOBAL_FLAG)"
+														"end-index": "RegexMatchCount(loot.mods, SQUARE_BRACKET_REGEX, GLOBAL_FLAG)"
 													}
 												}
 											],
@@ -2310,7 +2366,7 @@
 													"sid": 492423809492847,
 													"parameters": {
 														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, MOD_VALUE_REGEX, \"\", 0), \"\\[|]\", GLOBAL_FLAG, \"\")"
+														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, \"\", 0), \"\\[|]\", GLOBAL_FLAG, \"\")"
 													}
 												}
 											],
@@ -2485,7 +2541,7 @@
 																	"sid": 461098221041892,
 																	"parameters": {
 																		"instance-variable": "mods",
-																		"value": "RegexReplace(Self.mods, MOD_VALUE_REGEX, \"\", \"{\" & advancedRandom.Weighted & \"}\")"
+																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, \"\", \"{\" & advancedRandom.Weighted & \"}\")"
 																	}
 																},
 																{
@@ -2556,7 +2612,7 @@
 															"sid": 835948514084487,
 															"parameters": {
 																"instance-variable": "mods",
-																"value": "RegexReplace(Self.mods, MOD_VALUE_REGEX, \"\", \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
+																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, \"\", \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
 															}
 														}
 													],
@@ -4788,9 +4844,9 @@
 														{
 															"id": "is-tag-playing",
 															"objectClass": "Audio",
-															"sid": 400251055892536,
+															"sid": 599527874137354,
 															"parameters": {
-																"tag": "loot.sound & SEPARATOR & \"drop\""
+																"tag": "loot.sound & \"Drop\""
 															},
 															"isInverted": true
 														}
@@ -4799,10 +4855,10 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 771884951598958,
+															"sid": 430556632279982,
 															"parameters": {
 																"folder": "sounds",
-																"audio-file-name": "loot.sound & SEPARATOR & \"drop\" & Functions.randomInteger(1)",
+																"audio-file-name": "loot.sound & \"Drop\" & Functions.randomInteger(1)",
 																"loop": "not-looping",
 																"volume": "effectsVolume",
 																"object": "loot",
@@ -5375,9 +5431,9 @@
 												{
 													"id": "is-tag-playing",
 													"objectClass": "Audio",
-													"sid": 378764211086793,
+													"sid": 595281949605014,
 													"parameters": {
-														"tag": "item.ObjectTypeName & SEPARATOR & item.UID & \" equip sound\""
+														"tag": "item.sound & \"Equip\""
 													},
 													"isInverted": true
 												}
@@ -5386,17 +5442,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 128124889522963,
+													"sid": 577785499059829,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "item.sound & SEPARATOR & \"equip\" & Functions.randomInteger(1)",
+														"audio-file-name": "item.sound & \"Equip\" & Functions.randomInteger(1)",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "player",
 														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-														"tag-optional": "NOT_USED"
+														"tag-optional": "item.sound & \"Equip\""
 													}
 												}
 											],
@@ -6237,6 +6293,22 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "comment",
+					"text": "We have lots of variables, like uidOfClicked, that should be scoped down onto the player.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0,
+						0,
+						0.39215686274509803,
+						1
+					]
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -7663,11 +7735,11 @@
 										{
 											"id": "call-mapped-function",
 											"objectClass": "Functions",
-											"sid": 139467647554715,
+											"sid": 437930889148671,
 											"parameters": {
 												"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 												"string": "\"basicAttack\"",
-												"forward-params": "0"
+												"forward-params": "ALL_PARAMETERS"
 											}
 										}
 									],
@@ -7941,117 +8013,127 @@
 					"sid": 914713205483917
 				},
 				{
-					"functionName": "removePlayerControl",
-					"functionDescription": "Prevent the player from doing anything.",
-					"functionCategory": "player",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
+					"eventType": "group",
+					"disabled": false,
+					"title": "control",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
 						{
-							"id": "set-enabled",
-							"objectClass": "player",
-							"sid": 771670356722238,
-							"behaviorType": "MoveTo",
-							"parameters": {
-								"enabled": false
-							}
+							"functionName": "removePlayerControl",
+							"functionDescription": "Prevent the player from doing anything.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "player",
+									"sid": 630374470563065,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"enabled": false
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 510316966812394,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 242860111643162,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "deactivated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 698854263944001,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "deactivated"
+									}
+								}
+							],
+							"sid": 238570256214279
 						},
 						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 919458007647707,
-							"parameters": {
-								"group-name": "\"movement and interaction\"",
-								"state": "deactivated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 172655499978699,
-							"parameters": {
-								"group-name": "\"abilities\"",
-								"state": "deactivated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 769600853195239,
-							"parameters": {
-								"group-name": "\"facings\"",
-								"state": "deactivated"
-							}
+							"functionName": "restorePlayerControl",
+							"functionDescription": "Reinstate the player's ability to be controlled.",
+							"functionCategory": "player",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "this function can't be inside of 'movement and interaction'"
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "player",
+									"sid": 748470458438661,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"enabled": true
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 556154367622941,
+									"parameters": {
+										"group-name": "\"movement and interaction\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 734888048664713,
+									"parameters": {
+										"group-name": "\"abilities\"",
+										"state": "activated"
+									}
+								},
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 377423599704575,
+									"parameters": {
+										"group-name": "\"facings\"",
+										"state": "activated"
+									}
+								},
+								{
+									"callFunction": "updateAnimation",
+									"sid": 189437437331630,
+									"parameters": [
+										"IDLE_KEYWORD",
+										"body.OriginalAnimationSpeed",
+										true
+									]
+								}
+							],
+							"sid": 848263676668588
 						}
 					],
-					"sid": 920903738678207
-				},
-				{
-					"functionName": "restorePlayerControl",
-					"functionDescription": "Reinstate the player's ability to be controlled.",
-					"functionCategory": "player",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "this function can't be inside of 'movement and interaction'"
-						},
-						{
-							"id": "set-enabled",
-							"objectClass": "player",
-							"sid": 392986170340383,
-							"behaviorType": "MoveTo",
-							"parameters": {
-								"enabled": true
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 780931063976395,
-							"parameters": {
-								"group-name": "\"movement and interaction\"",
-								"state": "activated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 127572999015231,
-							"parameters": {
-								"group-name": "\"abilities\"",
-								"state": "activated"
-							}
-						},
-						{
-							"id": "set-group-active",
-							"objectClass": "System",
-							"sid": 799495312628293,
-							"parameters": {
-								"group-name": "\"facings\"",
-								"state": "activated"
-							}
-						},
-						{
-							"callFunction": "updateAnimation",
-							"sid": 982045603185694,
-							"parameters": [
-								"IDLE_KEYWORD",
-								"body.OriginalAnimationSpeed",
-								true
-							]
-						}
-					],
-					"sid": 985297277756848
+					"sid": 998455745664907
 				},
 				{
 					"eventType": "group",
@@ -8142,11 +8224,11 @@
 										{
 											"id": "call-mapped-function",
 											"objectClass": "Functions",
-											"sid": 513018893369462,
+											"sid": 447178230542713,
 											"parameters": {
 												"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 												"string": "ability.AnimationName",
-												"forward-params": "0"
+												"forward-params": "ALL_PARAMETERS"
 											}
 										}
 									],
@@ -10376,7 +10458,7 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "When we add other classes, here's what we'll do: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
+					"text": "When we add other classes: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
 				}
 			],
 			"sid": 254080374675516
@@ -12400,9 +12482,9 @@
 												{
 													"id": "append-text",
 													"objectClass": "tooltipDescription",
-													"sid": 933618582858828,
+													"sid": 329698586072237,
 													"parameters": {
-														"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", GLOBAL_FLAG, \"\") & newline "
+														"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
 													}
 												}
 											],
@@ -12766,9 +12848,9 @@
 										{
 											"id": "append-text",
 											"objectClass": "comparisonTooltipDescription",
-											"sid": 535693760590707,
+											"sid": 954050863639588,
 											"parameters": {
-												"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), \"\\{|}\", GLOBAL_FLAG, \"\") & newline "
+												"text": "RegexReplace(tokenat(tokenat(text, loopindex, \";\"), 1, \":\"), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
 											}
 										}
 									],
@@ -14806,11 +14888,11 @@
 												{
 													"id": "call-mapped-function",
 													"objectClass": "Functions",
-													"sid": 562580727856947,
+													"sid": 411921779757291,
 													"parameters": {
 														"name": "ENEMY_ABILITIES_FUNCTION_MAP",
 														"string": "enemy.simpleName",
-														"forward-params": "0"
+														"forward-params": "ALL_PARAMETERS"
 													}
 												}
 											],
@@ -16117,7 +16199,19 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "we tried a lot of different things to get shadows to stay immediately behind their hasShadow. A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter. We just decided to make shadows sortable, that seems to be working."
+					"text": "A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
 				},
 				{
 					"eventType": "block",
@@ -16310,9 +16404,25 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "projectiles",
-			"description": "having a projectile object on the main menu in the margin prevents an issue where \"bullet - set angle of motion\" only ever sets the projectile's angle of motion to either 0 or 180. ",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "comment",
+					"text": "Having a projectile object on the main menu in the margin prevents an issue where \"bullet - set angle of motion\" only ever sets the projectile's angle of motion to either 0 or 180. ",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -17155,11 +17265,21 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "pick the array that was passed (the calling event might not pick it, so we can't use \"copy picked\")"
+							"text": "Pick the array that was passed. The calling event might not pick it, so we can't use \"copy picked\"."
 						}
 					],
 					"sid": 643674845440053,
 					"children": [
+						{
+							"eventType": "variable",
+							"name": "SIMPLE_NAME_COLUMN_NUMBER",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "simpleName should always be the first column.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 763432263503828
+						},
 						{
 							"eventType": "variable",
 							"name": "targetColumnNumber",
@@ -17169,26 +17289,6 @@
 							"isStatic": true,
 							"isConstant": false,
 							"sid": 559595863195308
-						},
-						{
-							"eventType": "variable",
-							"name": "simpleNameColumnNumber",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "simpleName is always the first column",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 959500024424395
-						},
-						{
-							"eventType": "variable",
-							"name": "returnValue",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 148176261089754
 						},
 						{
 							"eventType": "block",
@@ -17215,6 +17315,11 @@
 								{
 									"type": "comment",
 									"text": "loop through the column headers to find the columns we want"
+								},
+								{
+									"id": "stop-loop",
+									"objectClass": "System",
+									"sid": 923539382056593
 								},
 								{
 									"id": "set-eventvar-value",
@@ -17246,7 +17351,7 @@
 									"objectClass": "System",
 									"sid": 628104764048334,
 									"parameters": {
-										"first-value": "queriedArray.At(simpleNameColumnNumber, loopindex)",
+										"first-value": "queriedArray.At(SIMPLE_NAME_COLUMN_NUMBER, loopindex)",
 										"comparison": 0,
 										"second-value": "simpleName"
 									}
@@ -17255,62 +17360,29 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "loop through the cells of just that column to find the value we want, skipping the header row. Once we find it, set returnValue to the value of the cell located in that row but column of targetColumnNumber"
+									"text": "Loop through the cells of just that column to find the value we want, skipping the header row."
 								},
 								{
-									"id": "set-eventvar-value",
+									"id": "stop-loop",
 									"objectClass": "System",
-									"sid": 134057885551602,
+									"sid": 648171697141546
+								},
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 681227524204174,
 									"parameters": {
-										"variable": "returnValue",
 										"value": "queriedArray.At(targetColumnNumber, loopindex)"
 									}
 								}
 							],
-							"sid": 895434417246662,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 956672283334857,
-											"parameters": {
-												"first-value": "returnValue",
-												"comparison": 1,
-												"second-value": "\"\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "once we have a return value, stop the loop (we're not sure if setting a return value also ends the function)"
-										},
-										{
-											"id": "stop-loop",
-											"objectClass": "System",
-											"sid": 596610162597647
-										},
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 211056130340703,
-											"parameters": {
-												"value": "returnValue"
-											}
-										}
-									],
-									"sid": 721602884260980
-								}
-							]
+							"sid": 895434417246662
 						}
 					]
 				},
 				{
 					"functionName": "getColumnNumber",
-					"functionDescription": "Find the column number of a column by its name",
+					"functionDescription": "Find the number of a column by its name.",
 					"functionCategory": "data",
 					"functionReturnType": "number",
 					"functionCopyPicked": false,
@@ -17320,14 +17392,14 @@
 							"name": "array",
 							"type": "string",
 							"initialValue": "",
-							"comment": "The array in which to find the column name and number",
+							"comment": "The array in which to find the column name and number.",
 							"sid": 417535318627685
 						},
 						{
 							"name": "columnName",
 							"type": "string",
 							"initialValue": "",
-							"comment": "The column name for which the number is needed",
+							"comment": "The column name for which the number is needed.",
 							"sid": 535319316146738
 						}
 					],
@@ -17508,37 +17580,6 @@
 					"sid": 711240350113436
 				},
 				{
-					"functionName": "randomInteger2",
-					"functionDescription": "Returns a random integer, from (and including) 0, up to the specified number, inclusive.",
-					"functionCategory": "data",
-					"functionReturnType": "string",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "soundEffectName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The name of the sound effect that we want to play a random variation of.",
-							"sid": 662028994708675
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 375404927529574,
-							"parameters": {
-								"value": "soundEffectName & floor(random(Functions.countSoundVarations(soundEffectName)))"
-							}
-						}
-					],
-					"sid": 264605795288639,
-					"disabled": true
-				},
-				{
 					"functionName": "getDegrees",
 					"functionDescription": "Round a specified angle to nearest allowed angle, specified by ARC.",
 					"functionCategory": "data",
@@ -17621,6 +17662,214 @@
 							"sid": 510623748372199
 						}
 					]
+				},
+				{
+					"functionName": "countSoundVarations",
+					"functionDescription": "Get how many variants of a sound effect there is.",
+					"functionCategory": "data",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "audioName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The root name of the audio file in question.",
+							"sid": 981847279139940
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 937590606267233,
+							"parameters": {
+								"value": "Functions.countSoundVarationsPrivate(audioName, 0)"
+							}
+						}
+					],
+					"sid": 342265328501474
+				},
+				{
+					"functionName": "countSoundVarationsPrivate",
+					"functionDescription": "Wrapper for countSoundVarations. Shouldn't be called elsewhere.",
+					"functionCategory": "data",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "audioName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The root name of the audio file in question.",
+							"sid": 500073525064596
+						},
+						{
+							"name": "counter",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 679757342982496
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 521291821817055,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "AUDIO_COUNTER",
+							"type": "string",
+							"initialValue": "audioCounter",
+							"comment": "The text to which we'll prepend the counter, to use for the audio tag.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 816341065732529
+						},
+						{
+							"eventType": "variable",
+							"name": "audioCounterTag",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The tag to use when counting sound effect variations.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 906870386485105
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Silently play an audio file..."
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 564709700192003,
+									"parameters": {
+										"variable": "audioCounterTag",
+										"value": "AUDIO_COUNTER & counter"
+									}
+								},
+								{
+									"id": "play-by-name",
+									"objectClass": "Audio",
+									"sid": 440470555963628,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "audioName & counter",
+										"loop": "not-looping",
+										"volume": "SILENT",
+										"stereo-pan": "DEFAULT_STEREO_PAN",
+										"tag-optional": "audioCounterTag"
+									}
+								}
+							],
+							"sid": 663856306735616
+						},
+						{
+							"eventType": "variable",
+							"name": "AUDIO_COUNTER_INCREMENTER",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How much to increase the counter when counting sound effect variations.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 506309434998498
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 283893681481861,
+									"parameters": {
+										"tag": "audioCounterTag"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If it exists, increase the counter and try again."
+								},
+								{
+									"type": "comment",
+									"text": "Stop the audio before recursively calling this function, otherwise we'll have a number of audio tracks being played equal to the depth of the call stack.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								},
+								{
+									"id": "stop",
+									"objectClass": "Audio",
+									"sid": 160693751622811,
+									"parameters": {
+										"tag": "audioCounterTag"
+									}
+								},
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 520408035939993,
+									"parameters": {
+										"value": "Functions.countSoundVarationsPrivate(audioName, counter + AUDIO_COUNTER_INCREMENTER)"
+									}
+								}
+							],
+							"sid": 144299258529495
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 845470070467124
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If it doesn't exist, return the counter; that's the total number of variants of this sound effect."
+								},
+								{
+									"id": "stop",
+									"objectClass": "Audio",
+									"sid": 588086391639167,
+									"parameters": {
+										"tag": "audioCounterTag"
+									}
+								},
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 516093967858530,
+									"parameters": {
+										"value": "counter"
+									}
+								}
+							],
+							"sid": 442874565516469
+						}
+					]
 				}
 			],
 			"sid": 864124535956996
@@ -17629,9 +17878,25 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "mods",
-			"description": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter in events, and call the next function accordingly. The string \"true\" takes up 3x more memory than a boolean, so using strings as an alternative might be less performant. There's a good chance an update will eventually be released that allows passing a boolean.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "comment",
+					"text": "We can't pass boolean parameters between functions, so we have to evaluate the boolean parameter in events, and call the next function accordingly.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
+				},
 				{
 					"functionName": "manageMods",
 					"functionDescription": "activate or deactivate the mods of an item to the player",
@@ -17777,15 +18042,68 @@
 						{
 							"id": "call-mapped-function",
 							"objectClass": "Functions",
-							"sid": 266238388553156,
+							"sid": 822755244839253,
 							"parameters": {
 								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
 								"string": "modName",
-								"forward-params": "0"
+								"forward-params": "ALL_PARAMETERS"
 							}
 						}
 					],
 					"sid": 899772844374345
+				},
+				{
+					"functionName": "getFirstValueFromMod",
+					"functionDescription": "Extract the first value from a mod.",
+					"functionCategory": "mods",
+					"functionReturnType": "any",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "mod",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The mod from which the value will be extracted.",
+							"sid": 176375073136459
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "We have enough mods with only a single value to warrant the existence of this function."
+						}
+					],
+					"sid": 996141775955306,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "INDEX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The index of the value in question.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 238935535407720
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 997998575838495,
+									"parameters": {
+										"value": "Functions.getValueFromMod(mod, INDEX)"
+									}
+								}
+							],
+							"sid": 599935998025791
+						}
+					]
 				},
 				{
 					"functionName": "getValueFromMod",
@@ -17812,17 +18130,35 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
+					"actions": [],
+					"sid": 320744027056050,
+					"children": [
 						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 335682315029429,
-							"parameters": {
-								"value": "RegexReplace(RegexMatchAt(mod, \"\\{.*?\\}\", GLOBAL_FLAG, index), \"\\{|}\", GLOBAL_FLAG, \"\")"
-							}
+							"eventType": "variable",
+							"name": "CURLY_BRACKET_REGEX",
+							"type": "string",
+							"initialValue": "\\{.*?\\}",
+							"comment": "A regular expression to get everything between curly brackets.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 128105563160003
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 395840419375679,
+									"parameters": {
+										"value": "RegexReplace(RegexMatchAt(mod, CURLY_BRACKET_REGEX, GLOBAL_FLAG, index), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, BLANK)"
+									}
+								}
+							],
+							"sid": 802144837394005
 						}
-					],
-					"sid": 320744027056050
+					]
 				},
 				{
 					"eventType": "group",
@@ -17861,6 +18197,16 @@
 							"children": [
 								{
 									"eventType": "variable",
+									"name": "MINIMUM_HEALTH",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The lowest amount of health that removing this mod can leave the player with.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 995450477792984
+								},
+								{
+									"eventType": "variable",
 									"name": "value",
 									"type": "number",
 									"initialValue": "0",
@@ -17876,10 +18222,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 695155855001729,
+											"sid": 874665794811391,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -17936,10 +18282,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "player",
-											"sid": 234393131366957,
+											"sid": 284895310341019,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "clamp(Self.currentHealth - value, 1, Self.maxHealth)"
+												"value": "clamp(Self.currentHealth - value, MINIMUM_HEALTH, Self.maxHealth)"
 											}
 										},
 										{
@@ -18001,10 +18347,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 363740006116352,
+											"sid": 628243387467591,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -18104,10 +18450,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 966143064087912,
+											"sid": 434387109732184,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -18192,20 +18538,40 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "value",
+									"name": "SLASH_INDEX",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The index of the slash damage value.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 386148085532908
+								},
+								{
+									"eventType": "variable",
+									"name": "STAB_INDEX",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The index of the stab damage value.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 437435973304754
+								},
+								{
+									"eventType": "variable",
+									"name": "slashValue",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The amount by which slash damage will change with this mod.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 810736970502754
 								},
 								{
 									"eventType": "variable",
-									"name": "value2",
+									"name": "stabValue",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The amount by which stab damage will change with this mod.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 472590266064672
@@ -18217,19 +18583,19 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 595553801627760,
+											"sid": 161523842184266,
 											"parameters": {
-												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"variable": "slashValue",
+												"value": "Functions.getValueFromMod(modDescription, SLASH_INDEX)"
 											}
 										},
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 485531725133262,
+											"sid": 498526940265556,
 											"parameters": {
-												"variable": "value2",
-												"value": "Functions.getValueFromMod(modDescription, 1)"
+												"variable": "stabValue",
+												"value": "Functions.getValueFromMod(modDescription, STAB_INDEX)"
 											}
 										}
 									],
@@ -18254,7 +18620,7 @@
 											"sid": 953003764567580,
 											"parameters": {
 												"instance-variable": "slashDamage",
-												"value": "value"
+												"value": "slashValue"
 											}
 										},
 										{
@@ -18263,7 +18629,7 @@
 											"sid": 182117520102904,
 											"parameters": {
 												"instance-variable": "stabDamage",
-												"value": "value2"
+												"value": "stabValue"
 											}
 										}
 									],
@@ -18285,7 +18651,7 @@
 											"sid": 380230977470890,
 											"parameters": {
 												"instance-variable": "slashDamage",
-												"value": "value"
+												"value": "slashValue"
 											}
 										},
 										{
@@ -18294,7 +18660,7 @@
 											"sid": 625265836678152,
 											"parameters": {
 												"instance-variable": "stabDamage",
-												"value": "value2"
+												"value": "stabValue"
 											}
 										}
 									],
@@ -18347,10 +18713,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 862743270532982,
+											"sid": 122168069666275,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -18450,10 +18816,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 665873668250678,
+											"sid": 540345199875245,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -18553,10 +18919,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 843414371578072,
+											"sid": 681089636990089,
 											"parameters": {
 												"variable": "value",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getFirstValueFromMod(modDescription)"
 											}
 										}
 									],
@@ -18644,7 +19010,7 @@
 									"name": "damageType",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The type of physical damage.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 313882942019148
@@ -18654,10 +19020,60 @@
 									"name": "amount",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The amount of damage.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 506829206640632
+								},
+								{
+									"eventType": "variable",
+									"name": "SLASH_KEYWORD",
+									"type": "string",
+									"initialValue": "Slash",
+									"comment": "Used for determining damage type.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 133802897240466
+								},
+								{
+									"eventType": "variable",
+									"name": "STAB_KEYWORD",
+									"type": "string",
+									"initialValue": "Stab",
+									"comment": "Used for determining damage type.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 783084929034222
+								},
+								{
+									"eventType": "variable",
+									"name": "SMASH_KEYWORD",
+									"type": "string",
+									"initialValue": "Smash",
+									"comment": "Used for determining damage type.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 818137804538165
+								},
+								{
+									"eventType": "variable",
+									"name": "AMOUNT_INDEX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The index of the amount of the damage.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 183524118072736
+								},
+								{
+									"eventType": "variable",
+									"name": "DAMAGE_TYPE_INDEX",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The index of the damage type.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 850143017160662
 								},
 								{
 									"eventType": "block",
@@ -18675,19 +19091,19 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 178928919487212,
+											"sid": 133201150539921,
 											"parameters": {
 												"variable": "amount",
-												"value": "Functions.getValueFromMod(modDescription, 0)"
+												"value": "Functions.getValueFromMod(modDescription, AMOUNT_INDEX)"
 											}
 										},
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 716939391397843,
+											"sid": 655940044400586,
 											"parameters": {
 												"variable": "damageType",
-												"value": "Functions.getValueFromMod(modDescription, 1)"
+												"value": "Functions.getValueFromMod(modDescription, DAMAGE_TYPE_INDEX)"
 											}
 										}
 									],
@@ -18699,11 +19115,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 647009878134427,
+													"sid": 554571566268692,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Slash\""
+														"value": "SLASH_KEYWORD"
 													}
 												}
 											],
@@ -18726,11 +19142,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 516156131856547,
+													"sid": 790862985691382,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Smash\""
+														"value": "SMASH_KEYWORD"
 													}
 												}
 											],
@@ -18753,11 +19169,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 148266729061949,
+													"sid": 502779639625344,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Stab\""
+														"value": "STAB_KEYWORD"
 													}
 												}
 											],
@@ -18794,11 +19210,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 649960748686757,
+													"sid": 985337290311606,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Slash\""
+														"value": "SLASH_KEYWORD"
 													}
 												}
 											],
@@ -18821,11 +19237,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 637874891029247,
+													"sid": 127806942480283,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Smash\""
+														"value": "SMASH_KEYWORD"
 													}
 												}
 											],
@@ -18848,11 +19264,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 347103955837597,
+													"sid": 503717090337512,
 													"parameters": {
 														"variable": "damageType",
 														"comparison": 0,
-														"value": "\"Stab\""
+														"value": "STAB_KEYWORD"
 													}
 												}
 											],
@@ -18918,6 +19334,16 @@
 				},
 				{
 					"eventType": "variable",
+					"name": "FIRST_FRAME",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The index of the first frame of an animation.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 662136467085548
+				},
+				{
+					"eventType": "variable",
 					"name": "BRIGHTNESS_KEYWORD",
 					"type": "string",
 					"initialValue": "Brightness",
@@ -18958,10 +19384,10 @@
 						{
 							"id": "compare-animation-frame",
 							"objectClass": "lootChest",
-							"sid": 664955286726473,
+							"sid": 176963571902940,
 							"parameters": {
 								"comparison": 0,
-								"number": "0"
+								"number": "FIRST_FRAME"
 							}
 						}
 					],
@@ -19207,10 +19633,10 @@
 								{
 									"id": "compare-animation-frame",
 									"objectClass": "door",
-									"sid": 542240625155166,
+									"sid": 172535761452390,
 									"parameters": {
 										"comparison": 0,
-										"number": "0"
+										"number": "FIRST_FRAME"
 									}
 								}
 							],
@@ -19331,10 +19757,6 @@
 				}
 			],
 			"sid": 992252066588856
-		},
-		{
-			"eventType": "comment",
-			"text": "Refactors that would be cool to do, but probably wouldn't provide much benefit and might introduce some nasty bugs:\n\n1. Split the slot object into other objects so it's not so all-encompassing. https://github.com/Laserwolve-Games/DaggerQuest/issues/8\n2. Have items and loot lookup their static values from the array instead of reading them off themselves. This might be faster, it might be slower... might be confusing that some equipment properties have to be looked up, and some are stored directly on the object\n3. Move lots of variables from local/global space, onto the player.... uidOfClicked and a lot of the item re-arranging variables probably should/could get scoped onto the player"
 		}
 	],
 	"sid": 318845921999986

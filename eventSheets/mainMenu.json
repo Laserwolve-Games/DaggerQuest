@@ -71,180 +71,6 @@
 					"sid": 620884769961856
 				},
 				{
-					"functionName": "countSoundVarations",
-					"functionDescription": "Get how many variants of a sound effect there is.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "audioName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the audio file in question.",
-							"sid": 981847279139940
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 588218975214567,
-							"parameters": {
-								"value": "Functions.countSoundVarationsPrivate(audioName, 0)"
-							}
-						}
-					],
-					"sid": 873247610120505,
-					"disabled": true
-				},
-				{
-					"functionName": "countSoundVarationsPrivate",
-					"functionDescription": "Wrapper for countSoundVarations. Shouldn't be called elsewhere.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "audioName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the audio file in question.",
-							"sid": 500073525064596
-						},
-						{
-							"name": "counter",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 679757342982496
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Silently play an audio file..."
-						},
-						{
-							"id": "play-by-name",
-							"objectClass": "Audio",
-							"sid": 336724606645106,
-							"parameters": {
-								"folder": "sounds",
-								"audio-file-name": "audioName & counter",
-								"loop": "not-looping",
-								"volume": "SILENT",
-								"stereo-pan": "DEFAULT_STEREO_PAN",
-								"tag-optional": "\"audioCounter\" & counter"
-							}
-						}
-					],
-					"sid": 710052649171783,
-					"disabled": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-tag-playing",
-									"objectClass": "Audio",
-									"sid": 295623828833734,
-									"parameters": {
-										"tag": "\"audioCounter\" & counter"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "if it exists, increase the counter and try again"
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 288576194671075,
-									"parameters": {
-										"tag": "\"audioCounter\" & counter"
-									}
-								},
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 922300245487927,
-									"parameters": {
-										"value": "Functions.countSoundVarationsPrivate(audioName, counter + 1)"
-									}
-								}
-							],
-							"sid": 742165063841470,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 744840559597655
-								}
-							],
-							"actions": [
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 646691034661880,
-									"parameters": {
-										"tag": "\"audioCounter\" & counter"
-									}
-								},
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 397541209632541,
-									"parameters": {
-										"value": "counter"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "If it doesn't exist, return the counter; that's the total number of variants of this sound effect."
-								}
-							],
-							"sid": 618098390647700,
-							"disabled": true
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-any-completed",
-							"objectClass": "AJAX",
-							"sid": 580512796549396
-						},
-						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 344038717867714,
-							"parameters": {
-								"object": "queriedArray",
-								"expression": "queriedArray.ObjectTypeName",
-								"comparison": 0,
-								"value": "AJAX.Tag"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 481010168721414
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -272,7 +98,39 @@
 						},
 						{
 							"type": "comment",
-							"text": "Load and parse out data. We can't put these into a 'for each queriedArray' loop because 'Wait for previous actions to complete' doesn't hold up a loop.\n\nWe also tried `AJAX On any completed' with `Pick queriedArray where queriedArray.ObjectTypeName = AJAX.tag`, but the probability table generation loops executed before the AJAX requests had finished. That might not be an issue once we start importing tables instead of generating them?"
+							"text": "Load and parse out data"
+						},
+						{
+							"type": "comment",
+							"text": "We can't put these into a 'for each queriedArray' loop because 'Wait for previous actions to complete' doesn't hold up a loop.\n\nWe also tried `AJAX On any completed' with `Pick queriedArray where queriedArray.ObjectTypeName = AJAX.tag`, but the probability table generation loops executed before the AJAX requests had finished.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0.39215686274509803,
+								0,
+								0,
+								1
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Create AJAX objects for each correlating array, and loop through a family of them and a family of these queries.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0,
+								0,
+								0.39215686274509803,
+								1
+							]
 						},
 						{
 							"id": "request-project-file",
@@ -547,6 +405,10 @@
 							"parameters": {
 								"name": "MOD_VALUES_PROBABILITY_TABLE"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "Check to see if we already have local storage data"
 						},
 						{
 							"id": "check-item-exists",

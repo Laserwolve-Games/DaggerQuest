@@ -193,6 +193,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "NEGATIVE_HALF_CRICLE",
+			"type": "number",
+			"initialValue": "-180",
+			"comment": "The number of degrees in half of a circle, made negative.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 631770946651962
+		},
+		{
+			"eventType": "variable",
 			"name": "NON_DIRECTIONAL_INNER_ANGLE",
 			"type": "number",
 			"initialValue": "360",
@@ -829,7 +839,7 @@
 										{
 											"id": "set-text",
 											"objectClass": "dialogText",
-											"sid": 442519897528395,
+											"sid": 908771638481529,
 											"parameters": {
 												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, MESSAGE_COLUMN_HEADER)"
 											}
@@ -987,7 +997,7 @@
 						{
 							"id": "set-text",
 							"objectClass": "dialogText",
-							"sid": 707074591197997,
+							"sid": 166944738379940,
 							"parameters": {
 								"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, MESSAGE_COLUMN_HEADER)"
 							}
@@ -2071,10 +2081,10 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 974018068570534,
+											"sid": 602418043113369,
 											"parameters": {
 												"variable": "theAngle",
-												"value": "random(-HALF_CIRCLE, HALF_CIRCLE)"
+												"value": "random(NEGATIVE_HALF_CRICLE, HALF_CIRCLE)"
 											}
 										},
 										{
@@ -2185,7 +2195,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 387156835177166,
+											"sid": 625303334401406,
 											"parameters": {
 												"instance-variable": "fullName",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"fullName\")"
@@ -2194,7 +2204,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 740584911958729,
+											"sid": 889273455583644,
 											"parameters": {
 												"instance-variable": "type",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"type\")"
@@ -2203,7 +2213,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 360927318720871,
+											"sid": 174633516256190,
 											"parameters": {
 												"instance-variable": "lore",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"lore\")"
@@ -2212,7 +2222,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 992658870893090,
+											"sid": 423427518751160,
 											"parameters": {
 												"instance-variable": "level",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"level\")"
@@ -2221,7 +2231,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 341407944527451,
+											"sid": 255009816818986,
 											"parameters": {
 												"instance-variable": "value",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"value\")"
@@ -2230,7 +2240,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 431466943186454,
+											"sid": 979077885701922,
 											"parameters": {
 												"instance-variable": "classRestrictions",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"classRestrictions\")"
@@ -2239,7 +2249,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 486702809255199,
+											"sid": 847380624723126,
 											"parameters": {
 												"instance-variable": "modTable",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, MOD_TABLE_KEYWORD)"
@@ -2248,7 +2258,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 380178747402522,
+											"sid": 732379435089633,
 											"parameters": {
 												"instance-variable": "sound",
 												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"sound\")"
@@ -2312,7 +2322,7 @@
 												{
 													"id": "add-to-instvar",
 													"objectClass": "loot",
-													"sid": 696283491550463,
+													"sid": 786855261758441,
 													"parameters": {
 														"instance-variable": "mods",
 														"value": "((chosenMod & \":\") & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, \"description\")) & \";\""
@@ -9129,7 +9139,7 @@
 																		{
 																			"id": "set-instvar-value",
 																			"objectClass": "projectile",
-																			"sid": 302997838356410,
+																			"sid": 841091213603570,
 																			"parameters": {
 																				"instance-variable": "slashDamage",
 																				"value": "player.slashDamage + player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER"
@@ -10662,7 +10672,7 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 996328531262219,
+													"sid": 682454388095496,
 													"parameters": {
 														"variable": "currentCategory",
 														"comparison": 0,
@@ -10734,7 +10744,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 331646563762280,
+													"sid": 570648691920689,
 													"parameters": {
 														"variable": "currentCategory",
 														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"category\")"
@@ -12150,7 +12160,7 @@
 											"actions": [
 												{
 													"callFunction": "updateTooltip",
-													"sid": 494358489125225,
+													"sid": 628046946102384,
 													"parameters": [
 														true,
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"fullName\")",
@@ -17220,9 +17230,9 @@
 				},
 				{
 					"functionName": "arrayLookup",
-					"functionDescription": "look up a value in an array",
+					"functionDescription": "Look up a value in an array.",
 					"functionCategory": "data",
-					"functionReturnType": "string",
+					"functionReturnType": "any",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
@@ -17230,22 +17240,22 @@
 							"name": "array",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
-							"sid": 138615066068748
+							"comment": "The name of the array in which we are looking up a value.",
+							"sid": 323776559197148
 						},
 						{
 							"name": "simpleName",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
-							"sid": 918344827624248
+							"comment": "The simple name of the object for which we are looking up a value.",
+							"sid": 663050307506003
 						},
 						{
 							"name": "targetColumn",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
-							"sid": 291672800255140
+							"comment": "The header of the column that contains the value which we are looking up.",
+							"sid": 165061868634179
 						}
 					],
 					"eventType": "function-block",
@@ -17253,7 +17263,7 @@
 						{
 							"id": "pick-by-comparison",
 							"objectClass": "System",
-							"sid": 787369920357309,
+							"sid": 486795755802062,
 							"parameters": {
 								"object": "queriedArray",
 								"expression": "queriedArray.ObjectTypeName",
@@ -17268,7 +17278,7 @@
 							"text": "Pick the array that was passed. The calling event might not pick it, so we can't use \"copy picked\"."
 						}
 					],
-					"sid": 643674845440053,
+					"sid": 586304870816681,
 					"children": [
 						{
 							"eventType": "variable",
@@ -17278,7 +17288,7 @@
 							"comment": "simpleName should always be the first column.",
 							"isStatic": false,
 							"isConstant": true,
-							"sid": 763432263503828
+							"sid": 173358586676420
 						},
 						{
 							"eventType": "variable",
@@ -17288,7 +17298,7 @@
 							"comment": "",
 							"isStatic": true,
 							"isConstant": false,
-							"sid": 559595863195308
+							"sid": 143271006801768
 						},
 						{
 							"eventType": "block",
@@ -17296,7 +17306,7 @@
 								{
 									"id": "for-each-element",
 									"objectClass": "queriedArray",
-									"sid": 165803417552242,
+									"sid": 419878359957367,
 									"parameters": {
 										"axes": "x"
 									}
@@ -17304,7 +17314,7 @@
 								{
 									"id": "compare-current-value",
 									"objectClass": "queriedArray",
-									"sid": 156802794488655,
+									"sid": 207218969616039,
 									"parameters": {
 										"comparison": 0,
 										"value": "targetColumn"
@@ -17314,24 +17324,24 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "loop through the column headers to find the columns we want"
-								},
-								{
-									"id": "stop-loop",
-									"objectClass": "System",
-									"sid": 923539382056593
+									"text": "Loop through the headers to find the columns we want."
 								},
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 878163469440177,
+									"sid": 384455726850362,
 									"parameters": {
 										"variable": "targetColumnNumber",
 										"value": "queriedArray.CurX"
 									}
+								},
+								{
+									"id": "stop-loop",
+									"objectClass": "System",
+									"sid": 840299122371024
 								}
 							],
-							"sid": 946216334824181
+							"sid": 371823461720625
 						},
 						{
 							"eventType": "block",
@@ -17339,7 +17349,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 801859324295177,
+									"sid": 161051338867061,
 									"parameters": {
 										"name": "NOT_USED",
 										"start-index": "LOOP_OFFSET",
@@ -17349,7 +17359,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 628104764048334,
+									"sid": 698732887280317,
 									"parameters": {
 										"first-value": "queriedArray.At(SIMPLE_NAME_COLUMN_NUMBER, loopindex)",
 										"comparison": 0,
@@ -17360,23 +17370,23 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Loop through the cells of just that column to find the value we want, skipping the header row."
-								},
-								{
-									"id": "stop-loop",
-									"objectClass": "System",
-									"sid": 648171697141546
+									"text": "Loop through the simpleName column values to find our object, and use that to find the coordinates of the value we want."
 								},
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 681227524204174,
+									"sid": 797327502662506,
 									"parameters": {
 										"value": "queriedArray.At(targetColumnNumber, loopindex)"
 									}
+								},
+								{
+									"id": "stop-loop",
+									"objectClass": "System",
+									"sid": 472660355234862
 								}
 							],
-							"sid": 895434417246662
+							"sid": 316964224788847
 						}
 					]
 				},
@@ -17447,72 +17457,6 @@
 					"sid": 454046452601444
 				},
 				{
-					"functionName": "getSheetNumber",
-					"functionDescription": "Find the number of a sheet by its name",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "nameArray",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The array which contains the names of the sheets",
-							"sid": 698802982475783
-						},
-						{
-							"name": "value",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The value that we want the sheet of",
-							"sid": 219389862100279
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [
-						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 435052508819299,
-							"parameters": {
-								"object": "queriedArray",
-								"expression": "queriedArray.ObjectTypeName",
-								"comparison": 0,
-								"value": "nameArray"
-							}
-						},
-						{
-							"id": "for-each-element",
-							"objectClass": "queriedArray",
-							"sid": 587115061092778,
-							"parameters": {
-								"axes": "xy"
-							}
-						},
-						{
-							"id": "compare-current-value",
-							"objectClass": "queriedArray",
-							"sid": 480528147530679,
-							"parameters": {
-								"comparison": 0,
-								"value": "value"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 166673294832581,
-							"parameters": {
-								"value": "queriedArray.CurY"
-							}
-						}
-					],
-					"sid": 850952352225054
-				},
-				{
 					"functionName": "contains",
 					"functionDescription": "Whether or not a string contains another string.",
 					"functionCategory": "data",
@@ -17537,17 +17481,140 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
+					"actions": [],
+					"sid": 997592836136537,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "NOT_FOUND",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "The value that the system expression 'find' returns when the specified text cannot be found.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 896694598761115
+						},
+						{
+							"eventType": "variable",
+							"name": "TRUE",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The numerical representation of TRUE.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 858674692571142
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 338571283724726,
+									"parameters": {
+										"first-value": "find(text, findText)",
+										"comparison": 1,
+										"second-value": "NOT_FOUND"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 517167990148056,
+									"parameters": {
+										"value": "TRUE"
+									}
+								}
+							],
+							"sid": 179659706590272
+						}
+					]
+				},
+				{
+					"functionName": "getDegrees",
+					"functionDescription": "Round a specified angle to nearest allowed angle, specified by ARC.",
+					"functionCategory": "data",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "theAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The angle to round off.",
+							"sid": 163668324124135
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
 					"actions": [
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
-							"sid": 931450356339835,
+							"sid": 522131157680944,
 							"parameters": {
-								"value": "find(text, findText) = -1 ? 0 : 1"
+								"value": "HALF_CIRCLE"
 							}
 						}
 					],
-					"sid": 997592836136537
+					"sid": 170318264995268,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "result",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 628423147061369
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 262519311533115,
+									"parameters": {
+										"variable": "result",
+										"value": "round(theAngle / ARC) * ARC"
+									}
+								}
+							],
+							"sid": 198982935476380
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 211619955088314,
+									"parameters": {
+										"variable": "result",
+										"comparison": 1,
+										"value": "NEGATIVE_HALF_CRICLE"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 140820931283528,
+									"parameters": {
+										"value": "result"
+									}
+								}
+							],
+							"sid": 812509457884939
+						}
+					]
 				},
 				{
 					"functionName": "randomInteger",
@@ -17578,90 +17645,6 @@
 						}
 					],
 					"sid": 711240350113436
-				},
-				{
-					"functionName": "getDegrees",
-					"functionDescription": "Round a specified angle to nearest allowed angle, specified by ARC.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "theAngle",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The angle to round off.",
-							"sid": 163668324124135
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 986287321322149,
-							"parameters": {
-								"value": "HALF_CIRCLE"
-							}
-						}
-					],
-					"sid": 113956568700815,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "result",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 509871805041353
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 648041471948554,
-									"parameters": {
-										"variable": "result",
-										"value": "round(theAngle / ARC) * ARC"
-									}
-								}
-							],
-							"sid": 160127737921056
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 121789508716830,
-									"parameters": {
-										"variable": "result",
-										"comparison": 1,
-										"value": "-HALF_CIRCLE"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 561339307510478,
-									"parameters": {
-										"value": "result"
-									}
-								}
-							],
-							"sid": 510623748372199
-						}
-					]
 				},
 				{
 					"functionName": "countSoundVarations",
@@ -17909,7 +17892,7 @@
 							"name": "active",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "whether or not to activate or deactivate this mod",
+							"comment": "Whether or not to activate or deactivate this mod.",
 							"sid": 608758543573668
 						}
 					],
@@ -17923,7 +17906,7 @@
 							"name": "mod",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
+							"comment": "The mod we're currently working on in the below loop.",
 							"isStatic": true,
 							"isConstant": false,
 							"sid": 675202259414484
@@ -18018,21 +18001,21 @@
 							"name": "active",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "",
+							"comment": "Whether or not to activate or deactivate this mod.",
 							"sid": 185032068040398
 						},
 						{
 							"name": "modDescription",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
+							"comment": "The actual contents of this mod.",
 							"sid": 668551496321785
 						},
 						{
 							"name": "ModName",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
+							"comment": "The simple name of this mod.",
 							"sid": 563496748576604
 						}
 					],
@@ -18117,14 +18100,14 @@
 							"name": "mod",
 							"type": "string",
 							"initialValue": "",
-							"comment": "the mod description from which to extract the string",
+							"comment": "The mod description from which to extract the string.",
 							"sid": 615512659832660
 						},
 						{
 							"name": "index",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "the index of the value to extract",
+							"comment": "The index of the value to extract.",
 							"sid": 799799702803442
 						}
 					],

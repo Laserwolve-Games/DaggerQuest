@@ -35,6 +35,22 @@
 		},
 		{
 			"eventType": "comment",
+			"text": "Yellow comments are something we need to do.",
+			"text-color": [
+				0,
+				0,
+				0,
+				1
+			],
+			"background-color": [
+				1,
+				1,
+				0,
+				1
+			]
+		},
+		{
+			"eventType": "comment",
 			"text": "Default formatted comments are brief summaries of functionality in plain English."
 		},
 		{
@@ -48,7 +64,7 @@
 			"initialValue": "0",
 			"comment": "The index of the parameter to forward in function calls in order to forward all parameters.",
 			"isStatic": false,
-			"isConstant": false,
+			"isConstant": true,
 			"sid": 335516532065310
 		},
 		{
@@ -98,7 +114,7 @@
 			"initialValue": "2",
 			"comment": "Used in loops when going from 1- to 0-based, also compensating for an extra token at the end.",
 			"isStatic": false,
-			"isConstant": false,
+			"isConstant": true,
 			"sid": 546866166719344
 		},
 		{
@@ -113,6 +129,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "EMPTY",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The slot identifier value that indicates this slot is empty.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 286410743146546
+		},
+		{
+			"eventType": "variable",
 			"name": "END_OF_TICK",
 			"type": "number",
 			"initialValue": "0",
@@ -120,6 +146,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 806922775978421
+		},
+		{
+			"eventType": "variable",
+			"name": "FIRST_INSTANCE",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The index of first instance of the current picked objects.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 633748547622797
 		},
 		{
 			"eventType": "variable",
@@ -303,6 +339,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "TRUE",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The numerical representation of TRUE.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 753315015658837
+		},
+		{
+			"eventType": "variable",
 			"name": "TWEEN_REPEAT_COUNT",
 			"type": "number",
 			"initialValue": "1",
@@ -330,6 +376,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 988159326066054
+		},
+		{
+			"eventType": "variable",
+			"name": "BLOCK_KEYWORD",
+			"type": "string",
+			"initialValue": "block",
+			"comment": "The name of the block animation, used by the player and some NPCs.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 112860164553468
 		},
 		{
 			"eventType": "variable",
@@ -373,16 +429,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "EMPTY",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "The slot identifier value that indicates this slot is empty.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 125344247350922
-		},
-		{
-			"eventType": "variable",
 			"name": "ENEMY_ABILITIES_FUNCTION_MAP",
 			"type": "string",
 			"initialValue": "enemyAbilities",
@@ -410,16 +456,6 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 553775390233972
-		},
-		{
-			"eventType": "variable",
-			"name": "FIRST_INSTANCE",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "The index of first instance of the current picked objects.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 993556990283208
 		},
 		{
 			"eventType": "variable",
@@ -460,6 +496,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 330764945802149
+		},
+		{
+			"eventType": "variable",
+			"name": "HIT_KEYWORD",
+			"type": "string",
+			"initialValue": "hit",
+			"comment": "Used for calling the hit animation for the player and enemies.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 797268236706134
 		},
 		{
 			"eventType": "variable",
@@ -608,7 +654,7 @@
 			"initialValue": "0",
 			"comment": "How loudly to play dialog, in decibels.",
 			"isStatic": false,
-			"isConstant": true,
+			"isConstant": false,
 			"sid": 548864640941147
 		},
 		{
@@ -1677,10 +1723,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 791590199238192,
+											"sid": 160598410111485,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "OBTAINED_ITEM_KEYWORD & Functions.randomInteger(1)",
+												"audio-file-name": "Functions.soundEffectName(OBTAINED_ITEM_KEYWORD)",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "player",
@@ -1955,10 +2001,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 885571692630410,
+											"sid": 289473322355770,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "loot.sound & \"Drop\" & Functions.randomInteger(1)",
+												"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "loot",
@@ -4627,7 +4673,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Can't have an else condition in an OR block"
+											"text": "Can't have an else condition in an OR block."
 										}
 									],
 									"sid": 589012115814521,
@@ -4895,10 +4941,10 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 430556632279982,
+															"sid": 116054376103434,
 															"parameters": {
 																"folder": "sounds",
-																"audio-file-name": "loot.sound & \"Drop\" & Functions.randomInteger(1)",
+																"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
 																"loop": "not-looping",
 																"volume": "effectsVolume",
 																"object": "loot",
@@ -5482,10 +5528,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 577785499059829,
+													"sid": 469827544069307,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "item.sound & \"Equip\" & Functions.randomInteger(1)",
+														"audio-file-name": "Functions.soundEffectName(item.sound & \"Equip\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "player",
@@ -5733,10 +5779,10 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 482654152290768,
+																	"sid": 787194761829113,
 																	"parameters": {
 																		"folder": "sounds",
-																		"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
+																		"audio-file-name": "Functions.soundEffectName(\"unequip\")",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "player",
@@ -5844,10 +5890,10 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 104655560015408,
+															"sid": 738098858705689,
 															"parameters": {
 																"folder": "sounds",
-																"audio-file-name": "\"unequip\" & Functions.randomInteger(1)",
+																"audio-file-name": "Functions.soundEffectName(\"unequip\")",
 																"loop": "not-looping",
 																"volume": "effectsVolume",
 																"object": "body",
@@ -6335,7 +6381,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "We have lots of variables, like uidOfClicked, that should be scoped down onto the player.",
+					"text": "We have lots of variables, like 'uidOfClicked', that should be scoped down onto the player.",
 					"text-color": [
 						0.7843137254901961,
 						0.7843137254901961,
@@ -6612,13 +6658,11 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 226847805408058,
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 999837993442947,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
+										"value": "Functions.isPlayerAlive"
 									}
 								}
 							],
@@ -6884,13 +6928,11 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 310663245428299,
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 989508834801699,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
+										"value": "Functions.isPlayerAlive"
 									}
 								},
 								{
@@ -6984,14 +7026,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 211795541469612,
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 162999275165245,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 3,
-										"value": "0"
-									}
+										"value": "Functions.isPlayerAlive"
+									},
+									"isInverted": true
 								},
 								{
 									"id": "trigger-once-while-true",
@@ -7028,39 +7069,51 @@
 								{
 									"callFunction": "removePlayerControl",
 									"sid": 806693191738100
+								},
+								{
+									"callFunction": "destroyPlayerProjectiles",
+									"sid": 701085048361946
 								}
 							],
-							"sid": 631777258825799,
+							"sid": 631777258825799
+						},
+						{
+							"functionName": "isPlayerAlive",
+							"functionDescription": "Whether or not the player is alive.",
+							"functionCategory": "player",
+							"functionReturnType": "number",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 991268001123416,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "DEAD_THRESHOLD",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The number at which the player is considered dead.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 120457471030328
+								},
+								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-children",
-											"objectClass": "player",
-											"sid": 616906564021456,
-											"parameters": {
-												"child": "projectile",
-												"which": "own"
-											}
-										},
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "projectile",
-											"sid": 705670235643340,
-											"parameters": {
-												"instance-variable": "isMelee"
-											}
-										}
-									],
+									"conditions": [],
 									"actions": [
 										{
-											"id": "destroy",
-											"objectClass": "projectile",
-											"sid": 187159717065772
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 272184138726283,
+											"parameters": {
+												"value": "player.currentHealth > DEAD_THRESHOLD"
+											}
 										}
 									],
-									"sid": 524782072182495
+									"sid": 552946328552370
 								}
 							]
 						}
@@ -7078,13 +7131,11 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 125995727596137,
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 822686522624681,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
+										"value": "Functions.isPlayerAlive"
 									}
 								}
 							],
@@ -7990,7 +8041,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Reset `uidOfClicked` if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects the player is immediately next to."
+											"text": "Reset 'uidOfClicked' if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects the player is immediately next to."
 										},
 										{
 											"id": "reset-eventvar",
@@ -8509,18 +8560,9 @@
 																{
 																	"id": "evaluate-expression",
 																	"objectClass": "System",
-																	"sid": 128156888964181,
+																	"sid": 144925242634653,
 																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"block\")"
-																	},
-																	"isInverted": true
-																},
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 418691805072070,
-																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"hit\")"
+																		"value": "Functions.isPlayerChanneling"
 																	},
 																	"isInverted": true
 																}
@@ -8529,10 +8571,10 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 562163190607455,
+																	"sid": 605895420744484,
 																	"parameters": {
 																		"folder": "sounds",
-																		"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
+																		"audio-file-name": "Functions.soundEffectName(\"basicAttack\")",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "gear",
@@ -8686,30 +8728,19 @@
 																			"eventType": "block",
 																			"conditions": [
 																				{
-																					"id": "compare-instance-variable",
-																					"objectClass": "player",
-																					"sid": 137278534596963,
+																					"id": "evaluate-expression",
+																					"objectClass": "System",
+																					"sid": 299742534212132,
 																					"parameters": {
-																						"instance-variable": "currentHealth",
-																						"comparison": 4,
-																						"value": "0"
+																						"value": "Functions.isPlayerAlive"
 																					}
 																				},
 																				{
 																					"id": "evaluate-expression",
 																					"objectClass": "System",
-																					"sid": 989644719242656,
+																					"sid": 903935217143303,
 																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"block\")"
-																					},
-																					"isInverted": true
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 363965503029823,
-																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"hit\")"
+																						"value": "Functions.isPlayerChanneling"
 																					},
 																					"isInverted": true
 																				}
@@ -9047,18 +9078,9 @@
 																{
 																	"id": "evaluate-expression",
 																	"objectClass": "System",
-																	"sid": 211883634937261,
+																	"sid": 453808523403211,
 																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"block\")"
-																	},
-																	"isInverted": true
-																},
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 746800146344135,
-																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"hit\")"
+																		"value": "Functions.isPlayerChanneling"
 																	},
 																	"isInverted": true
 																}
@@ -9067,10 +9089,10 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 388389198812716,
+																	"sid": 517606762254179,
 																	"parameters": {
 																		"folder": "sounds",
-																		"audio-file-name": "\"heroicStrike\" & Functions.randomInteger(1)",
+																		"audio-file-name": "Functions.soundEffectName(\"heroicStrike\")",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "gear",
@@ -9224,30 +9246,19 @@
 																			"eventType": "block",
 																			"conditions": [
 																				{
-																					"id": "compare-instance-variable",
-																					"objectClass": "player",
-																					"sid": 396700541168287,
+																					"id": "evaluate-expression",
+																					"objectClass": "System",
+																					"sid": 441586718030209,
 																					"parameters": {
-																						"instance-variable": "currentHealth",
-																						"comparison": 4,
-																						"value": "0"
+																						"value": "Functions.isPlayerAlive"
 																					}
 																				},
 																				{
 																					"id": "evaluate-expression",
 																					"objectClass": "System",
-																					"sid": 723472727467631,
+																					"sid": 421178038305265,
 																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"block\")"
-																					},
-																					"isInverted": true
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 906728092914930,
-																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"hit\")"
+																						"value": "Functions.isPlayerChanneling"
 																					},
 																					"isInverted": true
 																				}
@@ -9587,18 +9598,9 @@
 																{
 																	"id": "evaluate-expression",
 																	"objectClass": "System",
-																	"sid": 391070567208621,
+																	"sid": 154722616129231,
 																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"block\")"
-																	},
-																	"isInverted": true
-																},
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 609875190768985,
-																	"parameters": {
-																		"value": "Functions.isAnimationPlaying(\"hit\")"
+																		"value": "Functions.isPlayerChanneling"
 																	},
 																	"isInverted": true
 																}
@@ -9656,15 +9658,6 @@
 																			"sid": 271060225105923,
 																			"parameters": {
 																				"instance-variable": "isMelee",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 419687056987356,
-																			"parameters": {
-																				"instance-variable": "piercing",
 																				"value": "true"
 																			}
 																		},
@@ -9766,30 +9759,19 @@
 																			"eventType": "block",
 																			"conditions": [
 																				{
-																					"id": "compare-instance-variable",
-																					"objectClass": "player",
-																					"sid": 742078490854702,
+																					"id": "evaluate-expression",
+																					"objectClass": "System",
+																					"sid": 286139614008247,
 																					"parameters": {
-																						"instance-variable": "currentHealth",
-																						"comparison": 4,
-																						"value": "0"
+																						"value": "Functions.isPlayerAlive"
 																					}
 																				},
 																				{
 																					"id": "evaluate-expression",
 																					"objectClass": "System",
-																					"sid": 299667508880840,
+																					"sid": 983526190974832,
 																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"block\")"
-																					},
-																					"isInverted": true
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 338251291243968,
-																					"parameters": {
-																						"value": "Functions.isAnimationPlaying(\"hit\")"
+																						"value": "Functions.isPlayerChanneling"
 																					},
 																					"isInverted": true
 																				}
@@ -10036,13 +10018,11 @@
 									"sid": 833216857476881
 								},
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 507327242231627,
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 198837254592752,
 									"parameters": {
-										"instance-variable": "currentHealth",
-										"comparison": 4,
-										"value": "0"
+										"value": "Functions.isPlayerAlive"
 									}
 								},
 								{
@@ -10171,7 +10151,19 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "TODO: restart the level or send the player somewhere and revive them"
+											"text": "TODO: Restart the level or send the player somewhere and revive them.",
+											"text-color": [
+												0,
+												0,
+												0,
+												1
+											],
+											"background-color": [
+												1,
+												1,
+												0,
+												1
+											]
 										}
 									],
 									"sid": 379379093595967
@@ -10182,47 +10174,27 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 382961681121119,
+											"sid": 412943244926128,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"block\")"
+												"value": "Functions.isPlayerChanneling"
 											}
 										},
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 797564043698334,
+											"sid": 738719796360461,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"hit\")"
+												"value": "Functions.isPlayerAlive"
 											}
 										}
 									],
-									"actions": [],
-									"sid": 408650609700262,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "player",
-													"sid": 225688108630369,
-													"parameters": {
-														"instance-variable": "currentHealth",
-														"comparison": 4,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "restorePlayerControl",
-													"sid": 216350127234151
-												}
-											],
-											"sid": 213628308730616
+											"callFunction": "restorePlayerControl",
+											"sid": 516463844288727
 										}
 									],
-									"isOrBlock": true
+									"sid": 408650609700262
 								}
 							]
 						},
@@ -10309,12 +10281,7 @@
 							],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "startPoint is a string because it needs to get passed from an ability. Only update the animation if the player isn't current blocking or getting hitstunned."
-								}
-							],
+							"actions": [],
 							"sid": 910128125988487,
 							"children": [
 								{
@@ -10492,6 +10459,71 @@
 								}
 							],
 							"sid": 840288827474922
+						},
+						{
+							"functionName": "isPlayerChanneling",
+							"functionDescription": "Whether or not the player is channeling.",
+							"functionCategory": "player",
+							"functionReturnType": "number",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "We can't turn a function into an OR block.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								}
+							],
+							"sid": 508942672402914,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 519520471044225,
+											"parameters": {
+												"value": "Functions.isAnimationPlaying(BLOCK_KEYWORD)"
+											}
+										},
+										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 263786997563258,
+											"parameters": {
+												"value": "Functions.isAnimationPlaying(HIT_KEYWORD)"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 304742408351988,
+											"parameters": {
+												"value": "TRUE"
+											}
+										}
+									],
+									"sid": 398121546548091,
+									"isOrBlock": true
+								}
+							]
 						}
 					],
 					"sid": 121151613548917
@@ -11307,18 +11339,18 @@
 								},
 								{
 									"id": "set-text",
-									"objectClass": "stunThreshold",
-									"sid": 999319739569214,
+									"objectClass": "flinchResistance",
+									"sid": 279838501341434,
 									"parameters": {
-										"text": "player.hitstunThreshold & \"%\""
+										"text": "player.flinchResistance"
 									}
 								},
 								{
 									"id": "set-text",
-									"objectClass": "blockChance",
-									"sid": 391527888240095,
+									"objectClass": "armor",
+									"sid": 150247730189692,
 									"parameters": {
-										"text": "player.blockChance & \"%\""
+										"text": "player.armor"
 									}
 								},
 								{
@@ -11340,49 +11372,49 @@
 								{
 									"id": "set-text",
 									"objectClass": "physicalResistance",
-									"sid": 748330157098833,
+									"sid": 716396584553827,
 									"parameters": {
-										"text": "player.physicalResistance  & \"%\""
+										"text": "player.physicalResistance"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "coldResistance",
-									"sid": 238460396253314,
+									"sid": 688085647238283,
 									"parameters": {
-										"text": "player.coldResistance  & \"%\""
+										"text": "player.coldResistance"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "fireResistance",
-									"sid": 127099995750770,
+									"sid": 177417260742908,
 									"parameters": {
-										"text": "player.fireResistance & \"%\""
+										"text": "player.fireResistance"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "lightningResistance",
-									"sid": 875807040171870,
+									"sid": 745910141466643,
 									"parameters": {
-										"text": "player.lightningResistance & \"%\""
+										"text": "player.lightningResistance"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "arcaneResistance",
-									"sid": 885663782193657,
+									"sid": 415966770633091,
 									"parameters": {
-										"text": "player.arcaneResistance & \"%\""
+										"text": "player.arcaneResistance"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "corruptResistance",
-									"sid": 228165600975839,
+									"sid": 696165158223273,
 									"parameters": {
-										"text": "player.corruptResistance & \"%\""
+										"text": "player.corruptResistance"
 									}
 								},
 								{
@@ -11737,7 +11769,7 @@
 											"objectClass": "Audio",
 											"sid": 170999643709418,
 											"parameters": {
-												"audio-file": "menuClose",
+												"audio-file": "menuClose0",
 												"loop": "not-looping",
 												"volume": "interfaceVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
@@ -13440,7 +13472,7 @@
 											"objectClass": "Audio",
 											"sid": 803477319672571,
 											"parameters": {
-												"audio-file": "uncheck",
+												"audio-file": "uncheck0",
 												"loop": "not-looping",
 												"volume": "interfaceVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
@@ -13474,7 +13506,7 @@
 											"objectClass": "Audio",
 											"sid": 838215901803452,
 											"parameters": {
-												"audio-file": "check",
+												"audio-file": "check0",
 												"loop": "not-looping",
 												"volume": "interfaceVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
@@ -15028,6 +15060,10 @@
 											}
 										},
 										{
+											"callFunction": "destroyEnemyProjectiles",
+											"sid": 648138623231764
+										},
+										{
 											"id": "destroy",
 											"objectClass": "enemy",
 											"sid": 661455970113275
@@ -15044,10 +15080,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 203241271417830,
+											"sid": 399878196339160,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "enemy.type & SEPARATOR & \"die\" & SEPARATOR & Functions.randomInteger(1)",
+												"audio-file-name": "Functions.soundEffectName(enemy.type & SEPARATOR & \"die\")",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "enemyBody",
@@ -15132,7 +15168,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played.\n\nScenario: Enemy is currently hitstunned, and playing the hit animation. They get hit with another ability that reduces their action speed.\n\nWith in-line waits: Not possible, post-animation events would fire before the animation finished, resulting in many bugs.\n\nWith `on any animation finished' + find() trigger: post-animation events trigger correctly as they're initiated by a genuine trigger that runs only when an animation finishes."
+									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played.\n\nScenario: Enemy is currently hitstunned, and playing the hit animation. They get hit with another ability that reduces their action speed.\n\nWith in-line waits: Not possible, post-animation events would fire before the animation finished, resulting in many bugs.\n\nWith 'on any animation finished' + find() trigger: post-animation events trigger correctly as they're initiated by a genuine trigger that runs only when an animation finishes."
 								}
 							],
 							"sid": 915717840994810,
@@ -15219,10 +15255,10 @@
 												{
 													"id": "pick-by-evaluate",
 													"objectClass": "System",
-													"sid": 391362075254093,
+													"sid": 347322284570872,
 													"parameters": {
 														"object": "enemyBody",
-														"expression": "Functions.contains(enemyBody.AnimationName, \"hit\")"
+														"expression": "Functions.contains(enemyBody.AnimationName, HIT_KEYWORD)"
 													}
 												}
 											],
@@ -15393,10 +15429,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 913064543609633,
+													"sid": 141542266481875,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "\"basicAttack\" & Functions.randomInteger(1)",
+														"audio-file-name": "Functions.soundEffectName(\"basicAttack\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
@@ -15454,15 +15490,6 @@
 															"sid": 750577455296826,
 															"parameters": {
 																"instance-variable": "isMelee",
-																"value": "true"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 400758888163180,
-															"parameters": {
-																"instance-variable": "piercing",
 																"value": "true"
 															}
 														},
@@ -15867,7 +15894,7 @@
 																	"objectClass": "Audio",
 																	"sid": 834701785986661,
 																	"parameters": {
-																		"audio-file": "arrowShot",
+																		"audio-file": "arrowShot0",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "crossbowBolt",
@@ -16203,7 +16230,7 @@
 																	"objectClass": "Audio",
 																	"sid": 418124371483830,
 																	"parameters": {
-																		"audio-file": "lightningOrb",
+																		"audio-file": "lightningOrb0",
 																		"loop": "looping",
 																		"volume": "effectsVolume",
 																		"object": "lightningOrb",
@@ -16234,12 +16261,28 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "shadows",
-			"description": "The player's shadows are global because we add them to a layout, check the 'global' checkbox, then delete them from that layout.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "comment",
 					"text": "A 'for' loop over the shadows moving them behind their hasShadow didn't work, neither did the Z elevation hierarchy parameter.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "The player's shadows are global because we add them to a layout, check the 'global' checkbox, then delete them from that layout.",
 					"text-color": [
 						0.7843137254901961,
 						0.7843137254901961,
@@ -16449,7 +16492,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "Having a projectile object on the main menu in the margin prevents an issue where \"bullet - set angle of motion\" only ever sets the projectile's angle of motion to either 0 or 180. ",
+					"text": "Having a projectile object on the main menu in the margin prevents an issue where 'bullet - set angle of motion' only ever sets the projectile's angle of motion to either 0 or 180. ",
 					"text-color": [
 						0.7843137254901961,
 						0.7843137254901961,
@@ -16531,7 +16574,19 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "TODO: We want projectiles not to go through props, but this will destroy a projectile even if it lightly grazes a prop, that's not ideal"
+							"text": "We could shear the shape of projectiles using mesh points when they collide with a prop.\nWe could have a boolean flag on props that they can be attacked over.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0,
+								0,
+								0.39215686274509803,
+								1
+							]
 						},
 						{
 							"id": "destroy",
@@ -16586,19 +16641,19 @@
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "enemy",
-									"sid": 868142860697604,
+									"sid": 658377478034636,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
+										"value": "projectile.slashDamage * Functions.toPercentage(Self.physicalResistance)"
 									}
 								},
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "enemy",
-									"sid": 601406039109145,
+									"sid": 701243432605989,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"value": "projectile.smashDamage * (1 - Self.physicalResistance)"
+										"value": "projectile.smashDamage * Functions.toPercentage(Self.physicalResistance)"
 									}
 								},
 								{
@@ -16671,10 +16726,6 @@
 											"text": "Hitstun the enemy, as long as they aren't Unflinching and the projectile didn't kill them."
 										},
 										{
-											"type": "comment",
-											"text": "TODO: Can enemies get stunlocked?"
-										},
-										{
 											"id": "stop",
 											"objectClass": "enemy",
 											"sid": 258415481730862,
@@ -16692,19 +16743,19 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 773190845541458,
+											"sid": 536655600381851,
 											"parameters": {
-												"animation": "\"hit\" & SEPARATOR & enemy.degrees",
+												"animation": "HIT_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 279145108647548,
+											"sid": 489345607811557,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "enemy.type & SEPARATOR & \"hit\"",
+												"audio-file-name": "enemy.type & SEPARATOR & HIT_KEYWORD",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "enemyBody",
@@ -16713,72 +16764,13 @@
 												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
 												"tag-optional": "NOT_USED"
 											}
+										},
+										{
+											"callFunction": "destroyEnemyProjectiles",
+											"sid": 680466461953344
 										}
 									],
-									"sid": 305641316456038,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 519966984263376,
-													"parameters": {
-														"object": "projectile"
-													}
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "enemy",
-													"sid": 387006315558891,
-													"parameters": {
-														"child": "projectile",
-														"which": "own"
-													}
-												}
-											],
-											"actions": [],
-											"sid": 813950715761836,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "projectile",
-															"sid": 532359483178596,
-															"parameters": {
-																"instance-variable": "enabled"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "projectile",
-															"sid": 949208087040951,
-															"parameters": {
-																"instance-variable": "isMelee"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "destroy ranged projectiles owned by this enemy that: haven't been enabled (visually generated) yet, or are melee projectiles"
-														},
-														{
-															"id": "destroy",
-															"objectClass": "projectile",
-															"sid": 690045203004240
-														}
-													],
-													"sid": 953439831951762,
-													"isOrBlock": true
-												}
-											]
-										}
-									]
+									"sid": 305641316456038
 								},
 								{
 									"eventType": "block",
@@ -16839,150 +16831,77 @@
 									"sid": 386149964426580
 								},
 								{
+									"eventType": "comment",
+									"text": "TODO: The only reason we don't play the hit and block animations in non-combat areas is because our non-combat idle animation is posed significantly differently than those two animations. It would look bad. Once we get different animations, remove those conditions.",
+									"text-color": [
+										0,
+										0,
+										0,
+										1
+									],
+									"background-color": [
+										1,
+										1,
+										0,
+										1
+									]
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 899474723743372,
+											"sid": 968549922738934,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"block\")"
+												"value": "Functions.isPlayerChanneling"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "player",
+											"sid": 476151660177644,
+											"parameters": {
+												"object": "nonCombatArea"
 											},
 											"isInverted": true
 										},
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 307817542790347,
+											"sid": 260306359629209,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"hit\")"
-											},
-											"isInverted": true
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 662190681012854,
-											"parameters": {
-												"instance-variable": "currentHealth",
-												"comparison": 4,
-												"value": "0"
+												"value": "Functions.isPlayerAlive"
 											}
 										},
 										{
-											"id": "pick-by-comparison",
+											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 590785792254548,
+											"sid": 722866731052195,
 											"parameters": {
-												"object": "gear",
-												"expression": "gear.type",
-												"comparison": 0,
-												"value": "\"offHand\""
+												"value": "Functions.percentageRandom(player.armor)"
 											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 304888180753921,
-											"parameters": {
-												"instance-variable": "blockChance",
-												"comparison": 5,
-												"value": "floor(random(1, 100))"
-											}
-										},
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "player",
-											"sid": 602935734342984,
-											"parameters": {
-												"object": "nonCombatArea"
-											},
-											"isInverted": true
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "If the player is alive, isn't in a non-combat area, has an offHand item equipped, isn't currently blocking or getting hit, and successfully blocks the attack, play the block animation, then we're done."
+											"text": "If the player is alive, isn't in a non-combat area, has an offHand item equipped, isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
 										},
 										{
 											"callFunction": "channeledAnimation",
-											"sid": 837860087589841,
+											"sid": 584308707672425,
 											"parameters": [
-												"\"block\""
+												"BLOCK_KEYWORD"
 											]
+										},
+										{
+											"callFunction": "destroyPlayerProjectiles",
+											"sid": 531557522328070
 										}
 									],
-									"sid": 661315679644106,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-all",
-													"objectClass": "System",
-													"sid": 309486188386674,
-													"parameters": {
-														"object": "projectile"
-													}
-												},
-												{
-													"id": "pick-children",
-													"objectClass": "player",
-													"sid": 232602649743126,
-													"parameters": {
-														"child": "projectile",
-														"which": "own"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "destroy",
-													"objectClass": "projectile",
-													"sid": 922785036681924
-												}
-											],
-											"sid": 162273133516722,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "projectile",
-															"sid": 907979179229907,
-															"parameters": {
-																"instance-variable": "enabled"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "projectile",
-															"sid": 186493852144732,
-															"parameters": {
-																"instance-variable": "isMelee"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "destroy ranged projectiles owned by the player that: haven't been enabled (visually generated) yet, or are melee projectiles"
-														},
-														{
-															"id": "destroy",
-															"objectClass": "projectile",
-															"sid": 266194346335621
-														}
-													],
-													"sid": 727704609425814,
-													"isOrBlock": true
-												}
-											]
-										}
-									]
+									"sid": 661315679644106
 								},
 								{
 									"eventType": "block",
@@ -17010,28 +16929,28 @@
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 893185114435343,
+											"sid": 828001383305788,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.lightningDamage * (1 - Self.lightningResistance)"
+												"value": "projectile.lightningDamage * Functions.toPercentage(Self.lightningResistance)"
 											}
 										},
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 132008705769330,
+											"sid": 792527708937464,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.stabDamage * (1 - Self.physicalResistance)"
+												"value": "projectile.stabDamage * Functions.toPercentage(Self.physicalResistance)"
 											}
 										},
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 226885000296688,
+											"sid": 381416645378503,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.slashDamage * (1 - Self.physicalResistance)"
+												"value": "projectile.slashDamage * Functions.toPercentage(Self.physicalResistance)"
 											}
 										}
 									],
@@ -17043,138 +16962,58 @@
 												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 393642768034833,
+													"sid": 222353227608645,
 													"parameters": {
-														"value": "Functions.isAnimationPlaying(\"block\")"
+														"value": "Functions.isPlayerChanneling"
 													},
 													"isInverted": true
-												},
-												{
-													"id": "evaluate-expression",
-													"objectClass": "System",
-													"sid": 274847762388388,
-													"parameters": {
-														"value": "Functions.isAnimationPlaying(\"hit\")"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "player",
-													"sid": 353087544354699,
-													"parameters": {
-														"instance-variable": "currentHealth",
-														"comparison": 2,
-														"value": "playerHealthBeforeImpact - Self.maxHealth * Self.hitstunThreshold"
-													}
 												},
 												{
 													"id": "is-overlapping-another-object",
 													"objectClass": "player",
-													"sid": 406192656726866,
+													"sid": 971472195556840,
 													"parameters": {
 														"object": "nonCombatArea"
 													},
 													"isInverted": true
 												},
 												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 956923238129420,
+													"parameters": {
+														"value": "Functions.isPlayerAlive"
+													}
+												},
+												{
 													"id": "compare-instance-variable",
 													"objectClass": "player",
-													"sid": 884911017862546,
+													"sid": 726441733710015,
 													"parameters": {
 														"instance-variable": "currentHealth",
-														"comparison": 4,
-														"value": "0"
+														"comparison": 2,
+														"value": "playerHealthBeforeImpact - Self.maxHealth / Self.flinchResistance"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the player isn't currently blocking or getting hit, isn't in a non-combat area, and takes a hit that doesn't kill him, and that hit is bigger than the hitstun threshold, the player gets hitstunned"
-												},
-												{
-													"type": "comment",
-													"text": "TODO: Attributes for the player (can they be unflinching?)"
+													"text": "If the player isn't currently channeling, isn't in a non-combat area, and takes a hit that doesn't kill him, and that hit overcomes the flinch resistance, the player flinches."
 												},
 												{
 													"callFunction": "channeledAnimation",
-													"sid": 623891007101868,
+													"sid": 610029206061369,
 													"parameters": [
-														"\"hit\""
+														"HIT_KEYWORD"
 													]
+												},
+												{
+													"callFunction": "destroyPlayerProjectiles",
+													"sid": 923645577353547
 												}
 											],
-											"sid": 181406029233488,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-all",
-															"objectClass": "System",
-															"sid": 832696051238529,
-															"parameters": {
-																"object": "projectile"
-															}
-														},
-														{
-															"id": "pick-children",
-															"objectClass": "player",
-															"sid": 298756473891858,
-															"parameters": {
-																"child": "projectile",
-																"which": "own"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "destroy",
-															"objectClass": "projectile",
-															"sid": 582753969205622
-														}
-													],
-													"sid": 535985135308689,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "is-boolean-instance-variable-set",
-																	"objectClass": "projectile",
-																	"sid": 560527795339996,
-																	"parameters": {
-																		"instance-variable": "enabled"
-																	},
-																	"isInverted": true
-																},
-																{
-																	"id": "is-boolean-instance-variable-set",
-																	"objectClass": "projectile",
-																	"sid": 683487282486522,
-																	"parameters": {
-																		"instance-variable": "isMelee"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "destroy ranged projectiles owned by the player that: haven't been enabled (visually generated) yet, or are melee projectiles"
-																},
-																{
-																	"id": "destroy",
-																	"objectClass": "projectile",
-																	"sid": 655951994131290
-																}
-															],
-															"sid": 990020247873838,
-															"isOrBlock": true
-														}
-													]
-												}
-											]
+											"sid": 181406029233488
 										},
 										{
 											"eventType": "block",
@@ -17203,6 +17042,118 @@
 							]
 						}
 					]
+				},
+				{
+					"functionName": "destroyPlayerProjectiles",
+					"functionDescription": "Destroy the player's disabled and melee projectiles.",
+					"functionCategory": "player",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-children",
+							"objectClass": "player",
+							"sid": 678198066200160,
+							"parameters": {
+								"child": "projectile",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 855027409740190,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 500559225033654,
+									"parameters": {
+										"instance-variable": "enabled"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 432898517014673,
+									"parameters": {
+										"instance-variable": "isMelee"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "projectile",
+									"sid": 265954691400793
+								}
+							],
+							"sid": 747771375878940,
+							"isOrBlock": true
+						}
+					]
+				},
+				{
+					"functionName": "destroyEnemyProjectiles",
+					"functionDescription": "Destroy an enemy's disabled and melee projectiles.",
+					"functionCategory": "enemies",
+					"functionReturnType": "none",
+					"functionCopyPicked": true,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-children",
+							"objectClass": "enemy",
+							"sid": 455597814808588,
+							"parameters": {
+								"child": "projectile",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 233213550470465,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 560560920081516,
+									"parameters": {
+										"instance-variable": "enabled"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "projectile",
+									"sid": 501464944787625,
+									"parameters": {
+										"instance-variable": "isMelee"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "projectile",
+									"sid": 937450022823636
+								}
+							],
+							"sid": 457745888214251,
+							"isOrBlock": true
+						}
+					]
 				}
 			],
 			"sid": 725204103231325
@@ -17210,7 +17161,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "data management",
+			"title": "miscellaneous functions",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -17525,16 +17476,6 @@
 							"sid": 896694598761115
 						},
 						{
-							"eventType": "variable",
-							"name": "TRUE",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "The numerical representation of TRUE.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 858674692571142
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -17647,19 +17588,19 @@
 					]
 				},
 				{
-					"functionName": "randomInteger",
-					"functionDescription": "Returns a random integer, from (and including) 0, up to the specified number, inclusive.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
+					"functionName": "soundEffectName",
+					"functionDescription": "Get the file name of a random variation of this sound effect.",
+					"functionCategory": "audio",
+					"functionReturnType": "string",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "number",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "The number to use for the equation.",
-							"sid": 895124837964719
+							"name": "soundEffectName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The name of the sound effect for which to get a random variation.",
+							"sid": 869348266727950
 						}
 					],
 					"eventType": "function-block",
@@ -17668,219 +17609,112 @@
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
-							"sid": 675820740694679,
+							"sid": 320486060458189,
 							"parameters": {
-								"value": "round(random(1))"
+								"value": "soundEffectName & floor(random(soundEffectVariants.Get(soundEffectName)))"
 							}
 						}
 					],
-					"sid": 711240350113436
+					"sid": 650115739833359
 				},
 				{
-					"functionName": "countSoundVarations",
-					"functionDescription": "Get how many variants of a sound effect there is.",
+					"functionName": "toPercentage",
+					"functionDescription": "Converts points to a percentage with diminishing returns.",
 					"functionCategory": "data",
 					"functionReturnType": "number",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "audioName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the audio file in question.",
-							"sid": 981847279139940
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 937590606267233,
-							"parameters": {
-								"value": "Functions.countSoundVarationsPrivate(audioName, 0)"
-							}
-						}
-					],
-					"sid": 342265328501474
-				},
-				{
-					"functionName": "countSoundVarationsPrivate",
-					"functionDescription": "Wrapper for countSoundVarations. Shouldn't be called elsewhere.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "audioName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the audio file in question.",
-							"sid": 500073525064596
-						},
-						{
-							"name": "counter",
+							"name": "points",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "",
-							"sid": 679757342982496
+							"comment": "The points to convert.",
+							"sid": 288015731984776
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 521291821817055,
+					"sid": 889664236947837,
 					"children": [
 						{
 							"eventType": "variable",
-							"name": "AUDIO_COUNTER",
-							"type": "string",
-							"initialValue": "audioCounter",
-							"comment": "The text to which we'll prepend the counter, to use for the audio tag.",
+							"name": "DIMINISHER_STRENGTH",
+							"type": "number",
+							"initialValue": "100",
+							"comment": "How intensely to diminish the effectiveness of accruing points.",
 							"isStatic": false,
 							"isConstant": true,
-							"sid": 816341065732529
-						},
-						{
-							"eventType": "variable",
-							"name": "audioCounterTag",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The tag to use when counting sound effect variations.",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 906870386485105
+							"sid": 546842163152017
 						},
 						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "Silently play an audio file..."
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 564709700192003,
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 816211029576215,
 									"parameters": {
-										"variable": "audioCounterTag",
-										"value": "AUDIO_COUNTER & counter"
-									}
-								},
-								{
-									"id": "play-by-name",
-									"objectClass": "Audio",
-									"sid": 440470555963628,
-									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "audioName & counter",
-										"loop": "not-looping",
-										"volume": "SILENT",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "audioCounterTag"
+										"value": "points / (DIMINISHER_STRENGTH + points)"
 									}
 								}
 							],
-							"sid": 663856306735616
-						},
+							"sid": 911094353541427
+						}
+					]
+				},
+				{
+					"functionName": "percentageRandom",
+					"functionDescription": "Compare a percentage against a pseudo-randomly generated number.",
+					"functionCategory": "data",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "points",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The points to compare.",
+							"sid": 769088366011218
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": ".5 would be twice as likely to fail, 2 would be twice as likely to pass, 3 would be three times likely to pass, etc."
+						}
+					],
+					"sid": 581373026916618,
+					"children": [
 						{
 							"eventType": "variable",
-							"name": "AUDIO_COUNTER_INCREMENTER",
+							"name": "BASE_PROBABILITY",
 							"type": "number",
 							"initialValue": "1",
-							"comment": "How much to increase the counter when counting sound effect variations.",
+							"comment": "The likelihood of returning true or false.",
 							"isStatic": false,
 							"isConstant": true,
-							"sid": 506309434998498
+							"sid": 620318559915053
 						},
 						{
 							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-tag-playing",
-									"objectClass": "Audio",
-									"sid": 283893681481861,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								}
-							],
+							"conditions": [],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "If it exists, increase the counter and try again."
-								},
-								{
-									"type": "comment",
-									"text": "Stop the audio before recursively calling this function, otherwise we'll have a number of audio tracks being played equal to the depth of the call stack.",
-									"text-color": [
-										0.7843137254901961,
-										0.7843137254901961,
-										0.7843137254901961,
-										1
-									],
-									"background-color": [
-										0.39215686274509803,
-										0,
-										0,
-										1
-									]
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 160693751622811,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								},
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 520408035939993,
+									"sid": 600576788290036,
 									"parameters": {
-										"value": "Functions.countSoundVarationsPrivate(audioName, counter + AUDIO_COUNTER_INCREMENTER)"
+										"value": "Functions.toPercentage(points) > random(BASE_PROBABILITY)"
 									}
 								}
 							],
-							"sid": 144299258529495
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 845470070467124
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If it doesn't exist, return the counter; that's the total number of variants of this sound effect."
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 588086391639167,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								},
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 516093967858530,
-									"parameters": {
-										"value": "counter"
-									}
-								}
-							],
-							"sid": 442874565516469
+							"sid": 917966407497171
 						}
 					]
 				}
@@ -18837,7 +18671,7 @@
 							]
 						},
 						{
-							"functionName": "flatBlockChance",
+							"functionName": "flatArmor",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -18908,7 +18742,7 @@
 											"objectClass": "player",
 											"sid": 250993466607563,
 											"parameters": {
-												"instance-variable": "blockChance",
+												"instance-variable": "armor",
 												"value": "value"
 											}
 										}
@@ -18930,7 +18764,7 @@
 											"objectClass": "player",
 											"sid": 513624251503529,
 											"parameters": {
-												"instance-variable": "blockChance",
+												"instance-variable": "armor",
 												"value": "value"
 											}
 										}

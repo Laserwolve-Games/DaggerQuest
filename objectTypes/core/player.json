@@ -5,200 +5,207 @@
 	"isGlobal": true,
 	"instanceVariables": [
 		{
-			"name": "degrees",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 333291429573460
-		},
-		{
 			"name": "level",
 			"type": "number",
-			"desc": "",
+			"desc": "The current level of the player.",
 			"show": true,
 			"sid": 231237737142489
 		},
 		{
 			"name": "experience",
 			"type": "number",
-			"desc": "",
+			"desc": "How much experience the player currently has.",
 			"show": true,
 			"sid": 287564138385133
 		},
 		{
+			"name": "coins",
+			"type": "number",
+			"desc": "How many coins the player possesses.",
+			"show": true,
+			"sid": 673284003752017
+		},
+		{
 			"name": "actionSpeed",
 			"type": "number",
-			"desc": "",
+			"desc": "How fast the player performs actions, in arbitrary units.",
 			"show": true,
 			"sid": 471701441318471
 		},
 		{
+			"name": "movementSpeed",
+			"type": "number",
+			"desc": "How fast the player moves.",
+			"show": true,
+			"sid": 559826754171766
+		},
+		{
 			"name": "pickupRange",
 			"type": "number",
-			"desc": "",
+			"desc": "How far away the player can pickup items, in pixels.",
 			"show": true,
 			"sid": 289810211162941
 		},
 		{
 			"name": "attackRange",
 			"type": "number",
-			"desc": "Used only for the player's basic attack",
+			"desc": "The range of the player's basic attack.",
 			"show": true,
 			"sid": 884808415822327
 		},
 		{
 			"name": "currentHealth",
 			"type": "number",
-			"desc": "",
+			"desc": "How much health the player currently has.",
 			"show": true,
 			"sid": 247291230881765
 		},
 		{
 			"name": "maxHealth",
 			"type": "number",
-			"desc": "",
+			"desc": "The maximum amount of health the player can have.",
 			"show": true,
 			"sid": 825076560292166
 		},
 		{
 			"name": "healthRegen",
 			"type": "number",
-			"desc": "",
+			"desc": "How much health the player regenerates, per second.",
 			"show": true,
 			"sid": 489310121941773
 		},
 		{
 			"name": "currentMana",
 			"type": "number",
-			"desc": "",
+			"desc": "How much mana the player currently has.",
 			"show": true,
 			"sid": 783968816955289
 		},
 		{
 			"name": "maxMana",
 			"type": "number",
-			"desc": "",
+			"desc": "The maximum amount of mana the player can have.",
 			"show": true,
 			"sid": 577122986603851
 		},
 		{
 			"name": "manaRegen",
 			"type": "number",
-			"desc": "",
+			"desc": "How much mana the player regenerates, per second.",
 			"show": true,
 			"sid": 416620320150077
 		},
 		{
-			"name": "blockChance",
+			"name": "armor",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how likely the player is to block an attack.",
 			"show": true,
 			"sid": 570027713585262
 		},
 		{
 			"name": "slashDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of slash damage that the player does.",
 			"show": true,
 			"sid": 873839658390247
 		},
 		{
 			"name": "smashDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of smash damage that the player does.",
 			"show": true,
 			"sid": 944715971490021
 		},
 		{
 			"name": "stabDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of stab damage that the player does.",
 			"show": true,
 			"sid": 207604587019585
 		},
 		{
 			"name": "coldDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of cold damage that the player does.",
 			"show": true,
 			"sid": 868774105644083
 		},
 		{
 			"name": "fireDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of fire damage that the player does.",
 			"show": true,
 			"sid": 417929429531109
 		},
 		{
 			"name": "lightningDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of lightning damage that the player does.",
 			"show": true,
 			"sid": 863343986164716
 		},
 		{
 			"name": "arcaneDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of arcane damage that the player does.",
 			"show": true,
 			"sid": 806572042959072
 		},
 		{
 			"name": "holyDamage",
 			"type": "number",
-			"desc": "",
+			"desc": "The amount of holy damage that the player does.",
 			"show": true,
 			"sid": 870602491291484
 		},
 		{
-			"name": "movementSpeed",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 559826754171766
-		},
-		{
 			"name": "physicalResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much physical damage the player receives.",
 			"show": true,
 			"sid": 682814026985344
 		},
 		{
 			"name": "coldResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much cold damage the player receives.",
 			"show": true,
 			"sid": 722658728085504
 		},
 		{
 			"name": "fireResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much fire damage the player receives.",
 			"show": true,
 			"sid": 294337611172175
 		},
 		{
 			"name": "lightningResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much lightning damage the player receives.",
 			"show": true,
 			"sid": 603391874396594
 		},
 		{
 			"name": "arcaneResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much arcane damage the player receives.",
 			"show": true,
 			"sid": 274344814757246
 		},
 		{
 			"name": "corruptResistance",
 			"type": "number",
-			"desc": "",
+			"desc": "Used when calculating how much corrupt damage the player receives.",
 			"show": true,
 			"sid": 643926247393794
+		},
+		{
+			"name": "degrees",
+			"type": "number",
+			"desc": "The angle which the player is currently facing.",
+			"show": true,
+			"sid": 333291429573460
 		},
 		{
 			"name": "lastX",
@@ -215,9 +222,9 @@
 			"sid": 944219508799607
 		},
 		{
-			"name": "hitstunThreshold",
+			"name": "flinchResistance",
 			"type": "number",
-			"desc": "The percentage of max health the player has to lose to become hitstunned.",
+			"desc": "The percentage of their max health that the player has to lose to flinch.",
 			"show": true,
 			"sid": 511498040358023
 		},
@@ -238,7 +245,7 @@
 		{
 			"name": "busyCastingAbility",
 			"type": "boolean",
-			"desc": "",
+			"desc": "Whether or not the player is busy casting an ability.",
 			"show": true,
 			"sid": 200920036283454
 		},
@@ -248,13 +255,6 @@
 			"desc": "Which NPC the player is currently talking to.",
 			"show": true,
 			"sid": 591265419078567
-		},
-		{
-			"name": "coins",
-			"type": "number",
-			"desc": "How many coins the player possesses.",
-			"show": true,
-			"sid": 673284003752017
 		}
 	],
 	"behaviorTypes": [

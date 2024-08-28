@@ -233,10 +233,7 @@
 	],
 	"uniqueId": "6qmjko7p97e",
 	"objectTypes": {
-		"items": [
-			"LocalStorage",
-			"localStorageDictionary"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -254,7 +251,10 @@
 					"abilityOptionsArray",
 					"npcDialogArray",
 					"Audio",
-					"gearQueueArray"
+					"gearQueueArray",
+					"LocalStorage",
+					"localStorageDictionary",
+					"soundEffectVariants"
 				],
 				"subfolders": [],
 				"name": "peripherals"
@@ -420,8 +420,8 @@
 							"attackRange",
 							"pickupRange",
 							"movementSpeed",
-							"stunThreshold",
-							"blockChance",
+							"flinchResistance",
+							"armor",
 							"maxMana",
 							"manaRegen",
 							"physicalResistance",
@@ -770,7 +770,7 @@
 					}
 				},
 				{
-					"name": "lightningOrb.webm",
+					"name": "lightningOrb0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 194283507363245,
 					"file-info": {
@@ -778,7 +778,7 @@
 					}
 				},
 				{
-					"name": "arrowShot.webm",
+					"name": "arrowShot0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 780331638615342,
 					"file-info": {
@@ -786,7 +786,7 @@
 					}
 				},
 				{
-					"name": "windmillFan.webm",
+					"name": "windmillFan0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 220139103198995,
 					"file-info": {
@@ -794,7 +794,7 @@
 					}
 				},
 				{
-					"name": "menuOpen.webm",
+					"name": "menuOpen0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 652705221070061,
 					"file-info": {
@@ -802,7 +802,7 @@
 					}
 				},
 				{
-					"name": "menuClose.webm",
+					"name": "menuClose0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 101322151318422,
 					"file-info": {
@@ -810,7 +810,7 @@
 					}
 				},
 				{
-					"name": "mouseOn.webm",
+					"name": "mouseOn0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 241241504056781,
 					"file-info": {
@@ -818,7 +818,7 @@
 					}
 				},
 				{
-					"name": "mouseOff.webm",
+					"name": "mouseOff0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 400891382759752,
 					"file-info": {
@@ -826,7 +826,7 @@
 					}
 				},
 				{
-					"name": "check.webm",
+					"name": "check0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 212472932393769,
 					"file-info": {
@@ -834,7 +834,7 @@
 					}
 				},
 				{
-					"name": "uncheck.webm",
+					"name": "uncheck0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 613673322369859,
 					"file-info": {
@@ -954,7 +954,7 @@
 					}
 				},
 				{
-					"name": "cottageDoor.webm",
+					"name": "cottageDoor0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 285290355121866,
 					"file-info": {
@@ -962,7 +962,7 @@
 					}
 				},
 				{
-					"name": "windmillDoor.webm",
+					"name": "windmillDoor0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 104406264699847,
 					"file-info": {
@@ -970,7 +970,7 @@
 					}
 				},
 				{
-					"name": "man_hit.webm",
+					"name": "man_hit0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 466551802314431,
 					"file-info": {
@@ -978,7 +978,7 @@
 					}
 				},
 				{
-					"name": "man_block.webm",
+					"name": "man_block0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 257932367001623,
 					"file-info": {
@@ -986,7 +986,7 @@
 					}
 				},
 				{
-					"name": "goblin_hit.webm",
+					"name": "goblin_hit0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 733487152868691,
 					"file-info": {
@@ -994,7 +994,7 @@
 					}
 				},
 				{
-					"name": "goblin_die_1.webm",
+					"name": "goblin_die1.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 180630449119809,
 					"file-info": {
@@ -1002,7 +1002,7 @@
 					}
 				},
 				{
-					"name": "goblin_die_0.webm",
+					"name": "goblin_die0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 405594318144972,
 					"file-info": {
@@ -1010,7 +1010,7 @@
 					}
 				},
 				{
-					"name": "man_die.webm",
+					"name": "man_die0.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 771678977902406,
 					"file-info": {
@@ -1253,6 +1253,14 @@
 					"name": "npcDialog.json",
 					"type": "application/json",
 					"sid": 675520489143280,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "soundEffectVariants.json",
+					"type": "application/json",
+					"sid": 750038455428021,
 					"file-info": {
 						"purpose": "none"
 					}

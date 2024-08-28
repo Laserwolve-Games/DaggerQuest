@@ -382,10 +382,11 @@
 							"sid": 278133005608997,
 							"tags": "",
 							"instanceVariables": {
-								"degrees": 0,
 								"level": 1,
 								"experience": 0,
+								"coins": 0,
 								"actionSpeed": 30,
+								"movementSpeed": 250,
 								"pickupRange": 50,
 								"attackRange": 100,
 								"currentHealth": 100,
@@ -394,7 +395,7 @@
 								"currentMana": 100,
 								"maxMana": 100,
 								"manaRegen": 1,
-								"blockChance": 0,
+								"armor": 0,
 								"slashDamage": 5,
 								"smashDamage": 5,
 								"stabDamage": 5,
@@ -403,21 +404,20 @@
 								"lightningDamage": 5,
 								"arcaneDamage": 5,
 								"holyDamage": 5,
-								"movementSpeed": 250,
 								"physicalResistance": 0,
 								"coldResistance": 0,
 								"fireResistance": 0,
 								"lightningResistance": 0,
 								"arcaneResistance": 0,
 								"corruptResistance": 0,
+								"degrees": 0,
 								"lastX": 0,
 								"lastY": 0,
-								"hitstunThreshold": 0.1,
+								"flinchResistance": 10,
 								"relocateToX": 0,
 								"relocateToY": 0,
 								"busyCastingAbility": false,
-								"talkingToNpc": "none",
-								"coins": 0
+								"talkingToNpc": "none"
 							},
 							"behaviors": {
 								"MoveTo": {
@@ -27282,7 +27282,7 @@
 							"world": {
 								"x": 960,
 								"y": 540,
-								"width": 750,
+								"width": 800,
 								"height": 500,
 								"originX": 0.5,
 								"originY": 0.5,
@@ -28134,7 +28134,7 @@
 								"expanded": true
 							},
 							"world": {
-								"x": 616,
+								"x": 606,
 								"y": 235,
 								"width": 228,
 								"height": 353,
@@ -28311,7 +28311,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "max health:",
+								"text": "Max Health:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28371,7 +28371,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -28450,7 +28450,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -28469,7 +28469,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "max mana:",
+								"text": "Max Mana:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28529,7 +28529,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -28548,7 +28548,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "action speed:",
+								"text": "Action Speed:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28608,7 +28608,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -28627,7 +28627,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "pickup range:",
+								"text": "Pickup Range:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28687,7 +28687,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -28706,7 +28706,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "attack range:",
+								"text": "Attack Range:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28766,7 +28766,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -28785,7 +28785,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "health regen:",
+								"text": "Health Regen:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28845,7 +28845,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -28864,7 +28864,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "mana regen:",
+								"text": "Mana Regen:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -28924,7 +28924,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -28943,7 +28943,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "block chance:",
+								"text": "Armor:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29003,7 +29003,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -29022,7 +29022,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "movement speed:",
+								"text": "Movement Speed:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29082,7 +29082,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -29101,7 +29101,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "stun threshold:",
+								"text": "Flinch Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29161,7 +29161,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 700,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -29180,7 +29180,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "slash damage:",
+								"text": "Slash Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29240,7 +29240,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -29259,7 +29259,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "smash damage:",
+								"text": "Smash Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29319,7 +29319,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -29338,7 +29338,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "stab damage:",
+								"text": "Stab Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29398,7 +29398,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -29417,7 +29417,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "cold damage:",
+								"text": "Cold Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29477,7 +29477,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -29496,7 +29496,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "fire damage:",
+								"text": "Fire Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29556,7 +29556,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -29575,7 +29575,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "lightning damage:",
+								"text": "Lightning Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29635,7 +29635,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -29654,7 +29654,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "arcane damage:",
+								"text": "Arcane Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29714,7 +29714,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -29733,7 +29733,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "holy damage:",
+								"text": "Holy Damage:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29793,7 +29793,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1205,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -29812,7 +29812,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "physical resistance:",
+								"text": "Physical Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29872,7 +29872,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -29891,7 +29891,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "cold resistance:",
+								"text": "Cold Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -29951,7 +29951,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -29970,7 +29970,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "fire resistance:",
+								"text": "Fire Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -30030,7 +30030,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -30049,7 +30049,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "lightning resistance:",
+								"text": "Lightning Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -30109,7 +30109,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -30128,7 +30128,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "corrupt resistance:",
+								"text": "Corrupt Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -30188,7 +30188,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -30207,7 +30207,7 @@
 						{
 							"type": "characterMenuText",
 							"properties": {
-								"text": "arcane resistance:",
+								"text": "Arcane Resistance:",
 								"enable-bbcode": true,
 								"font": "grenze-semibolditalic",
 								"size": 16,
@@ -30267,7 +30267,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 945,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -30346,7 +30346,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -30425,7 +30425,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -30504,7 +30504,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -30583,7 +30583,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -30662,7 +30662,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -30679,7 +30679,7 @@
 							}
 						},
 						{
-							"type": "stunThreshold",
+							"type": "flinchResistance",
 							"properties": {
 								"text": "N/A",
 								"enable-bbcode": true,
@@ -30741,7 +30741,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -30758,7 +30758,7 @@
 							}
 						},
 						{
-							"type": "blockChance",
+							"type": "armor",
 							"properties": {
 								"text": "N/A",
 								"enable-bbcode": true,
@@ -30820,7 +30820,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 710,
+								"x": 705,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -30899,7 +30899,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -30978,7 +30978,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -31057,7 +31057,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -31136,7 +31136,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -31215,7 +31215,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -31294,7 +31294,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -31373,7 +31373,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -31452,7 +31452,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 960,
+								"x": 965,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -31531,7 +31531,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 400,
 								"width": 200,
 								"height": 35,
@@ -31610,7 +31610,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 450,
 								"width": 200,
 								"height": 35,
@@ -31689,7 +31689,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 500,
 								"width": 200,
 								"height": 35,
@@ -31768,7 +31768,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 550,
 								"width": 200,
 								"height": 35,
@@ -31847,7 +31847,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 600,
 								"width": 200,
 								"height": 35,
@@ -31926,7 +31926,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 650,
 								"width": 200,
 								"height": 35,
@@ -32005,7 +32005,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 700,
 								"width": 200,
 								"height": 35,
@@ -32084,7 +32084,7 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1210,
+								"x": 1215,
 								"y": 750,
 								"width": 200,
 								"height": 35,
@@ -34531,6 +34531,14 @@
 			"properties": {},
 			"uid": 258,
 			"sid": 979366966100637,
+			"tags": "",
+			"instanceVariables": {}
+		},
+		{
+			"type": "soundEffectVariants",
+			"properties": {},
+			"uid": 266,
+			"sid": 180306056515006,
 			"tags": "",
 			"instanceVariables": {}
 		}

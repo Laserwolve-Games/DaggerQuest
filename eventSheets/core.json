@@ -54,6 +54,22 @@
 			"text": "Default formatted comments are brief summaries of functionality in plain English."
 		},
 		{
+			"eventType": "comment",
+			"text": "Black comments are warnings to not do something.",
+			"text-color": [
+				0.7843137254901961,
+				0.7843137254901961,
+				0.7843137254901961,
+				1
+			],
+			"background-color": [
+				0,
+				0,
+				0,
+				1
+			]
+		},
+		{
 			"eventType": "include",
 			"includeSheet": "allLayouts"
 		},
@@ -146,6 +162,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 806922775978421
+		},
+		{
+			"eventType": "variable",
+			"name": "FIRST_FRAME",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The index of the first frame of an animation.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 392281752092380
 		},
 		{
 			"eventType": "variable",
@@ -329,6 +355,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "THRESHOLD",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The lowest number possible for certain stats.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 882627372733570
+		},
+		{
+			"eventType": "variable",
 			"name": "TRANSPARENT_OPACITY",
 			"type": "number",
 			"initialValue": "0",
@@ -366,6 +402,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 706323902886489
+		},
+		{
+			"eventType": "variable",
+			"name": "ATTACK_KEYWORD",
+			"type": "string",
+			"initialValue": "attack",
+			"comment": "Used by enemies that only have one attack animation.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 830605075654169
 		},
 		{
 			"eventType": "variable",
@@ -529,13 +575,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "MENU_CLOSE_TAG",
+			"name": "MENU_CLOSE_KEYWORD",
 			"type": "string",
 			"initialValue": "menuClose",
-			"comment": "Audio tag to use for the menu close sound effect.",
+			"comment": "The sound effect and tag name for when menus close.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 832917534857256
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_OPEN_KEYWORD",
+			"type": "string",
+			"initialValue": "menuOpen",
+			"comment": "The sound effect and tag name for when menus open.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 985340942703044
 		},
 		{
 			"eventType": "variable",
@@ -2527,7 +2583,6 @@
 															"id": "setProbabilityTable",
 															"objectClass": "advancedRandom",
 															"sid": 478449621893124,
-															"breakpoint": true,
 															"parameters": {
 																"name": "MOD_VALUES_PROBABILITY_TABLE"
 															}
@@ -2604,15 +2659,11 @@
 																{
 																	"id": "addProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 280324114067515,
+																	"sid": 503431118041483,
 																	"parameters": {
-																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", GLOBAL_FLAG))",
+																		"value": "loopindex",
 																		"weight": "Functions.standardizeModValue(lowerLimit, upperLimit, loopindex) / total"
 																	}
-																},
-																{
-																	"type": "comment",
-																	"text": "the number of Xs in the mod value is the number of decimal places to shift the result. We have to do it this way because of floating point math problems"
 																}
 															],
 															"sid": 455988557394103
@@ -2663,9 +2714,9 @@
 																{
 																	"id": "removeProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 823594325901357,
+																	"sid": 260395850871282,
 																	"parameters": {
-																		"value": "loopindex * (.1 ^ RegexMatchCount(modValue, \"x\", GLOBAL_FLAG))",
+																		"value": "loopindex",
 																		"weight": "0"
 																	}
 																}
@@ -6828,32 +6879,15 @@
 										"comparison": 4,
 										"value": "player.maxHealth"
 									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 948005510207791,
-									"parameters": {
-										"instance-variable": "currentHealth",
-										"value": "Self.maxHealth"
-									}
-								}
-							],
-							"sid": 626822929654135
-						},
-						{
-							"eventType": "block",
-							"conditions": [
+								},
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 347193666593438,
+									"sid": 240277984047807,
 									"parameters": {
 										"instance-variable": "currentHealth",
 										"comparison": 2,
-										"value": "0"
+										"value": "THRESHOLD"
 									}
 								}
 							],
@@ -6861,14 +6895,15 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 568140490164365,
+									"sid": 872334710201972,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"value": "0"
+										"value": "clamp(Self.currentHealth, THRESHOLD, Self.maxHealth)"
 									}
 								}
 							],
-							"sid": 284450252978099
+							"sid": 626822929654135,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
@@ -6882,32 +6917,15 @@
 										"comparison": 4,
 										"value": "player.maxMana"
 									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 206021598300202,
-									"parameters": {
-										"instance-variable": "currentMana",
-										"value": "Self.maxMana"
-									}
-								}
-							],
-							"sid": 596737171205302
-						},
-						{
-							"eventType": "block",
-							"conditions": [
+								},
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 414329790171110,
+									"sid": 215375672900662,
 									"parameters": {
 										"instance-variable": "currentMana",
 										"comparison": 2,
-										"value": "0"
+										"value": "THRESHOLD"
 									}
 								}
 							],
@@ -6915,14 +6933,25 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 883040235264336,
+									"sid": 529653189069664,
 									"parameters": {
 										"instance-variable": "currentMana",
-										"value": "0"
+										"value": "clamp(Self.currentMana, THRESHOLD, Self.maxMana)"
 									}
 								}
 							],
-							"sid": 793873407046539
+							"sid": 596737171205302,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "variable",
+							"name": "REGEN_SPEED",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How often the player regenerates health and mana, in seconds.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 311716084172418
 						},
 						{
 							"eventType": "block",
@@ -6938,16 +6967,16 @@
 								{
 									"id": "every-x-seconds",
 									"objectClass": "System",
-									"sid": 595736339474715,
+									"sid": 251701305958974,
 									"parameters": {
-										"interval-seconds": "1.0"
+										"interval-seconds": "REGEN_SPEED"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Regenerate health and mana while not at the maximum values."
+									"text": "Regenerate health and mana while not at the maximum values, only while alive."
 								}
 							],
 							"sid": 257908268855159,
@@ -6964,23 +6993,9 @@
 												"comparison": 2,
 												"value": "Self.maxHealth"
 											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 673823781424710,
-											"parameters": {
-												"instance-variable": "currentHealth",
-												"comparison": 1,
-												"value": "0"
-											}
 										}
 									],
 									"actions": [
-										{
-											"type": "comment",
-											"text": "Regenerate health only when alive."
-										},
 										{
 											"id": "add-to-instvar",
 											"objectClass": "player",
@@ -7044,10 +7059,10 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 820595795067396,
+									"sid": 219611832436527,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & SEPARATOR & \"die\"",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & \"die\")",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
 										"object": "body",
@@ -7087,35 +7102,17 @@
 							"functionParameters": [],
 							"eventType": "function-block",
 							"conditions": [],
-							"actions": [],
-							"sid": 991268001123416,
-							"children": [
+							"actions": [
 								{
-									"eventType": "variable",
-									"name": "DEAD_THRESHOLD",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The number at which the player is considered dead.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 120457471030328
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 272184138726283,
-											"parameters": {
-												"value": "player.currentHealth > DEAD_THRESHOLD"
-											}
-										}
-									],
-									"sid": 552946328552370
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 639155477596857,
+									"parameters": {
+										"value": "player.currentHealth > THRESHOLD"
+									}
 								}
-							]
+							],
+							"sid": 991268001123416
 						}
 					],
 					"sid": 382578483115015
@@ -7209,7 +7206,19 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "we could use frame tags to tag the footsteps frame appropriately, and then compare the current frame's tag instead of the raw frame number, but we'd have to write a tool to bulk update frame tags"
+											"text": "We could use frame tags to tag the footsteps frame appropriately, and then compare the current frame's tag instead of the raw frame number. We'd have to write a tool to bulk update frame tags.",
+											"text-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0.7843137254901961,
+												1
+											],
+											"background-color": [
+												0,
+												0,
+												0.39215686274509803,
+												1
+											]
 										}
 									],
 									"sid": 411372396119511,
@@ -7236,10 +7245,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 338785786768714,
+													"sid": 760979856098612,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "background.ObjectTypeName & \"Footstep0\"",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"LeftFootstep\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "body",
@@ -7274,10 +7283,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 699245565986625,
+													"sid": 510487876856923,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"RightFootstep\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "body",
@@ -10220,10 +10229,10 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 213955208509759,
+									"sid": 581684116237409,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & SEPARATOR & animationName",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & animationName)",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
 										"object": "body",
@@ -11282,9 +11291,9 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
-									"sid": 482827758455036,
+									"sid": 593151920015181,
 									"parameters": {
-										"layer": "\"characterMenu\""
+										"layer": "characterMenuStatue.LayerName"
 									}
 								}
 							],
@@ -11490,9 +11499,9 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
-									"sid": 344324233789704,
+									"sid": 200936538513872,
 									"parameters": {
-										"layer": "\"settingsMenu\""
+										"layer": "settingsMenu.LayerName"
 									},
 									"isInverted": true
 								},
@@ -11524,7 +11533,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "you can only open regular menus when the settings menu isn't open, you currently aren't rearranging menus, there's no open dialog, and no other menus are currently fading in or out"
+									"text": "You can only open regular menus when the settings menu isn't open, you currently aren't rearranging menus, there's no open dialog, and no other menus are currently fading in or out."
 								}
 							],
 							"sid": 589869390653306,
@@ -11712,7 +11721,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Prevent interaction with layer while it fades out. This is crucial to prevent interaction with menus that get closed by the settings menu opening up (and thus preventing exploits where gear/abilities could be managed while the game was paused)"
+									"text": "Prevent interaction with layer while it fades out."
 								},
 								{
 									"id": "set-layer-interactive",
@@ -11752,28 +11761,34 @@
 										{
 											"id": "is-tag-playing",
 											"objectClass": "Audio",
-											"sid": 472011115859769,
+											"sid": 855149925975701,
 											"parameters": {
-												"tag": "\"menuOpen\""
+												"tag": "MENU_OPEN_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 555356798613187,
+											"parameters": {
+												"tag": "MENU_CLOSE_KEYWORD"
 											},
 											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "Don't play the menu closing sound effect for the merchant menu, or while talking to an NPC, or while the menu open sound is playing."
-										},
-										{
-											"id": "play",
+											"id": "play-by-name",
 											"objectClass": "Audio",
-											"sid": 170999643709418,
+											"sid": 228251495697342,
 											"parameters": {
-												"audio-file": "menuClose0",
+												"folder": "sounds",
+												"audio-file-name": "Functions.soundEffectName(MENU_CLOSE_KEYWORD)",
 												"loop": "not-looping",
-												"volume": "interfaceVolume",
-												"stereo-pan": "DEFAULT_STEREO_PAN",
-												"tag-optional": "MENU_CLOSE_TAG"
+												"volume": "DEFAULT_STEREO_PAN",
+												"stereo-pan": "interfaceVolume",
+												"tag-optional": "MENU_CLOSE_KEYWORD"
 											}
 										}
 									],
@@ -11897,23 +11912,69 @@
 								{
 									"type": "comment",
 									"text": "The NPC dialog will play as soon as the dialog window opens, so the menu open sound wouldn't be necessary"
-								},
-								{
-									"id": "play-by-name",
-									"objectClass": "Audio",
-									"sid": 822279806650062,
-									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "menuName = \"dialog\" | Audio.PlaybackTime(\"menuOpen\") > 0 | menuName = merchantMenuStatue.LayerName ? \"\" : \"menuOpen\"",
-										"loop": "not-looping",
-										"volume": "0",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "\"menuOpen\""
-									}
 								}
 							],
 							"sid": 667271432738870,
 							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 878308593772301,
+											"parameters": {
+												"variable": "menuName",
+												"comparison": 1,
+												"value": "dialog.LayerName"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 179500629491860,
+											"parameters": {
+												"variable": "menuName",
+												"comparison": 1,
+												"value": "merchantMenuStatue.LayerName"
+											}
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 195723223866822,
+											"parameters": {
+												"tag": "MENU_OPEN_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 617648047624125,
+											"parameters": {
+												"tag": "MENU_CLOSE_KEYWORD"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "play-by-name",
+											"objectClass": "Audio",
+											"sid": 980524320326130,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "Functions.soundEffectName(MENU_OPEN_KEYWORD)",
+												"loop": "not-looping",
+												"volume": "interfaceVolume",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
+												"tag-optional": "MENU_OPEN_KEYWORD"
+											}
+										}
+									],
+									"sid": 255118791550331
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -13451,9 +13512,9 @@
 										{
 											"id": "is-animation-playing",
 											"objectClass": "checkbox",
-											"sid": 595847815966304,
+											"sid": 533996962520063,
 											"parameters": {
-												"animation": "\"checked\""
+												"animation": "CHECKED_KEYWORD"
 											}
 										}
 									],
@@ -13461,26 +13522,49 @@
 										{
 											"id": "set-animation",
 											"objectClass": "checkbox",
-											"sid": 757913467832603,
+											"sid": 118750584381554,
 											"parameters": {
-												"animation": "\"unchecked\"",
+												"animation": "UNCHECKED_KEYWORD",
 												"from": "beginning"
-											}
-										},
-										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 803477319672571,
-											"parameters": {
-												"audio-file": "uncheck0",
-												"loop": "not-looping",
-												"volume": "interfaceVolume",
-												"stereo-pan": "DEFAULT_STEREO_PAN",
-												"tag-optional": "\"\""
 											}
 										}
 									],
-									"sid": 242886779246573
+									"sid": 242886779246573,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-tag-playing",
+													"objectClass": "Audio",
+													"sid": 973820514686706,
+													"parameters": {
+														"tag": "UNCHECKED_KEYWORD & checkbox.UID"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "play-at-object-by-name",
+													"objectClass": "Audio",
+													"sid": 245083408390201,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "Functions.soundEffectName(UNCHECKED_KEYWORD)",
+														"loop": "not-looping",
+														"volume": "DEFAULT_STEREO_PAN",
+														"object": "checkbox",
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "UNCHECKED_KEYWORD & checkbox.UID"
+													}
+												}
+											],
+											"sid": 781303277124167
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -13495,26 +13579,49 @@
 										{
 											"id": "set-animation",
 											"objectClass": "checkbox",
-											"sid": 555167822301620,
+											"sid": 709413526170555,
 											"parameters": {
-												"animation": "\"checked\"",
+												"animation": "CHECKED_KEYWORD",
 												"from": "beginning"
-											}
-										},
-										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 838215901803452,
-											"parameters": {
-												"audio-file": "check0",
-												"loop": "not-looping",
-												"volume": "interfaceVolume",
-												"stereo-pan": "DEFAULT_STEREO_PAN",
-												"tag-optional": "\"\""
 											}
 										}
 									],
-									"sid": 481722811100812
+									"sid": 481722811100812,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-tag-playing",
+													"objectClass": "Audio",
+													"sid": 751077973503270,
+													"parameters": {
+														"tag": "CHECKED_KEYWORD & checkbox.UID"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "play-at-object-by-name",
+													"objectClass": "Audio",
+													"sid": 359738599268669,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "Functions.soundEffectName(CHECKED_KEYWORD)",
+														"loop": "not-looping",
+														"volume": "DEFAULT_STEREO_PAN",
+														"object": "checkbox",
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "CHECKED_KEYWORD & checkbox.UID"
+													}
+												}
+											],
+											"sid": 376559198738564
+										}
+									]
 								}
 							]
 						},
@@ -14181,6 +14288,22 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "comment",
+					"text": "'Enemy currentHealth > THRESHOLD' should be a function, but functions with return values can't copy picked. The equivalent would be 'Pick enemies where functions.isEnemyAlive', but that isn't shorter, I'm also not convinced it does exactly the same thing.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
+				},
+				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "behaviors",
@@ -14343,10 +14466,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 860583535438506,
+													"sid": 215027961718685,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "background.ObjectTypeName & \"Footstep1\"",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"LeftFootstep\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
@@ -14381,10 +14504,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 250990859281471,
+													"sid": 410660084988567,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "background.ObjectTypeName & \"Footstep2\"",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"RightFootstep\")",
 														"loop": "not-looping",
 														"volume": "effectsVolume",
 														"object": "enemyBody",
@@ -15008,11 +15131,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "enemy",
-											"sid": 307474919042484,
+											"sid": 301783311942772,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"comparison": 0,
-												"value": "0"
+												"value": "THRESHOLD"
 											}
 										},
 										{
@@ -15373,9 +15496,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 829534488452180,
+											"sid": 968281043545258,
 											"parameters": {
-												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
+												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -15569,20 +15692,10 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "PROJECTILE_SPEED",
-									"type": "number",
-									"initialValue": "600",
-									"comment": "The speed of the projectile",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 740015134778544
-								},
-								{
-									"eventType": "variable",
 									"name": "MANIFESTATION_POINT",
 									"type": "number",
 									"initialValue": "80",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear. This is when they are facing directly left or right.",
+									"comment": "The longest possible distance between the enemy origin and where the projectile should visually appear, in pixels.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 694013683657195
@@ -15592,27 +15705,47 @@
 									"name": "MANIFESTATION_FRAME",
 									"type": "number",
 									"initialValue": "15",
-									"comment": "The (0-based) frame in which the projectile should manifest",
+									"comment": "The (0-based) frame in which the projectile should manifest.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 163965109939145
 								},
 								{
 									"eventType": "variable",
+									"name": "PROJECTILE_SPEED",
+									"type": "number",
+									"initialValue": "600",
+									"comment": "The speed of the projectile.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 228682166750364
+								},
+								{
+									"eventType": "variable",
 									"name": "SIZE",
 									"type": "number",
 									"initialValue": "15",
-									"comment": "The size of the projectile",
+									"comment": "The size of the projectile, in pixels.",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 159897247114374
 								},
 								{
 									"eventType": "variable",
+									"name": "SOUND_EFFECT",
+									"type": "string",
+									"initialValue": "arrowShot",
+									"comment": "The sound effect to use with this ability.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 270453750422382
+								},
+								{
+									"eventType": "variable",
 									"name": "projectileManifestationTime",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
+									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point, in seconds.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 228220816216230
@@ -15662,9 +15795,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 678140530799704,
+											"sid": 422686962039379,
 											"parameters": {
-												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
+												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -15698,11 +15831,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 164500894897975,
+													"sid": 502169840437234,
 													"parameters": {
 														"instance-variable": "currentHealth",
 														"comparison": 4,
-														"value": "0"
+														"value": "THRESHOLD"
 													}
 												}
 											],
@@ -15710,14 +15843,14 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 887652376972684,
+													"sid": 321851695505146,
 													"parameters": {
 														"object-to-create": "projectile",
-														"layer": "\"mechanics\"",
+														"layer": "enemy.LayerName",
 														"x": "enemy.X",
 														"y": "enemy.Y",
 														"create-hierarchy": false,
-														"template-name": "\"\""
+														"template-name": "NOT_USED"
 													}
 												}
 											],
@@ -15793,7 +15926,19 @@
 														},
 														{
 															"type": "comment",
-															"text": "If we set the angle before we set the speed, and the speed of the template projectile is 0, this projectile will only flight straight left or right."
+															"text": "If we set the angle before we set the speed, and the speed of the projectile on the main menu is 0, this projectile will only flight straight left or right.",
+															"text-color": [
+																0.7843137254901961,
+																0.7843137254901961,
+																0.7843137254901961,
+																1
+															],
+															"background-color": [
+																0.39215686274509803,
+																0,
+																0,
+																1
+															]
 														},
 														{
 															"id": "set-angle-of-motion",
@@ -15828,14 +15973,14 @@
 														{
 															"id": "create-object",
 															"objectClass": "System",
-															"sid": 148522850431655,
+															"sid": 843097305004533,
 															"parameters": {
 																"object-to-create": "crossbowBolt",
-																"layer": "\"main\"",
+																"layer": "enemyBody.LayerName",
 																"x": "projectile.X",
 																"y": "projectile.Y",
 																"create-hierarchy": false,
-																"template-name": "\"\""
+																"template-name": "NOT_USED"
 															}
 														},
 														{
@@ -15890,15 +16035,32 @@
 																	}
 																},
 																{
-																	"id": "play-at-object",
+																	"type": "comment",
+																	"text": "'arrowShot' is a short enough sound effect that we should play it in its entirety even the crossbow bolt is destroyed before the audio can complete, so don't use a tag here.",
+																	"text-color": [
+																		0.7843137254901961,
+																		0.7843137254901961,
+																		0.7843137254901961,
+																		1
+																	],
+																	"background-color": [
+																		0.39215686274509803,
+																		0,
+																		0,
+																		1
+																	]
+																},
+																{
+																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 834701785986661,
+																	"sid": 969844182424251,
 																	"parameters": {
-																		"audio-file": "arrowShot0",
+																		"folder": "sounds",
+																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
 																		"loop": "not-looping",
 																		"volume": "effectsVolume",
 																		"object": "crossbowBolt",
-																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"inner-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
 																		"tag-optional": "NOT_USED"
@@ -15977,6 +16139,16 @@
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 135630290224051
+								},
+								{
+									"eventType": "variable",
+									"name": "SOUND_EFFECT",
+									"type": "string",
+									"initialValue": "lightningOrb",
+									"comment": "The sound effect to use with this ability.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 600542193903581
 								},
 								{
 									"eventType": "block",
@@ -16226,11 +16398,12 @@
 																	}
 																},
 																{
-																	"id": "play-at-object",
+																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 418124371483830,
+																	"sid": 706657142538454,
 																	"parameters": {
-																		"audio-file": "lightningOrb0",
+																		"folder": "sounds",
+																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
 																		"loop": "looping",
 																		"volume": "effectsVolume",
 																		"object": "lightningOrb",
@@ -16518,7 +16691,19 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Projectiles are already destroyed when a layout ends because they aren't global. This quote-unquote 'natural' destroy takes place after this event sheet loses authority, so to speak, so the below event doesn't get to run. This event will trigger before we've completely transitioned off of the layout, so projectile audio will properly cease to play."
+							"text": "The destruction of non-global objects on layout change appears takes place after the event sheet of that layout loses authority. We must destroy projectiles in an 'On end of layout' trigger so 'projectile On destroyed' triggers still fire.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0.39215686274509803,
+								0,
+								0,
+								1
+							]
 						},
 						{
 							"id": "destroy",
@@ -16532,30 +16717,9 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-destroyed",
-							"objectClass": "projectile",
-							"sid": 866847254131652
-						}
-					],
-					"actions": [
-						{
-							"id": "stop",
-							"objectClass": "Audio",
-							"sid": 158935877118093,
-							"parameters": {
-								"tag": "str(projectile.UID)"
-							}
-						}
-					],
-					"sid": 852865633208779
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-collision-with-another-object",
 							"objectClass": "projectile",
-							"sid": 398405530236454,
+							"sid": 349111188136143,
 							"parameters": {
 								"object": "prop"
 							}
@@ -16563,7 +16727,7 @@
 						{
 							"id": "compare-distance-travelled",
 							"objectClass": "projectile",
-							"sid": 945441159530041,
+							"sid": 389248189125400,
 							"behaviorType": "Bullet",
 							"parameters": {
 								"comparison": 5,
@@ -16591,11 +16755,32 @@
 						{
 							"id": "destroy",
 							"objectClass": "projectile",
-							"sid": 785391520212267
+							"sid": 733343382755969
 						}
 					],
-					"sid": 585039691434774,
+					"sid": 707134340591950,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-destroyed",
+							"objectClass": "projectile",
+							"sid": 866847254131652
+						}
+					],
+					"actions": [
+						{
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 158935877118093,
+							"parameters": {
+								"tag": "str(projectile.UID)"
+							}
+						}
+					],
+					"sid": 852865633208779
 				},
 				{
 					"eventType": "comment",
@@ -16641,19 +16826,19 @@
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "enemy",
-									"sid": 658377478034636,
+									"sid": 759091227242449,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"value": "projectile.slashDamage * Functions.toPercentage(Self.physicalResistance)"
+										"value": "Functions.calculateDamage(projectile.slashDamage, Self.physicalResistance)"
 									}
 								},
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "enemy",
-									"sid": 701243432605989,
+									"sid": 308805359477508,
 									"parameters": {
 										"instance-variable": "currentHealth",
-										"value": "projectile.smashDamage * Functions.toPercentage(Self.physicalResistance)"
+										"value": "Functions.calculateDamage(projectile.smashDamage, Self.physicalResistance)"
 									}
 								},
 								{
@@ -16680,25 +16865,35 @@
 							"sid": 673936274587997,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "UNFLINCHING_ATTRIBUTE",
+									"type": "string",
+									"initialValue": "Unflinching",
+									"comment": "The unflinching attribute, that prevents flinching.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 499041862014481
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 539581589833663,
+											"sid": 215865666325125,
 											"parameters": {
-												"value": "Functions.contains(enemy.attributes, \"Unflinching\")"
+												"value": "Functions.contains(enemy.attributes, UNFLINCHING_ATTRIBUTE)"
 											},
 											"isInverted": true
 										},
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "enemy",
-											"sid": 907670062657075,
+											"sid": 136262733815063,
 											"parameters": {
 												"instance-variable": "currentHealth",
 												"comparison": 4,
-												"value": "0"
+												"value": "THRESHOLD"
 											}
 										},
 										{
@@ -16752,10 +16947,10 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 489345607811557,
+											"sid": 915582123331284,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "enemy.type & SEPARATOR & HIT_KEYWORD",
+												"audio-file-name": "Functions.soundEffectName(enemy.type & SEPARATOR & HIT_KEYWORD)",
 												"loop": "not-looping",
 												"volume": "effectsVolume",
 												"object": "enemyBody",
@@ -16805,6 +17000,14 @@
 									"sid": 921224045921521,
 									"parameters": {
 										"object": "player"
+									}
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 679754343869857,
+									"parameters": {
+										"value": "Functions.isPlayerAlive"
 									}
 								},
 								{
@@ -16870,14 +17073,6 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 260306359629209,
-											"parameters": {
-												"value": "Functions.isPlayerAlive"
-											}
-										},
-										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
 											"sid": 722866731052195,
 											"parameters": {
 												"value": "Functions.percentageRandom(player.armor)"
@@ -16887,7 +17082,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "If the player is alive, isn't in a non-combat area, has an offHand item equipped, isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
+											"text": "If the player isn't in a non-combat area, isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
 										},
 										{
 											"callFunction": "channeledAnimation",
@@ -16929,28 +17124,28 @@
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 828001383305788,
+											"sid": 122982726134419,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.lightningDamage * Functions.toPercentage(Self.lightningResistance)"
+												"value": "Functions.calculateDamage(projectile.lightningDamage, Self.lightningResistance)"
 											}
 										},
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 792527708937464,
+											"sid": 916802951705164,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.stabDamage * Functions.toPercentage(Self.physicalResistance)"
+												"value": "Functions.calculateDamage(projectile.stabDamage, Self.physicalResistance)"
 											}
 										},
 										{
 											"id": "subtract-from-instvar",
 											"objectClass": "player",
-											"sid": 381416645378503,
+											"sid": 239115698500777,
 											"parameters": {
 												"instance-variable": "currentHealth",
-												"value": "projectile.slashDamage * Functions.toPercentage(Self.physicalResistance)"
+												"value": "Functions.calculateDamage(projectile.slashDamage, Self.physicalResistance)"
 											}
 										}
 									],
@@ -16999,7 +17194,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the player isn't currently channeling, isn't in a non-combat area, and takes a hit that doesn't kill him, and that hit overcomes the flinch resistance, the player flinches."
+													"text": "If the player isn't currently channeling, isn't in a non-combat area, and the hit doesn't kill him, and the hit overcomes the flinch resistance, the player flinches."
 												},
 												{
 													"callFunction": "channeledAnimation",
@@ -17282,6 +17477,22 @@
 							"sid": 143271006801768
 						},
 						{
+							"eventType": "comment",
+							"text": "Adding 'Stop loop' actions to these loops will also stop the loop that this function is in when called, if there is one.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0,
+								0,
+								0,
+								1
+							]
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -17315,11 +17526,6 @@
 										"variable": "targetColumnNumber",
 										"value": "queriedArray.CurX"
 									}
-								},
-								{
-									"id": "stop-loop",
-									"objectClass": "System",
-									"sid": 840299122371024
 								}
 							],
 							"sid": 371823461720625
@@ -17360,11 +17566,6 @@
 									"parameters": {
 										"value": "queriedArray.At(targetColumnNumber, loopindex)"
 									}
-								},
-								{
-									"id": "stop-loop",
-									"objectClass": "System",
-									"sid": 472660355234862
 								}
 							],
 							"sid": 316964224788847
@@ -17607,6 +17808,16 @@
 					"conditions": [],
 					"actions": [
 						{
+							"id": "log",
+							"objectClass": "browser",
+							"sid": 730843401819375,
+							"disabled": true,
+							"parameters": {
+								"type": "log",
+								"message": "soundEffectName & floor(random(soundEffectVariants.Get(soundEffectName)))"
+							}
+						},
+						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
 							"sid": 320486060458189,
@@ -17655,7 +17866,7 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 816211029576215,
+									"sid": 104354184330237,
 									"parameters": {
 										"value": "points / (DIMINISHER_STRENGTH + points)"
 									}
@@ -17715,6 +17926,61 @@
 								}
 							],
 							"sid": 917966407497171
+						}
+					]
+				},
+				{
+					"functionName": "calculateDamage",
+					"functionDescription": "Calculate how much damage something does.",
+					"functionCategory": "world",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "incomingDamage",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The unmitigated incoming damage amount.",
+							"sid": 140734945675496
+						},
+						{
+							"name": "resistancePoints",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "How many points of resistance by which to reduce the damage.",
+							"sid": 164406902408500
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 812628131478009,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "INVERTER",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "Used to invert the percentage.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 817990759866293
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 251382328379174,
+									"parameters": {
+										"value": "round(incomingDamage * 1 - Functions.toPercentage(resistancePoints))"
+									}
+								}
+							],
+							"sid": 916050337317692
 						}
 					]
 				}
@@ -19233,16 +19499,6 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "FIRST_FRAME",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The index of the first frame of an animation.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 662136467085548
-				},
-				{
-					"eventType": "variable",
 					"name": "BRIGHTNESS_KEYWORD",
 					"type": "string",
 					"initialValue": "Brightness",
@@ -19523,9 +19779,9 @@
 								{
 									"id": "is-tag-playing",
 									"objectClass": "Audio",
-									"sid": 648410643035809,
+									"sid": 161216056228357,
 									"parameters": {
-										"tag": "door.ObjectTypeName"
+										"tag": "door.ObjectTypeName & door.UID"
 									},
 									"isInverted": true
 								},
@@ -19543,17 +19799,17 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 430676073928392,
+									"sid": 958152429650635,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "door.ObjectTypeName",
+										"audio-file-name": "Functions.soundEffectName(door.ObjectTypeName)",
 										"loop": "not-looping",
 										"volume": "effectsVolume",
 										"object": "door",
 										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-										"tag-optional": "door.ObjectTypeName"
+										"tag-optional": "door.ObjectTypeName & door.UID"
 									}
 								}
 							],

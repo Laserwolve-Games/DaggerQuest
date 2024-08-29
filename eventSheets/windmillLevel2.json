@@ -3,27 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "core"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 715798902494621,
-					"parameters": {
-						"interval-seconds": "Functions.getWindmillFanRotationSpeed"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "playWindmillFanSound",
-					"sid": 494962777111521
-				}
-			],
-			"sid": 746216410874160
+			"includeSheet": "windmillLevel1"
 		}
 	],
 	"sid": 451785962526459

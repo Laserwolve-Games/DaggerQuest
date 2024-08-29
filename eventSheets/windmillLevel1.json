@@ -6,24 +6,79 @@
 			"includeSheet": "core"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "windmillLevel1",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 306722158246178,
-					"parameters": {
-						"interval-seconds": "Functions.getWindmillFanRotationSpeed"
-					}
+					"eventType": "comment",
+					"text": "We can't access windmillFan's properties when it doesn't exist on the current layout, so we have to hardcode this values.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0.39215686274509803,
+						0,
+						0,
+						1
+					]
+				},
+				{
+					"eventType": "variable",
+					"name": "WINDMILL_FAN_ROTATION_SPEED",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "How long it takes the windmill fan to complete a rotation, in seconds.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 115355014579896
+				},
+				{
+					"eventType": "variable",
+					"name": "WINDMILL_FAN_NAME",
+					"type": "string",
+					"initialValue": "windmillFan",
+					"comment": "The name of the windmill fan object.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 169369692646054
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 887355666772640,
+							"parameters": {
+								"interval-seconds": "WINDMILL_FAN_ROTATION_SPEED"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 919335955077982,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "Functions.soundEffectName(WINDMILL_FAN_NAME)",
+								"loop": "not-looping",
+								"volume": "effectsVolume",
+								"stereo-pan": "DEFAULT_STEREO_PAN",
+								"tag-optional": "WINDMILL_FAN_NAME"
+							}
+						}
+					],
+					"sid": 832415808294963
 				}
 			],
-			"actions": [
-				{
-					"callFunction": "playWindmillFanSound",
-					"sid": 544331710703595
-				}
-			],
-			"sid": 485041667897425
+			"sid": 386777748027031
 		}
 	],
 	"sid": 804627828090973

@@ -64,7 +64,23 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "There's no way to do an \"On update not found\" trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+					"text": "There's no way to do an 'On update not found' trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+				},
+				{
+					"eventType": "comment",
+					"text": "Do not put SVGs on this layout. It seems to cause the entire project to load before the loader layout shows. We were unable to create a minimal reproducible example.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0,
+						0,
+						0,
+						1
+					]
 				},
 				{
 					"eventType": "block",
@@ -281,6 +297,11 @@
 							"sid": 125595519609208
 						},
 						{
+							"id": "clear-storage",
+							"objectClass": "LocalStorage",
+							"sid": 780719820763059
+						},
+						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
 							"sid": 655276180466781
@@ -381,12 +402,7 @@
 							}
 						}
 					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "We tried using an SVG for this fullscreen icon, but it caused the entire project to load before showing the loader layout. We were unable to duplicate this bug in a new project."
-						}
-					],
+					"actions": [],
 					"sid": 551410993474741,
 					"children": [
 						{

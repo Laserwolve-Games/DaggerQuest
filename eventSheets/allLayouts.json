@@ -58,6 +58,26 @@
 					"isOrBlock": true
 				},
 				{
+					"eventType": "variable",
+					"name": "MOUSE_ON_KEYWORD",
+					"type": "string",
+					"initialValue": "mouseOn",
+					"comment": "Used for the sound effect name and audio tag.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 790730385150721
+				},
+				{
+					"eventType": "variable",
+					"name": "MOUSE_OFF_KEYWORD",
+					"type": "string",
+					"initialValue": "mouseOff",
+					"comment": "Used for the sound effect name and audio tag.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 904659949657436
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -85,6 +105,22 @@
 					],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "The condition 'Effect GLOWHORIZONTAL_KEYWORD is enabled' prevents this event from running when textButtons are first created.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0.39215686274509803,
+								0,
+								0,
+								1
+							]
+						},
+						{
 							"id": "set-effect-enabled",
 							"objectClass": "textButtons",
 							"sid": 316920856703849,
@@ -111,28 +147,55 @@
 								{
 									"id": "is-tag-playing",
 									"objectClass": "Audio",
+									"sid": 482402911025723,
+									"parameters": {
+										"tag": "MENU_OPEN_KEYWORD"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
 									"sid": 361473182067264,
 									"parameters": {
-										"tag": "MENU_CLOSE_TAG"
+										"tag": "MENU_CLOSE_KEYWORD"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 498074685661197,
+									"parameters": {
+										"tag": "MOUSE_ON_KEYWORD"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 520520059184233,
+									"parameters": {
+										"tag": "MOUSE_OFF_KEYWORD"
 									},
 									"isInverted": true
 								}
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "We have to check if 'glowHorizontal' is enabled before running this event, or else it'll run when the first text buttons are created (on the main menu). That's ok for disabling the effects, but we don't want the mouse off sound effect to play. We also don't want the mouse off sound effect to play when the action that cause the mouse-off is the closing of a menu."
-								},
-								{
-									"id": "play",
+									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 160349662240894,
+									"sid": 822535390898553,
 									"parameters": {
-										"audio-file": "mouseOff0",
+										"folder": "sounds",
+										"audio-file-name": "Functions.soundEffectName(MOUSE_OFF_KEYWORD)",
 										"loop": "not-looping",
-										"volume": "interfaceVolume",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "NOT_USED"
+										"volume": "DEFAULT_STEREO_PAN",
+										"object": "textButtons",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "MOUSE_OFF_KEYWORD"
 									}
 								}
 							],
@@ -247,21 +310,71 @@
 										"mode": "enable",
 										"effect": "GLOWVERTICAL_KEYWORD"
 									}
-								},
-								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 385899549110229,
-									"parameters": {
-										"audio-file": "mouseOn0",
-										"loop": "not-looping",
-										"volume": "interfaceVolume",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "NOT_USED"
-									}
 								}
 							],
-							"sid": 684776001897592
+							"sid": 684776001897592,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 877558010731296,
+											"parameters": {
+												"tag": "MENU_OPEN_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 930567918156069,
+											"parameters": {
+												"tag": "MENU_CLOSE_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 524078195069222,
+											"parameters": {
+												"tag": "MOUSE_ON_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 143136106382017,
+											"parameters": {
+												"tag": "MOUSE_OFF_KEYWORD"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "Audio",
+											"sid": 548461032944092,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "Functions.soundEffectName(MOUSE_ON_KEYWORD)",
+												"loop": "not-looping",
+												"volume": "DEFAULT_STEREO_PAN",
+												"object": "textButtons",
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "MOUSE_ON_KEYWORD"
+											}
+										}
+									],
+									"sid": 696962307597829
+								}
+							]
 						}
 					]
 				}

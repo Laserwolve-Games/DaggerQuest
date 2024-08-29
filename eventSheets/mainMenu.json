@@ -48,15 +48,19 @@
 					],
 					"actions": [
 						{
-							"id": "play",
+							"id": "play-at-object-by-name",
 							"objectClass": "Audio",
-							"sid": 218128725399305,
+							"sid": 112808181784737,
 							"parameters": {
-								"audio-file": "menuOpen0",
+								"folder": "sounds",
+								"audio-file-name": "Functions.soundEffectName(MENU_OPEN_KEYWORD)",
 								"loop": "not-looping",
-								"volume": "interfaceVolume",
-								"stereo-pan": "DEFAULT_STEREO_PAN",
-								"tag-optional": "NOT_USED"
+								"volume": "DEFAULT_STEREO_PAN",
+								"object": "play",
+								"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+								"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+								"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+								"tag-optional": "MENU_OPEN_KEYWORD"
 							}
 						},
 						{
@@ -586,7 +590,7 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 652004842363559,
+							"sid": 548707204332780,
 							"parameters": {
 								"tag": "OUT_OF_DATE_SIGNAL"
 							}
@@ -604,22 +608,6 @@
 							"parameters": {
 								"key": "PROJECT_VERSION_KEY",
 								"value": "projectversion"
-							}
-						},
-						{
-							"id": "createProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 785984218437475,
-							"parameters": {
-								"name": "EQUIPMENT_PROBABILITY_TABLE"
-							}
-						},
-						{
-							"id": "setProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 493172574422822,
-							"parameters": {
-								"name": "EQUIPMENT_PROBABILITY_TABLE"
 							}
 						},
 						{
@@ -659,10 +647,53 @@
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
+						},
+						{
+							"id": "createProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 484866837309618,
+							"parameters": {
+								"name": "EQUIPMENT_PROBABILITY_TABLE"
+							}
+						},
+						{
+							"id": "setProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 935907045269056,
+							"parameters": {
+								"name": "EQUIPMENT_PROBABILITY_TABLE"
+							}
 						}
 					],
 					"sid": 568163851112755,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 894812439866540,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "equipmentArray.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "addProbabilityEntry",
+									"objectClass": "advancedRandom",
+									"sid": 286859457417719,
+									"parameters": {
+										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, RARITY_KEYWORD), loopindex)"
+									}
+								}
+							],
+							"sid": 205608362833441
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -690,7 +721,7 @@
 							"name": "modTable",
 							"type": "string",
 							"initialValue": "",
-							"comment": "The name of the modTable to create and use",
+							"comment": "The name of the modTable to create and use.",
 							"isStatic": true,
 							"isConstant": false,
 							"sid": 679500708336622
@@ -756,6 +787,16 @@
 							]
 						},
 						{
+							"eventType": "variable",
+							"name": "MOD_KEYWORD",
+							"type": "string",
+							"initialValue": "mod",
+							"comment": "Used when adding mods to mod tables.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 231091350006935
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -798,20 +839,10 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "MOD_KEYWORD",
-									"type": "string",
-									"initialValue": "mod",
-									"comment": "Used when adding mods to mod tables.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 740422663919558
-								},
-								{
-									"eventType": "variable",
 									"name": "modName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The name of the mod to add to the table.",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 980837917848128
@@ -822,7 +853,7 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 114918819476246,
+											"sid": 769032942433484,
 											"parameters": {
 												"name": "NOT_USED",
 												"start-index": "LOOP_OFFSET",
@@ -830,13 +861,14 @@
 											}
 										},
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 398814046826398,
+											"id": "compare-at-xy",
+											"objectClass": "modRelationshipsArray",
+											"sid": 910173551412422,
 											"parameters": {
-												"first-value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)",
+												"x": "Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_TABLE_KEYWORD)",
+												"y": "loopindex",
 												"comparison": 0,
-												"second-value": "modTable"
+												"value": "modTable"
 											}
 										}
 									],
@@ -844,16 +876,25 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 229940860752355,
+											"sid": 901691258508242,
 											"parameters": {
 												"variable": "modName",
 												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_KEYWORD), loopindex)"
 											}
 										},
 										{
+											"id": "log",
+											"objectClass": "browser",
+											"sid": 264274048769400,
+											"parameters": {
+												"type": "log",
+												"message": "modName"
+											}
+										},
+										{
 											"id": "addProbabilityEntry",
 											"objectClass": "advancedRandom",
-											"sid": 499041519344193,
+											"sid": 712171629558218,
 											"parameters": {
 												"value": "modName",
 												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD))"
@@ -869,48 +910,29 @@
 										{
 											"id": "add-key",
 											"objectClass": "localStorageDictionary",
-											"sid": 349243004234116,
+											"sid": 597903788201316,
 											"parameters": {
 												"key": "modTable",
 												"value": "advancedRandom.ProbabilityTableAsJSON"
 											}
 										}
 									],
-									"sid": 776561116968351
+									"sid": 661225517727158
 								}
 							]
 						},
 						{
 							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 983380972565778,
-									"parameters": {
-										"name": "NOT_USED",
-										"start-index": "LOOP_OFFSET",
-										"end-index": "equipmentArray.Height - LOOP_OFFSET"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "addProbabilityEntry",
-									"objectClass": "advancedRandom",
-									"sid": 186394661286174,
-									"parameters": {
-										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, RARITY_KEYWORD), loopindex)"
-									}
-								}
-							],
-							"sid": 649607945077834
-						},
-						{
-							"eventType": "block",
 							"conditions": [],
 							"actions": [
+								{
+									"id": "setProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 858170505934221,
+									"parameters": {
+										"name": "EQUIPMENT_PROBABILITY_TABLE"
+									}
+								},
 								{
 									"id": "add-key",
 									"objectClass": "localStorageDictionary",

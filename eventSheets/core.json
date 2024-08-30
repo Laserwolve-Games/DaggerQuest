@@ -8354,7 +8354,7 @@
 									"eventType": "group",
 									"disabled": false,
 									"title": "man abilities",
-									"description": "I'm hesitant to implement DRY principles for abilities as it may spaghettify to the point of unreadability. Compartmentalizing each ability in isolation might facilitate bug squashing and feature implementation in this area.",
+									"description": "",
 									"isActiveOnStart": true,
 									"children": [
 										{
@@ -12379,6 +12379,36 @@
 							"sid": 628934883307504
 						},
 						{
+							"eventType": "variable",
+							"name": "SPACE",
+							"type": "string",
+							"initialValue": " ",
+							"comment": "A space.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 499193792924427
+						},
+						{
+							"eventType": "variable",
+							"name": "COINS_TEXT",
+							"type": "string",
+							"initialValue": "Coins",
+							"comment": "Used in tooltips.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 610332663518766
+						},
+						{
+							"eventType": "variable",
+							"name": "LEVEL_TEXT",
+							"type": "string",
+							"initialValue": "Level",
+							"comment": "Used in tooltips.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 163982394912517
+						},
+						{
 							"functionName": "updateTooltip",
 							"functionDescription": "update and show the tooltip with the specified information",
 							"functionCategory": "menus",
@@ -12458,17 +12488,17 @@
 								{
 									"id": "set-text",
 									"objectClass": "tooltipValue",
-									"sid": 180937092196065,
+									"sid": 703976436306907,
 									"parameters": {
-										"text": "value & \" Coins\""
+										"text": "value & SPACE & COINS_TEXT"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "tooltipLevel",
-									"sid": 645922994485869,
+									"sid": 488576232028391,
 									"parameters": {
-										"text": "\"Level \" & level"
+										"text": "LEVEL_TEXT & SPACE & level"
 									}
 								},
 								{
@@ -12482,6 +12512,16 @@
 							],
 							"sid": 759325424482027,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "DEFAULT_FONT_COLOR",
+									"type": "number",
+									"initialValue": "10805227",
+									"comment": "The default font color.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 701141571051425
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -12506,17 +12546,17 @@
 										{
 											"id": "set-font-color",
 											"objectClass": "tooltipClass",
-											"sid": 508058487582192,
+											"sid": 885493126020232,
 											"parameters": {
-												"color": "rgb(235, 223, 164)"
+												"color": "DEFAULT_FONT_COLOR"
 											}
 										},
 										{
 											"id": "set-font-color",
 											"objectClass": "tooltipLevel",
-											"sid": 562615732621313,
+											"sid": 601820743179750,
 											"parameters": {
-												"color": "rgb(235, 223, 164)"
+												"color": "DEFAULT_FONT_COLOR"
 											}
 										},
 										{
@@ -12526,41 +12566,17 @@
 											"parameters": {
 												"visibility": "invisible"
 											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "tooltipDescription",
+											"sid": 652236715180461,
+											"parameters": {
+												"text": "text"
+											}
 										}
 									],
-									"sid": 763060192049106,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 423691448439511,
-													"parameters": {
-														"name": "NOT_USED",
-														"start-index": "LOOP_OFFSET",
-														"end-index": "tokencount(text, \"{\") - LOOP_OFFSET"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "Start at 1, to always skip the first token. Subtract 1, to make it 0-based. For each set of curly brackets, multiply the contents of that set by the player level."
-												},
-												{
-													"id": "set-text",
-													"objectClass": "tooltipDescription",
-													"sid": 932648006707572,
-													"parameters": {
-														"text": "RegexReplace(Self.Text, \"{([^}]+)}\", \"\", str(float(tokenat(tokenat(text, loopindex, \"{\"), 0, \"}\")) * player.level))"
-													}
-												}
-											],
-											"sid": 656560243045374
-										}
-									]
+									"sid": 763060192049106
 								},
 								{
 									"eventType": "block",
@@ -12575,9 +12591,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "tooltipDescription",
-											"sid": 450876267436261,
+											"sid": 900036161750769,
 											"parameters": {
-												"text": "\"\""
+												"text": "BLANK"
 											}
 										},
 										{
@@ -13235,9 +13251,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "enemyAttributes",
-									"sid": 409317286234059,
+									"sid": 977241926554707,
 									"parameters": {
-										"text": "\"\""
+										"text": "BLANK"
 									}
 								}
 							],
@@ -13270,16 +13286,26 @@
 									"sid": 840458797442361
 								},
 								{
+									"eventType": "variable",
+									"name": "ATTRIBUTE_SEPARATOR",
+									"type": "string",
+									"initialValue": ",",
+									"comment": "The character used to parse attributes.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 379168075752790
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 435697347659170,
+											"sid": 380175753965128,
 											"parameters": {
 												"name": "NOT_USED",
 												"start-index": "LOOP_DEFAULT",
-												"end-index": "tokencount(attributes, \",\")"
+												"end-index": "tokencount(attributes, ATTRIBUTE_SEPARATOR)"
 											}
 										}
 									],
@@ -13287,9 +13313,9 @@
 										{
 											"id": "append-text",
 											"objectClass": "enemyAttributes",
-											"sid": 350219713546243,
+											"sid": 865688768330444,
 											"parameters": {
-												"text": "tokenat(attributes, loopindex, \",\") & newline"
+												"text": "tokenat(attributes, loopindex, ATTRIBUTE_SEPARATOR) & newline"
 											}
 										}
 									],
@@ -13310,10 +13336,10 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "enemyHealthFrame",
-											"sid": 342805001372878,
+											"sid": 408787891094214,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"tags": "NOT_USED",
 												"property": "offsetOpacity",
 												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",

@@ -165,6 +165,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "FALSE",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The numerical representation of the FALSE value.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 952400100961744
+		},
+		{
+			"eventType": "variable",
 			"name": "FIRST_FRAME",
 			"type": "number",
 			"initialValue": "0",
@@ -302,6 +312,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 106253158252611
+		},
+		{
+			"eventType": "variable",
+			"name": "OBJECT_ORIGIN",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The number of the value to pass to specify an object's origin.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 178683078702747
 		},
 		{
 			"eventType": "variable",
@@ -525,6 +545,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "FOOTSTEP_KEYWORD",
+			"type": "string",
+			"initialValue": "Footstep",
+			"comment": "Used for the footstep sound effect names and tags.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 931054518856768
+		},
+		{
+			"eventType": "variable",
 			"name": "GLOBAL_FLAG",
 			"type": "string",
 			"initialValue": "g",
@@ -675,6 +705,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "ORIGINAL_SCALE",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The original scale value of a sprite.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 533023389720745
+		},
+		{
+			"eventType": "variable",
 			"name": "PLAYER_ABILITIES_FUNCTION_MAP",
 			"type": "string",
 			"initialValue": "playerAbilities",
@@ -712,6 +752,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 386319026003665
+		},
+		{
+			"eventType": "variable",
+			"name": "WALK_KEYWORD",
+			"type": "string",
+			"initialValue": "walk",
+			"comment": "Used by the player and enemies.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 917740393080758
 		},
 		{
 			"eventType": "variable",
@@ -2267,13 +2317,13 @@
 										{
 											"id": "tween-two-properties",
 											"objectClass": "loot",
-											"sid": 756068517063396,
+											"sid": 205752381317548,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "\"\"",
+												"tags": "NOT_USED",
 												"property": "scale",
-												"end-x": "1",
-												"end-y": "1",
+												"end-x": "ORIGINAL_SCALE",
+												"end-y": "ORIGINAL_SCALE",
 												"time": "TRAVEL_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
@@ -2285,10 +2335,10 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "loot",
-											"sid": 543001927251178,
+											"sid": 449731368168426,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "\"\"",
+												"tags": "NOT_USED",
 												"property": "offsetX",
 												"end-value": "Self.destinationX",
 												"time": "TRAVEL_TIME",
@@ -7132,30 +7182,13 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 414786528197108,
+											"sid": 725631430475834,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"walk\")"
+												"value": "Functions.isAnimationPlaying(WALK_KEYWORD)"
 											}
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "We could use frame tags to tag the footsteps frame appropriately, and then compare the current frame's tag instead of the raw frame number. We'd have to write a tool to bulk update frame tags.",
-											"text-color": [
-												0.7843137254901961,
-												0.7843137254901961,
-												0.7843137254901961,
-												1
-											],
-											"background-color": [
-												0,
-												0,
-												0.39215686274509803,
-												1
-											]
-										}
-									],
+									"actions": [],
 									"sid": 411372396119511,
 									"children": [
 										{
@@ -7180,10 +7213,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 760979856098612,
+													"sid": 768445968488498,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"LeftFootstep\")",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & FOOTSTEP_KEYWORD)",
 														"loop": "not-looping",
 														"volume": "soundEffectsVolume",
 														"object": "body",
@@ -7218,10 +7251,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 510487876856923,
+													"sid": 742259046534783,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"RightFootstep\")",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & FOOTSTEP_KEYWORD)",
 														"loop": "not-looping",
 														"volume": "soundEffectsVolume",
 														"object": "body",
@@ -7242,9 +7275,9 @@
 										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
-											"sid": 844520078268042,
+											"sid": 191356328749366,
 											"parameters": {
-												"layer": "\"settingsMenu\""
+												"layer": "settingsMenuStatue.LayerName"
 											},
 											"isInverted": true
 										},
@@ -10047,17 +10080,17 @@
 								{
 									"id": "set-scale",
 									"objectClass": "body",
-									"sid": 375932065893818,
+									"sid": 860146416336757,
 									"parameters": {
-										"scale": "1"
+										"scale": "ORIGINAL_SCALE"
 									}
 								},
 								{
 									"id": "set-scale",
 									"objectClass": "gear",
-									"sid": 454439231883482,
+									"sid": 408725487427424,
 									"parameters": {
-										"scale": "1"
+										"scale": "ORIGINAL_SCALE"
 									}
 								}
 							],
@@ -14246,6 +14279,56 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "GOING_BACKWARD_AGAIN",
+							"type": "string",
+							"initialValue": "goingBackwardAgain",
+							"comment": "Indicates this enemy is moving backward, for the second time.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 327317398170116
+						},
+						{
+							"eventType": "variable",
+							"name": "GOING_BACKWARD",
+							"type": "string",
+							"initialValue": "goingBackward",
+							"comment": "Indicates this enemy is moving backward.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 431453150985793
+						},
+						{
+							"eventType": "variable",
+							"name": "GOING_LEFT",
+							"type": "string",
+							"initialValue": "goingLeft",
+							"comment": "Indicates this enemy is moving to their left.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 598949023580630
+						},
+						{
+							"eventType": "variable",
+							"name": "GOING_RIGHT",
+							"type": "string",
+							"initialValue": "goingRight",
+							"comment": "Indicates this enemy is moving to their right.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 500748282075827
+						},
+						{
+							"eventType": "variable",
+							"name": "NOT_REROUTING",
+							"type": "string",
+							"initialValue": "no",
+							"comment": "Indicates this enemy is not currently rerouting.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 656245470907559
+						},
+						{
 							"functionName": "MoveEnemyInDirection",
 							"functionDescription": "Move an enemy a certain direction in a certain angle. Already factors in isometry.",
 							"functionCategory": "enemies",
@@ -14316,9 +14399,9 @@
 								{
 									"id": "set-scale",
 									"objectClass": "enemyBody",
-									"sid": 896972756604135,
+									"sid": 982229381081836,
 									"parameters": {
-										"scale": "1"
+										"scale": "ORIGINAL_SCALE"
 									}
 								}
 							],
@@ -14370,9 +14453,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 269274666031105,
+											"sid": 273135057844696,
 											"parameters": {
-												"value": "Functions.contains(enemyBody.AnimationName, \"walk\")\n"
+												"value": "Functions.contains(enemyBody.AnimationName, WALK_KEYWORD)\n"
 											}
 										}
 									],
@@ -14380,15 +14463,51 @@
 									"sid": 954751649253547,
 									"children": [
 										{
+											"eventType": "comment",
+											"text": "TODO: Build a tool that lets us add frame tags en masse. Use them to indicate on which frames the footstep sounds should play for the player and enemies.",
+											"text-color": [
+												0,
+												0,
+												0,
+												1
+											],
+											"background-color": [
+												1,
+												1,
+												0,
+												1
+											]
+										},
+										{
+											"eventType": "variable",
+											"name": "LEFT_FOOTSTEP_FRAME",
+											"type": "number",
+											"initialValue": "13",
+											"comment": "The frame in which the left footstep touches the ground.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 225825869193963
+										},
+										{
+											"eventType": "variable",
+											"name": "RIGHT_FOOTSTEP_FRAME",
+											"type": "number",
+											"initialValue": "33",
+											"comment": "The frame in which the right footstep touches the ground.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 883690179788132
+										},
+										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "compare-animation-frame",
 													"objectClass": "enemyBody",
-													"sid": 816092722648360,
+													"sid": 805252970942332,
 													"parameters": {
 														"comparison": 0,
-														"number": "13"
+														"number": "LEFT_FOOTSTEP_FRAME"
 													}
 												},
 												{
@@ -14401,10 +14520,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 215027961718685,
+													"sid": 989661304189083,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"LeftFootstep\")",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & FOOTSTEP_KEYWORD)",
 														"loop": "not-looping",
 														"volume": "soundEffectsVolume",
 														"object": "enemyBody",
@@ -14423,10 +14542,10 @@
 												{
 													"id": "compare-animation-frame",
 													"objectClass": "enemyBody",
-													"sid": 252274796850433,
+													"sid": 434985407934845,
 													"parameters": {
 														"comparison": 0,
-														"number": "33"
+														"number": "RIGHT_FOOTSTEP_FRAME"
 													}
 												},
 												{
@@ -14439,10 +14558,10 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 410660084988567,
+													"sid": 938259999813228,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & \"RightFootstep\")",
+														"audio-file-name": "Functions.soundEffectName(background.ObjectTypeName & FOOTSTEP_KEYWORD)",
 														"loop": "not-looping",
 														"volume": "soundEffectsVolume",
 														"object": "enemyBody",
@@ -14470,7 +14589,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "What happens when the enemy successfully arrives at their destination"
+											"text": "Here we handle what happens when the enemy successfully arrives at their destination."
 										}
 									],
 									"sid": 539686458967405,
@@ -14481,26 +14600,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 813637575177879,
+													"sid": 854347625661608,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"backingUp\""
+														"value": "GOING_BACKWARD"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If they successfully backed up, now the enemy will go left"
+													"text": "If they successfully moved backward, now the enemy will go left."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 949129561323151,
+													"sid": 741748355093181,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"goingLeft\""
+														"value": "GOING_LEFT"
 													}
 												},
 												{
@@ -14515,10 +14634,6 @@
 											"sid": 219556820298042
 										},
 										{
-											"eventType": "comment",
-											"text": "Can't combine these two blocks because of how 'else' and OR blocks work."
-										},
-										{
 											"eventType": "block",
 											"conditions": [
 												{
@@ -14529,26 +14644,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 122542109248194,
+													"sid": 518210565852582,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"goingLeft\""
+														"value": "GOING_LEFT"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If they successfully went left, they're done; they can resume normal behavior"
+													"text": "If they successfully went left, they're done; they can resume normal behavior."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 141230194582417,
+													"sid": 148249188176851,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"no\""
+														"value": "NOT_REROUTING"
 													}
 												}
 											],
@@ -14565,26 +14680,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 589077654486985,
+													"sid": 361362030765160,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"goingRight\""
+														"value": "GOING_RIGHT"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If they successfully went right, they're done; they can resume normal behavior"
+													"text": "If they successfully went right, they're done; they can resume normal behavior."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 817594969746132,
+													"sid": 180347189057485,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"no\""
+														"value": "NOT_REROUTING"
 													}
 												}
 											],
@@ -14601,26 +14716,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 624222872761533,
+													"sid": 849543922891443,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"backingUpAgain\""
+														"value": "GOING_BACKWARD_AGAIN"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If they successfully backed up a second time, try turning left again (no need to record that this would be the 2nd left attempt)"
+													"text": "If they successfully moved backward a second time, try going left again. No need to record that this would be the 2nd left attempt."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 261693395072376,
+													"sid": 623035938797684,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"goingLeft\""
+														"value": "GOING_LEFT"
 													}
 												},
 												{
@@ -14635,6 +14750,16 @@
 											"sid": 344833862316779
 										}
 									]
+								},
+								{
+									"eventType": "variable",
+									"name": "DISTANCE_MULTIPLIER",
+									"type": "number",
+									"initialValue": "2",
+									"comment": "How much further to go in this reroute attempt.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 134848786786819
 								},
 								{
 									"eventType": "block",
@@ -14660,26 +14785,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 874780723319647,
+													"sid": 945196365262255,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"no\""
+														"value": "NOT_REROUTING"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if the enemy wasn't already rerouting when he hit a solid, begin rerouting by backing up"
+													"text": "If the enemy wasn't already rerouting when he hit a solid, begin rerouting by going backward."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 272947486602681,
+													"sid": 391668534163888,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"backingUp\""
+														"value": "GOING_BACKWARD"
 													}
 												},
 												{
@@ -14704,26 +14829,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 585789115008813,
+													"sid": 190534323080781,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"backingUp\""
+														"value": "GOING_BACKWARD"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the enemy hit a solid while backing up, try going left"
+													"text": "If the enemy hit a solid while going backward, try going left."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 611059426906122,
+													"sid": 571663436995349,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"goingLeft\""
+														"value": "GOING_LEFT"
 													}
 												},
 												{
@@ -14748,34 +14873,34 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 848018021069342,
+													"sid": 350170452507128,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"goingLeft\""
+														"value": "GOING_LEFT"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the enemy hit a solid while going left, try going right. Go twice as far as normal to prevent loops"
+													"text": "If the enemy hit a solid while going left, try going right. Go further than previously attempt, to prevent loops."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 992265290332278,
+													"sid": 578803424071431,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"goingRight\""
+														"value": "GOING_RIGHT"
 													}
 												},
 												{
 													"callFunction": "MoveEnemyInDirection",
-													"sid": 323027643467297,
+													"sid": 959169911721721,
 													"parameters": [
 														"HALF_CIRCLE",
-														"enemy.Width * 2"
+														"enemy.Width * DISTANCE_MULTIPLIER"
 													]
 												}
 											],
@@ -14792,26 +14917,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 172716382363134,
+													"sid": 951363165053175,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"goingRight\""
+														"value": "GOING_RIGHT"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the enemy hit a solid while going right, try backing up again"
+													"text": "If the enemy hit a solid while going right, try backing up again."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 617137112585858,
+													"sid": 652993616584778,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"backingUpAgain\""
+														"value": "GOING_BACKWARD_AGAIN"
 													}
 												},
 												{
@@ -14836,26 +14961,26 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 234490350697590,
+													"sid": 963166989409324,
 													"parameters": {
 														"instance-variable": "rerouting",
 														"comparison": 0,
-														"value": "\"backingUpAgain\""
+														"value": "GOING_BACKWARD_AGAIN"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the enemy hit a solid while backing up again, they are probably stuck. reset the rerouting process to try again"
+													"text": "If the enemy hit a solid while backing up again, they are probably stuck. Reset the rerouting process to try again."
 												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
-													"sid": 991851772114925,
+													"sid": 735693146646706,
 													"parameters": {
 														"instance-variable": "rerouting",
-														"value": "\"no\""
+														"value": "NOT_REROUTING"
 													}
 												}
 											],
@@ -14884,10 +15009,6 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "Extracting this out into a function results in enemies getting each other's angles"
-										},
-										{
 											"id": "set-instvar-value",
 											"objectClass": "enemy",
 											"sid": 402525091719978,
@@ -14908,9 +15029,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 381982893284719,
+											"sid": 894986745763244,
 											"parameters": {
-												"animation": "\"walk\" & SEPARATOR & enemy.degrees",
+												"animation": "WALK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
@@ -14931,11 +15052,11 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "enemy",
-											"sid": 412161205939607,
+											"sid": 404431078146695,
 											"parameters": {
 												"instance-variable": "rerouting",
 												"comparison": 0,
-												"value": "\"no\""
+												"value": "NOT_REROUTING"
 											}
 										},
 										{
@@ -14984,19 +15105,15 @@
 												{
 													"id": "has-los-to-object",
 													"objectClass": "enemy",
-													"sid": 719865029279614,
+													"sid": 179505139370713,
 													"behaviorType": "LineOfSight",
 													"parameters": {
 														"object": "player",
-														"image-point": "0"
+														"image-point": "OBJECT_ORIGIN"
 													}
 												}
 											],
 											"actions": [
-												{
-													"type": "comment",
-													"text": "breaking angle(enemy.x, enemy.y, player.x, player.y) into a local variable doesn't work if we have more than 1 enemy."
-												},
 												{
 													"id": "set-instvar-value",
 													"objectClass": "enemy",
@@ -15034,12 +15151,12 @@
 												{
 													"id": "pick-by-comparison",
 													"objectClass": "System",
-													"sid": 527481045276851,
+													"sid": 492969381854095,
 													"parameters": {
 														"object": "enemy",
 														"expression": "Functions.isInRange(enemy.attackRange, enemy.X, enemy.Y)",
 														"comparison": 0,
-														"value": "0"
+														"value": "FALSE"
 													}
 												}
 											],
@@ -15047,11 +15164,11 @@
 												{
 													"id": "move-to-object",
 													"objectClass": "enemy",
-													"sid": 120430198405655,
+													"sid": 801465804583466,
 													"behaviorType": "MoveTo",
 													"parameters": {
 														"object": "player",
-														"image-point": "0",
+														"image-point": "OBJECT_ORIGIN",
 														"mode": "direct"
 													}
 												}
@@ -15085,12 +15202,12 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 281796230796058,
+											"sid": 112440800904193,
 											"parameters": {
 												"object": "enemyBody",
 												"expression": "Functions.contains(enemyBody.AnimationName, DIE_KEYWORD)",
 												"comparison": 0,
-												"value": "0"
+												"value": "FALSE"
 											}
 										},
 										{
@@ -15106,7 +15223,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a 'die' animation."
+											"text": "Pick dead enemies and their bodies. Trim down the selection of enemies to only those who are parents of bodies that aren't playing a DIE_KEYWORD animation."
 										},
 										{
 											"id": "add-to-instvar",
@@ -15194,10 +15311,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "enemy",
-									"sid": 865143597318402,
+									"sid": 344480556173198,
 									"parameters": {
 										"instance-variable": "rerouting",
-										"value": "\"no\""
+										"value": "NOT_REROUTING"
 									}
 								}
 							],

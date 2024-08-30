@@ -445,6 +445,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "DIE_KEYWORD",
+			"type": "string",
+			"initialValue": "die",
+			"comment": "Used by the player and enemies.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 497258414705478
+		},
+		{
+			"eventType": "variable",
 			"name": "EITHER_CURLY_BRACKET_REGEX",
 			"type": "string",
 			"initialValue": "\\{|}",
@@ -6984,10 +6994,10 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 219611832436527,
+									"sid": 432416264151996,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & \"die\")",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & DIE_KEYWORD)",
 										"loop": "not-looping",
 										"volume": "soundEffectsVolume",
 										"object": "body",
@@ -6999,9 +7009,9 @@
 								},
 								{
 									"callFunction": "updateAnimation",
-									"sid": 493662545747149,
+									"sid": 834391396630357,
 									"parameters": [
-										"\"die\"",
+										"DIE_KEYWORD",
 										"body.OriginalAnimationSpeed",
 										true
 									]
@@ -10065,7 +10075,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "See bookmarked comment in Enemy Behaviors for the reason behind using triggers instead of in-line waits."
+									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played."
 								}
 							],
 							"sid": 923030549317447,
@@ -10076,9 +10086,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 294543707497140,
+											"sid": 153655648371219,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"die\")\n"
+												"value": "Functions.isAnimationPlaying(DIE_KEYWORD)\n"
 											}
 										}
 									],
@@ -15075,10 +15085,10 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 437565890022814,
+											"sid": 281796230796058,
 											"parameters": {
 												"object": "enemyBody",
-												"expression": "Functions.contains(enemyBody.AnimationName, \"die\")",
+												"expression": "Functions.contains(enemyBody.AnimationName, DIE_KEYWORD)",
 												"comparison": 0,
 												"value": "0"
 											}
@@ -15119,19 +15129,19 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 923279803323912,
+											"sid": 984279648260387,
 											"parameters": {
-												"animation": "\"die\" & SEPARATOR & enemy.degrees",
+												"animation": "DIE_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
 											}
 										},
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 399878196339160,
+											"sid": 878111084176644,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "Functions.soundEffectName(enemy.type & SEPARATOR & \"die\")",
+												"audio-file-name": "Functions.soundEffectName(enemy.type & SEPARATOR & DIE_KEYWORD)",
 												"loop": "not-looping",
 												"volume": "soundEffectsVolume",
 												"object": "enemyBody",
@@ -15204,7 +15214,6 @@
 							"sid": 970931894317934
 						},
 						{
-							"bookmark": true,
 							"eventType": "block",
 							"conditions": [
 								{
@@ -15216,7 +15225,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played.\n\nScenario: Enemy is currently hitstunned, and playing the hit animation. They get hit with another ability that reduces their action speed.\n\nWith in-line waits: Not possible, post-animation events would fire before the animation finished, resulting in many bugs.\n\nWith 'on any animation finished' + find() trigger: post-animation events trigger correctly as they're initiated by a genuine trigger that runs only when an animation finishes."
+									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played."
 								}
 							],
 							"sid": 915717840994810,
@@ -15227,10 +15236,10 @@
 										{
 											"id": "pick-by-evaluate",
 											"objectClass": "System",
-											"sid": 404195209412664,
+											"sid": 291377309424986,
 											"parameters": {
 												"object": "enemyBody",
-												"expression": "Functions.contains(enemyBody.AnimationName, \"die\")"
+												"expression": "Functions.contains(enemyBody.AnimationName, DIE_KEYWORD)"
 											}
 										}
 									],
@@ -15238,12 +15247,12 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "enemyBody",
-											"sid": 672382654027524,
+											"sid": 328626335671072,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & \"deathFade\"",
+												"tags": "NOT_USED",
 												"property": "offsetOpacity",
-												"end-value": "0",
+												"end-value": "TRANSPARENT_OPACITY",
 												"time": "ENEMY_DEATH_FADE_OUT_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "yes",
@@ -15277,10 +15286,10 @@
 												{
 													"id": "pick-by-evaluate",
 													"objectClass": "System",
-													"sid": 542178547010838,
+													"sid": 714463769304741,
 													"parameters": {
 														"object": "enemyBody",
-														"expression": "Functions.contains(enemyBody.AnimationName, \"attack\")"
+														"expression": "Functions.contains(enemyBody.AnimationName, ATTACK_KEYWORD)"
 													}
 												}
 											],
@@ -15425,6 +15434,14 @@
 											"parameters": {
 												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "enemyBody",
+											"sid": 644829433032529,
+											"parameters": {
+												"speed": "enemy.attackSpeed"
 											}
 										},
 										{
@@ -15724,6 +15741,14 @@
 											"parameters": {
 												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "enemyBody",
+											"sid": 995367630075280,
+											"parameters": {
+												"speed": "enemy.attackSpeed"
 											}
 										},
 										{
@@ -16116,10 +16141,18 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 949336452701223,
+											"sid": 308500430164280,
 											"parameters": {
-												"animation": "\"attack\" & SEPARATOR & enemy.degrees",
+												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "enemyBody",
+											"sid": 767571508679856,
+											"parameters": {
+												"speed": "enemy.attackSpeed"
 											}
 										},
 										{
@@ -16148,11 +16181,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 661015354898242,
+													"sid": 153776716370446,
 													"parameters": {
 														"instance-variable": "currentHealth",
 														"comparison": 4,
-														"value": "0"
+														"value": "THRESHOLD"
 													}
 												}
 											],
@@ -16164,14 +16197,14 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 469502575992036,
+													"sid": 219516034508208,
 													"parameters": {
 														"object-to-create": "projectile",
-														"layer": "\"mechanics\"",
+														"layer": "enemy.LayerName",
 														"x": "enemy.X",
 														"y": "enemy.Y",
 														"create-hierarchy": false,
-														"template-name": "\"\""
+														"template-name": "NOT_USED"
 													}
 												}
 											],

@@ -2564,19 +2564,19 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 228898022150574,
+															"sid": 585395109807520,
 															"parameters": {
 																"variable": "lowerLimit",
-																"value": "int(tokenat(modValue, 0, MOD_VALUE_SEPARATOR)) * loot.level"
+																"value": "int(tokenat(modValue, 0, MOD_VALUE_SEPARATOR))"
 															}
 														},
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 834090507415118,
+															"sid": 191723119202969,
 															"parameters": {
 																"variable": "upperLimit",
-																"value": "int(tokenat(modValue, 1, MOD_VALUE_SEPARATOR)) * loot.level"
+																"value": "int(tokenat(modValue, 1, MOD_VALUE_SEPARATOR))"
 															}
 														},
 														{
@@ -2592,27 +2592,17 @@
 													"children": [
 														{
 															"eventType": "comment",
-															"text": "Set a numeric mod's value to a random number between the lower and upper limit. Higher numbers are rarer. The rarity of higher numbers diminishingly scales with the loot level."
-														},
-														{
-															"eventType": "comment",
-															"text": "TODO: Negative values - should lower numbers be better? or worse?",
-															"background-color": [
-																0.984313725490196,
-																1,
-																0,
-																1
-															]
+															"text": "The larger the numeric range, the rarer higher values will be. The higher RARITY_DIMINISHER is, the more common higher values will be. No matter what value RARITY_DIMINISHER is, each value will always be less common than the value before it, if there is one.\n\nWith RARITY_DIMISHER at 1, a mod like +{1-10} Slash Damage has an approximately 1.81% chance to roll 10."
 														},
 														{
 															"eventType": "variable",
-															"name": "total",
+															"name": "RARITY_DIMINISHER",
 															"type": "number",
-															"initialValue": "0",
-															"comment": "the total weight of all possible mod values, unconverted",
-															"isStatic": true,
-															"isConstant": false,
-															"sid": 275844986849541
+															"initialValue": "1",
+															"comment": "How rare higher values are.",
+															"isStatic": false,
+															"isConstant": true,
+															"sid": 648953519117027
 														},
 														{
 															"eventType": "block",
@@ -2620,9 +2610,9 @@
 																{
 																	"id": "for",
 																	"objectClass": "System",
-																	"sid": 219774906891118,
+																	"sid": 432098932265651,
 																	"parameters": {
-																		"name": "\"\"",
+																		"name": "NOT_USED",
 																		"start-index": "lowerLimit",
 																		"end-index": "upperLimit"
 																	}
@@ -2630,39 +2620,16 @@
 															],
 															"actions": [
 																{
-																	"id": "add-to-eventvar",
-																	"objectClass": "System",
-																	"sid": 213474108009376,
-																	"parameters": {
-																		"variable": "total",
-																		"value": "Functions.standardizeModValue(lowerLimit, upperLimit, loopindex)"
-																	}
-																}
-															],
-															"sid": 231459355083010
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "for",
-																	"objectClass": "System",
-																	"sid": 584623522244621,
-																	"parameters": {
-																		"name": "\"\"",
-																		"start-index": "lowerLimit",
-																		"end-index": "upperLimit"
-																	}
-																}
-															],
-															"actions": [
+																	"type": "comment",
+																	"text": "Set a numeric mod's value to a random number between the lower and upper limit."
+																},
 																{
 																	"id": "addProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 503431118041483,
+																	"sid": 262285232140501,
 																	"parameters": {
 																		"value": "loopindex",
-																		"weight": "Functions.standardizeModValue(lowerLimit, upperLimit, loopindex) / total"
+																		"weight": "upperLimit - loopindex + RARITY_DIMINISHER"
 																	}
 																}
 															],
@@ -2675,22 +2642,24 @@
 																{
 																	"id": "set-instvar-value",
 																	"objectClass": "loot",
-																	"sid": 461098221041892,
+																	"sid": 588175752907667,
 																	"parameters": {
 																		"instance-variable": "mods",
-																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, \"\", \"{\" & advancedRandom.Weighted & \"}\")"
-																	}
-																},
-																{
-																	"id": "reset-eventvar",
-																	"objectClass": "System",
-																	"sid": 195781823527184,
-																	"parameters": {
-																		"variable": "total"
+																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, BLANK, \"{\" & advancedRandom.Weighted + loot.level & \"}\")"
 																	}
 																}
 															],
 															"sid": 424302104263233
+														},
+														{
+															"eventType": "variable",
+															"name": "ANY_WEIGHT",
+															"type": "number",
+															"initialValue": "0",
+															"comment": "The weight value to specify any possible weight.",
+															"isStatic": false,
+															"isConstant": true,
+															"sid": 386464845033558
 														},
 														{
 															"eventType": "block",
@@ -2698,9 +2667,9 @@
 																{
 																	"id": "for",
 																	"objectClass": "System",
-																	"sid": 887803499960340,
+																	"sid": 123962357546543,
 																	"parameters": {
-																		"name": "\"\"",
+																		"name": "NOT_USED",
 																		"start-index": "lowerLimit",
 																		"end-index": "upperLimit"
 																	}
@@ -2709,15 +2678,15 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "We can remove an entire mod table, so remove the entries the same way we added them"
+																	"text": "We can't remove an entire mod table, so remove the entries the same way we added them."
 																},
 																{
 																	"id": "removeProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 260395850871282,
+																	"sid": 330213491647216,
 																	"parameters": {
 																		"value": "loopindex",
-																		"weight": "0"
+																		"weight": "ANY_WEIGHT"
 																	}
 																}
 															],
@@ -2760,50 +2729,6 @@
 									]
 								}
 							]
-						},
-						{
-							"functionName": "standardizeModValue",
-							"functionDescription": "Standardize the possible value of a mod to a uniform range",
-							"functionCategory": "mods",
-							"functionReturnType": "number",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [
-								{
-									"name": "lowerLimit",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "the lowest number that this mod can roll",
-									"sid": 165700446124118
-								},
-								{
-									"name": "upperLimit",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "the highest number that this mod can roll",
-									"sid": 140901520535839
-								},
-								{
-									"name": "currentLoopindex",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "the loopindex of the current loop over possible mod values",
-									"sid": 762366194120232
-								}
-							],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 237729906977959,
-									"parameters": {
-										"value": "lerp(loot.level, 1, unlerp(lowerLimit, upperLimit, currentLoopindex))"
-									}
-								}
-							],
-							"sid": 949225567251958
 						}
 					],
 					"sid": 258106155275995
@@ -17807,16 +17732,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"id": "log",
-							"objectClass": "browser",
-							"sid": 730843401819375,
-							"disabled": true,
-							"parameters": {
-								"type": "log",
-								"message": "soundEffectName & floor(random(soundEffectVariants.Get(soundEffectName)))"
-							}
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",

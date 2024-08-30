@@ -415,6 +415,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "UNPAUSED_TIME_SCALE",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The time scale value when the game is running normally.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 765209825297330
+		},
+		{
+			"eventType": "variable",
 			"name": "ALL_CLASSES_KEYWORD",
 			"type": "string",
 			"initialValue": "All Classes",
@@ -10520,6 +10530,22 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "comment",
+					"text": "TODO: Attempt to re-implement opacity tweening on sprites where we currently have layer opacity tweening. Layer opacity tweening was our solution to an issue that was possible fixed in r404: https://www.construct.net/en/make-games/releases/beta/r404",
+					"text-color": [
+						0,
+						0,
+						0,
+						1
+					],
+					"background-color": [
+						1,
+						1,
+						0,
+						1
+					]
+				},
+				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "ability bar",
@@ -11781,10 +11807,10 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 397251717331617,
+											"sid": 325986089225823,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\"",
+												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID",
 												"start-value": "SOLID_OPACITY",
 												"end-value": "TRANSPARENT_OPACITY",
 												"time": "MENU_FADE_TIME",
@@ -11971,10 +11997,10 @@
 										{
 											"id": "tween-value",
 											"objectClass": "statue",
-											"sid": 249912570977518,
+											"sid": 679958041158465,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\"",
+												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID",
 												"start-value": "TRANSPARENT_OPACITY",
 												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
@@ -13304,6 +13330,16 @@
 							]
 						},
 						{
+							"eventType": "variable",
+							"name": "healthBarScale",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The X scaling of the enemy's health bar.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 828197839110695
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -13332,7 +13368,17 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 980137107684028,
+									"parameters": {
+										"variable": "healthBarScale",
+										"value": "enemy.currentHealth / enemy.maxHealth * PERCENTAGE_DIVIDER"
+									}
+								}
+							],
 							"sid": 107491999194856,
 							"children": [
 								{
@@ -13385,11 +13431,11 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 154584809601562,
+											"sid": 149532471031596,
 											"parameters": {
 												"first-value": "enemyHealthBar.ImageScaleX",
 												"comparison": 1,
-												"second-value": "enemy.currentHealth / enemy.maxHealth * 100"
+												"second-value": "healthBarScale"
 											}
 										},
 										{
@@ -13402,9 +13448,9 @@
 										{
 											"id": "set-image-scale-x",
 											"objectClass": "enemyHealthBar",
-											"sid": 427298398704366,
+											"sid": 409361728160888,
 											"parameters": {
-												"scale-x": "enemy.currentHealth / enemy.maxHealth * 100"
+												"scale-x": "healthBarScale"
 											}
 										}
 									],
@@ -13430,10 +13476,10 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "enemyHealthFrame",
-									"sid": 636148833014106,
+									"sid": 978586895562677,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.ObjectTypeName & \" opacity tween\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
 										"end-value": "TRANSPARENT_OPACITY",
 										"time": "MENU_FADE_TIME",
@@ -13622,7 +13668,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "The settings menu can't be opened while anything else is fading"
+									"text": "The settings menu can't be opened while anything else is fading."
 								}
 							],
 							"sid": 523105908918023,
@@ -13660,17 +13706,17 @@
 										{
 											"id": "set-time-scale",
 											"objectClass": "System",
-											"sid": 851296553141354,
+											"sid": 611202584541492,
 											"parameters": {
-												"time-scale": "0"
+												"time-scale": "PAUSED"
 											}
 										},
 										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
-											"sid": 852683088486420,
+											"sid": 278733162287097,
 											"parameters": {
-												"layer": "\"main\"",
+												"layer": "body.LayerName",
 												"interactive": false
 											}
 										},
@@ -13686,9 +13732,9 @@
 										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
-											"sid": 259119409880904,
+											"sid": 119403818847371,
 											"parameters": {
-												"layer": "\"background\"",
+												"layer": "background.LayerName",
 												"interactive": false
 											}
 										},
@@ -13781,6 +13827,16 @@
 							"sid": 713480100974908,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "NO_KEYCODE",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The value for no keycode.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 882437954423627
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -13794,9 +13850,9 @@
 										{
 											"id": "compare-text",
 											"objectClass": "abilityKeybinder",
-											"sid": 275095952793900,
+											"sid": 685531208991222,
 											"parameters": {
-												"text-to-compare": "\"...\"",
+												"text-to-compare": "ELLIPSIS",
 												"case-sensitivity": "ignore-case"
 											}
 										}
@@ -13817,18 +13873,18 @@
 										{
 											"id": "set-text",
 											"objectClass": "abilityKeybinder",
-											"sid": 870576430824464,
+											"sid": 637931546165125,
 											"parameters": {
-												"text": "\"...\""
+												"text": "ELLIPSIS"
 											}
 										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "abilityKeybinder",
-											"sid": 104849985541415,
+											"sid": 450697672111465,
 											"parameters": {
 												"instance-variable": "keycode",
-												"value": "0"
+												"value": "NO_KEYCODE"
 											}
 										}
 									],
@@ -13847,9 +13903,9 @@
 								{
 									"id": "compare-text",
 									"objectClass": "abilityKeybinder",
-									"sid": 796424527758225,
+									"sid": 554440300150107,
 									"parameters": {
-										"text-to-compare": "\"...\"",
+										"text-to-compare": "ELLIPSIS",
 										"case-sensitivity": "ignore-case"
 									}
 								}
@@ -13886,7 +13942,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "...And the key that was pressed isn't already bound..."
+											"text": "...and the key that was pressed isn't already bound..."
 										}
 									],
 									"sid": 624381061161863
@@ -13942,19 +13998,19 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 485925053949018,
+											"sid": 810589868631789,
 											"parameters": {
 												"object": "abilityKeybinder",
 												"expression": "abilityKeybinder.PlainText",
 												"comparison": 0,
-												"value": "\"...\""
+												"value": "ELLIPSIS"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Only allow closure of the settings menu if we aren't currently rebinding a key"
+											"text": "Only allow closure of the settings menu if we aren't currently rebinding a key."
 										}
 									],
 									"sid": 206585683324567
@@ -13972,9 +14028,9 @@
 										{
 											"id": "set-time-scale",
 											"objectClass": "System",
-											"sid": 954329498888035,
+											"sid": 142770317832170,
 											"parameters": {
-												"time-scale": "1"
+												"time-scale": "UNPAUSED_TIME_SCALE"
 											}
 										},
 										{
@@ -13987,9 +14043,9 @@
 										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
-											"sid": 908768718816704,
+											"sid": 255547908536698,
 											"parameters": {
-												"layer": "\"main\"",
+												"layer": "body.LayerName",
 												"interactive": true
 											}
 										},
@@ -14005,9 +14061,9 @@
 										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
-											"sid": 758881988579384,
+											"sid": 731073841442198,
 											"parameters": {
-												"layer": "\"background\"",
+												"layer": "background.LayerName",
 												"interactive": true
 											}
 										}
@@ -14040,25 +14096,37 @@
 								{
 									"id": "is-playing",
 									"objectClass": "statue",
-									"sid": 929662784964018,
+									"sid": 358881593907077,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & \" fade\""
+										"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Yes, the for each is absolutely necessary here"
+									"text": "This 'For each statue' is necessary and we don't know why.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0,
+										0,
+										0,
+										0
+									]
 								},
 								{
 									"id": "set-layer-opacity",
 									"objectClass": "System",
-									"sid": 923764386018574,
+									"sid": 501152126795183,
 									"parameters": {
 										"layer": "statue.LayerName",
-										"opacity": "statue.Tween.Value(statue.ObjectTypeName & SEPARATOR & statue.UID & \" fade\")"
+										"opacity": "statue.Tween.Value(statue.ObjectTypeName & SEPARATOR & statue.UID)"
 									}
 								}
 							],
@@ -14094,19 +14162,29 @@
 								},
 								{
 									"type": "comment",
-									"text": "This is so fades still work for statues when paused"
+									"text": "Allow statues to fade while the game is paused."
 								},
 								{
 									"id": "set-object-time-scale",
 									"objectClass": "System",
-									"sid": 600029646028441,
+									"sid": 792221529704906,
 									"parameters": {
 										"object": "statue",
-										"time-scale": "1.0"
+										"time-scale": "UNPAUSED_TIME_SCALE"
 									}
 								}
 							],
 							"sid": 502899049216928
+						},
+						{
+							"eventType": "variable",
+							"name": "STATUE_OPACITY",
+							"type": "number",
+							"initialValue": "50",
+							"comment": "The opacity value to which statues tween.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 237851361576172
 						},
 						{
 							"eventType": "block",
@@ -14120,6 +14198,22 @@
 							],
 							"actions": [
 								{
+									"type": "comment",
+									"text": "We can't reorganize layers in this event, because global sprites go to their matching layout number when the layout is changed, and re-organizing layers changes their number.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0,
+										0,
+										0,
+										0
+									]
+								},
+								{
 									"id": "set-enabled",
 									"objectClass": "statue",
 									"sid": 223147705922705,
@@ -14129,39 +14223,20 @@
 									}
 								},
 								{
-									"type": "comment",
-									"text": "For some reason this works, but tweening the opacity for showing/hiding menus doesn't. Probably something to do with the fact we're only going to 50 here, and we go to 0 there."
-								},
-								{
 									"id": "tween-one-property",
 									"objectClass": "statue",
-									"sid": 646236188087339,
+									"sid": 465192844497970,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.ObjectTypeName & \" opacity tween out\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
-										"end-value": "50",
+										"end-value": "STATUE_OPACITY",
 										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no",
 										"repeat-count": "TWEEN_REPEAT_COUNT"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "'toolip' and all overlay layers above can't be re-organized, all overlay layers beneath it can be reorganized. If we change layouts with this event enabled, overlay sprites get sent to the wrong layer (since global sprites go to their matching layout number, and re-organizing layers messes with their number).\n\nThe ability to dynamically sort layers would require a refactor of overlay layers to put all their content on one layer."
-								},
-								{
-									"id": "move-layer",
-									"objectClass": "System",
-									"sid": 583418070821051,
-									"disabled": true,
-									"parameters": {
-										"layer": "statue.LayerName",
-										"insert-by": "tooltip.LayerName",
-										"where": "below"
 									}
 								}
 							],
@@ -14181,12 +14256,12 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "statue",
-									"sid": 689612699917278,
+									"sid": 431331815907238,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.ObjectTypeName & \" opacity tween in\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
-										"end-value": "100",
+										"end-value": "SOLID_OPACITY",
 										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",

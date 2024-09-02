@@ -465,6 +465,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "BRIGHTNESS_EFFECT_NAME",
+			"type": "string",
+			"initialValue": "Brightness",
+			"comment": "The name of the effect that modifies brightness on an object.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 239790028371318
+		},
+		{
+			"eventType": "variable",
 			"name": "CHECKED_KEYWORD",
 			"type": "string",
 			"initialValue": "checked",
@@ -595,7 +605,7 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "GLOWHORIZONTAL_KEYWORD",
+			"name": "GLOWHORIZONTAL_EFFECT_NAME",
 			"type": "string",
 			"initialValue": "GlowHorizontal",
 			"comment": "The name of the effect that modifies the horizontal glow on an object.",
@@ -605,7 +615,7 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "GLOWVERTICAL_KEYWORD",
+			"name": "GLOWVERTICAL_EFFECT_NAME",
 			"type": "string",
 			"initialValue": "GlowVertical",
 			"comment": "The name of the effect that modifies the vertical glow on an object.",
@@ -6570,7 +6580,7 @@
 					"eventType": "group",
 					"disabled": false,
 					"title": "levels",
-					"description": "handle the player leveling up",
+					"description": "",
 					"isActiveOnStart": true,
 					"children": [
 						{
@@ -6605,6 +6615,29 @@
 										"instance-variable": "level",
 										"value": "1"
 									}
+								},
+								{
+									"type": "comment",
+									"text": "It would be too much technical overhead to update to the ability selector while it's open, so just close it when the player levels up. It'll be pretty hard to level up with it open, anyways.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								},
+								{
+									"callFunction": "closeLayer",
+									"sid": 812920926137633,
+									"parameters": [
+										"abilitySelectorStatue.LayerName"
+									]
 								}
 							],
 							"sid": 208608154238341
@@ -10624,7 +10657,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "close the ability selector if we click anywhere that's not an ability or statue"
+									"text": "Close the ability selector if we click anywhere that's not an ability or statue."
 								},
 								{
 									"callFunction": "closeLayer",
@@ -10675,11 +10708,23 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "when we click an ability that's not set to 'none'..."
+									"text": "When we click an ability that's not set to 'none'..."
 								},
 								{
 									"type": "comment",
-									"text": "left mouse released instead of 'on click', so when the ability selector is closed after choosing an ability, the click isn't also registered and moves the player"
+									"text": "'On Left button released' prevents the click from also moving the player.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
 								}
 							],
 							"sid": 888951027546163,
@@ -10754,6 +10799,16 @@
 									"sid": 208998898503068,
 									"children": [
 										{
+											"eventType": "variable",
+											"name": "CATEGORY_KEYWORD",
+											"type": "string",
+											"initialValue": "category",
+											"comment": "Used for finding the column that contains the category of an ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 935796449643377
+										},
+										{
 											"eventType": "block",
 											"conditions": [
 												{
@@ -10767,11 +10822,11 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 682454388095496,
+													"sid": 692620053140329,
 													"parameters": {
 														"variable": "currentCategory",
 														"comparison": 0,
-														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"category\")"
+														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, CATEGORY_KEYWORD)"
 													}
 												}
 											],
@@ -10839,10 +10894,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 570648691920689,
+													"sid": 360802631307211,
 													"parameters": {
 														"variable": "currentCategory",
-														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"category\")"
+														"value": "Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, CATEGORY_KEYWORD)"
 													}
 												},
 												{
@@ -10871,9 +10926,9 @@
 														{
 															"id": "compare-at-xy",
 															"objectClass": "abilitiesArray",
-															"sid": 536294436707036,
+															"sid": 971904029439678,
 															"parameters": {
-																"x": "Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"category\")",
+																"x": "Functions.getColumnNumber(abilitiesArray.ObjectTypeName, CATEGORY_KEYWORD)",
 																"y": "loopindex",
 																"comparison": 0,
 																"value": "currentCategory"
@@ -10894,11 +10949,7 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "populate the abilityOptionsArray with abilities that are of the matching class and meet the level requirement"
-														},
-														{
-															"type": "comment",
-															"text": "TODO: If the player levels up with the ability selector open, any new abilities won't show up. Is it even possible to level up with the ability selector open? Should we just close the ability selector on level-up?"
+															"text": "Populate 'abilityOptionsArray' with abilities that are of the matching class and meet the level requirement."
 														},
 														{
 															"id": "push",
@@ -11008,6 +11059,16 @@
 																	"sid": 704351852125970
 																},
 																{
+																	"eventType": "variable",
+																	"name": "GRAYSCALE_EFFECT_NAME",
+																	"type": "string",
+																	"initialValue": "Grayscale",
+																	"comment": "The name of the grayscale effect.",
+																	"isStatic": false,
+																	"isConstant": true,
+																	"sid": 290870066816621
+																},
+																{
 																	"eventType": "block",
 																	"conditions": [
 																		{
@@ -11026,10 +11087,10 @@
 																		{
 																			"id": "set-effect-enabled",
 																			"objectClass": "ability",
-																			"sid": 238085019319847,
+																			"sid": 169163123253226,
 																			"parameters": {
 																				"mode": "enable",
-																				"effect": "\"Grayscale\""
+																				"effect": "GRAYSCALE_EFFECT_NAME"
 																			}
 																		}
 																	],
@@ -11054,10 +11115,10 @@
 																		{
 																			"id": "set-effect-enabled",
 																			"objectClass": "ability",
-																			"sid": 145603175504239,
+																			"sid": 746084696975006,
 																			"parameters": {
 																				"mode": "disable",
-																				"effect": "\"Grayscale\""
+																				"effect": "GRAYSCALE_EFFECT_NAME"
 																			}
 																		}
 																	],
@@ -11126,7 +11187,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if we clicked on an ability option..."
+											"text": "If we clicked on an ability option..."
 										},
 										{
 											"id": "set-eventvar-value",
@@ -11193,7 +11254,7 @@
 						},
 						{
 							"functionName": "setCoverHightlight",
-							"functionDescription": "Turns the highlight of an ability cover on or off",
+							"functionDescription": "Turns the highlight of an ability cover on or off.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
@@ -11228,10 +11289,10 @@
 										{
 											"id": "set-effect-enabled",
 											"objectClass": "abilitySlot",
-											"sid": 654147713762156,
+											"sid": 317990445866596,
 											"parameters": {
 												"mode": "enable",
-												"effect": "\"Brightness\""
+												"effect": "BRIGHTNESS_EFFECT_NAME"
 											}
 										}
 									],
@@ -11250,10 +11311,10 @@
 										{
 											"id": "set-effect-enabled",
 											"objectClass": "abilitySlot",
-											"sid": 711173797562710,
+											"sid": 742840166653624,
 											"parameters": {
 												"mode": "disable",
-												"effect": "\"Brightness\""
+												"effect": "BRIGHTNESS_EFFECT_NAME"
 											}
 										}
 									],
@@ -11736,7 +11797,7 @@
 						},
 						{
 							"functionName": "closeLayer",
-							"functionDescription": "Close the specified layer",
+							"functionDescription": "Close the specified layer.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
@@ -11746,7 +11807,7 @@
 									"name": "menuName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "The name of the layer to close",
+									"comment": "The name of the layer to close.",
 									"sid": 231291736061001
 								}
 							],
@@ -11908,7 +11969,7 @@
 						},
 						{
 							"functionName": "openLayer",
-							"functionDescription": "Open the specified layer",
+							"functionDescription": "Open the specified layer.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
@@ -11918,7 +11979,7 @@
 									"name": "menuName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "The name of the layer to open",
+									"comment": "The name of the layer to open.",
 									"sid": 228302164093831
 								}
 							],
@@ -12536,7 +12597,7 @@
 						},
 						{
 							"functionName": "updateTooltip",
-							"functionDescription": "update and show the tooltip with the specified information",
+							"functionDescription": "Update and show the tooltip with the specified information.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
@@ -12546,49 +12607,49 @@
 									"name": "isAbility",
 									"type": "boolean",
 									"initialValue": "false",
-									"comment": "",
+									"comment": "Whether or not this tooltip is for an ability.",
 									"sid": 644466920870083
 								},
 								{
 									"name": "name",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The name to display on the tooltip.",
 									"sid": 655975269993235
 								},
 								{
 									"name": "class",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The class to display on the tooltip.",
 									"sid": 945794792643289
 								},
 								{
 									"name": "level",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The level to display on the tooltip.",
 									"sid": 445357807781583
 								},
 								{
 									"name": "text",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The main body of content to display on the tooltip.",
 									"sid": 893908292176095
 								},
 								{
 									"name": "lore",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The lore to display on the tooltip.",
 									"sid": 824750967220550
 								},
 								{
 									"name": "value",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The value of the object to which for show the tooltip, in coins.",
+									"comment": "The value (in coins) to display on the tooltip.",
 									"sid": 548489733334983
 								}
 							],
@@ -12988,7 +13049,7 @@
 						},
 						{
 							"functionName": "updateComparisonTooltip",
-							"functionDescription": "update and show the comparison tooltip with the specified information",
+							"functionDescription": "Update and show the comparison tooltip with the specified information.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
@@ -12998,42 +13059,42 @@
 									"name": "name",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The name to display on the comparison tooltip.",
 									"sid": 910590846581926
 								},
 								{
 									"name": "class",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The class to display on the comparison tooltip.",
 									"sid": 591887021608529
 								},
 								{
 									"name": "level",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "",
+									"comment": "The level to display on the comparison tooltip.",
 									"sid": 301944540294416
 								},
 								{
 									"name": "text",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The main body of content to display on the comparison tooltip.",
 									"sid": 893566839981270
 								},
 								{
 									"name": "lore",
 									"type": "string",
 									"initialValue": "",
-									"comment": "",
+									"comment": "The lore to display on the comparison tooltip.",
 									"sid": 711926424267286
 								},
 								{
 									"name": "value",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The value of the object for which to show the comparison tooltip, in coins.",
+									"comment": "The value (in coins) to display on the comparison tooltip.",
 									"sid": 966010385466510
 								}
 							],
@@ -19830,46 +19891,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "variable",
-					"name": "DEFAULT_BRIGHTNESS",
-					"type": "number",
-					"initialValue": "100",
-					"comment": "The default brightness of objects that can change brightness.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 793731029590109
-				},
-				{
-					"eventType": "variable",
-					"name": "BRIGHTNESS_PARAMETER",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The parameter of the brightness effect which controls intensity.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 801595102514290
-				},
-				{
-					"eventType": "variable",
-					"name": "MODIFIED_BRIGHTNESS",
-					"type": "number",
-					"initialValue": "105",
-					"comment": "The modified brightness of objects that can change brightness.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 630696981830673
-				},
-				{
-					"eventType": "variable",
-					"name": "BRIGHTNESS_KEYWORD",
-					"type": "string",
-					"initialValue": "Brightness",
-					"comment": "The name of the effect that modifies brightness on an object.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 872731707980412
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -19910,22 +19931,21 @@
 					],
 					"actions": [
 						{
-							"id": "set-effect-parameter",
+							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 216492329937281,
+							"sid": 448100487599109,
 							"parameters": {
-								"effect": "BRIGHTNESS_KEYWORD",
-								"parameter-index": "BRIGHTNESS_PARAMETER",
-								"value": "MODIFIED_BRIGHTNESS"
+								"mode": "enable",
+								"effect": "BRIGHTNESS_EFFECT_NAME"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 447265671821930,
+							"sid": 272893011810093,
 							"parameters": {
 								"mode": "enable",
-								"effect": "GLOWHORIZONTAL_KEYWORD"
+								"effect": "GLOWHORIZONTAL_EFFECT_NAME"
 							}
 						},
 						{
@@ -19934,7 +19954,7 @@
 							"sid": 897000134081696,
 							"parameters": {
 								"mode": "enable",
-								"effect": "GLOWVERTICAL_KEYWORD"
+								"effect": "GLOWVERTICAL_EFFECT_NAME"
 							}
 						}
 					],
@@ -19955,22 +19975,21 @@
 					],
 					"actions": [
 						{
-							"id": "set-effect-parameter",
+							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 803683098717272,
+							"sid": 229185860799356,
 							"parameters": {
-								"effect": "BRIGHTNESS_KEYWORD",
-								"parameter-index": "BRIGHTNESS_PARAMETER",
-								"value": "DEFAULT_BRIGHTNESS"
+								"mode": "disable",
+								"effect": "BRIGHTNESS_EFFECT_NAME"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "lootChest",
-							"sid": 760139089985433,
+							"sid": 460163426458679,
 							"parameters": {
 								"mode": "disable",
-								"effect": "GLOWHORIZONTAL_KEYWORD"
+								"effect": "GLOWHORIZONTAL_EFFECT_NAME"
 							}
 						},
 						{
@@ -19979,7 +19998,7 @@
 							"sid": 357784612057613,
 							"parameters": {
 								"mode": "disable",
-								"effect": "GLOWVERTICAL_KEYWORD"
+								"effect": "GLOWVERTICAL_EFFECT_NAME"
 							}
 						}
 					],
@@ -20105,22 +20124,21 @@
 							}
 						},
 						{
-							"id": "set-effect-parameter",
+							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 557147059603167,
+							"sid": 678213683742384,
 							"parameters": {
-								"effect": "BRIGHTNESS_KEYWORD",
-								"parameter-index": "BRIGHTNESS_PARAMETER",
-								"value": "MODIFIED_BRIGHTNESS"
+								"mode": "enable",
+								"effect": "BRIGHTNESS_EFFECT_NAME"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 753768738845522,
+							"sid": 623762466197020,
 							"parameters": {
 								"mode": "enable",
-								"effect": "GLOWHORIZONTAL_KEYWORD"
+								"effect": "GLOWHORIZONTAL_EFFECT_NAME"
 							}
 						},
 						{
@@ -20129,7 +20147,7 @@
 							"sid": 839999534381491,
 							"parameters": {
 								"mode": "enable",
-								"effect": "GLOWVERTICAL_KEYWORD"
+								"effect": "GLOWVERTICAL_EFFECT_NAME"
 							}
 						}
 					],
@@ -20211,22 +20229,21 @@
 							}
 						},
 						{
-							"id": "set-effect-parameter",
+							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 432392318419800,
+							"sid": 179495393020100,
 							"parameters": {
-								"effect": "BRIGHTNESS_KEYWORD",
-								"parameter-index": "BRIGHTNESS_PARAMETER",
-								"value": "DEFAULT_BRIGHTNESS"
+								"mode": "disable",
+								"effect": "BRIGHTNESS_EFFECT_NAME"
 							}
 						},
 						{
 							"id": "set-effect-enabled",
 							"objectClass": "door",
-							"sid": 373259415617830,
+							"sid": 532208728736239,
 							"parameters": {
 								"mode": "disable",
-								"effect": "GLOWHORIZONTAL_KEYWORD"
+								"effect": "GLOWHORIZONTAL_EFFECT_NAME"
 							}
 						},
 						{
@@ -20235,7 +20252,7 @@
 							"sid": 938886009902335,
 							"parameters": {
 								"mode": "disable",
-								"effect": "GLOWVERTICAL_KEYWORD"
+								"effect": "GLOWVERTICAL_EFFECT_NAME"
 							}
 						}
 					],

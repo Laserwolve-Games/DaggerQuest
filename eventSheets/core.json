@@ -11310,6 +11310,16 @@
 							"sid": 939991445799526
 						},
 						{
+							"eventType": "variable",
+							"name": "PER_SECOND_TEXT",
+							"type": "string",
+							"initialValue": "/second",
+							"comment": "Used when displaying a character stat that's per second.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 678409209078561
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -11333,9 +11343,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "healthRegen",
-									"sid": 891067517392227,
+									"sid": 145611212433346,
 									"parameters": {
-										"text": "player.healthRegen & \"/second\""
+										"text": "player.healthRegen & PER_SECOND_TEXT"
 									}
 								},
 								{
@@ -11397,9 +11407,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "manaRegen",
-									"sid": 773702094055869,
+									"sid": 285155824896548,
 									"parameters": {
-										"text": "player.manaRegen & \"/second\""
+										"text": "player.manaRegen & PER_SECOND_TEXT"
 									}
 								},
 								{
@@ -11824,12 +11834,12 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 272995996282725,
+											"sid": 850863662822771,
 											"parameters": {
 												"object": "statue",
-												"expression": "statue.ObjectTypeName",
+												"expression": "statue.LayerName",
 												"comparison": 0,
-												"value": "menuName & \"Statue\""
+												"value": "menuName"
 											}
 										}
 									],
@@ -11880,7 +11890,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "This is used by the dialog window which doesn't have a statue"
+											"text": "This is used by the dialog window, which doesn't have a statue."
 										},
 										{
 											"id": "set-layer-visible",
@@ -11932,10 +11942,6 @@
 										"layer": "menuName",
 										"visibility": "visible"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "The NPC dialog will play as soon as the dialog window opens, so the menu open sound wouldn't be necessary"
 								}
 							],
 							"sid": 667271432738870,
@@ -11984,6 +11990,10 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "The NPC dialog will play as soon as the dialog window opens, so the menu open sound wouldn't be necessary."
+										},
+										{
 											"id": "play-by-name",
 											"objectClass": "Audio",
 											"sid": 980524320326130,
@@ -12005,12 +12015,12 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 983527644271143,
+											"sid": 591454638276414,
 											"parameters": {
 												"object": "statue",
-												"expression": "statue.ObjectTypeName",
+												"expression": "statue.LayerName",
 												"comparison": 0,
-												"value": "menuName & \"Statue\""
+												"value": "menuName"
 											}
 										}
 									],
@@ -12018,10 +12028,10 @@
 										{
 											"id": "set-layer-opacity",
 											"objectClass": "System",
-											"sid": 318882430883252,
+											"sid": 919047895129632,
 											"parameters": {
 												"layer": "statue.LayerName",
-												"opacity": "0"
+												"opacity": "TRANSPARENT_OPACITY"
 											}
 										},
 										{

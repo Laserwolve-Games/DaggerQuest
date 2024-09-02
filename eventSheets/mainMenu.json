@@ -885,10 +885,10 @@
 										{
 											"id": "addProbabilityEntry",
 											"objectClass": "advancedRandom",
-											"sid": 712171629558218,
+											"sid": 256015455191106,
 											"parameters": {
 												"value": "modName",
-												"weight": "int(Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD))"
+												"weight": "Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD)"
 											}
 										}
 									],

@@ -475,6 +475,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "DESCRIPTION_KEYWORD",
+			"type": "string",
+			"initialValue": "description",
+			"comment": "Used for finding the column containing an object's description.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 858179470830563
+		},
+		{
+			"eventType": "variable",
 			"name": "DIE_KEYWORD",
 			"type": "string",
 			"initialValue": "die",
@@ -565,6 +575,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "FULL_NAME_KEYWORD",
+			"type": "string",
+			"initialValue": "fullName",
+			"comment": "The column that contains the beautified name of an object.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 302015199992087
+		},
+		{
+			"eventType": "variable",
 			"name": "GLOBAL_FLAG",
 			"type": "string",
 			"initialValue": "g",
@@ -622,6 +642,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 145962909649336
+		},
+		{
+			"eventType": "variable",
+			"name": "LEVEL_KEYWORD",
+			"type": "string",
+			"initialValue": "level",
+			"comment": "Used for finding the column that contains the level of equipment or an ability.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 877233800449210
 		},
 		{
 			"eventType": "variable",
@@ -1315,10 +1345,10 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "portrait",
-									"sid": 104343722716157,
+									"sid": 332179319537572,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "\"\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
 										"end-value": "SOLID_OPACITY",
 										"time": "MENU_FADE_TIME",
@@ -1356,9 +1386,9 @@
 								},
 								{
 									"callFunction": "openLayer",
-									"sid": 866546316811041,
+									"sid": 948276087596788,
 									"parameters": [
-										"\"merchantMenu\""
+										"merchantMenuStatue.LayerName"
 									]
 								}
 							],
@@ -1370,18 +1400,18 @@
 										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
-											"sid": 522633786102803,
+											"sid": 562807845252909,
 											"parameters": {
-												"layer": "\"equippedMenu\""
+												"layer": "equippedMenuStatue.LayerName"
 											}
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "closeLayer",
-											"sid": 392761074199444,
+											"sid": 861924819909943,
 											"parameters": [
-												"\"equippedMenu\""
+												"equippedMenuStatue.LayerName"
 											]
 										}
 									],
@@ -1393,9 +1423,9 @@
 										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
-											"sid": 475539151099004,
+											"sid": 556978224972586,
 											"parameters": {
-												"layer": "\"inventoryMenu\""
+												"layer": "inventoryMenuStatue.LayerName"
 											},
 											"isInverted": true
 										}
@@ -1403,9 +1433,9 @@
 									"actions": [
 										{
 											"callFunction": "openLayer",
-											"sid": 623449632814768,
+											"sid": 558628335486437,
 											"parameters": [
-												"\"inventoryMenu\""
+												"inventoryMenuStatue.LayerName"
 											]
 										}
 									],
@@ -1552,7 +1582,7 @@
 					"name": "allowEquipmentInteraction",
 					"type": "boolean",
 					"initialValue": "true",
-					"comment": "Whether or not the player is currently allowed to interact with equipment",
+					"comment": "Whether or not the player is currently allowed to interact with equipment.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 683308433353572
@@ -1572,7 +1602,7 @@
 					"name": "swapSlotUid",
 					"type": "number",
 					"initialValue": "0",
-					"comment": "the UID of the original slot in a swap",
+					"comment": "The UID of the original slot in a swap.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 592861658035522
@@ -1582,7 +1612,7 @@
 					"name": "draggedOriginSlotUid",
 					"type": "number",
 					"initialValue": "0",
-					"comment": "the UID of the slot the drag originated from",
+					"comment": "The UID of the slot from which the drag originated.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 201307089918324
@@ -1592,7 +1622,7 @@
 					"name": "draggedItemUid",
 					"type": "number",
 					"initialValue": "0",
-					"comment": "the UID of the item we're dragging",
+					"comment": "The UID of the item being dragged.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 298078267734463
@@ -1602,7 +1632,7 @@
 					"name": "droppedOnSlotUid",
 					"type": "number",
 					"initialValue": "0",
-					"comment": "the UID of the slot we dropped on",
+					"comment": "The UID of the slot on which the item was dropped.",
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 422173916162530
@@ -2088,10 +2118,10 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "loot",
-									"sid": 762815302576746,
+									"sid": 479508602804430,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "\"\"",
+										"tags": "NOT_USED",
 										"property": "offsetY",
 										"end-value": "Self.destinationY",
 										"time": "TRAVEL_TIME / 2",
@@ -2216,10 +2246,10 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 854871205715515,
+									"sid": 418303292414375,
 									"parameters": {
 										"object-name": "advancedRandom.WeightedByName(EQUIPMENT_PROBABILITY_TABLE) & SEPARATOR & \"loot\"",
-										"layer": "\"background\"",
+										"layer": "background.LayerName",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": false,
@@ -2397,10 +2427,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 625303334401406,
+											"sid": 411198317954523,
 											"parameters": {
 												"instance-variable": "fullName",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"fullName\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, FULL_NAME_KEYWORD)"
 											}
 										},
 										{
@@ -2424,10 +2454,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 423427518751160,
+											"sid": 481935363682140,
 											"parameters": {
 												"instance-variable": "level",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"level\")"
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LEVEL_KEYWORD)"
 											}
 										},
 										{
@@ -2524,10 +2554,10 @@
 												{
 													"id": "add-to-instvar",
 													"objectClass": "loot",
-													"sid": 660661043104183,
+													"sid": 573267035664107,
 													"parameters": {
 														"instance-variable": "mods",
-														"value": "((chosenMod & MOD_NAME_SEPARATOR) & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, \"description\")) & MOD_SEPARATOR"
+														"value": "((chosenMod & MOD_NAME_SEPARATOR) & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, DESCRIPTION_KEYWORD)) & MOD_SEPARATOR"
 													}
 												}
 											],
@@ -2575,10 +2605,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 492423809492847,
+													"sid": 558019413713885,
 													"parameters": {
 														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, \"\", 0), \"\\[|]\", GLOBAL_FLAG, \"\")"
+														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, NOT_USED, 0), \"\\[|]\", GLOBAL_FLAG, BLANK)"
 													}
 												}
 											],
@@ -2785,10 +2815,10 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "loot",
-															"sid": 835948514084487,
+															"sid": 229501352806417,
 															"parameters": {
 																"instance-variable": "mods",
-																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, \"\", \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
+																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, NOT_USED, \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
 															}
 														}
 													],
@@ -3981,10 +4011,10 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 409070851396123,
+									"sid": 962755135279844,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.UID & \" opacity tween\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
 										"end-value": "70",
 										"time": "LAYOUT_FADE_TIME",
@@ -4012,10 +4042,10 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 186155943538353,
+									"sid": 362084936559709,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "Self.UID & \" opacity tween\"",
+										"tags": "NOT_USED",
 										"property": "offsetOpacity",
 										"end-value": "SOLID_OPACITY",
 										"time": "MENU_FADE_TIME",
@@ -4815,14 +4845,14 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 888264810397615,
+													"sid": 541413351135116,
 													"parameters": {
 														"object-name": "item.simpleName & SEPARATOR & \"loot\"",
-														"layer": "\"background\"",
+														"layer": "background.LayerName",
 														"x": "mouse.X",
 														"y": "mouse.Y",
 														"create-hierarchy": false,
-														"template-name": "\"\""
+														"template-name": "NOT_USED"
 													}
 												}
 											],
@@ -5502,14 +5532,14 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 800938788786593,
+											"sid": 500899948824849,
 											"parameters": {
 												"object-name": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & \"gear\"",
-												"layer": "\"main\"",
+												"layer": "body.LayerName",
 												"x": "player.X",
 												"y": "player.Y",
 												"create-hierarchy": false,
-												"template-name": "\"\""
+												"template-name": "NOT_USED"
 											}
 										}
 									],
@@ -5726,14 +5756,14 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 451234734111323,
+													"sid": 666586487767002,
 													"parameters": {
 														"object-name": "body.ObjectTypeName & SEPARATOR & slot.type & \"Default\" & SEPARATOR & \"gear\"",
-														"layer": "\"main\"",
+														"layer": "body.LayerName",
 														"x": "player.X",
 														"y": "player.Y",
 														"create-hierarchy": false,
-														"template-name": "\"\""
+														"template-name": "NOT_USED"
 													}
 												}
 											],
@@ -6124,9 +6154,9 @@
 						{
 							"id": "is-on-layer",
 							"objectClass": "loot",
-							"sid": 209328512396284,
+							"sid": 450370705476650,
 							"parameters": {
-								"layer": "\"main\""
+								"layer": "body.LayerName"
 							}
 						},
 						{
@@ -8252,9 +8282,9 @@
 										{
 											"id": "layer-is-visible",
 											"objectClass": "System",
-											"sid": 916931601824170,
+											"sid": 777735461443819,
 											"parameters": {
-												"layer": "\"settingsMenu\""
+												"layer": "settingsMenuStatue.LayerName"
 											},
 											"isInverted": true
 										},
@@ -8574,14 +8604,14 @@
 																{
 																	"id": "create-object",
 																	"objectClass": "System",
-																	"sid": 745416919506470,
+																	"sid": 651186210496009,
 																	"parameters": {
 																		"object-to-create": "projectile",
-																		"layer": "\"mechanics\"",
+																		"layer": "player.LayerName",
 																		"x": "player.X",
 																		"y": "player.Y",
 																		"create-hierarchy": false,
-																		"template-name": "\"\""
+																		"template-name": "NOT_USED"
 																	}
 																}
 															],
@@ -9092,14 +9122,14 @@
 																{
 																	"id": "create-object",
 																	"objectClass": "System",
-																	"sid": 822025516930424,
+																	"sid": 845478431268345,
 																	"parameters": {
 																		"object-to-create": "projectile",
-																		"layer": "\"mechanics\"",
+																		"layer": "player.LayerName",
 																		"x": "player.X",
 																		"y": "player.Y",
 																		"create-hierarchy": false,
-																		"template-name": "\"\""
+																		"template-name": "NOT_USED"
 																	}
 																}
 															],
@@ -9178,10 +9208,10 @@
 																		{
 																			"id": "set-instvar-value",
 																			"objectClass": "projectile",
-																			"sid": 841091213603570,
+																			"sid": 179351131446456,
 																			"parameters": {
 																				"instance-variable": "slashDamage",
-																				"value": "player.slashDamage + player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\"), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER"
+																				"value": "player.slashDamage + player.slashDamage * int(tokenat(tokenat(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, DESCRIPTION_KEYWORD), 1, \"{\"), 0, \"}\")) / PERCENTAGE_DIVIDER"
 																			}
 																		},
 																		{
@@ -9566,14 +9596,14 @@
 														{
 															"id": "create-object",
 															"objectClass": "System",
-															"sid": 443918835331804,
+															"sid": 365267828927295,
 															"parameters": {
 																"object-to-create": "projectile",
-																"layer": "\"mechanics\"",
+																"layer": "player.LayerName",
 																"x": "player.X",
 																"y": "player.Y",
 																"create-hierarchy": false,
-																"template-name": "\"\""
+																"template-name": "NOT_USED"
 															}
 														}
 													],
@@ -9596,14 +9626,14 @@
 																{
 																	"id": "create-object",
 																	"objectClass": "System",
-																	"sid": 310106652557478,
+																	"sid": 719291775442042,
 																	"parameters": {
 																		"object-to-create": "projectile",
-																		"layer": "\"mechanics\"",
+																		"layer": "player.LayerName",
 																		"x": "player.X",
 																		"y": "player.Y",
 																		"create-hierarchy": false,
-																		"template-name": "\"\""
+																		"template-name": "NOT_USED"
 																	}
 																}
 															],
@@ -10585,9 +10615,9 @@
 								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
-									"sid": 645893643706577,
+									"sid": 312569487903178,
 									"parameters": {
-										"layer": "\"abilitySelector\""
+										"layer": "abilitySelectorStatue.LayerName"
 									}
 								}
 							],
@@ -10598,9 +10628,9 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 266146458793314,
+									"sid": 356720225436972,
 									"parameters": [
-										"\"abilitySelector\""
+										"abilitySelectorStatue.LayerName"
 									]
 								},
 								{
@@ -10700,9 +10730,9 @@
 										{
 											"id": "is-on-layer",
 											"objectClass": "ability",
-											"sid": 131501295979639,
+											"sid": 521867841977918,
 											"parameters": {
-												"layer": "\"abilityBar\""
+												"layer": "abilityBarStatue.LayerName"
 											}
 										},
 										{
@@ -10729,9 +10759,9 @@
 												{
 													"id": "layer-is-visible",
 													"objectClass": "System",
-													"sid": 925518533361833,
+													"sid": 581536756451024,
 													"parameters": {
-														"layer": "\"abilitySelector\""
+														"layer": "abilitySelectorStatue.LayerName"
 													}
 												},
 												{
@@ -10752,9 +10782,9 @@
 												},
 												{
 													"callFunction": "closeLayer",
-													"sid": 851728876144982,
+													"sid": 480875260085050,
 													"parameters": [
-														"\"abilitySelector\""
+														"abilitySelectorStatue.LayerName"
 													]
 												},
 												{
@@ -10817,9 +10847,9 @@
 												},
 												{
 													"callFunction": "openLayer",
-													"sid": 671087962683915,
+													"sid": 189021992688929,
 													"parameters": [
-														"\"abilitySelector\""
+														"abilitySelectorStatue.LayerName"
 													]
 												}
 											],
@@ -10852,9 +10882,9 @@
 														{
 															"id": "compare-at-xy",
 															"objectClass": "abilitiesArray",
-															"sid": 747483695361926,
+															"sid": 242293833288563,
 															"parameters": {
-																"x": "Functions.getColumnNumber(abilitiesArray.ObjectTypeName, \"level\")",
+																"x": "Functions.getColumnNumber(abilitiesArray.ObjectTypeName, LEVEL_KEYWORD)",
 																"y": "loopindex",
 																"comparison": 3,
 																"value": "player.level"
@@ -10904,12 +10934,12 @@
 																{
 																	"id": "pick-by-comparison",
 																	"objectClass": "System",
-																	"sid": 926374187397733,
+																	"sid": 437657880975258,
 																	"parameters": {
 																		"object": "ability",
 																		"expression": "ability.LayerName",
 																		"comparison": 0,
-																		"value": "\"abilitySelector\""
+																		"value": "abilitySelectorStatue.LayerName"
 																	}
 																},
 																{
@@ -11116,9 +11146,9 @@
 										},
 										{
 											"callFunction": "closeLayer",
-											"sid": 127468865291980,
+											"sid": 747274984907248,
 											"parameters": [
-												"\"abilitySelector\""
+												"abilitySelectorStatue.LayerName"
 											]
 										}
 									],
@@ -11547,9 +11577,9 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 558965859470762,
+											"sid": 986046057762437,
 											"parameters": [
-												"\"equippedMenu\""
+												"equippedMenuStatue.LayerName"
 											]
 										}
 									],
@@ -11561,18 +11591,18 @@
 												{
 													"id": "layer-is-visible",
 													"objectClass": "System",
-													"sid": 520281694235723,
+													"sid": 405966297726470,
 													"parameters": {
-														"layer": "\"merchantMenu\""
+														"layer": "merchantMenuStatue.LayerName"
 													}
 												}
 											],
 											"actions": [
 												{
 													"callFunction": "closeLayer",
-													"sid": 265640195185106,
+													"sid": 847114396952566,
 													"parameters": [
-														"\"merchantMenu\""
+														"merchantMenuStatue.LayerName"
 													]
 												}
 											],
@@ -11595,9 +11625,9 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 131314137611475,
+											"sid": 670200235757395,
 											"parameters": [
-												"\"characterMenu\""
+												"characterMenuStatue.LayerName"
 											]
 										}
 									],
@@ -11618,9 +11648,9 @@
 									"actions": [
 										{
 											"callFunction": "ManageMenuWithKey",
-											"sid": 303302744057056,
+											"sid": 574410582810596,
 											"parameters": [
-												"\"inventoryMenu\""
+												"inventoryMenuStatue.LayerName"
 											]
 										}
 									],
@@ -12041,6 +12071,16 @@
 							"sid": 862182322119437,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "NONE",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The numerical representation of nothing.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 946144892702201
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -12053,22 +12093,44 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 653304222044674,
+											"sid": 856276776215231,
 											"parameters": {
 												"first-value": "item.Count",
 												"comparison": 0,
-												"second-value": "0"
+												"second-value": "NONE"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "somehow 'item - is DragDrop is dragging' is neither false nor true when no Items exist"
+											"text": "'item is DragDrop is dragging' is neither false nor true when no items exist.",
+											"text-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0.7843137254901961,
+												1
+											],
+											"background-color": [
+												0,
+												0,
+												0,
+												1
+											]
 										}
 									],
 									"sid": 967900307182128,
 									"children": [
+										{
+											"eventType": "variable",
+											"name": "CLASS_KEYWORD",
+											"type": "string",
+											"initialValue": "class",
+											"comment": "Used for looking up an ability's class.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 750246453082349
+										},
 										{
 											"eventType": "block",
 											"conditions": [
@@ -12084,7 +12146,19 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "TODO: Make sure this works with rings"
+													"text": "TODO: Make sure tooltips work with rings.",
+													"text-color": [
+														0,
+														0,
+														0,
+														1
+													],
+													"background-color": [
+														1,
+														1,
+														0,
+														1
+													]
 												},
 												{
 													"callFunction": "updateTooltip",
@@ -12118,9 +12192,9 @@
 														{
 															"id": "is-on-layer",
 															"objectClass": "item",
-															"sid": 579029976926874,
+															"sid": 604896418958172,
 															"parameters": {
-																"layer": "\"inventoryMenu\""
+																"layer": "inventoryMenuStatue.LayerName"
 															}
 														}
 													],
@@ -12155,12 +12229,12 @@
 																{
 																	"id": "pick-by-comparison",
 																	"objectClass": "System",
-																	"sid": 347435954906914,
+																	"sid": 873622087157976,
 																	"parameters": {
 																		"object": "item",
 																		"expression": "item.LayerName",
 																		"comparison": 0,
-																		"value": "\"equippedMenu\""
+																		"value": "equippedMenuStatue.LayerName"
 																	}
 																},
 																{
@@ -12230,7 +12304,19 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "the \"else\" is for if we drag and hold an item over a loot"
+													"text": "The 'else' is for if we drag and hold an item over a loot.",
+													"text-color": [
+														0.7843137254901961,
+														0.7843137254901961,
+														0.7843137254901961,
+														1
+													],
+													"background-color": [
+														0.39215686274509803,
+														0,
+														0,
+														1
+													]
 												},
 												{
 													"callFunction": "updateTooltip",
@@ -12277,15 +12363,15 @@
 											"actions": [
 												{
 													"callFunction": "updateTooltip",
-													"sid": 628046946102384,
+													"sid": 902052321073868,
 													"parameters": [
 														true,
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"fullName\")",
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"class\")",
-														"int(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"level\"))",
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, \"description\")",
-														"\"\"",
-														"0"
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, FULL_NAME_KEYWORD)",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, CLASS_KEYWORD)",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, LEVEL_KEYWORD)",
+														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, DESCRIPTION_KEYWORD)",
+														"NOT_USED",
+														"NONE"
 													]
 												}
 											],
@@ -12309,12 +12395,12 @@
 												{
 													"id": "tween-one-property",
 													"objectClass": "tooltip",
-													"sid": 191485082268368,
+													"sid": 445460085484033,
 													"behaviorType": "Tween",
 													"parameters": {
-														"tags": "Self.ObjectTypeName & \" opacity tween\"",
+														"tags": "NOT_USED",
 														"property": "offsetOpacity",
-														"end-value": "0",
+														"end-value": "TRANSPARENT_OPACITY",
 														"time": "MENU_FADE_TIME",
 														"ease": "noease",
 														"destroy-on-complete": "no",
@@ -12326,12 +12412,12 @@
 												{
 													"id": "tween-one-property",
 													"objectClass": "comparisonTooltip",
-													"sid": 469125864642544,
+													"sid": 841889378198308,
 													"behaviorType": "Tween",
 													"parameters": {
-														"tags": "Self.ObjectTypeName & \" opacity tween\"",
+														"tags": "NOT_USED",
 														"property": "offsetOpacity",
-														"end-value": "0",
+														"end-value": "TRANSPARENT_OPACITY",
 														"time": "MENU_FADE_TIME",
 														"ease": "noease",
 														"destroy-on-complete": "no",
@@ -12400,6 +12486,26 @@
 						},
 						{
 							"eventType": "variable",
+							"name": "GREEN",
+							"type": "number",
+							"initialValue": "65280",
+							"comment": "The numerical representation of the color green.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 856195681374443
+						},
+						{
+							"eventType": "variable",
+							"name": "RED",
+							"type": "number",
+							"initialValue": "255",
+							"comment": "The numerical representation of the color red.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 870021894734969
+						},
+						{
+							"eventType": "variable",
 							"name": "LEVEL_TEXT",
 							"type": "string",
 							"initialValue": "Level",
@@ -12407,6 +12513,16 @@
 							"isStatic": false,
 							"isConstant": true,
 							"sid": 163982394912517
+						},
+						{
+							"eventType": "variable",
+							"name": "MOD_NAME_INDEX",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The index of a mod's name.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 679975955360657
 						},
 						{
 							"functionName": "updateTooltip",
@@ -12625,13 +12741,17 @@
 												{
 													"id": "append-text",
 													"objectClass": "tooltipDescription",
-													"sid": 120653382215069,
+													"sid": 469311704546348,
 													"parameters": {
-														"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), 1, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
+														"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), MOD_NAME_INDEX, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, NOT_USED) & newline "
 													}
 												}
 											],
 											"sid": 630356183524025
+										},
+										{
+											"eventType": "comment",
+											"text": "Set the color of the level and class restrictions text box depending if the player can use them."
 										},
 										{
 											"eventType": "block",
@@ -12647,15 +12767,11 @@
 											],
 											"actions": [
 												{
-													"type": "comment",
-													"text": "set the color of the level and class restrictions text box depending if the player can use them. (evaluate with or operator wasn't working)"
-												},
-												{
 													"id": "set-font-color",
 													"objectClass": "tooltipClass",
-													"sid": 690009318545707,
+													"sid": 403928569586436,
 													"parameters": {
-														"color": "rgbEx(0, 100, 0)"
+														"color": "GREEN"
 													}
 												}
 											],
@@ -12675,9 +12791,9 @@
 												{
 													"id": "set-font-color",
 													"objectClass": "tooltipClass",
-													"sid": 887313244913320,
+													"sid": 158770597995767,
 													"parameters": {
-														"color": "rgbEx(100, 0, 0)"
+														"color": "RED"
 													}
 												}
 											],
@@ -12701,9 +12817,9 @@
 												{
 													"id": "set-font-color",
 													"objectClass": "tooltipLevel",
-													"sid": 309880282157325,
+													"sid": 891105954880305,
 													"parameters": {
-														"color": "rgbEx(0, 100, 0)"
+														"color": "GREEN"
 													}
 												}
 											],
@@ -12722,9 +12838,9 @@
 												{
 													"id": "set-font-color",
 													"objectClass": "tooltipLevel",
-													"sid": 502447536210441,
+													"sid": 176503093673297,
 													"parameters": {
-														"color": "rgbEx(100, 0, 0)"
+														"color": "RED"
 													}
 												}
 											],
@@ -12738,7 +12854,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "tooltipLore is along the bottom, so it's OK where it's at. Align everything above tooltipDescription, cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
+											"text": "'tooltipLore' is along the bottom, so it's OK where it's at. Align everything above 'tooltipDescription', cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
 										},
 										{
 											"id": "set-y",
@@ -12774,7 +12890,7 @@
 										},
 										{
 											"type": "comment",
-											"text": "Set the tooltip's height based on the distance between the bottom of the tooltip and the bottom of the tooltipName, plus the tooltipName's textHeight, plus some padding."
+											"text": "Set the tooltip's height based on the distance between the bottom of the tooltip and the bottom of the 'tooltipName', plus tooltipName.textHeight', plus some padding."
 										},
 										{
 											"id": "set-height",
@@ -12791,9 +12907,9 @@
 										{
 											"id": "set-y",
 											"objectClass": "tooltip",
-											"sid": 535940485689065,
+											"sid": 326582825386439,
 											"parameters": {
-												"y": "ViewportBottom(\"overlay\")"
+												"y": "ViewportBottom(tooltip.LayerName)"
 											}
 										}
 									],
@@ -12831,10 +12947,6 @@
 									"conditions": [],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "wait for the text to render. Using layer opacity or visibility will cause a stutter when changing text values"
-										},
-										{
 											"id": "wait",
 											"objectClass": "System",
 											"sid": 837721359401634,
@@ -12845,10 +12957,10 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "tooltip",
-											"sid": 427385961829676,
+											"sid": 145152265660994,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"tags": "NOT_USED",
 												"property": "offsetOpacity",
 												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
@@ -12920,7 +13032,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "we can't compare abilities, so no boolean parameter for that"
+									"text": "We can't compare abilities, so no boolean parameter for that."
 								},
 								{
 									"id": "set-text",
@@ -12941,17 +13053,17 @@
 								{
 									"id": "set-text",
 									"objectClass": "comparisonTooltipValue",
-									"sid": 668673812564956,
+									"sid": 828576033715828,
 									"parameters": {
-										"text": "value & \" Coins\""
+										"text": "value & SPACE & COINS_TEXT"
 									}
 								},
 								{
 									"id": "set-text",
 									"objectClass": "comparisonTooltipLevel",
-									"sid": 824938158454118,
+									"sid": 966874321132537,
 									"parameters": {
-										"text": "\"Level \" & level"
+										"text": "LEVEL_TEXT & SPACE & level"
 									}
 								},
 								{
@@ -12965,9 +13077,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "comparisonTooltipDescription",
-									"sid": 399001034140106,
+									"sid": 868128069488789,
 									"parameters": {
-										"text": "\"\""
+										"text": "BLANK"
 									}
 								}
 							],
@@ -12991,9 +13103,9 @@
 										{
 											"id": "append-text",
 											"objectClass": "comparisonTooltipDescription",
-											"sid": 336166011179449,
+											"sid": 377231084296688,
 											"parameters": {
-												"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), 1, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, \"\") & newline "
+												"text": "RegexReplace(tokenat(tokenat(text, loopindex, MOD_SEPARATOR), MOD_NAME_INDEX, MOD_NAME_SEPARATOR), EITHER_CURLY_BRACKET_REGEX, GLOBAL_FLAG, BLANK) & newline "
 											}
 										}
 									],
@@ -13013,15 +13125,11 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "set the color of the level and class restrictions text box depending if the player can use them. (evaluate with or operator wasn't working)"
-										},
-										{
 											"id": "set-font-color",
 											"objectClass": "comparisonTooltipClass",
-											"sid": 983222596540263,
+											"sid": 812337526807678,
 											"parameters": {
-												"color": "rgbEx(0, 100, 0)"
+												"color": "GREEN"
 											}
 										}
 									],
@@ -13041,9 +13149,9 @@
 										{
 											"id": "set-font-color",
 											"objectClass": "comparisonTooltipClass",
-											"sid": 673913629937480,
+											"sid": 829973938850633,
 											"parameters": {
-												"color": "rgbEx(100, 0, 0)"
+												"color": "RED"
 											}
 										}
 									],
@@ -13067,9 +13175,9 @@
 										{
 											"id": "set-font-color",
 											"objectClass": "comparisonTooltipLevel",
-											"sid": 570492528701475,
+											"sid": 192643029905552,
 											"parameters": {
-												"color": "rgbEx(0, 100, 0)"
+												"color": "GREEN"
 											}
 										}
 									],
@@ -13088,9 +13196,9 @@
 										{
 											"id": "set-font-color",
 											"objectClass": "comparisonTooltipLevel",
-											"sid": 966203662113193,
+											"sid": 939493761324756,
 											"parameters": {
-												"color": "rgbEx(100, 0, 0)"
+												"color": "RED"
 											}
 										}
 									],
@@ -13098,7 +13206,7 @@
 								},
 								{
 									"eventType": "comment",
-									"text": "see comments in the related events for the normal tooltip"
+									"text": "See comments in the related events for the normal tooltip."
 								},
 								{
 									"eventType": "block",
@@ -13186,10 +13294,6 @@
 									"conditions": [],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "wait for the text to render. Using layer opacity or visibility will cause a stutter when changing text values"
-										},
-										{
 											"id": "wait",
 											"objectClass": "System",
 											"sid": 229744424860900,
@@ -13200,12 +13304,12 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "comparisonTooltip",
-											"sid": 612387940576623,
+											"sid": 723280941357015,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & \" opacity tween\"",
+												"tags": "NOT_USED",
 												"property": "offsetOpacity",
-												"end-value": "100",
+												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
 												"destroy-on-complete": "no",
@@ -15699,14 +15803,14 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 817388719670823,
+													"sid": 878525038861543,
 													"parameters": {
 														"object-to-create": "projectile",
-														"layer": "\"mechanics\"",
+														"layer": "enemy.LayerName",
 														"x": "enemy.X",
 														"y": "enemy.Y",
 														"create-hierarchy": false,
-														"template-name": "\"\""
+														"template-name": "NOT_USED"
 													}
 												},
 												{
@@ -16521,14 +16625,14 @@
 														{
 															"id": "create-object",
 															"objectClass": "System",
-															"sid": 162586936319832,
+															"sid": 447902034625328,
 															"parameters": {
 																"object-to-create": "lightningOrb",
-																"layer": "\"main\"",
+																"layer": "enemyBody.LayerName",
 																"x": "projectile.X",
 																"y": "projectile.Y",
 																"create-hierarchy": false,
-																"template-name": "\"\""
+																"template-name": "NOT_USED"
 															}
 														},
 														{

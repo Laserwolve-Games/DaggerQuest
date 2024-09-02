@@ -5057,7 +5057,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "Prevent items from being dropped outside the game window."
+													"text": "Prevent items from being dropped outside the window."
 												},
 												{
 													"callFunction": "returnItem",
@@ -10097,7 +10097,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "If the player isn't moving and not dead, and they were previously walking, (and the game isn't paused) make him start idling."
+									"text": "If the player isn't moving and not dead, and they were previously walking, (and the timescale isn't paused) make him start idling."
 								},
 								{
 									"callFunction": "updateAnimation",
@@ -10793,7 +10793,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if it's on the ability bar..."
+											"text": "...if that ability is on the ability bar..."
 										}
 									],
 									"sid": 208998898503068,
@@ -10833,7 +10833,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "if the class of the clicked ability is the one that's already being displayed, just close the ability selector"
+													"text": "...and the class of that ability is the one that's already being displayed, just close the ability selector."
 												},
 												{
 													"callFunction": "closeLayer",
@@ -10864,7 +10864,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "otherwise, open the ability selector and show the relevant abilities"
+													"text": "Otherwise, open the ability selector and show the relevant abilities."
 												},
 												{
 													"callFunction": "setCoverHightlight",
@@ -14363,7 +14363,7 @@
 								},
 								{
 									"type": "comment",
-									"text": "Allow statues to fade while the game is paused."
+									"text": "Allow statues to fade while paused."
 								},
 								{
 									"id": "set-object-time-scale",

@@ -785,16 +785,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "PLAYER_ABILITIES_FUNCTION_MAP",
-			"type": "string",
-			"initialValue": "playerAbilities",
-			"comment": "The name of the player abilities function map.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 690282116498680
-		},
-		{
-			"eventType": "variable",
 			"name": "UNCHECKED_KEYWORD",
 			"type": "string",
 			"initialValue": "unchecked",
@@ -7916,14 +7906,9 @@
 											}
 										},
 										{
-											"id": "call-mapped-function",
-											"objectClass": "Functions",
-											"sid": 437930889148671,
-											"parameters": {
-												"name": "PLAYER_ABILITIES_FUNCTION_MAP",
-												"string": "\"basicAttack\"",
-												"forward-params": "ALL_PARAMETERS"
-											}
+											"customAction": "basicAttack",
+											"objectClass": "player",
+											"sid": 902800340932838
 										}
 									],
 									"sid": 388352296582573
@@ -8369,7 +8354,7 @@
 				{
 					"eventType": "group",
 					"disabled": false,
-					"title": "ability management",
+					"title": "abilities",
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
@@ -8379,7 +8364,7 @@
 								{
 									"id": "for-each",
 									"objectClass": "System",
-									"sid": 182039323043180,
+									"sid": 649957268564522,
 									"parameters": {
 										"object": "abilityKeybinder"
 									}
@@ -8387,7 +8372,7 @@
 								{
 									"id": "key-code-is-down",
 									"objectClass": "keyboard",
-									"sid": 251108220640162,
+									"sid": 136411555013602,
 									"parameters": {
 										"keycode": "abilityKeybinder.keycode"
 									}
@@ -8395,7 +8380,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 435242391462884,
+									"sid": 641992718476426,
 									"parameters": {
 										"first-value": "timescale",
 										"comparison": 1,
@@ -8405,7 +8390,7 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "abilitySlot",
-									"sid": 690211121324008,
+									"sid": 710816135931744,
 									"parameters": {
 										"instance-variable": "abilityNumber",
 										"comparison": 0,
@@ -8415,7 +8400,7 @@
 								{
 									"id": "pick-children",
 									"objectClass": "abilitySlot",
-									"sid": 296922140234464,
+									"sid": 966076745215473,
 									"parameters": {
 										"child": "ability",
 										"which": "own"
@@ -8424,7 +8409,7 @@
 								{
 									"id": "is-animation-playing",
 									"objectClass": "ability",
-									"sid": 514491898136097,
+									"sid": 685047286226979,
 									"parameters": {
 										"animation": "NONE_KEYWORD"
 									},
@@ -8433,7 +8418,7 @@
 								{
 									"id": "is-overlapping-another-object",
 									"objectClass": "player",
-									"sid": 598002581038954,
+									"sid": 613291942331108,
 									"parameters": {
 										"object": "nonCombatArea"
 									},
@@ -8462,1110 +8447,242 @@
 									]
 								},
 								{
-									"id": "call-mapped-function",
-									"objectClass": "Functions",
-									"sid": 841580455248372,
+									"id": "instance-signal",
+									"objectClass": "player",
+									"sid": 237057261039276,
 									"parameters": {
-										"name": "PLAYER_ABILITIES_FUNCTION_MAP",
-										"string": "ability.AnimationName",
-										"forward-params": "ALL_PARAMETERS"
+										"tag": "ability.AnimationName"
 									}
 								}
 							],
-							"sid": 231728445496706
+							"sid": 361560456221949
 						},
 						{
 							"eventType": "group",
 							"disabled": false,
-							"title": "abilities",
+							"title": "man",
 							"description": "",
 							"isActiveOnStart": true,
 							"children": [
 								{
-									"eventType": "group",
-									"disabled": false,
-									"title": "man abilities",
-									"description": "",
-									"isActiveOnStart": true,
+									"eventType": "variable",
+									"name": "DOWNWARD_SLASH_ANIMATION_NAME",
+									"type": "string",
+									"initialValue": "downwardSlash",
+									"comment": "The name of the Downward Slash animation.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 590404617961724
+								},
+								{
+									"eventType": "variable",
+									"name": "UPWARD_SLASH_ANIMATION_NAME",
+									"type": "string",
+									"initialValue": "upwardSlash",
+									"comment": "The name of the Upward Slash animation.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 351023429812230
+								},
+								{
+									"eventType": "variable",
+									"name": "KICK_ANIMATION_NAME",
+									"type": "string",
+									"initialValue": "kick",
+									"comment": "The name of the Kick animation.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 724543150732958
+								},
+								{
+									"aceType": "action",
+									"aceName": "basicAttack",
+									"objectClass": "player",
+									"functionDescription": "The basic attack for this class.",
+									"functionCategory": "abilities",
+									"functionReturnType": "none",
+									"functionCopyPicked": true,
+									"functionIsAsync": false,
+									"functionParameters": [],
+									"eventType": "custom-ace-block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "This is a custom action and not an instance signal so we can get the coordinates of the enemy that was clicked."
+										}
+									],
+									"sid": 669092372960624,
 									"children": [
 										{
 											"eventType": "variable",
-											"name": "DOWNWARD_SLASH_ANIMATION_NAME",
-											"type": "string",
-											"initialValue": "downwardSlash",
-											"comment": "The name of the Downward Slash animation.",
+											"name": "PROJECTILE_SPEED",
+											"type": "number",
+											"initialValue": "650",
+											"comment": "The speed of the projectile.",
 											"isStatic": false,
 											"isConstant": true,
-											"sid": 143629606685016
+											"sid": 381651078870310
 										},
 										{
 											"eventType": "variable",
-											"name": "UPWARD_SLASH_ANIMATION_NAME",
-											"type": "string",
-											"initialValue": "upwardSlash",
-											"comment": "The name of the Upward Slash animation.",
+											"name": "MANIFESTATION_FRAME",
+											"type": "number",
+											"initialValue": "9",
+											"comment": "The (0-based) frame in which the projectile should manifest.",
 											"isStatic": false,
 											"isConstant": true,
-											"sid": 983265566430033
+											"sid": 940747957175982
 										},
 										{
 											"eventType": "variable",
-											"name": "KICK_ANIMATION_NAME",
-											"type": "string",
-											"initialValue": "kick",
-											"comment": "The name of the Kick animation.",
+											"name": "SIZE",
+											"type": "number",
+											"initialValue": "99",
+											"comment": "The size of the projectile.",
 											"isStatic": false,
 											"isConstant": true,
-											"sid": 885456385844331
+											"sid": 440652401434319
 										},
 										{
-											"functionName": "basicAttack",
-											"functionDescription": "",
-											"functionCategory": "abilities",
-											"functionReturnType": "none",
-											"functionCopyPicked": true,
-											"functionIsAsync": false,
-											"functionParameters": [],
-											"eventType": "function-block",
-											"conditions": [],
-											"actions": [],
-											"sid": 237487584537001,
-											"children": [
+											"eventType": "variable",
+											"name": "RANGE",
+											"type": "number",
+											"initialValue": "150",
+											"comment": "How far the projectile can travel before expiring, in pixels.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 749872962643692
+										},
+										{
+											"eventType": "variable",
+											"name": "waitPeriod",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 977009526873853
+										},
+										{
+											"eventType": "block",
+											"conditions": [
 												{
-													"eventType": "variable",
-													"name": "PROJECTILE_SPEED",
-													"type": "number",
-													"initialValue": "650",
-													"comment": "The speed of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 660984699450719
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 122222342763702,
+													"parameters": {
+														"object": "gear",
+														"expression": "gear.type",
+														"comparison": 0,
+														"value": "MAIN_HAND_KEYWORD"
+													}
 												},
 												{
-													"eventType": "variable",
-													"name": "MANIFESTATION_FRAME",
-													"type": "number",
-													"initialValue": "9",
-													"comment": "The (0-based) frame in which the projectile should manifest.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 720005343852250
-												},
-												{
-													"eventType": "variable",
-													"name": "SIZE",
-													"type": "number",
-													"initialValue": "99",
-													"comment": "The size of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 807248292850662
-												},
-												{
-													"eventType": "variable",
-													"name": "RANGE",
-													"type": "number",
-													"initialValue": "150",
-													"comment": "How far the projectile can travel before expiring, in pixels.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 712707695252394
-												},
-												{
-													"eventType": "variable",
-													"name": "waitPeriod",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 757482629485882
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 999860139912300,
-															"parameters": {
-																"object": "gear",
-																"expression": "gear.type",
-																"comparison": 0,
-																"value": "MAIN_HAND_KEYWORD"
-															}
-														},
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "player",
-															"sid": 356514004023456,
-															"parameters": {
-																"instance-variable": "busyCastingAbility"
-															},
-															"isInverted": true
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "A weapon must be equipped."
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "player",
-															"sid": 277481172016117,
-															"parameters": {
-																"instance-variable": "busyCastingAbility",
-																"value": "true"
-															}
-														},
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 583316007766166,
-															"behaviorType": "MoveTo"
-														},
-														{
-															"callFunction": "updateFacing",
-															"sid": 781848113058470,
-															"parameters": [
-																"enemy.X",
-																"enemy.Y"
-															]
-														},
-														{
-															"type": "comment",
-															"text": "We don't set 'uidOfClicked' to 0 here, because we might have clicked on an enemy."
-														},
-														{
-															"callFunction": "removePlayerControl",
-															"sid": 897314334442743
-														},
-														{
-															"callFunction": "updateAnimation",
-															"sid": 232252080296253,
-															"parameters": [
-																"DOWNWARD_SLASH_ANIMATION_NAME",
-																"player.actionSpeed",
-																true
-															]
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 892366142025703,
-															"parameters": {
-																"variable": "waitPeriod",
-																"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
-															}
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 107182011802196,
-															"parameters": {
-																"seconds": "waitPeriod"
-															}
-														}
-													],
-													"sid": 244488168514026,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 144925242634653,
-																	"parameters": {
-																		"value": "Functions.isPlayerChanneling"
-																	},
-																	"isInverted": true
-																}
-															],
-															"actions": [
-																{
-																	"id": "play-at-object-by-name",
-																	"objectClass": "Audio",
-																	"sid": 451572235216275,
-																	"parameters": {
-																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(SWING_WEAPON_SOUND_EFFECT_NAME)",
-																		"loop": "not-looping",
-																		"volume": "soundEffectsVolume",
-																		"object": "gear",
-																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-																		"tag-optional": "NOT_USED"
-																	}
-																},
-																{
-																	"id": "create-object",
-																	"objectClass": "System",
-																	"sid": 651186210496009,
-																	"parameters": {
-																		"object-to-create": "projectile",
-																		"layer": "player.LayerName",
-																		"x": "player.X",
-																		"y": "player.Y",
-																		"create-hierarchy": false,
-																		"template-name": "NOT_USED"
-																	}
-																}
-															],
-															"sid": 251550896279957,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-last-created",
-																			"objectClass": "System",
-																			"sid": 208215574548532,
-																			"parameters": {
-																				"object": "projectile"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"id": "add-child",
-																			"objectClass": "player",
-																			"sid": 949661239582408,
-																			"parameters": {
-																				"child": "projectile",
-																				"transform-x": false,
-																				"transform-y": false,
-																				"transform-w": false,
-																				"transform-h": false,
-																				"transform-a": false,
-																				"transform-o": false,
-																				"transform-z-elevation": false,
-																				"transform-visibility": false,
-																				"destroy-with-parent": true
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 296798700408130,
-																			"parameters": {
-																				"instance-variable": "isMelee",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 493825317479779,
-																			"parameters": {
-																				"instance-variable": "piercing",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 291460450957102,
-																			"parameters": {
-																				"instance-variable": "enabled",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 676338242554036,
-																			"parameters": {
-																				"instance-variable": "range",
-																				"value": "RANGE"
-																			}
-																		},
-																		{
-																			"type": "comment",
-																			"text": "Extract the multiplier from the description in the abilities table"
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 537068249707929,
-																			"parameters": {
-																				"instance-variable": "slashDamage",
-																				"value": "player.slashDamage"
-																			}
-																		},
-																		{
-																			"id": "set-width",
-																			"objectClass": "projectile",
-																			"sid": 204851506803354,
-																			"parameters": {
-																				"width": "SIZE"
-																			}
-																		},
-																		{
-																			"id": "set-height",
-																			"objectClass": "projectile",
-																			"sid": 479795826249039,
-																			"parameters": {
-																				"height": "Self.Width / ISOMETRIC_DIVIDER"
-																			}
-																		},
-																		{
-																			"id": "set-angle-of-motion",
-																			"objectClass": "projectile",
-																			"sid": 278341211524466,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"angle": "player.MoveTo.MovingAngle"
-																			}
-																		},
-																		{
-																			"id": "set-speed",
-																			"objectClass": "projectile",
-																			"sid": 159766419289161,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-																			}
-																		},
-																		{
-																			"id": "wait",
-																			"objectClass": "System",
-																			"sid": 241566255672497,
-																			"parameters": {
-																				"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-																			}
-																		}
-																	],
-																	"sid": 938046408937770,
-																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 299742534212132,
-																					"parameters": {
-																						"value": "Functions.isPlayerAlive"
-																					}
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 903935217143303,
-																					"parameters": {
-																						"value": "Functions.isPlayerChanneling"
-																					},
-																					"isInverted": true
-																				}
-																			],
-																			"actions": [
-																				{
-																					"callFunction": "restorePlayerControl",
-																					"sid": 558987952745236
-																				}
-																			],
-																			"sid": 914788731121008
-																		},
-																		{
-																			"eventType": "block",
-																			"conditions": [],
-																			"actions": [
-																				{
-																					"id": "set-boolean-instvar",
-																					"objectClass": "player",
-																					"sid": 838540310194858,
-																					"parameters": {
-																						"instance-variable": "busyCastingAbility",
-																						"value": "false"
-																					}
-																				}
-																			],
-																			"sid": 879767610530616
-																		}
-																	]
-																}
-															]
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "else",
-																	"objectClass": "System",
-																	"sid": 351395308598430
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-boolean-instvar",
-																	"objectClass": "player",
-																	"sid": 446167497842159,
-																	"parameters": {
-																		"instance-variable": "busyCastingAbility",
-																		"value": "false"
-																	}
-																}
-															],
-															"sid": 179298565001989
-														}
-													]
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 695529316344745,
+													"parameters": {
+														"instance-variable": "busyCastingAbility"
+													},
+													"isInverted": true
 												}
-											]
-										},
-										{
-											"functionName": "heroicStrike",
-											"functionDescription": "",
-											"functionCategory": "abilities",
-											"functionReturnType": "none",
-											"functionCopyPicked": false,
-											"functionIsAsync": false,
-											"functionParameters": [],
-											"eventType": "function-block",
-											"conditions": [],
-											"actions": [],
-											"sid": 634935363046431,
-											"children": [
+											],
+											"actions": [
 												{
-													"eventType": "variable",
-													"name": "MANA_COST",
-													"type": "number",
-													"initialValue": "10",
-													"comment": "The mana cost of this ability.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 556115538897220
+													"type": "comment",
+													"text": "A weapon must be equipped."
 												},
 												{
-													"eventType": "variable",
-													"name": "PROJECTILE_SPEED",
-													"type": "number",
-													"initialValue": "700",
-													"comment": "The speed of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 835135880861055
+													"id": "set-boolean-instvar",
+													"objectClass": "player",
+													"sid": 739939191721079,
+													"parameters": {
+														"instance-variable": "busyCastingAbility",
+														"value": "true"
+													}
 												},
 												{
-													"eventType": "variable",
-													"name": "MANIFESTATION_FRAME",
-													"type": "number",
-													"initialValue": "4",
-													"comment": "The (0-based) frame in which the projectile should manifest.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 652712993739128
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 273541373334594,
+													"behaviorType": "MoveTo"
 												},
 												{
-													"eventType": "variable",
-													"name": "SIZE",
-													"type": "number",
-													"initialValue": "126",
-													"comment": "The size of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 671142066928046
-												},
-												{
-													"eventType": "variable",
-													"name": "RANGE",
-													"type": "number",
-													"initialValue": "150",
-													"comment": "How far the projectile can travel before expiring, in pixels.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 149507702256321
-												},
-												{
-													"eventType": "variable",
-													"name": "waitPeriod",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 249996694158799
-												},
-												{
-													"eventType": "variable",
-													"name": "SOUND_EFFECT",
-													"type": "string",
-													"initialValue": "heroicStrike",
-													"comment": "The name of the sound effect to use for this ability.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 270700507996934
-												},
-												{
-													"eventType": "variable",
-													"name": "DAMAGE_MULTIPLIER",
-													"type": "number",
-													"initialValue": "1.1",
-													"comment": "The slash damage multiplier for this ability.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 118941199612097
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 790894049331316,
-															"parameters": {
-																"object": "gear",
-																"expression": "gear.type",
-																"comparison": 0,
-																"value": "MAIN_HAND_KEYWORD"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "player",
-															"sid": 166055072803415,
-															"parameters": {
-																"instance-variable": "currentMana",
-																"comparison": 5,
-																"value": "MANA_COST"
-															}
-														},
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "player",
-															"sid": 236391576471306,
-															"parameters": {
-																"instance-variable": "busyCastingAbility"
-															},
-															"isInverted": true
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "The player must have a weapon equipped, and enough mana."
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "player",
-															"sid": 990243843521963,
-															"parameters": {
-																"instance-variable": "busyCastingAbility",
-																"value": "true"
-															}
-														},
-														{
-															"id": "subtract-from-instvar",
-															"objectClass": "player",
-															"sid": 784402175231481,
-															"parameters": {
-																"instance-variable": "currentMana",
-																"value": "MANA_COST"
-															}
-														},
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 200154284895796,
-															"behaviorType": "MoveTo"
-														},
-														{
-															"id": "reset-eventvar",
-															"objectClass": "System",
-															"sid": 991256386443864,
-															"parameters": {
-																"variable": "uidOfClicked"
-															}
-														},
-														{
-															"callFunction": "updateFacing",
-															"sid": 607225505312555,
-															"parameters": [
-																"mouse.X",
-																"mouse.Y"
-															]
-														},
-														{
-															"callFunction": "removePlayerControl",
-															"sid": 218087824904289
-														},
-														{
-															"callFunction": "updateAnimation",
-															"sid": 751908223917142,
-															"parameters": [
-																"UPWARD_SLASH_ANIMATION_NAME",
-																"player.actionSpeed",
-																true
-															]
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 833243653888076,
-															"parameters": {
-																"variable": "waitPeriod",
-																"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
-															}
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 250462301179938,
-															"parameters": {
-																"seconds": "waitPeriod"
-															}
-														}
-													],
-													"sid": 985388799408501,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "evaluate-expression",
-																	"objectClass": "System",
-																	"sid": 453808523403211,
-																	"parameters": {
-																		"value": "Functions.isPlayerChanneling"
-																	},
-																	"isInverted": true
-																}
-															],
-															"actions": [
-																{
-																	"id": "play-at-object-by-name",
-																	"objectClass": "Audio",
-																	"sid": 196976652365669,
-																	"parameters": {
-																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
-																		"loop": "not-looping",
-																		"volume": "soundEffectsVolume",
-																		"object": "gear",
-																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-																		"tag-optional": "NOT_USED"
-																	}
-																},
-																{
-																	"id": "create-object",
-																	"objectClass": "System",
-																	"sid": 845478431268345,
-																	"parameters": {
-																		"object-to-create": "projectile",
-																		"layer": "player.LayerName",
-																		"x": "player.X",
-																		"y": "player.Y",
-																		"create-hierarchy": false,
-																		"template-name": "NOT_USED"
-																	}
-																}
-															],
-															"sid": 830477425259486,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-last-created",
-																			"objectClass": "System",
-																			"sid": 275012647971847,
-																			"parameters": {
-																				"object": "projectile"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"id": "add-child",
-																			"objectClass": "player",
-																			"sid": 618096097683543,
-																			"parameters": {
-																				"child": "projectile",
-																				"transform-x": false,
-																				"transform-y": false,
-																				"transform-w": false,
-																				"transform-h": false,
-																				"transform-a": false,
-																				"transform-o": false,
-																				"transform-z-elevation": false,
-																				"transform-visibility": false,
-																				"destroy-with-parent": true
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 503367389226217,
-																			"parameters": {
-																				"instance-variable": "isMelee",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 723299027369822,
-																			"parameters": {
-																				"instance-variable": "piercing",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 917364713628437,
-																			"parameters": {
-																				"instance-variable": "enabled",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 459531040137562,
-																			"parameters": {
-																				"instance-variable": "range",
-																				"value": "RANGE"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 120744927664224,
-																			"parameters": {
-																				"instance-variable": "slashDamage",
-																				"value": "player.slashDamage * DAMAGE_MULTIPLIER"
-																			}
-																		},
-																		{
-																			"id": "set-width",
-																			"objectClass": "projectile",
-																			"sid": 954136013834241,
-																			"parameters": {
-																				"width": "SIZE"
-																			}
-																		},
-																		{
-																			"id": "set-height",
-																			"objectClass": "projectile",
-																			"sid": 910602433393533,
-																			"parameters": {
-																				"height": "Self.Width / ISOMETRIC_DIVIDER"
-																			}
-																		},
-																		{
-																			"id": "set-angle-of-motion",
-																			"objectClass": "projectile",
-																			"sid": 202252646589259,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"angle": "player.MoveTo.MovingAngle"
-																			}
-																		},
-																		{
-																			"id": "set-speed",
-																			"objectClass": "projectile",
-																			"sid": 915888956163023,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-																			}
-																		},
-																		{
-																			"id": "wait",
-																			"objectClass": "System",
-																			"sid": 387785928684973,
-																			"parameters": {
-																				"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
-																			}
-																		}
-																	],
-																	"sid": 948555998576990,
-																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 441586718030209,
-																					"parameters": {
-																						"value": "Functions.isPlayerAlive"
-																					}
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 421178038305265,
-																					"parameters": {
-																						"value": "Functions.isPlayerChanneling"
-																					},
-																					"isInverted": true
-																				}
-																			],
-																			"actions": [
-																				{
-																					"callFunction": "restorePlayerControl",
-																					"sid": 742918630542881
-																				}
-																			],
-																			"sid": 884884868174078
-																		},
-																		{
-																			"eventType": "block",
-																			"conditions": [],
-																			"actions": [
-																				{
-																					"id": "set-boolean-instvar",
-																					"objectClass": "player",
-																					"sid": 144489596645274,
-																					"parameters": {
-																						"instance-variable": "busyCastingAbility",
-																						"value": "false"
-																					}
-																				}
-																			],
-																			"sid": 675283709743077
-																		}
-																	]
-																}
-															]
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "else",
-																	"objectClass": "System",
-																	"sid": 946040061474161
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-boolean-instvar",
-																	"objectClass": "player",
-																	"sid": 212797628259059,
-																	"parameters": {
-																		"instance-variable": "busyCastingAbility",
-																		"value": "false"
-																	}
-																}
-															],
-															"sid": 588939874775068
-														}
+													"callFunction": "updateFacing",
+													"sid": 277665554409214,
+													"parameters": [
+														"enemy.X",
+														"enemy.Y"
 													]
+												},
+												{
+													"callFunction": "removePlayerControl",
+													"sid": 454068262720174
+												},
+												{
+													"callFunction": "updateAnimation",
+													"sid": 597913453213464,
+													"parameters": [
+														"DOWNWARD_SLASH_ANIMATION_NAME",
+														"player.actionSpeed",
+														true
+													]
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 631964854329215,
+													"parameters": {
+														"variable": "waitPeriod",
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 684032327105710,
+													"parameters": {
+														"seconds": "waitPeriod"
+													}
 												}
-											]
-										},
-										{
-											"functionName": "kick",
-											"functionDescription": "",
-											"functionCategory": "abilities",
-											"functionReturnType": "none",
-											"functionCopyPicked": false,
-											"functionIsAsync": false,
-											"functionParameters": [],
-											"eventType": "function-block",
-											"conditions": [],
-											"actions": [],
-											"sid": 478229012400741,
+											],
+											"sid": 903218846332430,
 											"children": [
-												{
-													"eventType": "variable",
-													"name": "MANA_COST",
-													"type": "number",
-													"initialValue": "15",
-													"comment": "The mana cost of this ability.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 874772102853225
-												},
-												{
-													"eventType": "variable",
-													"name": "PROJECTILE_SPEED",
-													"type": "number",
-													"initialValue": "750",
-													"comment": "The speed of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 419264404202457
-												},
-												{
-													"eventType": "variable",
-													"name": "MANIFESTATION_FRAME",
-													"type": "number",
-													"initialValue": "11",
-													"comment": "The (0-based) frame in which the projectile should manifest.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 334647991231281
-												},
-												{
-													"eventType": "variable",
-													"name": "SIZE",
-													"type": "number",
-													"initialValue": "81",
-													"comment": "The size of the projectile.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 399371439995529
-												},
-												{
-													"eventType": "variable",
-													"name": "RANGE",
-													"type": "number",
-													"initialValue": "140",
-													"comment": "How far the projectile can travel before expiring, in pixels.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 358832898728521
-												},
-												{
-													"eventType": "variable",
-													"name": "waitPeriod",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 812612572948220
-												},
-												{
-													"eventType": "variable",
-													"name": "DAMAGE_MULTIPLIER",
-													"type": "number",
-													"initialValue": "0.5",
-													"comment": "The crush damage multiplier for this ability.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 455326085283039
-												},
-												{
-													"eventType": "variable",
-													"name": "KNOCKBACK_SPEED",
-													"type": "number",
-													"initialValue": "500",
-													"comment": "How fast this projectile will knock back its target(s), in pixels per second.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 848713921767111
-												},
-												{
-													"eventType": "variable",
-													"name": "KNOCKBACK_DISTANCE",
-													"type": "number",
-													"initialValue": "100",
-													"comment": "How far this projectile will knock back its target(s), in pixels.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 928141111058994
-												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "compare-instance-variable",
-															"objectClass": "player",
-															"sid": 510270537806645,
+															"id": "evaluate-expression",
+															"objectClass": "System",
+															"sid": 850171447798353,
 															"parameters": {
-																"instance-variable": "currentMana",
-																"comparison": 5,
-																"value": "MANA_COST"
-															}
-														},
-														{
-															"id": "is-boolean-instance-variable-set",
-															"objectClass": "player",
-															"sid": 653889920437975,
-															"parameters": {
-																"instance-variable": "busyCastingAbility"
+																"value": "Functions.isPlayerChanneling"
 															},
 															"isInverted": true
 														}
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "must have enough mana"
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "player",
-															"sid": 248245335814104,
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 795824902370228,
 															"parameters": {
-																"instance-variable": "busyCastingAbility",
-																"value": "true"
-															}
-														},
-														{
-															"id": "subtract-from-instvar",
-															"objectClass": "player",
-															"sid": 678273584131057,
-															"parameters": {
-																"instance-variable": "currentMana",
-																"value": "MANA_COST"
-															}
-														},
-														{
-															"id": "stop",
-															"objectClass": "player",
-															"sid": 239461193094950,
-															"behaviorType": "MoveTo"
-														},
-														{
-															"id": "reset-eventvar",
-															"objectClass": "System",
-															"sid": 935960032255615,
-															"parameters": {
-																"variable": "uidOfClicked"
-															}
-														},
-														{
-															"callFunction": "updateFacing",
-															"sid": 296866015406469,
-															"parameters": [
-																"mouse.X",
-																"mouse.Y"
-															]
-														},
-														{
-															"callFunction": "removePlayerControl",
-															"sid": 792611030377208
-														},
-														{
-															"callFunction": "updateAnimation",
-															"sid": 945547612751446,
-															"parameters": [
-																"KICK_ANIMATION_NAME",
-																"player.actionSpeed",
-																true
-															]
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 818326524867641,
-															"parameters": {
-																"variable": "waitPeriod",
-																"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
-															}
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 895879469763713,
-															"parameters": {
-																"seconds": "waitPeriod"
+																"folder": "sounds",
+																"audio-file-name": "Functions.soundEffectName(SWING_WEAPON_SOUND_EFFECT_NAME)",
+																"loop": "not-looping",
+																"volume": "soundEffectsVolume",
+																"object": "gear",
+																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																"tag-optional": "NOT_USED"
 															}
 														},
 														{
 															"id": "create-object",
 															"objectClass": "System",
-															"sid": 365267828927295,
+															"sid": 438694981946716,
 															"parameters": {
 																"object-to-create": "projectile",
 																"layer": "player.LayerName",
@@ -9576,244 +8693,1107 @@
 															}
 														}
 													],
-													"sid": 470932471079745,
+													"sid": 429403210528092,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "evaluate-expression",
+																	"id": "pick-last-created",
 																	"objectClass": "System",
-																	"sid": 154722616129231,
+																	"sid": 818144811386549,
 																	"parameters": {
-																		"value": "Functions.isPlayerChanneling"
-																	},
-																	"isInverted": true
+																		"object": "projectile"
+																	}
 																}
 															],
 															"actions": [
 																{
-																	"id": "create-object",
-																	"objectClass": "System",
-																	"sid": 719291775442042,
+																	"id": "add-child",
+																	"objectClass": "player",
+																	"sid": 984429382281900,
 																	"parameters": {
-																		"object-to-create": "projectile",
-																		"layer": "player.LayerName",
-																		"x": "player.X",
-																		"y": "player.Y",
-																		"create-hierarchy": false,
-																		"template-name": "NOT_USED"
+																		"child": "projectile",
+																		"transform-x": false,
+																		"transform-y": false,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 785878330404975,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 320620955130966,
+																	"parameters": {
+																		"instance-variable": "piercing",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 653155073593732,
+																	"parameters": {
+																		"instance-variable": "enabled",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 684266325098916,
+																	"parameters": {
+																		"instance-variable": "range",
+																		"value": "RANGE"
+																	}
+																},
+																{
+																	"type": "comment",
+																	"text": "Extract the multiplier from the description in the abilities table"
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 221418513096499,
+																	"parameters": {
+																		"instance-variable": "slashDamage",
+																		"value": "player.slashDamage"
+																	}
+																},
+																{
+																	"id": "set-width",
+																	"objectClass": "projectile",
+																	"sid": 950880347156461,
+																	"parameters": {
+																		"width": "SIZE"
+																	}
+																},
+																{
+																	"id": "set-height",
+																	"objectClass": "projectile",
+																	"sid": 892087345571123,
+																	"parameters": {
+																		"height": "Self.Width / ISOMETRIC_DIVIDER"
+																	}
+																},
+																{
+																	"id": "set-angle-of-motion",
+																	"objectClass": "projectile",
+																	"sid": 384423535750452,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"angle": "player.MoveTo.MovingAngle"
+																	}
+																},
+																{
+																	"id": "set-speed",
+																	"objectClass": "projectile",
+																	"sid": 772169501552239,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 713788350010661,
+																	"parameters": {
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
 																	}
 																}
 															],
-															"sid": 414752770000024,
+															"sid": 376038355775553,
 															"children": [
 																{
 																	"eventType": "block",
 																	"conditions": [
 																		{
-																			"id": "pick-last-created",
+																			"id": "evaluate-expression",
 																			"objectClass": "System",
-																			"sid": 597749994349055,
+																			"sid": 301541679839882,
 																			"parameters": {
-																				"object": "projectile"
+																				"value": "Functions.isPlayerAlive"
 																			}
+																		},
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 294596191012847,
+																			"parameters": {
+																				"value": "Functions.isPlayerChanneling"
+																			},
+																			"isInverted": true
 																		}
 																	],
 																	"actions": [
 																		{
-																			"id": "add-child",
+																			"callFunction": "restorePlayerControl",
+																			"sid": 428001114465743
+																		}
+																	],
+																	"sid": 955584998863564
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
 																			"objectClass": "player",
-																			"sid": 520565066565259,
+																			"sid": 422104701147715,
 																			"parameters": {
-																				"child": "projectile",
-																				"transform-x": false,
-																				"transform-y": false,
-																				"transform-w": false,
-																				"transform-h": false,
-																				"transform-a": false,
-																				"transform-o": false,
-																				"transform-z-elevation": false,
-																				"transform-visibility": false,
-																				"destroy-with-parent": true
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 271060225105923,
-																			"parameters": {
-																				"instance-variable": "isMelee",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-boolean-instvar",
-																			"objectClass": "projectile",
-																			"sid": 607413954843359,
-																			"parameters": {
-																				"instance-variable": "enabled",
-																				"value": "true"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 665786932956909,
-																			"parameters": {
-																				"instance-variable": "range",
-																				"value": "RANGE"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 487074138586343,
-																			"parameters": {
-																				"instance-variable": "smashDamage",
-																				"value": "player.smashDamage * DAMAGE_MULTIPLIER"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 191776788463176,
-																			"parameters": {
-																				"instance-variable": "knockbackDistance",
-																				"value": "KNOCKBACK_DISTANCE"
-																			}
-																		},
-																		{
-																			"id": "set-instvar-value",
-																			"objectClass": "projectile",
-																			"sid": 331818209092264,
-																			"parameters": {
-																				"instance-variable": "knockbackSpeed",
-																				"value": "KNOCKBACK_SPEED"
-																			}
-																		},
-																		{
-																			"id": "set-width",
-																			"objectClass": "projectile",
-																			"sid": 365136522910385,
-																			"parameters": {
-																				"width": "SIZE"
-																			}
-																		},
-																		{
-																			"id": "set-height",
-																			"objectClass": "projectile",
-																			"sid": 695102876554915,
-																			"parameters": {
-																				"height": "Self.Width / ISOMETRIC_DIVIDER"
-																			}
-																		},
-																		{
-																			"id": "set-angle-of-motion",
-																			"objectClass": "projectile",
-																			"sid": 239889425746832,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"angle": "player.MoveTo.MovingAngle"
-																			}
-																		},
-																		{
-																			"id": "set-speed",
-																			"objectClass": "projectile",
-																			"sid": 319383070954201,
-																			"behaviorType": "Bullet",
-																			"parameters": {
-																				"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-																			}
-																		},
-																		{
-																			"id": "wait",
-																			"objectClass": "System",
-																			"sid": 788449335589214,
-																			"parameters": {
-																				"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
 																			}
 																		}
 																	],
-																	"sid": 936133207609971,
-																	"children": [
-																		{
-																			"eventType": "block",
-																			"conditions": [
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 286139614008247,
-																					"parameters": {
-																						"value": "Functions.isPlayerAlive"
-																					}
-																				},
-																				{
-																					"id": "evaluate-expression",
-																					"objectClass": "System",
-																					"sid": 983526190974832,
-																					"parameters": {
-																						"value": "Functions.isPlayerChanneling"
-																					},
-																					"isInverted": true
-																				}
-																			],
-																			"actions": [
-																				{
-																					"callFunction": "restorePlayerControl",
-																					"sid": 797219060101037
-																				}
-																			],
-																			"sid": 829721577298684
-																		},
-																		{
-																			"eventType": "block",
-																			"conditions": [],
-																			"actions": [
-																				{
-																					"id": "set-boolean-instvar",
-																					"objectClass": "player",
-																					"sid": 890180383506253,
-																					"parameters": {
-																						"instance-variable": "busyCastingAbility",
-																						"value": "false"
-																					}
-																				}
-																			],
-																			"sid": 673095457181871
-																		}
-																	]
+																	"sid": 816189155114151
 																}
 															]
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 431690251226559
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "player",
+															"sid": 359803342914233,
+															"parameters": {
+																"instance-variable": "busyCastingAbility",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 692228771530126
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-instance-signal",
+											"objectClass": "player",
+											"sid": 654824989260917,
+											"parameters": {
+												"tag": "\"heroicStrike\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 710330787870225,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "MANA_COST",
+											"type": "number",
+											"initialValue": "10",
+											"comment": "The mana cost of this ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 200407043270699
+										},
+										{
+											"eventType": "variable",
+											"name": "PROJECTILE_SPEED",
+											"type": "number",
+											"initialValue": "700",
+											"comment": "The speed of the projectile.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 832457670642319
+										},
+										{
+											"eventType": "variable",
+											"name": "MANIFESTATION_FRAME",
+											"type": "number",
+											"initialValue": "4",
+											"comment": "The (0-based) frame in which the projectile should manifest.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 171451291953052
+										},
+										{
+											"eventType": "variable",
+											"name": "SIZE",
+											"type": "number",
+											"initialValue": "126",
+											"comment": "The size of the projectile.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 148178567379893
+										},
+										{
+											"eventType": "variable",
+											"name": "RANGE",
+											"type": "number",
+											"initialValue": "150",
+											"comment": "How far the projectile can travel before expiring, in pixels.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 771975410933017
+										},
+										{
+											"eventType": "variable",
+											"name": "waitPeriod",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 972908031099853
+										},
+										{
+											"eventType": "variable",
+											"name": "SOUND_EFFECT",
+											"type": "string",
+											"initialValue": "heroicStrike",
+											"comment": "The name of the sound effect to use for this ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 684808133045856
+										},
+										{
+											"eventType": "variable",
+											"name": "DAMAGE_MULTIPLIER",
+											"type": "number",
+											"initialValue": "1.1",
+											"comment": "The slash damage multiplier for this ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 464216267129618
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 853030606727887,
+													"parameters": {
+														"object": "gear",
+														"expression": "gear.type",
+														"comparison": 0,
+														"value": "MAIN_HAND_KEYWORD"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 854348853518959,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"comparison": 5,
+														"value": "MANA_COST"
+													}
+												},
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 112421595672516,
+													"parameters": {
+														"instance-variable": "busyCastingAbility"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "The player must have a weapon equipped, and enough mana."
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "player",
+													"sid": 492011908508064,
+													"parameters": {
+														"instance-variable": "busyCastingAbility",
+														"value": "true"
+													}
+												},
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 725433684800503,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"value": "MANA_COST"
+													}
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 166900739796849,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"id": "reset-eventvar",
+													"objectClass": "System",
+													"sid": 321805730557886,
+													"parameters": {
+														"variable": "uidOfClicked"
+													}
+												},
+												{
+													"callFunction": "updateFacing",
+													"sid": 226254391071197,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y"
+													]
+												},
+												{
+													"callFunction": "removePlayerControl",
+													"sid": 102074727094487
+												},
+												{
+													"callFunction": "updateAnimation",
+													"sid": 589752646272459,
+													"parameters": [
+														"UPWARD_SLASH_ANIMATION_NAME",
+														"player.actionSpeed",
+														true
+													]
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 733765423018347,
+													"parameters": {
+														"variable": "waitPeriod",
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 406577977717044,
+													"parameters": {
+														"seconds": "waitPeriod"
+													}
+												}
+											],
+											"sid": 867113137142444,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "evaluate-expression",
+															"objectClass": "System",
+															"sid": 237521898385221,
+															"parameters": {
+																"value": "Functions.isPlayerChanneling"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 718660664483386,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
+																"loop": "not-looping",
+																"volume": "soundEffectsVolume",
+																"object": "gear",
+																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																"tag-optional": "NOT_USED"
+															}
 														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 858902196509167,
+															"parameters": {
+																"object-to-create": "projectile",
+																"layer": "player.LayerName",
+																"x": "player.X",
+																"y": "player.Y",
+																"create-hierarchy": false,
+																"template-name": "NOT_USED"
+															}
+														}
+													],
+													"sid": 957883493957148,
+													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "else",
+																	"id": "pick-last-created",
 																	"objectClass": "System",
-																	"sid": 756131098898561
+																	"sid": 208656182501924,
+																	"parameters": {
+																		"object": "projectile"
+																	}
 																}
 															],
 															"actions": [
 																{
-																	"id": "set-boolean-instvar",
+																	"id": "add-child",
 																	"objectClass": "player",
-																	"sid": 368916695785397,
+																	"sid": 454459305934032,
 																	"parameters": {
-																		"instance-variable": "busyCastingAbility",
-																		"value": "false"
+																		"child": "projectile",
+																		"transform-x": false,
+																		"transform-y": false,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 481269297917962,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 991331644359424,
+																	"parameters": {
+																		"instance-variable": "piercing",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 473575967829757,
+																	"parameters": {
+																		"instance-variable": "enabled",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 944547175556303,
+																	"parameters": {
+																		"instance-variable": "range",
+																		"value": "RANGE"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 717640899761674,
+																	"parameters": {
+																		"instance-variable": "slashDamage",
+																		"value": "player.slashDamage * DAMAGE_MULTIPLIER"
+																	}
+																},
+																{
+																	"id": "set-width",
+																	"objectClass": "projectile",
+																	"sid": 428346052114487,
+																	"parameters": {
+																		"width": "SIZE"
+																	}
+																},
+																{
+																	"id": "set-height",
+																	"objectClass": "projectile",
+																	"sid": 609536384488828,
+																	"parameters": {
+																		"height": "Self.Width / ISOMETRIC_DIVIDER"
+																	}
+																},
+																{
+																	"id": "set-angle-of-motion",
+																	"objectClass": "projectile",
+																	"sid": 945893219783432,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"angle": "player.MoveTo.MovingAngle"
+																	}
+																},
+																{
+																	"id": "set-speed",
+																	"objectClass": "projectile",
+																	"sid": 852328694968814,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 141786868695105,
+																	"parameters": {
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
 																	}
 																}
 															],
-															"sid": 683131791229827
+															"sid": 826546463422947,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 584146406639383,
+																			"parameters": {
+																				"value": "Functions.isPlayerAlive"
+																			}
+																		},
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 575163689819945,
+																			"parameters": {
+																				"value": "Functions.isPlayerChanneling"
+																			},
+																			"isInverted": true
+																		}
+																	],
+																	"actions": [
+																		{
+																			"callFunction": "restorePlayerControl",
+																			"sid": 621969998813230
+																		}
+																	],
+																	"sid": 885818368366922
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 511414436615953,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 769335323145323
+																}
+															]
 														}
 													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 874847562503617
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "player",
+															"sid": 472490450078684,
+															"parameters": {
+																"instance-variable": "busyCastingAbility",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 317267367314586
 												}
 											]
 										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-instance-signal",
+											"objectClass": "player",
+											"sid": 304541362409578,
+											"parameters": {
+												"tag": "\"kick\""
+											}
+										}
 									],
-									"sid": 111814043891473
+									"actions": [],
+									"sid": 975407819225998,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "MANA_COST",
+											"type": "number",
+											"initialValue": "15",
+											"comment": "The mana cost of this ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 937711424924728
+										},
+										{
+											"eventType": "variable",
+											"name": "PROJECTILE_SPEED",
+											"type": "number",
+											"initialValue": "750",
+											"comment": "The speed of the projectile.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 888864683108768
+										},
+										{
+											"eventType": "variable",
+											"name": "MANIFESTATION_FRAME",
+											"type": "number",
+											"initialValue": "11",
+											"comment": "The (0-based) frame in which the projectile should manifest.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 707128992868203
+										},
+										{
+											"eventType": "variable",
+											"name": "SIZE",
+											"type": "number",
+											"initialValue": "81",
+											"comment": "The size of the projectile.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 430641748719708
+										},
+										{
+											"eventType": "variable",
+											"name": "RANGE",
+											"type": "number",
+											"initialValue": "140",
+											"comment": "How far the projectile can travel before expiring, in pixels.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 685451467689247
+										},
+										{
+											"eventType": "variable",
+											"name": "waitPeriod",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "How long to wait after the start of the animation before generating the projectile, in seconds.",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 815753467860430
+										},
+										{
+											"eventType": "variable",
+											"name": "DAMAGE_MULTIPLIER",
+											"type": "number",
+											"initialValue": "0.5",
+											"comment": "The crush damage multiplier for this ability.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 193904498334145
+										},
+										{
+											"eventType": "variable",
+											"name": "KNOCKBACK_SPEED",
+											"type": "number",
+											"initialValue": "500",
+											"comment": "How fast this projectile will knock back its target(s), in pixels per second.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 555602137530218
+										},
+										{
+											"eventType": "variable",
+											"name": "KNOCKBACK_DISTANCE",
+											"type": "number",
+											"initialValue": "100",
+											"comment": "How far this projectile will knock back its target(s), in pixels.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 376438731026162
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "player",
+													"sid": 595464212365287,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"comparison": 5,
+														"value": "MANA_COST"
+													}
+												},
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "player",
+													"sid": 432798320046443,
+													"parameters": {
+														"instance-variable": "busyCastingAbility"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "must have enough mana"
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "player",
+													"sid": 537850473310630,
+													"parameters": {
+														"instance-variable": "busyCastingAbility",
+														"value": "true"
+													}
+												},
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "player",
+													"sid": 462304171753508,
+													"parameters": {
+														"instance-variable": "currentMana",
+														"value": "MANA_COST"
+													}
+												},
+												{
+													"id": "stop",
+													"objectClass": "player",
+													"sid": 470802425123799,
+													"behaviorType": "MoveTo"
+												},
+												{
+													"id": "reset-eventvar",
+													"objectClass": "System",
+													"sid": 913708333719232,
+													"parameters": {
+														"variable": "uidOfClicked"
+													}
+												},
+												{
+													"callFunction": "updateFacing",
+													"sid": 497764352331094,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y"
+													]
+												},
+												{
+													"callFunction": "removePlayerControl",
+													"sid": 593175847623081
+												},
+												{
+													"callFunction": "updateAnimation",
+													"sid": 483408557229199,
+													"parameters": [
+														"KICK_ANIMATION_NAME",
+														"player.actionSpeed",
+														true
+													]
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 936807112393563,
+													"parameters": {
+														"variable": "waitPeriod",
+														"value": "MANIFESTATION_FRAME / body.AnimationSpeed"
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 533660683334436,
+													"parameters": {
+														"seconds": "waitPeriod"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 860859246716073,
+													"parameters": {
+														"object-to-create": "projectile",
+														"layer": "player.LayerName",
+														"x": "player.X",
+														"y": "player.Y",
+														"create-hierarchy": false,
+														"template-name": "NOT_USED"
+													}
+												}
+											],
+											"sid": 437984150015191,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "evaluate-expression",
+															"objectClass": "System",
+															"sid": 626812644900642,
+															"parameters": {
+																"value": "Functions.isPlayerChanneling"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 115570448282856,
+															"parameters": {
+																"object-to-create": "projectile",
+																"layer": "player.LayerName",
+																"x": "player.X",
+																"y": "player.Y",
+																"create-hierarchy": false,
+																"template-name": "NOT_USED"
+															}
+														}
+													],
+													"sid": 965269245700365,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-last-created",
+																	"objectClass": "System",
+																	"sid": 714701997657327,
+																	"parameters": {
+																		"object": "projectile"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "player",
+																	"sid": 510534184187707,
+																	"parameters": {
+																		"child": "projectile",
+																		"transform-x": false,
+																		"transform-y": false,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 182153138418941,
+																	"parameters": {
+																		"instance-variable": "isMelee",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "projectile",
+																	"sid": 266079748332636,
+																	"parameters": {
+																		"instance-variable": "enabled",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 993243916303364,
+																	"parameters": {
+																		"instance-variable": "range",
+																		"value": "RANGE"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 215344638232889,
+																	"parameters": {
+																		"instance-variable": "smashDamage",
+																		"value": "player.smashDamage * DAMAGE_MULTIPLIER"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 154034697184347,
+																	"parameters": {
+																		"instance-variable": "knockbackDistance",
+																		"value": "KNOCKBACK_DISTANCE"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "projectile",
+																	"sid": 908504137330797,
+																	"parameters": {
+																		"instance-variable": "knockbackSpeed",
+																		"value": "KNOCKBACK_SPEED"
+																	}
+																},
+																{
+																	"id": "set-width",
+																	"objectClass": "projectile",
+																	"sid": 145232310937498,
+																	"parameters": {
+																		"width": "SIZE"
+																	}
+																},
+																{
+																	"id": "set-height",
+																	"objectClass": "projectile",
+																	"sid": 182956431544106,
+																	"parameters": {
+																		"height": "Self.Width / ISOMETRIC_DIVIDER"
+																	}
+																},
+																{
+																	"id": "set-angle-of-motion",
+																	"objectClass": "projectile",
+																	"sid": 267451014322085,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"angle": "player.MoveTo.MovingAngle"
+																	}
+																},
+																{
+																	"id": "set-speed",
+																	"objectClass": "projectile",
+																	"sid": 947795887837115,
+																	"behaviorType": "Bullet",
+																	"parameters": {
+																		"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 729366325956590,
+																	"parameters": {
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																	}
+																}
+															],
+															"sid": 676412308048874,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 753714608291616,
+																			"parameters": {
+																				"value": "Functions.isPlayerAlive"
+																			}
+																		},
+																		{
+																			"id": "evaluate-expression",
+																			"objectClass": "System",
+																			"sid": 196237501722787,
+																			"parameters": {
+																				"value": "Functions.isPlayerChanneling"
+																			},
+																			"isInverted": true
+																		}
+																	],
+																	"actions": [
+																		{
+																			"callFunction": "restorePlayerControl",
+																			"sid": 630645191954453
+																		}
+																	],
+																	"sid": 733130551109924
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [],
+																	"actions": [
+																		{
+																			"id": "set-boolean-instvar",
+																			"objectClass": "player",
+																			"sid": 466509525058488,
+																			"parameters": {
+																				"instance-variable": "busyCastingAbility",
+																				"value": "false"
+																			}
+																		}
+																	],
+																	"sid": 219052293547434
+																}
+															]
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 178574611549629
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "player",
+															"sid": 351829718111112,
+															"parameters": {
+																"instance-variable": "busyCastingAbility",
+																"value": "false"
+															}
+														}
+													],
+													"sid": 355871235780556
+												}
+											]
+										}
+									]
 								}
 							],
 							"sid": 694140029841149

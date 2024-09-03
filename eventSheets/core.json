@@ -285,6 +285,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "NON_DEFAULT_IMAGE_POINT",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "An image point not used for Y sorting.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 170721685313573
+		},
+		{
+			"eventType": "variable",
 			"name": "NON_DIRECTIONAL_INNER_ANGLE",
 			"type": "number",
 			"initialValue": "360",
@@ -5018,7 +5028,7 @@
 															"objectClass": "loot",
 															"sid": 240008030508494,
 															"parameters": {
-																"instance-variable": "verticalHeight",
+																"instance-variable": "pickupRangeBonus",
 																"value": "0"
 															}
 														},
@@ -7937,15 +7947,11 @@
 											"objectClass": "System",
 											"sid": 653750243369573,
 											"parameters": {
-												"value": "Functions.isInRange((player.pickupRange + max(loot.Width, loot.Height)) + loot.verticalHeight, loot.X, loot.Y)"
+												"value": "Functions.isInRange((player.pickupRange + max(loot.Width, loot.Height)) + loot.pickupRangeBonus, loot.X, loot.Y)"
 											}
 										}
 									],
 									"actions": [
-										{
-											"type": "comment",
-											"text": "loot gets a bonus to its pick up range based on its size, and an additional bonus if it has a vertical height"
-										},
 										{
 											"id": "stop",
 											"objectClass": "player",
@@ -7984,9 +7990,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 517000259303208,
+											"sid": 327840878911589,
 											"parameters": {
-												"value": "Functions.isInRange(player.pickupRange + max(door.Width, door.Height), door.ImagePointX(1), door.ImagePointY(1))"
+												"value": "Functions.isInRange(player.pickupRange + max(door.Width, door.Height), door.ImagePointX(NON_DEFAULT_IMAGE_POINT), door.ImagePointY(NON_DEFAULT_IMAGE_POINT))"
 											}
 										}
 									],
@@ -8060,9 +8066,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 135959271880097,
+											"sid": 386537536307532,
 											"parameters": {
-												"value": "Functions.isInRange(player.pickupRange + max(lootChest.Width, lootChest.Height), lootChest.ImagePointX(1), lootChest.ImagePointY(1))"
+												"value": "Functions.isInRange(player.pickupRange + max(lootChest.Width, lootChest.Height), lootChest.ImagePointX(NON_DEFAULT_IMAGE_POINT), lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT))"
 											}
 										}
 									],
@@ -8083,10 +8089,10 @@
 										},
 										{
 											"callFunction": "spawnLoot",
-											"sid": 109958418072795,
+											"sid": 975663510438698,
 											"parameters": [
-												"lootChest.ImagePointX(1)",
-												"lootChest.ImagePointY(1)",
+												"lootChest.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
+												"lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT)",
 												"max(lootChest.Width, lootChest.Height)"
 											]
 										},
@@ -8102,6 +8108,16 @@
 									"sid": 571517915827350
 								},
 								{
+									"eventType": "variable",
+									"name": "UID_OF_CLICKED_RESET_TIMER",
+									"type": "number",
+									"initialValue": "0.5",
+									"comment": "How often to reset 'uidOfClicked', in seconds.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 427442296815969
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -8114,9 +8130,9 @@
 										{
 											"id": "every-x-seconds",
 											"objectClass": "System",
-											"sid": 137589272368104,
+											"sid": 905189847300138,
 											"parameters": {
-												"interval-seconds": "0.5"
+												"interval-seconds": "UID_OF_CLICKED_RESET_TIMER"
 											}
 										}
 									],
@@ -14010,6 +14026,16 @@
 							"sid": 929528626556521,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "BBCODE",
+									"type": "string",
+									"initialValue": "[outline=#000000][lineThickness=1.5]",
+									"comment": "The BBCode to use on the ability key's text.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 333544427254473
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -14068,6 +14094,10 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "...update the ability keybinder and ability key text."
+										},
+										{
 											"id": "set-text",
 											"objectClass": "abilityKeybinder",
 											"sid": 546505687649169,
@@ -14087,9 +14117,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "abilityKey",
-											"sid": 633393035984434,
+											"sid": 217166825320778,
 											"parameters": {
-												"text": "\"[outline=#000000][lineThickness=1.5]\" & abilityKeybinder.PlainText & \"[/outline][/lineThickness]\""
+												"text": "BBCODE & abilityKeybinder.PlainText"
 											}
 										}
 									],

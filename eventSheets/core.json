@@ -2167,7 +2167,7 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 289473322355770,
+											"sid": 551330229504804,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
@@ -2177,7 +2177,7 @@
 												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-												"tag-optional": "NOT_USED"
+												"tag-optional": "loot.sound & \"Drop\""
 											}
 										}
 									],
@@ -4883,7 +4883,7 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "transfer data from item to loot, then destroy the item"
+															"text": "Transfer data from the item to the loot, then destroy the item."
 														},
 														{
 															"id": "set-animation",
@@ -5008,40 +5008,42 @@
 															"sid": 994504075540251
 														}
 													],
-													"sid": 134994942053203
-												},
-												{
-													"eventType": "block",
-													"conditions": [
+													"sid": 134994942053203,
+													"children": [
 														{
-															"id": "is-tag-playing",
-															"objectClass": "Audio",
-															"sid": 599527874137354,
-															"parameters": {
-																"tag": "loot.sound & \"Drop\""
-															},
-															"isInverted": true
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-tag-playing",
+																	"objectClass": "Audio",
+																	"sid": 977118842419708,
+																	"parameters": {
+																		"tag": "loot.sound & \"Drop\""
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "play-at-object-by-name",
+																	"objectClass": "Audio",
+																	"sid": 680033187790987,
+																	"parameters": {
+																		"folder": "sounds",
+																		"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
+																		"loop": "not-looping",
+																		"volume": "soundEffectsVolume",
+																		"object": "loot",
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "loot.sound & \"Drop\""
+																	}
+																}
+															],
+															"sid": 642038944478500
 														}
-													],
-													"actions": [
-														{
-															"id": "play-at-object-by-name",
-															"objectClass": "Audio",
-															"sid": 116054376103434,
-															"parameters": {
-																"folder": "sounds",
-																"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
-																"loop": "not-looping",
-																"volume": "soundEffectsVolume",
-																"object": "loot",
-																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-																"tag-optional": "NOT_USED"
-															}
-														}
-													],
-													"sid": 813480458593952
+													]
 												}
 											]
 										},
@@ -6520,26 +6522,36 @@
 					"sid": 554174106514565,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "INITIAL_VALUE",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The player variable values when they don't need to relocate.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 808692075136486
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 450487399342423,
+									"sid": 747011036287669,
 									"parameters": {
 										"instance-variable": "relocateToX",
 										"comparison": 1,
-										"value": "0"
+										"value": "INITIAL_VALUE"
 									}
 								},
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 587975782380855,
+									"sid": 982748000927611,
 									"parameters": {
 										"instance-variable": "relocateToY",
 										"comparison": 1,
-										"value": "0"
+										"value": "INITIAL_VALUE"
 									}
 								}
 							],
@@ -6556,19 +6568,19 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 171611774832362,
+									"sid": 722452339845948,
 									"parameters": {
 										"instance-variable": "relocateToX",
-										"value": "0"
+										"value": "INITIAL_VALUE"
 									}
 								},
 								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 187586262391599,
+									"sid": 461777039928817,
 									"parameters": {
 										"instance-variable": "relocateToY",
-										"value": "0"
+										"value": "INITIAL_VALUE"
 									}
 								}
 							],
@@ -9967,7 +9979,23 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "...if they were not where they were last tick, set their animation appropriately. Using the moveTo 'Is moving' condition causes the player to continue the walking animation when grinding into solids."
+									"text": "Using the 'Is moving' condition, instead of this condition, causes the player to continue the walking animation when grinding into solids.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0,
+										0,
+										0,
+										0
+									]
+								},
+								{
+									"type": "comment",
+									"text": "If the player was not where they were last tick, record that location."
 								},
 								{
 									"id": "set-instvar-value",
@@ -9996,32 +10024,28 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 192504297908711,
+											"sid": 674152903487742,
 											"parameters": {
-												"value": "Functions.isAnimationPlaying(IDLE_KEYWORD)\n"
+												"value": "Functions.isAnimationPlaying(WALK_KEYWORD)\n"
 											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "TODO: This won't work if we have an ability we can cancel by moving."
-										},
-										{
-											"type": "comment",
-											"text": "if they were idling, start the animation from the beginning"
+											"text": "if they were already walking, play the walk animation from the current frame."
 										},
 										{
 											"callFunction": "updateAnimation",
-											"sid": 578053085308020,
+											"sid": 224394891918213,
 											"parameters": [
-												"\"walk\"",
+												"WALK_KEYWORD",
 												"player.movementSpeed / ANIMATION_DIVISOR",
-												true
+												false
 											]
 										}
 									],
-									"sid": 189926063793734
+									"sid": 107053821611209
 								},
 								{
 									"eventType": "block",
@@ -10029,33 +10053,25 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 133619502888419
-										},
-										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
-											"sid": 840383287387578,
-											"parameters": {
-												"value": "Functions.isAnimationPlaying(\"walk\")\n"
-											}
+											"sid": 781449289351793
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if they were already walking, play the animation from the current frame"
+											"text": "If they weren't already walking, play the walk animation, from the beginning."
 										},
 										{
 											"callFunction": "updateAnimation",
-											"sid": 892167997746673,
+											"sid": 226509528398923,
 											"parameters": [
-												"\"walk\"",
+												"WALK_KEYWORD",
 												"player.movementSpeed / ANIMATION_DIVISOR",
-												false
+												true
 											]
 										}
 									],
-									"sid": 903812004404733
+									"sid": 189926063793734
 								}
 							]
 						},
@@ -10088,9 +10104,9 @@
 								{
 									"id": "evaluate-expression",
 									"objectClass": "System",
-									"sid": 529828692673536,
+									"sid": 653566053058072,
 									"parameters": {
-										"value": "Functions.isAnimationPlaying(\"walk\")"
+										"value": "Functions.isAnimationPlaying(WALK_KEYWORD)"
 									}
 								}
 							],
@@ -10181,7 +10197,19 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "We could replace these with in-line waits based on the the length of the animation, but we would effectively lose the ability to change animation speeds while they were played."
+									"text": "If we replaced these with in-line waits, we would lose the ability to change animation speeds while they were played.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0,
+										0,
+										0,
+										0
+									]
 								}
 							],
 							"sid": 923030549317447,
@@ -10311,14 +10339,14 @@
 									"name": "animationName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "which animation to play",
+									"comment": "The name of the animation to play.",
 									"sid": 308447533896746
 								},
 								{
 									"name": "animationSpeed",
 									"type": "number",
 									"initialValue": "30",
-									"comment": "how fast the animation plays",
+									"comment": "The speed at which to play the animation, in frames per second.",
 									"sid": 938843169588506
 								},
 								{
@@ -10334,6 +10362,16 @@
 							"actions": [],
 							"sid": 910128125988487,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "UNARMED_KEYWORD",
+									"type": "string",
+									"initialValue": "Unarmed",
+									"comment": "Used for setting combat animations.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 920152836805899
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -10365,9 +10403,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 903900758870073,
+													"sid": 860499407237250,
 													"parameters": {
-														"animation": "animationName & \"Unarmed\" & SEPARATOR & player.degrees",
+														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
 														"from": "beginning"
 													}
 												}
@@ -10426,9 +10464,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 105314978461315,
+													"sid": 417857174995508,
 													"parameters": {
-														"animation": "animationName & \"Unarmed\" & SEPARATOR & player.degrees",
+														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
 														"from": "current-frame"
 													}
 												}
@@ -10448,9 +10486,9 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 123325782222777,
+													"sid": 448729034451746,
 													"parameters": {
-														"animation": "animationName & SEPARATOR & player.degrees",
+														"animation": "animationName & UNARMED_KEYWORD & player.degrees",
 														"from": "current-frame"
 													}
 												}
@@ -10463,10 +10501,6 @@
 									"eventType": "block",
 									"conditions": [],
 									"actions": [
-										{
-											"type": "comment",
-											"text": "this has to be done after the animation is set, so it goes in a blank event, instead of repeating it"
-										},
 										{
 											"id": "set-animation-speed",
 											"objectClass": "body",
@@ -10492,7 +10526,7 @@
 									"name": "animationName",
 									"type": "string",
 									"initialValue": "",
-									"comment": "The animation name to check for.",
+									"comment": "The animation name for which to check.",
 									"sid": 111044247074623
 								}
 							],

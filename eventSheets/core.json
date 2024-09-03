@@ -5245,6 +5245,14 @@
 												"x": "item.X",
 												"y": "item.Y"
 											}
+										},
+										{
+											"id": "layer-is-interactive",
+											"objectClass": "System",
+											"sid": 516830926829195,
+											"parameters": {
+												"layer": "placeholder.ObjectTypeName"
+											}
 										}
 									],
 									"actions": [
@@ -15218,26 +15226,73 @@
 												"instance-variable": "attacking",
 												"value": "false"
 											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "enemyBody",
-											"sid": 894986745763244,
-											"parameters": {
-												"animation": "WALK_KEYWORD & SEPARATOR & enemy.degrees",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-animation-speed",
-											"objectClass": "enemyBody",
-											"sid": 196693171531035,
-											"parameters": {
-												"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
-											}
 										}
 									],
-									"sid": 995911688446923
+									"sid": 995911688446923,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 829074163670148,
+													"parameters": {
+														"value": "Functions.contains(enemyBody.AnimationName, WALK_KEYWORD)\n"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-animation",
+													"objectClass": "enemyBody",
+													"sid": 342362866985389,
+													"parameters": {
+														"animation": "WALK_KEYWORD & SEPARATOR & enemy.degrees",
+														"from": "current-frame"
+													}
+												}
+											],
+											"sid": 712780573528690
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 113104470063147
+												}
+											],
+											"actions": [
+												{
+													"id": "set-animation",
+													"objectClass": "enemyBody",
+													"sid": 331732382634159,
+													"parameters": {
+														"animation": "WALK_KEYWORD & SEPARATOR & enemy.degrees",
+														"from": "beginning"
+													}
+												}
+											],
+											"sid": 817877337397979
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-animation-speed",
+													"objectClass": "enemyBody",
+													"sid": 299126247746393,
+													"parameters": {
+														"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
+													}
+												}
+											],
+											"sid": 257704021090389
+										}
+									]
 								},
 								{
 									"eventType": "block",

@@ -8193,6 +8193,36 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "MOVEMENT_AND_INTERACTION_GROUP_NAME",
+							"type": "string",
+							"initialValue": "movement and interaction",
+							"comment": "The name of the group that handles movement and interaction.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 279740686218288
+						},
+						{
+							"eventType": "variable",
+							"name": "ABILITIES_GROUP_NAME",
+							"type": "string",
+							"initialValue": "abilities",
+							"comment": "The name of the group that handles abilities.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 818551677891025
+						},
+						{
+							"eventType": "variable",
+							"name": "FACINGS_GROUP_NAME",
+							"type": "string",
+							"initialValue": "facings",
+							"comment": "The name of the group that handles facings.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 815881960529678
+						},
+						{
 							"eventType": "comment",
 							"text": "These functions can't be inside of 'movement and interaction', since they disable or enable that group.",
 							"text-color": [
@@ -8231,27 +8261,27 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 510316966812394,
+									"sid": 739934307119551,
 									"parameters": {
-										"group-name": "\"movement and interaction\"",
+										"group-name": "MOVEMENT_AND_INTERACTION_GROUP_NAME",
 										"state": "deactivated"
 									}
 								},
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 242860111643162,
+									"sid": 758444654181445,
 									"parameters": {
-										"group-name": "\"abilities\"",
+										"group-name": "ABILITIES_GROUP_NAME",
 										"state": "deactivated"
 									}
 								},
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 698854263944001,
+									"sid": 340233014154134,
 									"parameters": {
-										"group-name": "\"facings\"",
+										"group-name": "FACINGS_GROUP_NAME",
 										"state": "deactivated"
 									}
 								}
@@ -8281,27 +8311,27 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 556154367622941,
+									"sid": 547564923631580,
 									"parameters": {
-										"group-name": "\"movement and interaction\"",
+										"group-name": "MOVEMENT_AND_INTERACTION_GROUP_NAME",
 										"state": "activated"
 									}
 								},
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 734888048664713,
+									"sid": 398706480498241,
 									"parameters": {
-										"group-name": "\"abilities\"",
+										"group-name": "ABILITIES_GROUP_NAME",
 										"state": "activated"
 									}
 								},
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 377423599704575,
+									"sid": 159135513939130,
 									"parameters": {
-										"group-name": "\"facings\"",
+										"group-name": "FACINGS_GROUP_NAME",
 										"state": "activated"
 									}
 								},

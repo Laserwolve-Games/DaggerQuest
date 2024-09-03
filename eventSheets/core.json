@@ -545,16 +545,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ENEMY_ABILITIES_FUNCTION_MAP",
-			"type": "string",
-			"initialValue": "enemyAbilities",
-			"comment": "The name of the enemy abilities function map.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 899271516105043
-		},
-		{
-			"eventType": "variable",
 			"name": "EQUIPMENT_MODS_FUNCTION_MAP",
 			"type": "string",
 			"initialValue": "equipmentMods",
@@ -15336,13 +15326,11 @@
 													}
 												},
 												{
-													"id": "call-mapped-function",
-													"objectClass": "Functions",
-													"sid": 411921779757291,
+													"id": "instance-signal",
+													"objectClass": "enemy",
+													"sid": 796429305361544,
 													"parameters": {
-														"name": "ENEMY_ABILITIES_FUNCTION_MAP",
-														"string": "enemy.simpleName",
-														"forward-params": "ALL_PARAMETERS"
+														"tag": "enemy.simpleName"
 													}
 												}
 											],
@@ -15676,17 +15664,376 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
-							"functionName": "goblinUnderling",
-							"functionDescription": "",
-							"functionCategory": "enemies",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-instance-signal",
+									"objectClass": "enemy",
+									"sid": 395455347717356,
+									"parameters": {
+										"tag": "\"goblinWarlock\""
+									}
+								}
+							],
 							"actions": [],
-							"sid": 429038780345131,
+							"sid": 614054561608264,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "PROJECTILE_SPEED",
+									"type": "number",
+									"initialValue": "600",
+									"comment": "The speed of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 134741474609241
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_POINT",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear. This is when they are facing directly left or right.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 767388748972969
+								},
+								{
+									"eventType": "variable",
+									"name": "MANIFESTATION_FRAME",
+									"type": "number",
+									"initialValue": "10",
+									"comment": "The (0-based) frame in which the projectile should manifest",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 879762577402802
+								},
+								{
+									"eventType": "variable",
+									"name": "SIZE",
+									"type": "number",
+									"initialValue": "30",
+									"comment": "The size of the projectile",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 176132503858568
+								},
+								{
+									"eventType": "variable",
+									"name": "projectileManifestationTime",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 985844178598961
+								},
+								{
+									"eventType": "variable",
+									"name": "SOUND_EFFECT",
+									"type": "string",
+									"initialValue": "lightningOrb",
+									"comment": "The sound effect to use with this ability.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 542642286270944
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-children",
+											"objectClass": "enemy",
+											"sid": 298773864152301,
+											"parameters": {
+												"child": "enemyBody",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 886904033762256,
+											"parameters": {
+												"variable": "projectileManifestationTime",
+												"value": "Functions.isometrify(MANIFESTATION_POINT, enemy.degrees) / PROJECTILE_SPEED"
+											}
+										},
+										{
+											"id": "stop",
+											"objectClass": "enemy",
+											"sid": 693919590256964,
+											"behaviorType": "MoveTo"
+										},
+										{
+											"id": "set-moving-angle",
+											"objectClass": "enemy",
+											"sid": 920813802034581,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "enemyBody",
+											"sid": 678314465286259,
+											"parameters": {
+												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation-speed",
+											"objectClass": "enemyBody",
+											"sid": 253166570977560,
+											"parameters": {
+												"speed": "enemy.attackSpeed"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 182674950820577,
+											"parameters": {
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
+											}
+										}
+									],
+									"sid": 284787284392439,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "enemy",
+													"sid": 352163118579076,
+													"parameters": {
+														"instance-variable": "hit"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "enemy",
+													"sid": 243189366343374,
+													"parameters": {
+														"instance-variable": "currentHealth",
+														"comparison": 4,
+														"value": "THRESHOLD"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If the enemy was hit between the time when the attack started, but before the projectile was generated, cease continuation with the attack."
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 394442389738293,
+													"parameters": {
+														"object-to-create": "projectile",
+														"layer": "enemy.LayerName",
+														"x": "enemy.X",
+														"y": "enemy.Y",
+														"create-hierarchy": false,
+														"template-name": "NOT_USED"
+													}
+												}
+											],
+											"sid": 544411531920407,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-last-created",
+															"objectClass": "System",
+															"sid": 355846942537171,
+															"parameters": {
+																"object": "projectile"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "enemy",
+															"sid": 690782715598793,
+															"parameters": {
+																"child": "projectile",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 792342174844032,
+															"parameters": {
+																"instance-variable": "range",
+																"value": "enemy.attackRange"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "projectile",
+															"sid": 422866868611826,
+															"parameters": {
+																"instance-variable": "lightningDamage",
+																"value": "enemy.lightningDamage"
+															}
+														},
+														{
+															"id": "set-width",
+															"objectClass": "projectile",
+															"sid": 453400260113532,
+															"parameters": {
+																"width": "SIZE"
+															}
+														},
+														{
+															"id": "set-height",
+															"objectClass": "projectile",
+															"sid": 655969339353387,
+															"parameters": {
+																"height": "Self.Width / ISOMETRIC_DIVIDER"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "projectile",
+															"sid": 267847342477466,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "projectile",
+															"sid": 631158025196998,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "enemy.MoveTo.MovingAngle"
+															}
+														},
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 701368489370650,
+															"parameters": {
+																"seconds": "projectileManifestationTime"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 757755878725394,
+															"parameters": {
+																"object-to-create": "lightningOrb",
+																"layer": "enemyBody.LayerName",
+																"x": "projectile.X",
+																"y": "projectile.Y",
+																"create-hierarchy": false,
+																"template-name": "NOT_USED"
+															}
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "projectile",
+															"sid": 481285760187518,
+															"parameters": {
+																"instance-variable": "enabled",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 812015083825717,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-last-created",
+																	"objectClass": "System",
+																	"sid": 252760966310871,
+																	"parameters": {
+																		"object": "lightningOrb"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "projectile",
+																	"sid": 696166804333331,
+																	"parameters": {
+																		"child": "lightningOrb",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": true,
+																		"transform-o": true,
+																		"transform-z-elevation": true,
+																		"transform-visibility": false,
+																		"destroy-with-parent": true
+																	}
+																},
+																{
+																	"id": "play-at-object-by-name",
+																	"objectClass": "Audio",
+																	"sid": 345199863990188,
+																	"parameters": {
+																		"folder": "sounds",
+																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
+																		"loop": "looping",
+																		"volume": "soundEffectsVolume",
+																		"object": "lightningOrb",
+																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																		"tag-optional": "str(projectile.UID)"
+																	}
+																}
+															],
+															"sid": 117733310431973
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-instance-signal",
+									"objectClass": "enemy",
+									"sid": 140214999731007,
+									"parameters": {
+										"tag": "\"goblinUnderling\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 614246276877431,
 							"children": [
 								{
 									"eventType": "variable",
@@ -15696,7 +16043,7 @@
 									"comment": "The speed of the projectile",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 421665011073282
+									"sid": 776445699072284
 								},
 								{
 									"eventType": "variable",
@@ -15706,7 +16053,7 @@
 									"comment": "The (0-based) frame in which the projectile should manifest",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 433125076602187
+									"sid": 272687892505457
 								},
 								{
 									"eventType": "variable",
@@ -15716,7 +16063,7 @@
 									"comment": "The size of the projectile",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 968347307715670
+									"sid": 679213943083329
 								},
 								{
 									"eventType": "block",
@@ -15724,7 +16071,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 798162200338716,
+											"sid": 779359414880762,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
@@ -15735,13 +16082,13 @@
 										{
 											"id": "stop",
 											"objectClass": "enemy",
-											"sid": 773381885453265,
+											"sid": 743630096223979,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"id": "set-moving-angle",
 											"objectClass": "enemy",
-											"sid": 226507283155307,
+											"sid": 539794888822548,
 											"behaviorType": "MoveTo",
 											"parameters": {
 												"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -15750,7 +16097,7 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 968281043545258,
+											"sid": 991334836871840,
 											"parameters": {
 												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
@@ -15759,7 +16106,7 @@
 										{
 											"id": "set-animation-speed",
 											"objectClass": "enemyBody",
-											"sid": 644829433032529,
+											"sid": 625203394918558,
 											"parameters": {
 												"speed": "enemy.attackSpeed"
 											}
@@ -15771,13 +16118,13 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 996803575058886,
+											"sid": 758343467445718,
 											"parameters": {
 												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed"
 											}
 										}
 									],
-									"sid": 637095266380560,
+									"sid": 554537150361450,
 									"children": [
 										{
 											"eventType": "block",
@@ -15785,7 +16132,7 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 855357085040303,
+													"sid": 371145257704139,
 													"parameters": {
 														"instance-variable": "currentHealth",
 														"comparison": 4,
@@ -15801,7 +16148,7 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 878525038861543,
+													"sid": 859039332580497,
 													"parameters": {
 														"object-to-create": "projectile",
 														"layer": "enemy.LayerName",
@@ -15812,7 +16159,7 @@
 													}
 												}
 											],
-											"sid": 690563599813584,
+											"sid": 910741011590646,
 											"children": [
 												{
 													"eventType": "block",
@@ -15820,7 +16167,7 @@
 														{
 															"id": "pick-last-created",
 															"objectClass": "System",
-															"sid": 311242000947761,
+															"sid": 833142651683369,
 															"parameters": {
 																"object": "projectile"
 															}
@@ -15830,7 +16177,7 @@
 														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 226300831258667,
+															"sid": 668476599679982,
 															"parameters": {
 																"folder": "sounds",
 																"audio-file-name": "Functions.soundEffectName(SWING_WEAPON_SOUND_EFFECT_NAME)",
@@ -15846,7 +16193,7 @@
 														{
 															"id": "add-child",
 															"objectClass": "enemy",
-															"sid": 361707589310231,
+															"sid": 844375015941828,
 															"parameters": {
 																"child": "projectile",
 																"transform-x": false,
@@ -15863,7 +16210,7 @@
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "projectile",
-															"sid": 771079488774662,
+															"sid": 832460503463979,
 															"parameters": {
 																"instance-variable": "enabled",
 																"value": "true"
@@ -15872,7 +16219,7 @@
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "projectile",
-															"sid": 750577455296826,
+															"sid": 966081428579590,
 															"parameters": {
 																"instance-variable": "isMelee",
 																"value": "true"
@@ -15881,7 +16228,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 244304080656572,
+															"sid": 522322966599625,
 															"parameters": {
 																"instance-variable": "slashDamage",
 																"value": "enemy.slashDamage"
@@ -15890,7 +16237,7 @@
 														{
 															"id": "set-width",
 															"objectClass": "projectile",
-															"sid": 345816853133645,
+															"sid": 278953451188280,
 															"parameters": {
 																"width": "SIZE"
 															}
@@ -15898,7 +16245,7 @@
 														{
 															"id": "set-height",
 															"objectClass": "projectile",
-															"sid": 685217585937059,
+															"sid": 593960142154911,
 															"parameters": {
 																"height": "Self.Width / ISOMETRIC_DIVIDER"
 															}
@@ -15906,7 +16253,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 403750064909871,
+															"sid": 634630762255215,
 															"parameters": {
 																"instance-variable": "range",
 																"value": "enemy.attackRange"
@@ -15915,7 +16262,7 @@
 														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
-															"sid": 861009424760644,
+															"sid": 149749429572463,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "enemy.MoveTo.MovingAngle"
@@ -15924,14 +16271,14 @@
 														{
 															"id": "set-speed",
 															"objectClass": "projectile",
-															"sid": 934788439187272,
+															"sid": 701277550329036,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
 															}
 														}
 													],
-													"sid": 539445401691416
+													"sid": 336288078294154
 												}
 											]
 										}
@@ -15940,17 +16287,19 @@
 							]
 						},
 						{
-							"functionName": "goblinArcher",
-							"functionDescription": "",
-							"functionCategory": "enemies",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-instance-signal",
+									"objectClass": "enemy",
+									"sid": 250470746981569,
+									"parameters": {
+										"tag": "\"goblinArcher\""
+									}
+								}
+							],
 							"actions": [],
-							"sid": 266372004783406,
+							"sid": 197833536519198,
 							"children": [
 								{
 									"eventType": "variable",
@@ -15960,7 +16309,7 @@
 									"comment": "The longest possible distance between the enemy origin and where the projectile should visually appear, in pixels.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 694013683657195
+									"sid": 838597136130018
 								},
 								{
 									"eventType": "variable",
@@ -15970,7 +16319,7 @@
 									"comment": "The (0-based) frame in which the projectile should manifest.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 163965109939145
+									"sid": 860282146403275
 								},
 								{
 									"eventType": "variable",
@@ -15980,7 +16329,7 @@
 									"comment": "The speed of the projectile.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 228682166750364
+									"sid": 176474846742986
 								},
 								{
 									"eventType": "variable",
@@ -15990,7 +16339,7 @@
 									"comment": "The size of the projectile, in pixels.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 159897247114374
+									"sid": 949252621750236
 								},
 								{
 									"eventType": "variable",
@@ -16000,7 +16349,7 @@
 									"comment": "The sound effect to use with this ability.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 270453750422382
+									"sid": 186421690177248
 								},
 								{
 									"eventType": "variable",
@@ -16010,7 +16359,7 @@
 									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point, in seconds.",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 228220816216230
+									"sid": 581246533602118
 								},
 								{
 									"eventType": "block",
@@ -16018,7 +16367,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "enemy",
-											"sid": 411494418569165,
+											"sid": 453345851981676,
 											"parameters": {
 												"child": "enemyBody",
 												"which": "own"
@@ -16033,7 +16382,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 564225280416213,
+											"sid": 169353622869653,
 											"parameters": {
 												"variable": "projectileManifestationTime",
 												"value": "Functions.isometrify(MANIFESTATION_POINT, enemy.degrees) / PROJECTILE_SPEED"
@@ -16042,13 +16391,13 @@
 										{
 											"id": "stop",
 											"objectClass": "enemy",
-											"sid": 344316499934358,
+											"sid": 897223117559669,
 											"behaviorType": "MoveTo"
 										},
 										{
 											"id": "set-moving-angle",
 											"objectClass": "enemy",
-											"sid": 699503730810728,
+											"sid": 421614035819689,
 											"behaviorType": "MoveTo",
 											"parameters": {
 												"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
@@ -16057,7 +16406,7 @@
 										{
 											"id": "set-animation",
 											"objectClass": "enemyBody",
-											"sid": 422686962039379,
+											"sid": 553899493767123,
 											"parameters": {
 												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
 												"from": "beginning"
@@ -16066,7 +16415,7 @@
 										{
 											"id": "set-animation-speed",
 											"objectClass": "enemyBody",
-											"sid": 995367630075280,
+											"sid": 615234006906402,
 											"parameters": {
 												"speed": "enemy.attackSpeed"
 											}
@@ -16078,13 +16427,13 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 378700698176597,
+											"sid": 682291151350586,
 											"parameters": {
 												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
 											}
 										}
 									],
-									"sid": 927697697940487,
+									"sid": 993186503588443,
 									"children": [
 										{
 											"eventType": "block",
@@ -16092,7 +16441,7 @@
 												{
 													"id": "is-boolean-instance-variable-set",
 													"objectClass": "enemy",
-													"sid": 968264553072950,
+													"sid": 892213846181595,
 													"parameters": {
 														"instance-variable": "hit"
 													},
@@ -16101,7 +16450,7 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 502169840437234,
+													"sid": 550459168011206,
 													"parameters": {
 														"instance-variable": "currentHealth",
 														"comparison": 4,
@@ -16113,7 +16462,7 @@
 												{
 													"id": "create-object",
 													"objectClass": "System",
-													"sid": 321851695505146,
+													"sid": 374941599192614,
 													"parameters": {
 														"object-to-create": "projectile",
 														"layer": "enemy.LayerName",
@@ -16124,7 +16473,7 @@
 													}
 												}
 											],
-											"sid": 369945013022118,
+											"sid": 396511010842113,
 											"children": [
 												{
 													"eventType": "block",
@@ -16132,7 +16481,7 @@
 														{
 															"id": "pick-last-created",
 															"objectClass": "System",
-															"sid": 439909279866633,
+															"sid": 263185270538662,
 															"parameters": {
 																"object": "projectile"
 															}
@@ -16142,7 +16491,7 @@
 														{
 															"id": "add-child",
 															"objectClass": "enemy",
-															"sid": 292455479393073,
+															"sid": 666089072827732,
 															"parameters": {
 																"child": "projectile",
 																"transform-x": false,
@@ -16159,7 +16508,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 116652104349254,
+															"sid": 646749915333452,
 															"parameters": {
 																"instance-variable": "range",
 																"value": "enemy.attackRange"
@@ -16168,7 +16517,7 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "projectile",
-															"sid": 824511082317016,
+															"sid": 377922999569196,
 															"parameters": {
 																"instance-variable": "stabDamage",
 																"value": "enemy.stabDamage"
@@ -16177,7 +16526,7 @@
 														{
 															"id": "set-width",
 															"objectClass": "projectile",
-															"sid": 702266015949138,
+															"sid": 179050362825462,
 															"parameters": {
 																"width": "SIZE"
 															}
@@ -16185,7 +16534,7 @@
 														{
 															"id": "set-height",
 															"objectClass": "projectile",
-															"sid": 730559231798823,
+															"sid": 640073282662134,
 															"parameters": {
 																"height": "Self.Width / ISOMETRIC_DIVIDER"
 															}
@@ -16213,7 +16562,7 @@
 														{
 															"id": "set-angle-of-motion",
 															"objectClass": "projectile",
-															"sid": 827573118029758,
+															"sid": 576772089979155,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"angle": "enemy.MoveTo.MovingAngle"
@@ -16222,7 +16571,7 @@
 														{
 															"id": "set-speed",
 															"objectClass": "projectile",
-															"sid": 837456207660489,
+															"sid": 990883941465141,
 															"behaviorType": "Bullet",
 															"parameters": {
 																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
@@ -16231,7 +16580,7 @@
 														{
 															"id": "wait",
 															"objectClass": "System",
-															"sid": 246418723989501,
+															"sid": 505067466058697,
 															"parameters": {
 																"seconds": "projectileManifestationTime"
 															}
@@ -16243,7 +16592,7 @@
 														{
 															"id": "create-object",
 															"objectClass": "System",
-															"sid": 843097305004533,
+															"sid": 208506944533334,
 															"parameters": {
 																"object-to-create": "crossbowBolt",
 																"layer": "enemyBody.LayerName",
@@ -16256,14 +16605,14 @@
 														{
 															"id": "set-boolean-instvar",
 															"objectClass": "projectile",
-															"sid": 703890200324516,
+															"sid": 448865541675645,
 															"parameters": {
 																"instance-variable": "enabled",
 																"value": "true"
 															}
 														}
 													],
-													"sid": 792676751037144,
+													"sid": 473385477570637,
 													"children": [
 														{
 															"eventType": "block",
@@ -16271,7 +16620,7 @@
 																{
 																	"id": "pick-last-created",
 																	"objectClass": "System",
-																	"sid": 487612138188202,
+																	"sid": 993114304744468,
 																	"parameters": {
 																		"object": "crossbowBolt"
 																	}
@@ -16281,7 +16630,7 @@
 																{
 																	"id": "set-animation",
 																	"objectClass": "crossbowBolt",
-																	"sid": 281551004768729,
+																	"sid": 661064372819070,
 																	"parameters": {
 																		"animation": "str(enemy.degrees)",
 																		"from": "beginning"
@@ -16290,7 +16639,7 @@
 																{
 																	"id": "add-child",
 																	"objectClass": "projectile",
-																	"sid": 244179777051147,
+																	"sid": 366119185591288,
 																	"parameters": {
 																		"child": "crossbowBolt",
 																		"transform-x": true,
@@ -16323,7 +16672,7 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 969844182424251,
+																	"sid": 867644431486685,
 																	"parameters": {
 																		"folder": "sounds",
 																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
@@ -16337,362 +16686,7 @@
 																	}
 																}
 															],
-															"sid": 233638538736242
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"functionName": "goblinWarlock",
-							"functionDescription": "",
-							"functionCategory": "enemies",
-							"functionReturnType": "none",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [],
-							"sid": 195491233080812,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "PROJECTILE_SPEED",
-									"type": "number",
-									"initialValue": "600",
-									"comment": "The speed of the projectile",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 369324009696675
-								},
-								{
-									"eventType": "variable",
-									"name": "MANIFESTATION_POINT",
-									"type": "number",
-									"initialValue": "100",
-									"comment": "The longest possible distance (in pixels) between the enemy origin and where the projectile visual representation should appear. This is when they are facing directly left or right.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 768361143392393
-								},
-								{
-									"eventType": "variable",
-									"name": "MANIFESTATION_FRAME",
-									"type": "number",
-									"initialValue": "10",
-									"comment": "The (0-based) frame in which the projectile should manifest",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 521281225561699
-								},
-								{
-									"eventType": "variable",
-									"name": "SIZE",
-									"type": "number",
-									"initialValue": "30",
-									"comment": "The size of the projectile",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 311141190353756
-								},
-								{
-									"eventType": "variable",
-									"name": "projectileManifestationTime",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "How long it takes the projectile to get from the enemy's origin to the manifestation point",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 135630290224051
-								},
-								{
-									"eventType": "variable",
-									"name": "SOUND_EFFECT",
-									"type": "string",
-									"initialValue": "lightningOrb",
-									"comment": "The sound effect to use with this ability.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 600542193903581
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-children",
-											"objectClass": "enemy",
-											"sid": 398729890238329,
-											"parameters": {
-												"child": "enemyBody",
-												"which": "own"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 124188989084013,
-											"parameters": {
-												"variable": "projectileManifestationTime",
-												"value": "Functions.isometrify(MANIFESTATION_POINT, enemy.degrees) / PROJECTILE_SPEED"
-											}
-										},
-										{
-											"id": "stop",
-											"objectClass": "enemy",
-											"sid": 504078988693406,
-											"behaviorType": "MoveTo"
-										},
-										{
-											"id": "set-moving-angle",
-											"objectClass": "enemy",
-											"sid": 944841252633778,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"angle": "angle(Self.X, Self.Y, player.X, player.Y)"
-											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "enemyBody",
-											"sid": 308500430164280,
-											"parameters": {
-												"animation": "ATTACK_KEYWORD & SEPARATOR & enemy.degrees",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-animation-speed",
-											"objectClass": "enemyBody",
-											"sid": 767571508679856,
-											"parameters": {
-												"speed": "enemy.attackSpeed"
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 665976515388519,
-											"parameters": {
-												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
-											}
-										}
-									],
-									"sid": 493235774122151,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "enemy",
-													"sid": 285805991759328,
-													"parameters": {
-														"instance-variable": "hit"
-													},
-													"isInverted": true
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "enemy",
-													"sid": 153776716370446,
-													"parameters": {
-														"instance-variable": "currentHealth",
-														"comparison": 4,
-														"value": "THRESHOLD"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "If the enemy was hit between the time when the attack started, but before the projectile was generated, cease continuation with the attack."
-												},
-												{
-													"id": "create-object",
-													"objectClass": "System",
-													"sid": 219516034508208,
-													"parameters": {
-														"object-to-create": "projectile",
-														"layer": "enemy.LayerName",
-														"x": "enemy.X",
-														"y": "enemy.Y",
-														"create-hierarchy": false,
-														"template-name": "NOT_USED"
-													}
-												}
-											],
-											"sid": 561465114721611,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "pick-last-created",
-															"objectClass": "System",
-															"sid": 646588341210602,
-															"parameters": {
-																"object": "projectile"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "add-child",
-															"objectClass": "enemy",
-															"sid": 992349569937384,
-															"parameters": {
-																"child": "projectile",
-																"transform-x": false,
-																"transform-y": false,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-o": false,
-																"transform-z-elevation": false,
-																"transform-visibility": false,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 555217025714282,
-															"parameters": {
-																"instance-variable": "range",
-																"value": "enemy.attackRange"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "projectile",
-															"sid": 250729036068441,
-															"parameters": {
-																"instance-variable": "lightningDamage",
-																"value": "enemy.lightningDamage"
-															}
-														},
-														{
-															"id": "set-width",
-															"objectClass": "projectile",
-															"sid": 851506649190779,
-															"parameters": {
-																"width": "SIZE"
-															}
-														},
-														{
-															"id": "set-height",
-															"objectClass": "projectile",
-															"sid": 226605164943253,
-															"parameters": {
-																"height": "Self.Width / ISOMETRIC_DIVIDER"
-															}
-														},
-														{
-															"id": "set-speed",
-															"objectClass": "projectile",
-															"sid": 906117778687448,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"speed": "Functions.isometrify(PROJECTILE_SPEED, Self.Bullet.AngleOfMotion)"
-															}
-														},
-														{
-															"id": "set-angle-of-motion",
-															"objectClass": "projectile",
-															"sid": 836908037661225,
-															"behaviorType": "Bullet",
-															"parameters": {
-																"angle": "enemy.MoveTo.MovingAngle"
-															}
-														},
-														{
-															"id": "wait",
-															"objectClass": "System",
-															"sid": 782251004938865,
-															"parameters": {
-																"seconds": "projectileManifestationTime"
-															}
-														},
-														{
-															"id": "create-object",
-															"objectClass": "System",
-															"sid": 447902034625328,
-															"parameters": {
-																"object-to-create": "lightningOrb",
-																"layer": "enemyBody.LayerName",
-																"x": "projectile.X",
-																"y": "projectile.Y",
-																"create-hierarchy": false,
-																"template-name": "NOT_USED"
-															}
-														},
-														{
-															"id": "set-boolean-instvar",
-															"objectClass": "projectile",
-															"sid": 276295156620133,
-															"parameters": {
-																"instance-variable": "enabled",
-																"value": "true"
-															}
-														}
-													],
-													"sid": 128093128862648,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "pick-last-created",
-																	"objectClass": "System",
-																	"sid": 238163367629294,
-																	"parameters": {
-																		"object": "lightningOrb"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"id": "add-child",
-																	"objectClass": "projectile",
-																	"sid": 509425320795648,
-																	"parameters": {
-																		"child": "lightningOrb",
-																		"transform-x": true,
-																		"transform-y": true,
-																		"transform-w": false,
-																		"transform-h": false,
-																		"transform-a": true,
-																		"transform-o": true,
-																		"transform-z-elevation": true,
-																		"transform-visibility": false,
-																		"destroy-with-parent": true
-																	}
-																},
-																{
-																	"id": "play-at-object-by-name",
-																	"objectClass": "Audio",
-																	"sid": 706657142538454,
-																	"parameters": {
-																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
-																		"loop": "looping",
-																		"volume": "soundEffectsVolume",
-																		"object": "lightningOrb",
-																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-																		"tag-optional": "str(projectile.UID)"
-																	}
-																}
-															],
-															"sid": 580403643807865
+															"sid": 780785417630096
 														}
 													]
 												}

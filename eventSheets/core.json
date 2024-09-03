@@ -805,6 +805,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "SWING_WEAPON_SOUND_EFFECT_NAME",
+			"type": "string",
+			"initialValue": "swingWeapon",
+			"comment": "The name of the 'Swing Weapon' sound effect.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 120864427903498
+		},
+		{
+			"eventType": "variable",
 			"name": "WALK_KEYWORD",
 			"type": "string",
 			"initialValue": "walk",
@@ -8633,10 +8643,10 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 605895420744484,
+																	"sid": 451572235216275,
 																	"parameters": {
 																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(\"basicAttack\")",
+																		"audio-file-name": "Functions.soundEffectName(SWING_WEAPON_SOUND_EFFECT_NAME)",
 																		"loop": "not-looping",
 																		"volume": "soundEffectsVolume",
 																		"object": "gear",
@@ -15892,11 +15902,11 @@
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "enemy",
-													"sid": 697587274698270,
+													"sid": 855357085040303,
 													"parameters": {
 														"instance-variable": "currentHealth",
 														"comparison": 4,
-														"value": "0"
+														"value": "THRESHOLD"
 													}
 												}
 											],
@@ -15917,22 +15927,6 @@
 														"create-hierarchy": false,
 														"template-name": "NOT_USED"
 													}
-												},
-												{
-													"id": "play-at-object-by-name",
-													"objectClass": "Audio",
-													"sid": 141542266481875,
-													"parameters": {
-														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(\"basicAttack\")",
-														"loop": "not-looping",
-														"volume": "soundEffectsVolume",
-														"object": "enemyBody",
-														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-														"tag-optional": "NOT_USED"
-													}
 												}
 											],
 											"sid": 690563599813584,
@@ -15950,6 +15944,22 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "play-at-object-by-name",
+															"objectClass": "Audio",
+															"sid": 226300831258667,
+															"parameters": {
+																"folder": "sounds",
+																"audio-file-name": "Functions.soundEffectName(SWING_WEAPON_SOUND_EFFECT_NAME)",
+																"loop": "not-looping",
+																"volume": "soundEffectsVolume",
+																"object": "projectile",
+																"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+																"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+																"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+																"tag-optional": "NOT_USED"
+															}
+														},
 														{
 															"id": "add-child",
 															"objectClass": "enemy",

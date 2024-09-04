@@ -2089,13 +2089,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-overlapping-point",
-											"objectClass": "System",
-											"sid": 666223508174307,
+											"id": "pick-children",
+											"objectClass": "slot",
+											"sid": 714584240294735,
 											"parameters": {
-												"object": "placeholder",
-												"x": "item.X",
-												"y": "item.Y"
+												"child": "placeholder",
+												"which": "own"
 											}
 										}
 									],
@@ -5239,21 +5238,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-overlapping-point",
-											"objectClass": "System",
-											"sid": 746031527290853,
+											"id": "pick-children",
+											"objectClass": "slot",
+											"sid": 133040798756749,
 											"parameters": {
-												"object": "placeholder",
-												"x": "item.X",
-												"y": "item.Y"
-											}
-										},
-										{
-											"id": "layer-is-interactive",
-											"objectClass": "System",
-											"sid": 516830926829195,
-											"parameters": {
-												"layer": "placeholder.ObjectTypeName"
+												"child": "placeholder",
+												"which": "own"
 											}
 										}
 									],
@@ -5327,13 +5317,12 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-overlapping-point",
-											"objectClass": "System",
-											"sid": 553031951461940,
+											"id": "pick-children",
+											"objectClass": "slot",
+											"sid": 665558775363440,
 											"parameters": {
-												"object": "placeholder",
-												"x": "item.X",
-												"y": "item.Y"
+												"child": "placeholder",
+												"which": "own"
 											}
 										}
 									],

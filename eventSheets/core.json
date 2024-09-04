@@ -335,6 +335,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "ORIGINAL_SCALE",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The original scale value of a sprite.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 901632471195882
+		},
+		{
+			"eventType": "variable",
 			"name": "PAUSED",
 			"type": "number",
 			"initialValue": "0",
@@ -665,6 +675,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "LOOT_KEYWORD",
+			"type": "string",
+			"initialValue": "loot",
+			"comment": "Used when spawning loot.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 336725470029276
+		},
+		{
+			"eventType": "variable",
 			"name": "MAIN_HAND_KEYWORD",
 			"type": "string",
 			"initialValue": "mainHand",
@@ -762,16 +782,6 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 409587505348231
-		},
-		{
-			"eventType": "variable",
-			"name": "ORIGINAL_SCALE",
-			"type": "number",
-			"initialValue": "1",
-			"comment": "The original scale value of a sprite.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 533023389720745
 		},
 		{
 			"eventType": "variable",
@@ -1268,10 +1278,6 @@
 							}
 						},
 						{
-							"type": "comment",
-							"text": "TODO: If all NPCs never have anything more than just the idle animation, we can change this to self.animationName"
-						},
-						{
 							"id": "set-animation",
 							"objectClass": "npcBody",
 							"sid": 822083562626807,
@@ -1358,9 +1364,9 @@
 								{
 									"id": "set-opacity",
 									"objectClass": "portrait",
-									"sid": 581317999554329,
+									"sid": 644081884351199,
 									"parameters": {
-										"opacity": "0"
+										"opacity": "TRANSPARENT_OPACITY"
 									}
 								},
 								{
@@ -1558,7 +1564,7 @@
 						},
 						{
 							"type": "comment",
-							"text": "This wait being the official recommended method to unload an object after destroying it."
+							"text": "This wait is the official recommended method to unload an object after destroying it."
 						},
 						{
 							"id": "wait",
@@ -1684,12 +1690,12 @@
 							],
 							"actions": [
 								{
-									"callFunction": "spawnLoot",
-									"sid": 538939051809675,
+									"customAction": "Spawn loot",
+									"objectClass": "loot",
+									"sid": 190615177543096,
 									"parameters": [
 										"player.X",
-										"player.Y",
-										"max(player.Width, player.Height)"
+										"player.Y"
 									]
 								}
 							],
@@ -2123,15 +2129,35 @@
 							"sid": 853578934190498
 						},
 						{
+							"eventType": "variable",
+							"name": "ASCENSION_TWEEN_TAG",
+							"type": "string",
+							"initialValue": "ascension",
+							"comment": "The tag name of the tween that launches the loot up in the air.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 290018784768163
+						},
+						{
+							"eventType": "variable",
+							"name": "TRAVEL_TIME_DIVIDER",
+							"type": "number",
+							"initialValue": "2",
+							"comment": "The value by which to divide the travel time, to split between the tweens.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 602806262049512
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "on-tweens-finished",
 									"objectClass": "loot",
-									"sid": 778561935894008,
+									"sid": 995046678275951,
 									"behaviorType": "Tween",
 									"parameters": {
-										"tags": "\"ascension\""
+										"tags": "ASCENSION_TWEEN_TAG"
 									}
 								}
 							],
@@ -2139,13 +2165,13 @@
 								{
 									"id": "tween-one-property",
 									"objectClass": "loot",
-									"sid": 479508602804430,
+									"sid": 173505112811342,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "NOT_USED",
 										"property": "offsetY",
 										"end-value": "Self.destinationY",
-										"time": "TRAVEL_TIME / 2",
+										"time": "TRAVEL_TIME / TRAVEL_TIME_DIVIDER",
 										"ease": "easeinsine",
 										"destroy-on-complete": "no",
 										"loop": "no",
@@ -2157,44 +2183,24 @@
 									"id": "wait-for-previous-actions",
 									"objectClass": "System",
 									"sid": 315389258203181
+								},
+								{
+									"customAction": "Play drop sound effect",
+									"objectClass": "loot",
+									"sid": 420012454312271
 								}
 							],
-							"sid": 629339917694708,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-tag-playing",
-											"objectClass": "Audio",
-											"sid": 863538374301791,
-											"parameters": {
-												"tag": "loot.sound & \"Drop\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "play-at-object-by-name",
-											"objectClass": "Audio",
-											"sid": 551330229504804,
-											"parameters": {
-												"folder": "sounds",
-												"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
-												"loop": "not-looping",
-												"volume": "soundEffectsVolume",
-												"object": "loot",
-												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-												"tag-optional": "loot.sound & \"Drop\""
-											}
-										}
-									],
-									"sid": 384688841304585
-								}
-							]
+							"sid": 629339917694708
+						},
+						{
+							"eventType": "variable",
+							"name": "IDENTIFIER_INCREMENTER",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How much to increment the identifier every time we use its value.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 492377505857497
 						},
 						{
 							"eventType": "block",
@@ -2208,7 +2214,19 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "This isn't a part of the 'spawnLoot' function because we need it to work for loot that's already in a layout."
+									"text": "This isn't a part of the 'spawnLoot' function because we need it to work for loot that's already in a layout.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
 								},
 								{
 									"id": "set-instvar-value",
@@ -2222,21 +2240,23 @@
 								{
 									"id": "add-to-eventvar",
 									"objectClass": "System",
-									"sid": 292727294235481,
+									"sid": 416389348668415,
 									"parameters": {
 										"variable": "nextAvailableIdentifier",
-										"value": "1"
+										"value": "IDENTIFIER_INCREMENTER"
 									}
 								}
 							],
 							"sid": 328634154225649
 						},
 						{
-							"functionName": "spawnLoot",
-							"functionDescription": "spawn loot at the specified location",
-							"functionCategory": "equipment",
+							"aceType": "action",
+							"aceName": "Spawn loot",
+							"objectClass": "loot",
+							"functionDescription": "Create a piece of loot.",
+							"functionCategory": "creation",
 							"functionReturnType": "none",
-							"functionCopyPicked": false,
+							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -2244,45 +2264,34 @@
 									"type": "number",
 									"initialValue": "0",
 									"comment": "",
-									"sid": 839401055522675
+									"sid": 231351879164687
 								},
 								{
 									"name": "y",
 									"type": "number",
 									"initialValue": "0",
 									"comment": "",
-									"sid": 508129132310762
-								},
-								{
-									"name": "lootDistance",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "How far away from the object to spawn loot.",
-									"sid": 245277320896905
+									"sid": 386714999728530
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 418303292414375,
+									"sid": 164429520714186,
 									"parameters": {
-										"object-name": "advancedRandom.WeightedByName(EQUIPMENT_PROBABILITY_TABLE) & SEPARATOR & \"loot\"",
+										"object-name": "advancedRandom.WeightedByName(EQUIPMENT_PROBABILITY_TABLE) & SEPARATOR & LOOT_KEYWORD",
 										"layer": "background.LayerName",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": false,
 										"template-name": "NOT_USED"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "TODO: lootDistance should be the smallest isometric circle (oval) that completely encompasses the object that spawned the loot."
 								}
 							],
-							"sid": 144578606465063,
+							"sid": 301797937269821,
 							"children": [
 								{
 									"eventType": "variable",
@@ -2292,17 +2301,7 @@
 									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 326422520929617
-								},
-								{
-									"eventType": "variable",
-									"name": "isometrifiedDistance",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 542239830488062
+									"sid": 204893137522611
 								},
 								{
 									"eventType": "variable",
@@ -2312,7 +2311,97 @@
 									"comment": "How high the loot should fly up into the air after it spawns.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 586249255052912
+									"sid": 494077069026984
+								},
+								{
+									"eventType": "variable",
+									"name": "LOOT_DISTANCE",
+									"type": "number",
+									"initialValue": "100",
+									"comment": "How far away to launch this loot, in pixels.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 291101095949510
+								},
+								{
+									"eventType": "variable",
+									"name": "isometrifiedLootDistance",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The loot distance, made isometric.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 339031536532458
+								},
+								{
+									"eventType": "variable",
+									"name": "INITIAL_SCALE",
+									"type": "number",
+									"initialValue": "0.5",
+									"comment": "The scale at which loot initially spawns.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 698788283837046
+								},
+								{
+									"eventType": "variable",
+									"name": "SOUND_KEYWORD",
+									"type": "string",
+									"initialValue": "sound",
+									"comment": "Used for finding the sound column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 276801036037991
+								},
+								{
+									"eventType": "variable",
+									"name": "CLASS_RESTRICTIONS_KEYWORD",
+									"type": "string",
+									"initialValue": "classRestrictions",
+									"comment": "Used for looking up the class restrictions column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 672812115922078
+								},
+								{
+									"eventType": "variable",
+									"name": "VALUE_KEYWORD",
+									"type": "string",
+									"initialValue": "value",
+									"comment": "Used for looking up the (coin) value column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 628918691262061
+								},
+								{
+									"eventType": "variable",
+									"name": "LORE_KEYWORD",
+									"type": "string",
+									"initialValue": "lore",
+									"comment": "Used for looking up the lore column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 658365029922470
+								},
+								{
+									"eventType": "variable",
+									"name": "TYPE_KEYWORD",
+									"type": "string",
+									"initialValue": "type",
+									"comment": "Used for looking up the type column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 853559390438885
+								},
+								{
+									"eventType": "variable",
+									"name": "SIMPLE_NAME_INDEX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The index of the simple name in an loot's name.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 986150827694303
 								},
 								{
 									"eventType": "block",
@@ -2320,7 +2409,7 @@
 										{
 											"id": "pick-last-created",
 											"objectClass": "System",
-											"sid": 608751264424369,
+											"sid": 911207165666077,
 											"parameters": {
 												"object": "loot"
 											}
@@ -2328,13 +2417,115 @@
 									],
 									"actions": [
 										{
+											"customAction": "Set random animation",
+											"objectClass": "loot",
+											"sid": 913370532959129
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 809676157091733,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "tokenat(loot.ObjectTypeName, SIMPLE_NAME_INDEX, SEPARATOR)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 739578993045725,
+											"parameters": {
+												"instance-variable": "fullName",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, FULL_NAME_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 176507377467767,
+											"parameters": {
+												"instance-variable": "type",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, TYPE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 761825453158958,
+											"parameters": {
+												"instance-variable": "lore",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LORE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 487618367668180,
+											"parameters": {
+												"instance-variable": "level",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LEVEL_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 863584505698864,
+											"parameters": {
+												"instance-variable": "value",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, VALUE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 630033395675272,
+											"parameters": {
+												"instance-variable": "classRestrictions",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, CLASS_RESTRICTIONS_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 311223033691924,
+											"parameters": {
+												"instance-variable": "modTable",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, MOD_TABLE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 918191963118630,
+											"parameters": {
+												"instance-variable": "sound",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, SOUND_KEYWORD)"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "TODO: Push loot out of props, enemies, chests, etc. into which it gets launched.",
+											"text-color": [
+												0,
+												0,
+												0,
+												1
+											],
+											"background-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0,
+												1
+											]
+										},
+										{
 											"type": "comment",
 											"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/38"
 										},
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 602418043113369,
+											"sid": 355813859460437,
 											"parameters": {
 												"variable": "theAngle",
 												"value": "random(NEGATIVE_HALF_CRICLE, HALF_CIRCLE)"
@@ -2343,42 +2534,42 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 112883245426002,
+											"sid": 468051174019695,
 											"parameters": {
-												"variable": "isometrifiedDistance",
-												"value": "Functions.isometrify(lootDistance + max(loot.Width, loot.Height), theAngle)"
+												"variable": "isometrifiedLootDistance",
+												"value": "Functions.isometrify(LOOT_DISTANCE, theAngle)"
 											}
 										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 244398877909043,
+											"sid": 177400339242155,
 											"parameters": {
 												"instance-variable": "destinationX",
-												"value": "x + isometrifiedDistance * cos(theAngle)"
+												"value": "x + isometrifiedLootDistance * cos(theAngle)"
 											}
 										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 328334205073985,
+											"sid": 494259382492173,
 											"parameters": {
 												"instance-variable": "destinationY",
-												"value": "y + isometrifiedDistance * sin(theAngle)"
+												"value": "y + isometrifiedLootDistance * sin(theAngle)"
 											}
 										},
 										{
 											"id": "set-scale",
 											"objectClass": "loot",
-											"sid": 285100696477771,
+											"sid": 400561115170473,
 											"parameters": {
-												"scale": ".5"
+												"scale": "INITIAL_SCALE"
 											}
 										},
 										{
 											"id": "tween-two-properties",
 											"objectClass": "loot",
-											"sid": 205752381317548,
+											"sid": 358231133066179,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "NOT_USED",
@@ -2396,7 +2587,7 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "loot",
-											"sid": 449731368168426,
+											"sid": 761688204656819,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "NOT_USED",
@@ -2413,112 +2604,22 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "loot",
-											"sid": 817143358327985,
+											"sid": 291508448975650,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "\"ascension\"",
+												"tags": "ASCENSION_TWEEN_TAG",
 												"property": "offsetY",
 												"end-value": "Self.destinationY - Functions.isometrify(LOOT_ALTITUDE, theAngle)",
-												"time": "TRAVEL_TIME / 2",
+												"time": "TRAVEL_TIME / TRAVEL_TIME_DIVIDER",
 												"ease": "easeoutsine",
 												"destroy-on-complete": "no",
 												"loop": "no",
 												"ping-pong": "no",
 												"repeat-count": "TWEEN_REPEAT_COUNT"
 											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "loot",
-											"sid": 159724866634822,
-											"parameters": {
-												"animation": "\"static\" & SEPARATOR & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 813112745444296,
-											"parameters": {
-												"instance-variable": "simpleName",
-												"value": "tokenat(loot.ObjectTypeName, 0, SEPARATOR)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 411198317954523,
-											"parameters": {
-												"instance-variable": "fullName",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, FULL_NAME_KEYWORD)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 889273455583644,
-											"parameters": {
-												"instance-variable": "type",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"type\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 174633516256190,
-											"parameters": {
-												"instance-variable": "lore",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"lore\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 481935363682140,
-											"parameters": {
-												"instance-variable": "level",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LEVEL_KEYWORD)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 255009816818986,
-											"parameters": {
-												"instance-variable": "value",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"value\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 979077885701922,
-											"parameters": {
-												"instance-variable": "classRestrictions",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"classRestrictions\")"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 847380624723126,
-											"parameters": {
-												"instance-variable": "modTable",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, MOD_TABLE_KEYWORD)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
-											"sid": 732379435089633,
-											"parameters": {
-												"instance-variable": "sound",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, \"sound\")"
-											}
 										}
 									],
-									"sid": 365625576088734,
+									"sid": 901434503445263,
 									"children": [
 										{
 											"eventType": "variable",
@@ -2528,7 +2629,7 @@
 											"comment": "The minimum number of mods an item can have.",
 											"isStatic": true,
 											"isConstant": true,
-											"sid": 331110515125803
+											"sid": 668024448860613
 										},
 										{
 											"eventType": "variable",
@@ -2538,7 +2639,7 @@
 											"comment": "The maximum number of mods an item can have.",
 											"isStatic": true,
 											"isConstant": true,
-											"sid": 161080292351024
+											"sid": 730752096524737
 										},
 										{
 											"eventType": "variable",
@@ -2548,7 +2649,7 @@
 											"comment": "The mod chosen to be added to this loot.",
 											"isStatic": true,
 											"isConstant": false,
-											"sid": 246965271765553
+											"sid": 659525883407581
 										},
 										{
 											"eventType": "block",
@@ -2556,7 +2657,7 @@
 												{
 													"id": "repeat",
 													"objectClass": "System",
-													"sid": 869657056641050,
+													"sid": 212142802468849,
 													"parameters": {
 														"count": "round(random(MIN_MODS, MAX_MODS))"
 													}
@@ -2566,7 +2667,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 446693176521729,
+													"sid": 599496262617947,
 													"parameters": {
 														"variable": "chosenMod",
 														"value": "advancedRandom.WeightedByName(loot.modTable)"
@@ -2575,14 +2676,14 @@
 												{
 													"id": "add-to-instvar",
 													"objectClass": "loot",
-													"sid": 573267035664107,
+													"sid": 144068863571095,
 													"parameters": {
 														"instance-variable": "mods",
 														"value": "((chosenMod & MOD_NAME_SEPARATOR) & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, DESCRIPTION_KEYWORD)) & MOD_SEPARATOR"
 													}
 												}
 											],
-											"sid": 375380483704702
+											"sid": 367290779675029
 										},
 										{
 											"eventType": "variable",
@@ -2592,7 +2693,7 @@
 											"comment": "A regular expression to get everything between square brackets.",
 											"isStatic": true,
 											"isConstant": true,
-											"sid": 168471026558236
+											"sid": 907920731146320
 										},
 										{
 											"eventType": "variable",
@@ -2602,7 +2703,27 @@
 											"comment": "The text inside the brackets of a given mod.",
 											"isStatic": true,
 											"isConstant": false,
-											"sid": 675449617154846
+											"sid": 472572988611120
+										},
+										{
+											"eventType": "variable",
+											"name": "EITHER_SQUARE_BRACKET_REGEX",
+											"type": "string",
+											"initialValue": "\\[|]",
+											"comment": "A regular expression to find either of the square brackets.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 820584214059508
+										},
+										{
+											"eventType": "variable",
+											"name": "FIRST_BRACKETS_INDEX",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "The index of the first set of brackets in a mod.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 876582893546574
 										},
 										{
 											"eventType": "block",
@@ -2610,7 +2731,7 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 610433628665566,
+													"sid": 312400459470038,
 													"parameters": {
 														"name": "NOT_USED",
 														"start-index": "LOOP_OFFSET",
@@ -2621,29 +2742,29 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "for each set of square brackets in this loot's mods"
+													"text": "For each set of square brackets in this loot's mods..."
 												},
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 558019413713885,
+													"sid": 422697712981805,
 													"parameters": {
 														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, NOT_USED, 0), \"\\[|]\", GLOBAL_FLAG, BLANK)"
+														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, NOT_USED, FIRST_BRACKETS_INDEX), EITHER_SQUARE_BRACKET_REGEX, GLOBAL_FLAG, BLANK)"
 													}
 												}
 											],
-											"sid": 668230999384246,
+											"sid": 966989976128445,
 											"children": [
 												{
 													"eventType": "variable",
-													"name": "lowerLimit",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "the lowest number that this mod can roll",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 694917693599524
+													"name": "LEFT_MOD_BRACKET",
+													"type": "string",
+													"initialValue": "{",
+													"comment": "The opening bracket for a mod's value.",
+													"isStatic": false,
+													"isConstant": true,
+													"sid": 433742411802918
 												},
 												{
 													"eventType": "variable",
@@ -2653,7 +2774,17 @@
 													"comment": "The character used to indicate a range in a numerical mod value.",
 													"isStatic": false,
 													"isConstant": true,
-													"sid": 591847493394532
+													"sid": 312891437536698
+												},
+												{
+													"eventType": "variable",
+													"name": "RIGHT_MOD_BRACKET",
+													"type": "string",
+													"initialValue": "}",
+													"comment": "The closing bracket for a mod's value.",
+													"isStatic": false,
+													"isConstant": true,
+													"sid": 871509278374431
 												},
 												{
 													"eventType": "variable",
@@ -2663,7 +2794,47 @@
 													"comment": "the highest number that this mod can roll",
 													"isStatic": true,
 													"isConstant": false,
-													"sid": 136852260606726
+													"sid": 477790594462757
+												},
+												{
+													"eventType": "variable",
+													"name": "lowerLimit",
+													"type": "number",
+													"initialValue": "0",
+													"comment": "the lowest number that this mod can roll",
+													"isStatic": true,
+													"isConstant": false,
+													"sid": 456145618346168
+												},
+												{
+													"eventType": "variable",
+													"name": "LOWER_LIMIT_INDEX",
+													"type": "number",
+													"initialValue": "0",
+													"comment": "The index of the lower limit value in a mod.",
+													"isStatic": false,
+													"isConstant": true,
+													"sid": 375160585094854
+												},
+												{
+													"eventType": "variable",
+													"name": "UPPER_LIMIT_INDEX",
+													"type": "number",
+													"initialValue": "1",
+													"comment": "The index of the upper limit value in a mod.",
+													"isStatic": false,
+													"isConstant": true,
+													"sid": 192966975246867
+												},
+												{
+													"eventType": "variable",
+													"name": "TEXT_VALUE_PARSER",
+													"type": "string",
+													"initialValue": "$",
+													"comment": "The character used to parse out text values in a mod.",
+													"isStatic": false,
+													"isConstant": true,
+													"sid": 569796741224732
 												},
 												{
 													"eventType": "block",
@@ -2671,7 +2842,7 @@
 														{
 															"id": "evaluate-expression",
 															"objectClass": "System",
-															"sid": 396929285345061,
+															"sid": 642258476714542,
 															"parameters": {
 																"value": "Functions.contains(modValue, MOD_VALUE_SEPARATOR)"
 															}
@@ -2685,31 +2856,31 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 585395109807520,
+															"sid": 455189602678512,
 															"parameters": {
 																"variable": "lowerLimit",
-																"value": "int(tokenat(modValue, 0, MOD_VALUE_SEPARATOR))"
+																"value": "int(tokenat(modValue, LOWER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
 															}
 														},
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 191723119202969,
+															"sid": 979292261895083,
 															"parameters": {
 																"variable": "upperLimit",
-																"value": "int(tokenat(modValue, 1, MOD_VALUE_SEPARATOR))"
+																"value": "int(tokenat(modValue, UPPER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
 															}
 														},
 														{
 															"id": "setProbabilityTable",
 															"objectClass": "advancedRandom",
-															"sid": 478449621893124,
+															"sid": 200468836060762,
 															"parameters": {
 																"name": "MOD_VALUES_PROBABILITY_TABLE"
 															}
 														}
 													],
-													"sid": 878549987436267,
+													"sid": 826973677657853,
 													"children": [
 														{
 															"eventType": "comment",
@@ -2723,7 +2894,7 @@
 															"comment": "How rare higher values are.",
 															"isStatic": false,
 															"isConstant": true,
-															"sid": 648953519117027
+															"sid": 353331395993310
 														},
 														{
 															"eventType": "block",
@@ -2731,7 +2902,7 @@
 																{
 																	"id": "for",
 																	"objectClass": "System",
-																	"sid": 432098932265651,
+																	"sid": 524844332325953,
 																	"parameters": {
 																		"name": "NOT_USED",
 																		"start-index": "lowerLimit",
@@ -2747,30 +2918,34 @@
 																{
 																	"id": "addProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 262285232140501,
+																	"sid": 762698251212616,
 																	"parameters": {
 																		"value": "loopindex",
 																		"weight": "upperLimit - loopindex + RARITY_DIMINISHER"
 																	}
 																}
 															],
-															"sid": 455988557394103
+															"sid": 877294455484572
 														},
 														{
 															"eventType": "block",
 															"conditions": [],
 															"actions": [
 																{
+																	"type": "comment",
+																	"text": "Add the loot's level to the value that was rolled."
+																},
+																{
 																	"id": "set-instvar-value",
 																	"objectClass": "loot",
-																	"sid": 588175752907667,
+																	"sid": 426958147819425,
 																	"parameters": {
 																		"instance-variable": "mods",
-																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, BLANK, \"{\" & advancedRandom.Weighted + loot.level & \"}\")"
+																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, BLANK, LEFT_MOD_BRACKET & advancedRandom.Weighted + loot.level & RIGHT_MOD_BRACKET)"
 																	}
 																}
 															],
-															"sid": 424302104263233
+															"sid": 850746526515117
 														},
 														{
 															"eventType": "variable",
@@ -2780,7 +2955,7 @@
 															"comment": "The weight value to specify any possible weight.",
 															"isStatic": false,
 															"isConstant": true,
-															"sid": 386464845033558
+															"sid": 840192068997834
 														},
 														{
 															"eventType": "block",
@@ -2788,7 +2963,7 @@
 																{
 																	"id": "for",
 																	"objectClass": "System",
-																	"sid": 123962357546543,
+																	"sid": 460489910358989,
 																	"parameters": {
 																		"name": "NOT_USED",
 																		"start-index": "lowerLimit",
@@ -2804,14 +2979,14 @@
 																{
 																	"id": "removeProbabilityEntry",
 																	"objectClass": "advancedRandom",
-																	"sid": 330213491647216,
+																	"sid": 409520588141066,
 																	"parameters": {
 																		"value": "loopindex",
 																		"weight": "ANY_WEIGHT"
 																	}
 																}
 															],
-															"sid": 533866735890312
+															"sid": 517356190167672
 														}
 													]
 												},
@@ -2825,7 +3000,7 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 834396030101558
+															"sid": 171821371458334
 														}
 													],
 													"actions": [
@@ -2836,18 +3011,98 @@
 														{
 															"id": "set-instvar-value",
 															"objectClass": "loot",
-															"sid": 229501352806417,
+															"sid": 199657024574314,
 															"parameters": {
 																"instance-variable": "mods",
-																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, NOT_USED, \"{\" & tokenat(modValue, floor(random(tokencount(modValue, \"$\"))), \"$\") & \"}\")"
+																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, NOT_USED, LEFT_MOD_BRACKET & tokenat(modValue, floor(random(tokencount(modValue, TEXT_VALUE_PARSER))), TEXT_VALUE_PARSER) & RIGHT_MOD_BRACKET)"
 															}
 														}
 													],
-													"sid": 734276999010657
+													"sid": 565565932763812
 												}
 											]
 										}
 									]
+								}
+							]
+						},
+						{
+							"aceType": "action",
+							"aceName": "Set random animation",
+							"objectClass": "loot",
+							"functionDescription": "Set this loot's animation to a random one.",
+							"functionCategory": "animations",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "custom-ace-block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "We don't have a way to tell how many animations a sprite has, so we have to hardcode these values.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								}
+							],
+							"sid": 900359262976752,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "STATIC_KEYWORD",
+									"type": "string",
+									"initialValue": "static",
+									"comment": "Used in animation names of static sprites.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 467752912898711
+								},
+								{
+									"eventType": "variable",
+									"name": "FIRST_ANIMATION_INDEX",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The 1-based index of the first animation.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 721083576095013
+								},
+								{
+									"eventType": "variable",
+									"name": "LAST_ANIMATION_INDEX",
+									"type": "number",
+									"initialValue": "17",
+									"comment": "The 1-based index of the last animation.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 193604113879395
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "loot",
+											"sid": 548811260645905,
+											"parameters": {
+												"animation": "STATIC_KEYWORD & SEPARATOR & (floor(random(FIRST_ANIMATION_INDEX, LAST_ANIMATION_INDEX)) * ARC) - HALF_CIRCLE",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 940330236939368
 								}
 							]
 						}
@@ -2861,62 +3116,6 @@
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
-						{
-							"eventType": "group",
-							"disabled": false,
-							"title": "merchants",
-							"description": "There can only be one merchants per layout. We generate/refresh that merchant's inventory (the merchant menu) on the start of that layout.",
-							"isActiveOnStart": true,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-start-of-layout",
-											"objectClass": "System",
-											"sid": 607174205309859
-										},
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "npc",
-											"sid": 177131204117234,
-											"parameters": {
-												"instance-variable": "isMerchant"
-											}
-										},
-										{
-											"id": "is-on-layer",
-											"objectClass": "slot",
-											"sid": 832317720319855,
-											"parameters": {
-												"layer": "merchantMenuStatue.LayerName"
-											}
-										},
-										{
-											"id": "is-on-layer",
-											"objectClass": "item",
-											"sid": 573466018144373,
-											"parameters": {
-												"layer": "merchantMenuStatue.LayerName"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "At the start of each layout, if this layout has a merchant NPC, pick all the slots and items on the merchant menu. Destroy all the items that are currently on there, if any; they're from the previous layout."
-										},
-										{
-											"id": "destroy",
-											"objectClass": "item",
-											"sid": 131283347821390
-										}
-									],
-									"sid": 746576205425298
-								}
-							],
-							"sid": 717055253183813
-						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -2949,7 +3148,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "if an item is right clicked while it's not being dragged, and the inventory menu is open..."
+									"text": "If an item is right clicked while it's not being dragged, and the inventory menu is open..."
 								}
 							],
 							"sid": 516496370527557,
@@ -3008,18 +3207,18 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "slot",
-															"sid": 464335822734662,
+															"sid": 117606307407532,
 															"parameters": {
 																"instance-variable": "identifier",
 																"comparison": 0,
-																"value": "0"
+																"value": "EMPTY"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "check to see if there's any empty inventory slots the item can go into"
+															"text": "...check to see if there's any empty inventory slots the item can go into."
 														}
 													],
 													"sid": 615870837667651,
@@ -3049,11 +3248,12 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "if there are, detach the item from its current slot"
+																	"text": "If there are, detach the item from its current slot..."
 																},
 																{
-																	"callFunction": "detachItem",
-																	"sid": 188966051254299
+																	"customAction": "Detach item",
+																	"objectClass": "player",
+																	"sid": 253069466418048
 																}
 															],
 															"sid": 327329318397352
@@ -3080,31 +3280,32 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 926916826114853,
+																	"sid": 262830761351924,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "0"
+																		"value": "EMPTY"
 																	}
 																},
 																{
 																	"id": "pick-nth-instance",
 																	"objectClass": "System",
-																	"sid": 497017517327860,
+																	"sid": 373004113240567,
 																	"parameters": {
 																		"object": "slot",
-																		"instance": "0"
+																		"instance": "FIRST_INSTANCE"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "then attach it to the first empty inventory slot"
+																	"text": "Then attach it to the first empty inventory slot."
 																},
 																{
-																	"callFunction": "attachItem",
-																	"sid": 234862840931038
+																	"customAction": "Attach item",
+																	"objectClass": "player",
+																	"sid": 628919379363756
 																}
 															],
 															"sid": 286487193984274
@@ -3123,7 +3324,19 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "\"I can't carry any more\""
+															"text": "TODO: Play audio \"I can't carry any more\"",
+															"text-color": [
+																0,
+																0,
+																0,
+																1
+															],
+															"background-color": [
+																0.7843137254901961,
+																0.7843137254901961,
+																0,
+																1
+															]
 														}
 													],
 													"sid": 179465482061357
@@ -3150,7 +3363,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "...and the item is in the in the inventory menu...\nThis else is necessary so that only one thing happens to the item per right click."
+													"text": "...and the item is in the in the inventory menu..."
 												}
 											],
 											"sid": 179130591788354,
@@ -3210,7 +3423,7 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "pick the equipped menu slots that match the item's type"
+																	"text": "Pick the equipped menu slots that match the item's type."
 																}
 															],
 															"sid": 502572037153546,
@@ -3221,18 +3434,18 @@
 																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "slot",
-																			"sid": 135844910243692,
+																			"sid": 117508720284845,
 																			"parameters": {
 																				"instance-variable": "identifier",
 																				"comparison": 0,
-																				"value": "0"
+																				"value": "EMPTY"
 																			}
 																		}
 																	],
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "of those slots, check if any are empty"
+																			"text": "Of those slots, check if any are empty."
 																		}
 																	],
 																	"sid": 611656446932646,
@@ -3262,11 +3475,12 @@
 																			"actions": [
 																				{
 																					"type": "comment",
-																					"text": "now that we know there's an empty equipped menu slot for this item, go back to the inventory menu slot holding our item, and detach"
+																					"text": "Now that we know there's an empty equipped menu slot for this item, go back to the inventory menu slot holding our item, and detach."
 																				},
 																				{
-																					"callFunction": "detachItem",
-																					"sid": 131421743767293
+																					"customAction": "Detach item",
+																					"objectClass": "player",
+																					"sid": 160139692257751
 																				}
 																			],
 																			"sid": 195533417383285
@@ -3295,31 +3509,32 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 999243174386320,
+																					"sid": 882073260711898,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
-																						"value": "0"
+																						"value": "EMPTY"
 																					}
 																				},
 																				{
 																					"id": "pick-nth-instance",
 																					"objectClass": "System",
-																					"sid": 381623664014871,
+																					"sid": 317339001334475,
 																					"parameters": {
 																						"object": "slot",
-																						"instance": "0"
+																						"instance": "FIRST_INSTANCE"
 																					}
 																				}
 																			],
 																			"actions": [
 																				{
 																					"type": "comment",
-																					"text": "re-pick the first empty equipped menu slot that matches the item's type, and attach to it"
+																					"text": "Re-pick the first empty equipped menu slot that matches the item's type, and attach to it."
 																				},
 																				{
-																					"callFunction": "attachItem",
-																					"sid": 327984834416614
+																					"customAction": "Attach item",
+																					"objectClass": "player",
+																					"sid": 145103065258707
 																				}
 																			],
 																			"sid": 218558563544337
@@ -3337,17 +3552,17 @@
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 390815014546678,
+																			"sid": 796604393178541,
 																			"parameters": {
 																				"object": "slot",
-																				"instance": "0"
+																				"instance": "FIRST_INSTANCE"
 																			}
 																		}
 																	],
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "if no slots are empty, start a swap. pick the first equipped menu slot (necessary in the case of rings, because there are two slots) and store its identifier, which is also the identifier of the item in it"
+																			"text": "If no slots are empty, start a swap. Pick the first equipped menu slot (necessary in the case of rings, because there are two slots) and store its identifier, which is also the identifier of the item in it."
 																		},
 																		{
 																			"id": "set-eventvar-value",
@@ -3386,7 +3601,7 @@
 																			"actions": [
 																				{
 																					"type": "comment",
-																					"text": "go back to the slot holding our item, and detach. save this slots UID so we know where to put the other item"
+																					"text": "Go back to the slot holding our item, and detach. save this slot's UID so we know where to put the other item."
 																				},
 																				{
 																					"id": "set-eventvar-value",
@@ -3398,8 +3613,9 @@
 																					}
 																				},
 																				{
-																					"callFunction": "detachItem",
-																					"sid": 836662842091155
+																					"customAction": "Detach item",
+																					"objectClass": "player",
+																					"sid": 828226940222203
 																				}
 																			],
 																			"sid": 215652186379056,
@@ -3436,21 +3652,22 @@
 																						{
 																							"id": "pick-nth-instance",
 																							"objectClass": "System",
-																							"sid": 539048875567544,
+																							"sid": 208188636703199,
 																							"parameters": {
 																								"object": "slot",
-																								"instance": "0"
+																								"instance": "FIRST_INSTANCE"
 																							}
 																						}
 																					],
 																					"actions": [
 																						{
 																							"type": "comment",
-																							"text": "re-pick the first equipped menu slot that matches the item's type, and attach to it, even though it has an different item in it"
+																							"text": "Re-pick the first equipped menu slot that matches the item's type, and attach to it, even though it has an different item in it."
 																						},
 																						{
-																							"callFunction": "attachItem",
-																							"sid": 173606397215514
+																							"customAction": "Attach item",
+																							"objectClass": "player",
+																							"sid": 959280747350120
 																						}
 																					],
 																					"sid": 208754529740190,
@@ -3496,7 +3713,7 @@
 																							"actions": [
 																								{
 																									"type": "comment",
-																									"text": "now we have both items in the same slot. we'll detach the item that shouldn't be there, picking it with swapID. We don't need to clear the identifier value because it was already set correctly in the previous event"
+																									"text": "Now we have both items in the same slot. We'll detach the item that shouldn't be there, picking it with 'swapID'. We don't need to clear the identifier value because it was already set correctly in the previous event."
 																								},
 																								{
 																									"id": "remove-from-parent",
@@ -3511,8 +3728,9 @@
 																									]
 																								},
 																								{
-																									"callFunction": "attachItem",
-																									"sid": 389391319527430
+																									"customAction": "Attach item",
+																									"objectClass": "player",
+																									"sid": 711532812307674
 																								}
 																							],
 																							"sid": 216178085774942
@@ -3539,7 +3757,19 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "\"I don't meet the requirements for this item\""
+															"text": "TODO: Play audio \"I don't meet the requirements for this item\".",
+															"text-color": [
+																0,
+																0,
+																0,
+																1
+															],
+															"background-color": [
+																0.7843137254901961,
+																0.7843137254901961,
+																0,
+																1
+															]
 														}
 													],
 													"sid": 715392308037857
@@ -3602,18 +3832,18 @@
 														{
 															"id": "compare-instance-variable",
 															"objectClass": "slot",
-															"sid": 935302164198032,
+															"sid": 469948875516331,
 															"parameters": {
 																"instance-variable": "identifier",
 																"comparison": 0,
-																"value": "0"
+																"value": "EMPTY"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "check to see if there's any empty inventory slots the item can go into"
+															"text": "...check to see if there's any empty inventory slots the item can go into."
 														}
 													],
 													"sid": 181754026692635,
@@ -3635,7 +3865,7 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "Check if the player can pay for the item, and if so, charge them"
+																	"text": "Check if the player can pay for the item, and if so, charge them."
 																},
 																{
 																	"id": "subtract-from-instvar",
@@ -3674,11 +3904,12 @@
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "if there are, detach the item from its current slot"
+																			"text": "If there are, detach the item from its current slot..."
 																		},
 																		{
-																			"callFunction": "detachItem",
-																			"sid": 131505584950739
+																			"customAction": "Detach item",
+																			"objectClass": "player",
+																			"sid": 914787403054305
 																		}
 																	],
 																	"sid": 518708578055429
@@ -3705,31 +3936,32 @@
 																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "slot",
-																			"sid": 435381455243604,
+																			"sid": 611191568879341,
 																			"parameters": {
 																				"instance-variable": "identifier",
 																				"comparison": 0,
-																				"value": "0"
+																				"value": "EMPTY"
 																			}
 																		},
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 797247422144166,
+																			"sid": 738386391218363,
 																			"parameters": {
 																				"object": "slot",
-																				"instance": "0"
+																				"instance": "FIRST_INSTANCE"
 																			}
 																		}
 																	],
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "then attach it to the first empty inventory slot"
+																			"text": "...then attach it to the first empty inventory slot."
 																		},
 																		{
-																			"callFunction": "attachItem",
-																			"sid": 539107870797046
+																			"customAction": "Attach item",
+																			"objectClass": "player",
+																			"sid": 861876116597742
 																		}
 																	],
 																	"sid": 364953540658440
@@ -3748,7 +3980,19 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "\"I have insufficient gold\" - we possibly could include this in the transaction function"
+																	"text": "TODO: Play audio \"I have insufficient gold\".",
+																	"text-color": [
+																		0,
+																		0,
+																		0,
+																		1
+																	],
+																	"background-color": [
+																		0.7843137254901961,
+																		0.7843137254901961,
+																		0,
+																		1
+																	]
 																}
 															],
 															"sid": 894028079555078
@@ -3767,7 +4011,19 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "\"I can't carry any more\" or \"I have no room for this purchase\""
+															"text": "TODO: Play audio \"I can't carry any more\" or \"I have no room for this purchase\".",
+															"text-color": [
+																0,
+																0,
+																0,
+																1
+															],
+															"background-color": [
+																0.7843137254901961,
+																0.7843137254901961,
+																0,
+																1
+															]
 														}
 													],
 													"sid": 643614221231479
@@ -3794,7 +4050,23 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "...and the item is in the in the inventory menu...\nThis else is necessary so that only one thing happens to the item per right click."
+													"text": "...and the item is in the in the inventory menu...\n"
+												},
+												{
+													"type": "comment",
+													"text": "This else is necessary so that only one thing happens to the item per right click.",
+													"text-color": [
+														0.7843137254901961,
+														0.7843137254901961,
+														0.7843137254901961,
+														1
+													],
+													"background-color": [
+														0.39215686274509803,
+														0,
+														0,
+														1
+													]
 												}
 											],
 											"sid": 464545087234551,
@@ -3814,7 +4086,7 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "pick the slots on the merchant menu"
+															"text": "Pick the slots on the merchant menu."
 														}
 													],
 													"sid": 395523626453058,
@@ -3825,18 +4097,18 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 185416270970694,
+																	"sid": 674734058631323,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "0"
+																		"value": "EMPTY"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "pick the empty slots"
+																	"text": "Pick the empty slots."
 																}
 															],
 															"sid": 123784696618458,
@@ -3866,11 +4138,12 @@
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "now that we know there's an empty merchant menu slot for this item, go back to the inventory menu slot holding our item, and detach"
+																			"text": "Now that we know there's an empty merchant menu slot for this item, go back to the inventory menu slot holding our item, and detach."
 																		},
 																		{
-																			"callFunction": "detachItem",
-																			"sid": 491360834332678
+																			"customAction": "Detach item",
+																			"objectClass": "player",
+																			"sid": 291888165430657
 																		}
 																	],
 																	"sid": 574364136361459
@@ -3897,31 +4170,32 @@
 																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "slot",
-																			"sid": 402308270095072,
+																			"sid": 601482332861746,
 																			"parameters": {
 																				"instance-variable": "identifier",
 																				"comparison": 0,
-																				"value": "0"
+																				"value": "EMPTY"
 																			}
 																		},
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 870824738355914,
+																			"sid": 690477851479556,
 																			"parameters": {
 																				"object": "slot",
-																				"instance": "0"
+																				"instance": "FIRST_INSTANCE"
 																			}
 																		}
 																	],
 																	"actions": [
 																		{
 																			"type": "comment",
-																			"text": "re-pick the first empty merchant menu slot that matches the item's type, and attach to it, and TODO: give the player money for the item they just sold"
+																			"text": "Re-pick the first empty merchant menu slot that matches the item's type, and attach to it."
 																		},
 																		{
-																			"callFunction": "attachItem",
-																			"sid": 469748168894396
+																			"customAction": "Attach item",
+																			"objectClass": "player",
+																			"sid": 874717464226940
 																		},
 																		{
 																			"id": "add-to-instvar",
@@ -3949,7 +4223,19 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "if there's no empty slots on the merchant menu, the merchant plays the dialog line \"I have no more room to purchase items\""
+																	"text": "TODO: If there's no empty slots on the merchant menu, the merchant plays the dialog line \"I have no more room to purchase items\".",
+																	"text-color": [
+																		0,
+																		0,
+																		0,
+																		1
+																	],
+																	"background-color": [
+																		0.7843137254901961,
+																		0.7843137254901961,
+																		0,
+																		1
+																	]
 																}
 															],
 															"sid": 374919461999711
@@ -3968,7 +4254,19 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "\"I don't meet the requirements for this item\""
+															"text": "TODO: Play audio \"I don't meet the requirements for this item\".",
+															"text-color": [
+																0,
+																0,
+																0,
+																1
+															],
+															"background-color": [
+																0.7843137254901961,
+																0.7843137254901961,
+																0,
+																1
+															]
 														}
 													],
 													"sid": 103414643103367
@@ -3978,6 +4276,26 @@
 									]
 								}
 							]
+						},
+						{
+							"eventType": "variable",
+							"name": "OVERLAY_LAYER_NAME",
+							"type": "string",
+							"initialValue": "overlay",
+							"comment": "The name of the overlay layer.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 702255318625624
+						},
+						{
+							"eventType": "variable",
+							"name": "ITEM_OPACITY",
+							"type": "number",
+							"initialValue": "70",
+							"comment": "The opacity of items when they're being dragged.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 947016917295187
 						},
 						{
 							"eventType": "block",
@@ -4014,8 +4332,9 @@
 									}
 								},
 								{
-									"callFunction": "detachItem",
-									"sid": 266807440365284
+									"customAction": "Detach item",
+									"objectClass": "player",
+									"sid": 586236648031557
 								},
 								{
 									"type": "comment",
@@ -4024,21 +4343,21 @@
 								{
 									"id": "move-to-layer",
 									"objectClass": "item",
-									"sid": 988977807503661,
+									"sid": 555120844224899,
 									"parameters": {
-										"layer": "\"overlay\""
+										"layer": "OVERLAY_LAYER_NAME"
 									}
 								},
 								{
 									"id": "tween-one-property",
 									"objectClass": "item",
-									"sid": 962755135279844,
+									"sid": 970344550126379,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "NOT_USED",
 										"property": "offsetOpacity",
-										"end-value": "70",
-										"time": "LAYOUT_FADE_TIME",
+										"end-value": "ITEM_OPACITY",
+										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",
 										"loop": "no",
@@ -4171,8 +4490,9 @@
 																	"text": "...and it's empty, put the item there..."
 																},
 																{
-																	"callFunction": "attachItem",
-																	"sid": 599867682290781
+																	"customAction": "Attach item",
+																	"objectClass": "player",
+																	"sid": 785826242501985
 																}
 															],
 															"sid": 742996182313594,
@@ -4246,12 +4566,13 @@
 															],
 															"actions": [
 																{
-																	"callFunction": "returnItem",
-																	"sid": 657989560447870
-																},
-																{
 																	"type": "comment",
 																	"text": "...and it's not empty. send the item back. We don't swap items from the merchant menu."
+																},
+																{
+																	"customAction": "Return item",
+																	"objectClass": "player",
+																	"sid": 587404855414370
 																}
 															],
 															"sid": 199153147600887
@@ -4357,8 +4678,9 @@
 																			"text": "charge the player for the item and give it to them, provided they have enough coins"
 																		},
 																		{
-																			"callFunction": "attachItem",
-																			"sid": 253809529660030
+																			"customAction": "Attach item",
+																			"objectClass": "player",
+																			"sid": 451954623400019
 																		},
 																		{
 																			"id": "subtract-from-instvar",
@@ -4432,8 +4754,9 @@
 																	"text": "...and it was dropped on a slot that wasn't empty, return it. No swapping from the merchant menu."
 																},
 																{
-																	"callFunction": "returnItem",
-																	"sid": 737496615976106
+																	"customAction": "Return item",
+																	"objectClass": "player",
+																	"sid": 716994687065664
 																}
 															],
 															"sid": 784485727885849
@@ -4473,8 +4796,9 @@
 															],
 															"actions": [
 																{
-																	"callFunction": "attachItem",
-																	"sid": 876885722662709
+																	"customAction": "Attach item",
+																	"objectClass": "player",
+																	"sid": 584226906831161
 																}
 															],
 															"sid": 256926424981849
@@ -4620,8 +4944,9 @@
 																					"text": "if it can, re-pick the item being dragged, and the slot we dropped it on, and attach them"
 																				},
 																				{
-																					"callFunction": "attachItem",
-																					"sid": 109330069133877
+																					"customAction": "Attach item",
+																					"objectClass": "player",
+																					"sid": 276534251668733
 																				}
 																			],
 																			"sid": 956003647143740,
@@ -4682,8 +5007,9 @@
 																							]
 																						},
 																						{
-																							"callFunction": "attachItem",
-																							"sid": 914241056139398
+																							"customAction": "Attach item",
+																							"objectClass": "player",
+																							"sid": 268614212335552
 																						}
 																					],
 																					"sid": 709309740092848
@@ -4723,8 +5049,9 @@
 																			"text": "if it can't, don't swap, and send the item being dragged back to the origin slot"
 																		},
 																		{
-																			"callFunction": "attachItem",
-																			"sid": 502563268648869
+																			"customAction": "Attach item",
+																			"objectClass": "player",
+																			"sid": 747115904457006
 																		}
 																	],
 																	"sid": 298617583833361
@@ -4750,8 +5077,9 @@
 													"text": "send the item back to the slot it came from"
 												},
 												{
-													"callFunction": "returnItem",
-													"sid": 867884544509701
+													"customAction": "Return item",
+													"objectClass": "player",
+													"sid": 937681054973958
 												}
 											],
 											"sid": 771584118890591
@@ -4809,8 +5137,9 @@
 													"text": "if the item was dropped on an invalid location, send the item back to the slot it came from"
 												},
 												{
-													"callFunction": "returnItem",
-													"sid": 662644883081418
+													"customAction": "Return item",
+													"objectClass": "player",
+													"sid": 939557872238150
 												}
 											],
 											"sid": 730960747189332,
@@ -4866,9 +5195,9 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 541413351135116,
+													"sid": 633358125704660,
 													"parameters": {
-														"object-name": "item.simpleName & SEPARATOR & \"loot\"",
+														"object-name": "item.simpleName & SEPARATOR & LOOT_KEYWORD",
 														"layer": "background.LayerName",
 														"x": "mouse.X",
 														"y": "mouse.Y",
@@ -4897,13 +5226,9 @@
 															"text": "Transfer data from the item to the loot, then destroy the item."
 														},
 														{
-															"id": "set-animation",
+															"customAction": "Set random animation",
 															"objectClass": "loot",
-															"sid": 744370381012752,
-															"parameters": {
-																"animation": "\"static\" & SEPARATOR & (floor(random(1, 17)) * ARC) - HALF_CIRCLE",
-																"from": "beginning"
-															}
+															"sid": 596223544120701
 														},
 														{
 															"id": "set-instvar-value",
@@ -5017,44 +5342,14 @@
 															"id": "destroy",
 															"objectClass": "item",
 															"sid": 994504075540251
+														},
+														{
+															"customAction": "Play drop sound effect",
+															"objectClass": "loot",
+															"sid": 595876714683522
 														}
 													],
-													"sid": 134994942053203,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "is-tag-playing",
-																	"objectClass": "Audio",
-																	"sid": 977118842419708,
-																	"parameters": {
-																		"tag": "loot.sound & \"Drop\""
-																	},
-																	"isInverted": true
-																}
-															],
-															"actions": [
-																{
-																	"id": "play-at-object-by-name",
-																	"objectClass": "Audio",
-																	"sid": 680033187790987,
-																	"parameters": {
-																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(loot.sound & \"Drop\")",
-																		"loop": "not-looping",
-																		"volume": "soundEffectsVolume",
-																		"object": "loot",
-																		"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-																		"tag-optional": "loot.sound & \"Drop\""
-																	}
-																}
-															],
-															"sid": 642038944478500
-														}
-													]
+													"sid": 134994942053203
 												}
 											]
 										},
@@ -5073,8 +5368,9 @@
 													"text": "Prevent items from being dropped outside the window."
 												},
 												{
-													"callFunction": "returnItem",
-													"sid": 364509381859564
+													"customAction": "Return item",
+													"objectClass": "player",
+													"sid": 827945859746453
 												}
 											],
 											"sid": 327474167530248
@@ -5097,9 +5393,9 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 459864711907091,
+									"sid": 103754010280656,
 									"parameters": {
-										"value": "0"
+										"value": "FALSE"
 									}
 								}
 							],
@@ -5131,9 +5427,9 @@
 										{
 											"id": "set-function-return-value",
 											"objectClass": "Functions",
-											"sid": 758990715165183,
+											"sid": 877706139999126,
 											"parameters": {
-												"value": "1"
+												"value": "TRUE"
 											}
 										}
 									],
@@ -5143,19 +5439,21 @@
 							]
 						},
 						{
-							"functionName": "returnItem",
+							"aceType": "action",
+							"aceName": "Return item",
+							"objectClass": "player",
 							"functionDescription": "Send a dragged item back to the slot from which it came.",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [
 								{
 									"id": "pick-all",
 									"objectClass": "System",
-									"sid": 187101144035540,
+									"sid": 787465918318941,
 									"parameters": {
 										"object": "slot"
 									}
@@ -5163,7 +5461,7 @@
 								{
 									"id": "pick-by-unique-id",
 									"objectClass": "slot",
-									"sid": 607616016334312,
+									"sid": 570249589448245,
 									"parameters": {
 										"unique-id": "draggedOriginSlotUID"
 									}
@@ -5171,36 +5469,39 @@
 							],
 							"actions": [
 								{
-									"callFunction": "attachItem",
-									"sid": 796892767703320
+									"customAction": "Attach item",
+									"objectClass": "player",
+									"sid": 149180764142240
 								}
 							],
-							"sid": 785533791417044
+							"sid": 541577869565779
 						},
 						{
-							"functionName": "attachItem",
-							"functionDescription": "attaches an item to a slot",
+							"aceType": "action",
+							"aceName": "Attach item",
+							"objectClass": "player",
+							"functionDescription": "Attach this item to this slot.",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-position-to-another-object",
 									"objectClass": "item",
-									"sid": 888715407713644,
+									"sid": 158202926170484,
 									"parameters": {
 										"object": "slot",
-										"image-point-optional": "0"
+										"image-point-optional": "OBJECT_ORIGIN"
 									}
 								},
 								{
 									"id": "move-to-layer",
 									"objectClass": "item",
-									"sid": 282712149404009,
+									"sid": 675697653167825,
 									"parameters": {
 										"layer": "slot.LayerName"
 									}
@@ -5208,7 +5509,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "slot",
-									"sid": 815964194354236,
+									"sid": 195113537974111,
 									"parameters": {
 										"instance-variable": "identifier",
 										"value": "item.identifier"
@@ -5217,7 +5518,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "slot",
-									"sid": 829487362594103,
+									"sid": 889314885761894,
 									"parameters": {
 										"child": "item",
 										"transform-x": true,
@@ -5232,7 +5533,7 @@
 									}
 								}
 							],
-							"sid": 437730535233655,
+							"sid": 302922924762698,
 							"children": [
 								{
 									"eventType": "block",
@@ -5240,7 +5541,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "slot",
-											"sid": 133040798756749,
+											"sid": 147510139459841,
 											"parameters": {
 												"child": "placeholder",
 												"which": "own"
@@ -5251,13 +5552,13 @@
 										{
 											"id": "set-visible",
 											"objectClass": "placeholder",
-											"sid": 253648163462631,
+											"sid": 267256298197378,
 											"parameters": {
 												"visibility": "invisible"
 											}
 										}
 									],
-									"sid": 109730520509292
+									"sid": 246755852770956
 								},
 								{
 									"eventType": "block",
@@ -5265,7 +5566,7 @@
 										{
 											"id": "is-on-layer",
 											"objectClass": "slot",
-											"sid": 574448825085483,
+											"sid": 186715506536219,
 											"parameters": {
 												"layer": "equippedMenuStatue.LayerName"
 											}
@@ -5275,43 +5576,45 @@
 										{
 											"customAction": "Queue gear management",
 											"objectClass": "player",
-											"sid": 723847663827606,
+											"sid": 168875224548628,
 											"parameters": [
 												true
 											]
 										}
 									],
-									"sid": 150732631465097
+									"sid": 107160803829987
 								}
 							]
 						},
 						{
-							"functionName": "detachItem",
-							"functionDescription": "detaches an item from a slot",
+							"aceType": "action",
+							"aceName": "Detach item",
+							"objectClass": "player",
+							"functionDescription": "Detach this item from this slot.",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-instvar-value",
 									"objectClass": "slot",
-									"sid": 988043997215968,
+									"sid": 655276068229647,
 									"parameters": {
 										"instance-variable": "identifier",
-										"value": "0"
+										"value": "EMPTY"
 									}
 								},
 								{
 									"id": "remove-from-parent",
 									"objectClass": "item",
-									"sid": 580210031479108
+									"sid": 607566432773677
 								}
 							],
-							"sid": 312257914941975,
+							"sid": 905479755172596,
 							"children": [
 								{
 									"eventType": "block",
@@ -5319,7 +5622,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "slot",
-											"sid": 665558775363440,
+											"sid": 626778549093226,
 											"parameters": {
 												"child": "placeholder",
 												"which": "own"
@@ -5330,13 +5633,13 @@
 										{
 											"id": "set-visible",
 											"objectClass": "placeholder",
-											"sid": 857116200654787,
+											"sid": 516996361783413,
 											"parameters": {
 												"visibility": "visible"
 											}
 										}
 									],
-									"sid": 417652766240155
+									"sid": 177457332830567
 								},
 								{
 									"eventType": "block",
@@ -5344,7 +5647,7 @@
 										{
 											"id": "is-on-layer",
 											"objectClass": "slot",
-											"sid": 339780433114922,
+											"sid": 226671583758678,
 											"parameters": {
 												"layer": "equippedMenuStatue.LayerName"
 											}
@@ -5354,13 +5657,13 @@
 										{
 											"customAction": "Queue gear management",
 											"objectClass": "player",
-											"sid": 792811436948405,
+											"sid": 605801051121080,
 											"parameters": [
 												false
 											]
 										}
 									],
-									"sid": 425680196320642
+									"sid": 296519767505263
 								}
 							]
 						}
@@ -5395,7 +5698,7 @@
 							"aceName": "Queue gear management",
 							"objectClass": "player",
 							"functionDescription": "Queue up an item to have its gear and mods managed.",
-							"functionCategory": "gear",
+							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
@@ -8124,12 +8427,12 @@
 											}
 										},
 										{
-											"callFunction": "spawnLoot",
-											"sid": 975663510438698,
+											"customAction": "Spawn loot",
+											"objectClass": "loot",
+											"sid": 877029664962585,
 											"parameters": [
 												"lootChest.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
-												"lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT)",
-												"max(lootChest.Width, lootChest.Height)"
+												"lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
 											]
 										},
 										{
@@ -15596,12 +15899,12 @@
 											}
 										},
 										{
-											"callFunction": "spawnLoot",
-											"sid": 507101027020241,
+											"customAction": "Spawn loot",
+											"objectClass": "loot",
+											"sid": 325690623031120,
 											"parameters": [
 												"enemy.X",
-												"enemy.Y",
-												"max(enemy.Width, enemy.Height)"
+												"enemy.Y"
 											]
 										}
 									],
@@ -17843,7 +18146,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "miscellaneous functions",
+			"title": "data management",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -18274,36 +18577,6 @@
 							"sid": 812509457884939
 						}
 					]
-				},
-				{
-					"functionName": "soundEffectName",
-					"functionDescription": "Get the file name of a random variation of this sound effect.",
-					"functionCategory": "audio",
-					"functionReturnType": "string",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "soundEffectName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The name of the sound effect for which to get a random variation.",
-							"sid": 869348266727950
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 320486060458189,
-							"parameters": {
-								"value": "soundEffectName & floor(random(soundEffectVariants.Get(soundEffectName)))"
-							}
-						}
-					],
-					"sid": 650115739833359
 				},
 				{
 					"functionName": "toPercentage",
@@ -19936,6 +20209,106 @@
 				}
 			],
 			"sid": 368443066853777
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "audio",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "soundEffectName",
+					"functionDescription": "Get the file name of a random variation of this sound effect.",
+					"functionCategory": "audio",
+					"functionReturnType": "string",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "soundEffectName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The name of the sound effect for which to get a random variation.",
+							"sid": 869348266727950
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 378819428012933,
+							"parameters": {
+								"value": "soundEffectName & floor(random(soundEffectVariants.Get(soundEffectName)))"
+							}
+						}
+					],
+					"sid": 641272882594905
+				},
+				{
+					"aceType": "action",
+					"aceName": "Play drop sound effect",
+					"objectClass": "loot",
+					"functionDescription": "Play the sound effect for when this loot drops.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 400074143417837,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "DROP_KEYWORD",
+							"type": "string",
+							"initialValue": "Drop",
+							"comment": "Used for playing the loot drop sound effect.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 419866887355159
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 431913852732604,
+									"parameters": {
+										"tag": "loot.sound & DROP_KEYWORD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "Audio",
+									"sid": 290736090077599,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "Functions.soundEffectName(loot.sound & DROP_KEYWORD)",
+										"loop": "not-looping",
+										"volume": "soundEffectsVolume",
+										"object": "loot",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "loot.sound & DROP_KEYWORD"
+									}
+								}
+							],
+							"sid": 135854462320920
+						}
+					]
+				}
+			],
+			"sid": 499889136212563
 		},
 		{
 			"eventType": "group",

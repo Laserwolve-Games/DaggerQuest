@@ -5379,9 +5379,25 @@
 					"eventType": "group",
 					"disabled": false,
 					"title": "gear",
-					"description": "Warning: Using variables and functions to clean up these events leads to bizarre timing issues that are hard to troubleshoot.",
+					"description": "",
 					"isActiveOnStart": true,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "Using variables and functions to clean up these events leads to bizarre timing issues that are hard to troubleshoot.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0,
+								0,
+								0,
+								1
+							]
+						},
 						{
 							"functionName": "queueGearManagement",
 							"functionDescription": "Add a request to manage gear to the queue",
@@ -6101,6 +6117,22 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "comment",
+					"text": "Event order here is very important.",
+					"text-color": [
+						0.7843137254901961,
+						0.7843137254901961,
+						0.7843137254901961,
+						1
+					],
+					"background-color": [
+						0,
+						0,
+						0,
+						1
+					]
+				},
+				{
 					"functionName": "isometrify",
 					"functionDescription": "Modify a value based on an angle, to make it isometrically correct.",
 					"functionCategory": "isometry",
@@ -6125,21 +6157,45 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
+					"actions": [],
+					"sid": 700983687129705,
+					"children": [
 						{
-							"type": "comment",
-							"text": "\"theAngle\" because \"angle\" is a reserved keyword."
+							"eventType": "variable",
+							"name": "CAMERA_ANGLE",
+							"type": "number",
+							"initialValue": "0.5",
+							"comment": "The camera angle, on a scale of 0 to 1.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 332361668066869
 						},
 						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 384071453991693,
-							"parameters": {
-								"value": "value * lerp(.5, 1, abs(abs(theAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
-							}
+							"eventType": "variable",
+							"name": "MAX_ANGLE",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The highest possible camera angle.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 835662964205830
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 302984214027313,
+									"parameters": {
+										"value": "value * lerp(CAMERA_ANGLE, MAX_ANGLE, abs(abs(theAngle) - QUARTER_CIRCLE) / QUARTER_CIRCLE)"
+									}
+								}
+							],
+							"sid": 860549200095427
 						}
-					],
-					"sid": 700983687129705
+					]
 				},
 				{
 					"eventType": "block",
@@ -6151,10 +6207,6 @@
 						}
 					],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "This event needs to be above the sorting group to prevent a graphical glitch"
-						},
 						{
 							"id": "set-instvar-value",
 							"objectClass": "sortable",
@@ -6203,11 +6255,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "This event must be below the above event, or else the loot will flash when the z order of its parent prop changes."
-						},
-						{
-							"type": "comment",
-							"text": "If a piece of loot is on the 'main' layer, it's part of the environment, and needs to be moved in front of whatever it's 'on', i.e., the prop that is its parent."
+							"text": "loot with a parent prop needs to always be in front of that prop."
 						},
 						{
 							"id": "move-to-object",
@@ -6222,259 +6270,175 @@
 					"sid": 489056358912797
 				},
 				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "sorting",
-					"description": "Check for edge cases to indicate utilization of a custom sorting order, otherwise use the default.",
-					"isActiveOnStart": true,
-					"children": [
+					"eventType": "comment",
+					"text": "If the player is facing right, put the mainHand gear on top of the sort stack, and offHand on the bottom. If they're facing left, do the opposite."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-animation-playing",
-									"objectClass": "man_simpleSword_gear",
-									"sid": 681403102700361,
-									"parameters": {
-										"animation": "IDLE_KEYWORD & SEPARATOR & \"157.5\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "move-to-object",
-									"objectClass": "offHand",
-									"sid": 702532448346007,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "head",
-									"sid": 390173758568011,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "chest",
-									"sid": 883275433593183,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "mainHand",
-									"sid": 564538742535919,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "feet",
-									"sid": 788751064850888,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "legs",
-									"sid": 942548275877263,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "hands",
-									"sid": 445366415603596,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								}
-							],
-							"sid": 348299811569005
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 528389046577530,
+							"parameters": {
+								"instance-variable": "degrees",
+								"comparison": 5,
+								"value": "-QUARTER_CIRCLE"
+							}
 						},
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 503835850935764
-								},
-								{
-									"id": "is-between-values",
-									"objectClass": "System",
-									"sid": 611856887479244,
-									"parameters": {
-										"value": "player.degrees",
-										"lower-bound": "-67.5",
-										"upper-bound": "22.5"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "move-to-object",
-									"objectClass": "mainHand",
-									"sid": 901435269026737,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "offHand",
-									"sid": 172207901148276,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "head",
-									"sid": 290903160034197,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "chest",
-									"sid": 186295098346742,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "feet",
-									"sid": 979459098737440,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "legs",
-									"sid": 287088795551390,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "hands",
-									"sid": 701638109081111,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								}
-							],
-							"sid": 701987836742656
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 875563291302660
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "The normal sorting order."
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "offHand",
-									"sid": 938400889925313,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "head",
-									"sid": 988530964135385,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "mainHand",
-									"sid": 651222762711156,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "chest",
-									"sid": 547581038454800,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "feet",
-									"sid": 882564343136704,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "legs",
-									"sid": 597937028052401,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								},
-								{
-									"id": "move-to-object",
-									"objectClass": "hands",
-									"sid": 167383299477802,
-									"parameters": {
-										"where": "in-front",
-										"object": "body"
-									}
-								}
-							],
-							"sid": 603941084953152
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 919256770767209,
+							"parameters": {
+								"instance-variable": "degrees",
+								"comparison": 3,
+								"value": "QUARTER_CIRCLE"
+							}
 						}
 					],
-					"sid": 621826706568727
+					"actions": [
+						{
+							"id": "move-to-object",
+							"objectClass": "mainHand",
+							"sid": 212951774401333,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "head",
+							"sid": 621825329122247,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "chest",
+							"sid": 943847429441738,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "feet",
+							"sid": 547026136624748,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "legs",
+							"sid": 168258672615670,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "hands",
+							"sid": 602060603142604,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "offHand",
+							"sid": 560307330088224,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						}
+					],
+					"sid": 617000623508816
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 201757065599863
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-object",
+							"objectClass": "offHand",
+							"sid": 766642363959326,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "head",
+							"sid": 289048584224439,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "chest",
+							"sid": 429459159755324,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "feet",
+							"sid": 890306783449663,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "legs",
+							"sid": 499367479615170,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "hands",
+							"sid": 242612373823006,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "mainHand",
+							"sid": 117287480558915,
+							"parameters": {
+								"where": "in-front",
+								"object": "body"
+							}
+						}
+					],
+					"sid": 596387861790130
 				}
 			],
 			"sid": 937100591006447
@@ -6534,8 +6498,9 @@
 					],
 					"actions": [
 						{
-							"callFunction": "restorePlayerControl",
-							"sid": 558634662959794
+							"customAction": "Restore player control",
+							"objectClass": "player",
+							"sid": 597112993663003
 						}
 					],
 					"sid": 554174106514565,
@@ -7135,12 +7100,14 @@
 									]
 								},
 								{
-									"callFunction": "removePlayerControl",
-									"sid": 806693191738100
+									"customAction": "Remove player control",
+									"objectClass": "player",
+									"sid": 279793018038571
 								},
 								{
-									"callFunction": "destroyPlayerProjectiles",
-									"sid": 701085048361946
+									"customAction": "Destroy projectiles",
+									"objectClass": "player",
+									"sid": 798665859808771
 								}
 							],
 							"sid": 631777258825799
@@ -8263,20 +8230,22 @@
 							]
 						},
 						{
-							"functionName": "removePlayerControl",
+							"aceType": "action",
+							"aceName": "Remove player control",
+							"objectClass": "player",
 							"functionDescription": "Prevent the player from doing anything.",
-							"functionCategory": "player",
+							"functionCategory": "movement",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-enabled",
 									"objectClass": "player",
-									"sid": 630374470563065,
+									"sid": 696869368620117,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"enabled": false
@@ -8285,7 +8254,7 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 739934307119551,
+									"sid": 438266862210696,
 									"parameters": {
 										"group-name": "MOVEMENT_AND_INTERACTION_GROUP_NAME",
 										"state": "deactivated"
@@ -8294,7 +8263,7 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 758444654181445,
+									"sid": 304243638363806,
 									"parameters": {
 										"group-name": "ABILITIES_GROUP_NAME",
 										"state": "deactivated"
@@ -8303,30 +8272,32 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 340233014154134,
+									"sid": 177894392628388,
 									"parameters": {
 										"group-name": "FACINGS_GROUP_NAME",
 										"state": "deactivated"
 									}
 								}
 							],
-							"sid": 238570256214279
+							"sid": 450294414017981
 						},
 						{
-							"functionName": "restorePlayerControl",
-							"functionDescription": "Reinstate the player's ability to be controlled.",
-							"functionCategory": "player",
+							"aceType": "action",
+							"aceName": "Restore player control",
+							"objectClass": "player",
+							"functionDescription": "Allow the player to move and use abilities.",
+							"functionCategory": "movement",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-enabled",
 									"objectClass": "player",
-									"sid": 748470458438661,
+									"sid": 213813131177906,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"enabled": true
@@ -8335,7 +8306,7 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 547564923631580,
+									"sid": 970158625797427,
 									"parameters": {
 										"group-name": "MOVEMENT_AND_INTERACTION_GROUP_NAME",
 										"state": "activated"
@@ -8344,7 +8315,7 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 398706480498241,
+									"sid": 703175649572876,
 									"parameters": {
 										"group-name": "ABILITIES_GROUP_NAME",
 										"state": "activated"
@@ -8353,7 +8324,7 @@
 								{
 									"id": "set-group-active",
 									"objectClass": "System",
-									"sid": 159135513939130,
+									"sid": 839031975739275,
 									"parameters": {
 										"group-name": "FACINGS_GROUP_NAME",
 										"state": "activated"
@@ -8361,7 +8332,7 @@
 								},
 								{
 									"callFunction": "updateAnimation",
-									"sid": 189437437331630,
+									"sid": 464566367051002,
 									"parameters": [
 										"IDLE_KEYWORD",
 										"body.OriginalAnimationSpeed",
@@ -8369,7 +8340,7 @@
 									]
 								}
 							],
-							"sid": 848263676668588
+							"sid": 300934570311369
 						}
 					],
 					"sid": 998455745664907
@@ -8641,8 +8612,9 @@
 													]
 												},
 												{
-													"callFunction": "removePlayerControl",
-													"sid": 454068262720174
+													"customAction": "Remove player control",
+													"objectClass": "player",
+													"sid": 177208388841958
 												},
 												{
 													"callFunction": "updateAnimation",
@@ -8866,8 +8838,9 @@
 																	],
 																	"actions": [
 																		{
-																			"callFunction": "restorePlayerControl",
-																			"sid": 428001114465743
+																			"customAction": "Restore player control",
+																			"objectClass": "player",
+																			"sid": 317757200602551
 																		}
 																	],
 																	"sid": 955584998863564
@@ -9094,8 +9067,9 @@
 													]
 												},
 												{
-													"callFunction": "removePlayerControl",
-													"sid": 102074727094487
+													"customAction": "Remove player control",
+													"objectClass": "player",
+													"sid": 981764336673063
 												},
 												{
 													"callFunction": "updateAnimation",
@@ -9315,8 +9289,9 @@
 																	],
 																	"actions": [
 																		{
-																			"callFunction": "restorePlayerControl",
-																			"sid": 621969998813230
+																			"customAction": "Restore player control",
+																			"objectClass": "player",
+																			"sid": 443439836298657
 																		}
 																	],
 																	"sid": 885818368366922
@@ -9542,8 +9517,9 @@
 													]
 												},
 												{
-													"callFunction": "removePlayerControl",
-													"sid": 593175847623081
+													"customAction": "Remove player control",
+													"objectClass": "player",
+													"sid": 896368528533251
 												},
 												{
 													"callFunction": "updateAnimation",
@@ -9769,8 +9745,9 @@
 																	],
 																	"actions": [
 																		{
-																			"callFunction": "restorePlayerControl",
-																			"sid": 630645191954453
+																			"customAction": "Restore player control",
+																			"objectClass": "player",
+																			"sid": 773253785579086
 																		}
 																	],
 																	"sid": 733130551109924
@@ -10146,8 +10123,9 @@
 									],
 									"actions": [
 										{
-											"callFunction": "restorePlayerControl",
-											"sid": 516463844288727
+											"customAction": "Restore player control",
+											"objectClass": "player",
+											"sid": 687785193502977
 										}
 									],
 									"sid": 408650609700262
@@ -10190,8 +10168,9 @@
 									}
 								},
 								{
-									"callFunction": "removePlayerControl",
-									"sid": 758299278727292
+									"customAction": "Remove player control",
+									"objectClass": "player",
+									"sid": 285842810528881
 								},
 								{
 									"callFunction": "updateAnimation",
@@ -15521,8 +15500,9 @@
 											}
 										},
 										{
-											"callFunction": "destroyEnemyProjectiles",
-											"sid": 648138623231764
+											"customAction": "Destroy projectiles",
+											"objectClass": "enemy",
+											"sid": 684362656708265
 										},
 										{
 											"id": "destroy",
@@ -17410,8 +17390,9 @@
 											}
 										},
 										{
-											"callFunction": "destroyEnemyProjectiles",
-											"sid": 680466461953344
+											"customAction": "Destroy projectiles",
+											"objectClass": "enemy",
+											"sid": 349869752147933
 										}
 									],
 									"sid": 305641316456038
@@ -17541,8 +17522,9 @@
 											]
 										},
 										{
-											"callFunction": "destroyPlayerProjectiles",
-											"sid": 531557522328070
+											"customAction": "Destroy projectiles",
+											"objectClass": "player",
+											"sid": 921344491676015
 										}
 									],
 									"sid": 661315679644106
@@ -17653,8 +17635,9 @@
 													]
 												},
 												{
-													"callFunction": "destroyPlayerProjectiles",
-													"sid": 923645577353547
+													"customAction": "Destroy projectiles",
+													"objectClass": "player",
+													"sid": 303680323881634
 												}
 											],
 											"sid": 181406029233488
@@ -17688,81 +17671,75 @@
 					]
 				},
 				{
-					"functionName": "destroyPlayerProjectiles",
+					"aceType": "action",
+					"aceName": "Destroy projectiles",
+					"objectClass": "player",
 					"functionDescription": "Destroy the player's disabled and melee projectiles.",
-					"functionCategory": "player",
+					"functionCategory": "misc",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [],
-					"eventType": "function-block",
+					"eventType": "custom-ace-block",
 					"conditions": [
 						{
 							"id": "pick-children",
 							"objectClass": "player",
-							"sid": 678198066200160,
+							"sid": 814842361282251,
 							"parameters": {
 								"child": "projectile",
 								"which": "own"
 							}
 						}
 					],
-					"actions": [],
-					"sid": 855027409740190,
-					"children": [
+					"actions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "projectile",
-									"sid": 500559225033654,
-									"parameters": {
-										"instance-variable": "enabled"
-									},
-									"isInverted": true
-								},
-								{
-									"id": "is-boolean-instance-variable-set",
-									"objectClass": "projectile",
-									"sid": 432898517014673,
-									"parameters": {
-										"instance-variable": "isMelee"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "destroy",
-									"objectClass": "projectile",
-									"sid": 265954691400793
-								}
-							],
-							"sid": 747771375878940,
-							"isOrBlock": true
+							"callFunction": "Destroy projectiles",
+							"sid": 767474068981919
 						}
-					]
+					],
+					"sid": 270847700736521
 				},
 				{
-					"functionName": "destroyEnemyProjectiles",
+					"aceType": "action",
+					"aceName": "Destroy projectiles",
+					"objectClass": "enemy",
 					"functionDescription": "Destroy an enemy's disabled and melee projectiles.",
-					"functionCategory": "enemies",
+					"functionCategory": "misc",
+					"functionReturnType": "none",
+					"functionCopyPicked": true,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [
+						{
+							"id": "pick-children",
+							"objectClass": "enemy",
+							"sid": 293741972379725,
+							"parameters": {
+								"child": "projectile",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "Destroy projectiles",
+							"sid": 964679492882506
+						}
+					],
+					"sid": 901485025880730
+				},
+				{
+					"functionName": "Destroy projectiles",
+					"functionDescription": "Destroy the picked disabled and melee projectiles.",
+					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": true,
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
-					"conditions": [
-						{
-							"id": "pick-children",
-							"objectClass": "enemy",
-							"sid": 455597814808588,
-							"parameters": {
-								"child": "projectile",
-								"which": "own"
-							}
-						}
-					],
+					"conditions": [],
 					"actions": [],
 					"sid": 233213550470465,
 					"children": [

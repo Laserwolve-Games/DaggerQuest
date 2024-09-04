@@ -6615,36 +6615,77 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "EXPERIENCE_THRESHOLD_MULTIPLIER",
+							"type": "number",
+							"initialValue": "100",
+							"comment": "The number by which the player's level is multiplied to determine the experience threshold.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 143807469711264
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "player",
-									"sid": 802049655454701,
+									"sid": 691392649170613,
 									"parameters": {
 										"instance-variable": "experience",
 										"comparison": 5,
-										"value": "Self.level * 100"
+										"value": "Self.level * EXPERIENCE_THRESHOLD_MULTIPLIER"
 									}
 								}
 							],
 							"actions": [
 								{
+									"customAction": "Level up",
+									"objectClass": "player",
+									"sid": 547141847667698
+								}
+							],
+							"sid": 722175130594305
+						},
+						{
+							"eventType": "variable",
+							"name": "LEVEL_INCREMENTER",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How many levels to go up when the experience threshold is reached.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 792452581919563
+						},
+						{
+							"aceType": "action",
+							"aceName": "Level up",
+							"objectClass": "player",
+							"functionDescription": "Level up the player.",
+							"functionCategory": "stats",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "custom-ace-block",
+							"conditions": [],
+							"actions": [
+								{
 									"id": "set-instvar-value",
 									"objectClass": "player",
-									"sid": 627464003735100,
+									"sid": 784595259849673,
 									"parameters": {
 										"instance-variable": "experience",
-										"value": "0"
+										"value": "THRESHOLD"
 									}
 								},
 								{
 									"id": "add-to-instvar",
 									"objectClass": "player",
-									"sid": 338763583582706,
+									"sid": 841054573608136,
 									"parameters": {
 										"instance-variable": "level",
-										"value": "1"
+										"value": "LEVEL_INCREMENTER"
 									}
 								},
 								{
@@ -6665,127 +6706,64 @@
 								},
 								{
 									"callFunction": "closeLayer",
-									"sid": 812920926137633,
+									"sid": 679013615265140,
 									"parameters": [
 										"abilitySelectorStatue.LayerName"
 									]
 								}
 							],
-							"sid": 208608154238341
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-parent",
-									"objectClass": "ability",
-									"sid": 953424379950288,
-									"parameters": {
-										"parent": "abilitySlot",
-										"which": "own"
-									}
-								},
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 602434934367432,
-									"parameters": {
-										"object": "abilitySlot",
-										"expression": "abilitySlot.unlockLevel",
-										"comparison": 0,
-										"value": "player.level"
-									}
-								},
-								{
-									"id": "pick-children",
-									"objectClass": "abilitySlot",
-									"sid": 424632925588933,
-									"parameters": {
-										"child": "ability",
-										"which": "own"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 820140174345689,
+							"sid": 912459294920899,
 							"children": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 524494304015622,
-											"parameters": {
-												"instance-variable": "level",
-												"comparison": 0,
-												"value": "2"
-											}
-										},
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 781076181273254
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "ability",
-											"sid": 342264984411336,
-											"parameters": {
-												"animation": "\"heroicStrike\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 570054714230054
+									"eventType": "variable",
+									"name": "OFFSET",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "Used to offset the player's level when looking up an ability.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 707115087334851
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 771211897507310,
+											"objectClass": "abilitySlot",
+											"sid": 321037120066696,
 											"parameters": {
-												"instance-variable": "level",
+												"instance-variable": "unlockLevel",
 												"comparison": 0,
-												"value": "3"
+												"value": "player.level"
 											}
 										},
 										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 408855644204187
+											"id": "pick-children",
+											"objectClass": "abilitySlot",
+											"sid": 421783378638870,
+											"parameters": {
+												"child": "ability",
+												"which": "own"
+											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
 											"objectClass": "ability",
-											"sid": 279989319670224,
+											"sid": 935030040686227,
 											"parameters": {
-												"animation": "\"kick\"",
+												"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), player.level - 1)",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 123881620713685
+									"sid": 876303180927859
 								}
 							]
 						}
 					],
 					"sid": 221630090189973
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "camera",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [],
-					"sid": 437386535914416
 				},
 				{
 					"eventType": "group",

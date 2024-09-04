@@ -1828,8 +1828,9 @@
 													"sid": 578892715081229
 												},
 												{
-													"callFunction": "queueGearManagement",
-													"sid": 950198310626390,
+													"customAction": "Queue gear management",
+													"objectClass": "player",
+													"sid": 275374542033019,
 													"parameters": [
 														true
 													]
@@ -5282,8 +5283,9 @@
 									],
 									"actions": [
 										{
-											"callFunction": "queueGearManagement",
-											"sid": 419629290552279,
+											"customAction": "Queue gear management",
+											"objectClass": "player",
+											"sid": 723847663827606,
 											"parameters": [
 												true
 											]
@@ -5361,8 +5363,9 @@
 									],
 									"actions": [
 										{
-											"callFunction": "queueGearManagement",
-											"sid": 685089990900130,
+											"customAction": "Queue gear management",
+											"objectClass": "player",
+											"sid": 792811436948405,
 											"parameters": [
 												false
 											]
@@ -5399,9 +5402,11 @@
 							]
 						},
 						{
-							"functionName": "queueGearManagement",
-							"functionDescription": "Add a request to manage gear to the queue",
-							"functionCategory": "equipment",
+							"aceType": "action",
+							"aceName": "Queue gear management",
+							"objectClass": "player",
+							"functionDescription": "Queue up an item to have its gear and mods managed.",
+							"functionCategory": "gear",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
@@ -5410,30 +5415,17 @@
 									"name": "active",
 									"type": "boolean",
 									"initialValue": "true",
-									"comment": "",
-									"sid": 653983944416797
+									"comment": "Whether or not to activate or deactivate mods for this item.",
+									"sid": 129265702150614
 								}
 							],
-							"eventType": "function-block",
-							"conditions": [
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 661364819095502,
-									"parameters": {
-										"value": "slot.type <> \"neck\" | slot.type <> \"ring\""
-									}
-								}
-							],
+							"eventType": "custom-ace-block",
+							"conditions": [],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "as long as the slot's type is not neck or ring..."
-								},
 								{
 									"id": "push",
 									"objectClass": "gearQueueArray",
-									"sid": 356911054804939,
+									"sid": 369455109926009,
 									"parameters": {
 										"where": "front",
 										"value": "slot.UID",
@@ -5441,7 +5433,7 @@
 									}
 								}
 							],
-							"sid": 819431238558145,
+							"sid": 884500525687310,
 							"children": [
 								{
 									"eventType": "block",
@@ -5449,7 +5441,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 179204186824764,
+											"sid": 894986370218466,
 											"parameters": {
 												"variable": "active"
 											}
@@ -5458,13 +5450,13 @@
 									"actions": [
 										{
 											"callFunction": "manageMods",
-											"sid": 132606893568216,
+											"sid": 936820586346001,
 											"parameters": [
 												true
 											]
 										}
 									],
-									"sid": 847732328432390
+									"sid": 846356999897865
 								},
 								{
 									"eventType": "block",
@@ -5472,19 +5464,19 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 197187788371514
+											"sid": 800839395247661
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "manageMods",
-											"sid": 983577034004282,
+											"sid": 119908917978573,
 											"parameters": [
 												false
 											]
 										}
 									],
-									"sid": 761629228050916
+									"sid": 848548123594836
 								}
 							]
 						},
@@ -5499,17 +5491,24 @@
 							"sid": 925621554027701
 						},
 						{
+							"eventType": "variable",
+							"name": "GEAR_KEYWORD",
+							"type": "string",
+							"initialValue": "gear",
+							"comment": "Used for spawning gear.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 523909295979195
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 820556575473557,
+									"id": "pick-by-unique-id",
+									"objectClass": "slot",
+									"sid": 151201709143485,
 									"parameters": {
-										"object": "slot",
-										"expression": "gearQueueArray.Back",
-										"comparison": 0,
-										"value": "slot.UID"
+										"unique-id": "gearQueueArray.Back"
 									}
 								},
 								{
@@ -5547,12 +5546,11 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 762550168577106,
+											"id": "compare-instance-variable",
+											"objectClass": "item",
+											"sid": 324802276728975,
 											"parameters": {
-												"object": "item",
-												"expression": "item.identifier",
+												"instance-variable": "identifier",
 												"comparison": 0,
 												"value": "slot.identifier"
 											}
@@ -5566,9 +5564,9 @@
 										{
 											"id": "load-object-images-by-name",
 											"objectClass": "System",
-											"sid": 983347934388622,
+											"sid": 329462170784525,
 											"parameters": {
-												"object": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & \"gear\""
+												"object": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & GEAR_KEYWORD"
 											}
 										},
 										{
@@ -5579,9 +5577,9 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 500899948824849,
+											"sid": 157008153480853,
 											"parameters": {
-												"object-name": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & \"gear\"",
+												"object-name": "body.ObjectTypeName & SEPARATOR & item.simpleName & SEPARATOR & GEAR_KEYWORD",
 												"layer": "body.LayerName",
 												"x": "player.X",
 												"y": "player.Y",
@@ -5635,14 +5633,24 @@
 											"sid": 232582795396905
 										},
 										{
+											"eventType": "variable",
+											"name": "EQUIP_KEYWORD",
+											"type": "string",
+											"initialValue": "Equip",
+											"comment": "Used for equip sound effects.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 645632124645606
+										},
+										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "is-tag-playing",
 													"objectClass": "Audio",
-													"sid": 595281949605014,
+													"sid": 665817113825859,
 													"parameters": {
-														"tag": "item.sound & \"Equip\""
+														"tag": "item.sound & EQUIP_KEYWORD"
 													},
 													"isInverted": true
 												}
@@ -5651,17 +5659,17 @@
 												{
 													"id": "play-at-object-by-name",
 													"objectClass": "Audio",
-													"sid": 469827544069307,
+													"sid": 714940380171545,
 													"parameters": {
 														"folder": "sounds",
-														"audio-file-name": "Functions.soundEffectName(item.sound & \"Equip\")",
+														"audio-file-name": "Functions.soundEffectName(item.sound & EQUIP_KEYWORD)",
 														"loop": "not-looping",
 														"volume": "soundEffectsVolume",
 														"object": "player",
 														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-														"tag-optional": "item.sound & \"Equip\""
+														"tag-optional": "item.sound & EQUIP_KEYWORD"
 													}
 												}
 											],
@@ -5671,14 +5679,13 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 438566182346342,
+													"id": "compare-instance-variable",
+													"objectClass": "gear",
+													"sid": 269751851828846,
 													"parameters": {
-														"object": "gear",
-														"expression": "slot.type",
+														"instance-variable": "type",
 														"comparison": 0,
-														"value": "gear.type"
+														"value": "slot.type"
 													}
 												}
 											],
@@ -5771,28 +5778,98 @@
 									"sid": 989859722530036,
 									"children": [
 										{
+											"eventType": "variable",
+											"name": "CHEST_KEYWORD",
+											"type": "string",
+											"initialValue": "chest",
+											"comment": "Used for default gear conditions.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 512821015256247
+										},
+										{
+											"eventType": "variable",
+											"name": "LEGS_KEYWORD",
+											"type": "string",
+											"initialValue": "legs",
+											"comment": "Used for default gear conditions.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 558161881532671
+										},
+										{
+											"eventType": "variable",
+											"name": "HEAD_KEYWORD",
+											"type": "string",
+											"initialValue": "head",
+											"comment": "Used for default gear conditions.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 254876546489140
+										},
+										{
+											"eventType": "variable",
+											"name": "DEFAULT_KEYWORD",
+											"type": "string",
+											"initialValue": "Default",
+											"comment": "Used for default gear conditions.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 461829894252292
+										},
+										{
+											"eventType": "variable",
+											"name": "UNEQUIP_KEYWORD",
+											"type": "string",
+											"initialValue": "unequip",
+											"comment": "Used for the unequip sound effect name.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 942230916153490
+										},
+										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 569714206068831,
+													"sid": 934935448185004,
 													"parameters": {
-														"value": "(slot.type = \"chest\" & body.ObjectTypeName <> \"man\") | slot.type = \"legs\" | slot.type = \"head\""
+														"value": "slot.type = CHEST_KEYWORD & player.isFemale"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "slot",
+													"sid": 433227238925099,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "LEGS_KEYWORD"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "slot",
+													"sid": 358424977441152,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "HEAD_KEYWORD"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "...and the slot is legs or head, or chest and not a man, (the slots that have default gear), load the default gear"
+													"text": "...and the slot is chest and the player is one of the female classes, or legs or head, (the slots that have default gear), load the default gear."
 												},
 												{
 													"id": "load-object-images-by-name",
 													"objectClass": "System",
-													"sid": 331786883170624,
+													"sid": 358287311138471,
 													"parameters": {
-														"object": "body.ObjectTypeName & SEPARATOR & slot.type & \"Default\" & SEPARATOR & \"gear\""
+														"object": "body.ObjectTypeName & SEPARATOR & slot.type & DEFAULT_KEYWORD & SEPARATOR & GEAR_KEYWORD"
 													}
 												},
 												{
@@ -5803,9 +5880,9 @@
 												{
 													"id": "create-object-by-name",
 													"objectClass": "System",
-													"sid": 666586487767002,
+													"sid": 118639843095987,
 													"parameters": {
-														"object-name": "body.ObjectTypeName & SEPARATOR & slot.type & \"Default\" & SEPARATOR & \"gear\"",
+														"object-name": "body.ObjectTypeName & SEPARATOR & slot.type & DEFAULT_KEYWORD & SEPARATOR & GEAR_KEYWORD",
 														"layer": "body.LayerName",
 														"x": "player.X",
 														"y": "player.Y",
@@ -5862,14 +5939,13 @@
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "pick-by-comparison",
-															"objectClass": "System",
-															"sid": 987182229147591,
+															"id": "compare-instance-variable",
+															"objectClass": "gear",
+															"sid": 552888699854597,
 															"parameters": {
-																"object": "gear",
-																"expression": "slot.type",
+																"instance-variable": "type",
 																"comparison": 0,
-																"value": "gear.type"
+																"value": "slot.type"
 															}
 														}
 													],
@@ -5887,9 +5963,9 @@
 																{
 																	"id": "is-tag-playing",
 																	"objectClass": "Audio",
-																	"sid": 939629008248107,
+																	"sid": 221773087770855,
 																	"parameters": {
-																		"tag": "\"unequip\""
+																		"tag": "UNEQUIP_KEYWORD"
 																	},
 																	"isInverted": true
 																}
@@ -5902,10 +5978,10 @@
 																{
 																	"id": "play-at-object-by-name",
 																	"objectClass": "Audio",
-																	"sid": 787194761829113,
+																	"sid": 760289300614980,
 																	"parameters": {
 																		"folder": "sounds",
-																		"audio-file-name": "Functions.soundEffectName(\"unequip\")",
+																		"audio-file-name": "Functions.soundEffectName(UNEQUIP_KEYWORD)",
 																		"loop": "not-looping",
 																		"volume": "soundEffectsVolume",
 																		"object": "player",
@@ -5962,7 +6038,8 @@
 														}
 													]
 												}
-											]
+											],
+											"isOrBlock": true
 										},
 										{
 											"eventType": "block",
@@ -5973,21 +6050,20 @@
 													"sid": 271838665518264
 												},
 												{
-													"id": "pick-by-comparison",
-													"objectClass": "System",
-													"sid": 953224413768724,
+													"id": "compare-instance-variable",
+													"objectClass": "gear",
+													"sid": 452523537859525,
 													"parameters": {
-														"object": "gear",
-														"expression": "slot.type",
+														"instance-variable": "type",
 														"comparison": 0,
-														"value": "gear.type"
+														"value": "slot.type"
 													}
 												}
 											],
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If there's no default gear for this slot, just destroy the gear and then we're done"
+													"text": "If there's no default gear for this slot, just destroy the gear and then we're done."
 												}
 											],
 											"sid": 549938953636278,
@@ -5998,25 +6074,21 @@
 														{
 															"id": "is-tag-playing",
 															"objectClass": "Audio",
-															"sid": 411085929005082,
+															"sid": 321923431124791,
 															"parameters": {
-																"tag": "\"unequip\""
+																"tag": "UNEQUIP_KEYWORD"
 															},
 															"isInverted": true
 														}
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "weird positioning because we only want the unequip audio to play if it isn't playing already, and only if non-default gear is getting destroyed, but we don't need to wait until it's unloaded from memory to play this."
-														},
-														{
 															"id": "play-at-object-by-name",
 															"objectClass": "Audio",
-															"sid": 738098858705689,
+															"sid": 101582021976698,
 															"parameters": {
 																"folder": "sounds",
-																"audio-file-name": "Functions.soundEffectName(\"unequip\")",
+																"audio-file-name": "Functions.soundEffectName(UNEQUIP_KEYWORD)",
 																"loop": "not-looping",
 																"volume": "soundEffectsVolume",
 																"object": "body",

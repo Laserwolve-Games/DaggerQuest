@@ -1296,11 +1296,12 @@
 							]
 						},
 						{
-							"callFunction": "updateAnimation",
-							"sid": 752654015306162,
+							"customAction": "Update animation",
+							"objectClass": "player",
+							"sid": 554227226821655,
 							"parameters": [
 								"IDLE_KEYWORD",
-								"player.OriginalAnimationSpeed",
+								"body.OriginalAnimationSpeed",
 								true
 							]
 						},
@@ -1342,7 +1343,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "parent it to the dialog so it resizes correctly"
+									"text": "Parent it to the dialog so it resizes correctly."
 								},
 								{
 									"id": "add-child",
@@ -7455,8 +7456,9 @@
 									}
 								},
 								{
-									"callFunction": "updateAnimation",
-									"sid": 834391396630357,
+									"customAction": "Update animation",
+									"objectClass": "player",
+									"sid": 122965433583363,
 									"parameters": [
 										"DIE_KEYWORD",
 										"body.OriginalAnimationSpeed",
@@ -8695,8 +8697,9 @@
 									}
 								},
 								{
-									"callFunction": "updateAnimation",
-									"sid": 464566367051002,
+									"customAction": "Update animation",
+									"objectClass": "player",
+									"sid": 385675005148660,
 									"parameters": [
 										"IDLE_KEYWORD",
 										"body.OriginalAnimationSpeed",
@@ -8981,8 +8984,9 @@
 													"sid": 177208388841958
 												},
 												{
-													"callFunction": "updateAnimation",
-													"sid": 597913453213464,
+													"customAction": "Update animation",
+													"objectClass": "player",
+													"sid": 143011748450409,
 													"parameters": [
 														"DOWNWARD_SLASH_ANIMATION_NAME",
 														"player.actionSpeed",
@@ -9436,8 +9440,9 @@
 													"sid": 981764336673063
 												},
 												{
-													"callFunction": "updateAnimation",
-													"sid": 589752646272459,
+													"customAction": "Update animation",
+													"objectClass": "player",
+													"sid": 789673502084076,
 													"parameters": [
 														"UPWARD_SLASH_ANIMATION_NAME",
 														"player.actionSpeed",
@@ -9886,8 +9891,9 @@
 													"sid": 896368528533251
 												},
 												{
-													"callFunction": "updateAnimation",
-													"sid": 483408557229199,
+													"customAction": "Update animation",
+													"objectClass": "player",
+													"sid": 510846989056723,
 													"parameters": [
 														"KICK_ANIMATION_NAME",
 														"player.actionSpeed",
@@ -10247,8 +10253,9 @@
 											"text": "if they were already walking, play the walk animation from the current frame."
 										},
 										{
-											"callFunction": "updateAnimation",
-											"sid": 224394891918213,
+											"customAction": "Update animation",
+											"objectClass": "player",
+											"sid": 546656549921007,
 											"parameters": [
 												"WALK_KEYWORD",
 												"player.movementSpeed / ANIMATION_DIVISOR",
@@ -10281,8 +10288,9 @@
 											"text": "If they were idling, play the walk animation, from the beginning."
 										},
 										{
-											"callFunction": "updateAnimation",
-											"sid": 226509528398923,
+											"customAction": "Update animation",
+											"objectClass": "player",
+											"sid": 547920157368544,
 											"parameters": [
 												"WALK_KEYWORD",
 												"player.movementSpeed / ANIMATION_DIVISOR",
@@ -10335,12 +10343,13 @@
 									"text": "If the player isn't moving and not dead, and they were previously walking, (and the timescale isn't paused) make him start idling."
 								},
 								{
-									"callFunction": "updateAnimation",
-									"sid": 261265776951408,
+									"customAction": "Update animation",
+									"objectClass": "player",
+									"sid": 377537583783744,
 									"parameters": [
 										"IDLE_KEYWORD",
 										"body.OriginalAnimationSpeed",
-										true
+										false
 									]
 								},
 								{
@@ -10537,8 +10546,9 @@
 									"sid": 285842810528881
 								},
 								{
-									"callFunction": "updateAnimation",
-									"sid": 459991847509767,
+									"customAction": "Update animation",
+									"objectClass": "player",
+									"sid": 653604065969272,
 									"parameters": [
 										"animationName",
 										"player.actionSpeed",
@@ -10549,9 +10559,11 @@
 							"sid": 317965027202122
 						},
 						{
-							"functionName": "updateAnimation",
+							"aceType": "action",
+							"aceName": "Update animation",
+							"objectClass": "player",
 							"functionDescription": "Change the player's animation.",
-							"functionCategory": "player",
+							"functionCategory": "animations",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -10561,27 +10573,27 @@
 									"type": "string",
 									"initialValue": "",
 									"comment": "The name of the animation to play.",
-									"sid": 308447533896746
+									"sid": 275885912390573
 								},
 								{
 									"name": "animationSpeed",
 									"type": "number",
 									"initialValue": "30",
 									"comment": "The speed at which to play the animation, in frames per second.",
-									"sid": 938843169588506
+									"sid": 252225844528020
 								},
 								{
 									"name": "playFromBeginning",
 									"type": "boolean",
 									"initialValue": "true",
 									"comment": "Whether or not to play this animation from its beginning.",
-									"sid": 685712486598414
+									"sid": 364982397943244
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [],
-							"sid": 910128125988487,
+							"sid": 978826309289581,
 							"children": [
 								{
 									"eventType": "variable",
@@ -10591,7 +10603,7 @@
 									"comment": "Used for setting combat animations.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 920152836805899
+									"sid": 224265743515472
 								},
 								{
 									"eventType": "block",
@@ -10599,14 +10611,14 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 676021054324303,
+											"sid": 917614367863974,
 											"parameters": {
 												"variable": "playFromBeginning"
 											}
 										}
 									],
 									"actions": [],
-									"sid": 139271324774243,
+									"sid": 522639755557380,
 									"children": [
 										{
 											"eventType": "block",
@@ -10614,7 +10626,7 @@
 												{
 													"id": "is-overlapping-another-object",
 													"objectClass": "player",
-													"sid": 723462591529865,
+													"sid": 546759449919497,
 													"parameters": {
 														"object": "nonCombatArea"
 													}
@@ -10624,14 +10636,14 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 860499407237250,
+													"sid": 893930655249901,
 													"parameters": {
 														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
 														"from": "beginning"
 													}
 												}
 											],
-											"sid": 292599464920827
+											"sid": 560707158544189
 										},
 										{
 											"eventType": "block",
@@ -10639,21 +10651,21 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 499061105001770
+													"sid": 193130514691037
 												}
 											],
 											"actions": [
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 466049922766969,
+													"sid": 980805719994862,
 													"parameters": {
 														"animation": "animationName & SEPARATOR & player.degrees",
 														"from": "beginning"
 													}
 												}
 											],
-											"sid": 709765348373749
+											"sid": 938698912811728
 										}
 									]
 								},
@@ -10663,11 +10675,11 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 995489158549756
+											"sid": 486694199195613
 										}
 									],
 									"actions": [],
-									"sid": 967622134338678,
+									"sid": 849921736427602,
 									"children": [
 										{
 											"eventType": "block",
@@ -10675,7 +10687,7 @@
 												{
 													"id": "is-overlapping-another-object",
 													"objectClass": "player",
-													"sid": 623837557229785,
+													"sid": 397612595242238,
 													"parameters": {
 														"object": "nonCombatArea"
 													}
@@ -10685,14 +10697,14 @@
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 417857174995508,
+													"sid": 480750740249930,
 													"parameters": {
 														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
 														"from": "current-frame"
 													}
 												}
 											],
-											"sid": 602971606622350
+											"sid": 741758805012343
 										},
 										{
 											"eventType": "block",
@@ -10700,21 +10712,21 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 629140960496298
+													"sid": 547459200049500
 												}
 											],
 											"actions": [
 												{
 													"id": "set-animation",
 													"objectClass": "body",
-													"sid": 243892487236426,
+													"sid": 420614807039127,
 													"parameters": {
 														"animation": "animationName & SEPARATOR & player.degrees",
 														"from": "current-frame"
 													}
 												}
 											],
-											"sid": 663776914210048
+											"sid": 305507655711060
 										}
 									]
 								},
@@ -10725,13 +10737,13 @@
 										{
 											"id": "set-animation-speed",
 											"objectClass": "body",
-											"sid": 340496637210600,
+											"sid": 383048725102650,
 											"parameters": {
 												"speed": "animationSpeed"
 											}
 										}
 									],
-									"sid": 958593614177243
+									"sid": 249008434202061
 								}
 							]
 						},

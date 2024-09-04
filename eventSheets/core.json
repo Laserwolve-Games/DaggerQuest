@@ -7226,10 +7226,6 @@
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "isometrically correct movement"
-								},
-								{
 									"id": "set-max-speed",
 									"objectClass": "player",
 									"sid": 256885482061283,
@@ -7295,15 +7291,51 @@
 									"sid": 411372396119511,
 									"children": [
 										{
+											"eventType": "comment",
+											"text": "TODO: See enemy footstep sound effect events.",
+											"text-color": [
+												0,
+												0,
+												0,
+												1
+											],
+											"background-color": [
+												1,
+												1,
+												0,
+												1
+											]
+										},
+										{
+											"eventType": "variable",
+											"name": "LEFT_FOOTSTEP_FRAME",
+											"type": "number",
+											"initialValue": "10",
+											"comment": "The frame in which the left footstep touches the ground.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 368399404963602
+										},
+										{
+											"eventType": "variable",
+											"name": "RIGHT_FOOTSTEP_FRAME",
+											"type": "number",
+											"initialValue": "25",
+											"comment": "The frame in which the right footstep touches the ground.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 996920455379927
+										},
+										{
 											"eventType": "block",
 											"conditions": [
 												{
 													"id": "compare-animation-frame",
 													"objectClass": "body",
-													"sid": 967087257732985,
+													"sid": 133567821744743,
 													"parameters": {
 														"comparison": 0,
-														"number": "10"
+														"number": "LEFT_FOOTSTEP_FRAME"
 													}
 												},
 												{
@@ -7338,10 +7370,10 @@
 												{
 													"id": "compare-animation-frame",
 													"objectClass": "body",
-													"sid": 246511683996633,
+													"sid": 120397977850155,
 													"parameters": {
 														"comparison": 0,
-														"number": "25"
+														"number": "RIGHT_FOOTSTEP_FRAME"
 													}
 												},
 												{
@@ -7547,10 +7579,10 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 579219826557585,
+													"sid": 889942803899958,
 													"parameters": [
-														"door.ImagePointX(1)",
-														"door.ImagePointY(1)"
+														"door.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
+														"door.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
 													]
 												}
 											],
@@ -7582,7 +7614,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "We can only interact with loot chests that haven't been opened"
+													"text": "Only allow interaction with loot chests that haven't been opened."
 												},
 												{
 													"id": "set-eventvar-value",
@@ -7595,10 +7627,10 @@
 												},
 												{
 													"callFunction": "moveToLocation",
-													"sid": 626940978577513,
+													"sid": 718287519159099,
 													"parameters": [
-														"lootChest.ImagePointX(1)",
-														"lootChest.ImagePointY(1)"
+														"lootChest.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
+														"lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
 													]
 												}
 											],
@@ -7625,7 +7657,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "only allow movement when no items are being dragged"
+													"text": "Only allow movement when no items are being dragged."
 												}
 											],
 											"sid": 568416994144019
@@ -7651,7 +7683,35 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "'cursor is not over player' is a quick and dirty solution to prevent a glitchy animation when the mouse is held down very near player.x and player.y. The reason it's here and not with the other 'cursor is over' checkers to making picking up loot under the player easier.\n\nTechnically it should be an isometric circle around the player. The size of this isometric circle would be based on the players movement speed; the faster the player is moving, the larger the circle would need to be to prevent this animation.\n\nMaybe with a very high movement speed, the circle would get too big and feel bad to use?"
+													"text": "'cursor is not over player' is here and not with the other 'cursor is over' conditions to facilitate picking up loot under the player.",
+													"text-color": [
+														0.7843137254901961,
+														0.7843137254901961,
+														0.7843137254901961,
+														1
+													],
+													"background-color": [
+														0.39215686274509803,
+														0,
+														0,
+														1
+													]
+												},
+												{
+													"type": "comment",
+													"text": "Try refactoring 'cursor is over player' be an isometric circle around the player. The size of this isometric circle would be based on the players movement speed; the faster the player is moving, the larger the circle would need to be to prevent the animation stutter.",
+													"text-color": [
+														0.7843137254901961,
+														0.7843137254901961,
+														0.7843137254901961,
+														1
+													],
+													"background-color": [
+														0,
+														0,
+														0.39215686274509803,
+														1
+													]
 												}
 											],
 											"sid": 390542893653536,
@@ -7671,7 +7731,7 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "if the mouse isn't over any of the specified, reset uidOfClicked and walk there normally"
+															"text": "If the mouse isn't over any of the aforementioned, reset 'uidOfClicked' and walk there normally."
 														},
 														{
 															"id": "reset-eventvar",
@@ -7887,7 +7947,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "As soon as the enemy comes in range, stop moving and attack it. We must verify we're in a non-combat area and have a weapon equipped before we get to the basicAttack function."
+											"text": "As soon as the enemy comes in range, stop moving and attack it."
 										},
 										{
 											"id": "stop",
@@ -8122,7 +8182,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Reset 'uidOfClicked' if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects the player is immediately next to."
+											"text": "Reset 'uidOfClicked' if the player isn't moving. Otherwise, if the clicked object later entered into the player's interact range by its own locomotion, the player would interact with it. Give a small leeway timer to assist with interacting with objects immediately adjacent to the player."
 										},
 										{
 											"id": "reset-eventvar",

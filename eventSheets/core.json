@@ -1281,8 +1281,9 @@
 							}
 						},
 						{
-							"callFunction": "updateFacing",
-							"sid": 308186343635600,
+							"customAction": "updateFacing",
+							"objectClass": "player",
+							"sid": 664565570476239,
 							"parameters": [
 								"npc.X",
 								"npc.Y"
@@ -6807,20 +6808,23 @@
 							],
 							"actions": [
 								{
-									"callFunction": "updateFacing",
-									"sid": 457704822269483,
-									"parameters": [
-										"-1",
-										"-1"
-									]
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 183390975620755,
+									"parameters": {
+										"instance-variable": "degrees",
+										"value": "Functions.getDegrees(Self.MoveTo.MovingAngle)"
+									}
 								}
 							],
 							"sid": 774150289546542
 						},
 						{
-							"functionName": "updateFacing",
+							"aceType": "action",
+							"aceName": "updateFacing",
+							"objectClass": "player",
 							"functionDescription": "Update the facing of the player.",
-							"functionCategory": "player",
+							"functionCategory": "visuals",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -6830,91 +6834,74 @@
 									"type": "number",
 									"initialValue": "0",
 									"comment": "",
-									"sid": 941295715930551
+									"sid": 784754355034413
 								},
 								{
 									"name": "y",
 									"type": "number",
 									"initialValue": "0",
 									"comment": "",
-									"sid": 915092038699125
+									"sid": 670044009285519
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 211871602301078,
+									"sid": 594002016095359,
 									"parameters": {
 										"first-value": "timescale",
 										"comparison": 1,
 										"second-value": "PAUSED"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 625013496059521,
+									"parameters": {
+										"variable": "x",
+										"comparison": 1,
+										"value": "-1"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 601241808385698,
+									"parameters": {
+										"variable": "y",
+										"comparison": 1,
+										"value": "-1"
 									}
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "this is a function so it can be called in the middle of an ability function"
-								}
-							],
-							"sid": 564814853184454,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 218107748119510,
-											"parameters": {
-												"variable": "x",
-												"comparison": 1,
-												"value": "-1"
-											}
-										},
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 400230555700600,
-											"parameters": {
-												"variable": "y",
-												"comparison": 1,
-												"value": "-1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-moving-angle",
-											"objectClass": "player",
-											"sid": 379297991393983,
-											"behaviorType": "MoveTo",
-											"parameters": {
-												"angle": "angle(Self.X, Self.Y, x, y)"
-											}
-										}
-									],
-									"sid": 601663005552594
+									"text": "This is a custom action so it can be called in the middle of a player ability function."
 								},
 								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-instvar-value",
-											"objectClass": "player",
-											"sid": 148801648667533,
-											"parameters": {
-												"instance-variable": "degrees",
-												"value": "Functions.getDegrees(Self.MoveTo.MovingAngle)"
-											}
-										}
-									],
-									"sid": 472815315459873
+									"id": "set-moving-angle",
+									"objectClass": "player",
+									"sid": 512636239136789,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"angle": "angle(Self.X, Self.Y, x, y)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 843195904351138,
+									"parameters": {
+										"instance-variable": "degrees",
+										"value": "Functions.getDegrees(Self.MoveTo.MovingAngle)"
+									}
 								}
-							]
+							],
+							"sid": 343392208126680
 						}
 					],
 					"sid": 528071924570554
@@ -6939,17 +6926,17 @@
 								{
 									"id": "set-height",
 									"objectClass": "healthOrb",
-									"sid": 378778446921463,
+									"sid": 297619754412292,
 									"parameters": {
-										"height": "clamp(player.currentHealth / player.maxHealth * self.ImageHeight, 0, Self.ImageHeight)"
+										"height": "clamp(player.currentHealth / player.maxHealth * self.ImageHeight, THRESHOLD, Self.ImageHeight)"
 									}
 								},
 								{
 									"id": "set-height",
 									"objectClass": "manaOrb",
-									"sid": 356871380388085,
+									"sid": 488036836143048,
 									"parameters": {
-										"height": "clamp(player.currentMana / player.maxMana * Self.ImageHeight, 0, Self.ImageHeight)"
+										"height": "clamp(player.currentMana / player.maxMana * Self.ImageHeight, THRESHOLD, Self.ImageHeight)"
 									}
 								}
 							],
@@ -8667,8 +8654,9 @@
 													"behaviorType": "MoveTo"
 												},
 												{
-													"callFunction": "updateFacing",
-													"sid": 277665554409214,
+													"customAction": "updateFacing",
+													"objectClass": "player",
+													"sid": 674731495442072,
 													"parameters": [
 														"enemy.X",
 														"enemy.Y"
@@ -9119,8 +9107,9 @@
 													}
 												},
 												{
-													"callFunction": "updateFacing",
-													"sid": 226254391071197,
+													"customAction": "updateFacing",
+													"objectClass": "player",
+													"sid": 264141808278559,
 													"parameters": [
 														"mouse.X",
 														"mouse.Y"
@@ -9566,8 +9555,9 @@
 													}
 												},
 												{
-													"callFunction": "updateFacing",
-													"sid": 497764352331094,
+													"customAction": "updateFacing",
+													"objectClass": "player",
+													"sid": 636733418264197,
 													"parameters": [
 														"mouse.X",
 														"mouse.Y"
@@ -10524,7 +10514,19 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "When we add other classes: make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too."
+					"text": "TODO: Make a (basically) empty layout that we go to after the player chooses their class. Don't unhide the loading screen so the player never sees it. There, we spawn the player, default gear, shadows, and play ability icons. Once that all has loaded, we transition to the real first layer. All the aforementioned objects are global, so they'll come over too.",
+					"text-color": [
+						0,
+						0,
+						0,
+						1
+					],
+					"background-color": [
+						1,
+						1,
+						0,
+						1
+					]
 				}
 			],
 			"sid": 254080374675516

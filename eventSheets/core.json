@@ -978,7 +978,7 @@
 							"text": "Close the merchant menu if the player gets too far away from the merchant to whose shop is being displayed."
 						},
 						{
-							"callFunction": "closeLayer",
+							"callFunction": "Close layer",
 							"sid": 621628631855534,
 							"parameters": [
 								"merchantMenuStatue.LayerName"
@@ -1137,7 +1137,7 @@
 											"text": "If this NPC doesn't have any more dialog, close the dialog."
 										},
 										{
-											"callFunction": "closeDialog",
+											"callFunction": "Close dialog",
 											"sid": 625554042063782
 										}
 									],
@@ -1306,7 +1306,7 @@
 							]
 						},
 						{
-							"callFunction": "openLayer",
+							"callFunction": "Open layer",
 							"sid": 799311368365338,
 							"parameters": [
 								"dialog.LayerName"
@@ -1413,7 +1413,7 @@
 									}
 								},
 								{
-									"callFunction": "openLayer",
+									"callFunction": "Open layer",
 									"sid": 948276087596788,
 									"parameters": [
 										"merchantMenuStatue.LayerName"
@@ -1436,7 +1436,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 861924819909943,
 											"parameters": [
 												"equippedMenuStatue.LayerName"
@@ -1460,7 +1460,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "openLayer",
+											"callFunction": "Open layer",
 											"sid": 558628335486437,
 											"parameters": [
 												"inventoryMenuStatue.LayerName"
@@ -1484,7 +1484,7 @@
 					"sid": 497889437328492
 				},
 				{
-					"functionName": "closeDialog",
+					"functionName": "Close dialog",
 					"functionDescription": "End dialog with an NPC.",
 					"functionCategory": "world",
 					"functionReturnType": "none",
@@ -1527,7 +1527,7 @@
 							}
 						},
 						{
-							"callFunction": "closeLayer",
+							"callFunction": "Close layer",
 							"sid": 365371944002769,
 							"parameters": [
 								"dialog.LayerName"
@@ -1703,27 +1703,29 @@
 							"sid": 349355571470231
 						},
 						{
-							"functionName": "pickUpLoot",
-							"functionDescription": "Picking up loot and turning it into an item",
+							"aceType": "action",
+							"aceName": "Pick up loot",
+							"objectClass": "player",
+							"functionDescription": "Attempt to pick up loot, either equipping it or adding it to the inventory.",
 							"functionCategory": "equipment",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 369764335379107,
+									"sid": 375822481623309,
 									"parameters": {
 										"variable": "isOnInteractCooldown",
 										"value": "true"
 									}
 								}
 							],
-							"sid": 653257849123262,
+							"sid": 628345000592562,
 							"children": [
 								{
 									"eventType": "variable",
@@ -1733,7 +1735,7 @@
 									"comment": "Used for playing the sound effect when an item is obtained.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 864883324875308
+									"sid": 795723393531684
 								},
 								{
 									"eventType": "block",
@@ -1741,7 +1743,7 @@
 										{
 											"id": "is-animation-playing",
 											"objectClass": "autoEquip",
-											"sid": 365873304171778,
+											"sid": 503482573253682,
 											"parameters": {
 												"animation": "CHECKED_KEYWORD"
 											}
@@ -1749,7 +1751,7 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 647201888815502,
+											"sid": 186758855329626,
 											"parameters": {
 												"value": "Functions.contains(loot.classRestrictions, body.ObjectTypeName) | Functions.contains(loot.classRestrictions, ALL_CLASSES_KEYWORD)"
 											}
@@ -1757,7 +1759,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "player",
-											"sid": 730282754581605,
+											"sid": 205889190212275,
 											"parameters": {
 												"instance-variable": "level",
 												"comparison": 5,
@@ -1767,7 +1769,7 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 664728702172861,
+											"sid": 406506168701290,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.type",
@@ -1778,7 +1780,7 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 865087243427093,
+											"sid": 750460005734091,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.identifier",
@@ -1789,7 +1791,7 @@
 										{
 											"id": "pick-nth-instance",
 											"objectClass": "System",
-											"sid": 278818684369493,
+											"sid": 158569274127739,
 											"parameters": {
 												"object": "slot",
 												"instance": "FIRST_INSTANCE"
@@ -1804,7 +1806,7 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 739943959379217,
+											"sid": 555875982745125,
 											"parameters": {
 												"object-name": "loot.simpleName & SEPARATOR & ITEM_KEYWORD",
 												"layer": "equippedMenuStatue.LayerName",
@@ -1815,7 +1817,7 @@
 											}
 										}
 									],
-									"sid": 417026782949109,
+									"sid": 632538461986567,
 									"children": [
 										{
 											"eventType": "block",
@@ -1823,7 +1825,7 @@
 												{
 													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 958412799812861,
+													"sid": 913043376537213,
 													"parameters": {
 														"object": "item"
 													}
@@ -1831,19 +1833,20 @@
 											],
 											"actions": [
 												{
-													"callFunction": "setItemVariables",
-													"sid": 578892715081229
+													"customAction": "Set variables from loot",
+													"objectClass": "item",
+													"sid": 930387033637794
 												},
 												{
 													"customAction": "Queue gear management",
 													"objectClass": "player",
-													"sid": 275374542033019,
+													"sid": 444509161256297,
 													"parameters": [
 														true
 													]
 												}
 											],
-											"sid": 323602104316470
+											"sid": 860348264348583
 										}
 									]
 								},
@@ -1853,12 +1856,12 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 700525651386697
+											"sid": 400103439303001
 										},
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 247821739732672,
+											"sid": 783159881834358,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.type",
@@ -1869,7 +1872,7 @@
 										{
 											"id": "pick-by-comparison",
 											"objectClass": "System",
-											"sid": 780434101023296,
+											"sid": 762186091622829,
 											"parameters": {
 												"object": "slot",
 												"expression": "slot.identifier",
@@ -1880,7 +1883,7 @@
 										{
 											"id": "pick-nth-instance",
 											"objectClass": "System",
-											"sid": 856106359161882,
+											"sid": 260590955101725,
 											"parameters": {
 												"object": "slot",
 												"instance": "FIRST_INSTANCE"
@@ -1895,7 +1898,7 @@
 										{
 											"id": "create-object-by-name",
 											"objectClass": "System",
-											"sid": 567414363646546,
+											"sid": 561053323528410,
 											"parameters": {
 												"object-name": "loot.simpleName & SEPARATOR & ITEM_KEYWORD",
 												"layer": "inventoryMenuStatue.LayerName",
@@ -1908,7 +1911,7 @@
 										{
 											"id": "play-at-object-by-name",
 											"objectClass": "Audio",
-											"sid": 160598410111485,
+											"sid": 551795371930764,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "Functions.soundEffectName(OBTAINED_ITEM_KEYWORD)",
@@ -1922,7 +1925,7 @@
 											}
 										}
 									],
-									"sid": 658192619640202,
+									"sid": 953061772816120,
 									"children": [
 										{
 											"eventType": "block",
@@ -1930,7 +1933,7 @@
 												{
 													"id": "pick-last-created",
 													"objectClass": "System",
-													"sid": 483526905581318,
+													"sid": 801305650889357,
 													"parameters": {
 														"object": "item"
 													}
@@ -1938,31 +1941,34 @@
 											],
 											"actions": [
 												{
-													"callFunction": "setItemVariables",
-													"sid": 356730110629027
+													"customAction": "Set variables from loot",
+													"objectClass": "item",
+													"sid": 184610381913782
 												}
 											],
-											"sid": 319164556849852
+											"sid": 456851495609601
 										}
 									]
 								}
 							]
 						},
 						{
-							"functionName": "setItemVariables",
-							"functionDescription": "set the variables on an item, from its loot",
-							"functionCategory": "equipment",
+							"aceType": "action",
+							"aceName": "Set variables from loot",
+							"objectClass": "item",
+							"functionDescription": "Sets all the necessary variables for this item from a loot.",
+							"functionCategory": "instance variables",
 							"functionReturnType": "none",
 							"functionCopyPicked": true,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 695618123166718,
+									"sid": 251081623898110,
 									"parameters": {
 										"instance-variable": "identifier",
 										"value": "loot.identifier"
@@ -1971,7 +1977,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 894947352405585,
+									"sid": 770355036989720,
 									"parameters": {
 										"instance-variable": "simpleName",
 										"value": "loot.simpleName"
@@ -1980,7 +1986,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 682567391690132,
+									"sid": 356089509376998,
 									"parameters": {
 										"instance-variable": "fullName",
 										"value": "loot.fullName"
@@ -1989,7 +1995,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 762874512826659,
+									"sid": 738712825878728,
 									"parameters": {
 										"instance-variable": "value",
 										"value": "loot.value"
@@ -1998,7 +2004,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 112068630443208,
+									"sid": 740838570574624,
 									"parameters": {
 										"instance-variable": "type",
 										"value": "loot.type"
@@ -2007,7 +2013,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 728841582247601,
+									"sid": 110005360421917,
 									"parameters": {
 										"instance-variable": "lore",
 										"value": "loot.lore"
@@ -2016,7 +2022,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 358574228575891,
+									"sid": 631626363161981,
 									"parameters": {
 										"instance-variable": "level",
 										"value": "loot.level"
@@ -2025,7 +2031,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 904449258452233,
+									"sid": 497951847431722,
 									"parameters": {
 										"instance-variable": "mods",
 										"value": "loot.mods"
@@ -2034,7 +2040,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 968287328115240,
+									"sid": 956466534656752,
 									"parameters": {
 										"instance-variable": "classRestrictions",
 										"value": "loot.classRestrictions"
@@ -2043,7 +2049,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 701634170777121,
+									"sid": 229523708627566,
 									"parameters": {
 										"instance-variable": "modTable",
 										"value": "loot.modTable"
@@ -2052,7 +2058,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 466078975570333,
+									"sid": 953126175449190,
 									"parameters": {
 										"instance-variable": "sound",
 										"value": "loot.sound"
@@ -2061,7 +2067,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "slot",
-									"sid": 818920739961129,
+									"sid": 999152456865313,
 									"parameters": {
 										"instance-variable": "identifier",
 										"value": "item.identifier"
@@ -2070,7 +2076,7 @@
 								{
 									"id": "add-child",
 									"objectClass": "slot",
-									"sid": 418593601200365,
+									"sid": 209705002780629,
 									"parameters": {
 										"child": "item",
 										"transform-x": true,
@@ -2087,10 +2093,10 @@
 								{
 									"id": "destroy",
 									"objectClass": "loot",
-									"sid": 354827222227349
+									"sid": 996617112308471
 								}
 							],
-							"sid": 441193875115599,
+							"sid": 207612363737334,
 							"children": [
 								{
 									"eventType": "block",
@@ -2098,7 +2104,7 @@
 										{
 											"id": "pick-children",
 											"objectClass": "slot",
-											"sid": 714584240294735,
+											"sid": 770442248002370,
 											"parameters": {
 												"child": "placeholder",
 												"which": "own"
@@ -2109,13 +2115,13 @@
 										{
 											"id": "set-visible",
 											"objectClass": "placeholder",
-											"sid": 168572126852132,
+											"sid": 295675355474488,
 											"parameters": {
 												"visibility": "invisible"
 											}
 										}
 									],
-									"sid": 581771949495265
+									"sid": 801210412604489
 								}
 							]
 						},
@@ -7035,7 +7041,7 @@
 									]
 								},
 								{
-									"callFunction": "closeLayer",
+									"callFunction": "Close layer",
 									"sid": 679013615265140,
 									"parameters": [
 										"abilitySelectorStatue.LayerName"
@@ -7798,11 +7804,12 @@
 													}
 												},
 												{
-													"callFunction": "moveToLocation",
-													"sid": 602829088753991,
+													"customAction": "Move to location",
+													"objectClass": "player",
+													"sid": 703019230666960,
 													"parameters": [
 														"npc.X",
-														"npc.y"
+														"npc.Y"
 													]
 												}
 											],
@@ -7841,11 +7848,12 @@
 													}
 												},
 												{
-													"callFunction": "moveToLocation",
-													"sid": 236035510369624,
+													"customAction": "Move to location",
+													"objectClass": "player",
+													"sid": 297620773482621,
 													"parameters": [
 														"loot.X",
-														"loot.y"
+														"loot.Y"
 													]
 												}
 											],
@@ -7876,8 +7884,9 @@
 													}
 												},
 												{
-													"callFunction": "moveToLocation",
-													"sid": 889942803899958,
+													"customAction": "Move to location",
+													"objectClass": "player",
+													"sid": 555111948861754,
 													"parameters": [
 														"door.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
 														"door.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
@@ -7924,8 +7933,9 @@
 													}
 												},
 												{
-													"callFunction": "moveToLocation",
-													"sid": 718287519159099,
+													"customAction": "Move to location",
+													"objectClass": "player",
+													"sid": 550855629716074,
 													"parameters": [
 														"lootChest.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
 														"lootChest.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
@@ -8040,8 +8050,9 @@
 															}
 														},
 														{
-															"callFunction": "moveToLocation",
-															"sid": 800715069665899,
+															"customAction": "Move to location",
+															"objectClass": "player",
+															"sid": 569638414623211,
 															"parameters": [
 																"mouse.X",
 																"mouse.Y"
@@ -8124,8 +8135,9 @@
 																	}
 																},
 																{
-																	"callFunction": "moveToLocation",
-																	"sid": 957280767915363,
+																	"customAction": "Move to location",
+																	"objectClass": "player",
+																	"sid": 508692620105972,
 																	"parameters": [
 																		"mouse.X",
 																		"mouse.Y"
@@ -8183,11 +8195,12 @@
 																	}
 																},
 																{
-																	"callFunction": "moveToLocation",
-																	"sid": 485950347925945,
+																	"customAction": "Move to location",
+																	"objectClass": "player",
+																	"sid": 514101123855422,
 																	"parameters": [
-																		"enemy.X",
-																		"enemy.y"
+																		"mouse.X",
+																		"mouse.Y"
 																	]
 																}
 															],
@@ -8300,8 +8313,9 @@
 											"behaviorType": "MoveTo"
 										},
 										{
-											"callFunction": "pickUpLoot",
-											"sid": 728141715517524
+											"customAction": "Pick up loot",
+											"objectClass": "player",
+											"sid": 186316183007670
 										},
 										{
 											"id": "reset-eventvar",
@@ -8372,7 +8386,7 @@
 											}
 										},
 										{
-											"callFunction": "changeLayout",
+											"callFunction": "Change layout",
 											"sid": 905950862943501,
 											"parameters": [
 												"door.layout",
@@ -8496,9 +8510,11 @@
 							]
 						},
 						{
-							"functionName": "moveToLocation",
-							"functionDescription": "Move to a location, specifying a distance away from that location to arrive at",
-							"functionCategory": "player",
+							"aceType": "action",
+							"aceName": "Move to location",
+							"objectClass": "player",
+							"functionDescription": "Move the player to a specified location.",
+							"functionCategory": "movement",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -8507,28 +8523,28 @@
 									"name": "x",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The coordinate on the X axis to move the player to",
-									"sid": 476477426097131
+									"comment": "The coordinate on the X axis to which to move the player.",
+									"sid": 853914689575615
 								},
 								{
 									"name": "y",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The coordinate on the Y axis to move the player to",
-									"sid": 381101153777112
+									"comment": "The coordinate on the Y axis to which to move the player.",
+									"sid": 190962107070906
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
-									"callFunction": "closeDialog",
-									"sid": 675672935428082
+									"callFunction": "Close dialog",
+									"sid": 975379167355425
 								},
 								{
 									"id": "move-to-position",
 									"objectClass": "player",
-									"sid": 796317504405257,
+									"sid": 100440560373912,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"x": "x",
@@ -8537,7 +8553,7 @@
 									}
 								}
 							],
-							"sid": 736875311258128
+							"sid": 785776093622985
 						}
 					],
 					"sid": 914713205483917
@@ -10506,9 +10522,11 @@
 							]
 						},
 						{
-							"functionName": "channeledAnimation",
+							"aceType": "action",
+							"aceName": "Play channeled animation",
+							"objectClass": "player",
 							"functionDescription": "Play an animation where the player is uncontrollable.",
-							"functionCategory": "player",
+							"functionCategory": "animations",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
 							"functionIsAsync": false,
@@ -10518,16 +10536,16 @@
 									"type": "string",
 									"initialValue": "",
 									"comment": "The animation to play.",
-									"sid": 234166732811254
+									"sid": 319123793904025
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "Audio",
-									"sid": 581684116237409,
+									"sid": 608034961555404,
 									"parameters": {
 										"folder": "sounds",
 										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & animationName)",
@@ -10543,12 +10561,12 @@
 								{
 									"customAction": "Remove player control",
 									"objectClass": "player",
-									"sid": 285842810528881
+									"sid": 336477408049207
 								},
 								{
 									"customAction": "Update animation",
 									"objectClass": "player",
-									"sid": 653604065969272,
+									"sid": 369377300601852,
 									"parameters": [
 										"animationName",
 										"player.actionSpeed",
@@ -10556,7 +10574,7 @@
 									]
 								}
 							],
-							"sid": 317965027202122
+							"sid": 565763010938672
 						},
 						{
 							"aceType": "action",
@@ -10939,15 +10957,16 @@
 									"text": "Close the ability selector if we click anywhere that's not an ability or statue."
 								},
 								{
-									"callFunction": "closeLayer",
+									"callFunction": "Close layer",
 									"sid": 356720225436972,
 									"parameters": [
 										"abilitySelectorStatue.LayerName"
 									]
 								},
 								{
-									"callFunction": "setCoverHightlight",
-									"sid": 631288369787676,
+									"customAction": "Set cover highlight",
+									"objectClass": "abilitySlot",
+									"sid": 659314839416183,
 									"parameters": [
 										false
 									]
@@ -11115,15 +11134,16 @@
 													"text": "...and the class of that ability is the one that's already being displayed, just close the ability selector."
 												},
 												{
-													"callFunction": "closeLayer",
+													"callFunction": "Close layer",
 													"sid": 480875260085050,
 													"parameters": [
 														"abilitySelectorStatue.LayerName"
 													]
 												},
 												{
-													"callFunction": "setCoverHightlight",
-													"sid": 386774398821656,
+													"customAction": "Set cover highlight",
+													"objectClass": "abilitySlot",
+													"sid": 270619035235577,
 													"parameters": [
 														false
 													]
@@ -11146,8 +11166,9 @@
 													"text": "Otherwise, open the ability selector and show the relevant abilities."
 												},
 												{
-													"callFunction": "setCoverHightlight",
-													"sid": 177523294220788,
+													"customAction": "Set cover highlight",
+													"objectClass": "abilitySlot",
+													"sid": 221257658486991,
 													"parameters": [
 														true
 													]
@@ -11180,7 +11201,7 @@
 													}
 												},
 												{
-													"callFunction": "openLayer",
+													"callFunction": "Open layer",
 													"sid": 189021992688929,
 													"parameters": [
 														"abilitySelectorStatue.LayerName"
@@ -11439,8 +11460,9 @@
 															],
 															"actions": [
 																{
-																	"callFunction": "setCoverHightlight",
-																	"sid": 744253514949944,
+																	"customAction": "Set cover highlight",
+																	"objectClass": "abilitySlot",
+																	"sid": 890603310375284,
 																	"parameters": [
 																		false
 																	]
@@ -11478,14 +11500,15 @@
 											}
 										},
 										{
-											"callFunction": "setCoverHightlight",
-											"sid": 567073269370095,
+											"customAction": "Set cover highlight",
+											"objectClass": "abilitySlot",
+											"sid": 637706977488640,
 											"parameters": [
 												false
 											]
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 747274984907248,
 											"parameters": [
 												"abilitySelectorStatue.LayerName"
@@ -11532,11 +11555,13 @@
 							]
 						},
 						{
-							"functionName": "setCoverHightlight",
-							"functionDescription": "Turns the highlight of an ability cover on or off.",
-							"functionCategory": "menus",
+							"aceType": "action",
+							"aceName": "Set cover highlight",
+							"objectClass": "abilitySlot",
+							"functionDescription": "Turn the cover highlight on or off.",
+							"functionCategory": "appearance",
 							"functionReturnType": "none",
-							"functionCopyPicked": true,
+							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
@@ -11544,13 +11569,13 @@
 									"type": "boolean",
 									"initialValue": "false",
 									"comment": "whether to turn the highlight on or off",
-									"sid": 629415599733892
+									"sid": 811582786191093
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [],
-							"sid": 342338163426331,
+							"sid": 395378481633487,
 							"children": [
 								{
 									"eventType": "block",
@@ -11558,7 +11583,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 931218441751746,
+											"sid": 574768230252475,
 											"parameters": {
 												"variable": "on"
 											}
@@ -11568,14 +11593,14 @@
 										{
 											"id": "set-effect-enabled",
 											"objectClass": "abilitySlot",
-											"sid": 317990445866596,
+											"sid": 225351504876412,
 											"parameters": {
 												"mode": "enable",
 												"effect": "BRIGHTNESS_EFFECT_NAME"
 											}
 										}
 									],
-									"sid": 611467681715653
+									"sid": 567429306854489
 								},
 								{
 									"eventType": "block",
@@ -11583,21 +11608,21 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 294577515846640
+											"sid": 252990534661365
 										}
 									],
 									"actions": [
 										{
 											"id": "set-effect-enabled",
 											"objectClass": "abilitySlot",
-											"sid": 742840166653624,
+											"sid": 321156428532300,
 											"parameters": {
 												"mode": "disable",
 												"effect": "BRIGHTNESS_EFFECT_NAME"
 											}
 										}
 									],
-									"sid": 902932743069428
+									"sid": 663090438898797
 								}
 							]
 						}
@@ -11926,7 +11951,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "ManageMenuWithKey",
+											"callFunction": "Toggle menu",
 											"sid": 986046057762437,
 											"parameters": [
 												"equippedMenuStatue.LayerName"
@@ -11949,7 +11974,7 @@
 											],
 											"actions": [
 												{
-													"callFunction": "closeLayer",
+													"callFunction": "Close layer",
 													"sid": 847114396952566,
 													"parameters": [
 														"merchantMenuStatue.LayerName"
@@ -11974,7 +11999,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "ManageMenuWithKey",
+											"callFunction": "Toggle menu",
 											"sid": 670200235757395,
 											"parameters": [
 												"characterMenuStatue.LayerName"
@@ -11997,7 +12022,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "ManageMenuWithKey",
+											"callFunction": "Toggle menu",
 											"sid": 574410582810596,
 											"parameters": [
 												"inventoryMenuStatue.LayerName"
@@ -12005,77 +12030,77 @@
 										}
 									],
 									"sid": 227300752950169
-								},
-								{
-									"functionName": "ManageMenuWithKey",
-									"functionDescription": "Open or close a menu with a key.",
-									"functionCategory": "menus",
-									"functionReturnType": "none",
-									"functionCopyPicked": false,
-									"functionIsAsync": false,
-									"functionParameters": [
-										{
-											"name": "menuName",
-											"type": "string",
-											"initialValue": "",
-											"comment": "The name of the menu to manage.",
-											"sid": 569434202636859
-										}
-									],
-									"eventType": "function-block",
-									"conditions": [],
-									"actions": [],
-									"sid": 225147883294747,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "layer-is-visible",
-													"objectClass": "System",
-													"sid": 809733836006153,
-													"parameters": {
-														"layer": "menuName"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "closeLayer",
-													"sid": 891183827140848,
-													"parameters": [
-														"menuName"
-													]
-												}
-											],
-											"sid": 921377846773585
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 175315820738506
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "openLayer",
-													"sid": 139365913309534,
-													"parameters": [
-														"menuName"
-													]
-												}
-											],
-											"sid": 950490241656385
-										}
-									]
 								}
 							]
 						},
 						{
-							"functionName": "closeLayer",
+							"functionName": "Toggle menu",
+							"functionDescription": "Open or close a menu with a key.",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "menuName",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The name of the menu to manage.",
+									"sid": 569434202636859
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 927480318112134,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 129337492999172,
+											"parameters": {
+												"layer": "menuName"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "Close layer",
+											"sid": 282348497464143,
+											"parameters": [
+												"menuName"
+											]
+										}
+									],
+									"sid": 880750344490913
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 236002267858284
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "Open layer",
+											"sid": 522731726253615,
+											"parameters": [
+												"menuName"
+											]
+										}
+									],
+									"sid": 533738842030650
+								}
+							]
+						},
+						{
+							"functionName": "Close layer",
 							"functionDescription": "Close the specified layer.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
@@ -12095,7 +12120,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Prevent interaction with layer while it fades out."
+									"text": "Prevent interaction with the layer while it fades out."
 								},
 								{
 									"id": "set-layer-interactive",
@@ -12247,7 +12272,7 @@
 							]
 						},
 						{
-							"functionName": "openLayer",
+							"functionName": "Open layer",
 							"functionDescription": "Open the specified layer.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
@@ -12511,7 +12536,7 @@
 													]
 												},
 												{
-													"callFunction": "updateTooltip",
+													"callFunction": "Update tooltip",
 													"sid": 395853606521323,
 													"parameters": [
 														false,
@@ -12601,7 +12626,7 @@
 															],
 															"actions": [
 																{
-																	"callFunction": "updateComparisonTooltip",
+																	"callFunction": "Update comparison tooltip",
 																	"sid": 418177036584371,
 																	"parameters": [
 																		"item.fullName",
@@ -12669,7 +12694,7 @@
 													]
 												},
 												{
-													"callFunction": "updateTooltip",
+													"callFunction": "Update tooltip",
 													"sid": 664320364953238,
 													"parameters": [
 														false,
@@ -12712,7 +12737,7 @@
 											],
 											"actions": [
 												{
-													"callFunction": "updateTooltip",
+													"callFunction": "Update tooltip",
 													"sid": 902052321073868,
 													"parameters": [
 														true,
@@ -12875,7 +12900,7 @@
 							"sid": 679975955360657
 						},
 						{
-							"functionName": "updateTooltip",
+							"functionName": "Update tooltip",
 							"functionDescription": "Update and show the tooltip with the specified information.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
@@ -13327,7 +13352,7 @@
 							]
 						},
 						{
-							"functionName": "updateComparisonTooltip",
+							"functionName": "Update comparison tooltip",
 							"functionDescription": "Update and show the comparison tooltip with the specified information.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
@@ -13684,20 +13709,22 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
-							"functionName": "updateEnemyInfo",
-							"functionDescription": "Update an enemy's name, and clear the attributes.",
-							"functionCategory": "enemies",
+							"aceType": "action",
+							"aceName": "Update enemy info",
+							"objectClass": "enemy",
+							"functionDescription": "Update's the enemy's info in the overlay.",
+							"functionCategory": "information",
 							"functionReturnType": "none",
-							"functionCopyPicked": true,
+							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-text",
 									"objectClass": "enemyName",
-									"sid": 135045043660059,
+									"sid": 675864384199733,
 									"parameters": {
 										"text": "lowercase(enemy.fullName)"
 									}
@@ -13705,13 +13732,13 @@
 								{
 									"id": "set-text",
 									"objectClass": "enemyAttributes",
-									"sid": 977241926554707,
+									"sid": 996520508067314,
 									"parameters": {
 										"text": "BLANK"
 									}
 								}
 							],
-							"sid": 207514323582349,
+							"sid": 205245599416706,
 							"children": [
 								{
 									"eventType": "variable",
@@ -13721,7 +13748,7 @@
 									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 868891487243485
+									"sid": 633643937576285
 								},
 								{
 									"eventType": "block",
@@ -13730,14 +13757,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 964623353041708,
+											"sid": 885172701361285,
 											"parameters": {
 												"variable": "attributes",
 												"value": "enemy.attributes"
 											}
 										}
 									],
-									"sid": 840458797442361
+									"sid": 315909316028904
 								},
 								{
 									"eventType": "variable",
@@ -13747,7 +13774,7 @@
 									"comment": "The character used to parse attributes.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 379168075752790
+									"sid": 451400736443053
 								},
 								{
 									"eventType": "block",
@@ -13755,7 +13782,7 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 380175753965128,
+											"sid": 185232497329886,
 											"parameters": {
 												"name": "NOT_USED",
 												"start-index": "LOOP_DEFAULT",
@@ -13767,13 +13794,13 @@
 										{
 											"id": "append-text",
 											"objectClass": "enemyAttributes",
-											"sid": 865688768330444,
+											"sid": 522396908890883,
 											"parameters": {
 												"text": "tokenat(attributes, loopindex, ATTRIBUTE_SEPARATOR) & newline"
 											}
 										}
 									],
-									"sid": 613390831560091
+									"sid": 779974924962259
 								},
 								{
 									"eventType": "block",
@@ -13782,7 +13809,7 @@
 										{
 											"id": "wait",
 											"objectClass": "System",
-											"sid": 775717457560251,
+											"sid": 984177249915966,
 											"parameters": {
 												"seconds": "END_OF_TICK"
 											}
@@ -13790,7 +13817,7 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "enemyHealthFrame",
-											"sid": 408787891094214,
+											"sid": 762702223043765,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "NOT_USED",
@@ -13805,7 +13832,7 @@
 											}
 										}
 									],
-									"sid": 984462441645642
+									"sid": 351561554142939
 								}
 							]
 						},
@@ -13872,8 +13899,9 @@
 									],
 									"actions": [
 										{
-											"callFunction": "updateEnemyInfo",
-											"sid": 425571750613563
+											"customAction": "Update enemy info",
+											"objectClass": "enemy",
+											"sid": 663742265398797
 										}
 									],
 									"sid": 639451042301086
@@ -13899,8 +13927,9 @@
 									],
 									"actions": [
 										{
-											"callFunction": "updateEnemyInfo",
-											"sid": 381983047162617
+											"customAction": "Update enemy info",
+											"objectClass": "enemy",
+											"sid": 258101121703731
 										}
 									],
 									"sid": 866235878046209
@@ -14167,7 +14196,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "closeSettings",
+											"callFunction": "Close settings",
 											"sid": 426429163528662
 										}
 									],
@@ -14219,39 +14248,39 @@
 											}
 										},
 										{
-											"callFunction": "closeDialog",
+											"callFunction": "Close dialog",
 											"sid": 227155259177360
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 363219135868759,
 											"parameters": [
 												"equippedMenuStatue.LayerName"
 											]
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 165993740378783,
 											"parameters": [
 												"inventoryMenuStatue.LayerName"
 											]
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 440272284419070,
 											"parameters": [
 												"abilitySelectorStatue.LayerName"
 											]
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 129664861089245,
 											"parameters": [
 												"characterMenuStatue.LayerName"
 											]
 										},
 										{
-											"callFunction": "openLayer",
+											"callFunction": "Open layer",
 											"sid": 489084137274119,
 											"parameters": [
 												"settingsMenuStatue.LayerName"
@@ -14278,7 +14307,7 @@
 							],
 							"actions": [
 								{
-									"callFunction": "closeSettings",
+									"callFunction": "Close settings",
 									"sid": 431466487026583
 								}
 							],
@@ -14501,7 +14530,7 @@
 							]
 						},
 						{
-							"functionName": "closeSettings",
+							"functionName": "Close settings",
 							"functionDescription": "Close the settings menu.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
@@ -14555,7 +14584,7 @@
 											}
 										},
 										{
-											"callFunction": "closeLayer",
+											"callFunction": "Close layer",
 											"sid": 426349975998364,
 											"parameters": [
 												"settingsMenuStatue.LayerName"
@@ -14925,35 +14954,37 @@
 							"sid": 656245470907559
 						},
 						{
-							"functionName": "MoveEnemyInDirection",
-							"functionDescription": "Move an enemy a certain direction in a certain angle. Already factors in isometry.",
-							"functionCategory": "enemies",
+							"aceType": "action",
+							"aceName": "Walk at angle",
+							"objectClass": "enemy",
+							"functionDescription": "",
+							"functionCategory": "movement",
 							"functionReturnType": "none",
-							"functionCopyPicked": true,
+							"functionCopyPicked": false,
 							"functionIsAsync": false,
 							"functionParameters": [
 								{
 									"name": "theAngle",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The angle along which the enemy should move. Already factors in isometry.",
-									"sid": 635433825358544
+									"comment": "The angle along which the enemy should move.",
+									"sid": 648332493172035
 								},
 								{
 									"name": "theDistance",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "The distance the enemy will travel",
-									"sid": 811565187927295
+									"comment": "The distance the enemy will travel.",
+									"sid": 472143259885471
 								}
 							],
-							"eventType": "function-block",
+							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 467880304318507,
+									"sid": 592092303407705,
 									"parameters": {
 										"variable": "theAngle",
 										"value": "enemy.MoveTo.MovingAngle - theAngle"
@@ -14962,7 +14993,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 329786752956033,
+									"sid": 973571768105207,
 									"parameters": {
 										"variable": "theDistance",
 										"value": "Functions.isometrify(theDistance, theAngle)"
@@ -14971,7 +15002,7 @@
 								{
 									"id": "move-to-position",
 									"objectClass": "enemy",
-									"sid": 958789404516592,
+									"sid": 883198940336461,
 									"behaviorType": "MoveTo",
 									"parameters": {
 										"x": "Self.X + cos(theAngle) * theDistance",
@@ -14980,7 +15011,7 @@
 									}
 								}
 							],
-							"sid": 676900663014255
+							"sid": 137579896912588
 						},
 						{
 							"eventType": "block",
@@ -15219,8 +15250,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 331024069839006,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 874467291549939,
 													"parameters": [
 														"QUARTER_CIRCLE",
 														"enemy.Width"
@@ -15335,8 +15367,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 226386724246306,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 935624815720598,
 													"parameters": [
 														"QUARTER_CIRCLE",
 														"enemy.Width"
@@ -15404,8 +15437,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 397790675986807,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 430817924141140,
 													"parameters": [
 														"HALF_CIRCLE",
 														"enemy.Width"
@@ -15448,8 +15482,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 147790681472118,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 725520960829608,
 													"parameters": [
 														"QUARTER_CIRCLE",
 														"enemy.Width"
@@ -15492,8 +15527,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 959169911721721,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 254286465424377,
 													"parameters": [
 														"HALF_CIRCLE",
 														"enemy.Width * DISTANCE_MULTIPLIER"
@@ -15536,8 +15572,9 @@
 													}
 												},
 												{
-													"callFunction": "MoveEnemyInDirection",
-													"sid": 691585567438389,
+													"customAction": "Walk at angle",
+													"objectClass": "enemy",
+													"sid": 997902650040095,
 													"parameters": [
 														"QUARTER_CIRCLE",
 														"enemy.Width"
@@ -17891,8 +17928,9 @@
 											"text": "If the player isn't in a non-combat area, isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
 										},
 										{
-											"callFunction": "channeledAnimation",
-											"sid": 584308707672425,
+											"customAction": "Play channeled animation",
+											"objectClass": "player",
+											"sid": 686221468901152,
 											"parameters": [
 												"BLOCK_KEYWORD"
 											]
@@ -18004,8 +18042,9 @@
 													"text": "If the player isn't currently channeling, isn't in a non-combat area, and the hit doesn't kill him, and the hit overcomes the flinch resistance, the player flinches."
 												},
 												{
-													"callFunction": "channeledAnimation",
-													"sid": 610029206061369,
+													"customAction": "Play channeled animation",
+													"objectClass": "player",
+													"sid": 995504998894816,
 													"parameters": [
 														"HIT_KEYWORD"
 													]

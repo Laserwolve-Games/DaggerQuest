@@ -96,25 +96,25 @@
 					]
 				},
 				{
-					"functionName": "changeLayout",
-					"functionDescription": "",
-					"functionCategory": "",
+					"functionName": "Change layout",
+					"functionDescription": "Change from one layout to another.",
+					"functionCategory": "world",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "layoutToGoTo",
+							"name": "layout",
 							"type": "string",
 							"initialValue": "",
-							"comment": "",
+							"comment": "The destination layout.",
 							"sid": 821222262544592
 						},
 						{
 							"name": "skipLoadingScreen",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Whether or not to utilize the loading screen when changing layouts.",
+							"comment": "Whether or not to skip the loading screen when changing layouts.",
 							"sid": 282619342181581
 						}
 					],
@@ -127,7 +127,7 @@
 							"sid": 485935399708907,
 							"parameters": {
 								"variable": "targetLayout",
-								"value": "layoutToGoTo"
+								"value": "layout"
 							}
 						},
 						{

@@ -991,13 +991,10 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-playing",
+							"id": "is-any-playing",
 							"objectClass": "portrait",
-							"sid": 759672670642400,
+							"sid": 259434858447069,
 							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & OPACITY_FADE_OUT_KEYWORD"
-							},
 							"isInverted": true
 						},
 						{
@@ -1024,7 +1021,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Don't execute if the portrait is fading out. Pick only the NPC and corresponding body that the player is talking to, to check if they were clicked in the next subevent."
+							"text": "Don't execute if the portrait is fading. Pick only the NPC and corresponding body that the player is talking to, to check if they were clicked in the next subevent."
 						}
 					],
 					"sid": 976300196461213,
@@ -1158,10 +1155,6 @@
 						}
 					],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Lazy man's solution to one of our never ending hierarchal tween opacity issues."
-						},
 						{
 							"id": "set-opacity",
 							"objectClass": "dialog",
@@ -1536,10 +1529,10 @@
 						{
 							"id": "tween-one-property",
 							"objectClass": "portrait",
-							"sid": 697733232428865,
+							"sid": 810971072777343,
 							"behaviorType": "Tween",
 							"parameters": {
-								"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID & SEPARATOR & OPACITY_FADE_OUT_KEYWORD",
+								"tags": "NOT_USED",
 								"property": "offsetOpacity",
 								"end-value": "TRANSPARENT_OPACITY",
 								"time": "MENU_FADE_TIME",
@@ -10890,22 +10883,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "TODO: Attempt to re-implement opacity tweening on sprites where we currently have layer opacity tweening. Layer opacity tweening was our solution to an issue that was possible fixed in r404: https://www.construct.net/en/make-games/releases/beta/r404",
-					"text-color": [
-						0,
-						0,
-						0,
-						1
-					],
-					"background-color": [
-						1,
-						1,
-						0,
-						1
-					]
-				},
-				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "ability bar",
@@ -12210,13 +12187,13 @@
 									],
 									"actions": [
 										{
-											"id": "tween-value",
+											"id": "tween-one-property",
 											"objectClass": "statue",
-											"sid": 325986089225823,
+											"sid": 822503997611114,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID",
-												"start-value": "SOLID_OPACITY",
+												"tags": "NOT_USED",
+												"property": "offsetOpacity",
 												"end-value": "TRANSPARENT_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
@@ -12391,22 +12368,13 @@
 									],
 									"actions": [
 										{
-											"id": "set-layer-opacity",
-											"objectClass": "System",
-											"sid": 919047895129632,
-											"parameters": {
-												"layer": "statue.LayerName",
-												"opacity": "TRANSPARENT_OPACITY"
-											}
-										},
-										{
-											"id": "tween-value",
+											"id": "tween-one-property",
 											"objectClass": "statue",
-											"sid": 679958041158465,
+											"sid": 281150899935792,
 											"behaviorType": "Tween",
 											"parameters": {
-												"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID",
-												"start-value": "TRANSPARENT_OPACITY",
+												"tags": "NOT_USED",
+												"property": "offsetOpacity",
 												"end-value": "SOLID_OPACITY",
 												"time": "MENU_FADE_TIME",
 												"ease": "noease",
@@ -14636,56 +14604,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 518817606338522,
-									"parameters": {
-										"object": "statue"
-									}
-								},
-								{
-									"id": "is-playing",
-									"objectClass": "statue",
-									"sid": 358881593907077,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "Self.ObjectTypeName & SEPARATOR & Self.UID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "This 'For each statue' is necessary and we don't know why.",
-									"text-color": [
-										0.7843137254901961,
-										0.7843137254901961,
-										0.7843137254901961,
-										1
-									],
-									"background-color": [
-										0,
-										0,
-										0,
-										0
-									]
-								},
-								{
-									"id": "set-layer-opacity",
-									"objectClass": "System",
-									"sid": 501152126795183,
-									"parameters": {
-										"layer": "statue.LayerName",
-										"opacity": "statue.Tween.Value(statue.ObjectTypeName & SEPARATOR & statue.UID)"
-									}
-								}
-							],
-							"sid": 432506324857230
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "on-created",
 									"objectClass": "statue",
 									"sid": 319590783319583
@@ -14728,10 +14646,10 @@
 						},
 						{
 							"eventType": "variable",
-							"name": "STATUE_OPACITY",
+							"name": "STATUE_DRAG_OPACITY",
 							"type": "number",
 							"initialValue": "50",
-							"comment": "The opacity value to which statues tween.",
+							"comment": "The opacity value of dragged statues.",
 							"isStatic": false,
 							"isConstant": true,
 							"sid": 237851361576172
@@ -14780,7 +14698,7 @@
 									"parameters": {
 										"tags": "NOT_USED",
 										"property": "offsetOpacity",
-										"end-value": "STATUE_OPACITY",
+										"end-value": "STATUE_DRAG_OPACITY",
 										"time": "MENU_FADE_TIME",
 										"ease": "noease",
 										"destroy-on-complete": "no",

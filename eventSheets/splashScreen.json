@@ -292,16 +292,6 @@
 							"text": "If we've finished loading and there's no update, go to the main menu."
 						},
 						{
-							"id": "request-persistent",
-							"objectClass": "LocalStorage",
-							"sid": 125595519609208
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 655276180466781
-						},
-						{
 							"callFunction": "Change layout",
 							"sid": 605767462194444,
 							"parameters": [
@@ -382,65 +372,6 @@
 						}
 					],
 					"sid": 830884642059031
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 934940274268889,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "fullscreenIcon"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 551410993474741,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-fullscreen",
-									"objectClass": "browser",
-									"sid": 102988732446380
-								}
-							],
-							"actions": [
-								{
-									"id": "cancel-fullscreen",
-									"objectClass": "browser",
-									"sid": 236394121614606
-								}
-							],
-							"sid": 343296602415546
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 687952442055542
-								}
-							],
-							"actions": [
-								{
-									"id": "request-fullscreen",
-									"objectClass": "browser",
-									"sid": 627588659576075,
-									"parameters": {
-										"mode": "stretch-letterbox-scale",
-										"navigation-ui": "auto"
-									}
-								}
-							],
-							"sid": 521592820833468
-						}
-					]
 				}
 			],
 			"sid": 297998252022528

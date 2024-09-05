@@ -57,13 +57,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "LocalStorage",
-			"name": "Local storage",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -247,12 +240,10 @@
 					"modsArray",
 					"modTablesArray",
 					"video",
-					"modRelationshipsArray",
 					"abilityOptionsArray",
 					"npcDialogArray",
 					"Audio",
 					"gearQueueArray",
-					"LocalStorage",
 					"localStorageDictionary",
 					"soundEffectVariants"
 				],
@@ -449,7 +440,6 @@
 							"loadingBar",
 							"loadingBarText",
 							"splashScreen",
-							"fullscreenIcon",
 							"copyright"
 						],
 						"subfolders": [],
@@ -1234,22 +1224,6 @@
 					}
 				},
 				{
-					"name": "modRelationships.json",
-					"type": "application/json",
-					"sid": 338821489653653,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "elementStyles.css",
-					"type": "text/css",
-					"sid": 977819427936547,
-					"file-info": {
-						"purpose": "stylesheet"
-					}
-				},
-				{
 					"name": "npcDialog.json",
 					"type": "application/json",
 					"sid": 675520489143280,
@@ -1266,7 +1240,60 @@
 					}
 				}
 			],
-			"subfolders": []
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "farm.json",
+							"type": "application/json",
+							"sid": 184231740378400,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Layout probablity tables"
+				},
+				{
+					"items": [
+						{
+							"name": "marauders.json",
+							"type": "application/json",
+							"sid": 613632433095729,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "simple1hWeapon.json",
+							"type": "application/json",
+							"sid": 500429569931022,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "simpleArmor.json",
+							"type": "application/json",
+							"sid": 908657472261556,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "simpleShield.json",
+							"type": "application/json",
+							"sid": 769398054633646,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Mod probability tables"
+				}
+			]
 		}
 	},
 	"timelines": {

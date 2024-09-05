@@ -14,16 +14,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "RARITY_KEYWORD",
-					"type": "string",
-					"initialValue": "rarity",
-					"comment": "Used for looking up rarity in an array.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 713133308773562
-				},
-				{
-					"eventType": "variable",
 					"name": "FIRST_LAYOUT",
 					"type": "string",
 					"initialValue": "farm",
@@ -102,39 +92,7 @@
 						},
 						{
 							"type": "comment",
-							"text": "Load and parse out data"
-						},
-						{
-							"type": "comment",
-							"text": "We can't put these into a 'for each queriedArray' loop because 'Wait for previous actions to complete' doesn't hold up a loop.\n\nWe also tried 'AJAX On any completed' with 'Pick queriedArray where queriedArray.ObjectTypeName = AJAX.tag', but the probability table generation loops executed before the AJAX requests had finished.",
-							"text-color": [
-								0.7843137254901961,
-								0.7843137254901961,
-								0.7843137254901961,
-								1
-							],
-							"background-color": [
-								0.39215686274509803,
-								0,
-								0,
-								1
-							]
-						},
-						{
-							"type": "comment",
-							"text": "Create AJAX objects for each correlating array, and loop through a family of them and a family of these queries.",
-							"text-color": [
-								0.7843137254901961,
-								0.7843137254901961,
-								0.7843137254901961,
-								1
-							],
-							"background-color": [
-								0,
-								0,
-								0.39215686274509803,
-								1
-							]
+							"text": "Set up arrays."
 						},
 						{
 							"id": "request-project-file",
@@ -176,28 +134,6 @@
 							"id": "load",
 							"objectClass": "equipmentArray",
 							"sid": 363219999566631,
-							"parameters": {
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 909748722225529,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "modRelationships.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 212615390867543
-						},
-						{
-							"id": "load",
-							"objectClass": "modRelationshipsArray",
-							"sid": 273024253955135,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
@@ -248,320 +184,12 @@
 						},
 						{
 							"type": "comment",
-							"text": "map function mods - equipment mods"
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 345890480257314,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatHealth\"",
-								"function": "flatHealth"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 733642978878028,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatSlash\"",
-								"function": "flatSlash"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 829554034994622,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatStab\"",
-								"function": "flatStab"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 255640528730017,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatSmash\"",
-								"function": "flatSmash"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 841984934461800,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatArmor\"",
-								"function": "flatArmor"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 717066286693037,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatManaRegen\"",
-								"function": "flatManaRegen"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 408565706906119,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatSlashAndStab\"",
-								"function": "flatSlashAndStab"
-							}
-						},
-						{
-							"id": "map-function",
-							"objectClass": "Functions",
-							"sid": 107983141996073,
-							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
-								"string": "\"flatPhysical\"",
-								"function": "flatPhysical"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Create the mod values probability table, which gets populated during loot generation"
-						},
-						{
-							"id": "createProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 476973755860885,
-							"parameters": {
-								"name": "MOD_VALUES_PROBABILITY_TABLE"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Check to see if we already have local storage data"
-						},
-						{
-							"id": "check-item-exists",
-							"objectClass": "LocalStorage",
-							"sid": 655505197572964,
-							"parameters": {
-								"key": "localStorageDictionary.ObjectTypeName"
-							}
-						}
-					],
-					"sid": 475031808944228
-				},
-				{
-					"eventType": "variable",
-					"name": "PROJECT_VERSION_KEY",
-					"type": "string",
-					"initialValue": "projectVersion",
-					"comment": "The key of the project version in a dictionary.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 273504141213977
-				},
-				{
-					"eventType": "variable",
-					"name": "OUT_OF_DATE_SIGNAL",
-					"type": "string",
-					"initialValue": "outOfDate",
-					"comment": "The signal issued when its detected the locally stored files are out of date.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 656784682253419
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-item-exists",
-							"objectClass": "LocalStorage",
-							"sid": 277614582725019,
-							"parameters": {
-								"key": "localStorageDictionary.ObjectTypeName"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "load",
-							"objectClass": "localStorageDictionary",
-							"sid": 376966467105197,
-							"parameters": {
-								"json": "LocalStorage.ItemValue"
-							}
-						}
-					],
-					"sid": 823012996253306,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-value",
-									"objectClass": "localStorageDictionary",
-									"sid": 288700900451587,
-									"parameters": {
-										"key": "PROJECT_VERSION_KEY",
-										"comparison": 1,
-										"value": "projectversion"
-									}
-								},
-								{
-									"id": "has-key",
-									"objectClass": "localStorageDictionary",
-									"sid": 191795478256454,
-									"parameters": {
-										"key": "PROJECT_VERSION_KEY"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If the stored files are from a different version of DaggerQuest, or don't specify their version number, signal that they are out of date."
-								},
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 219416377996104,
-									"parameters": {
-										"tag": "OUT_OF_DATE_SIGNAL"
-									}
-								}
-							],
-							"sid": 143837310632977,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 179862476406923
-								}
-							],
-							"actions": [
-								{
-									"id": "createProbabilityTableFromJSON",
-									"objectClass": "advancedRandom",
-									"sid": 857401372115715,
-									"parameters": {
-										"name": "EQUIPMENT_PROBABILITY_TABLE",
-										"json": "localStorageDictionary.Get(EQUIPMENT_PROBABILITY_TABLE)"
-									}
-								},
-								{
-									"id": "load",
-									"objectClass": "modTablesArray",
-									"sid": 966092857276522,
-									"parameters": {
-										"json": "localStorageDictionary.Get(modTablesArray.ObjectTypeName)"
-									}
-								},
-								{
-									"id": "load",
-									"objectClass": "soundEffectVariants",
-									"sid": 567169860745222,
-									"parameters": {
-										"json": "localStorageDictionary.Get(soundEffectVariants.ObjectTypeName)"
-									}
-								}
-							],
-							"sid": 655634211294828,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each-element",
-											"objectClass": "modTablesArray",
-											"sid": 948314430292368,
-											"parameters": {
-												"axes": "x"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "createProbabilityTableFromJSON",
-											"objectClass": "advancedRandom",
-											"sid": 253969124640275,
-											"parameters": {
-												"name": "modTablesArray.CurValue",
-												"json": "localStorageDictionary.Get(modTablesArray.CurValue)"
-											}
-										}
-									],
-									"sid": 611439737770490
-								}
-							]
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-item-missing",
-							"objectClass": "LocalStorage",
-							"sid": 269541345627265,
-							"parameters": {
-								"key": "localStorageDictionary.ObjectTypeName"
-							}
-						},
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 548707204332780,
-							"parameters": {
-								"tag": "OUT_OF_DATE_SIGNAL"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "If the local storage doesn't exist, or it's out of date, regenerate all the necessary data and attempt to save it."
-						},
-						{
-							"id": "add-key",
-							"objectClass": "localStorageDictionary",
-							"sid": 989156983587588,
-							"parameters": {
-								"key": "PROJECT_VERSION_KEY",
-								"value": "projectversion"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "TODO: Figure out how to loop over sound effects so we don't have to have a dictionary of sound effect names.",
-							"text-color": [
-								0,
-								0,
-								0,
-								1
-							],
-							"background-color": [
-								1,
-								1,
-								0,
-								1
-							]
+							"text": "Set up dictionaries."
 						},
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 816409470988319,
+							"sid": 292238343786003,
 							"parameters": {
 								"tag": "NOT_USED",
 								"file": "soundEffectVariants.json"
@@ -570,575 +198,237 @@
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 285742146422905
+							"sid": 493620066116268
 						},
 						{
 							"id": "load",
 							"objectClass": "soundEffectVariants",
-							"sid": 702836096001443,
+							"sid": 692478627582061,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}
 						},
 						{
+							"type": "comment",
+							"text": "Set up equipment probability tables."
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 929130485231107,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "farm.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 717876970549425
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 754302262286185,
+							"parameters": {
+								"name": "\"farm\"",
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Set up mod probability tables."
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 225723945944825,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "marauders.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 244844200014212
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 434988677872080,
+							"parameters": {
+								"name": "\"marauders\"",
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 812815737666572,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "simple1hWeapon.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 984429066230110
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 100886547013066,
+							"parameters": {
+								"name": "\"simple1hWeapon\"",
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 194236765450076,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "simpleArmor.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 530992499598274
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 131720019341860,
+							"parameters": {
+								"name": "\"simpleArmor\"",
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 258315814494523,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "simpleShield.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 810185524924919
+						},
+						{
+							"id": "createProbabilityTableFromJSON",
+							"objectClass": "advancedRandom",
+							"sid": 180851073588013,
+							"parameters": {
+								"name": "\"simpleShield\"",
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Create the mod values probability table, which gets populated during loot generation."
+						},
+						{
 							"id": "createProbabilityTable",
 							"objectClass": "advancedRandom",
-							"sid": 484866837309618,
+							"sid": 544371434222539,
 							"parameters": {
-								"name": "EQUIPMENT_PROBABILITY_TABLE"
+								"name": "MOD_VALUES_PROBABILITY_TABLE"
 							}
 						},
 						{
-							"id": "setProbabilityTable",
-							"objectClass": "advancedRandom",
-							"sid": 935907045269056,
+							"type": "comment",
+							"text": "Map function mods."
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 345890480257314,
 							"parameters": {
-								"name": "EQUIPMENT_PROBABILITY_TABLE"
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatHealth\"",
+								"function": "Flat health"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 733642978878028,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatSlash\"",
+								"function": "Flat slash damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 829554034994622,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatStab\"",
+								"function": "Flat stab damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 255640528730017,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatSmash\"",
+								"function": "Flat smash damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 841984934461800,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatArmor\"",
+								"function": "Flat armor"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 717066286693037,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatManaRegen\"",
+								"function": "Flat mana regen"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 408565706906119,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatSlashAndStab\"",
+								"function": "Flat smash and stab damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 107983141996073,
+							"parameters": {
+								"name": "MODS_FUNCTION_MAP",
+								"string": "\"flatPhysical\"",
+								"function": "Flat physical"
 							}
 						}
 					],
-					"sid": 568163851112755,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 894812439866540,
-									"parameters": {
-										"name": "NOT_USED",
-										"start-index": "LOOP_OFFSET",
-										"end-index": "equipmentArray.Height - LOOP_OFFSET"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "addProbabilityEntry",
-									"objectClass": "advancedRandom",
-									"sid": 286859457417719,
-									"parameters": {
-										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-										"weight": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, RARITY_KEYWORD), loopindex)"
-									}
-								}
-							],
-							"sid": 205608362833441
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each-key",
-									"objectClass": "soundEffectVariants",
-									"sid": 725529647617483
-								}
-							],
-							"actions": [
-								{
-									"id": "set-key",
-									"objectClass": "soundEffectVariants",
-									"sid": 752071553110248,
-									"parameters": {
-										"key": "Self.CurrentKey",
-										"value": "Functions.countSoundEffectVarations(Self.CurrentKey)"
-									}
-								}
-							],
-							"sid": 802228055473270
-						},
-						{
-							"eventType": "variable",
-							"name": "modTable",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The name of the modTable to create and use.",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 679500708336622
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 743767806453054,
-									"parameters": {
-										"name": "NOT_USED",
-										"start-index": "LOOP_OFFSET",
-										"end-index": "equipmentArray.Height - LOOP_OFFSET"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Populate the modTablesArray with the unique values from the modTable column in the equipmentArray."
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 692677019107933,
-									"parameters": {
-										"variable": "modTable",
-										"value": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MOD_TABLE_KEYWORD), loopindex)"
-									}
-								}
-							],
-							"sid": 721446798873208,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "contains-value",
-											"objectClass": "modTablesArray",
-											"sid": 395811978102875,
-											"parameters": {
-												"value": "modTable"
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "push",
-											"objectClass": "modTablesArray",
-											"sid": 989311020118705,
-											"parameters": {
-												"where": "back",
-												"value": "modTable",
-												"axis": "x"
-											}
-										}
-									],
-									"sid": 679957316318850
-								}
-							]
-						},
-						{
-							"eventType": "variable",
-							"name": "MOD_KEYWORD",
-							"type": "string",
-							"initialValue": "mod",
-							"comment": "Used when adding mods to mod tables.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 231091350006935
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each-element",
-									"objectClass": "modTablesArray",
-									"sid": 196257015915289,
-									"parameters": {
-										"axes": "x"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 504520450983131,
-									"parameters": {
-										"variable": "modTable",
-										"value": "modTablesArray.CurValue"
-									}
-								},
-								{
-									"id": "createProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 264906053479819,
-									"parameters": {
-										"name": "modTable"
-									}
-								},
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 493231458881833,
-									"parameters": {
-										"name": "modTable"
-									}
-								}
-							],
-							"sid": 927471251848430,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "modName",
-									"type": "string",
-									"initialValue": "",
-									"comment": "The name of the mod to add to the table.",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 980837917848128
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 769032942433484,
-											"parameters": {
-												"name": "NOT_USED",
-												"start-index": "LOOP_OFFSET",
-												"end-index": "modRelationshipsArray.Height - LOOP_OFFSET"
-											}
-										},
-										{
-											"id": "compare-at-xy",
-											"objectClass": "modRelationshipsArray",
-											"sid": 910173551412422,
-											"parameters": {
-												"x": "Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_TABLE_KEYWORD)",
-												"y": "loopindex",
-												"comparison": 0,
-												"value": "modTable"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 901691258508242,
-											"parameters": {
-												"variable": "modName",
-												"value": "modRelationshipsArray.At(Functions.getColumnNumber(modRelationshipsArray.ObjectTypeName, MOD_KEYWORD), loopindex)"
-											}
-										},
-										{
-											"id": "addProbabilityEntry",
-											"objectClass": "advancedRandom",
-											"sid": 256015455191106,
-											"parameters": {
-												"value": "modName",
-												"weight": "Functions.arrayLookup(modsArray.ObjectTypeName, modName, RARITY_KEYWORD)"
-											}
-										}
-									],
-									"sid": 155290990287587
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "add-key",
-											"objectClass": "localStorageDictionary",
-											"sid": 597903788201316,
-											"parameters": {
-												"key": "modTable",
-												"value": "advancedRandom.ProbabilityTableAsJSON"
-											}
-										}
-									],
-									"sid": 661225517727158
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "setProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 858170505934221,
-									"parameters": {
-										"name": "EQUIPMENT_PROBABILITY_TABLE"
-									}
-								},
-								{
-									"id": "add-key",
-									"objectClass": "localStorageDictionary",
-									"sid": 630977785578175,
-									"parameters": {
-										"key": "EQUIPMENT_PROBABILITY_TABLE",
-										"value": "advancedRandom.ProbabilityTableAsJSON"
-									}
-								},
-								{
-									"id": "add-key",
-									"objectClass": "localStorageDictionary",
-									"sid": 778488743719487,
-									"parameters": {
-										"key": "soundEffectVariants.ObjectTypeName",
-										"value": "soundEffectVariants.AsJSON"
-									}
-								},
-								{
-									"id": "add-key",
-									"objectClass": "localStorageDictionary",
-									"sid": 234593722172656,
-									"parameters": {
-										"key": "modTablesArray.ObjectTypeName",
-										"value": "modTablesArray.AsJSON"
-									}
-								},
-								{
-									"id": "set-item",
-									"objectClass": "LocalStorage",
-									"sid": 228519452301981,
-									"parameters": {
-										"key": "localStorageDictionary.ObjectTypeName",
-										"value": "localStorageDictionary.AsJSON"
-									}
-								}
-							],
-							"sid": 852797252785754
-						}
-					],
-					"isOrBlock": true
-				},
-				{
-					"eventType": "comment",
-					"text": "These two functions exist because 1. we can't overload functions, 2. we can't write functions inside of other functions, 3. we can't privatize functions, and 4. we have to use a recursive function because a while loop was causing a call stack size error.",
-					"text-color": [
-						0.7843137254901961,
-						0.7843137254901961,
-						0.7843137254901961,
-						1
-					],
-					"background-color": [
-						0.39215686274509803,
-						0,
-						0,
-						1
-					]
-				},
-				{
-					"functionName": "countSoundEffectVarations",
-					"functionDescription": "Get how many variants of a sound effect there is.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "soundEffectName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the sound effect.",
-							"sid": 981847279139940
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 342265328501474,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "SOUND_EFFECT_COUNTER_START",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The number at which to begin attempting to play sound effect varations.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 619665950383419
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 209501796062163,
-									"parameters": {
-										"value": "Functions.countSoundEffectVarationsPrivate(soundEffectName, SOUND_EFFECT_COUNTER_START)"
-									}
-								}
-							],
-							"sid": 985204684281684
-						}
-					]
-				},
-				{
-					"functionName": "countSoundEffectVarationsPrivate",
-					"functionDescription": "Wrapper for countSoundEffectVarations. Shouldn't be called elsewhere.",
-					"functionCategory": "data",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "soundEffectName",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The root name of the sound effect.",
-							"sid": 500073525064596
-						},
-						{
-							"name": "counter",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The number to append to the sound effect name.",
-							"sid": 679757342982496
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 521291821817055,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "AUDIO_COUNTER",
-							"type": "string",
-							"initialValue": "audioCounter",
-							"comment": "The text to which we'll prepend the counter, to use for the audio tag.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 816341065732529
-						},
-						{
-							"eventType": "variable",
-							"name": "audioCounterTag",
-							"type": "string",
-							"initialValue": "",
-							"comment": "The tag to use when counting sound effect variations.",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 906870386485105
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Silently play an audio file..."
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 564709700192003,
-									"parameters": {
-										"variable": "audioCounterTag",
-										"value": "AUDIO_COUNTER & counter"
-									}
-								},
-								{
-									"id": "play-by-name",
-									"objectClass": "Audio",
-									"sid": 440470555963628,
-									"parameters": {
-										"folder": "sounds",
-										"audio-file-name": "soundEffectName & counter",
-										"loop": "not-looping",
-										"volume": "SILENT",
-										"stereo-pan": "DEFAULT_STEREO_PAN",
-										"tag-optional": "audioCounterTag"
-									}
-								}
-							],
-							"sid": 663856306735616
-						},
-						{
-							"eventType": "variable",
-							"name": "AUDIO_COUNTER_INCREMENTER",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "How much to increase the counter when counting sound effect variations.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 506309434998498
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-tag-playing",
-									"objectClass": "Audio",
-									"sid": 283893681481861,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If it exists, increase the counter and try again."
-								},
-								{
-									"type": "comment",
-									"text": "Stop the audio before recursively calling this function, otherwise we'll have a number of audio tracks being played equal to the depth of the call stack.",
-									"text-color": [
-										0.7843137254901961,
-										0.7843137254901961,
-										0.7843137254901961,
-										1
-									],
-									"background-color": [
-										0.39215686274509803,
-										0,
-										0,
-										1
-									]
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 160693751622811,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								},
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 520408035939993,
-									"parameters": {
-										"value": "Functions.countSoundEffectVarationsPrivate(soundEffectName, counter + AUDIO_COUNTER_INCREMENTER)"
-									}
-								}
-							],
-							"sid": 144299258529495
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 845470070467124
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If it doesn't exist, return the counter; that's the total number of variants of this sound effect."
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 588086391639167,
-									"parameters": {
-										"tag": "audioCounterTag"
-									}
-								},
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 516093967858530,
-									"parameters": {
-										"value": "counter"
-									}
-								}
-							],
-							"sid": 442874565516469
-						}
-					]
+					"sid": 475031808944228
 				}
 			],
 			"sid": 608494637955654

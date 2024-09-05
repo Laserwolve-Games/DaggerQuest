@@ -555,23 +555,13 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "EQUIPMENT_MODS_FUNCTION_MAP",
+			"name": "MODS_FUNCTION_MAP",
 			"type": "string",
-			"initialValue": "equipmentMods",
-			"comment": "The name of the equipment mods function map.",
+			"initialValue": "mods",
+			"comment": "The name of the mods function map.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 954951949438130
-		},
-		{
-			"eventType": "variable",
-			"name": "EQUIPMENT_PROBABILITY_TABLE",
-			"type": "string",
-			"initialValue": "equipment",
-			"comment": "The name of the equipment probability table.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 553775390233972
 		},
 		{
 			"eventType": "variable",
@@ -2280,9 +2270,9 @@
 								{
 									"id": "create-object-by-name",
 									"objectClass": "System",
-									"sid": 164429520714186,
+									"sid": 623143260349773,
 									"parameters": {
-										"object-name": "advancedRandom.WeightedByName(EQUIPMENT_PROBABILITY_TABLE) & SEPARATOR & LOOT_KEYWORD",
+										"object-name": "advancedRandom.WeightedByName(LayoutName) & SEPARATOR & LOOT_KEYWORD",
 										"layer": "background.LayerName",
 										"x": "x",
 										"y": "y",
@@ -18928,7 +18918,7 @@
 							"objectClass": "Functions",
 							"sid": 822755244839253,
 							"parameters": {
-								"name": "EQUIPMENT_MODS_FUNCTION_MAP",
+								"name": "MODS_FUNCTION_MAP",
 								"string": "modName",
 								"forward-params": "ALL_PARAMETERS"
 							}
@@ -19052,7 +19042,7 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
-							"functionName": "flatHealth",
+							"functionName": "Flat health",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19187,7 +19177,7 @@
 							]
 						},
 						{
-							"functionName": "flatSlash",
+							"functionName": "Flat slash damage",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19290,7 +19280,7 @@
 							]
 						},
 						{
-							"functionName": "flatStab",
+							"functionName": "Flat stab damage",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19393,7 +19383,7 @@
 							]
 						},
 						{
-							"functionName": "flatSlashAndStab",
+							"functionName": "Flat smash and stab damage",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19553,7 +19543,7 @@
 							]
 						},
 						{
-							"functionName": "flatSmash",
+							"functionName": "Flat smash damage",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19656,7 +19646,7 @@
 							]
 						},
 						{
-							"functionName": "flatArmor",
+							"functionName": "Flat armor",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19759,7 +19749,7 @@
 							]
 						},
 						{
-							"functionName": "flatManaRegen",
+							"functionName": "Flat mana regen",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",
@@ -19862,7 +19852,7 @@
 							]
 						},
 						{
-							"functionName": "flatPhysical",
+							"functionName": "Flat physical",
 							"functionDescription": "",
 							"functionCategory": "mods",
 							"functionReturnType": "none",

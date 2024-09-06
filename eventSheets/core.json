@@ -16949,7 +16949,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "If this object already has a shadow, do nothing"
+									"text": "If this object already has a shadow, do nothing."
 								}
 							],
 							"sid": 306819096486497
@@ -17044,16 +17044,6 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "SHADOW_BLUR_COLUMN_NAME",
-					"type": "string",
-					"initialValue": "shadowBlur",
-					"comment": "The name of the shadow blur column in the layout properties array.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 915441463218257
-				},
-				{
-					"eventType": "variable",
 					"name": "SHADOW_OPACITY_COLUMN_NAME",
 					"type": "string",
 					"initialValue": "shadowOpacity",
@@ -17078,115 +17068,16 @@
 					],
 					"actions": [
 						{
-							"customAction": "Set blur and opacity",
+							"id": "set-opacity",
 							"objectClass": "shadow",
-							"sid": 603086831320607,
-							"parameters": [
-								"Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_BLUR_COLUMN_NAME)",
-								"Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_OPACITY_COLUMN_NAME)"
-							]
+							"sid": 676204846964078,
+							"parameters": {
+								"opacity": "Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_OPACITY_COLUMN_NAME)"
+							}
 						}
 					],
 					"sid": 784344448043891,
 					"isOrBlock": true
-				},
-				{
-					"aceType": "action",
-					"aceName": "Set blur and opacity",
-					"objectClass": "shadow",
-					"functionDescription": "Set the blur and opacity of this shadow",
-					"functionCategory": "appearance",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "blur",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The horizontal and vertical blur to set on this shadow.",
-							"sid": 743635830076418
-						},
-						{
-							"name": "opacity",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The opacity to set on this shadow.",
-							"sid": 132466172888021
-						}
-					],
-					"eventType": "custom-ace-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-opacity",
-							"objectClass": "shadow",
-							"sid": 537066374539084,
-							"parameters": {
-								"opacity": "opacity"
-							}
-						}
-					],
-					"sid": 635544871794986,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "INTENSITY_PARAMETER_INDEX",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The index of the intensity parameter for the vertical and horizontal blur effects.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 157231855952369
-						},
-						{
-							"eventType": "variable",
-							"name": "BLURHORIZONTAL_EFFECT_NAME",
-							"type": "string",
-							"initialValue": "BlurHorizontal",
-							"comment": "The name of the horizontal blur effect.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 955365836919419
-						},
-						{
-							"eventType": "variable",
-							"name": "BLURVERTICAL_EFFECT_NAME",
-							"type": "string",
-							"initialValue": "BlurVertical",
-							"comment": "The name of the vertical blur effect.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 780438917303188
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 510498307208184,
-									"parameters": {
-										"effect": "BLURHORIZONTAL_EFFECT_NAME",
-										"parameter-index": "INTENSITY_PARAMETER_INDEX",
-										"value": "blur"
-									}
-								},
-								{
-									"id": "set-effect-parameter",
-									"objectClass": "shadow",
-									"sid": 566258340515244,
-									"parameters": {
-										"effect": "BLURVERTICAL_EFFECT_NAME",
-										"parameter-index": "INTENSITY_PARAMETER_INDEX",
-										"value": "blur"
-									}
-								}
-							],
-							"sid": 902709333650597
-						}
-					]
 				}
 			],
 			"sid": 538206850780870

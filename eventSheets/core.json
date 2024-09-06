@@ -555,10 +555,10 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "MODS_FUNCTION_MAP",
+			"name": "MODS_KEYWORD",
 			"type": "string",
 			"initialValue": "mods",
-			"comment": "The name of the mods function map.",
+			"comment": "The name of the mods function map and mods column.",
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 954951949438130
@@ -722,16 +722,6 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 984245048466264
-		},
-		{
-			"eventType": "variable",
-			"name": "MOD_TABLE_KEYWORD",
-			"type": "string",
-			"initialValue": "modTable",
-			"comment": "Used for creating and fetching mod tables.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 777004151880179
 		},
 		{
 			"eventType": "variable",
@@ -2648,10 +2638,10 @@
 												{
 													"id": "add-to-instvar",
 													"objectClass": "loot",
-													"sid": 144068863571095,
+													"sid": 926184835931928,
 													"parameters": {
 														"instance-variable": "mods",
-														"value": "((chosenMod & MOD_NAME_SEPARATOR) & Functions.arrayLookup(modsArray.ObjectTypeName, chosenMod, DESCRIPTION_KEYWORD)) & MOD_SEPARATOR"
+														"value": "chosenMod & MOD_NAME_SEPARATOR & mods.Get(chosenMod) & MOD_SEPARATOR"
 													}
 												}
 											],
@@ -7043,9 +7033,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "ability",
-											"sid": 935030040686227,
+											"sid": 578213082397273,
 											"parameters": {
-												"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), player.level - 1)",
+												"animation": "abilitiesArray.At(Functions.getColumnNumber(abilitiesArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), player.level - OFFSET)",
 												"from": "beginning"
 											}
 										}
@@ -18891,7 +18881,7 @@
 							"objectClass": "Functions",
 							"sid": 822755244839253,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "modName",
 								"forward-params": "ALL_PARAMETERS"
 							}

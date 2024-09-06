@@ -141,28 +141,6 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 682130553419063,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "mods.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 398876009325482
-						},
-						{
-							"id": "load",
-							"objectClass": "modsArray",
-							"sid": 368641761710437,
-							"parameters": {
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
 							"sid": 168667371891151,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -211,6 +189,28 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
+							"sid": 722782480464102,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "mods.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 336464539963689
+						},
+						{
+							"id": "load",
+							"objectClass": "mods",
+							"sid": 649081158678593,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
 							"sid": 292238343786003,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -251,7 +251,7 @@
 							"objectClass": "Functions",
 							"sid": 345890480257314,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatHealth\"",
 								"function": "Flat health"
 							}
@@ -261,7 +261,7 @@
 							"objectClass": "Functions",
 							"sid": 733642978878028,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatSlash\"",
 								"function": "Flat slash damage"
 							}
@@ -271,7 +271,7 @@
 							"objectClass": "Functions",
 							"sid": 829554034994622,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatStab\"",
 								"function": "Flat stab damage"
 							}
@@ -281,7 +281,7 @@
 							"objectClass": "Functions",
 							"sid": 255640528730017,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatSmash\"",
 								"function": "Flat smash damage"
 							}
@@ -291,7 +291,7 @@
 							"objectClass": "Functions",
 							"sid": 841984934461800,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatArmor\"",
 								"function": "Flat armor"
 							}
@@ -301,7 +301,7 @@
 							"objectClass": "Functions",
 							"sid": 717066286693037,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatManaRegen\"",
 								"function": "Flat mana regen"
 							}
@@ -311,7 +311,7 @@
 							"objectClass": "Functions",
 							"sid": 408565706906119,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatSlashAndStab\"",
 								"function": "Flat smash and stab damage"
 							}
@@ -321,7 +321,7 @@
 							"objectClass": "Functions",
 							"sid": 107983141996073,
 							"parameters": {
-								"name": "MODS_FUNCTION_MAP",
+								"name": "MODS_KEYWORD",
 								"string": "\"flatPhysical\"",
 								"function": "Flat physical"
 							}
@@ -382,10 +382,10 @@
 								{
 									"id": "createProbabilityTableFromJSON",
 									"objectClass": "advancedRandom",
-									"sid": 982969610450086,
+									"sid": 841573585892947,
 									"parameters": {
 										"name": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-										"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"mods\"), loopindex)"
+										"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MODS_KEYWORD), loopindex)"
 									}
 								}
 							],

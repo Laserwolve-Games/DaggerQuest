@@ -2032,15 +2032,6 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "item",
-									"sid": 229523708627566,
-									"parameters": {
-										"instance-variable": "modTable",
-										"value": "loot.modTable"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "item",
 									"sid": 953126175449190,
 									"parameters": {
 										"instance-variable": "sound",
@@ -2477,15 +2468,6 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 311223033691924,
-											"parameters": {
-												"instance-variable": "modTable",
-												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, MOD_TABLE_KEYWORD)"
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "loot",
 											"sid": 918191963118630,
 											"parameters": {
 												"instance-variable": "sound",
@@ -2657,10 +2639,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 599496262617947,
+													"sid": 917139202370045,
 													"parameters": {
 														"variable": "chosenMod",
-														"value": "advancedRandom.WeightedByName(loot.modTable)"
+														"value": "advancedRandom.WeightedByName(loot.simpleName)"
 													}
 												},
 												{
@@ -5299,15 +5281,6 @@
 															"parameters": {
 																"instance-variable": "classRestrictions",
 																"value": "item.classRestrictions"
-															}
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "loot",
-															"sid": 372579724498442,
-															"parameters": {
-																"instance-variable": "modTable",
-																"value": "item.modTable"
 															}
 														},
 														{

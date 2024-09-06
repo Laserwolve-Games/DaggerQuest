@@ -183,6 +183,28 @@
 							}
 						},
 						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 692820183468184,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "layoutProperties.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 412238467960310
+						},
+						{
+							"id": "load",
+							"objectClass": "layoutProperties",
+							"sid": 128909239749114,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
 							"type": "comment",
 							"text": "Set up dictionaries."
 						},
@@ -205,129 +227,6 @@
 							"objectClass": "soundEffectVariants",
 							"sid": 692478627582061,
 							"parameters": {
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Set up equipment probability tables."
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 929130485231107,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "farm.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 717876970549425
-						},
-						{
-							"id": "createProbabilityTableFromJSON",
-							"objectClass": "advancedRandom",
-							"sid": 754302262286185,
-							"parameters": {
-								"name": "\"farm\"",
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Set up mod probability tables."
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 225723945944825,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "marauders.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 244844200014212
-						},
-						{
-							"id": "createProbabilityTableFromJSON",
-							"objectClass": "advancedRandom",
-							"sid": 434988677872080,
-							"parameters": {
-								"name": "\"marauders\"",
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 812815737666572,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "simple1hWeapon.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 984429066230110
-						},
-						{
-							"id": "createProbabilityTableFromJSON",
-							"objectClass": "advancedRandom",
-							"sid": 100886547013066,
-							"parameters": {
-								"name": "\"simple1hWeapon\"",
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 194236765450076,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "simpleArmor.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 530992499598274
-						},
-						{
-							"id": "createProbabilityTableFromJSON",
-							"objectClass": "advancedRandom",
-							"sid": 131720019341860,
-							"parameters": {
-								"name": "\"simpleArmor\"",
-								"json": "AJAX.LastData"
-							}
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 258315814494523,
-							"parameters": {
-								"tag": "NOT_USED",
-								"file": "simpleShield.json"
-							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 810185524924919
-						},
-						{
-							"id": "createProbabilityTableFromJSON",
-							"objectClass": "advancedRandom",
-							"sid": 180851073588013,
-							"parameters": {
-								"name": "\"simpleShield\"",
 								"json": "AJAX.LastData"
 							}
 						},
@@ -428,7 +327,71 @@
 							}
 						}
 					],
-					"sid": 475031808944228
+					"sid": 475031808944228,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 479856848254122,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "layoutProperties.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Set up drop tables."
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 423576140995574,
+									"parameters": {
+										"name": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, \"dropTable\"), loopindex)"
+									}
+								}
+							],
+							"sid": 121768453785672
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 390296103376795,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "equipmentArray.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Set up drop tables."
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 982969610450086,
+									"parameters": {
+										"name": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, \"mods\"), loopindex)"
+									}
+								}
+							],
+							"sid": 896599934700102
+						}
+					]
 				}
 			],
 			"sid": 608494637955654

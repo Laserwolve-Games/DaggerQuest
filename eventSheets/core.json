@@ -10357,9 +10357,20 @@
 									"text": "Compensate for floating point math: https://github.com/Scirra/Construct-3-bugs/issues/5895"
 								},
 								{
+									"id": "set-size",
+									"objectClass": "body",
+									"sid": 629682986347352,
+									"parameters": {
+										"width": "round(Self.Width)",
+										"height": "round(Self.Height)"
+									}
+								},
+								{
 									"id": "set-scale",
 									"objectClass": "body",
 									"sid": 860146416336757,
+									"disabled": true,
+									"breakpoint": true,
 									"parameters": {
 										"scale": "ORIGINAL_SCALE"
 									}
@@ -17261,69 +17272,23 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "BLURHORIZONTAL_KEYWORD",
+					"name": "SHADOW_BLUR_COLUMN_NAME",
 					"type": "string",
-					"initialValue": "BlurHorizontal",
-					"comment": "The name of the horizontal blur effect.",
+					"initialValue": "shadowBlur",
+					"comment": "The name of the shadow blur column in the layout properties array.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 731637317415028
+					"sid": 915441463218257
 				},
 				{
 					"eventType": "variable",
-					"name": "BLURVERTICAL_KEYWORD",
+					"name": "SHADOW_OPACITY_COLUMN_NAME",
 					"type": "string",
-					"initialValue": "BlurVertical",
-					"comment": "The name of the vertical blur effect.",
+					"initialValue": "shadowOpacity",
+					"comment": "The name of the shadow opacity column in the layout properties array.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 740777317479943
-				},
-				{
-					"eventType": "variable",
-					"name": "INTENSITY_PARAMETER_INDEX",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The index of the intensity parameter for the vertical and horizontal blur effects.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 962533962401717
-				},
-				{
-					"eventType": "comment",
-					"text": "TODO: Create an array called layoutVariables, and SHADOW_OPACITY and BLUR_AMOUNT as columns.",
-					"text-color": [
-						0,
-						0,
-						0,
-						1
-					],
-					"background-color": [
-						1,
-						1,
-						0,
-						1
-					]
-				},
-				{
-					"eventType": "variable",
-					"name": "SHADOW_OPACITY",
-					"type": "number",
-					"initialValue": "50",
-					"comment": "The opacity of shadows.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 789627766539432
-				},
-				{
-					"eventType": "variable",
-					"name": "BLUR_AMOUNT",
-					"type": "number",
-					"initialValue": "75",
-					"comment": "The value for the intensity parameters of the vertical and horizontal blurs.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 178533299141402
+					"sid": 611966064383949
 				},
 				{
 					"eventType": "block",
@@ -17332,39 +17297,124 @@
 							"id": "on-created",
 							"objectClass": "shadow",
 							"sid": 726851021711244
+						},
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 824707174220293
 						}
 					],
 					"actions": [
 						{
+							"customAction": "Set blur and opacity",
+							"objectClass": "shadow",
+							"sid": 603086831320607,
+							"parameters": [
+								"Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_BLUR_COLUMN_NAME)",
+								"Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_OPACITY_COLUMN_NAME)"
+							]
+						}
+					],
+					"sid": 784344448043891,
+					"isOrBlock": true
+				},
+				{
+					"aceType": "action",
+					"aceName": "Set blur and opacity",
+					"objectClass": "shadow",
+					"functionDescription": "Set the blur and opacity of this shadow",
+					"functionCategory": "appearance",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "blur",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The horizontal and vertical blur to set on this shadow.",
+							"sid": 743635830076418
+						},
+						{
+							"name": "opacity",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The opacity to set on this shadow.",
+							"sid": 132466172888021
+						}
+					],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [
+						{
 							"id": "set-opacity",
 							"objectClass": "shadow",
-							"sid": 978014683944039,
+							"sid": 537066374539084,
 							"parameters": {
-								"opacity": "SHADOW_OPACITY"
-							}
-						},
-						{
-							"id": "set-effect-parameter",
-							"objectClass": "shadow",
-							"sid": 318678336382238,
-							"parameters": {
-								"effect": "BLURHORIZONTAL_KEYWORD",
-								"parameter-index": "INTENSITY_PARAMETER_INDEX",
-								"value": "BLUR_AMOUNT"
-							}
-						},
-						{
-							"id": "set-effect-parameter",
-							"objectClass": "shadow",
-							"sid": 755140766206619,
-							"parameters": {
-								"effect": "BLURVERTICAL_KEYWORD",
-								"parameter-index": "INTENSITY_PARAMETER_INDEX",
-								"value": "BLUR_AMOUNT"
+								"opacity": "opacity"
 							}
 						}
 					],
-					"sid": 784344448043891
+					"sid": 635544871794986,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "INTENSITY_PARAMETER_INDEX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The index of the intensity parameter for the vertical and horizontal blur effects.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 157231855952369
+						},
+						{
+							"eventType": "variable",
+							"name": "BLURHORIZONTAL_EFFECT_NAME",
+							"type": "string",
+							"initialValue": "BlurHorizontal",
+							"comment": "The name of the horizontal blur effect.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 955365836919419
+						},
+						{
+							"eventType": "variable",
+							"name": "BLURVERTICAL_EFFECT_NAME",
+							"type": "string",
+							"initialValue": "BlurVertical",
+							"comment": "The name of the vertical blur effect.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 780438917303188
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "shadow",
+									"sid": 510498307208184,
+									"parameters": {
+										"effect": "BLURHORIZONTAL_EFFECT_NAME",
+										"parameter-index": "INTENSITY_PARAMETER_INDEX",
+										"value": "blur"
+									}
+								},
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "shadow",
+									"sid": 566258340515244,
+									"parameters": {
+										"effect": "BLURVERTICAL_EFFECT_NAME",
+										"parameter-index": "INTENSITY_PARAMETER_INDEX",
+										"value": "blur"
+									}
+								}
+							],
+							"sid": 902709333650597
+						}
+					]
 				}
 			],
 			"sid": 538206850780870

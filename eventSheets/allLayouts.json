@@ -146,7 +146,7 @@
 							"conditions": [
 								{
 									"id": "is-tag-playing",
-									"objectClass": "Audio",
+									"objectClass": "audio",
 									"sid": 482402911025723,
 									"parameters": {
 										"tag": "MENU_OPEN_KEYWORD"
@@ -155,7 +155,7 @@
 								},
 								{
 									"id": "is-tag-playing",
-									"objectClass": "Audio",
+									"objectClass": "audio",
 									"sid": 361473182067264,
 									"parameters": {
 										"tag": "MENU_CLOSE_KEYWORD"
@@ -164,7 +164,7 @@
 								},
 								{
 									"id": "is-tag-playing",
-									"objectClass": "Audio",
+									"objectClass": "audio",
 									"sid": 498074685661197,
 									"parameters": {
 										"tag": "MOUSE_ON_KEYWORD"
@@ -173,7 +173,7 @@
 								},
 								{
 									"id": "is-tag-playing",
-									"objectClass": "Audio",
+									"objectClass": "audio",
 									"sid": 520520059184233,
 									"parameters": {
 										"tag": "MOUSE_OFF_KEYWORD"
@@ -184,7 +184,7 @@
 							"actions": [
 								{
 									"id": "play-at-object-by-name",
-									"objectClass": "Audio",
+									"objectClass": "audio",
 									"sid": 822535390898553,
 									"parameters": {
 										"folder": "sounds",
@@ -319,7 +319,7 @@
 									"conditions": [
 										{
 											"id": "is-tag-playing",
-											"objectClass": "Audio",
+											"objectClass": "audio",
 											"sid": 877558010731296,
 											"parameters": {
 												"tag": "MENU_OPEN_KEYWORD"
@@ -328,7 +328,7 @@
 										},
 										{
 											"id": "is-tag-playing",
-											"objectClass": "Audio",
+											"objectClass": "audio",
 											"sid": 930567918156069,
 											"parameters": {
 												"tag": "MENU_CLOSE_KEYWORD"
@@ -337,7 +337,7 @@
 										},
 										{
 											"id": "is-tag-playing",
-											"objectClass": "Audio",
+											"objectClass": "audio",
 											"sid": 524078195069222,
 											"parameters": {
 												"tag": "MOUSE_ON_KEYWORD"
@@ -346,7 +346,7 @@
 										},
 										{
 											"id": "is-tag-playing",
-											"objectClass": "Audio",
+											"objectClass": "audio",
 											"sid": 143136106382017,
 											"parameters": {
 												"tag": "MOUSE_OFF_KEYWORD"
@@ -357,7 +357,7 @@
 									"actions": [
 										{
 											"id": "play-at-object-by-name",
-											"objectClass": "Audio",
+											"objectClass": "audio",
 											"sid": 548461032944092,
 											"parameters": {
 												"folder": "sounds",
@@ -393,7 +393,7 @@
 			"actions": [
 				{
 					"id": "play-by-name",
-					"objectClass": "Audio",
+					"objectClass": "audio",
 					"sid": 505846026824406,
 					"parameters": {
 						"folder": "music",
@@ -406,7 +406,7 @@
 				},
 				{
 					"id": "fade-volume",
-					"objectClass": "Audio",
+					"objectClass": "audio",
 					"sid": 523140883955440,
 					"parameters": {
 						"tag": "LayoutName",
@@ -434,6 +434,47 @@
 				}
 			],
 			"sid": 105358788655215
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "mouse",
+					"sid": 593229216111534,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 393626500401294
+				}
+			],
+			"actions": [],
+			"sid": 425762242943441
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "mouse",
+					"sid": 496536976111524,
+					"parameters": {
+						"mouse-button": "left"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 747197733975141
+				}
+			],
+			"actions": [],
+			"sid": 744460692141917
 		}
 	],
 	"sid": 143332858877120

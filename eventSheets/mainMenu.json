@@ -39,7 +39,7 @@
 					"actions": [
 						{
 							"id": "play-at-object-by-name",
-							"objectClass": "Audio",
+							"objectClass": "audio",
 							"sid": 112808181784737,
 							"parameters": {
 								"folder": "sounds",
@@ -96,7 +96,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 384921091103022,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -118,7 +118,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 528457112839553,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -140,7 +140,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 168667371891151,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -162,7 +162,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 692820183468184,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -188,7 +188,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 722782480464102,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -210,7 +210,7 @@
 						},
 						{
 							"id": "request-project-file",
-							"objectClass": "AJAX",
+							"objectClass": "ajax",
 							"sid": 292238343786003,
 							"parameters": {
 								"tag": "NOT_USED",
@@ -330,6 +330,16 @@
 					"sid": 475031808944228,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "DROP_TABLE_COLUMN_NAME",
+							"type": "string",
+							"initialValue": "dropTable",
+							"comment": "The name of the drop table column.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 250169704116139
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -351,10 +361,10 @@
 								{
 									"id": "createProbabilityTableFromJSON",
 									"objectClass": "advancedRandom",
-									"sid": 423576140995574,
+									"sid": 482907148851059,
 									"parameters": {
 										"name": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-										"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, \"dropTable\"), loopindex)"
+										"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, DROP_TABLE_COLUMN_NAME), loopindex)"
 									}
 								}
 							],

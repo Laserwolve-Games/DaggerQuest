@@ -205,6 +205,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "IDENTIFIER_INCREMENTER",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "How much to increment the identifier every time we use its value.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 468456472745363
+		},
+		{
+			"eventType": "variable",
 			"name": "INFINITE_REPEAT_COUNT",
 			"type": "number",
 			"initialValue": "0",
@@ -1639,42 +1649,62 @@
 					"sid": 422173916162530
 				},
 				{
+					"eventType": "variable",
+					"name": "SOUND_KEYWORD",
+					"type": "string",
+					"initialValue": "sound",
+					"comment": "Used for finding the sound column.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 415537925983685
+				},
+				{
+					"eventType": "variable",
+					"name": "CLASS_RESTRICTIONS_KEYWORD",
+					"type": "string",
+					"initialValue": "classRestrictions",
+					"comment": "Used for looking up the class restrictions column.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 487856025578200
+				},
+				{
+					"eventType": "variable",
+					"name": "VALUE_KEYWORD",
+					"type": "string",
+					"initialValue": "value",
+					"comment": "Used for looking up the (coin) value column.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 115579957727233
+				},
+				{
+					"eventType": "variable",
+					"name": "LORE_KEYWORD",
+					"type": "string",
+					"initialValue": "lore",
+					"comment": "Used for looking up the lore column.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 974222412426707
+				},
+				{
+					"eventType": "variable",
+					"name": "TYPE_KEYWORD",
+					"type": "string",
+					"initialValue": "type",
+					"comment": "Used for looking up the type column.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 308606536072942
+				},
+				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "loot",
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-key-pressed",
-									"objectClass": "keyboard",
-									"sid": 629756992293274,
-									"parameters": {
-										"key": 83
-									}
-								},
-								{
-									"id": "is-in-preview",
-									"objectClass": "System",
-									"sid": 814944312378252
-								}
-							],
-							"actions": [
-								{
-									"customAction": "Spawn loot",
-									"objectClass": "loot",
-									"sid": 190615177543096,
-									"parameters": [
-										"player.X",
-										"player.Y"
-									]
-								}
-							],
-							"sid": 349355571470231
-						},
 						{
 							"aceType": "action",
 							"aceName": "Pick up loot",
@@ -2164,16 +2194,6 @@
 							"sid": 629339917694708
 						},
 						{
-							"eventType": "variable",
-							"name": "IDENTIFIER_INCREMENTER",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "How much to increment the identifier every time we use its value.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 492377505857497
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2315,66 +2335,6 @@
 									"sid": 698788283837046
 								},
 								{
-									"eventType": "variable",
-									"name": "SOUND_KEYWORD",
-									"type": "string",
-									"initialValue": "sound",
-									"comment": "Used for finding the sound column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 276801036037991
-								},
-								{
-									"eventType": "variable",
-									"name": "CLASS_RESTRICTIONS_KEYWORD",
-									"type": "string",
-									"initialValue": "classRestrictions",
-									"comment": "Used for looking up the class restrictions column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 672812115922078
-								},
-								{
-									"eventType": "variable",
-									"name": "VALUE_KEYWORD",
-									"type": "string",
-									"initialValue": "value",
-									"comment": "Used for looking up the (coin) value column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 628918691262061
-								},
-								{
-									"eventType": "variable",
-									"name": "LORE_KEYWORD",
-									"type": "string",
-									"initialValue": "lore",
-									"comment": "Used for looking up the lore column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 658365029922470
-								},
-								{
-									"eventType": "variable",
-									"name": "TYPE_KEYWORD",
-									"type": "string",
-									"initialValue": "type",
-									"comment": "Used for looking up the type column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 853559390438885
-								},
-								{
-									"eventType": "variable",
-									"name": "SIMPLE_NAME_INDEX",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The index of the simple name in an loot's name.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 986150827694303
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -2395,10 +2355,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 809676157091733,
+											"sid": 158254303707222,
 											"parameters": {
 												"instance-variable": "simpleName",
-												"value": "tokenat(loot.ObjectTypeName, SIMPLE_NAME_INDEX, SEPARATOR)"
+												"value": "tokenat(loot.ObjectTypeName, Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), SEPARATOR)"
 											}
 										},
 										{
@@ -2465,6 +2425,15 @@
 											}
 										},
 										{
+											"id": "set-instvar-value",
+											"objectClass": "loot",
+											"sid": 294058613065523,
+											"parameters": {
+												"instance-variable": "mods",
+												"value": "Functions.rollMods(loot.simpleName, loot.level)"
+											}
+										},
+										{
 											"type": "comment",
 											"text": "TODO: Push loot out of props, enemies, chests, etc. into which it gets launched.",
 											"text-color": [
@@ -2505,7 +2474,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 177400339242155,
+											"sid": 108057161204255,
 											"parameters": {
 												"instance-variable": "destinationX",
 												"value": "x + isometrifiedLootDistance * cos(theAngle)"
@@ -2514,7 +2483,7 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 494259382492173,
+											"sid": 292440661066943,
 											"parameters": {
 												"instance-variable": "destinationY",
 												"value": "y + isometrifiedLootDistance * sin(theAngle)"
@@ -2581,410 +2550,7 @@
 											}
 										}
 									],
-									"sid": 901434503445263,
-									"children": [
-										{
-											"eventType": "variable",
-											"name": "MIN_MODS",
-											"type": "number",
-											"initialValue": "1",
-											"comment": "The minimum number of mods an item can have.",
-											"isStatic": true,
-											"isConstant": true,
-											"sid": 668024448860613
-										},
-										{
-											"eventType": "variable",
-											"name": "MAX_MODS",
-											"type": "number",
-											"initialValue": "4",
-											"comment": "The maximum number of mods an item can have.",
-											"isStatic": true,
-											"isConstant": true,
-											"sid": 730752096524737
-										},
-										{
-											"eventType": "variable",
-											"name": "chosenMod",
-											"type": "string",
-											"initialValue": "",
-											"comment": "The mod chosen to be added to this loot.",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 659525883407581
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "repeat",
-													"objectClass": "System",
-													"sid": 212142802468849,
-													"parameters": {
-														"count": "round(random(MIN_MODS, MAX_MODS))"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 917139202370045,
-													"parameters": {
-														"variable": "chosenMod",
-														"value": "advancedRandom.WeightedByName(loot.simpleName)"
-													}
-												},
-												{
-													"id": "add-to-instvar",
-													"objectClass": "loot",
-													"sid": 926184835931928,
-													"parameters": {
-														"instance-variable": "mods",
-														"value": "chosenMod & MOD_NAME_SEPARATOR & mods.Get(chosenMod) & MOD_SEPARATOR"
-													}
-												}
-											],
-											"sid": 367290779675029
-										},
-										{
-											"eventType": "variable",
-											"name": "SQUARE_BRACKET_REGEX",
-											"type": "string",
-											"initialValue": "\\[.*?\\]",
-											"comment": "A regular expression to get everything between square brackets.",
-											"isStatic": true,
-											"isConstant": true,
-											"sid": 907920731146320
-										},
-										{
-											"eventType": "variable",
-											"name": "modValue",
-											"type": "string",
-											"initialValue": "",
-											"comment": "The text inside the brackets of a given mod.",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 472572988611120
-										},
-										{
-											"eventType": "variable",
-											"name": "EITHER_SQUARE_BRACKET_REGEX",
-											"type": "string",
-											"initialValue": "\\[|]",
-											"comment": "A regular expression to find either of the square brackets.",
-											"isStatic": false,
-											"isConstant": true,
-											"sid": 820584214059508
-										},
-										{
-											"eventType": "variable",
-											"name": "FIRST_BRACKETS_INDEX",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "The index of the first set of brackets in a mod.",
-											"isStatic": false,
-											"isConstant": true,
-											"sid": 876582893546574
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 312400459470038,
-													"parameters": {
-														"name": "NOT_USED",
-														"start-index": "LOOP_OFFSET",
-														"end-index": "RegexMatchCount(loot.mods, SQUARE_BRACKET_REGEX, GLOBAL_FLAG)"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "For each set of square brackets in this loot's mods..."
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 422697712981805,
-													"parameters": {
-														"variable": "modValue",
-														"value": "RegexReplace(RegexMatchAt(loot.mods, SQUARE_BRACKET_REGEX, NOT_USED, FIRST_BRACKETS_INDEX), EITHER_SQUARE_BRACKET_REGEX, GLOBAL_FLAG, BLANK)"
-													}
-												}
-											],
-											"sid": 966989976128445,
-											"children": [
-												{
-													"eventType": "variable",
-													"name": "LEFT_MOD_BRACKET",
-													"type": "string",
-													"initialValue": "{",
-													"comment": "The opening bracket for a mod's value.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 433742411802918
-												},
-												{
-													"eventType": "variable",
-													"name": "MOD_VALUE_SEPARATOR",
-													"type": "string",
-													"initialValue": "-",
-													"comment": "The character used to indicate a range in a numerical mod value.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 312891437536698
-												},
-												{
-													"eventType": "variable",
-													"name": "RIGHT_MOD_BRACKET",
-													"type": "string",
-													"initialValue": "}",
-													"comment": "The closing bracket for a mod's value.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 871509278374431
-												},
-												{
-													"eventType": "variable",
-													"name": "upperLimit",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "the highest number that this mod can roll",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 477790594462757
-												},
-												{
-													"eventType": "variable",
-													"name": "lowerLimit",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "the lowest number that this mod can roll",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 456145618346168
-												},
-												{
-													"eventType": "variable",
-													"name": "LOWER_LIMIT_INDEX",
-													"type": "number",
-													"initialValue": "0",
-													"comment": "The index of the lower limit value in a mod.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 375160585094854
-												},
-												{
-													"eventType": "variable",
-													"name": "UPPER_LIMIT_INDEX",
-													"type": "number",
-													"initialValue": "1",
-													"comment": "The index of the upper limit value in a mod.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 192966975246867
-												},
-												{
-													"eventType": "variable",
-													"name": "TEXT_VALUE_PARSER",
-													"type": "string",
-													"initialValue": "$",
-													"comment": "The character used to parse out text values in a mod.",
-													"isStatic": false,
-													"isConstant": true,
-													"sid": 569796741224732
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "evaluate-expression",
-															"objectClass": "System",
-															"sid": 642258476714542,
-															"parameters": {
-																"value": "Functions.contains(modValue, MOD_VALUE_SEPARATOR)"
-															}
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if this particular value contains the mod separator, it's a numeric value"
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 455189602678512,
-															"parameters": {
-																"variable": "lowerLimit",
-																"value": "int(tokenat(modValue, LOWER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
-															}
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 979292261895083,
-															"parameters": {
-																"variable": "upperLimit",
-																"value": "int(tokenat(modValue, UPPER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
-															}
-														},
-														{
-															"id": "setProbabilityTable",
-															"objectClass": "advancedRandom",
-															"sid": 200468836060762,
-															"parameters": {
-																"name": "MOD_VALUES_PROBABILITY_TABLE"
-															}
-														}
-													],
-													"sid": 826973677657853,
-													"children": [
-														{
-															"eventType": "comment",
-															"text": "The larger the numeric range, the rarer higher values will be. The higher RARITY_DIMINISHER is, the more common higher values will be. No matter what value RARITY_DIMINISHER is, each value will always be less common than the value before it, if there is one.\n\nWith RARITY_DIMISHER at 1, a mod like +{1-10} Slash Damage has an approximately 1.81% chance to roll 10."
-														},
-														{
-															"eventType": "variable",
-															"name": "RARITY_DIMINISHER",
-															"type": "number",
-															"initialValue": "1",
-															"comment": "How rare higher values are.",
-															"isStatic": false,
-															"isConstant": true,
-															"sid": 353331395993310
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "for",
-																	"objectClass": "System",
-																	"sid": 524844332325953,
-																	"parameters": {
-																		"name": "NOT_USED",
-																		"start-index": "lowerLimit",
-																		"end-index": "upperLimit"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "Set a numeric mod's value to a random number between the lower and upper limit."
-																},
-																{
-																	"id": "addProbabilityEntry",
-																	"objectClass": "advancedRandom",
-																	"sid": 762698251212616,
-																	"parameters": {
-																		"value": "loopindex",
-																		"weight": "upperLimit - loopindex + RARITY_DIMINISHER"
-																	}
-																}
-															],
-															"sid": 877294455484572
-														},
-														{
-															"eventType": "block",
-															"conditions": [],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "Add the loot's level to the value that was rolled."
-																},
-																{
-																	"id": "set-instvar-value",
-																	"objectClass": "loot",
-																	"sid": 426958147819425,
-																	"parameters": {
-																		"instance-variable": "mods",
-																		"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, BLANK, LEFT_MOD_BRACKET & advancedRandom.Weighted + loot.level & RIGHT_MOD_BRACKET)"
-																	}
-																}
-															],
-															"sid": 850746526515117
-														},
-														{
-															"eventType": "variable",
-															"name": "ANY_WEIGHT",
-															"type": "number",
-															"initialValue": "0",
-															"comment": "The weight value to specify any possible weight.",
-															"isStatic": false,
-															"isConstant": true,
-															"sid": 840192068997834
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "for",
-																	"objectClass": "System",
-																	"sid": 460489910358989,
-																	"parameters": {
-																		"name": "NOT_USED",
-																		"start-index": "lowerLimit",
-																		"end-index": "upperLimit"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"type": "comment",
-																	"text": "We can't remove an entire mod table, so remove the entries the same way we added them."
-																},
-																{
-																	"id": "removeProbabilityEntry",
-																	"objectClass": "advancedRandom",
-																	"sid": 409520588141066,
-																	"parameters": {
-																		"value": "loopindex",
-																		"weight": "ANY_WEIGHT"
-																	}
-																}
-															],
-															"sid": 517356190167672
-														}
-													]
-												},
-												{
-													"eventType": "comment",
-													"text": "For text mod values, select a choice at random"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 171821371458334
-														}
-													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "if it doesn't, it should contain a dollar sign, which means it's a text value"
-														},
-														{
-															"id": "set-instvar-value",
-															"objectClass": "loot",
-															"sid": 199657024574314,
-															"parameters": {
-																"instance-variable": "mods",
-																"value": "RegexReplace(Self.mods, SQUARE_BRACKET_REGEX, NOT_USED, LEFT_MOD_BRACKET & tokenat(modValue, floor(random(tokencount(modValue, TEXT_VALUE_PARSER))), TEXT_VALUE_PARSER) & RIGHT_MOD_BRACKET)"
-															}
-														}
-													],
-													"sid": 565565932763812
-												}
-											]
-										}
-									]
+									"sid": 901434503445263
 								}
 							]
 						},
@@ -5617,6 +5183,161 @@
 										}
 									],
 									"sid": 296519767505263
+								}
+							]
+						},
+						{
+							"aceType": "action",
+							"aceName": "Create item",
+							"objectClass": "item",
+							"functionDescription": "Creates an item in the specified slot with the specified parameters.",
+							"functionCategory": "creation",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "custom-ace-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object-by-name",
+									"objectClass": "System",
+									"sid": 417525468816501,
+									"parameters": {
+										"object-name": "advancedRandom.WeightedByName(LayoutName) & SEPARATOR & ITEM_KEYWORD",
+										"layer": "slot.LayerName",
+										"x": "slot.X",
+										"y": "slot.Y",
+										"create-hierarchy": false,
+										"template-name": "NOT_USED"
+									}
+								}
+							],
+							"sid": 746944252039162,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 155594652829314,
+											"parameters": {
+												"object": "item"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 117622260695988,
+											"parameters": {
+												"instance-variable": "identifier",
+												"value": "nextAvailableIdentifier"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "If we ever want to include loot on the layout, this will need to be in an 'on item create' trigger instead of here, like how it is for loot."
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 195945313781665,
+											"parameters": {
+												"variable": "nextAvailableIdentifier",
+												"value": "IDENTIFIER_INCREMENTER"
+											}
+										},
+										{
+											"customAction": "Attach item",
+											"objectClass": "player",
+											"sid": 709413224454914
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 574258161654315,
+											"parameters": {
+												"instance-variable": "simpleName",
+												"value": "tokenat(item.ObjectTypeName, Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), SEPARATOR)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 178680748272726,
+											"parameters": {
+												"instance-variable": "fullName",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, FULL_NAME_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 330986901941316,
+											"parameters": {
+												"instance-variable": "type",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, TYPE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 653966726352314,
+											"parameters": {
+												"instance-variable": "lore",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LORE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 454661774922378,
+											"parameters": {
+												"instance-variable": "level",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, LEVEL_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 870394034773867,
+											"parameters": {
+												"instance-variable": "value",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, VALUE_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 410369788221184,
+											"parameters": {
+												"instance-variable": "classRestrictions",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, CLASS_RESTRICTIONS_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 670679773288921,
+											"parameters": {
+												"instance-variable": "sound",
+												"value": "Functions.arrayLookup(equipmentArray.ObjectTypeName, Self.simpleName, SOUND_KEYWORD)"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "item",
+											"sid": 710065376111345,
+											"parameters": {
+												"instance-variable": "mods",
+												"value": "Functions.rollMods(item.simpleName, item.level)"
+											}
+										}
+									],
+									"sid": 741954876037252
 								}
 							]
 						}
@@ -10351,37 +10072,6 @@
 									"parameters": {
 										"frame-number": "body.AnimationFrame"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "Compensate for floating point math: https://github.com/Scirra/Construct-3-bugs/issues/5895"
-								},
-								{
-									"id": "set-size",
-									"objectClass": "body",
-									"sid": 629682986347352,
-									"parameters": {
-										"width": "round(Self.Width)",
-										"height": "round(Self.Height)"
-									}
-								},
-								{
-									"id": "set-scale",
-									"objectClass": "body",
-									"sid": 860146416336757,
-									"disabled": true,
-									"breakpoint": true,
-									"parameters": {
-										"scale": "ORIGINAL_SCALE"
-									}
-								},
-								{
-									"id": "set-scale",
-									"objectClass": "gear",
-									"sid": 408725487427424,
-									"parameters": {
-										"scale": "ORIGINAL_SCALE"
-									}
 								}
 							],
 							"sid": 560213321966011
@@ -14899,27 +14589,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "every-tick",
-									"objectClass": "System",
-									"sid": 569034226861118
-								}
-							],
-							"actions": [
-								{
-									"id": "set-scale",
-									"objectClass": "enemyBody",
-									"sid": 982229381081836,
-									"parameters": {
-										"scale": "ORIGINAL_SCALE"
-									}
-								}
-							],
-							"sid": 520308726052412
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "is-on-screen",
 									"objectClass": "enemyBody",
 									"sid": 258864942012861
@@ -19048,6 +18717,470 @@
 					]
 				},
 				{
+					"functionName": "rollMods",
+					"functionDescription": "Roll mods for an item or for loot.",
+					"functionCategory": "mods",
+					"functionReturnType": "string",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "simpleName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The simple name of the item or loot, used to find its probability table.",
+							"sid": 260644071645630
+						},
+						{
+							"name": "level",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The level of the item or loot.",
+							"sid": 666794511763192
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 994846633591348,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "rolledMods",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The final rolled mods to return.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 743262060186246
+						},
+						{
+							"eventType": "variable",
+							"name": "MIN_MODS",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The minimum number of mods.",
+							"isStatic": true,
+							"isConstant": true,
+							"sid": 562518471433723
+						},
+						{
+							"eventType": "variable",
+							"name": "MAX_MODS",
+							"type": "number",
+							"initialValue": "5",
+							"comment": "The maximum number of mods.",
+							"isStatic": true,
+							"isConstant": true,
+							"sid": 860828113099239
+						},
+						{
+							"eventType": "variable",
+							"name": "chosenMod",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The mod chosen to be added.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 334478850800198
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 866691147271147,
+									"parameters": {
+										"count": "floor(random(MIN_MODS, MAX_MODS))"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 713707749821915,
+									"parameters": {
+										"variable": "chosenMod",
+										"value": "advancedRandom.WeightedByName(simpleName)"
+									}
+								},
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 893764542023488,
+									"parameters": {
+										"variable": "rolledMods",
+										"value": "chosenMod & MOD_NAME_SEPARATOR & mods.Get(chosenMod) & MOD_SEPARATOR"
+									}
+								}
+							],
+							"sid": 573186648452441
+						},
+						{
+							"eventType": "variable",
+							"name": "SQUARE_BRACKET_REGEX",
+							"type": "string",
+							"initialValue": "\\[.*?\\]",
+							"comment": "A regular expression to get everything between square brackets.",
+							"isStatic": true,
+							"isConstant": true,
+							"sid": 872739626354822
+						},
+						{
+							"eventType": "variable",
+							"name": "modValue",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The text inside the brackets of a given mod.",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 554081483887785
+						},
+						{
+							"eventType": "variable",
+							"name": "EITHER_SQUARE_BRACKET_REGEX",
+							"type": "string",
+							"initialValue": "\\[|]",
+							"comment": "A regular expression to find either of the square brackets.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 888381989401716
+						},
+						{
+							"eventType": "variable",
+							"name": "FIRST_BRACKETS_INDEX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The index of the first set of brackets in a mod.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 500522585775702
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 385786995193967,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "RegexMatchCount(rolledMods, SQUARE_BRACKET_REGEX, GLOBAL_FLAG)"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "For each set of square brackets in the mods..."
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 304299648680549,
+									"parameters": {
+										"variable": "modValue",
+										"value": "RegexReplace(RegexMatchAt(rolledMods, SQUARE_BRACKET_REGEX, NOT_USED, FIRST_BRACKETS_INDEX), EITHER_SQUARE_BRACKET_REGEX, GLOBAL_FLAG, BLANK)"
+									}
+								}
+							],
+							"sid": 463692998182564,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "LEFT_MOD_BRACKET",
+									"type": "string",
+									"initialValue": "{",
+									"comment": "The opening bracket for a mod's value.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 480773908796987
+								},
+								{
+									"eventType": "variable",
+									"name": "MOD_VALUE_SEPARATOR",
+									"type": "string",
+									"initialValue": "-",
+									"comment": "The character used to indicate a range in a numerical mod value.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 259568662289147
+								},
+								{
+									"eventType": "variable",
+									"name": "RIGHT_MOD_BRACKET",
+									"type": "string",
+									"initialValue": "}",
+									"comment": "The closing bracket for a mod's value.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 714105290256604
+								},
+								{
+									"eventType": "variable",
+									"name": "upperLimit",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "the highest number that this mod can roll.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 638259768665288
+								},
+								{
+									"eventType": "variable",
+									"name": "lowerLimit",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "the lowest number that this mod can roll.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 676446061055694
+								},
+								{
+									"eventType": "variable",
+									"name": "LOWER_LIMIT_INDEX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The index of the lower limit value in a mod.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 869265796364780
+								},
+								{
+									"eventType": "variable",
+									"name": "UPPER_LIMIT_INDEX",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "The index of the upper limit value in a mod.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 930287206493739
+								},
+								{
+									"eventType": "variable",
+									"name": "TEXT_VALUE_PARSER",
+									"type": "string",
+									"initialValue": "$",
+									"comment": "The character used to parse out text values in a mod.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 712998100487982
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "evaluate-expression",
+											"objectClass": "System",
+											"sid": 782772119426446,
+											"parameters": {
+												"value": "Functions.contains(modValue, MOD_VALUE_SEPARATOR)"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "If this particular value contains the mod separator, it's a numeric value."
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 654568927236462,
+											"parameters": {
+												"variable": "lowerLimit",
+												"value": "int(tokenat(modValue, LOWER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 127804372539795,
+											"parameters": {
+												"variable": "upperLimit",
+												"value": "int(tokenat(modValue, UPPER_LIMIT_INDEX, MOD_VALUE_SEPARATOR))"
+											}
+										},
+										{
+											"id": "setProbabilityTable",
+											"objectClass": "advancedRandom",
+											"sid": 124623512949050,
+											"parameters": {
+												"name": "MOD_VALUES_PROBABILITY_TABLE"
+											}
+										}
+									],
+									"sid": 375470538398846,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "The larger the numeric range, the rarer higher values will be. The higher RARITY_DIMINISHER is, the more common higher values will be. No matter what value RARITY_DIMINISHER is, each value will always be less common than the value before it, if there is one.\n\nWith RARITY_DIMISHER at 1, a mod like +{1-10} Slash Damage has an approximately 1.81% chance to roll 10."
+										},
+										{
+											"eventType": "variable",
+											"name": "RARITY_DIMINISHER",
+											"type": "number",
+											"initialValue": "1",
+											"comment": "How rare higher values are.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 882221285934453
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 295617638063839,
+													"parameters": {
+														"name": "NOT_USED",
+														"start-index": "lowerLimit",
+														"end-index": "upperLimit"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Set a numeric mod's value to a random number between the lower and upper limit."
+												},
+												{
+													"id": "addProbabilityEntry",
+													"objectClass": "advancedRandom",
+													"sid": 502740442088630,
+													"parameters": {
+														"value": "loopindex",
+														"weight": "upperLimit - loopindex + RARITY_DIMINISHER"
+													}
+												}
+											],
+											"sid": 926311016945143
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Add the level to the value that was rolled."
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 296140649361252,
+													"parameters": {
+														"variable": "rolledMods",
+														"value": "RegexReplace(rolledMods, SQUARE_BRACKET_REGEX, BLANK, LEFT_MOD_BRACKET & advancedRandom.Weighted + level & RIGHT_MOD_BRACKET)"
+													}
+												}
+											],
+											"sid": 493154065762625
+										},
+										{
+											"eventType": "variable",
+											"name": "ANY_WEIGHT",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "The weight value to specify any possible weight.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 930655386295397
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 756255830030117,
+													"parameters": {
+														"name": "NOT_USED",
+														"start-index": "lowerLimit",
+														"end-index": "upperLimit"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "We can't remove an entire mod table, so remove the entries the same way we added them."
+												},
+												{
+													"id": "removeProbabilityEntry",
+													"objectClass": "advancedRandom",
+													"sid": 284254350011314,
+													"parameters": {
+														"value": "loopindex",
+														"weight": "ANY_WEIGHT"
+													}
+												}
+											],
+											"sid": 245346086245983
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "For text mod values, select a choice at random"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 797528755004474
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "if it doesn't, it should contain a dollar sign, which means it's a text value"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 561822246364498,
+											"parameters": {
+												"variable": "rolledMods",
+												"value": "RegexReplace(rolledMods, SQUARE_BRACKET_REGEX, NOT_USED, LEFT_MOD_BRACKET & tokenat(modValue, floor(random(tokencount(modValue, TEXT_VALUE_PARSER))), TEXT_VALUE_PARSER) & RIGHT_MOD_BRACKET)"
+											}
+										}
+									],
+									"sid": 596941283515820
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 425010318961967,
+									"parameters": {
+										"value": "rolledMods"
+									}
+								},
+								{
+									"id": "reset-eventvar",
+									"objectClass": "System",
+									"sid": 903299833372877,
+									"parameters": {
+										"variable": "rolledMods"
+									}
+								}
+							],
+							"sid": 504648192217687
+						}
+					]
+				},
+				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "mod functions",
@@ -20690,6 +20823,94 @@
 				}
 			],
 			"sid": 992252066588856
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "debugging",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 492750923603749
+						}
+					],
+					"actions": [],
+					"sid": 745920046471131,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 914167296613455,
+									"parameters": {
+										"key": 83
+									}
+								}
+							],
+							"actions": [
+								{
+									"customAction": "Spawn loot",
+									"objectClass": "loot",
+									"sid": 597926666036654,
+									"parameters": [
+										"player.X",
+										"player.Y"
+									]
+								}
+							],
+							"sid": 969354686321163
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 886099278131633,
+									"parameters": {
+										"key": 88
+									}
+								},
+								{
+									"id": "is-on-layer",
+									"objectClass": "slot",
+									"sid": 832644823675538,
+									"parameters": {
+										"layer": "inventoryMenuStatue.LayerName"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "slot",
+									"sid": 701287296365376,
+									"parameters": {
+										"instance-variable": "identifier",
+										"comparison": 0,
+										"value": "EMPTY"
+									}
+								}
+							],
+							"actions": [
+								{
+									"customAction": "Create item",
+									"objectClass": "item",
+									"sid": 180285297371054
+								}
+							],
+							"sid": 605474281613530
+						}
+					]
+				}
+			],
+			"sid": 387135750965832
 		}
 	],
 	"sid": 318845921999986

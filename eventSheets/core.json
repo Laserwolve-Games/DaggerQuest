@@ -934,6 +934,129 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-end-of-layout",
+							"objectClass": "System",
+							"sid": 708817168014601
+						},
+						{
+							"id": "is-on-layer",
+							"objectClass": "item",
+							"sid": 344586349780347,
+							"parameters": {
+								"layer": "merchantMenuStatue.LayerName"
+							}
+						},
+						{
+							"id": "pick-parent",
+							"objectClass": "item",
+							"sid": 583499616618142,
+							"parameters": {
+								"parent": "slot",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Clear out a merchant's inventory when leaving an area."
+						},
+						{
+							"id": "destroy",
+							"objectClass": "item",
+							"sid": 307137925994937
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "slot",
+							"sid": 747546398665996,
+							"parameters": {
+								"instance-variable": "identifier",
+								"value": "EMPTY"
+							}
+						}
+					],
+					"sid": 818049002714624
+				},
+				{
+					"eventType": "variable",
+					"name": "NUMBER_OF_ITEMS",
+					"type": "number",
+					"initialValue": "5",
+					"comment": "How many items merchants have for sale.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 548730424882668
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 572410486613952
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "npc",
+							"sid": 352575532364725,
+							"parameters": {
+								"instance-variable": "isMerchant"
+							}
+						},
+						{
+							"id": "repeat",
+							"objectClass": "System",
+							"sid": 335563688632363,
+							"parameters": {
+								"count": "NUMBER_OF_ITEMS"
+							}
+						},
+						{
+							"id": "is-on-layer",
+							"objectClass": "slot",
+							"sid": 930717040067079,
+							"parameters": {
+								"layer": "merchantMenuStatue.LayerName"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "slot",
+							"sid": 678370724431065,
+							"parameters": {
+								"instance-variable": "identifier",
+								"comparison": 0,
+								"value": "EMPTY"
+							}
+						},
+						{
+							"id": "pick-nth-instance",
+							"objectClass": "System",
+							"sid": 502814728101413,
+							"parameters": {
+								"object": "slot",
+								"instance": "FIRST_INSTANCE"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "When we enter an area, if there's a merchant, fill up the first NUMBER_OF_ITEMS merchant menu slots with items."
+						},
+						{
+							"customAction": "Create item",
+							"objectClass": "item",
+							"sid": 972211154463286
+						}
+					],
+					"sid": 375923207543477
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "pick-by-comparison",
 							"objectClass": "System",
 							"sid": 865837950108649,
@@ -1839,14 +1962,6 @@
 													"customAction": "Set variables from loot",
 													"objectClass": "item",
 													"sid": 930387033637794
-												},
-												{
-													"customAction": "Queue gear management",
-													"objectClass": "player",
-													"sid": 444509161256297,
-													"parameters": [
-														true
-													]
 												}
 											],
 											"sid": 860348264348583
@@ -1896,7 +2011,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "if auto equip is disabled, or there's no empty slots matching the item's type, spawn the item in the first empty inventory slot."
+											"text": "If auto equip is disabled, or there's no empty slots matching the item's type, spawn the item in the first empty inventory slot."
 										},
 										{
 											"id": "create-object-by-name",
@@ -2068,21 +2183,9 @@
 									}
 								},
 								{
-									"id": "add-child",
-									"objectClass": "slot",
-									"sid": 209705002780629,
-									"parameters": {
-										"child": "item",
-										"transform-x": true,
-										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": true
-									}
+									"customAction": "Attach item",
+									"objectClass": "player",
+									"sid": 166370694799181
 								},
 								{
 									"id": "destroy",
@@ -5037,17 +5140,17 @@
 								{
 									"id": "add-child",
 									"objectClass": "slot",
-									"sid": 889314885761894,
+									"sid": 145837397070953,
 									"parameters": {
 										"child": "item",
 										"transform-x": true,
 										"transform-y": true,
-										"transform-w": false,
-										"transform-h": false,
-										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
+										"transform-w": true,
+										"transform-h": true,
+										"transform-a": true,
+										"transform-o": true,
+										"transform-z-elevation": true,
+										"transform-visibility": true,
 										"destroy-with-parent": true
 									}
 								}
@@ -20895,6 +20998,15 @@
 										"instance-variable": "identifier",
 										"comparison": 0,
 										"value": "EMPTY"
+									}
+								},
+								{
+									"id": "pick-nth-instance",
+									"objectClass": "System",
+									"sid": 862887428349669,
+									"parameters": {
+										"object": "slot",
+										"instance": "FIRST_INSTANCE"
 									}
 								}
 							],

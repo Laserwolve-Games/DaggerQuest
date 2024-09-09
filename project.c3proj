@@ -43,6 +43,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Camera3D",
+			"name": "3D camera",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Dictionary",
 			"name": "Dictionary",
 			"author": "Scirra",
@@ -244,7 +251,8 @@
 					"gearQueueArray",
 					"soundEffectVariants",
 					"layoutProperties",
-					"mods"
+					"mods",
+					"3DCamera"
 				],
 				"subfolders": [],
 				"name": "peripherals"
@@ -1325,7 +1333,7 @@
 		"framerateMode": "vsync",
 		"sampling": "trilinear",
 		"downscaling": "low",
-		"renderingMode": "2d",
+		"renderingMode": "auto",
 		"anisotropicFiltering": "16x",
 		"zNear": 1,
 		"zFar": 10000,

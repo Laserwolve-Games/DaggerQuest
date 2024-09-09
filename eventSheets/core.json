@@ -16985,6 +16985,46 @@
 					"sid": 611966064383949
 				},
 				{
+					"eventType": "variable",
+					"name": "BLURHORIZONTAL_EFFECT_NAME",
+					"type": "string",
+					"initialValue": "BlurHorizontal",
+					"comment": "The name of the horizontal blur effect.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 457255383309763
+				},
+				{
+					"eventType": "variable",
+					"name": "BLURVERTICAL_EFFECT_NAME",
+					"type": "string",
+					"initialValue": "BlurVertical",
+					"comment": "The name of the vertical blur effect.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 498523278491456
+				},
+				{
+					"eventType": "variable",
+					"name": "INTENSITY_PARAMETER_INDEX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The index of the intensity parameter on the blur effects.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 680730105349972
+				},
+				{
+					"eventType": "variable",
+					"name": "INTENSITY_VALUE",
+					"type": "number",
+					"initialValue": "75",
+					"comment": "The value of intensity parameter on the blur effects.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 975766573424522
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -17005,6 +17045,26 @@
 							"sid": 676204846964078,
 							"parameters": {
 								"opacity": "Functions.arrayLookup(layoutProperties.ObjectTypeName, LayoutName, SHADOW_OPACITY_COLUMN_NAME)"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "shadow",
+							"sid": 571114663568365,
+							"parameters": {
+								"effect": "BLURHORIZONTAL_EFFECT_NAME",
+								"parameter-index": "INTENSITY_PARAMETER_INDEX",
+								"value": "INTENSITY_VALUE"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "shadow",
+							"sid": 498878073670909,
+							"parameters": {
+								"effect": "BLURVERTICAL_EFFECT_NAME",
+								"parameter-index": "INTENSITY_PARAMETER_INDEX",
+								"value": "INTENSITY_VALUE"
 							}
 						}
 					],

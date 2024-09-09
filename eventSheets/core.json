@@ -905,7 +905,7 @@
 					"name": "PORTRAIT_KEYWORD",
 					"type": "string",
 					"initialValue": "portrait",
-					"comment": "Used for interacting with the portrait layer.",
+					"comment": "Used for spawning portraits",
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 455865873325850
@@ -1104,67 +1104,55 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-any-playing",
-							"objectClass": "portrait",
-							"sid": 259434858447069,
-							"behaviorType": "Tween",
-							"isInverted": true
-						},
-						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 569871185373821,
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 786597899812521,
 							"parameters": {
-								"object": "npc",
-								"expression": "npc.simpleName",
-								"comparison": 0,
-								"value": "player.talkingToNpc"
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "dialog"
 							}
 						},
 						{
-							"id": "pick-children",
-							"objectClass": "npc",
-							"sid": 141990365338759,
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 111004917854619,
 							"parameters": {
-								"child": "npcBody",
-								"which": "own"
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "portrait"
 							}
 						}
 					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Don't execute if the portrait is fading. Pick only the NPC and corresponding body that the player is talking to, to check if they were clicked in the next subevent."
-						}
-					],
-					"sid": 976300196461213,
+					"actions": [],
+					"sid": 538678946599328,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 365632780391333,
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 301096301517968,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "dialog"
+										"object": "npc",
+										"expression": "npc.simpleName",
+										"comparison": 0,
+										"value": "player.talkingToNpc"
 									}
 								},
 								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 673643516057644,
+									"id": "pick-children",
+									"objectClass": "npc",
+									"sid": 875895456284472,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "portrait"
+										"child": "npcBody",
+										"which": "own"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 413801469471723,
+							"sid": 286681303548417,
 							"children": [
 								{
 									"eventType": "variable",
@@ -1174,7 +1162,7 @@
 									"comment": "By how much to increase the dialog counter for each NPC dialog.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 127504278995474
+									"sid": 736250635607952
 								},
 								{
 									"eventType": "block",
@@ -1182,7 +1170,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "npc",
-											"sid": 201582184752954,
+											"sid": 791931817773606,
 											"parameters": {
 												"instance-variable": "dialogCounter",
 												"comparison": 2,
@@ -1194,15 +1182,15 @@
 										{
 											"id": "stop",
 											"objectClass": "audio",
-											"sid": 899283685607790,
+											"sid": 833732243940148,
 											"parameters": {
-												"tag": "dialog.ObjectTypeName"
+												"tag": "dialogStatue.LayerName"
 											}
 										},
 										{
 											"id": "add-to-instvar",
 											"objectClass": "npc",
-											"sid": 251274529179193,
+											"sid": 250131125017720,
 											"parameters": {
 												"instance-variable": "dialogCounter",
 												"value": "DIALOG_COUNTER_INCREMENTER"
@@ -1211,7 +1199,7 @@
 										{
 											"id": "set-text",
 											"objectClass": "dialogText",
-											"sid": 908771638481529,
+											"sid": 355211372861699,
 											"parameters": {
 												"text": "Functions.arrayLookup(npcDialogArray.ObjectTypeName, npc.simpleName & npc.dialogCounter, MESSAGE_COLUMN_HEADER)"
 											}
@@ -1219,18 +1207,18 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "audio",
-											"sid": 156889263494670,
+											"sid": 800846688662223,
 											"parameters": {
 												"folder": "sounds",
-												"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
+												"audio-file-name": "dialogStatue.LayerName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 												"loop": "not-looping",
 												"volume": "dialogVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
-												"tag-optional": "dialog.ObjectTypeName"
+												"tag-optional": "dialogStatue.LayerName"
 											}
 										}
 									],
-									"sid": 311090975793726
+									"sid": 812192629190320
 								},
 								{
 									"eventType": "block",
@@ -1238,7 +1226,7 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 343554691022423
+											"sid": 347065784074945
 										}
 									],
 									"actions": [
@@ -1248,36 +1236,15 @@
 										},
 										{
 											"callFunction": "Close dialog",
-											"sid": 625554042063782
+											"sid": 759704437023123
 										}
 									],
-									"sid": 455608331835792
+									"sid": 141468924164146
 								}
-							],
-							"isOrBlock": true
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-tick",
-							"objectClass": "System",
-							"sid": 910099168097387
+							]
 						}
 					],
-					"actions": [
-						{
-							"id": "set-opacity",
-							"objectClass": "dialog",
-							"sid": 225337882686273,
-							"parameters": {
-								"opacity": "portrait.Opacity"
-							}
-						}
-					],
-					"sid": 377042677871573
+					"isOrBlock": true
 				},
 				{
 					"eventType": "variable",
@@ -1373,14 +1340,14 @@
 						{
 							"id": "play-by-name",
 							"objectClass": "audio",
-							"sid": 314723946411425,
+							"sid": 990141708263455,
 							"parameters": {
 								"folder": "sounds",
-								"audio-file-name": "dialog.ObjectTypeName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
+								"audio-file-name": "dialogStatue.LayerName & FOLDER_SEPARATOR & npc.simpleName & npc.dialogCounter",
 								"loop": "not-looping",
 								"volume": "dialogVolume",
 								"stereo-pan": "DEFAULT_STEREO_PAN",
-								"tag-optional": "dialog.ObjectTypeName"
+								"tag-optional": "dialogStatue.LayerName"
 							}
 						},
 						{
@@ -1412,21 +1379,27 @@
 							]
 						},
 						{
-							"callFunction": "Open layer",
-							"sid": 799311368365338,
-							"parameters": [
-								"dialog.LayerName"
-							]
+							"id": "load-object-images-by-name",
+							"objectClass": "System",
+							"sid": 616123840601404,
+							"parameters": {
+								"object": "npc.simpleName & SEPARATOR & PORTRAIT_KEYWORD"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 285707953497406
 						},
 						{
 							"id": "create-object-by-name",
 							"objectClass": "System",
-							"sid": 278456294093376,
+							"sid": 667234690680426,
 							"parameters": {
 								"object-name": "npc.simpleName & SEPARATOR & PORTRAIT_KEYWORD",
-								"layer": "PORTRAIT_KEYWORD",
+								"layer": "dialogStatue.LayerName",
 								"x": "PORTRAIT_POSITION",
-								"y": "ViewportBottom(PORTRAIT_KEYWORD) + VIEWPORT_OFFSET",
+								"y": "ViewportBottom(dialogStatue.LayerName) + VIEWPORT_OFFSET",
 								"create-hierarchy": false,
 								"template-name": "NOT_USED"
 							}
@@ -1453,45 +1426,27 @@
 								},
 								{
 									"id": "add-child",
-									"objectClass": "dialog",
-									"sid": 595127476977745,
+									"objectClass": "dialogStatue",
+									"sid": 126789368396386,
 									"parameters": {
 										"child": "portrait",
-										"transform-x": true,
-										"transform-y": true,
+										"transform-x": false,
+										"transform-y": false,
 										"transform-w": false,
 										"transform-h": false,
 										"transform-a": false,
-										"transform-o": false,
-										"transform-z-elevation": false,
-										"transform-visibility": false,
-										"destroy-with-parent": false
+										"transform-o": true,
+										"transform-z-elevation": true,
+										"transform-visibility": true,
+										"destroy-with-parent": true
 									}
 								},
 								{
-									"id": "set-opacity",
-									"objectClass": "portrait",
-									"sid": 644081884351199,
-									"parameters": {
-										"opacity": "TRANSPARENT_OPACITY"
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "portrait",
-									"sid": 332179319537572,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "NOT_USED",
-										"property": "offsetOpacity",
-										"end-value": "SOLID_OPACITY",
-										"time": "MENU_FADE_TIME",
-										"ease": "noease",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "TWEEN_REPEAT_COUNT"
-									}
+									"callFunction": "Open layer",
+									"sid": 657682618112612,
+									"parameters": [
+										"dialogStatue.LayerName"
+									]
 								}
 							],
 							"sid": 547973787915997
@@ -1615,9 +1570,9 @@
 						{
 							"id": "fade-volume",
 							"objectClass": "audio",
-							"sid": 205747362782141,
+							"sid": 555818826406892,
 							"parameters": {
-								"tag": "dialog.ObjectTypeName",
+								"tag": "dialogStatue.LayerName",
 								"db": "SILENT",
 								"duration": "AUDIO_FADE_TIME",
 								"ending": "stop"
@@ -1634,40 +1589,20 @@
 						},
 						{
 							"callFunction": "Close layer",
-							"sid": 365371944002769,
+							"sid": 324266458339586,
 							"parameters": [
-								"dialog.LayerName"
+								"dialogStatue.LayerName"
 							]
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "portrait",
-							"sid": 810971072777343,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "NOT_USED",
-								"property": "offsetOpacity",
-								"end-value": "TRANSPARENT_OPACITY",
-								"time": "MENU_FADE_TIME",
-								"ease": "noease",
-								"destroy-on-complete": "yes",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "TWEEN_REPEAT_COUNT"
-							}
 						},
 						{
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
-							"sid": 941566309323723
+							"sid": 727121147668691
 						},
 						{
-							"id": "set-text",
-							"objectClass": "dialogText",
-							"sid": 361022811840171,
-							"parameters": {
-								"text": "BLANK"
-							}
+							"id": "destroy",
+							"objectClass": "portrait",
+							"sid": 651524514670351
 						},
 						{
 							"type": "comment",
@@ -7812,6 +7747,10 @@
 															"text": "If the mouse isn't over any of the aforementioned, reset 'uidOfClicked' and walk there normally."
 														},
 														{
+															"callFunction": "Close dialog",
+															"sid": 377781022645989
+														},
+														{
 															"id": "reset-eventvar",
 															"objectClass": "System",
 															"sid": 625913891285005,
@@ -7893,9 +7832,31 @@
 																		"object": "lootChest"
 																	},
 																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 418331254772091,
+																	"parameters": {
+																		"object": "portrait"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "mouse",
+																	"sid": 707365191010933,
+																	"parameters": {
+																		"object": "dialog"
+																	},
+																	"isInverted": true
 																}
 															],
 															"actions": [
+																{
+																	"callFunction": "Close dialog",
+																	"sid": 162711803994716
+																},
 																{
 																	"id": "reset-eventvar",
 																	"objectClass": "System",
@@ -8307,10 +8268,6 @@
 							"eventType": "custom-ace-block",
 							"conditions": [],
 							"actions": [
-								{
-									"callFunction": "Close dialog",
-									"sid": 975379167355425
-								},
 								{
 									"id": "move-to-position",
 									"objectClass": "player",
@@ -11839,7 +11796,7 @@
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,
-							"functionIsAsync": false,
+							"functionIsAsync": true,
 							"functionParameters": [
 								{
 									"name": "menuName",
@@ -11850,7 +11807,19 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 112140602888784,
+									"parameters": {
+										"object": "statue",
+										"expression": "statue.LayerName",
+										"comparison": 0,
+										"value": "menuName"
+									}
+								}
+							],
 							"actions": [
 								{
 									"type": "comment",
@@ -11874,11 +11843,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 719695767407431,
+											"sid": 585645722562947,
 											"parameters": {
 												"variable": "menuName",
 												"comparison": 1,
-												"value": "dialog.LayerName"
+												"value": "dialogStatue.LayerName"
 											}
 										},
 										{
@@ -11929,19 +11898,7 @@
 								},
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 850863662822771,
-											"parameters": {
-												"object": "statue",
-												"expression": "statue.LayerName",
-												"comparison": 0,
-												"value": "menuName"
-											}
-										}
-									],
+									"conditions": [],
 									"actions": [
 										{
 											"id": "tween-one-property",
@@ -11976,32 +11933,6 @@
 										}
 									],
 									"sid": 403434950977723
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 550739162715412
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "This is used by the dialog window, which doesn't have a statue."
-										},
-										{
-											"id": "set-layer-visible",
-											"objectClass": "System",
-											"sid": 857955720578545,
-											"parameters": {
-												"layer": "menuName",
-												"visibility": "invisible"
-											}
-										}
-									],
-									"sid": 687146572059198
 								}
 							]
 						},
@@ -12022,21 +11953,24 @@
 								}
 							],
 							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
+							"conditions": [
 								{
-									"id": "set-layer-interactive",
+									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 284534014871021,
+									"sid": 273068239987896,
 									"parameters": {
-										"layer": "menuName",
-										"interactive": true
+										"object": "statue",
+										"expression": "statue.LayerName",
+										"comparison": 0,
+										"value": "menuName"
 									}
-								},
+								}
+							],
+							"actions": [
 								{
 									"id": "set-layer-visible",
 									"objectClass": "System",
-									"sid": 883088108301507,
+									"sid": 178502549753556,
 									"parameters": {
 										"layer": "menuName",
 										"visibility": "visible"
@@ -12051,11 +11985,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 878308593772301,
+											"sid": 158827811441845,
 											"parameters": {
 												"variable": "menuName",
 												"comparison": 1,
-												"value": "dialog.LayerName"
+												"value": "dialogStatue.LayerName"
 											}
 										},
 										{
@@ -12089,10 +12023,6 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "The NPC dialog will play as soon as the dialog window opens, so the menu open sound wouldn't be necessary."
-										},
-										{
 											"id": "play-by-name",
 											"objectClass": "audio",
 											"sid": 980524320326130,
@@ -12110,19 +12040,7 @@
 								},
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 591454638276414,
-											"parameters": {
-												"object": "statue",
-												"expression": "statue.LayerName",
-												"comparison": 0,
-												"value": "menuName"
-											}
-										}
-									],
+									"conditions": [],
 									"actions": [
 										{
 											"id": "tween-one-property",
@@ -12139,6 +12057,20 @@
 												"loop": "no",
 												"ping-pong": "no",
 												"repeat-count": "TWEEN_REPEAT_COUNT"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 253426471654652
+										},
+										{
+											"id": "set-layer-interactive",
+											"objectClass": "System",
+											"sid": 754026251697858,
+											"parameters": {
+												"layer": "menuName",
+												"interactive": true
 											}
 										}
 									],

@@ -11721,6 +11721,134 @@
 										}
 									],
 									"sid": 227300752950169
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-key-pressed",
+											"objectClass": "keyboard",
+											"sid": 699207678517697,
+											"parameters": {
+												"key": 90
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "TODO: passive tree features:\nMake sure we can click on the passive notes.\nMake sure everything goes to other areas smoothly.\nMake a skybox.\nSet the camera to be on the last specced passive node.\nUse something to connect the passive nodes.\nLerp camera movement around the passive tree.",
+											"text-color": [
+												0,
+												0,
+												0,
+												1
+											],
+											"background-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0,
+												1
+											]
+										}
+									],
+									"sid": 816961425935457,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "layer-is-visible",
+													"objectClass": "System",
+													"sid": 758499774577628,
+													"parameters": {
+														"layer": "\"passives\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 874957435427477,
+													"parameters": {
+														"layer": "\"passives\"",
+														"visibility": "invisible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 987471096155298,
+													"parameters": {
+														"layer": "\"passives\"",
+														"interactive": false
+													}
+												},
+												{
+													"id": "release-pointer-lock",
+													"objectClass": "mouse",
+													"sid": 686943906739938
+												}
+											],
+											"sid": 994414238301835
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 885092071847617
+												}
+											],
+											"actions": [
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 272781254487942,
+													"parameters": {
+														"layer": "\"passives\"",
+														"visibility": "visible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 917987297306236,
+													"parameters": {
+														"layer": "\"passives\"",
+														"interactive": true
+													}
+												},
+												{
+													"id": "request-pointer-lock",
+													"objectClass": "mouse",
+													"sid": 906419668849235,
+													"parameters": {
+														"unadjusted-movement": true
+													}
+												},
+												{
+													"id": "look-at-position",
+													"objectClass": "3DCamera",
+													"sid": 455363993492883,
+													"parameters": {
+														"cam-x": "3DShape.X",
+														"cam-y": "3DShape.Y - 500",
+														"cam-z": "3DShape.ZHeight / 2",
+														"look-x": "3DShape.X",
+														"look-y": "3DShape.Y",
+														"look-z": "3DShape.ZHeight / 2",
+														"up-x": "0",
+														"up-y": "0",
+														"up-z": "1"
+													}
+												}
+											],
+											"sid": 124044383871119
+										}
+									]
 								}
 							]
 						},

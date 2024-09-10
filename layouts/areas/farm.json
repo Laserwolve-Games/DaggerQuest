@@ -18849,6 +18849,21 @@
 											"d": true,
 											"sm": "normal"
 										}
+									},
+									{
+										"uid": 10,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": true,
+											"v": true,
+											"d": true,
+											"sm": "normal"
+										}
 									}
 								],
 								"flags": {
@@ -19139,7 +19154,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": null,
+								"parent-uid": 143,
 								"uid": 10,
 								"flags": {
 									"x": true,
@@ -34188,6 +34203,87 @@
 					"blendMode": "normal",
 					"zElevation": 0,
 					"global": false
+				},
+				{
+					"name": "passives",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "3DShape",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": true,
+								"face-front": true,
+								"face-left": true,
+								"face-right": true,
+								"face-top": true,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 268,
+							"sid": 336222334409760,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 336222334409760,
+								"expanded": true
+							},
+							"world": {
+								"x": 2048,
+								"y": 2048,
+								"width": 120,
+								"height": 120,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 220392938114765,
+					"effectTypes": [],
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 1,
+					"parallaxY": 1,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
 				}
 			],
 			"instances": [],
@@ -34681,6 +34777,6 @@
 	"unboundedScrolling": false,
 	"vpX": 0.5,
 	"vpY": 0.5,
-	"projection": "orthographic",
+	"projection": "perspective",
 	"eventSheet": "farm"
 }

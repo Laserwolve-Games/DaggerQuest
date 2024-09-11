@@ -11832,14 +11832,14 @@
 												{
 													"id": "look-at-position",
 													"objectClass": "3DCamera",
-													"sid": 455363993492883,
+													"sid": 106498695695436,
 													"parameters": {
 														"cam-x": "3DShape.X",
-														"cam-y": "3DShape.Y - 500",
-														"cam-z": "3DShape.ZHeight / 2",
+														"cam-y": "3DShape.Y + 500",
+														"cam-z": "3DShape.ZElevation",
 														"look-x": "3DShape.X",
 														"look-y": "3DShape.Y",
-														"look-z": "3DShape.ZHeight / 2",
+														"look-z": "3DShape.ZElevation",
 														"up-x": "0",
 														"up-y": "0",
 														"up-z": "1"
@@ -11851,6 +11851,38 @@
 									]
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-movement",
+									"objectClass": "mouse",
+									"sid": 677396756932271
+								},
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 512101909636019,
+									"parameters": {
+										"layer": "\"passives\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "rotate-camera",
+									"objectClass": "3DCamera",
+									"sid": 527074210538395,
+									"parameters": {
+										"rotate-x": "Mouse.MovementX / 10",
+										"rotate-y": "Mouse.MovementY / 10",
+										"min-polar-angle": "20",
+										"max-polar-angle": "160"
+									}
+								}
+							],
+							"sid": 551806205326428
 						},
 						{
 							"functionName": "Toggle menu",

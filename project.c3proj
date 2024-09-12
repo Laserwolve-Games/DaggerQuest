@@ -728,8 +728,103 @@
 	},
 	"rootFileFolders": {
 		"script": {
-			"items": [],
-			"subfolders": []
+			"items": [
+				{
+					"name": "main.js",
+					"type": "text/javascript",
+					"sid": 736486928257982,
+					"script-info": {
+						"purpose": "main"
+					}
+				}
+			],
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "three.module.js",
+							"type": "application/javascript",
+							"sid": 438327287742060,
+							"script-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [
+						{
+							"items": [],
+							"subfolders": [
+								{
+									"items": [
+										{
+											"name": "OrbitControls.js",
+											"type": "application/javascript",
+											"sid": 308539570003193,
+											"script-info": {
+												"purpose": "none"
+											}
+										}
+									],
+									"subfolders": [],
+									"name": "controls"
+								},
+								{
+									"items": [
+										{
+											"name": "RoomEnvironment.js",
+											"type": "application/javascript",
+											"sid": 662792107351900,
+											"script-info": {
+												"purpose": "none"
+											}
+										}
+									],
+									"subfolders": [],
+									"name": "environments"
+								},
+								{
+									"items": [
+										{
+											"name": "DRACOLoader.js",
+											"type": "application/javascript",
+											"sid": 981912974608555,
+											"script-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "GLTFLoader.js",
+											"type": "application/javascript",
+											"sid": 311931290678817,
+											"script-info": {
+												"purpose": "none"
+											}
+										}
+									],
+									"subfolders": [],
+									"name": "loaders"
+								},
+								{
+									"items": [
+										{
+											"name": "BufferGeometryUtils.js",
+											"type": "application/javascript",
+											"sid": 138395721668872,
+											"script-info": {
+												"purpose": "none"
+											}
+										}
+									],
+									"subfolders": [],
+									"name": "utils"
+								}
+							],
+							"name": "addons"
+						}
+					],
+					"name": "three"
+				}
+			]
 		},
 		"sound": {
 			"items": [
@@ -1268,9 +1363,62 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "importMap.json",
+					"type": "application/json",
+					"sid": 469672201199925,
+					"file-info": {
+						"purpose": "import-map"
+					}
 				}
 			],
-			"subfolders": []
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "draco_decoder.js",
+							"type": "application/javascript",
+							"sid": 222944302644758,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "draco_decoder.wasm",
+							"type": "application/wasm",
+							"sid": 134940253727055,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "draco_wasm_wrapper.js",
+							"type": "application/javascript",
+							"sid": 381416506878500,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "draco-gltf-decoder"
+				},
+				{
+					"items": [
+						{
+							"name": "LittlestTokyo.glb",
+							"type": "application/octet-stream",
+							"sid": 984933649481946,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "models"
+				}
+			]
 		}
 	},
 	"timelines": {

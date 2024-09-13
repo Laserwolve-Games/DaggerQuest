@@ -8,13 +8,13 @@ class DaggerQuestTest extends Methods {
 	@Test
 	void test() {
 		
-		startProject();
+		startDesktopClient();
 
 		click("exit");
 
 		verifyThrows("DaggerQuest sucessfully exited", NoSuchWindowException.class, () -> driver.getTitle());
 		
-		startProject();
+		startDesktopClient();
 
 		click("settings");
 

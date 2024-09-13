@@ -110,8 +110,8 @@ public class Methods extends Xpaths {
 	}
 
 	/**
-	 * <h1>Get Position</h1> Get the X, Y position of a Construct object.
-	 * Executes JavaScript to get the first instance of the object, which returns a
+	 * <h1>Get Position</h1> Get the X, Y position of a Construct object. Executes
+	 * JavaScript to get the first instance of the object, which returns a
 	 * List<Double>, which we parse into a {@link Position}.
 	 * 
 	 * @param constructObject The Construct object to obtain the position of.
@@ -133,21 +133,21 @@ public class Methods extends Xpaths {
 	}
 
 	/**
-	 * <h1>Start Project</h1>Launches the project. If the is using an NW.js version that
-	 * doesn't match the latest Google Chrome version, WebDriverManager throws an
-	 * exception. The stack trace from this exception is the only place where we can
-	 * find out what Chromium version NW.js is. This method catches that exception,
-	 * parses out the correct Chromium version, and to create the webDriver again,
-	 * with the Chromium version specified. This only will happen the first time we
-	 * run against any given NW.js executable. Subsequent
-	 * {@link WebDriverManager#create()} calls without specifying browser version
-	 * will work fine.
+	 * <h1>Start Desktop Client</h1>Launches the desktop version of DaggerQuest. If
+	 * DaggerQuest is using an NW.js version that doesn't match the latest Google
+	 * Chrome version, WebDriverManager throws an exception. The stack trace from
+	 * this exception is the only place where we can find out what Chromium version
+	 * NW.js is. This method catches that exception, parses out the correct Chromium
+	 * version, and tries to create the webDriver again, with the Chromium version
+	 * specified. This only will happen the first time we run against any given
+	 * NW.js executable. Subsequent {@link WebDriverManager#create()} calls without
+	 * specifying browser version will work fine.
 	 * 
 	 * @param path The path of to the executable.
 	 * @author laserwolve
 	 * @throws IOException
 	 */
-	protected static void startProject() {
+	protected static void startDesktopClient() {
 
 		Path projectDirectory = Paths.get(System.getProperty("user.dir")).getParent();
 		String projectName = projectDirectory.getFileName().toString();

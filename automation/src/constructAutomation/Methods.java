@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.compress.utils.FileNameUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.junit.function.ThrowingRunnable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -947,7 +947,7 @@ public class Methods extends Xpaths {
 
 		for (File animation : directory) {
 
-			String sprite = FileNameUtils.getBaseName(animation.getPath());
+			String sprite = FilenameUtils.getBaseName(animation.getPath());
 
 			sendText(Project.search, sprite, true);
 

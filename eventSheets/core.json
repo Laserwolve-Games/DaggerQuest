@@ -12242,13 +12242,13 @@
 												},
 												{
 													"callFunction": "Update tooltip",
-													"sid": 395853606521323,
+													"sid": 797882099661696,
 													"parameters": [
 														false,
 														"item.fullName",
 														"item.classRestrictions",
 														"item.level",
-														"item.mods",
+														"Functions.makeMultiline(item.mods)",
 														"item.lore",
 														"item.value"
 													]
@@ -12332,12 +12332,12 @@
 															"actions": [
 																{
 																	"callFunction": "Update comparison tooltip",
-																	"sid": 418177036584371,
+																	"sid": 394125524799220,
 																	"parameters": [
 																		"item.fullName",
 																		"item.classRestrictions",
 																		"item.level",
-																		"item.mods",
+																		"Functions.makeMultiline(item.mods)",
 																		"item.lore",
 																		"item.value"
 																	]
@@ -12400,13 +12400,13 @@
 												},
 												{
 													"callFunction": "Update tooltip",
-													"sid": 664320364953238,
+													"sid": 829729198243444,
 													"parameters": [
 														false,
 														"loot.fullName",
 														"loot.classRestrictions",
 														"loot.level",
-														"loot.mods",
+														"Functions.makeMultiline(loot.mods)",
 														"loot.lore",
 														"loot.value"
 													]
@@ -12443,13 +12443,13 @@
 											"actions": [
 												{
 													"callFunction": "Update tooltip",
-													"sid": 902052321073868,
+													"sid": 200311270241691,
 													"parameters": [
 														true,
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, FULL_NAME_KEYWORD)",
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, CLASS_KEYWORD)",
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, LEVEL_KEYWORD)",
-														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, DESCRIPTION_KEYWORD)",
+														"Functions.makeMultiline(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, DESCRIPTION_KEYWORD))",
 														"NOT_USED",
 														"NONE"
 													]
@@ -12719,6 +12719,36 @@
 									"sid": 701141571051425
 								},
 								{
+									"eventType": "variable",
+									"name": "HIDDEN_HEIGHT",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The height value of a tooltip object when hidden.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 787564109420835
+								},
+								{
+									"eventType": "variable",
+									"name": "TOOLTIP_VALUE_HEIGHT",
+									"type": "number",
+									"initialValue": "25",
+									"comment": "The height of the tooltip value when shown.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 802934976773068
+								},
+								{
+									"eventType": "variable",
+									"name": "TOOLTIP_LORE_HEIGHT",
+									"type": "number",
+									"initialValue": "20",
+									"comment": "The height of the tooltip lore when shown.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 678482408407165
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -12732,9 +12762,25 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "Using the multiline function here instead of in the calling action doesn't work.",
+											"text-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0.7843137254901961,
+												1
+											],
+											"background-color": [
+												0,
+												0,
+												0,
+												1
+											]
+										},
+										{
 											"id": "set-text",
 											"objectClass": "tooltipDescription",
-											"sid": 169696152975065,
+											"sid": 650843490497026,
 											"parameters": {
 												"text": "text"
 											}
@@ -12756,11 +12802,19 @@
 											}
 										},
 										{
-											"id": "set-visible",
+											"id": "set-height",
 											"objectClass": "tooltipValue",
-											"sid": 268242035567656,
+											"sid": 933455595520660,
 											"parameters": {
-												"visibility": "invisible"
+												"height": "HIDDEN_HEIGHT"
+											}
+										},
+										{
+											"id": "set-height",
+											"objectClass": "tooltipLore",
+											"sid": 586252499700592,
+											"parameters": {
+												"height": "HIDDEN_HEIGHT"
 											}
 										},
 										{
@@ -12793,11 +12847,19 @@
 											}
 										},
 										{
-											"id": "set-visible",
+											"id": "set-height",
 											"objectClass": "tooltipValue",
-											"sid": 538459935507907,
+											"sid": 545939470272102,
 											"parameters": {
-												"visibility": "visible"
+												"height": "TOOLTIP_VALUE_HEIGHT"
+											}
+										},
+										{
+											"id": "set-height",
+											"objectClass": "tooltipLore",
+											"sid": 790766506353305,
+											"parameters": {
+												"height": "TOOLTIP_LORE_HEIGHT"
 											}
 										}
 									],
@@ -12933,8 +12995,24 @@
 									"conditions": [],
 									"actions": [
 										{
+											"id": "set-y",
+											"objectClass": "tooltip",
+											"sid": 261134409860990,
+											"parameters": {
+												"y": "ViewportBottom(Self.LayerName)"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "tooltipDescription",
+											"sid": 980085952416714,
+											"parameters": {
+												"y": "tooltipLore.BBoxTop"
+											}
+										},
+										{
 											"type": "comment",
-											"text": "'tooltipLore' is along the bottom, so it's OK where it's at. Align everything above 'tooltipDescription', cascading upwards based on position. Subtract values, because we want to go up the Y, not down."
+											"text": "Use the text height of the description instead of it's 'BBoxTop' since it can be multi-line"
 										},
 										{
 											"id": "set-y",
@@ -12970,26 +13048,14 @@
 										},
 										{
 											"type": "comment",
-											"text": "Set the tooltip's height based on the distance between the bottom of the tooltip and the bottom of the 'tooltipName', plus tooltipName.textHeight', plus some padding."
+											"text": "This is instead of anchoring, which doesn't work because the top of this object changes dynamically."
 										},
 										{
 											"id": "set-height",
 											"objectClass": "tooltip",
-											"sid": 522541162903732,
+											"sid": 783269046651512,
 											"parameters": {
-												"height": "Self.Y - tooltipName.Y + tooltipName.TextHeight + TOOLTIP_VERTICAL_PADDING"
-											}
-										},
-										{
-											"type": "comment",
-											"text": "We can't use the anchor behavior due to how this box dynamically resizes, so just set its Y every tick."
-										},
-										{
-											"id": "set-y",
-											"objectClass": "tooltip",
-											"sid": 326582825386439,
-											"parameters": {
-												"y": "ViewportBottom(tooltip.LayerName)"
+												"height": "Self.Y - tooltipName.BBoxTop + TOOLTIP_VERTICAL_PADDING"
 											}
 										}
 									],
@@ -13302,8 +13368,20 @@
 										},
 										{
 											"id": "set-y",
+											"objectClass": "comparisonTooltipDescription",
+											"sid": 982379596444137,
+											"parameters": {
+												"y": "comparisonTooltipLore.BBoxTop"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Use the text height of the description instead of it's 'BBoxTop' since it can be multi-line"
+										},
+										{
+											"id": "set-y",
 											"objectClass": "comparisonTooltipLevel",
-											"sid": 771702357831128,
+											"sid": 378856161583710,
 											"parameters": {
 												"y": "comparisonTooltipDescription.BBoxBottom - comparisonTooltipDescription.TextHeight - TOOLTIP_VERTICAL_TEXT_PADDING"
 											}
@@ -13311,7 +13389,7 @@
 										{
 											"id": "set-y",
 											"objectClass": "comparisonTooltipClass",
-											"sid": 354567237299271,
+											"sid": 656948004152940,
 											"parameters": {
 												"y": "comparisonTooltipLevel.BBoxTop"
 											}
@@ -13319,7 +13397,7 @@
 										{
 											"id": "set-y",
 											"objectClass": "comparisonTooltipValue",
-											"sid": 397947812972779,
+											"sid": 298993727985744,
 											"parameters": {
 												"y": "comparisonTooltipClass.BBoxTop"
 											}
@@ -13327,17 +13405,29 @@
 										{
 											"id": "set-y",
 											"objectClass": "comparisonTooltipName",
-											"sid": 320436660469028,
+											"sid": 659464851487438,
 											"parameters": {
 												"y": "comparisonTooltipValue.BBoxTop"
 											}
 										},
 										{
+											"type": "comment",
+											"text": "This is instead of anchoring, which doesn't work because the top of this object changes dynamically."
+										},
+										{
 											"id": "set-height",
 											"objectClass": "comparisonTooltip",
-											"sid": 376178786703762,
+											"sid": 473010455313794,
 											"parameters": {
-												"height": "Self.Y - comparisonTooltipName.Y + comparisonTooltipName.TextHeight + TOOLTIP_VERTICAL_PADDING"
+												"height": "Self.Y - comparisonTooltipName.BBoxTop + TOOLTIP_VERTICAL_PADDING"
+											}
+										},
+										{
+											"id": "set-y",
+											"objectClass": "currentlyEquipped",
+											"sid": 543793349127980,
+											"parameters": {
+												"y": "comparisonTooltip.BBoxTop"
 											}
 										}
 									],
@@ -13400,6 +13490,54 @@
 										}
 									],
 									"sid": 345794445703827
+								}
+							]
+						},
+						{
+							"functionName": "makeMultiline",
+							"functionDescription": "Break text up into multiple lines.",
+							"functionCategory": "menus",
+							"functionReturnType": "string",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "text",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The string to parse onto multiple lines.",
+									"sid": 111120030396060
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 958028436375389,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "NEWLINE_SEQUENCE",
+									"type": "string",
+									"initialValue": "newline",
+									"comment": "The string to use to represent where a newline is needed.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 119929648323933
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 965970913235530,
+											"parameters": {
+												"value": "replace(text, NEWLINE_SEQUENCE, newline)"
+											}
+										}
+									],
+									"sid": 343025903689753
 								}
 							]
 						}

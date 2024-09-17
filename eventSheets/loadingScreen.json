@@ -14,6 +14,42 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "BACKGROUND_PADDING",
+					"type": "number",
+					"initialValue": "10",
+					"comment": "How much to vertically and horizontally pad the text background, in pixels.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 502563041673405
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-children",
+							"objectClass": "textWithBackground",
+							"sid": 914372095523933,
+							"parameters": {
+								"child": "textBackground",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "textBackground",
+							"sid": 307925974445205,
+							"parameters": {
+								"width": "textWithBackground.TextWidth + BACKGROUND_PADDING + BACKGROUND_PADDING",
+								"height": "textWithBackground.TextHeight + BACKGROUND_PADDING"
+							}
+						}
+					],
+					"sid": 833310247300034
+				},
+				{
+					"eventType": "variable",
 					"name": "targetLayout",
 					"type": "string",
 					"initialValue": "",
@@ -222,7 +258,16 @@
 							"sid": 362670556863653
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "tip",
+							"sid": 649513460187345,
+							"parameters": {
+								"text": "tips.At(0, floor(random(tips.Height)))"
+							}
+						}
+					],
 					"sid": 903567358812001,
 					"children": [
 						{

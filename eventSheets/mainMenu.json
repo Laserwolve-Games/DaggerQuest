@@ -97,10 +97,10 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "ajax",
-							"sid": 384921091103022,
+							"sid": 444658597603327,
 							"parameters": {
 								"tag": "NOT_USED",
-								"file": "abilities.json"
+								"file": "tips.json"
 							}
 						},
 						{
@@ -110,8 +110,30 @@
 						},
 						{
 							"id": "load",
-							"objectClass": "abilitiesArray",
+							"objectClass": "tips",
 							"sid": 981862557028016,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 727762287180843,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "abilities.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 821541988095839
+						},
+						{
+							"id": "load",
+							"objectClass": "abilitiesArray",
+							"sid": 635498565319023,
 							"parameters": {
 								"json": "AJAX.LastData"
 							}

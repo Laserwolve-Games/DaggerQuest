@@ -2,10 +2,6 @@
 	"name": "mainMenu",
 	"events": [
 		{
-			"eventType": "include",
-			"includeSheet": "allLayouts"
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "main menu",
@@ -75,6 +71,16 @@
 					],
 					"actions": [
 						{
+							"customAction": "Fade out",
+							"objectClass": "fader",
+							"sid": 891380956914888
+						},
+						{
+							"customAction": "Fade in area soundtrack",
+							"objectClass": "audio",
+							"sid": 278933153673915
+						},
+						{
 							"id": "set-looping",
 							"objectClass": "video",
 							"sid": 943770953649697,
@@ -92,6 +98,386 @@
 						}
 					],
 					"sid": 475031808944228
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "text buttons",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 501917739390443,
+									"parameters": {
+										"object": "textButtons"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "mouse",
+									"sid": 961773405554115,
+									"parameters": {
+										"mouse-button": "left"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 912254192585244,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 353770095050678
+										}
+									],
+									"actions": [
+										{
+											"id": "set-font-size",
+											"objectClass": "textButtons",
+											"sid": 471415936391062,
+											"parameters": {
+												"size-pt": "Self.originalFaceSize"
+											}
+										}
+									],
+									"sid": 146077446294469
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "variable",
+							"name": "MOUSE_ON_KEYWORD",
+							"type": "string",
+							"initialValue": "mouseOn",
+							"comment": "Used for the sound effect name and audio tag.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 537699755995468
+						},
+						{
+							"eventType": "variable",
+							"name": "MOUSE_OFF_KEYWORD",
+							"type": "string",
+							"initialValue": "mouseOff",
+							"comment": "Used for the sound effect name and audio tag.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 710607681671880
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 392628454693674,
+									"parameters": {
+										"object": "textButtons"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 820954887901970,
+									"parameters": {
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 192152827035582
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "The condition 'Effect GLOWHORIZONTAL_KEYWORD is enabled' prevents this event from running when textButtons are first created.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 835276560593589,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "textButtons",
+									"sid": 819206009005109,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								}
+							],
+							"sid": 295852434791408,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "audio",
+											"sid": 828324034242877,
+											"parameters": {
+												"tag": "MENU_OPEN_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "audio",
+											"sid": 735002043499341,
+											"parameters": {
+												"tag": "MENU_CLOSE_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "audio",
+											"sid": 199371789920438,
+											"parameters": {
+												"tag": "MOUSE_ON_KEYWORD"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "is-tag-playing",
+											"objectClass": "audio",
+											"sid": 371843971411954,
+											"parameters": {
+												"tag": "MOUSE_OFF_KEYWORD"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "play-at-object-by-name",
+											"objectClass": "audio",
+											"sid": 642232519813890,
+											"parameters": {
+												"folder": "sounds",
+												"audio-file-name": "Functions.soundEffectName(MOUSE_OFF_KEYWORD)",
+												"loop": "not-looping",
+												"volume": "DEFAULT_STEREO_PAN",
+												"object": "textButtons",
+												"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+												"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+												"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+												"tag-optional": "MOUSE_OFF_KEYWORD"
+											}
+										}
+									],
+									"sid": 226884076761523
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "textButtons",
+									"sid": 202949056710967
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "change font size instead of position of actual size, this works better once we start dragging around menus with text buttons on them"
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "textButtons",
+									"sid": 201158983051976,
+									"parameters": {
+										"instance-variable": "originalFaceSize",
+										"value": "Self.FaceSize"
+									}
+								}
+							],
+							"sid": 829274809575794
+						},
+						{
+							"eventType": "variable",
+							"name": "SIZE_REDUCTION_MULTIPLIER",
+							"type": "number",
+							"initialValue": "0.9",
+							"comment": "How much to multiply the text button font size by when clicked.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 123432078433572
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 379112492583081,
+									"parameters": {
+										"object": "textButtons"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 620023712679051,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "mouse",
+											"sid": 386100398118051,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										},
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 231285519946632
+										}
+									],
+									"actions": [
+										{
+											"id": "set-font-size",
+											"objectClass": "textButtons",
+											"sid": 116562201636439,
+											"parameters": {
+												"size-pt": "Self.FaceSize * SIZE_REDUCTION_MULTIPLIER"
+											}
+										}
+									],
+									"sid": 901140049203609
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 937637798125026
+										}
+									],
+									"actions": [
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "textButtons",
+											"sid": 649978544804479,
+											"parameters": {
+												"mode": "enable",
+												"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+											}
+										},
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "textButtons",
+											"sid": 473518577130761,
+											"parameters": {
+												"mode": "enable",
+												"effect": "GLOWVERTICAL_EFFECT_NAME"
+											}
+										}
+									],
+									"sid": 959422107159566,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-tag-playing",
+													"objectClass": "audio",
+													"sid": 725570033061982,
+													"parameters": {
+														"tag": "MENU_OPEN_KEYWORD"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-tag-playing",
+													"objectClass": "audio",
+													"sid": 788090900376494,
+													"parameters": {
+														"tag": "MENU_CLOSE_KEYWORD"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-tag-playing",
+													"objectClass": "audio",
+													"sid": 547351133953063,
+													"parameters": {
+														"tag": "MOUSE_ON_KEYWORD"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-tag-playing",
+													"objectClass": "audio",
+													"sid": 654546562474260,
+													"parameters": {
+														"tag": "MOUSE_OFF_KEYWORD"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "play-at-object-by-name",
+													"objectClass": "audio",
+													"sid": 790099627574047,
+													"parameters": {
+														"folder": "sounds",
+														"audio-file-name": "Functions.soundEffectName(MOUSE_ON_KEYWORD)",
+														"loop": "not-looping",
+														"volume": "DEFAULT_STEREO_PAN",
+														"object": "textButtons",
+														"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+														"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+														"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+														"tag-optional": "MOUSE_ON_KEYWORD"
+													}
+												}
+											],
+											"sid": 989892211935252
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 645094698531049
 				}
 			],
 			"sid": 608494637955654

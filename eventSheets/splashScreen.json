@@ -2,10 +2,6 @@
 	"name": "splashScreen",
 	"events": [
 		{
-			"eventType": "include",
-			"includeSheet": "allLayouts"
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "splash screen",
@@ -420,29 +416,17 @@
 					],
 					"actions": [
 						{
-							"id": "tween-one-property",
-							"objectClass": "fader",
-							"sid": 942617023959099,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "NOT_USED",
-								"property": "offsetOpacity",
-								"end-value": "TRANSPARENT_OPACITY",
-								"time": "LAYOUT_FADE_TIME",
-								"ease": "noease",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "TWEEN_REPEAT_COUNT"
-							}
-						},
-						{
 							"id": "set-cursor-from-sprite",
 							"objectClass": "mouse",
-							"sid": 452096306582162,
+							"sid": 449100730491198,
 							"parameters": {
 								"sprite": "cursor"
 							}
+						},
+						{
+							"customAction": "Fade out",
+							"objectClass": "fader",
+							"sid": 360766046394751
 						}
 					],
 					"sid": 847260980959405,
@@ -457,28 +441,68 @@
 									"parameters": {
 										"display-mode": "standalone"
 									}
+								},
+								{
+									"id": "is-in-preview",
+									"objectClass": "System",
+									"sid": 955170184762730
 								}
 							],
 							"actions": [
 								{
 									"type": "comment",
-									"text": "If we're in a PWA, we can play audio and go fullscreen right away."
+									"text": "If we're in a PWA or previewing, we can play audio right away."
 								},
 								{
-									"callFunction": "Play layout audio",
-									"sid": 251775778265909
-								},
+									"customAction": "Fade in area soundtrack",
+									"objectClass": "audio",
+									"sid": 490542002747700
+								}
+							],
+							"sid": 269691687171896,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "TODO: See if PWAs are allowed to go fullscreen without user input.",
+							"text-color": [
+								0,
+								0,
+								0,
+								1
+							],
+							"background-color": [
+								1,
+								1,
+								0,
+								1
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-display-mode",
+									"objectClass": "browser",
+									"sid": 200942892421991,
+									"parameters": {
+										"display-mode": "standalone"
+									}
+								}
+							],
+							"actions": [
 								{
 									"id": "request-fullscreen",
 									"objectClass": "browser",
-									"sid": 494048618114795,
+									"sid": 545992750639300,
 									"parameters": {
 										"mode": "stretch-scale-inner",
 										"navigation-ui": "hide"
 									}
 								}
 							],
-							"sid": 269691687171896
+							"sid": 327615388920449,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",

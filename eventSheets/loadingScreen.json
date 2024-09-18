@@ -2,10 +2,6 @@
 	"name": "loadingScreen",
 	"events": [
 		{
-			"eventType": "include",
-			"includeSheet": "allLayouts"
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "loading screen",
@@ -260,12 +256,31 @@
 					],
 					"actions": [
 						{
+							"id": "stop-all",
+							"objectClass": "audio",
+							"sid": 913024275880522
+						},
+						{
 							"id": "set-text",
 							"objectClass": "tip",
 							"sid": 649513460187345,
 							"parameters": {
 								"text": "tips.At(0, floor(random(tips.Height)))"
 							}
+						},
+						{
+							"customAction": "Fade out",
+							"objectClass": "fader",
+							"sid": 708330455606358
+						},
+						{
+							"type": "comment",
+							"text": "This tween is really jittery if we do it while loading, so wait until it finishes to start loading."
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 528320450887573
 						}
 					],
 					"sid": 903567358812001,
@@ -295,32 +310,6 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "tween-one-property",
-									"objectClass": "fader",
-									"sid": 755182179671022,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "NOT_USED",
-										"property": "offsetOpacity",
-										"end-value": "TRANSPARENT_OPACITY",
-										"time": "LAYOUT_FADE_TIME",
-										"ease": "noease",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "TWEEN_REPEAT_COUNT"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "This tween is really jittery if we do it while loading, so wait until it finishes to start loading."
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 619492319823379
-								},
-								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
 									"sid": 670045706177657,
@@ -328,11 +317,6 @@
 										"variable": "minimumLoadingScreenExpiryTime",
 										"value": "wallclocktime + MINIMUM_LOADING_SCREEN_TIME"
 									}
-								},
-								{
-									"id": "stop-all",
-									"objectClass": "audio",
-									"sid": 952130503059462
 								},
 								{
 									"type": "comment",

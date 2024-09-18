@@ -70,10 +70,6 @@
 			]
 		},
 		{
-			"eventType": "include",
-			"includeSheet": "allLayouts"
-		},
-		{
 			"eventType": "variable",
 			"name": "ALL_PARAMETERS",
 			"type": "number",
@@ -11587,6 +11583,11 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "on-any-key-pressed",
+									"objectClass": "keyboard",
+									"sid": 356243337580978
+								},
+								{
 									"id": "layer-is-visible",
 									"objectClass": "System",
 									"sid": 200936538513872,
@@ -11618,6 +11619,16 @@
 										"comparison": 0,
 										"second-value": "statue.Count"
 									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "keybinder",
+									"sid": 181676093318161,
+									"parameters": {
+										"instance-variable": "keycode",
+										"comparison": 0,
+										"value": "keyboard.LastKeyCode"
+									}
 								}
 							],
 							"actions": [
@@ -11629,14 +11640,32 @@
 							"sid": 589869390653306,
 							"children": [
 								{
+									"eventType": "comment",
+									"text": "TODO: Keybindings for the Kingdom of Heaven and the Pillar of Fate.",
+									"text-color": [
+										0,
+										0,
+										0,
+										1
+									],
+									"background-color": [
+										1,
+										1,
+										0,
+										1
+									]
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-key-pressed",
-											"objectClass": "keyboard",
-											"sid": 311596851577209,
+											"id": "compare-instance-variable",
+											"objectClass": "keybinder",
+											"sid": 891457742597240,
 											"parameters": {
-												"key": 67
+												"instance-variable": "target",
+												"comparison": 0,
+												"value": "equippedMenuStatue.LayerName"
 											}
 										}
 									],
@@ -11680,11 +11709,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-key-pressed",
-											"objectClass": "keyboard",
-											"sid": 394983373843370,
+											"id": "compare-instance-variable",
+											"objectClass": "keybinder",
+											"sid": 194007203181835,
 											"parameters": {
-												"key": 80
+												"instance-variable": "target",
+												"comparison": 0,
+												"value": "characterMenuStatue.LayerName"
 											}
 										}
 									],
@@ -11703,11 +11734,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "on-key-pressed",
-											"objectClass": "keyboard",
-											"sid": 565494016513724,
+											"id": "compare-instance-variable",
+											"objectClass": "keybinder",
+											"sid": 855891086294721,
 											"parameters": {
-												"key": 73
+												"instance-variable": "target",
+												"comparison": 0,
+												"value": "inventoryMenuStatue.LayerName"
 											}
 										}
 									],
@@ -13995,11 +14028,28 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-key-pressed",
+									"id": "on-any-key-pressed",
 									"objectClass": "keyboard",
-									"sid": 748124666756608,
+									"sid": 167192459492997
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "keybinder",
+									"sid": 889791498902048,
 									"parameters": {
-										"key": 32
+										"instance-variable": "keycode",
+										"comparison": 0,
+										"value": "keyboard.LastKeyCode"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "keybinder",
+									"sid": 406740118147742,
+									"parameters": {
+										"instance-variable": "target",
+										"comparison": 0,
+										"value": "settingsMenuStatue.LayerName"
 									}
 								},
 								{
@@ -14133,28 +14183,6 @@
 									"sid": 520857936134325
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "mouse",
-									"sid": 203853855942491,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "back"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "Close settings",
-									"sid": 431466487026583
-								}
-							],
-							"sid": 720992934545758
 						},
 						{
 							"eventType": "block",
@@ -20603,20 +20631,22 @@
 					]
 				},
 				{
-					"functionName": "Play layout audio",
-					"functionDescription": "Play the soundtrack for an area",
+					"aceType": "action",
+					"aceName": "Fade in area soundtrack",
+					"objectClass": "audio",
+					"functionDescription": "Fade in the soundtrack for an area",
 					"functionCategory": "audio",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [],
-					"eventType": "function-block",
+					"eventType": "custom-ace-block",
 					"conditions": [],
 					"actions": [
 						{
 							"id": "play-by-name",
 							"objectClass": "audio",
-							"sid": 667026454964288,
+							"sid": 209821231854380,
 							"parameters": {
 								"folder": "music",
 								"audio-file-name": "LayoutName",
@@ -20629,7 +20659,7 @@
 						{
 							"id": "fade-volume",
 							"objectClass": "audio",
-							"sid": 319115295720853,
+							"sid": 366816616492099,
 							"parameters": {
 								"tag": "LayoutName",
 								"db": "musicVolume",
@@ -20638,7 +20668,7 @@
 							}
 						}
 					],
-					"sid": 536702238812860
+					"sid": 944082009451185
 				}
 			],
 			"sid": 499889136212563
@@ -20650,6 +20680,62 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"aceType": "action",
+					"aceName": "Fade out",
+					"objectClass": "fader",
+					"functionDescription": "Fade out the fader.",
+					"functionCategory": "appearance",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": true,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "fader",
+							"sid": 953070225515643,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "NOT_USED",
+								"property": "offsetOpacity",
+								"end-value": "TRANSPARENT_OPACITY",
+								"time": "LAYOUT_FADE_TIME",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "TWEEN_REPEAT_COUNT"
+							}
+						}
+					],
+					"sid": 325539821263270
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 186728905452955
+						}
+					],
+					"actions": [
+						{
+							"customAction": "Fade out",
+							"objectClass": "fader",
+							"sid": 701243824021915
+						},
+						{
+							"customAction": "Fade in area soundtrack",
+							"objectClass": "audio",
+							"sid": 685668051465953
+						}
+					],
+					"sid": 678646041468891
+				},
 				{
 					"eventType": "block",
 					"conditions": [

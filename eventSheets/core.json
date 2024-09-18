@@ -8470,7 +8470,7 @@
 									"objectClass": "System",
 									"sid": 649957268564522,
 									"parameters": {
-										"object": "abilityKeybinder"
+										"object": "keybinder"
 									}
 								},
 								{
@@ -8478,7 +8478,7 @@
 									"objectClass": "keyboard",
 									"sid": 136411555013602,
 									"parameters": {
-										"keycode": "abilityKeybinder.keycode"
+										"keycode": "keybinder.keycode"
 									}
 								},
 								{
@@ -8498,7 +8498,7 @@
 									"parameters": {
 										"instance-variable": "abilityNumber",
 										"comparison": 0,
-										"value": "abilityKeybinder.abilityNumber"
+										"value": "keybinder.abilityNumber"
 									}
 								},
 								{
@@ -14166,7 +14166,7 @@
 									"parameters": {
 										"mouse-button": "left",
 										"click-type": "clicked",
-										"object-clicked": "abilityKeybinder"
+										"object-clicked": "keybinder"
 									}
 								}
 							],
@@ -14196,12 +14196,12 @@
 											"objectClass": "System",
 											"sid": 406514684073326,
 											"parameters": {
-												"object": "abilityKeybinder"
+												"object": "keybinder"
 											}
 										},
 										{
 											"id": "compare-text",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 685531208991222,
 											"parameters": {
 												"text-to-compare": "ELLIPSIS",
@@ -14224,7 +14224,7 @@
 									"actions": [
 										{
 											"id": "set-text",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 637931546165125,
 											"parameters": {
 												"text": "ELLIPSIS"
@@ -14232,7 +14232,7 @@
 										},
 										{
 											"id": "set-instvar-value",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 450697672111465,
 											"parameters": {
 												"instance-variable": "keycode",
@@ -14263,7 +14263,7 @@
 								},
 								{
 									"id": "compare-text",
-									"objectClass": "abilityKeybinder",
+									"objectClass": "keybinder",
 									"sid": 554440300150107,
 									"parameters": {
 										"text-to-compare": "ELLIPSIS",
@@ -14297,12 +14297,12 @@
 											"objectClass": "System",
 											"sid": 370753037980012,
 											"parameters": {
-												"object": "abilityKeybinder"
+												"object": "keybinder"
 											}
 										},
 										{
 											"id": "compare-text",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 707086472921270,
 											"parameters": {
 												"text-to-compare": "keyboard.TypedKey",
@@ -14333,7 +14333,7 @@
 											"parameters": {
 												"instance-variable": "abilityNumber",
 												"comparison": 0,
-												"value": "abilityKeybinder.abilityNumber"
+												"value": "keybinder.abilityNumber"
 											}
 										},
 										{
@@ -14353,7 +14353,7 @@
 										},
 										{
 											"id": "set-text",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 546505687649169,
 											"parameters": {
 												"text": "uppercase(keyboard.TypedKey)"
@@ -14361,7 +14361,7 @@
 										},
 										{
 											"id": "set-instvar-value",
-											"objectClass": "abilityKeybinder",
+											"objectClass": "keybinder",
 											"sid": 908548169808163,
 											"parameters": {
 												"instance-variable": "keycode",
@@ -14373,7 +14373,7 @@
 											"objectClass": "abilityKey",
 											"sid": 217166825320778,
 											"parameters": {
-												"text": "BBCODE & abilityKeybinder.PlainText"
+												"text": "BBCODE & keybinder.PlainText"
 											}
 										},
 										{
@@ -14411,8 +14411,8 @@
 											"objectClass": "System",
 											"sid": 810589868631789,
 											"parameters": {
-												"object": "abilityKeybinder",
-												"expression": "abilityKeybinder.PlainText",
+												"object": "keybinder",
+												"expression": "keybinder.PlainText",
 												"comparison": 0,
 												"value": "ELLIPSIS"
 											}

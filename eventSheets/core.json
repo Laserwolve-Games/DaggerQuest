@@ -14087,13 +14087,88 @@
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 742240280522348,
+									"children": [
 										{
-											"callFunction": "Close settings",
-											"sid": 426429163528662
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 131549688766530,
+													"parameters": {
+														"object": "keybinder",
+														"expression": "keybinder.PlainText",
+														"comparison": 0,
+														"value": "ELLIPSIS"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Only allow closure of the settings menu if we aren't currently rebinding a key."
+												}
+											],
+											"sid": 488562586448744
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 196255381221636
+												}
+											],
+											"actions": [
+												{
+													"id": "set-time-scale",
+													"objectClass": "System",
+													"sid": 712461326797907,
+													"parameters": {
+														"time-scale": "UNPAUSED_TIME_SCALE"
+													}
+												},
+												{
+													"callFunction": "Close layer",
+													"sid": 715906628023549,
+													"parameters": [
+														"settingsMenuStatue.LayerName"
+													]
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 288955339999289,
+													"parameters": {
+														"layer": "body.LayerName",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 356425458563202,
+													"parameters": {
+														"layer": "abilityBarStatue.LayerName",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 847196829159466,
+													"parameters": {
+														"layer": "background.LayerName",
+														"interactive": true
+													}
+												}
+											],
+											"sid": 728272389536994
 										}
-									],
-									"sid": 742240280522348
+									]
 								},
 								{
 									"eventType": "block",
@@ -14201,7 +14276,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "If none of the abilityKeybinders are waiting to receive an input..."
+									"text": "If none of the keybinders are waiting to receive an input..."
 								}
 							],
 							"sid": 713480100974908,
@@ -14302,21 +14377,11 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "When a key is pressed, and there's an abilityKeybinder waiting to receive input..."
+									"text": "When a key is pressed, and there's a keybinder waiting to receive input..."
 								}
 							],
 							"sid": 929528626556521,
 							"children": [
-								{
-									"eventType": "variable",
-									"name": "BBCODE",
-									"type": "string",
-									"initialValue": "[outline=#000000][lineThickness=1.5]",
-									"comment": "The BBCode to use on the ability key's text.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 333544427254473
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -14353,31 +14418,12 @@
 											"id": "else",
 											"objectClass": "System",
 											"sid": 909037105655847
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "abilitySlot",
-											"sid": 658260344934490,
-											"parameters": {
-												"instance-variable": "abilityNumber",
-												"comparison": 0,
-												"value": "keybinder.abilityNumber"
-											}
-										},
-										{
-											"id": "pick-children",
-											"objectClass": "abilitySlot",
-											"sid": 466744107950211,
-											"parameters": {
-												"child": "abilityKey",
-												"which": "own"
-											}
 										}
 									],
 									"actions": [
 										{
 											"type": "comment",
-											"text": "...update the ability keybinder and ability key text."
+											"text": "...update the keybinder keycode and text."
 										},
 										{
 											"id": "set-text",
@@ -14397,117 +14443,67 @@
 											}
 										},
 										{
-											"id": "set-text",
-											"objectClass": "abilityKey",
-											"sid": 217166825320778,
-											"parameters": {
-												"text": "BBCODE & keybinder.PlainText"
-											}
-										},
-										{
 											"id": "set-layer-interactive",
 											"objectClass": "System",
-											"sid": 454122404768467,
+											"sid": 349720274995196,
 											"parameters": {
 												"layer": "settingsMenuStatue.LayerName",
 												"interactive": true
 											}
 										}
 									],
-									"sid": 508602824145830
-								}
-							]
-						},
-						{
-							"functionName": "Close settings",
-							"functionDescription": "Close the settings menu.",
-							"functionCategory": "menus",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [],
-							"sid": 452820815904708,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
+									"sid": 508602824145830,
+									"children": [
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 810589868631789,
-											"parameters": {
-												"object": "keybinder",
-												"expression": "keybinder.PlainText",
-												"comparison": 0,
-												"value": "ELLIPSIS"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "Only allow closure of the settings menu if we aren't currently rebinding a key."
-										}
-									],
-									"sid": 206585683324567
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 596743601932199
-										}
-									],
-									"actions": [
-										{
-											"id": "set-time-scale",
-											"objectClass": "System",
-											"sid": 142770317832170,
-											"parameters": {
-												"time-scale": "UNPAUSED_TIME_SCALE"
-											}
+											"eventType": "variable",
+											"name": "BBCODE",
+											"type": "string",
+											"initialValue": "[outline=#000000][lineThickness=1.5]",
+											"comment": "The BBCode to use on the ability key's text.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 914806118215188
 										},
 										{
-											"callFunction": "Close layer",
-											"sid": 426349975998364,
-											"parameters": [
-												"settingsMenuStatue.LayerName"
-											]
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 255547908536698,
-											"parameters": {
-												"layer": "body.LayerName",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 942303176079170,
-											"parameters": {
-												"layer": "abilityBarStatue.LayerName",
-												"interactive": true
-											}
-										},
-										{
-											"id": "set-layer-interactive",
-											"objectClass": "System",
-											"sid": 731073841442198,
-											"parameters": {
-												"layer": "background.LayerName",
-												"interactive": true
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "abilitySlot",
+													"sid": 780316021632258,
+													"parameters": {
+														"instance-variable": "abilityNumber",
+														"comparison": 0,
+														"value": "keybinder.abilityNumber"
+													}
+												},
+												{
+													"id": "pick-children",
+													"objectClass": "abilitySlot",
+													"sid": 663580547770050,
+													"parameters": {
+														"child": "abilityKey",
+														"which": "own"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "If there's an ability slot tied to this keybinder, update its abilityKey."
+												},
+												{
+													"id": "set-text",
+													"objectClass": "abilityKey",
+													"sid": 416449890932601,
+													"parameters": {
+														"text": "BBCODE & keybinder.PlainText"
+													}
+												}
+											],
+											"sid": 949462789028493
 										}
-									],
-									"sid": 724626689544662
+									]
 								}
 							]
 						}

@@ -392,30 +392,6 @@
 			],
 			"actions": [
 				{
-					"id": "play-by-name",
-					"objectClass": "audio",
-					"sid": 505846026824406,
-					"parameters": {
-						"folder": "music",
-						"audio-file-name": "LayoutName",
-						"loop": "looping",
-						"volume": "SILENT",
-						"stereo-pan": "DEFAULT_STEREO_PAN",
-						"tag-optional": "LayoutName"
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "audio",
-					"sid": 523140883955440,
-					"parameters": {
-						"tag": "LayoutName",
-						"db": "musicVolume",
-						"duration": "LAYOUT_FADE_TIME",
-						"ending": "keep-playing"
-					}
-				},
-				{
 					"id": "tween-one-property",
 					"objectClass": "fader",
 					"sid": 516133883884319,
@@ -431,50 +407,13 @@
 						"ping-pong": "no",
 						"repeat-count": "TWEEN_REPEAT_COUNT"
 					}
+				},
+				{
+					"callFunction": "Play layout audio",
+					"sid": 985775475531831
 				}
 			],
 			"sid": 105358788655215
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "mouse",
-					"sid": 593229216111534,
-					"parameters": {
-						"mouse-button": "left"
-					}
-				},
-				{
-					"id": "trigger-once-while-true",
-					"objectClass": "System",
-					"sid": 393626500401294
-				}
-			],
-			"actions": [],
-			"sid": 425762242943441
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "mouse",
-					"sid": 496536976111524,
-					"parameters": {
-						"mouse-button": "left"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "trigger-once-while-true",
-					"objectClass": "System",
-					"sid": 747197733975141
-				}
-			],
-			"actions": [],
-			"sid": 744460692141917
 		}
 	],
 	"sid": 143332858877120

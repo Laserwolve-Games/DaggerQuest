@@ -14,23 +14,13 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "LAUNCHER_TEXT_TWEEN_SPEED",
-					"type": "number",
-					"initialValue": "1",
-					"comment": "How fast the launcher text should complete an opacity tween, in seconds.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 619882278694665
-				},
-				{
-					"eventType": "variable",
 					"name": "FINISHED_LOADING_PROGRESS_VALUE",
 					"type": "number",
 					"initialValue": "1",
 					"comment": "The value of LoadingProgress when loading has completed.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 856980012090467
+					"sid": 864408869703045
 				},
 				{
 					"eventType": "variable",
@@ -40,7 +30,27 @@
 					"comment": "The opacity that the launcher text should tween until.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 901041560284651
+					"sid": 662965730819559
+				},
+				{
+					"eventType": "variable",
+					"name": "LAUNCHER_TEXT_TWEEN_SPEED",
+					"type": "number",
+					"initialValue": "1",
+					"comment": "How fast the launcher text should complete an opacity tween, in seconds.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 123622688028705
+				},
+				{
+					"eventType": "variable",
+					"name": "LAYOUT_AFTER_SPLASH_SCREEN",
+					"type": "string",
+					"initialValue": "mainMenu",
+					"comment": "The layout to go to after the splash screen.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 585918558697037
 				},
 				{
 					"eventType": "variable",
@@ -54,17 +64,39 @@
 				},
 				{
 					"eventType": "variable",
+					"name": "dataInitialized",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "Whether or not the data has finished initializing.",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 925829055287275
+				},
+				{
+					"eventType": "variable",
 					"name": "updateAvailable",
 					"type": "boolean",
 					"initialValue": "false",
 					"comment": "Whether or not an update is available.",
 					"isStatic": true,
 					"isConstant": false,
-					"sid": 983562992983771
+					"sid": 960552527254166
 				},
 				{
 					"eventType": "comment",
-					"text": "There's no way to do an 'On update not found' trigger: https://www.construct.net/en/forum/construct-3/how-do-i-8/start-game-browser-not-update-175590"
+					"text": "TODO: There's no way to do an 'On update not found' trigger. We need to ping an external server to find out if a newer version of DaggerQuest is available, and not allow progression if there is.",
+					"text-color": [
+						0,
+						0,
+						0,
+						1
+					],
+					"background-color": [
+						1,
+						1,
+						0,
+						1
+					]
 				},
 				{
 					"eventType": "comment",
@@ -81,36 +113,6 @@
 						0,
 						1
 					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-update-found-sw",
-							"objectClass": "browser",
-							"sid": 691497159284594
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 298649766153894,
-							"parameters": {
-								"variable": "updateAvailable",
-								"value": "true"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "launcherMessage",
-							"sid": 649009066183731,
-							"parameters": {
-								"text": "UPDATE_AVAILABLE_TEXT"
-							}
-						}
-					],
-					"sid": 732686039218090
 				},
 				{
 					"eventType": "block",
@@ -187,6 +189,107 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 104582881396366,
+							"parameters": {
+								"first-value": "loadingprogress",
+								"comparison": 1,
+								"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "launcherMessage",
+							"sid": 915443856101282,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingBarFrame",
+							"sid": 225102462713115,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-image-scale-x",
+							"objectClass": "loadingBar",
+							"sid": 314552053815486,
+							"parameters": {
+								"scale-x": "loadingprogress * PERCENTAGE_DIVIDER"
+							}
+						}
+					],
+					"sid": 430070919226049
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 141760698913552
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "launcherMessage",
+							"sid": 586124090168229,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "loadingBarFrame",
+							"sid": 822298034215113,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 411765846890116
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-update-found-sw",
+							"objectClass": "browser",
+							"sid": 759969068514308
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 328314976801118,
+							"parameters": {
+								"variable": "updateAvailable",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "launcherMessage",
+							"sid": 623059178549865,
+							"parameters": {
+								"text": "UPDATE_AVAILABLE_TEXT"
+							}
+						}
+					],
+					"sid": 157888672080702
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-update-ready-sw",
 							"objectClass": "browser",
 							"sid": 914907367177721
@@ -205,16 +308,121 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-any-key-pressed",
+							"objectClass": "keyboard",
+							"sid": 151169116968630
+						},
+						{
+							"id": "on-any-click",
+							"objectClass": "mouse",
+							"sid": 147047978800620
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "If we've finished loading and there's no update, go to the main menu."
+						}
+					],
+					"sid": 596130575223459,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 366682436257043,
+									"parameters": {
+										"variable": "updateAvailable"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 549232947583290,
+									"parameters": {
+										"variable": "dataInitialized"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 896666580161182,
+									"parameters": {
+										"first-value": "loadingprogress",
+										"comparison": 0,
+										"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 553050278553049,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-fullscreen",
+											"objectClass": "browser",
+											"sid": 597462925998367,
+											"isInverted": true
+										},
+										{
+											"id": "is-in-preview",
+											"objectClass": "System",
+											"sid": 561490185238907,
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "request-fullscreen",
+											"objectClass": "browser",
+											"sid": 969981511280465,
+											"parameters": {
+												"mode": "stretch-scale-inner",
+												"navigation-ui": "hide"
+											}
+										}
+									],
+									"sid": 801129881301869
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "Change layout",
+											"sid": 980855795791585,
+											"parameters": [
+												"LAYOUT_AFTER_SPLASH_SCREEN",
+												true
+											]
+										}
+									],
+									"sid": 585732234228745
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 774700340711731
+							"sid": 207162166243759
 						}
 					],
 					"actions": [
 						{
 							"id": "tween-one-property",
 							"objectClass": "fader",
-							"sid": 267546962280234,
+							"sid": 942617023959099,
 							"behaviorType": "Tween",
 							"parameters": {
 								"tags": "NOT_USED",
@@ -229,157 +437,405 @@
 							}
 						},
 						{
-							"id": "tween-one-property",
-							"objectClass": "launcherMessage",
-							"sid": 896556127119609,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "NOT_USED",
-								"property": "offsetOpacity",
-								"end-value": "LAUNCHER_TEXT_OPACITY",
-								"time": "LAUNCHER_TEXT_TWEEN_SPEED",
-								"ease": "easeinoutsine",
-								"destroy-on-complete": "no",
-								"loop": "yes",
-								"ping-pong": "yes",
-								"repeat-count": "INFINITE_REPEAT_COUNT"
-							}
-						},
-						{
 							"id": "set-cursor-from-sprite",
 							"objectClass": "mouse",
-							"sid": 693883948470415,
+							"sid": 452096306582162,
 							"parameters": {
 								"sprite": "cursor"
 							}
 						}
 					],
-					"sid": 277147762016600
-				},
-				{
-					"eventType": "variable",
-					"name": "LAYOUT_AFTER_SPLASH_SCREEN",
-					"type": "string",
-					"initialValue": "mainMenu",
-					"comment": "The layout to go to after the splash screen.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 254759703089513
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+					"sid": 847260980959405,
+					"children": [
 						{
-							"id": "on-any-key-pressed",
-							"objectClass": "keyboard",
-							"sid": 151169116968630
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-display-mode",
+									"objectClass": "browser",
+									"sid": 529521577279210,
+									"parameters": {
+										"display-mode": "standalone"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If we're in a PWA, we can play audio and go fullscreen right away."
+								},
+								{
+									"callFunction": "Play layout audio",
+									"sid": 251775778265909
+								},
+								{
+									"id": "request-fullscreen",
+									"objectClass": "browser",
+									"sid": 494048618114795,
+									"parameters": {
+										"mode": "stretch-scale-inner",
+										"navigation-ui": "hide"
+									}
+								}
+							],
+							"sid": 269691687171896
 						},
 						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 840931282979907,
-							"parameters": {
-								"variable": "updateAvailable"
-							},
-							"isInverted": true
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 808063268364941,
-							"parameters": {
-								"first-value": "loadingprogress",
-								"comparison": 0,
-								"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "If we've finished loading and there's no update, go to the main menu."
-						},
-						{
-							"callFunction": "Change layout",
-							"sid": 605767462194444,
-							"parameters": [
-								"LAYOUT_AFTER_SPLASH_SCREEN",
-								true
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Set up arrays."
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 835538224794590,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "tips.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 482924290312335
+								},
+								{
+									"id": "load",
+									"objectClass": "tips",
+									"sid": 890999679922696,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 739464665563429,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "abilities.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 422020652931104
+								},
+								{
+									"id": "load",
+									"objectClass": "abilitiesArray",
+									"sid": 883417844258752,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 657546964448653,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "equipment.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 307119779528158
+								},
+								{
+									"id": "load",
+									"objectClass": "equipmentArray",
+									"sid": 318409953303642,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 251347945706452,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "npcDialog.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 821751219647004
+								},
+								{
+									"id": "load",
+									"objectClass": "npcDialogArray",
+									"sid": 741571028317774,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 832159759803450,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "layoutProperties.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 843944730112904
+								},
+								{
+									"id": "load",
+									"objectClass": "layoutProperties",
+									"sid": 619601371786175,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Set up dictionaries."
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 828295207908407,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "mods.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 721368203595706
+								},
+								{
+									"id": "load",
+									"objectClass": "mods",
+									"sid": 339531969535988,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "ajax",
+									"sid": 117611674556799,
+									"parameters": {
+										"tag": "NOT_USED",
+										"file": "soundEffectVariants.json"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 885168161585857
+								},
+								{
+									"id": "load",
+									"objectClass": "soundEffectVariants",
+									"sid": 801950424550336,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Create the mod values probability table, which gets populated during loot generation."
+								},
+								{
+									"id": "createProbabilityTable",
+									"objectClass": "advancedRandom",
+									"sid": 355410986080437,
+									"parameters": {
+										"name": "MOD_VALUES_PROBABILITY_TABLE"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Map function mods."
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 737400489691498,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatHealth\"",
+										"function": "Flat health"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 247306970214434,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatSlash\"",
+										"function": "Flat slash damage"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 724779568805667,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatStab\"",
+										"function": "Flat stab damage"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 276052574672734,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatSmash\"",
+										"function": "Flat smash damage"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 632768221617868,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatArmor\"",
+										"function": "Flat armor"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 624505460328751,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatManaRegen\"",
+										"function": "Flat mana regen"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 290345691384445,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatSlashAndStab\"",
+										"function": "Flat smash and stab damage"
+									}
+								},
+								{
+									"id": "map-function",
+									"objectClass": "Functions",
+									"sid": 356735143826460,
+									"parameters": {
+										"name": "MODS_KEYWORD",
+										"string": "\"flatPhysical\"",
+										"function": "Flat physical"
+									}
+								}
+							],
+							"sid": 740304120479661,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "DROP_TABLE_COLUMN_NAME",
+									"type": "string",
+									"initialValue": "dropTable",
+									"comment": "The name of the drop table column.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 935856664462614
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 360679234419979,
+											"parameters": {
+												"name": "NOT_USED",
+												"start-index": "LOOP_OFFSET",
+												"end-index": "layoutProperties.Height - LOOP_OFFSET"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Set up equipment probability tables."
+										},
+										{
+											"id": "createProbabilityTableFromJSON",
+											"objectClass": "advancedRandom",
+											"sid": 934688138783599,
+											"parameters": {
+												"name": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+												"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, DROP_TABLE_COLUMN_NAME), loopindex)"
+											}
+										}
+									],
+									"sid": 194701601036905
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 205837222509858,
+											"parameters": {
+												"name": "NOT_USED",
+												"start-index": "LOOP_OFFSET",
+												"end-index": "equipmentArray.Height - LOOP_OFFSET"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Set up mod probability tables."
+										},
+										{
+											"id": "createProbabilityTableFromJSON",
+											"objectClass": "advancedRandom",
+											"sid": 982282465197071,
+											"parameters": {
+												"name": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+												"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MODS_KEYWORD), loopindex)"
+											}
+										}
+									],
+									"sid": 770243169445729
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 790450748292677,
+											"parameters": {
+												"variable": "dataInitialized",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 748918864000243
+								}
 							]
 						}
-					],
-					"sid": 596130575223459
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 522764544748935,
-							"parameters": {
-								"first-value": "loadingprogress",
-								"comparison": 1,
-								"second-value": "FINISHED_LOADING_PROGRESS_VALUE"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "launcherMessage",
-							"sid": 326618954085655,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "loadingBarFrame",
-							"sid": 647600223397914,
-							"parameters": {
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-image-scale-x",
-							"objectClass": "loadingBar",
-							"sid": 757641771238630,
-							"parameters": {
-								"scale-x": "loadingprogress * PERCENTAGE_DIVIDER"
-							}
-						}
-					],
-					"sid": 181118355525718
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 710547151992762
-						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "launcherMessage",
-							"sid": 471207418511441,
-							"parameters": {
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "loadingBarFrame",
-							"sid": 694825951034526,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						}
-					],
-					"sid": 830884642059031
+					]
 				}
 			],
 			"sid": 297998252022528

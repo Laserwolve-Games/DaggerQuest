@@ -20583,6 +20583,44 @@
 							"sid": 135854462320920
 						}
 					]
+				},
+				{
+					"functionName": "Play layout audio",
+					"functionDescription": "Play the soundtrack for an area",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "audio",
+							"sid": 667026454964288,
+							"parameters": {
+								"folder": "music",
+								"audio-file-name": "LayoutName",
+								"loop": "looping",
+								"volume": "SILENT",
+								"stereo-pan": "DEFAULT_STEREO_PAN",
+								"tag-optional": "LayoutName"
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "audio",
+							"sid": 319115295720853,
+							"parameters": {
+								"tag": "LayoutName",
+								"db": "musicVolume",
+								"duration": "LAYOUT_FADE_TIME",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 536702238812860
 				}
 			],
 			"sid": 499889136212563

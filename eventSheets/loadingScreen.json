@@ -10,42 +10,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "BACKGROUND_PADDING",
-					"type": "number",
-					"initialValue": "10",
-					"comment": "How much to vertically and horizontally pad the text background, in pixels.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 502563041673405
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "pick-children",
-							"objectClass": "textWithBackground",
-							"sid": 914372095523933,
-							"parameters": {
-								"child": "textBackground",
-								"which": "own"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-size",
-							"objectClass": "textBackground",
-							"sid": 307925974445205,
-							"parameters": {
-								"width": "textWithBackground.TextWidth + BACKGROUND_PADDING + BACKGROUND_PADDING",
-								"height": "textWithBackground.TextHeight + BACKGROUND_PADDING"
-							}
-						}
-					],
-					"sid": 833310247300034
-				},
-				{
-					"eventType": "variable",
 					"name": "targetLayout",
 					"type": "string",
 					"initialValue": "",
@@ -53,79 +17,6 @@
 					"isStatic": true,
 					"isConstant": false,
 					"sid": 482850086025600
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 438620818678362,
-							"parameters": {
-								"interval-seconds": "ELLIPSIS_UPDATE_INTERVAL"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 839995727724483,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "LOADING_TEXT",
-							"type": "string",
-							"initialValue": "loading",
-							"comment": "The text to display when loading is being performed.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 384974981775723
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-text",
-									"objectClass": "loadingText",
-									"sid": 825312194659706,
-									"parameters": {
-										"text-to-compare": "LOADING_TEXT & ELLIPSIS",
-										"case-sensitivity": "ignore-case"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "loadingText",
-									"sid": 445714598217099,
-									"parameters": {
-										"text": "LOADING_TEXT"
-									}
-								}
-							],
-							"sid": 604161167584792
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 142840463988686
-								}
-							],
-							"actions": [
-								{
-									"id": "append-text",
-									"objectClass": "loadingText",
-									"sid": 308244809474431,
-									"parameters": {
-										"text": "ELLIPSIS_DOT"
-									}
-								}
-							],
-							"sid": 448796330367520
-						}
-					]
 				},
 				{
 					"functionName": "Change layout",
@@ -251,6 +142,36 @@
 						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
+							"sid": 397264741186607
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "loadingText",
+							"sid": 338968184005463,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "NOT_USED",
+								"property": "offsetOpacity",
+								"end-value": "TWEEN_TEXT_OPACITY",
+								"time": "TWEEN_TEXT_SPEED",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "yes",
+								"ping-pong": "yes",
+								"repeat-count": "INFINITE_REPEAT_COUNT"
+							}
+						}
+					],
+					"sid": 426874910989596
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
 							"sid": 362670556863653
 						}
 					],
@@ -263,9 +184,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "tip",
-							"sid": 649513460187345,
+							"sid": 198757189106556,
 							"parameters": {
-								"text": "tips.At(0, floor(random(tips.Height)))"
+								"text": "BLACK_OUTLINE_BBCODE & tips.At(0, floor(random(tips.Height)))"
 							}
 						},
 						{

@@ -700,99 +700,12 @@
 					}
 				},
 				{
-					"type": "textBackground",
-					"properties": {
-						"initially-visible": true,
-						"origin": "center",
-						"wrap-horizontal": "repeat",
-						"wrap-vertical": "repeat",
-						"image-offset-x": 0,
-						"image-offset-y": 0,
-						"image-scale-x": 1,
-						"image-scale-y": 1,
-						"image-angle": 0,
-						"enable-tile-randomization": false,
-						"x-random": 1,
-						"y-random": 1,
-						"angle-random": 1,
-						"blend-margin-x": 0.1,
-						"blend-margin-y": 0.1
-					},
-					"uid": 498,
-					"sid": 930941255526456,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"effects": {
-						"BlurHorizontal": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 1
-							}
-						},
-						"BlurVertical": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 1
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": 499,
-						"uid": 498,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": true,
-							"v": true,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 930941255526456,
-						"expanded": false
-					},
-					"world": {
-						"x": 960,
-						"y": 600,
-						"width": 450,
-						"height": 100,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
 					"type": "loadingText",
 					"properties": {
-						"text": "loading",
+						"text": "[outline=black]Loading...",
 						"enable-bbcode": true,
-						"font": "Cinzel-SemiBold",
-						"size": 46,
+						"font": "grenze-semibold",
+						"size": 64,
 						"line-height": 0,
 						"bold": false,
 						"italic": false,
@@ -815,27 +728,16 @@
 					"sid": 880811412904743,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"sceneGraphData": {
 						"parent-uid": null,
 						"uid": 499,
-						"children": [
-							{
-								"uid": 498,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								}
-							}
-						],
 						"flags": {
 							"x": true,
 							"y": true,
@@ -867,9 +769,9 @@
 					},
 					"world": {
 						"x": 960,
-						"y": 600,
+						"y": 540,
 						"width": 400,
-						"height": 60,
+						"height": 96,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -938,99 +840,12 @@
 					}
 				},
 				{
-					"type": "textBackground",
-					"properties": {
-						"initially-visible": true,
-						"origin": "center",
-						"wrap-horizontal": "repeat",
-						"wrap-vertical": "repeat",
-						"image-offset-x": 0,
-						"image-offset-y": 0,
-						"image-scale-x": 1,
-						"image-scale-y": 1,
-						"image-angle": 0,
-						"enable-tile-randomization": false,
-						"x-random": 1,
-						"y-random": 1,
-						"angle-random": 1,
-						"blend-margin-x": 0.1,
-						"blend-margin-y": 0.1
-					},
-					"uid": 272,
-					"sid": 192072013406701,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"effects": {
-						"BlurHorizontal": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 1
-							}
-						},
-						"BlurVertical": {
-							"isEnabled": true,
-							"parameters": {
-								"intensity": 1
-							}
-						}
-					},
-					"sceneGraphData": {
-						"parent-uid": 326,
-						"uid": 272,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": true,
-							"v": true,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 192072013406701,
-						"expanded": false
-					},
-					"world": {
-						"x": 960,
-						"y": 800,
-						"width": 198,
-						"height": 50,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
 					"type": "tip",
 					"properties": {
-						"text": "tip placeholder",
+						"text": "[outline=black]Tip placeholder",
 						"enable-bbcode": true,
 						"font": "grenze-semibold",
-						"size": 22,
+						"size": 32,
 						"line-height": 0,
 						"bold": false,
 						"italic": false,
@@ -1041,12 +856,12 @@
 							1
 						],
 						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
+						"vertical-alignment": "top",
 						"wrapping": "word",
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "bottom",
 						"read-aloud": true
 					},
 					"uid": 326,
@@ -1057,23 +872,6 @@
 					"sceneGraphData": {
 						"parent-uid": null,
 						"uid": 326,
-						"children": [
-							{
-								"uid": 272,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								}
-							}
-						],
 						"flags": {
 							"x": true,
 							"y": true,
@@ -1105,11 +903,11 @@
 					},
 					"world": {
 						"x": 960,
-						"y": 800,
+						"y": 1080,
 						"width": 1920,
-						"height": 32,
+						"height": 300,
 						"originX": 0.5,
-						"originY": 0.5,
+						"originY": 1,
 						"color": [
 							1,
 							1,

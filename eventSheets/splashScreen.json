@@ -20,26 +20,6 @@
 				},
 				{
 					"eventType": "variable",
-					"name": "LAUNCHER_TEXT_OPACITY",
-					"type": "number",
-					"initialValue": "10",
-					"comment": "The opacity that the launcher text should tween until.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 662965730819559
-				},
-				{
-					"eventType": "variable",
-					"name": "LAUNCHER_TEXT_TWEEN_SPEED",
-					"type": "number",
-					"initialValue": "1",
-					"comment": "How fast the launcher text should complete an opacity tween, in seconds.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 123622688028705
-				},
-				{
-					"eventType": "variable",
 					"name": "LAYOUT_AFTER_SPLASH_SCREEN",
 					"type": "string",
 					"initialValue": "mainMenu",
@@ -108,77 +88,6 @@
 						0,
 						0,
 						1
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 438783416248417,
-							"parameters": {
-								"variable": "updateAvailable"
-							}
-						},
-						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 535289092471855,
-							"parameters": {
-								"interval-seconds": "ELLIPSIS_UPDATE_INTERVAL"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 703324802027352,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-text",
-									"objectClass": "launcherMessage",
-									"sid": 600525300154423,
-									"parameters": {
-										"text-to-compare": "UPDATE_AVAILABLE_TEXT & ELLIPSIS",
-										"case-sensitivity": "ignore-case"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "launcherMessage",
-									"sid": 767496929204803,
-									"parameters": {
-										"text": "UPDATE_AVAILABLE_TEXT"
-									}
-								}
-							],
-							"sid": 542895579608959
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 711196193848480
-								}
-							],
-							"actions": [
-								{
-									"id": "append-text",
-									"objectClass": "launcherMessage",
-									"sid": 240829588494119,
-									"parameters": {
-										"text": "ELLIPSIS_DOT"
-									}
-								}
-							],
-							"sid": 478527113691950
-						}
 					]
 				},
 				{
@@ -274,9 +183,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "launcherMessage",
-							"sid": 623059178549865,
+							"sid": 158062937437253,
 							"parameters": {
-								"text": "UPDATE_AVAILABLE_TEXT"
+								"text": "BLACK_OUTLINE_BBCODE & UPDATE_AVAILABLE_TEXT"
 							}
 						}
 					],
@@ -326,6 +235,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "is-any-playing",
+									"objectClass": "fader",
+									"sid": 529692839794862,
+									"behaviorType": "Tween",
+									"isInverted": true
+								},
+								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
 									"sid": 366682436257043,
@@ -353,7 +269,12 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Don't progress if we haven't finished fading in, or we're already fading out from a previous click/button press."
+								}
+							],
 							"sid": 553050278553049,
 							"children": [
 								{
@@ -411,6 +332,367 @@
 						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
+							"sid": 544456707599451
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Set up arrays."
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 638376087524651,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "tips.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 136482089128913
+						},
+						{
+							"id": "load",
+							"objectClass": "tips",
+							"sid": 247348852479223,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 902216213839381,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "abilities.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 750842176397968
+						},
+						{
+							"id": "load",
+							"objectClass": "abilitiesArray",
+							"sid": 134370468928934,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 518375683458169,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "equipment.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 989238488305379
+						},
+						{
+							"id": "load",
+							"objectClass": "equipmentArray",
+							"sid": 592105309622734,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 183777613466628,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "npcDialog.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 981472101419118
+						},
+						{
+							"id": "load",
+							"objectClass": "npcDialogArray",
+							"sid": 701093150753694,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 269950564196404,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "layoutProperties.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 585793087285472
+						},
+						{
+							"id": "load",
+							"objectClass": "layoutProperties",
+							"sid": 645252096422757,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Set up dictionaries."
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 528632414872868,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "mods.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 280901218814138
+						},
+						{
+							"id": "load",
+							"objectClass": "mods",
+							"sid": 865343491624665,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 273726554785908,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "soundEffectVariants.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 575437867265711
+						},
+						{
+							"id": "load",
+							"objectClass": "soundEffectVariants",
+							"sid": 103228168286987,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Create the mod values probability table, which gets populated during loot generation."
+						},
+						{
+							"id": "createProbabilityTable",
+							"objectClass": "advancedRandom",
+							"sid": 221366601842228,
+							"parameters": {
+								"name": "MOD_VALUES_PROBABILITY_TABLE"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Map function mods."
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 459383033119501,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatHealth\"",
+								"function": "Flat health"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 256273981547740,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatSlash\"",
+								"function": "Flat slash damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 830951096667189,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatStab\"",
+								"function": "Flat stab damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 973464704518576,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatSmash\"",
+								"function": "Flat smash damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 841809265279412,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatArmor\"",
+								"function": "Flat armor"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 919872071878646,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatManaRegen\"",
+								"function": "Flat mana regen"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 424854242593611,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatSlashAndStab\"",
+								"function": "Flat smash and stab damage"
+							}
+						},
+						{
+							"id": "map-function",
+							"objectClass": "Functions",
+							"sid": 474333114809737,
+							"parameters": {
+								"name": "MODS_KEYWORD",
+								"string": "\"flatPhysical\"",
+								"function": "Flat physical"
+							}
+						}
+					],
+					"sid": 934157272661559,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "DROP_TABLE_COLUMN_NAME",
+							"type": "string",
+							"initialValue": "dropTable",
+							"comment": "The name of the drop table column.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 296059781854803
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 238812006425767,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "layoutProperties.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Set up equipment probability tables."
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 924106143324810,
+									"parameters": {
+										"name": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, DROP_TABLE_COLUMN_NAME), loopindex)"
+									}
+								}
+							],
+							"sid": 730156126304723
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 368347940538038,
+									"parameters": {
+										"name": "NOT_USED",
+										"start-index": "LOOP_OFFSET",
+										"end-index": "equipmentArray.Height - LOOP_OFFSET"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Set up mod probability tables."
+								},
+								{
+									"id": "createProbabilityTableFromJSON",
+									"objectClass": "advancedRandom",
+									"sid": 361714858138915,
+									"parameters": {
+										"name": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
+										"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MODS_KEYWORD), loopindex)"
+									}
+								}
+							],
+							"sid": 970035806854047
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 890941561566228,
+									"parameters": {
+										"variable": "dataInitialized",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 547441099178335
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
 							"sid": 207162166243759
 						}
 					],
@@ -424,9 +706,42 @@
 							}
 						},
 						{
+							"type": "comment",
+							"text": "We can't combine this event with the previous one because otherwise the 'Wait for previous actions to complete' actions will wait for these opacity tweens to finish, and the launcher message tween never does.",
+							"text-color": [
+								0.7843137254901961,
+								0.7843137254901961,
+								0.7843137254901961,
+								1
+							],
+							"background-color": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						{
 							"customAction": "Fade out",
 							"objectClass": "fader",
 							"sid": 360766046394751
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "launcherMessage",
+							"sid": 690940063960326,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "NOT_USED",
+								"property": "offsetOpacity",
+								"end-value": "TWEEN_TEXT_OPACITY",
+								"time": "TWEEN_TEXT_SPEED",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "yes",
+								"ping-pong": "yes",
+								"repeat-count": "INFINITE_REPEAT_COUNT"
+							}
 						}
 					],
 					"sid": 847260980959405,
@@ -503,361 +818,6 @@
 							],
 							"sid": 327615388920449,
 							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Set up arrays."
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 835538224794590,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "tips.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 482924290312335
-								},
-								{
-									"id": "load",
-									"objectClass": "tips",
-									"sid": 890999679922696,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 739464665563429,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "abilities.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 422020652931104
-								},
-								{
-									"id": "load",
-									"objectClass": "abilitiesArray",
-									"sid": 883417844258752,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 657546964448653,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "equipment.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 307119779528158
-								},
-								{
-									"id": "load",
-									"objectClass": "equipmentArray",
-									"sid": 318409953303642,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 251347945706452,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "npcDialog.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 821751219647004
-								},
-								{
-									"id": "load",
-									"objectClass": "npcDialogArray",
-									"sid": 741571028317774,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 832159759803450,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "layoutProperties.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 843944730112904
-								},
-								{
-									"id": "load",
-									"objectClass": "layoutProperties",
-									"sid": 619601371786175,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "Set up dictionaries."
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 828295207908407,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "mods.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 721368203595706
-								},
-								{
-									"id": "load",
-									"objectClass": "mods",
-									"sid": 339531969535988,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"id": "request-project-file",
-									"objectClass": "ajax",
-									"sid": 117611674556799,
-									"parameters": {
-										"tag": "NOT_USED",
-										"file": "soundEffectVariants.json"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 885168161585857
-								},
-								{
-									"id": "load",
-									"objectClass": "soundEffectVariants",
-									"sid": 801950424550336,
-									"parameters": {
-										"json": "AJAX.LastData"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "Create the mod values probability table, which gets populated during loot generation."
-								},
-								{
-									"id": "createProbabilityTable",
-									"objectClass": "advancedRandom",
-									"sid": 355410986080437,
-									"parameters": {
-										"name": "MOD_VALUES_PROBABILITY_TABLE"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "Map function mods."
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 737400489691498,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatHealth\"",
-										"function": "Flat health"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 247306970214434,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatSlash\"",
-										"function": "Flat slash damage"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 724779568805667,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatStab\"",
-										"function": "Flat stab damage"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 276052574672734,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatSmash\"",
-										"function": "Flat smash damage"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 632768221617868,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatArmor\"",
-										"function": "Flat armor"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 624505460328751,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatManaRegen\"",
-										"function": "Flat mana regen"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 290345691384445,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatSlashAndStab\"",
-										"function": "Flat smash and stab damage"
-									}
-								},
-								{
-									"id": "map-function",
-									"objectClass": "Functions",
-									"sid": 356735143826460,
-									"parameters": {
-										"name": "MODS_KEYWORD",
-										"string": "\"flatPhysical\"",
-										"function": "Flat physical"
-									}
-								}
-							],
-							"sid": 740304120479661,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "DROP_TABLE_COLUMN_NAME",
-									"type": "string",
-									"initialValue": "dropTable",
-									"comment": "The name of the drop table column.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 935856664462614
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 360679234419979,
-											"parameters": {
-												"name": "NOT_USED",
-												"start-index": "LOOP_OFFSET",
-												"end-index": "layoutProperties.Height - LOOP_OFFSET"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "Set up equipment probability tables."
-										},
-										{
-											"id": "createProbabilityTableFromJSON",
-											"objectClass": "advancedRandom",
-											"sid": 934688138783599,
-											"parameters": {
-												"name": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-												"json": "layoutProperties.At(Functions.getColumnNumber(layoutProperties.ObjectTypeName, DROP_TABLE_COLUMN_NAME), loopindex)"
-											}
-										}
-									],
-									"sid": 194701601036905
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 205837222509858,
-											"parameters": {
-												"name": "NOT_USED",
-												"start-index": "LOOP_OFFSET",
-												"end-index": "equipmentArray.Height - LOOP_OFFSET"
-											}
-										}
-									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "Set up mod probability tables."
-										},
-										{
-											"id": "createProbabilityTableFromJSON",
-											"objectClass": "advancedRandom",
-											"sid": 982282465197071,
-											"parameters": {
-												"name": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, SIMPLE_NAME_KEYWORD), loopindex)",
-												"json": "equipmentArray.At(Functions.getColumnNumber(equipmentArray.ObjectTypeName, MODS_KEYWORD), loopindex)"
-											}
-										}
-									],
-									"sid": 770243169445729
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 790450748292677,
-											"parameters": {
-												"variable": "dataInitialized",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 748918864000243
-								}
-							]
 						}
 					]
 				}

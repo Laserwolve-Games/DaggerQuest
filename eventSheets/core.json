@@ -131,16 +131,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ELLIPSIS_UPDATE_INTERVAL",
-			"type": "number",
-			"initialValue": "0.5",
-			"comment": "How often to add an additional ellipsis dot, in seconds.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 988041226389280
-		},
-		{
-			"eventType": "variable",
 			"name": "EMPTY",
 			"type": "number",
 			"initialValue": "0",
@@ -441,6 +431,26 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "TWEEN_TEXT_OPACITY",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "The opacity that tweening text should tween until.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 443092374863380
+		},
+		{
+			"eventType": "variable",
+			"name": "TWEEN_TEXT_SPEED",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "How fast tweening text should complete an opacity tween, in seconds.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 184971058434673
+		},
+		{
+			"eventType": "variable",
 			"name": "UNPAUSED_TIME_SCALE",
 			"type": "number",
 			"initialValue": "1",
@@ -468,6 +478,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 830605075654169
+		},
+		{
+			"eventType": "variable",
+			"name": "BLACK_OUTLINE_BBCODE",
+			"type": "string",
+			"initialValue": "[outline=black]",
+			"comment": "BBCode for a black outline.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 425747015976714
 		},
 		{
 			"eventType": "variable",
@@ -548,16 +568,6 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 572585078688533
-		},
-		{
-			"eventType": "variable",
-			"name": "ELLIPSIS_DOT",
-			"type": "string",
-			"initialValue": ".",
-			"comment": "The character used to form ellipses.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 809926812492391
 		},
 		{
 			"eventType": "variable",
@@ -798,6 +808,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 386319026003665
+		},
+		{
+			"eventType": "variable",
+			"name": "SPACE",
+			"type": "string",
+			"initialValue": " ",
+			"comment": "A space.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 643509454866301
 		},
 		{
 			"eventType": "variable",
@@ -12173,6 +12193,39 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "on-start-of-layout",
+									"objectClass": "System",
+									"sid": 359184946402027
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Start the opacity of the tooltips at 0."
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "tooltip",
+									"sid": 776535803656519,
+									"parameters": {
+										"opacity": "TRANSPARENT_OPACITY"
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "comparisonTooltip",
+									"sid": 997982007130815,
+									"parameters": {
+										"opacity": "TRANSPARENT_OPACITY"
+									}
+								}
+							],
+							"sid": 156127091849511
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "is-dragging",
 									"objectClass": "statue",
 									"sid": 626771208311706,
@@ -12183,16 +12236,6 @@
 							"actions": [],
 							"sid": 862182322119437,
 							"children": [
-								{
-									"eventType": "variable",
-									"name": "NONE",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The numerical representation of nothing.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 946144892702201
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -12206,11 +12249,11 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 856276776215231,
+											"sid": 425172784946726,
 											"parameters": {
 												"first-value": "item.Count",
 												"comparison": 0,
-												"second-value": "NONE"
+												"second-value": "FALSE"
 											}
 										}
 									],
@@ -12476,7 +12519,7 @@
 											"actions": [
 												{
 													"callFunction": "Update tooltip",
-													"sid": 200311270241691,
+													"sid": 487024551226746,
 													"parameters": [
 														true,
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, FULL_NAME_KEYWORD)",
@@ -12484,7 +12527,7 @@
 														"Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, LEVEL_KEYWORD)",
 														"Functions.makeMultiline(Functions.arrayLookup(abilitiesArray.ObjectTypeName, ability.AnimationName, DESCRIPTION_KEYWORD))",
 														"NOT_USED",
-														"NONE"
+														"FALSE"
 													]
 												}
 											],
@@ -12576,16 +12619,6 @@
 							"isStatic": false,
 							"isConstant": true,
 							"sid": 628934883307504
-						},
-						{
-							"eventType": "variable",
-							"name": "SPACE",
-							"type": "string",
-							"initialValue": " ",
-							"comment": "A space.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 499193792924427
 						},
 						{
 							"eventType": "variable",
@@ -13585,6 +13618,27 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-start-of-layout",
+									"objectClass": "System",
+									"sid": 737867412499976
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "enemyHealthFrame",
+									"sid": 141933657988928,
+									"parameters": {
+										"opacity": "TRANSPARENT_OPACITY"
+									}
+								}
+							],
+							"sid": 603778329502351
+						},
+						{
 							"aceType": "action",
 							"aceName": "Update enemy info",
 							"objectClass": "enemy",
@@ -14383,6 +14437,16 @@
 							"sid": 929528626556521,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "SPACEBAR",
+									"type": "string",
+									"initialValue": "spacebar",
+									"comment": "The name of the spacebar key.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 421584328610978
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -14428,9 +14492,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "keybinder",
-											"sid": 546505687649169,
+											"sid": 634170616464691,
 											"parameters": {
-												"text": "uppercase(keyboard.TypedKey)"
+												"text": "uppercase(replace(keyboard.TypedKey, SPACE, SPACEBAR))"
 											}
 										},
 										{
@@ -14454,16 +14518,6 @@
 									],
 									"sid": 508602824145830,
 									"children": [
-										{
-											"eventType": "variable",
-											"name": "BBCODE",
-											"type": "string",
-											"initialValue": "[outline=#000000][lineThickness=1.5]",
-											"comment": "The BBCode to use on the ability key's text.",
-											"isStatic": false,
-											"isConstant": true,
-											"sid": 914806118215188
-										},
 										{
 											"eventType": "block",
 											"conditions": [
@@ -14497,7 +14551,7 @@
 													"objectClass": "abilityKey",
 													"sid": 416449890932601,
 													"parameters": {
-														"text": "BBCODE & keybinder.PlainText"
+														"text": "BLACK_OUTLINE_BBCODE & keybinder.PlainText"
 													}
 												}
 											],

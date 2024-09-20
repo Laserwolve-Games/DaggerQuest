@@ -1780,6 +1780,31 @@
 					"isActiveOnStart": true,
 					"children": [
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "loot",
+									"sid": 614694260723140,
+									"parameters": {
+										"object": "prop"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push-out-solid",
+									"objectClass": "loot",
+									"sid": 371496562948989,
+									"behaviorType": "Custom",
+									"parameters": {
+										"direction": "opposite-angle"
+									}
+								}
+							],
+							"sid": 814323650475468
+						},
+						{
 							"aceType": "action",
 							"aceName": "Pick up loot",
 							"objectClass": "player",

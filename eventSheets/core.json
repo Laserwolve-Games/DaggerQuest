@@ -1815,7 +1815,18 @@
 							"functionIsAsync": false,
 							"functionParameters": [],
 							"eventType": "custom-ace-block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "slot",
+									"sid": 614782476849599,
+									"parameters": {
+										"instance-variable": "identifier",
+										"comparison": 0,
+										"value": "EMPTY"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-boolean-eventvar",
@@ -1869,25 +1880,13 @@
 											}
 										},
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 406506168701290,
+											"id": "compare-instance-variable",
+											"objectClass": "slot",
+											"sid": 616507352220135,
 											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
+												"instance-variable": "type",
 												"comparison": 0,
 												"value": "loot.type"
-											}
-										},
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 750460005734091,
-											"parameters": {
-												"object": "slot",
-												"expression": "slot.identifier",
-												"comparison": 0,
-												"value": "EMPTY"
 											}
 										},
 										{
@@ -1953,25 +1952,21 @@
 											"sid": 400103439303001
 										},
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 783159881834358,
+											"id": "compare-instance-variable",
+											"objectClass": "slot",
+											"sid": 634436180814928,
 											"parameters": {
-												"object": "slot",
-												"expression": "slot.type",
+												"instance-variable": "type",
 												"comparison": 0,
 												"value": "NONE_KEYWORD"
 											}
 										},
 										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 762186091622829,
+											"id": "is-on-layer",
+											"objectClass": "slot",
+											"sid": 989896427161246,
 											"parameters": {
-												"object": "slot",
-												"expression": "slot.identifier",
-												"comparison": 0,
-												"value": "EMPTY"
+												"layer": "inventoryMenuStatue.LayerName"
 											}
 										},
 										{
@@ -2043,6 +2038,24 @@
 											"sid": 456851495609601
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 651720480840363
+										}
+									],
+									"actions": [
+										{
+											"customAction": "I can't carry any more",
+											"objectClass": "player",
+											"sid": 238810305298467
+										}
+									],
+									"sid": 126336173621454
 								}
 							]
 						},
@@ -2514,22 +2527,6 @@
 										},
 										{
 											"type": "comment",
-											"text": "TODO: Push loot out of props, enemies, chests, etc. into which it gets launched.",
-											"text-color": [
-												0,
-												0,
-												0,
-												1
-											],
-											"background-color": [
-												0.7843137254901961,
-												0.7843137254901961,
-												0,
-												1
-											]
-										},
-										{
-											"type": "comment",
 											"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/38"
 										},
 										{
@@ -2930,20 +2927,9 @@
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "TODO: Play audio \"I can't carry any more\"",
-															"text-color": [
-																0,
-																0,
-																0,
-																1
-															],
-															"background-color": [
-																0.7843137254901961,
-																0.7843137254901961,
-																0,
-																1
-															]
+															"customAction": "I can't carry any more",
+															"objectClass": "player",
+															"sid": 177697836046343
 														}
 													],
 													"sid": 179465482061357
@@ -3617,20 +3603,9 @@
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "TODO: Play audio \"I can't carry any more\" or \"I have no room for this purchase\".",
-															"text-color": [
-																0,
-																0,
-																0,
-																1
-															],
-															"background-color": [
-																0.7843137254901961,
-																0.7843137254901961,
-																0,
-																1
-															]
+															"customAction": "I can't carry any more",
+															"objectClass": "player",
+															"sid": 891385592091592
 														}
 													],
 													"sid": 643614221231479
@@ -3825,24 +3800,23 @@
 																	"id": "else",
 																	"objectClass": "System",
 																	"sid": 764775576450374
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "npc",
+																	"sid": 910311439527938,
+																	"parameters": {
+																		"instance-variable": "simpleName",
+																		"comparison": 0,
+																		"value": "player.talkingToNpc"
+																	}
 																}
 															],
 															"actions": [
 																{
-																	"type": "comment",
-																	"text": "TODO: If there's no empty slots on the merchant menu, the merchant plays the dialog line \"I have no more room to purchase items\".",
-																	"text-color": [
-																		0,
-																		0,
-																		0,
-																		1
-																	],
-																	"background-color": [
-																		0.7843137254901961,
-																		0.7843137254901961,
-																		0,
-																		1
-																	]
+																	"customAction": "I can't purchase any more items",
+																	"objectClass": "npc",
+																	"sid": 280724293338178
 																}
 															],
 															"sid": 374919461999711
@@ -10314,7 +10288,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "TODO: Restart the level or send the player somewhere and revive them.",
+											"text": "TODO: Send the player back to \"camp\".",
 											"text-color": [
 												0,
 												0,
@@ -10327,6 +10301,11 @@
 												0,
 												1
 											]
+										},
+										{
+											"id": "reload",
+											"objectClass": "browser",
+											"sid": 310585205301617
 										}
 									],
 									"sid": 379379093595967
@@ -20715,6 +20694,126 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"aceType": "action",
+					"aceName": "I can't carry any more",
+					"objectClass": "player",
+					"functionDescription": "Play the audio track that indicates there's no more inventory space available.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 994449246842237,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "CANT_CARRY_KEYWORD",
+							"type": "string",
+							"initialValue": "cantCarry",
+							"comment": "The name of the audio to play when the inventory is full.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 533662391180683
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "audio",
+									"sid": 232326285453873,
+									"parameters": {
+										"tag": "CANT_CARRY_KEYWORD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "audio",
+									"sid": 926533281709555,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "body.ObjectTypeName & SEPARATOR & CANT_CARRY_KEYWORD",
+										"loop": "not-looping",
+										"volume": "soundEffectsVolume",
+										"object": "body",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "CANT_CARRY_KEYWORD"
+									}
+								}
+							],
+							"sid": 530561523303096
+						}
+					]
+				},
+				{
+					"aceType": "action",
+					"aceName": "I can't purchase any more items",
+					"objectClass": "npc",
+					"functionDescription": "Plays the audio indicating this merchant can't purchase any more items.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 700182439490197,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "CANT_PURCHASE_KEYWORD",
+							"type": "string",
+							"initialValue": "cantPurchase",
+							"comment": "The name of the audio to play when the merchant can't purchase any more items.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 905342093377704
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "audio",
+									"sid": 162002008660510,
+									"parameters": {
+										"tag": "CANT_PURCHASE_KEYWORD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "audio",
+									"sid": 494125042761932,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "player.talkingToNpc & SEPARATOR & CANT_PURCHASE_KEYWORD",
+										"loop": "not-looping",
+										"volume": "soundEffectsVolume",
+										"object": "npc",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "CANT_PURCHASE_KEYWORD"
+									}
+								}
+							],
+							"sid": 752562871296790
+						}
+					]
+				},
 				{
 					"functionName": "soundEffectName",
 					"functionDescription": "Get the file name of a random variation of this sound effect.",

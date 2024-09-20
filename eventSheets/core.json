@@ -7263,6 +7263,84 @@
 							"sid": 245583672645296,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "STOP_MOVING_KEYWORD",
+									"type": "string",
+									"initialValue": "stopMoving",
+									"comment": "The target flog for the keybinder to stop moving.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 728199444725996
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "keybinder",
+											"sid": 277484064679610,
+											"parameters": {
+												"instance-variable": "target",
+												"comparison": 0,
+												"value": "STOP_MOVING_KEYWORD"
+											}
+										},
+										{
+											"id": "key-code-is-down",
+											"objectClass": "keyboard",
+											"sid": 583237248847686,
+											"parameters": {
+												"keycode": "keybinder.keycode"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "reset-eventvar",
+											"objectClass": "System",
+											"sid": 101669739479310,
+											"parameters": {
+												"variable": "uidOfClicked"
+											}
+										},
+										{
+											"id": "stop",
+											"objectClass": "player",
+											"sid": 193539420659015,
+											"behaviorType": "MoveTo"
+										}
+									],
+									"sid": 368768864328551,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-click",
+													"objectClass": "mouse",
+													"sid": 531510230777833,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked"
+													}
+												}
+											],
+											"actions": [
+												{
+													"customAction": "basicAttack",
+													"objectClass": "player",
+													"sid": 900226974183697,
+													"parameters": [
+														"mouse.X",
+														"mouse.Y"
+													]
+												}
+											],
+											"sid": 893251418038432
+										}
+									]
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -7985,15 +8063,6 @@
 											}
 										},
 										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "player",
-											"sid": 539468882333294,
-											"parameters": {
-												"object": "nonCombatArea"
-											},
-											"isInverted": true
-										},
-										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
 											"sid": 450141745828720,
@@ -8024,7 +8093,11 @@
 										{
 											"customAction": "basicAttack",
 											"objectClass": "player",
-											"sid": 902800340932838
+											"sid": 939238315947389,
+											"parameters": [
+												"enemy.X",
+												"enemy.Y"
+											]
 										}
 									],
 									"sid": 388352296582573
@@ -8621,17 +8694,37 @@
 									"functionDescription": "The basic attack for this class.",
 									"functionCategory": "abilities",
 									"functionReturnType": "none",
-									"functionCopyPicked": true,
+									"functionCopyPicked": false,
 									"functionIsAsync": false,
-									"functionParameters": [],
-									"eventType": "custom-ace-block",
-									"conditions": [],
-									"actions": [
+									"functionParameters": [
 										{
-											"type": "comment",
-											"text": "This is a custom action and not an instance signal so we can get the coordinates of the enemy that was clicked."
+											"name": "targetX",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "The coordinate of the location to target, on the X axis.",
+											"sid": 997944691437748
+										},
+										{
+											"name": "targetY",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "The coordinate of the location to target, on the Y axis.",
+											"sid": 871671223315566
 										}
 									],
+									"eventType": "custom-ace-block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "player",
+											"sid": 631070015681285,
+											"parameters": {
+												"object": "nonCombatArea"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
 									"sid": 669092372960624,
 									"children": [
 										{
@@ -8731,10 +8824,10 @@
 												{
 													"customAction": "updateFacing",
 													"objectClass": "player",
-													"sid": 674731495442072,
+													"sid": 343537975224457,
 													"parameters": [
-														"enemy.X",
-														"enemy.Y"
+														"targetX",
+														"targetY"
 													]
 												},
 												{

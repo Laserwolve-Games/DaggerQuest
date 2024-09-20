@@ -25792,21 +25792,6 @@
 								"uid": 214,
 								"children": [
 									{
-										"uid": 216,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
 										"uid": 213,
 										"flags": {
 											"x": true,
@@ -26379,85 +26364,6 @@
 							}
 						},
 						{
-							"type": "settingsText",
-							"properties": {
-								"text": "auto equip",
-								"enable-bbcode": true,
-								"font": "Cinzel-SemiBold",
-								"size": 24,
-								"line-height": 0,
-								"bold": false,
-								"italic": false,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"horizontal-alignment": "left",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"text-direction": "ltr",
-								"icon-set": -1,
-								"initially-visible": true,
-								"origin": "center",
-								"read-aloud": false
-							},
-							"uid": 216,
-							"sid": 372252314136177,
-							"tags": "",
-							"instanceVariables": {},
-							"behaviors": {},
-							"sceneGraphData": {
-								"parent-uid": 214,
-								"uid": 216,
-								"flags": {
-									"x": true,
-									"y": true,
-									"z": true,
-									"w": true,
-									"h": true,
-									"a": true,
-									"o": true,
-									"v": true,
-									"d": true,
-									"sm": "normal"
-								},
-								"preview": {
-									"transformX": 0,
-									"transformY": 0,
-									"transformZElevation": 0,
-									"transformW": 0,
-									"transformH": 0,
-									"transformA": 0,
-									"transformSX": 0,
-									"transformSY": 0,
-									"transformO": 0,
-									"previewSceneGraph": false
-								}
-							},
-							"instanceFolderItem": {
-								"sid": 372252314136177,
-								"expanded": false
-							},
-							"world": {
-								"x": 953,
-								"y": 370,
-								"width": 191,
-								"height": 30,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
 							"type": "autoEquip",
 							"properties": {
 								"initially-visible": true,
@@ -26504,8 +26410,8 @@
 								"expanded": false
 							},
 							"world": {
-								"x": 1066,
-								"y": 370,
+								"x": 735,
+								"y": 420,
 								"width": 30,
 								"height": 30,
 								"originX": 0.5,
@@ -26523,7 +26429,7 @@
 						{
 							"type": "settingsText",
 							"properties": {
-								"text": "keybindings",
+								"text": "settings",
 								"enable-bbcode": true,
 								"font": "Cinzel-SemiBold",
 								"size": 18,
@@ -26584,7 +26490,7 @@
 							},
 							"world": {
 								"x": 953,
-								"y": 420,
+								"y": 370,
 								"width": 361,
 								"height": 30,
 								"originX": 0.5,
@@ -29166,6 +29072,247 @@
 								"x": 1315,
 								"y": 520,
 								"width": 100,
+								"height": 45,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "settingsText",
+							"properties": {
+								"text": "auto equip:",
+								"enable-bbcode": true,
+								"font": "Cinzel-SemiBold",
+								"size": 18,
+								"line-height": 0,
+								"bold": false,
+								"italic": true,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "left",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 215,
+							"sid": 132449013589339,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 215,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 132449013589339,
+								"expanded": false
+							},
+							"world": {
+								"x": 624,
+								"y": 420,
+								"width": 156,
+								"height": 30,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "settingsText",
+							"properties": {
+								"text": "stop:",
+								"enable-bbcode": true,
+								"font": "Cinzel-SemiBold",
+								"size": 18,
+								"line-height": 0,
+								"bold": false,
+								"italic": true,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "left",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 216,
+							"sid": 678570425382229,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 216,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 678570425382229,
+								"expanded": false
+							},
+							"world": {
+								"x": 1065.5,
+								"y": 420,
+								"width": 176,
+								"height": 30,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "keybinder",
+							"properties": {
+								"text": "SHIFT",
+								"enable-bbcode": true,
+								"font": "grenze-semibold",
+								"size": 30,
+								"line-height": 0,
+								"bold": false,
+								"italic": true,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"text-direction": "ltr",
+								"icon-set": -1,
+								"initially-visible": true,
+								"origin": "center",
+								"read-aloud": false
+							},
+							"uid": 272,
+							"sid": 747148907079470,
+							"tags": "",
+							"instanceVariables": {
+								"keycode": 16,
+								"abilityNumber": 0,
+								"target": "stopMoving"
+							},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 272,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 747148907079470,
+								"expanded": true
+							},
+							"world": {
+								"x": 1260,
+								"y": 420,
+								"width": 210,
 								"height": 45,
 								"originX": 0.5,
 								"originY": 0.5,

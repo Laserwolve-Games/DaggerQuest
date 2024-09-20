@@ -14148,14 +14148,20 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-by-comparison",
+													"id": "pick-all",
 													"objectClass": "System",
-													"sid": 131549688766530,
+													"sid": 138847087674083,
 													"parameters": {
-														"object": "keybinder",
-														"expression": "keybinder.PlainText",
-														"comparison": 0,
-														"value": "ELLIPSIS"
+														"object": "keybinder"
+													}
+												},
+												{
+													"id": "compare-text",
+													"objectClass": "keybinder",
+													"sid": 494127180938316,
+													"parameters": {
+														"text-to-compare": "ELLIPSIS",
+														"case-sensitivity": "ignore-case"
 													}
 												}
 											],
@@ -14458,12 +14464,13 @@
 											}
 										},
 										{
-											"id": "compare-text",
+											"id": "compare-instance-variable",
 											"objectClass": "keybinder",
-											"sid": 707086472921270,
+											"sid": 268922051436640,
 											"parameters": {
-												"text-to-compare": "keyboard.TypedKey",
-												"case-sensitivity": "ignore-case"
+												"instance-variable": "keycode",
+												"comparison": 0,
+												"value": "keyboard.LastKeyCode"
 											}
 										}
 									],

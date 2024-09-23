@@ -461,16 +461,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ALL_CLASSES_KEYWORD",
-			"type": "string",
-			"initialValue": "All Classes",
-			"comment": "Used when checking if the player can equip an item or not.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 706323902886489
-		},
-		{
-			"eventType": "variable",
 			"name": "ATTACK_KEYWORD",
 			"type": "string",
 			"initialValue": "attack",
@@ -1864,19 +1854,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 186758855329626,
+											"sid": 773316958608353,
 											"parameters": {
-												"value": "Functions.contains(loot.classRestrictions, body.ObjectTypeName) | Functions.contains(loot.classRestrictions, ALL_CLASSES_KEYWORD)"
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "player",
-											"sid": 205889190212275,
-											"parameters": {
-												"instance-variable": "level",
-												"comparison": 5,
-												"value": "loot.level"
+												"value": "Functions.canThePlayerEquipThis(loot.level, loot.classRestrictions)"
 											}
 										},
 										{
@@ -2050,7 +2030,7 @@
 									],
 									"actions": [
 										{
-											"customAction": "I can't carry any more",
+											"customAction": "\"I can't carry any more.\"",
 											"objectClass": "player",
 											"sid": 238810305298467
 										}
@@ -2927,7 +2907,7 @@
 													],
 													"actions": [
 														{
-															"customAction": "I can't carry any more",
+															"customAction": "\"I can't carry any more.\"",
 															"objectClass": "player",
 															"sid": 177697836046343
 														}
@@ -2967,29 +2947,14 @@
 														{
 															"id": "evaluate-expression",
 															"objectClass": "System",
-															"sid": 741688984569110,
+															"sid": 823712606273103,
 															"parameters": {
-																"value": "Functions.contains(item.classRestrictions, body.ObjectTypeName) | Functions.contains(item.classRestrictions, ALL_CLASSES_KEYWORD)"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "player",
-															"sid": 979390650824515,
-															"parameters": {
-																"instance-variable": "level",
-																"comparison": 5,
-																"value": "item.level"
+																"value": "Functions.canThePlayerEquipThis(item.level, item.classRestrictions)"
 															}
 														}
 													],
-													"actions": [
-														{
-															"type": "comment",
-															"text": "...and can be equipped..."
-														}
-													],
-													"sid": 816224069253620,
+													"actions": [],
+													"sid": 332857560810116,
 													"children": [
 														{
 															"eventType": "block",
@@ -2997,7 +2962,7 @@
 																{
 																	"id": "is-on-layer",
 																	"objectClass": "slot",
-																	"sid": 456376101268231,
+																	"sid": 925472716787508,
 																	"parameters": {
 																		"layer": "equippedMenuStatue.LayerName"
 																	}
@@ -3005,7 +2970,7 @@
 																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 572823768934564,
+																	"sid": 112561974129989,
 																	"parameters": {
 																		"instance-variable": "type",
 																		"comparison": 0,
@@ -3016,10 +2981,10 @@
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "Pick the equipped menu slots that match the item's type."
+																	"text": "...pick the equipped menu slots that match the item's type."
 																}
 															],
-															"sid": 502572037153546,
+															"sid": 811675158750085,
 															"children": [
 																{
 																	"eventType": "block",
@@ -3027,7 +2992,7 @@
 																		{
 																			"id": "compare-instance-variable",
 																			"objectClass": "slot",
-																			"sid": 117508720284845,
+																			"sid": 473544048740109,
 																			"parameters": {
 																				"instance-variable": "identifier",
 																				"comparison": 0,
@@ -3041,7 +3006,7 @@
 																			"text": "Of those slots, check if any are empty."
 																		}
 																	],
-																	"sid": 611656446932646,
+																	"sid": 646799667465123,
 																	"children": [
 																		{
 																			"eventType": "block",
@@ -3049,7 +3014,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 813888886156308,
+																					"sid": 103596676369999,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -3057,7 +3022,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 416730467022575,
+																					"sid": 466541744139792,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -3073,10 +3038,10 @@
 																				{
 																					"customAction": "Detach item",
 																					"objectClass": "player",
-																					"sid": 160139692257751
+																					"sid": 503438397265096
 																				}
 																			],
-																			"sid": 195533417383285
+																			"sid": 661922305185849
 																		},
 																		{
 																			"eventType": "block",
@@ -3084,7 +3049,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 156477775914989,
+																					"sid": 441177122100618,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -3092,7 +3057,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 585688927479561,
+																					"sid": 266145660974739,
 																					"parameters": {
 																						"instance-variable": "type",
 																						"comparison": 0,
@@ -3102,7 +3067,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 882073260711898,
+																					"sid": 910264015886637,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -3112,7 +3077,7 @@
 																				{
 																					"id": "pick-nth-instance",
 																					"objectClass": "System",
-																					"sid": 317339001334475,
+																					"sid": 422268590038359,
 																					"parameters": {
 																						"object": "slot",
 																						"instance": "FIRST_INSTANCE"
@@ -3127,10 +3092,10 @@
 																				{
 																					"customAction": "Attach item",
 																					"objectClass": "player",
-																					"sid": 145103065258707
+																					"sid": 533084091113414
 																				}
 																			],
-																			"sid": 218558563544337
+																			"sid": 381152986962371
 																		}
 																	]
 																},
@@ -3140,12 +3105,12 @@
 																		{
 																			"id": "else",
 																			"objectClass": "System",
-																			"sid": 572019427785162
+																			"sid": 572396907988511
 																		},
 																		{
 																			"id": "pick-nth-instance",
 																			"objectClass": "System",
-																			"sid": 796604393178541,
+																			"sid": 466696370614486,
 																			"parameters": {
 																				"object": "slot",
 																				"instance": "FIRST_INSTANCE"
@@ -3160,14 +3125,14 @@
 																		{
 																			"id": "set-eventvar-value",
 																			"objectClass": "System",
-																			"sid": 604084880763839,
+																			"sid": 142700741650667,
 																			"parameters": {
 																				"variable": "swapIdentifier",
 																				"value": "slot.identifier"
 																			}
 																		}
 																	],
-																	"sid": 210265590913200,
+																	"sid": 130806090661839,
 																	"children": [
 																		{
 																			"eventType": "block",
@@ -3175,7 +3140,7 @@
 																				{
 																					"id": "pick-all",
 																					"objectClass": "System",
-																					"sid": 752533324952199,
+																					"sid": 619426776425720,
 																					"parameters": {
 																						"object": "slot"
 																					}
@@ -3183,7 +3148,7 @@
 																				{
 																					"id": "compare-instance-variable",
 																					"objectClass": "slot",
-																					"sid": 381204298338618,
+																					"sid": 343970512304455,
 																					"parameters": {
 																						"instance-variable": "identifier",
 																						"comparison": 0,
@@ -3199,7 +3164,7 @@
 																				{
 																					"id": "set-eventvar-value",
 																					"objectClass": "System",
-																					"sid": 311564767470210,
+																					"sid": 838562828019149,
 																					"parameters": {
 																						"variable": "swapSlotUid",
 																						"value": "slot.UID"
@@ -3208,10 +3173,10 @@
 																				{
 																					"customAction": "Detach item",
 																					"objectClass": "player",
-																					"sid": 828226940222203
+																					"sid": 912033612143328
 																				}
 																			],
-																			"sid": 215652186379056,
+																			"sid": 626751055808015,
 																			"children": [
 																				{
 																					"eventType": "block",
@@ -3219,7 +3184,7 @@
 																						{
 																							"id": "pick-all",
 																							"objectClass": "System",
-																							"sid": 336836206895685,
+																							"sid": 684582564620568,
 																							"parameters": {
 																								"object": "slot"
 																							}
@@ -3227,7 +3192,7 @@
 																						{
 																							"id": "is-on-layer",
 																							"objectClass": "slot",
-																							"sid": 592571561211843,
+																							"sid": 385257249690541,
 																							"parameters": {
 																								"layer": "equippedMenuStatue.LayerName"
 																							}
@@ -3235,7 +3200,7 @@
 																						{
 																							"id": "compare-instance-variable",
 																							"objectClass": "slot",
-																							"sid": 217011974300001,
+																							"sid": 673853613594299,
 																							"parameters": {
 																								"instance-variable": "type",
 																								"comparison": 0,
@@ -3245,7 +3210,7 @@
 																						{
 																							"id": "pick-nth-instance",
 																							"objectClass": "System",
-																							"sid": 208188636703199,
+																							"sid": 389579549253196,
 																							"parameters": {
 																								"object": "slot",
 																								"instance": "FIRST_INSTANCE"
@@ -3260,10 +3225,10 @@
 																						{
 																							"customAction": "Attach item",
 																							"objectClass": "player",
-																							"sid": 959280747350120
+																							"sid": 304976112491279
 																						}
 																					],
-																					"sid": 208754529740190,
+																					"sid": 414578709356467,
 																					"children": [
 																						{
 																							"eventType": "block",
@@ -3271,7 +3236,7 @@
 																								{
 																									"id": "pick-all",
 																									"objectClass": "System",
-																									"sid": 692479422454669,
+																									"sid": 678586053847039,
 																									"parameters": {
 																										"object": "item"
 																									}
@@ -3279,7 +3244,7 @@
 																								{
 																									"id": "compare-instance-variable",
 																									"objectClass": "item",
-																									"sid": 271581528396390,
+																									"sid": 176662126190105,
 																									"parameters": {
 																										"instance-variable": "identifier",
 																										"comparison": 0,
@@ -3289,7 +3254,7 @@
 																								{
 																									"id": "pick-all",
 																									"objectClass": "System",
-																									"sid": 677226589270042,
+																									"sid": 405296621702462,
 																									"parameters": {
 																										"object": "slot"
 																									}
@@ -3297,7 +3262,7 @@
 																								{
 																									"id": "pick-by-unique-id",
 																									"objectClass": "slot",
-																									"sid": 348968224795269,
+																									"sid": 704589450530969,
 																									"parameters": {
 																										"unique-id": "swapSlotUid"
 																									}
@@ -3311,11 +3276,11 @@
 																								{
 																									"id": "remove-from-parent",
 																									"objectClass": "item",
-																									"sid": 238096414769910
+																									"sid": 879371772732247
 																								},
 																								{
 																									"callFunction": "manageMods",
-																									"sid": 582563508271707,
+																									"sid": 295486289945631,
 																									"parameters": [
 																										false
 																									]
@@ -3323,10 +3288,10 @@
 																								{
 																									"customAction": "Attach item",
 																									"objectClass": "player",
-																									"sid": 711532812307674
+																									"sid": 440595200081042
 																								}
 																							],
-																							"sid": 216178085774942
+																							"sid": 970787388191254
 																						}
 																					]
 																				}
@@ -3344,28 +3309,17 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 872168138322245
+															"sid": 389187802288755
 														}
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "TODO: Play audio \"I don't meet the requirements for this item\".",
-															"text-color": [
-																0,
-																0,
-																0,
-																1
-															],
-															"background-color": [
-																0.7843137254901961,
-																0.7843137254901961,
-																0,
-																1
-															]
+															"customAction": "\"I don't meet the requirements for this item.\"",
+															"objectClass": "player",
+															"sid": 908441593617216
 														}
 													],
-													"sid": 715392308037857
+													"sid": 301793729340741
 												}
 											]
 										}
@@ -3603,7 +3557,7 @@
 													],
 													"actions": [
 														{
-															"customAction": "I can't carry any more",
+															"customAction": "\"I can't carry any more.\"",
 															"objectClass": "player",
 															"sid": 891385592091592
 														}
@@ -3659,167 +3613,125 @@
 														{
 															"id": "is-on-layer",
 															"objectClass": "slot",
-															"sid": 273213334054707,
+															"sid": 520705590136190,
 															"parameters": {
 																"layer": "merchantMenuStatue.LayerName"
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 280358823449913,
+															"parameters": {
+																"instance-variable": "identifier",
+																"comparison": 0,
+																"value": "EMPTY"
 															}
 														}
 													],
 													"actions": [
 														{
 															"type": "comment",
-															"text": "Pick the slots on the merchant menu."
+															"text": "Pick the empty merchant menu slots."
 														}
 													],
-													"sid": 395523626453058,
+													"sid": 308821353929836,
 													"children": [
 														{
 															"eventType": "block",
 															"conditions": [
 																{
+																	"id": "pick-all",
+																	"objectClass": "System",
+																	"sid": 992000886817299,
+																	"parameters": {
+																		"object": "slot"
+																	}
+																},
+																{
 																	"id": "compare-instance-variable",
 																	"objectClass": "slot",
-																	"sid": 674734058631323,
+																	"sid": 570110463902719,
 																	"parameters": {
 																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "EMPTY"
+																		"value": "item.identifier"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"type": "comment",
-																	"text": "Pick the empty slots."
-																}
-															],
-															"sid": 123784696618458,
-															"children": [
-																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 882135933696076,
-																			"parameters": {
-																				"object": "slot"
-																			}
-																		},
-																		{
-																			"id": "compare-instance-variable",
-																			"objectClass": "slot",
-																			"sid": 973313787830797,
-																			"parameters": {
-																				"instance-variable": "identifier",
-																				"comparison": 0,
-																				"value": "item.identifier"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"type": "comment",
-																			"text": "Now that we know there's an empty merchant menu slot for this item, go back to the inventory menu slot holding our item, and detach."
-																		},
-																		{
-																			"customAction": "Detach item",
-																			"objectClass": "player",
-																			"sid": 291888165430657
-																		}
-																	],
-																	"sid": 574364136361459
+																	"text": "Now that we know there's an empty merchant menu slot for this item, go back to the inventory menu slot holding our item, and detach."
 																},
 																{
-																	"eventType": "block",
-																	"conditions": [
-																		{
-																			"id": "pick-all",
-																			"objectClass": "System",
-																			"sid": 574433549571399,
-																			"parameters": {
-																				"object": "slot"
-																			}
-																		},
-																		{
-																			"id": "is-on-layer",
-																			"objectClass": "slot",
-																			"sid": 453776050558308,
-																			"parameters": {
-																				"layer": "merchantMenuStatue.LayerName"
-																			}
-																		},
-																		{
-																			"id": "compare-instance-variable",
-																			"objectClass": "slot",
-																			"sid": 601482332861746,
-																			"parameters": {
-																				"instance-variable": "identifier",
-																				"comparison": 0,
-																				"value": "EMPTY"
-																			}
-																		},
-																		{
-																			"id": "pick-nth-instance",
-																			"objectClass": "System",
-																			"sid": 690477851479556,
-																			"parameters": {
-																				"object": "slot",
-																				"instance": "FIRST_INSTANCE"
-																			}
-																		}
-																	],
-																	"actions": [
-																		{
-																			"type": "comment",
-																			"text": "Re-pick the first empty merchant menu slot that matches the item's type, and attach to it."
-																		},
-																		{
-																			"customAction": "Attach item",
-																			"objectClass": "player",
-																			"sid": 874717464226940
-																		},
-																		{
-																			"id": "add-to-instvar",
-																			"objectClass": "player",
-																			"sid": 220199546620661,
-																			"parameters": {
-																				"instance-variable": "coins",
-																				"value": "item.value"
-																			}
-																		}
-																	],
-																	"sid": 278144136058467
+																	"customAction": "Detach item",
+																	"objectClass": "player",
+																	"sid": 407907037577841
 																}
-															]
+															],
+															"sid": 253428946953671
 														},
 														{
 															"eventType": "block",
 															"conditions": [
 																{
-																	"id": "else",
+																	"id": "pick-all",
 																	"objectClass": "System",
-																	"sid": 764775576450374
+																	"sid": 191787361620919,
+																	"parameters": {
+																		"object": "slot"
+																	}
+																},
+																{
+																	"id": "is-on-layer",
+																	"objectClass": "slot",
+																	"sid": 498385320602602,
+																	"parameters": {
+																		"layer": "merchantMenuStatue.LayerName"
+																	}
 																},
 																{
 																	"id": "compare-instance-variable",
-																	"objectClass": "npc",
-																	"sid": 910311439527938,
+																	"objectClass": "slot",
+																	"sid": 250108957610151,
 																	"parameters": {
-																		"instance-variable": "simpleName",
+																		"instance-variable": "identifier",
 																		"comparison": 0,
-																		"value": "player.talkingToNpc"
+																		"value": "EMPTY"
+																	}
+																},
+																{
+																	"id": "pick-nth-instance",
+																	"objectClass": "System",
+																	"sid": 245120039002581,
+																	"parameters": {
+																		"object": "slot",
+																		"instance": "FIRST_INSTANCE"
 																	}
 																}
 															],
 															"actions": [
 																{
-																	"customAction": "I can't purchase any more items",
-																	"objectClass": "npc",
-																	"sid": 280724293338178
+																	"type": "comment",
+																	"text": "Re-pick the first empty merchant menu slot that matches the item's type, and attach to it."
+																},
+																{
+																	"customAction": "Attach item",
+																	"objectClass": "player",
+																	"sid": 608380356096378
+																},
+																{
+																	"id": "add-to-instvar",
+																	"objectClass": "player",
+																	"sid": 834560367893187,
+																	"parameters": {
+																		"instance-variable": "coins",
+																		"value": "item.value"
+																	}
 																}
 															],
-															"sid": 374919461999711
+															"sid": 872304506648343
 														}
 													]
 												},
@@ -3829,28 +3741,27 @@
 														{
 															"id": "else",
 															"objectClass": "System",
-															"sid": 815553133475659
+															"sid": 600124878050321
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "npc",
+															"sid": 645378461185950,
+															"parameters": {
+																"instance-variable": "simpleName",
+																"comparison": 0,
+																"value": "player.talkingToNpc"
+															}
 														}
 													],
 													"actions": [
 														{
-															"type": "comment",
-															"text": "TODO: Play audio \"I don't meet the requirements for this item\".",
-															"text-color": [
-																0,
-																0,
-																0,
-																1
-															],
-															"background-color": [
-																0.7843137254901961,
-																0.7843137254901961,
-																0,
-																1
-															]
+															"customAction": "\"I can't purchase any more items.\"",
+															"objectClass": "npc",
+															"sid": 365844988240005
 														}
 													],
-													"sid": 103414643103367
+													"sid": 399905204364957
 												}
 											]
 										}
@@ -4013,13 +3924,21 @@
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 653827654958201,
+													"id": "compare-instance-variable",
+													"objectClass": "slot",
+													"sid": 159834735648163,
 													"parameters": {
-														"first-value": "Functions.canThisItemGoIntoThisSlot",
+														"instance-variable": "type",
 														"comparison": 0,
-														"second-value": "1"
+														"value": "NONE_KEYWORD"
+													}
+												},
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 472406219080409,
+													"parameters": {
+														"value": "slot.type = item.type & Functions.canThePlayerEquipThis(item.level, item.classRestrictions)"
 													}
 												}
 											],
@@ -4641,7 +4560,8 @@
 														}
 													]
 												}
-											]
+											],
+											"isOrBlock": true
 										},
 										{
 											"eventType": "block",
@@ -4663,7 +4583,46 @@
 													"sid": 937681054973958
 												}
 											],
-											"sid": 771584118890591
+											"sid": 771584118890591,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "slot",
+															"sid": 918507231363542,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "item.type"
+															}
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 775567244689120,
+															"parameters": {
+																"first-value": "Functions.canThePlayerEquipThis(item.level, item.classRestrictions)",
+																"comparison": 0,
+																"second-value": "FALSE"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "Only play the audio track if the item was dropped over the slot it would normally go into."
+														},
+														{
+															"customAction": "\"I don't meet the requirements for this item.\"",
+															"objectClass": "player",
+															"sid": 122046128414655
+														}
+													],
+													"sid": 302734262259861
+												}
+											]
 										}
 									]
 								},
@@ -4948,65 +4907,6 @@
 											"sid": 327474167530248
 										}
 									]
-								}
-							]
-						},
-						{
-							"functionName": "canThisItemGoIntoThisSlot",
-							"functionDescription": "Determine whether a specified item can go into a specified slot. Returns 1 for true and 0 for false.",
-							"functionCategory": "equipment",
-							"functionReturnType": "number",
-							"functionCopyPicked": true,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 103754010280656,
-									"parameters": {
-										"value": "FALSE"
-									}
-								}
-							],
-							"sid": 890908719073071,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "slot",
-											"sid": 677432910697048,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "NONE_KEYWORD"
-											}
-										},
-										{
-											"id": "evaluate-expression",
-											"objectClass": "System",
-											"sid": 561754982621973,
-											"parameters": {
-												"value": "item.level <= player.level & slot.type = item.type & (Functions.contains(item.classRestrictions, ALL_CLASSES_KEYWORD) | Functions.contains(item.classRestrictions, body.ObjectTypeName))"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 877706139999126,
-											"parameters": {
-												"value": "TRUE"
-											}
-										}
-									],
-									"sid": 382330715404624,
-									"isOrBlock": true
 								}
 							]
 						},
@@ -6555,112 +6455,6 @@
 						0,
 						0.39215686274509803,
 						1
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-created",
-							"objectClass": "body",
-							"sid": 660773735743926
-						}
-					],
-					"actions": [
-						{
-							"id": "set-listener-object",
-							"objectClass": "audio",
-							"sid": 627457486107616,
-							"parameters": {
-								"object": "body"
-							}
-						}
-					],
-					"sid": 769776263062447
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 812764880148303
-						}
-					],
-					"actions": [
-						{
-							"customAction": "Restore player control",
-							"objectClass": "player",
-							"sid": 597112993663003
-						}
-					],
-					"sid": 554174106514565,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "INITIAL_VALUE",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "The player variable values when they don't need to relocate.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 808692075136486
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 747011036287669,
-									"parameters": {
-										"instance-variable": "relocateToX",
-										"comparison": 1,
-										"value": "INITIAL_VALUE"
-									}
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "player",
-									"sid": 982748000927611,
-									"parameters": {
-										"instance-variable": "relocateToY",
-										"comparison": 1,
-										"value": "INITIAL_VALUE"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-position",
-									"objectClass": "player",
-									"sid": 286533887026869,
-									"parameters": {
-										"x": "Self.relocateToX",
-										"y": "Self.relocateToY"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 722452339845948,
-									"parameters": {
-										"instance-variable": "relocateToX",
-										"value": "INITIAL_VALUE"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 461777039928817,
-									"parameters": {
-										"instance-variable": "relocateToY",
-										"value": "INITIAL_VALUE"
-									}
-								}
-							],
-							"sid": 946818210217819
-						}
 					]
 				},
 				{
@@ -10698,6 +10492,119 @@
 						0,
 						1
 					]
+				},
+				{
+					"functionName": "canThePlayerEquipThis",
+					"functionDescription": "Whether or not the player can equip this item or loot.",
+					"functionCategory": "equipment",
+					"functionReturnType": "number",
+					"functionCopyPicked": true,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "level",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The level of the item or loot",
+							"sid": 814252525263344
+						},
+						{
+							"name": "classRestrictions",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The class restrictions of the loot or item.",
+							"sid": 730264909728497
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 871287632370899,
+							"parameters": {
+								"value": "Functions.checkPlayerClass(classRestrictions)"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 218108628393711,
+							"parameters": {
+								"instance-variable": "level",
+								"comparison": 5,
+								"value": "level"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 877478473615395,
+							"parameters": {
+								"value": "TRUE"
+							}
+						}
+					],
+					"sid": 384059874271583
+				},
+				{
+					"functionName": "checkPlayerClass",
+					"functionDescription": "Check if the player's class is compatible with the passed class.",
+					"functionCategory": "player",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "classRestrictions",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The class restrictions of the loot or item.",
+							"sid": 987358425478248
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 825357285507242,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "ALL_CLASSES_KEYWORD",
+							"type": "string",
+							"initialValue": "All Classes",
+							"comment": "Used when checking if the player can equip an item or not.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 769021875257721
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 439092072996542,
+									"parameters": {
+										"value": "Functions.contains(classRestrictions, body.ObjectTypeName) | Functions.contains(classRestrictions, ALL_CLASSES_KEYWORD)"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 823966948137589,
+									"parameters": {
+										"value": "TRUE"
+									}
+								}
+							],
+							"sid": 220050327125558
+						}
+					]
 				}
 			],
 			"sid": 254080374675516
@@ -13064,9 +12971,9 @@
 												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 504884740711992,
+													"sid": 100482592165817,
 													"parameters": {
-														"value": "Functions.contains(class, body.ObjectTypeName) | Functions.contains(class, ALL_CLASSES_KEYWORD)"
+														"value": "Functions.checkPlayerClass(class)"
 													}
 												}
 											],
@@ -13426,9 +13333,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 140927714506009,
+											"sid": 564058373235149,
 											"parameters": {
-												"value": "Functions.contains(class, body.ObjectTypeName) | Functions.contains(class, ALL_CLASSES_KEYWORD)"
+												"value": "Functions.checkPlayerClass(class)"
 											}
 										}
 									],
@@ -20695,8 +20602,29 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "body",
+							"sid": 192502238467825
+						}
+					],
+					"actions": [
+						{
+							"id": "set-listener-object",
+							"objectClass": "audio",
+							"sid": 577784387320733,
+							"parameters": {
+								"object": "body"
+							}
+						}
+					],
+					"sid": 659978961242032
+				},
+				{
 					"aceType": "action",
-					"aceName": "I can't carry any more",
+					"aceName": "\"I can't carry any more.\"",
 					"objectClass": "player",
 					"functionDescription": "Play the audio track that indicates there's no more inventory space available.",
 					"functionCategory": "audio",
@@ -20736,12 +20664,12 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "audio",
-									"sid": 926533281709555,
+									"sid": 875578577040549,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "body.ObjectTypeName & SEPARATOR & CANT_CARRY_KEYWORD",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & CANT_CARRY_KEYWORD)",
 										"loop": "not-looping",
-										"volume": "soundEffectsVolume",
+										"volume": "dialogVolume",
 										"object": "body",
 										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
@@ -20756,7 +20684,7 @@
 				},
 				{
 					"aceType": "action",
-					"aceName": "I can't purchase any more items",
+					"aceName": "\"I can't purchase any more items.\"",
 					"objectClass": "npc",
 					"functionDescription": "Plays the audio indicating this merchant can't purchase any more items.",
 					"functionCategory": "audio",
@@ -20796,12 +20724,12 @@
 								{
 									"id": "play-at-object-by-name",
 									"objectClass": "audio",
-									"sid": 494125042761932,
+									"sid": 439577816549021,
 									"parameters": {
 										"folder": "sounds",
-										"audio-file-name": "player.talkingToNpc & SEPARATOR & CANT_PURCHASE_KEYWORD",
+										"audio-file-name": "Functions.soundEffectName(player.talkingToNpc & SEPARATOR & CANT_PURCHASE_KEYWORD)",
 										"loop": "not-looping",
-										"volume": "soundEffectsVolume",
+										"volume": "dialogVolume",
 										"object": "npc",
 										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
 										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
@@ -20811,6 +20739,66 @@
 								}
 							],
 							"sid": 752562871296790
+						}
+					]
+				},
+				{
+					"aceType": "action",
+					"aceName": "\"I don't meet the requirements for this item.\"",
+					"objectClass": "player",
+					"functionDescription": "Plays the audio indicating the player doesn't meet the requirements of this item or loot.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 132415388959713,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "DONT_MEET_REQUIREMENTS_KEYWORD",
+							"type": "string",
+							"initialValue": "dontMeetRequirements",
+							"comment": "The name of the audio to play when the player doesn't meet the requirements of the loot or item.",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 145910322983306
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "audio",
+									"sid": 274105413363545,
+									"parameters": {
+										"tag": "DONT_MEET_REQUIREMENTS_KEYWORD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "audio",
+									"sid": 700359758388487,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & DONT_MEET_REQUIREMENTS_KEYWORD)",
+										"loop": "not-looping",
+										"volume": "dialogVolume",
+										"object": "player",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "DONT_MEET_REQUIREMENTS_KEYWORD"
+									}
+								}
+							],
+							"sid": 173662718189949
 						}
 					]
 				},
@@ -20954,6 +20942,91 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 252638692177297
+						}
+					],
+					"actions": [
+						{
+							"customAction": "Restore player control",
+							"objectClass": "player",
+							"sid": 991633158819424
+						}
+					],
+					"sid": 676017107721770,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "INITIAL_VALUE",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The player variable values when they don't need to relocate.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 219727562465789
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 448037405659175,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"comparison": 1,
+										"value": "INITIAL_VALUE"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "player",
+									"sid": 557989112821435,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"comparison": 1,
+										"value": "INITIAL_VALUE"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "player",
+									"sid": 278458680786775,
+									"parameters": {
+										"x": "Self.relocateToX",
+										"y": "Self.relocateToY"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 633757103725318,
+									"parameters": {
+										"instance-variable": "relocateToX",
+										"value": "INITIAL_VALUE"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "player",
+									"sid": 102195306396173,
+									"parameters": {
+										"instance-variable": "relocateToY",
+										"value": "INITIAL_VALUE"
+									}
+								}
+							],
+							"sid": 830742895179029
+						}
+					]
+				},
 				{
 					"aceType": "action",
 					"aceName": "Fade out",

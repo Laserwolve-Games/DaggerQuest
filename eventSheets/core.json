@@ -3526,20 +3526,9 @@
 															],
 															"actions": [
 																{
-																	"type": "comment",
-																	"text": "TODO: Play audio \"I have insufficient gold\".",
-																	"text-color": [
-																		0,
-																		0,
-																		0,
-																		1
-																	],
-																	"background-color": [
-																		0.7843137254901961,
-																		0.7843137254901961,
-																		0,
-																		1
-																	]
+																	"customAction": "\"I don't have enough coins.\"",
+																	"objectClass": "player",
+																	"sid": 847195401354478
 																}
 															],
 															"sid": 894028079555078
@@ -4205,8 +4194,9 @@
 																	],
 																	"actions": [
 																		{
-																			"type": "comment",
-																			"text": "\"I don't have enough coins for this purchase\""
+																			"customAction": "\"I don't have enough coins.\"",
+																			"objectClass": "player",
+																			"sid": 259687464749564
 																		}
 																	],
 																	"sid": 770628791762358
@@ -20799,6 +20789,66 @@
 								}
 							],
 							"sid": 173662718189949
+						}
+					]
+				},
+				{
+					"aceType": "action",
+					"aceName": "\"I don't have enough coins.\"",
+					"objectClass": "player",
+					"functionDescription": "Plays the audio indicating the player has insufficient coins.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 866222860700358,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "NOT_ENOUGH_COINS_KEYWORD",
+							"type": "string",
+							"initialValue": "notEnoughCoins",
+							"comment": "The name of the audio to play when the player has insufficient coins for a purchase.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 704570029594260
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-tag-playing",
+									"objectClass": "audio",
+									"sid": 766969851317909,
+									"parameters": {
+										"tag": "NOT_ENOUGH_COINS_KEYWORD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "audio",
+									"sid": 169662728080969,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "Functions.soundEffectName(body.ObjectTypeName & SEPARATOR & NOT_ENOUGH_COINS_KEYWORD)",
+										"loop": "not-looping",
+										"volume": "dialogVolume",
+										"object": "body",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "NOT_ENOUGH_COINS_KEYWORD"
+									}
+								}
+							],
+							"sid": 152809177819057
 						}
 					]
 				},

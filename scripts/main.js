@@ -13,23 +13,44 @@ let threeControls = null;
 let threeScene = null;
 
 // Wait for project to start
-runOnStartup(runtime =>
+runOnStartup(async runtime =>
 {
-	runtime.addEventListener('beforeprojectstart', () => OnBeforeProjectStart(runtime));
+	runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
 });
 
 // When the project starts up, initialize three.js.
 // Note this is asynchronous so the display will remain blank until loading finishes.
-function OnBeforeProjectStart(runtime)
+async function OnBeforeProjectStart(runtime)
 {
+	await InitThreeJs(runtime);
+	
+	// Attach Construct event listeners for handling resize and rendering.
+	runtime.addEventListener("resize", e => OnResize(e));
+	
+	runtime.addEventListener("tick", () => OnTick(runtime));
+}
 
+// Initialize the three.js library.
+async function InitThreeJs(runtime)
+{
+	// Construct's PlatformInfo object provides details about the size of the
+	// main canvas, which is used to get three.js to make a same sized canvas.
 	const platformInfo = runtime.platformInfo;
+	
+	// The HTML element to insert the three.js canvas to is the wrapper element
+	// for HTML layer 0 (i.e. the bottom-most HTML layer, corresponding to the
+	// layer "Back").
 	const container = runtime.getHTMLLayer(0);
+
+	// Create three.js WebGL renderer with antialiasing. Note also that alpha
+	// must be enabled for the three.js canvas to have a transparent background.
 	threeRenderer = new THREE.WebGLRenderer({
 		antialias: true,
 		alpha: true
 	});
-
+	
+		// Initialize 3D renderer pixel ratio (for high-dpi displays) and size
+	// based on details from Construct's PlatformInfo object.
 	threeRenderer.setPixelRatio(platformInfo.devicePixelRatio);
 	threeRenderer.setSize(platformInfo.canvasCssWidth, platformInfo.canvasCssHeight);
 	
@@ -46,7 +67,7 @@ function OnBeforeProjectStart(runtime)
 
 	// Add default OrbitControls allowing rotating and zooming the model by mouse.
 	threeControls = new OrbitControls( threeCamera, threeRenderer.domElement );
-	threeControls.target.set( 0, 0, 0 );
+	threeControls.target.set( 0, 0.5, 0 );
 	threeControls.update();
 	threeControls.enablePan = false;
 	threeControls.enableDamping = true;
@@ -81,13 +102,9 @@ function OnBeforeProjectStart(runtime)
 
 		}
 	);
-
-	runtime.addEventListener('resize', e => OnResize(e));
-	
-	runtime.addEventListener('tick', () => OnTick(runtime));
 }
 
-
+// In Construct's resize event, update the 3D renderer size to match.
 function OnResize(e)
 {
 	threeCamera.aspect = e.cssWidth / e.cssHeight;
@@ -96,9 +113,12 @@ function OnResize(e)
 	threeRenderer.setSize(e.cssWidth, e.cssHeight);
 }
 
+// In Construct's tick event, update the 3D animation playback and
+// 3D rendering. (Note this uses Construct's delta-time value rather
+// than THREE.Clock).
 function OnTick(runtime)
 {
-	threeMixer.update(runtime.dt);
+	if (threeMixer) threeMixer.update(runtime.dt);
 
 	threeControls.update();
 

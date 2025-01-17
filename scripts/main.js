@@ -1,14 +1,12 @@
 
-// Taken from "Integrated 3D Engine" example. We're using Three.js revision 167, so current documentation online might not apply.
+// Some code taken from "Integrated 3D Engine" example.
+// We're using Three.js revision 167, so current documentation online might not apply.
 
 import * as THREE from "three";
 
-import { OrbitControls } from "./OrbitControls.js";
 import { TrackballControls } from "./TrackballControls.js";
 import { RoomEnvironment } from "./RoomEnvironment.js";
-
 import { GLTFLoader } from "./three/addons/loaders/GLTFLoader.js";
-import { DRACOLoader } from "./three/addons/loaders/DRACOLoader.js";
 
 // Three.js objects
 let threeRenderer = null;
@@ -75,18 +73,10 @@ async function InitThreeJs(runtime)
 	threeControls.target.set( 0, 0, 0 );
 	threeControls.update();
 	threeControls.noPan = true;
-// 	threeControls.dynamicDampingFactor = 5;
 	threeControls.rotateSpeed = 5;
-// 	threeControls.enableDamping = true;
-
-	// Create a Draco loader for loading 3D models. Point its decoder file path
-	// to the folder in Construct's Files folder.
-	const dracoLoader = new DRACOLoader();
-	dracoLoader.setDecoderPath("draco-gltf-decoder/");
 
 	// Create a GLTF loader to load the sample model with.
 	const loader = new GLTFLoader();
-	loader.setDRACOLoader(dracoLoader);
 	
 	// Asyncronously attempt to load the model.
 	// Note this uses a helper function to make the load() method async.

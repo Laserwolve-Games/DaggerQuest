@@ -1,9 +1,10 @@
 
-// Taken from "Integrated 3D Engine" example
+// Taken from "Integrated 3D Engine" example. We're using Three.js revision 167, so current documentation online might not apply.
 
 import * as THREE from "three";
 
 import { OrbitControls } from "./OrbitControls.js";
+import { TrackballControls } from "./TrackballControls.js";
 import { RoomEnvironment } from "./RoomEnvironment.js";
 
 import { GLTFLoader } from "./three/addons/loaders/GLTFLoader.js";
@@ -69,12 +70,14 @@ async function InitThreeJs(runtime)
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
 	threeCamera.position.set(5, 2, 8);
 
-	// Add default OrbitControls allowing rotating and zooming the model by mouse.
-	threeControls = new OrbitControls( threeCamera, threeRenderer.domElement );
-	threeControls.target.set( 0, 0.5, 0 );
+	// Add default TrackballControls to allow rotating and zooming the model by mouse.
+	threeControls = new TrackballControls( threeCamera, threeRenderer.domElement );
+	threeControls.target.set( 0, 0, 0 );
 	threeControls.update();
-	threeControls.enablePan = false;
-	threeControls.enableDamping = true;
+	threeControls.noPan = true;
+// 	threeControls.dynamicDampingFactor = 5;
+	threeControls.rotateSpeed = 5;
+// 	threeControls.enableDamping = true;
 
 	// Create a Draco loader for loading 3D models. Point its decoder file path
 	// to the folder in Construct's Files folder.

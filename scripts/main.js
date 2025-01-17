@@ -1,9 +1,13 @@
 
-import * as THREE from 'three';
+// Taken from "Integrated 3D Engine" example
 
-import { OrbitControls } from './OrbitControls.js';
-import { RoomEnvironment } from './RoomEnvironment.js';
-import { OBJLoader } from './OBJLoader.js';
+import * as THREE from "three";
+
+import { OrbitControls } from "./OrbitControls.js";
+import { RoomEnvironment } from "./RoomEnvironment.js";
+
+import { GLTFLoader } from "./three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "./three/addons/loaders/DRACOLoader.js";
 
 // Three.js objects
 let threeRenderer = null;
@@ -49,7 +53,7 @@ async function InitThreeJs(runtime)
 		alpha: true
 	});
 	
-		// Initialize 3D renderer pixel ratio (for high-dpi displays) and size
+	// Initialize 3D renderer pixel ratio (for high-dpi displays) and size
 	// based on details from Construct's PlatformInfo object.
 	threeRenderer.setPixelRatio(platformInfo.devicePixelRatio);
 	threeRenderer.setSize(platformInfo.canvasCssWidth, platformInfo.canvasCssHeight);
@@ -72,36 +76,34 @@ async function InitThreeJs(runtime)
 	threeControls.enablePan = false;
 	threeControls.enableDamping = true;
 
-	const loader = new OBJLoader();
+	// Create a Draco loader for loading 3D models. Point its decoder file path
+	// to the folder in Construct's Files folder.
+	const dracoLoader = new DRACOLoader();
+	dracoLoader.setDecoderPath("draco-gltf-decoder/");
+
+	// Create a GLTF loader to load the sample model with.
+	const loader = new GLTFLoader();
+	loader.setDRACOLoader(dracoLoader);
 	
-	// load a resource
-	loader.load(
-		// resource URL
-		'passive.obj',
-		// called when resource is loaded
-		function ( object ) {
+	// Asyncronously attempt to load the model.
+	// Note this uses a helper function to make the load() method async.
+	const gltf = await LoadGLTF(loader, "passive.glb");
 
-			// Insert the model to the scene and play its animation.
-			object.position.set(0, 0, 0);
-			object.scale.set(.01, .01, .01);
-			threeScene.add( object );
-			threeMixer = new THREE.AnimationMixer(object);
-			threeMixer.clipAction(object.animations[0]).play();
+	// Insert the model to the scene and play its animation.
+	const model = gltf.scene;
+	model.position.set(0, 0, 0);
+	model.scale.set(1, 1, 1);
+	threeScene.add(model);
+}
 
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-		},
-		// called when loading has errors
-		function ( error ) {
-
-			console.log( 'An error happened: ' + error.toString());
-
-		}
-	);
+// This is a helper method to make the GLTFLoader load() method
+// in to an asyncronous method that can be awaited.
+function LoadGLTF(loader, path)
+{
+	return new Promise((resolve, reject) =>
+	{
+		loader.load(path, resolve, undefined /* progress */, reject);
+	});
 }
 
 // In Construct's resize event, update the 3D renderer size to match.
@@ -118,7 +120,7 @@ function OnResize(e)
 // than THREE.Clock).
 function OnTick(runtime)
 {
-	if (threeMixer) threeMixer.update(runtime.dt);
+	if(threeMixer) threeMixer.update(runtime.dt);
 
 	threeControls.update();
 

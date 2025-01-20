@@ -40,9 +40,7 @@ async function InitThreeJs(runtime)
 	// main canvas, which is used to get three.js to make a same sized canvas.
 	const platformInfo = runtime.platformInfo;
 	
-	// The HTML element to insert the three.js canvas to is the wrapper element
-	// for HTML layer 0 (i.e. the bottom-most HTML layer, corresponding to the
-	// layer "Back").
+	// Insert the three.js canvas on the intrinsic HTML layer that's above all other layers.
 	const container = runtime.getHTMLLayer(0);
 
 	// Create three.js WebGL renderer with antialiasing. Note also that alpha
@@ -82,11 +80,13 @@ async function InitThreeJs(runtime)
 	// Note this uses a helper function to make the load() method async.
 	const gltf = await LoadGLTF(loader, "passive.glb");
 
-	// Insert the model to the scene and play its animation.
+	// Insert the model to the scene.
 	const model = gltf.scene;
 	model.position.set(0, 0, 0);
 	model.scale.set(1, 1, 1);
 	threeScene.add(model);
+	// Hide the passive cube.
+// 	document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 // This is a helper method to make the GLTFLoader load() method
@@ -108,7 +108,7 @@ function OnResize(e)
 	threeRenderer.setSize(e.cssWidth, e.cssHeight);
 }
 
-// In Construct's tick event, update the 3D animation playback and
+// In Construct's tick event, update the 3D playback and
 // 3D rendering. (Note this uses Construct's delta-time value rather
 // than THREE.Clock).
 function OnTick(runtime)

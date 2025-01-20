@@ -11784,56 +11784,25 @@
 										}
 									],
 									"sid": 227300752950169
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "keybinder",
+											"sid": 819515825929087,
+											"parameters": {
+												"instance-variable": "target",
+												"comparison": 0,
+												"value": "kingdomOfHeaven.LayerName"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 200101363459596
 								}
 							]
-						},
-						{
-							"eventType": "variable",
-							"name": "foobar",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 676286009527086
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 122336337424777,
-									"parameters": {
-										"variable": "foobar",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 523257977964235
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 648225518698742
-								}
-							],
-							"actions": [
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 572667429147050,
-									"parameters": {
-										"variable": "foobar",
-										"value": "false"
-									}
-								}
-							],
-							"sid": 130318490580609
 						},
 						{
 							"functionName": "Toggle menu",
@@ -12270,7 +12239,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "'item is DragDrop is dragging' is neither false nor true when no items exist.",
+											"text": "'item is DragDrop is dragging' is somehow neither false nor true when no items exist.",
 											"text-color": [
 												0.7843137254901961,
 												0.7843137254901961,
@@ -12450,6 +12419,24 @@
 													"parameters": {
 														"object": "loot"
 													}
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 667907912334413,
+													"parameters": {
+														"object": "9PatchInvalidLocations"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 750327707326966,
+													"parameters": {
+														"object": "invalidLocation"
+													},
+													"isInverted": true
 												},
 												{
 													"id": "is-any-playing",

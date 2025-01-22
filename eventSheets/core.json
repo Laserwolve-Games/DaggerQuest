@@ -7321,7 +7321,16 @@
 										{
 											"id": "cursor-is-over-object",
 											"objectClass": "mouse",
-											"sid": 128899916492898,
+											"sid": 873512385869713,
+											"parameters": {
+												"object": "slot"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "mouse",
+											"sid": 536179115130859,
 											"parameters": {
 												"object": "item"
 											},
@@ -11800,7 +11809,96 @@
 										}
 									],
 									"actions": [],
-									"sid": 200101363459596
+									"sid": 200101363459596,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "layer-is-visible",
+													"objectClass": "System",
+													"sid": 610991273417209,
+													"parameters": {
+														"layer": "kingdomOfHeaven.LayerName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 238707241659583,
+													"parameters": {
+														"layer": "kingdomOfHeaven.LayerName",
+														"visibility": "invisible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 863155969256123,
+													"parameters": {
+														"layer": "kingdomOfHeaven.LayerName",
+														"interactive": false
+													}
+												},
+												{
+													"id": "set-document-css-style",
+													"objectClass": "browser",
+													"sid": 231854028825582,
+													"parameters": {
+														"property-name": "\"display\"",
+														"value": "NONE_KEYWORD",
+														"selector": "\"canvas[data-engine]\"\r\n",
+														"type": "one"
+													}
+												}
+											],
+											"sid": 368733045976344
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 558552170577487
+												}
+											],
+											"actions": [
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 330303056828007,
+													"parameters": {
+														"layer": "kingdomOfHeaven.LayerName",
+														"visibility": "visible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 380291177334926,
+													"parameters": {
+														"layer": "kingdomOfHeaven.LayerName",
+														"interactive": true
+													}
+												},
+												{
+													"id": "set-document-css-style",
+													"objectClass": "browser",
+													"sid": 777690234133481,
+													"parameters": {
+														"property-name": "\"display\"",
+														"value": "BLANK",
+														"selector": "\"canvas[data-engine]\"\r\n",
+														"type": "one"
+													}
+												}
+											],
+											"sid": 932277802127183
+										}
+									]
 								}
 							]
 						},
@@ -12276,6 +12374,24 @@
 													"parameters": {
 														"object": "item"
 													}
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 196093524391821,
+													"parameters": {
+														"object": "invalidLocation"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "mouse",
+													"sid": 528578220998463,
+													"parameters": {
+														"object": "9PatchInvalidLocations"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [

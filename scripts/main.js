@@ -14,6 +14,8 @@ let threeCamera = null;
 let threeMixer = null;
 let threeControls = null;
 let threeScene = null;
+let raycaster = null;
+let mouse = null;
 
 // Wait for project to start
 runOnStartup(async runtime =>
@@ -31,6 +33,33 @@ async function OnBeforeProjectStart(runtime)
 	runtime.addEventListener("resize", e => OnResize(e));
 	
 	runtime.addEventListener("tick", () => OnTick(runtime));
+	
+	window.addEventListener("click", onMouseClick, false);
+}
+
+function onMouseClick(event) {
+    // Calculate mouse position in normalized device coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+    // Update the raycaster with the camera and mouse position
+    raycaster.setFromCamera(mouse, threeCamera);
+
+    // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(threeScene.children, true);
+	
+	const redColor = new THREE.Color(0xff0000);
+
+    // If there's an intersection, change the color of the first intersected object
+    if (intersects.length > 0) {
+        const object = intersects[0].object;
+		
+		if (object.material.color.equals(redColor))
+			object.material.color.set(0xffffff);
+		else
+			object.material.color.set(redColor);
+        
+    }
 }
 
 // Initialize the three.js library.
@@ -64,7 +93,7 @@ async function InitThreeJs(runtime)
 	threeScene.environment = pmremGenerator.fromScene(new RoomEnvironment(threeRenderer), 0.04).texture;
 
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
-	threeCamera.position.set(5, 2, 8);
+	threeCamera.position.set(10, 4, 16);
 
 	// Add default TrackballControls to allow rotating and zooming the model by mouse.
 	threeControls = new TrackballControls( threeCamera, threeRenderer.domElement );
@@ -72,19 +101,37 @@ async function InitThreeJs(runtime)
 	threeControls.update();
 	threeControls.noPan = true;
 	threeControls.rotateSpeed = 5;
+	
+	raycaster = new THREE.Raycaster();
+	mouse = new THREE.Vector2();
 
 	// Create a GLTF loader to load the sample model with.
 	const loader = new GLTFLoader();
-	
 	// Asyncronously attempt to load the model.
 	// Note this uses a helper function to make the load() method async.
 	const gltf = await LoadGLTF(loader, "passive.glb");
-
-	// Insert the model to the scene.
-	const model = gltf.scene;
-	model.position.set(0, 0, 0);
-	model.scale.set(1, 1, 1);
-	threeScene.add(model);
+	const originalModel = gltf.scene;
+	const cubeSize = 3;
+	const spacing = .1;
+	
+	// Create the passive cube
+	for (let x = -cubeSize; x <= cubeSize; x++) {
+	
+		for (let y = -cubeSize; y <= cubeSize; y++) {
+			
+			for (let z = -cubeSize; z <= cubeSize; z++) {
+			
+				const model = originalModel.clone();
+		
+				model.position.set(x + x * spacing, y + y * spacing, z + z * spacing);
+				
+				// make all passive nodes invisible except the first one 
+				if (x != 0 || y != 0 || z != 0) model.visible = false;
+		
+				threeScene.add(model);
+			}
+		}
+	}
 	// Hide the passive cube.
 // 	document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }

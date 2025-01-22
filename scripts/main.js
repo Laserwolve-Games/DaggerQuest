@@ -122,6 +122,7 @@ async function InitThreeJs(runtime)
 			for (let z = -cubeSize; z <= cubeSize; z++) {
 			
 				const model = originalModel.clone();
+				model.children[0].children[0].material = originalModel.children[0].children[0].material.clone();
 		
 				model.position.set(x + x * spacing, y + y * spacing, z + z * spacing);
 				

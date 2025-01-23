@@ -47,12 +47,24 @@ function onMouseClick(event) {
 
     // Calculate objects intersecting the picking ray
     const intersects = raycaster.intersectObjects(threeScene.children, true);
+	let firstVisibleIntersect;
+	
+	for (let i = 0; i < intersects.length; i++) {
+	
+	console.log(intersects[i].object.parent.parent.visible);
+	
+		if (intersects[i].object.parent.parent.visible) {
+			firstVisibleIntersect = intersects[i].object;
+			break;
+		}
+	}
+	
 	
 	const redColor = new THREE.Color(0xff0000);
 
     // If there's an intersection, change the color of the first intersected object
     if (intersects.length > 0) {
-        const object = intersects[0].object;
+        const object = firstVisibleIntersect;
 		
 		if (object.material.color.equals(redColor))
 			object.material.color.set(0xffffff);

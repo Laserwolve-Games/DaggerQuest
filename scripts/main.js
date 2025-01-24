@@ -34,7 +34,7 @@ async function OnBeforeProjectStart(runtime)
 	
 	runtime.addEventListener("tick", () => OnTick(runtime));
 	
-	window.addEventListener("click", onMouseClick, false);
+	window.addEventListener("contextmenu", onMouseClick, false);
 }
 
 function onMouseClick(event) {
@@ -51,8 +51,6 @@ function onMouseClick(event) {
 	
 	for (let i = 0; i < intersects.length; i++) {
 	
-	console.log(intersects[i].object.parent.parent.visible);
-	
 		if (intersects[i].object.parent.parent.visible) {
 			firstVisibleIntersect = intersects[i].object;
 			break;
@@ -65,6 +63,9 @@ function onMouseClick(event) {
     // If there's an intersection, change the color of the first intersected object
     if (intersects.length > 0) {
         const object = firstVisibleIntersect;
+		
+		//Do something with a custom property of the node that was right clicked
+// 		console.log(object.parent.parent.userData.description);
 		
 		if (object.material.color.equals(redColor))
 			object.material.color.set(0xffffff);
@@ -105,9 +106,10 @@ async function InitThreeJs(runtime)
 	threeScene.environment = pmremGenerator.fromScene(new RoomEnvironment(threeRenderer), 0.04).texture;
 
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
+	// We'd need to increase or decrease the camera distance if we ever changed the size of the KoH.
 	threeCamera.position.set(10, 4, 16);
 
-	// Add default TrackballControls to allow rotating and zooming the model by mouse.
+	// Trackball controls instead of orbit controls so we can rotate on all axes with no limitations.
 	threeControls = new TrackballControls( threeCamera, threeRenderer.domElement );
 	threeControls.target.set( 0, 0, 0 );
 	threeControls.update();
@@ -121,27 +123,49 @@ async function InitThreeJs(runtime)
 	const loader = new GLTFLoader();
 	// Asyncronously attempt to load the model.
 	// Note this uses a helper function to make the load() method async.
-	const gltf = await LoadGLTF(loader, "passive.glb");
-	const originalModel = gltf.scene;
-	const cubeSize = 3;
+	const gltf = await LoadGLTF(loader, "node.glb");
+	const templateNode = gltf.scene;
+	// The number of passive nodes in the KoH's width, height and depth. Must be an odd number.
+	const cubeSize = 7;
+	// That number adjusted to be 0-centered, so that the first node is in the middle.
+	const adjustedCubeSize = Math.floor(cubeSize / 2);
 	const spacing = .1;
 	
-	// Create the passive cube
-	for (let x = -cubeSize; x <= cubeSize; x++) {
+	let counter = 0;  // Initialize the counter to keep track of node IDs
+
+const nodeData = new Array(cubeSize).fill(null).map(() =>
+  new Array(cubeSize).fill(null).map(() =>
+    new Array(cubeSize).fill(null).map(() => {
+	 const nodeId = counter++;
+      return {
+        nodeId: nodeId,
+        description: `Description of passiveNode ${nodeId}`,
+        passiveMod: `Passive modification details ${nodeId}`
+      };
+    })
+  )
+);
 	
-		for (let y = -cubeSize; y <= cubeSize; y++) {
+// 	Create the passive cube
+	for (let x = -adjustedCubeSize; x <= adjustedCubeSize; x++) {
+	
+		for (let y = -adjustedCubeSize; y <= adjustedCubeSize; y++) {
 			
-			for (let z = -cubeSize; z <= cubeSize; z++) {
+			for (let z = -adjustedCubeSize; z <= adjustedCubeSize; z++) {
 			
-				const model = originalModel.clone();
-				model.children[0].children[0].material = originalModel.children[0].children[0].material.clone();
-		
-				model.position.set(x + x * spacing, y + y * spacing, z + z * spacing);
+				// create the passive node
+				const node = templateNode.clone();
+				// Give it its own texture
+				node.children[0].children[0].material = templateNode.children[0].children[0].material.clone();
+				// Place and space it appropriately
+				node.position.set(x + x * spacing, y + y * spacing, z + z * spacing);
+				// Give it its data
+				node.userData = nodeData[x + adjustedCubeSize][y + adjustedCubeSize][z + adjustedCubeSize];
 				
 				// make all passive nodes invisible except the first one 
-				if (x != 0 || y != 0 || z != 0) model.visible = false;
+// 				if (x != 0 || y != 0 || z != 0) node.visible = false;
 		
-				threeScene.add(model);
+				threeScene.add(node);
 			}
 		}
 	}

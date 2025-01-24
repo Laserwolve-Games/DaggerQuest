@@ -49,14 +49,13 @@ function onMouseClick(event) {
     const intersects = raycaster.intersectObjects(threeScene.children, true);
 	let firstVisibleIntersect;
 	
-	for (let i = 0; i < intersects.length; i++) {
+	for (let i = 0; i < intersects.length; i++)
 	
 		if (intersects[i].object.parent.parent.visible) {
+		
 			firstVisibleIntersect = intersects[i].object;
 			break;
 		}
-	}
-	
 	
 	const redColor = new THREE.Color(0xff0000);
 
@@ -65,7 +64,7 @@ function onMouseClick(event) {
         const object = firstVisibleIntersect;
 		
 		//Do something with a custom property of the node that was right clicked
-// 		console.log(object.parent.parent.userData.description);
+		console.log(object.parent.parent.userData.description);
 		
 		if (object.material.color.equals(redColor))
 			object.material.color.set(0xffffff);
@@ -133,14 +132,19 @@ async function InitThreeJs(runtime)
 	
 	let counter = 0;  // Initialize the counter to keep track of node IDs
 
-const nodeData = new Array(cubeSize).fill(null).map(() =>
-  new Array(cubeSize).fill(null).map(() =>
-    new Array(cubeSize).fill(null).map(() => {
+const nodeData = new Array(cubeSize).fill(null).map((_, x) =>
+  new Array(cubeSize).fill(null).map((_, y) =>
+    new Array(cubeSize).fill(null).map((_, z) => {
 	 const nodeId = counter++;
+	 
+	 const center = Math.floor(cubeSize / 2);
+     const layer = Math.max(Math.abs(x - center), Math.abs(y - center), Math.abs(z - center));
+	 
       return {
         nodeId: nodeId,
-        description: `Description of passiveNode ${nodeId}`,
-        passiveMod: `Passive modification details ${nodeId}`
+        description: `Description of node: ${nodeId}`,
+        passiveMod: `Mod details of node: ${nodeId}`,
+		layer: layer
       };
     })
   )
@@ -163,7 +167,7 @@ const nodeData = new Array(cubeSize).fill(null).map(() =>
 				node.userData = nodeData[x + adjustedCubeSize][y + adjustedCubeSize][z + adjustedCubeSize];
 				
 				// make all passive nodes invisible except the first one 
-// 				if (x != 0 || y != 0 || z != 0) node.visible = false;
+				if (x != 0 || y != 0 || z != 0) node.visible = false;
 		
 				threeScene.add(node);
 			}

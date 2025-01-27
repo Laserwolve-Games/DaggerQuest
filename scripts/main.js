@@ -35,9 +35,12 @@ async function OnBeforeProjectStart(runtime)
 	runtime.addEventListener("tick", () => OnTick(runtime));
 	
 	window.addEventListener("contextmenu", onMouseClick, false);
+	
+	window.addEventListener("mousemove", onMouseMove, false);
 }
 
 function onMouseClick(event) {
+
     // Calculate mouse position in normalized device coordinates
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
@@ -72,6 +75,43 @@ function onMouseClick(event) {
 			object.material.color.set(redColor);
         
     }
+}
+
+function onMouseMove(event) {
+
+    event.preventDefault();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, threeCamera);
+	
+        // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(threeScene.children, true);
+	let firstVisibleIntersect;
+	
+	for (let i = 0; i < intersects.length; i++)
+	
+		if (intersects[i].object.parent.parent.visible) {
+		
+			firstVisibleIntersect = intersects[i].object;
+			break;
+		}
+		
+	// reset the color on all nodes any time the mouse is moved	
+	threeScene.children.forEach(node => resetColor(node));
+	
+	function resetColor(node) {
+		
+		node.children[0].children[0].material.color.set(0xffffff);
+		
+		}
+		
+	const redColor = new THREE.Color(0xff0000);
+
+ 	// If there's an intersection, change the color of the first intersected object
+    if (intersects.length > 0) 
+		
+		firstVisibleIntersect.material.color.set(redColor);     
 }
 
 // Initialize the three.js library.
@@ -167,7 +207,7 @@ const nodeData = new Array(cubeSize).fill(null).map((_, x) =>
 				node.userData = nodeData[x + adjustedCubeSize][y + adjustedCubeSize][z + adjustedCubeSize];
 				
 				// make all passive nodes invisible except the first one 
-				if (x != 0 || y != 0 || z != 0) node.visible = false;
+// 				if (x != 0 || y != 0 || z != 0) node.visible = false;
 		
 				threeScene.add(node);
 			}
@@ -206,4 +246,13 @@ function OnTick(runtime)
 	threeControls.update();
 
 	threeRenderer.render(threeScene, threeCamera);
+	
+	threeScene.children.forEach(node => resetColor(node));
+	
+	function resetColor(node) {
+	
+// 		console.log(node);
+		
+		node.children[0].children[0].material.color.set(0xffffff);
+	}
 }

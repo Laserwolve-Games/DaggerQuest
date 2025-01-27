@@ -59,8 +59,6 @@ function onMouseClick(event) {
 			firstVisibleIntersect = intersects[i].object;
 			break;
 		}
-	
-	const redColor = new THREE.Color(0xff0000);
 
     // If there's an intersection, change the color of the first intersected object
     if (intersects.length > 0) {
@@ -69,11 +67,8 @@ function onMouseClick(event) {
 		//Do something with a custom property of the node that was right clicked
 		console.log(object.parent.parent.userData.description);
 		
-		if (object.material.color.equals(redColor))
-			object.material.color.set(0xffffff);
-		else
-			object.material.color.set(redColor);
-        
+		// hide passive nodes when we allocate them
+        firstVisibleIntersect.parent.parent.visible = false;
     }
 }
 
@@ -97,21 +92,16 @@ function onMouseMove(event) {
 			break;
 		}
 		
+	const red = new THREE.Color(0xff0000);
+	const none = new THREE.Color(0xffffff);
+		
 	// reset the color on all nodes any time the mouse is moved	
-	threeScene.children.forEach(node => resetColor(node));
-	
-	function resetColor(node) {
-		
-		node.children[0].children[0].material.color.set(0xffffff);
-		
-		}
-		
-	const redColor = new THREE.Color(0xff0000);
+	threeScene.children.forEach(node => node.children[0].children[0].material.color.set(none));
 
  	// If there's an intersection, change the color of the first intersected object
     if (intersects.length > 0) 
 		
-		firstVisibleIntersect.material.color.set(redColor);     
+		firstVisibleIntersect.material.color.set(red);     
 }
 
 // Initialize the three.js library.
@@ -246,13 +236,4 @@ function OnTick(runtime)
 	threeControls.update();
 
 	threeRenderer.render(threeScene, threeCamera);
-	
-	threeScene.children.forEach(node => resetColor(node));
-	
-	function resetColor(node) {
-	
-// 		console.log(node);
-		
-		node.children[0].children[0].material.color.set(0xffffff);
-	}
 }

@@ -1,12 +1,12 @@
 
-// Some code taken from "Integrated 3D Engine" example.
+// Some code taken from 'Integrated 3D Engine' example.
 // We're using Three.js revision 167, so current documentation online might not apply.
 
-import * as THREE from "three";
+import * as THREE from 'three';
 
-import { TrackballControls } from "./TrackballControls.js";
-import { RoomEnvironment } from "./RoomEnvironment.js";
-import { GLTFLoader } from "./three/addons/loaders/GLTFLoader.js";
+import { TrackballControls } from './TrackballControls.js';
+import { RoomEnvironment } from './RoomEnvironment.js';
+import { GLTFLoader } from './three/addons/loaders/GLTFLoader.js';
 
 // Three.js objects
 let threeRenderer = null;
@@ -16,11 +16,13 @@ let threeControls = null;
 let threeScene = null;
 let raycaster = null;
 let mouse = null;
+let nodeUnderMouse = null;
+let isRotating = false;
 
 // Wait for project to start
 runOnStartup(async runtime =>
 {
-	runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
+	runtime.addEventListener('beforeprojectstart', () => OnBeforeProjectStart(runtime));
 });
 
 // When the project starts up, initialize three.js.
@@ -30,80 +32,57 @@ async function OnBeforeProjectStart(runtime)
 	await InitThreeJs(runtime);
 	
 	// Attach Construct event listeners for handling resize and rendering.
-	runtime.addEventListener("resize", e => OnResize(e));
+	runtime.addEventListener('resize', e => OnResize(e));
 	
-	runtime.addEventListener("tick", () => OnTick(runtime));
+	runtime.addEventListener('tick', () => OnTick(runtime));
 	
-	window.addEventListener("contextmenu", onMouseClick, false);
+	window.addEventListener('contextmenu', onMouseClick, false);
 	
-	window.addEventListener("mousemove", onMouseMove, false);
+	window.addEventListener('mousemove', updateMousePosition);
 }
 
-function onMouseClick(event) {
-
-    // Calculate mouse position in normalized device coordinates
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-
-    // Update the raycaster with the camera and mouse position
-    raycaster.setFromCamera(mouse, threeCamera);
-
-    // Calculate objects intersecting the picking ray
-    const intersects = raycaster.intersectObjects(threeScene.children, true);
-	let firstVisibleIntersect;
-	
-	for (let i = 0; i < intersects.length; i++)
-	
-		if (intersects[i].object.parent.parent.visible) {
-		
-			firstVisibleIntersect = intersects[i].object;
-			break;
-		}
-
-    // If there's an intersection, change the color of the first intersected object
-    if (intersects.length > 0) {
-        const object = firstVisibleIntersect;
-		
-		//Do something with a custom property of the node that was right clicked
-		console.log(object.parent.parent.userData.description);
-		
-		// hide passive nodes when we allocate them
-        firstVisibleIntersect.parent.parent.visible = false;
-    }
-}
-
-function onMouseMove(event) {
-
-    event.preventDefault();
+const updateMousePosition = (event) => {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+};
 
-    raycaster.setFromCamera(mouse, threeCamera);
-	
-        // Calculate objects intersecting the picking ray
-    const intersects = raycaster.intersectObjects(threeScene.children, true);
-	let firstVisibleIntersect;
-	
-	for (let i = 0; i < intersects.length; i++)
-	
-		if (intersects[i].object.parent.parent.visible) {
+function onMouseClick() {
+
+    // If there's an intersection, change the color of the first intersected object
+    if (nodeUnderMouse) {
 		
-			firstVisibleIntersect = intersects[i].object;
-			break;
-		}
+		//Do something with a custom property of the node that was right clicked
+		console.log(nodeUnderMouse.parent.parent.userData.description);
 		
+		// hide passive nodes when we allocate them
+        nodeUnderMouse.parent.parent.visible = false;
+    }
+}
+function getNodeUnderMouse() {
+	
+	raycaster.setFromCamera(mouse, threeCamera);
+	nodeUnderMouse = null;
+	
+	// Return the first node that intersects the ray
+    raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
+	
+		if (node.object.parent.parent.visible) nodeUnderMouse = node.object;
+	});
+}
+function nodeHighlight() {
+
 	const red = new THREE.Color(0xff0000);
 	const none = new THREE.Color(0xffffff);
-		
-	// reset the color on all nodes any time the mouse is moved	
+
+	// reset the color of all nodes
 	threeScene.children.forEach(node => node.children[0].children[0].material.color.set(none));
-
- 	// If there's an intersection, change the color of the first intersected object
-    if (intersects.length > 0) 
-		
-		firstVisibleIntersect.material.color.set(red);     
-}
-
+	
+	// If the KoH isn't being dragged around, make the node under the mouse red
+	
+	console.log(isRotating);
+	if(!isRotating)
+		nodeUnderMouse?.material.color.set(red);	
+	}		
 // Initialize the three.js library.
 async function InitThreeJs(runtime)
 {
@@ -140,9 +119,22 @@ async function InitThreeJs(runtime)
 
 	// Trackball controls instead of orbit controls so we can rotate on all axes with no limitations.
 	threeControls = new TrackballControls( threeCamera, threeRenderer.domElement );
+	threeControls.mouseButtons = {
+	
+		// We don't want to be able to zoom or pan, so those are null
+		LEFT: THREE.MOUSE.ROTATE,
+		MIDDLE: null,
+		RIGHT: null
+	};
+
+	threeControls.addEventListener('start', function() {
+		isRotating = true;
+	});
+	threeControls.addEventListener('end', function() {
+		isRotating = false;
+	});
 	threeControls.target.set( 0, 0, 0 );
 	threeControls.update();
-	threeControls.noPan = true;
 	threeControls.rotateSpeed = 5;
 	
 	raycaster = new THREE.Raycaster();
@@ -152,7 +144,7 @@ async function InitThreeJs(runtime)
 	const loader = new GLTFLoader();
 	// Asyncronously attempt to load the model.
 	// Note this uses a helper function to make the load() method async.
-	const gltf = await LoadGLTF(loader, "node.glb");
+	const gltf = await LoadGLTF(loader, 'node.glb');
 	const templateNode = gltf.scene;
 	// The number of passive nodes in the KoH's width, height and depth. Must be an odd number.
 	const cubeSize = 7;
@@ -204,7 +196,7 @@ const nodeData = new Array(cubeSize).fill(null).map((_, x) =>
 		}
 	}
 	// Hide the passive cube.
-// 	document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
+// 	document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 // This is a helper method to make the GLTFLoader load() method
@@ -231,9 +223,13 @@ function OnResize(e)
 // than THREE.Clock).
 function OnTick(runtime)
 {
-	if(threeMixer) threeMixer.update(runtime.dt);
+	threeMixer?.update(runtime.dt);
 
 	threeControls.update();
 
 	threeRenderer.render(threeScene, threeCamera);
+	
+	getNodeUnderMouse();
+	
+	nodeHighlight();
 }

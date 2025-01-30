@@ -36,15 +36,15 @@ async function OnBeforeProjectStart(runtime)
 	
 	runtime.addEventListener('tick', () => OnTick(runtime));
 	
-	window.addEventListener('contextmenu', onMouseClick, false);
+	window.addEventListener('contextmenu', onMouseClick);
 	
 	window.addEventListener('mousemove', updateMousePosition);
 }
 
-const updateMousePosition = (event) => {
+function updateMousePosition(event) {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-};
+	}
 
 function onMouseClick() {
 
@@ -56,33 +56,34 @@ function onMouseClick() {
 		
 		// hide passive nodes when we allocate them
         nodeUnderMouse.parent.parent.visible = false;
+		
+		// This allows for the hover effect on the next visible node,
+		// even if the mouse hasn't moved
+		updateMousePosition(event);
     }
 }
 function getNodeUnderMouse() {
-	
-	raycaster.setFromCamera(mouse, threeCamera);
-	nodeUnderMouse = null;
-	
-	// Return the first node that intersects the ray
-    raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
-	
-		if (node.object.parent.parent.visible) nodeUnderMouse = node.object;
-	});
-}
-function nodeHighlight() {
 
 	const red = new THREE.Color(0xff0000);
 	const none = new THREE.Color(0xffffff);
-
+	
 	// reset the color of all nodes
 	threeScene.children.forEach(node => node.children[0].children[0].material.color.set(none));
 	
-	// If the KoH isn't being dragged around, make the node under the mouse red
-	
-	console.log(isRotating);
-	if(!isRotating)
+	if(!isRotating) {
+		raycaster.setFromCamera(mouse, threeCamera);
+		nodeUnderMouse = null;
+
+		// Return the first node that intersects the ray
+		raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
+
+			if (node.object.parent.parent.visible) nodeUnderMouse = node.object;
+		});
+
+		// Make the node under the mouse red
 		nodeUnderMouse?.material.color.set(red);	
-	}		
+	}
+}	
 // Initialize the three.js library.
 async function InitThreeJs(runtime)
 {
@@ -131,6 +132,10 @@ async function InitThreeJs(runtime)
 		isRotating = true;
 	});
 	threeControls.addEventListener('end', function() {
+		// Effectively set the mouse off screen so that a random node doesn't
+		// get highlighted when the rotation ends
+		mouse.x = window.innerWidth;
+		mouse.y = window.innerHeight;
 		isRotating = false;
 	});
 	threeControls.target.set( 0, 0, 0 );
@@ -230,6 +235,4 @@ function OnTick(runtime)
 	threeRenderer.render(threeScene, threeCamera);
 	
 	getNodeUnderMouse();
-	
-	nodeHighlight();
 }

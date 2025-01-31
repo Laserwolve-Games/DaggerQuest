@@ -196,6 +196,9 @@ const InitThreeJs = async (runtime) => {
 
 				threeScene.add(node);
 			}
+
+	// Hide the passive cube.
+	// document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 const LoadGLTF = (loader, path) => {
@@ -227,7 +230,7 @@ const OnTick = (runtime) => {
 		// Set all nodes white
 		node.children[0].children[0].material.color.set(none);
 		// Make nodes that can be allocated pulsate blue
-		if (node.userData.canBeAllocatedOrDeallocated && !node.userData.isAllocated) {
+		if (node.userData.canBeAllocatedOrDeallocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1) {
 			const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
 			node.children[0].children[0].material.color.lerp(blue, scale);
 		}
@@ -239,7 +242,7 @@ const OnTick = (runtime) => {
 		nodeUnderMouse = null;
 
 		raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
-			if (node.object.parent.parent.visible) nodeUnderMouse = node.object;
+			if (node.object.parent.parent.visible && node.object.material.opacity == 1) nodeUnderMouse = node.object;
 		});
 
 		nodeUnderMouse?.material.color.set(red);

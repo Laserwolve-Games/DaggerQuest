@@ -17,6 +17,11 @@ let pulseClock = new THREE.Clock();
 const spacing = .1;
 const cubeSize = 7;
 const adjustedCubeSize = Math.floor(cubeSize / 2); // 3
+const orange = new THREE.Color(0xffa500);
+const red = new THREE.Color(0xff0000);
+const none = new THREE.Color(0xffffff);
+const lightRed = new THREE.Color(0xffcccc);
+let passivePoints = 10;
 
 runOnStartup(async runtime => {
 
@@ -65,7 +70,7 @@ const opacityToggle = (event) => {
 				node.userData[opacityProperty] = !node.userData[opacityProperty];
 
 				if (node.userData.opacitySetViaRow || node.userData.opacitySetViaColumn || node.userData.opacitySetViaDepth)
-					node.children[0].children[0].material.opacity = 0.25;
+					node.children[0].children[0].material.opacity = 0.1;
 				else node.children[0].children[0].material.opacity = 1;
 			}
 		});
@@ -76,36 +81,84 @@ const onMouseClick = (event) => {
 
 	let nodeParent = nodeUnderMouse?.parent.parent;
 
-	if (!nodeParent.userData.isAllocated && nodeParent.userData.canBeAllocatedOrDeallocated) {
-		nodeParent.visible = false;
+	const directions = [
+		{ Row: 1, Column: 0, Depth: 0 },
+		{ Row: -1, Column: 0, Depth: 0 },
+		{ Row: 0, Column: 1, Depth: 0 },
+		{ Row: 0, Column: -1, Depth: 0 },
+		{ Row: 0, Column: 0, Depth: 1 },
+		{ Row: 0, Column: 0, Depth: -1 }
+	];
+
+	if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
+
 		nodeParent.userData.isAllocated = true;
+		passivePoints--;
 
-		// TODO: Refactor this to use row and column nodeData properties instead of child position values
-		// Directions to the nodes that can be allocated or deallocated after this node has been allocated.
-		// These are local coordinates, so it's based on the node that was just allocated, not the center of the KoH.
-		const directions = [
-			{ x: 1, y: 0, z: 0 },
-			{ x: -1, y: 0, z: 0 },
-			{ x: 0, y: 1, z: 0 },
-			{ x: 0, y: -1, z: 0 },
-			{ x: 0, y: 0, z: 1 },
-			{ x: 0, y: 0, z: -1 }
-		];
+	} else if (nodeParent.userData.canBeDeallocated) {
 
-		// Find the node using each of those directions, and if it exists, mark it as canBeAllocatedOrDeallocated
-		directions.forEach(direction => {
-			const adjacentNode = threeScene.children.find(child =>
-				Math.abs(child.position.x - (nodeParent.position.x + direction.x + direction.x * spacing)) < 0.001 &&
-				Math.abs(child.position.y - (nodeParent.position.y + direction.y + direction.y * spacing)) < 0.001 &&
-				Math.abs(child.position.z - (nodeParent.position.z + direction.z + direction.z * spacing)) < 0.001
-			);
-			if (adjacentNode)
-				adjacentNode.userData.canBeAllocatedOrDeallocated = true;
-		});
+		nodeParent.userData.isAllocated = false;
+		passivePoints++;
 	}
 
-	updateMousePosition(event);
+	const adjacentNodes = [];
+	const nonAdjacentNodes = [];
 
+	threeScene.children.forEach(node => {
+		if (!node.userData.isAllocated) {
+			const isAdjacent = directions.some(direction => {
+				const adjacentNode = threeScene.children.find(n => 
+					n.userData.Row === node.userData.Row + direction.Row &&
+					n.userData.Column === node.userData.Column + direction.Column &&
+					n.userData.Depth === node.userData.Depth + direction.Depth &&
+					n.userData.isAllocated
+				);
+				return adjacentNode !== undefined;
+			});
+
+			if (isAdjacent) {
+				adjacentNodes.push(node);
+			} else {
+				nonAdjacentNodes.push(node);
+			}
+		} else {
+		// 	const visited = new Set();
+		// 	const stack = [nodeParent];
+		// 	let contiguous = true;
+
+		// 	while (stack.length > 0) {
+		// 		const currentNode = stack.pop();
+		// 		if (!visited.has(currentNode.userData.nodeId)) {
+		// 			visited.add(currentNode.userData.nodeId);
+
+		// 			directions.forEach(direction => {
+		// 				const adjacentNode = threeScene.children.find(n =>
+		// 					n.userData.Row === currentNode.userData.Row + direction.Row &&
+		// 					n.userData.Column === currentNode.userData.Column + direction.Column &&
+		// 					n.userData.Depth === currentNode.userData.Depth + direction.Depth &&
+		// 					n.userData.isAllocated
+		// 				);
+
+		// 				if (adjacentNode && !visited.has(adjacentNode.userData.nodeId)) {
+		// 					stack.push(adjacentNode);
+		// 				}
+		// 			});
+		// 		}
+		// 	}
+
+		// 	const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
+		// 	if (visited.size !== allocatedNodes.length) {
+		// 		nodeParent.userData.canBeDeallocated = false;
+		// 	} else {
+		// 		nodeParent.userData.canBeDeallocated = true;
+		// 	}
+		// }
+	});
+
+	adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
+	nonAdjacentNodes.forEach(node => node.userData.canBeAllocated = false);
+
+	updateMousePosition(event);
 }
 
 const InitThreeJs = async (runtime) => {
@@ -130,6 +183,9 @@ const InitThreeJs = async (runtime) => {
 
 	threeControls = new TrackballControls(threeCamera, threeRenderer.domElement);
 	threeControls.mouseButtons = {
+		// Setting RIGHT to THREE.MOUSE.ROTATE and LEFT to null doesn't work.
+		// Left becomes pan and right doesn't do anything.
+		// Might be an issue with threejs 167.
 		LEFT: THREE.MOUSE.ROTATE,
 		MIDDLE: null,
 		RIGHT: null
@@ -170,7 +226,8 @@ const InitThreeJs = async (runtime) => {
 					passiveMod: `Mod details of node: ${nodeId}`,
 					layer: layer,
 					isAllocated: false,
-					canBeAllocatedOrDeallocated: false,
+					canBeAllocated: false,
+					canBeDeallocated: false,
 					Row: x,
 					Column: y,
 					Depth: z
@@ -191,7 +248,7 @@ const InitThreeJs = async (runtime) => {
 				if (
 					(Math.abs(x) === adjustedCubeSize && Math.abs(y) === adjustedCubeSize && Math.abs(z) === adjustedCubeSize)
 				) {
-					node.userData.canBeAllocatedOrDeallocated = true;
+					node.userData.canBeAllocated = true;
 				}
 
 				threeScene.add(node);
@@ -214,9 +271,7 @@ const OnResize = (e) => {
 	threeRenderer.setSize(e.cssWidth, e.cssHeight);
 }
 
-const red = new THREE.Color(0xff0000);
-const none = new THREE.Color(0xffffff);
-const blue = new THREE.Color(0x0000ff);
+
 
 const OnTick = (runtime) => {
 
@@ -227,24 +282,25 @@ const OnTick = (runtime) => {
 	threeRenderer.render(threeScene, threeCamera);
 
 	threeScene.children.forEach(node => {
-		// Set all nodes white
-		node.children[0].children[0].material.color.set(none);
-		// Make nodes that can be allocated pulsate blue
-		if (node.userData.canBeAllocatedOrDeallocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1) {
+		// Set all unallocated nodes white
+		if (!node.userData.isAllocated) node.children[0].children[0].material.color.set(none);
+		else node.children[0].children[0].material.color.set(red);
+		// Make unallocated nodes that can be allocated pulsate blue
+		if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && passivePoints > 0) {
 			const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
-			node.children[0].children[0].material.color.lerp(blue, scale);
+			node.children[0].children[0].material.color.lerp(lightRed, scale);
 		}
 	});
 
-	// Get the node under the mouse and highlight it red
+	// Get the node under the mouse and highlight it
 	if (!isRotating) {
 		raycaster.setFromCamera(mouse, threeCamera);
 		nodeUnderMouse = null;
 
 		raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
-			if (node.object.parent.parent.visible && node.object.material.opacity == 1) nodeUnderMouse = node.object;
+			if (node.object.material.opacity == 1) nodeUnderMouse = node.object;
 		});
 
-		nodeUnderMouse?.material.color.set(red);
+		nodeUnderMouse?.material.color.set(orange);
 	}
 }

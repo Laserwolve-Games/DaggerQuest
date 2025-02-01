@@ -37,19 +37,25 @@ const OnBeforeProjectStart = async (runtime) => {
 
 	runtime.addEventListener('tick', () => OnTick(runtime));
 
-	window.addEventListener('contextmenu', onMouseClick);
+	window.addEventListener('contextmenu', contextMenu);
 
-	window.addEventListener('mousemove', updateMousePosition);
+	runtime.addEventListener('pointermove', mouseMove);
 
-	window.addEventListener('keydown', opacityToggle);
+	runtime.addEventListener('keydown', keyDown);
+
+	// threejs requires pointer events instead of mouse events
+	// runtime.addEventListener('pointerdown', (event) => {
+	// 	console.log("Pointer down event detected");
+	// });
 }
 
-const updateMousePosition = (event) => {
+
+const mouseMove = (event) => {
 	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
-const opacityToggle = (event) => {
+const keyDown = (event) => {
 	let property = null;
 	let index = null;
 
@@ -77,10 +83,10 @@ const opacityToggle = (event) => {
 	}
 }
 
-const onMouseClick = (event) => {
+const scanAllNodes = (nodeParent) => {
 
-	let nodeParent = nodeUnderMouse?.parent.parent;
-
+	const adjacentNodes = [];
+	const nonAdjacentNodes = [];
 	const directions = [
 		{ Row: 1, Column: 0, Depth: 0 },
 		{ Row: -1, Column: 0, Depth: 0 },
@@ -89,20 +95,6 @@ const onMouseClick = (event) => {
 		{ Row: 0, Column: 0, Depth: 1 },
 		{ Row: 0, Column: 0, Depth: -1 }
 	];
-
-	if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
-
-		nodeParent.userData.isAllocated = true;
-		passivePoints--;
-
-	} else if (nodeParent.userData.canBeDeallocated) {
-
-		nodeParent.userData.isAllocated = false;
-		passivePoints++;
-	}
-
-	const adjacentNodes = [];
-	const nonAdjacentNodes = [];
 
 	threeScene.children.forEach(node => {
 		if (!node.userData.isAllocated) {
@@ -121,44 +113,63 @@ const onMouseClick = (event) => {
 			} else {
 				nonAdjacentNodes.push(node);
 			}
+		// If a node is allocated, see if it can be deallocated without breaking allocated node continuity.
 		} else {
-		// 	const visited = new Set();
-		// 	const stack = [nodeParent];
-		// 	let contiguous = true;
+			const visited = new Set();
+			const stack = [nodeParent];
 
-		// 	while (stack.length > 0) {
-		// 		const currentNode = stack.pop();
-		// 		if (!visited.has(currentNode.userData.nodeId)) {
-		// 			visited.add(currentNode.userData.nodeId);
+			while (stack.length > 0) {
+				const currentNode = stack.pop();
+				if (!visited.has(currentNode.userData.nodeId)) {
+					visited.add(currentNode.userData.nodeId);
 
-		// 			directions.forEach(direction => {
-		// 				const adjacentNode = threeScene.children.find(n =>
-		// 					n.userData.Row === currentNode.userData.Row + direction.Row &&
-		// 					n.userData.Column === currentNode.userData.Column + direction.Column &&
-		// 					n.userData.Depth === currentNode.userData.Depth + direction.Depth &&
-		// 					n.userData.isAllocated
-		// 				);
+					directions.forEach(direction => {
+						const adjacentNode = threeScene.children.find(n =>
+							n.userData.Row === currentNode.userData.Row + direction.Row &&
+							n.userData.Column === currentNode.userData.Column + direction.Column &&
+							n.userData.Depth === currentNode.userData.Depth + direction.Depth &&
+							n.userData.isAllocated
+						);
 
-		// 				if (adjacentNode && !visited.has(adjacentNode.userData.nodeId)) {
-		// 					stack.push(adjacentNode);
-		// 				}
-		// 			});
-		// 		}
-		// 	}
+						if (adjacentNode && !visited.has(adjacentNode.userData.nodeId)) {
+							stack.push(adjacentNode);
+						}
+					});
+				}
+			}
 
-		// 	const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
-		// 	if (visited.size !== allocatedNodes.length) {
-		// 		nodeParent.userData.canBeDeallocated = false;
-		// 	} else {
-		// 		nodeParent.userData.canBeDeallocated = true;
-		// 	}
-		// }
+			const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
+			if (visited.size !== allocatedNodes.length) {
+				nodeParent.userData.canBeDeallocated = false;
+			} else {
+				nodeParent.userData.canBeDeallocated = true;
+			}
+		}
 	});
 
 	adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
 	nonAdjacentNodes.forEach(node => node.userData.canBeAllocated = false);
 
-	updateMousePosition(event);
+}
+
+const contextMenu = (event) => {
+
+	let nodeParent = nodeUnderMouse?.parent.parent;
+
+	if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
+
+		nodeParent.userData.isAllocated = true;
+		passivePoints--;
+		scanAllNodes(nodeParent);
+		mouseMove(event);
+
+	} else if (nodeParent.userData.canBeDeallocated) {
+
+		nodeParent.userData.isAllocated = false;
+		passivePoints++;
+		scanAllNodes(nodeParent);
+		mouseMove(event);
+	}
 }
 
 const InitThreeJs = async (runtime) => {
@@ -170,9 +181,10 @@ const InitThreeJs = async (runtime) => {
 		alpha: true
 	});
 
+	const canvas = threeRenderer.domElement;
 	threeRenderer.setPixelRatio(platformInfo.devicePixelRatio);
 	threeRenderer.setSize(platformInfo.canvasCssWidth, platformInfo.canvasCssHeight);
-	container.appendChild(threeRenderer.domElement);
+	container.appendChild(canvas);
 
 	const pmremGenerator = new THREE.PMREMGenerator(threeRenderer);
 	threeScene = new THREE.Scene();
@@ -181,7 +193,7 @@ const InitThreeJs = async (runtime) => {
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
 	threeCamera.position.set(10, 4, 16);
 
-	threeControls = new TrackballControls(threeCamera, threeRenderer.domElement);
+	threeControls = new TrackballControls(threeCamera, canvas);
 	threeControls.mouseButtons = {
 		// Setting RIGHT to THREE.MOUSE.ROTATE and LEFT to null doesn't work.
 		// Left becomes pan and right doesn't do anything.

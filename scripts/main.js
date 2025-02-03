@@ -37,20 +37,37 @@ const OnBeforeProjectStart = async (runtime) => {
 
 	runtime.addEventListener('tick', () => OnTick(runtime));
 
-	window.addEventListener('contextmenu', contextMenu);
+	window.addEventListener('pointerdown', pointerDown);
 
-	runtime.addEventListener('pointermove', mouseMove);
+	runtime.addEventListener('pointermove', pointerMove);
 
 	runtime.addEventListener('keydown', keyDown);
-
-	// threejs requires pointer events instead of mouse events
-	// runtime.addEventListener('pointerdown', (event) => {
-	// 	console.log("Pointer down event detected");
-	// });
 }
 
+const pointerDown = (event) => {
 
-const mouseMove = (event) => {
+	if (event.button === 2) {
+
+		let nodeParent = nodeUnderMouse?.parent.parent;
+
+		if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
+	
+			nodeParent.userData.isAllocated = true;
+			passivePoints--;
+			scanAllNodes(nodeParent);
+			pointerMove(event);
+	
+		} else if (nodeParent.userData.canBeDeallocated) {
+	
+			nodeParent.userData.isAllocated = false;
+			passivePoints++;
+			scanAllNodes(nodeParent);
+			pointerMove(event);
+		}
+	}
+}
+
+const pointerMove = (event) => {
 	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
@@ -150,26 +167,6 @@ const scanAllNodes = (nodeParent) => {
 	adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
 	nonAdjacentNodes.forEach(node => node.userData.canBeAllocated = false);
 
-}
-
-const contextMenu = (event) => {
-
-	let nodeParent = nodeUnderMouse?.parent.parent;
-
-	if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
-
-		nodeParent.userData.isAllocated = true;
-		passivePoints--;
-		scanAllNodes(nodeParent);
-		mouseMove(event);
-
-	} else if (nodeParent.userData.canBeDeallocated) {
-
-		nodeParent.userData.isAllocated = false;
-		passivePoints++;
-		scanAllNodes(nodeParent);
-		mouseMove(event);
-	}
 }
 
 const InitThreeJs = async (runtime) => {

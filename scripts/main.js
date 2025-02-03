@@ -173,7 +173,7 @@ const InitThreeJs = async (runtime) => {
 	const platformInfo = runtime.platformInfo;
 	const container = runtime.getHTMLLayer(0);
 
-	threeRenderer = new THREE.WebGLRenderer({
+	threeRenderer = new THREE.WebGPURenderer({
 		antialias: true,
 		alpha: true
 	});

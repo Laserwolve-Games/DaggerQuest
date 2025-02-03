@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 import { TrackballControls } from './TrackballControls.js';
 import { RoomEnvironment } from './RoomEnvironment.js';
-import { GLTFLoader } from './three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from './GLTFLoader.js';
 
 let threeRenderer = null;
 let threeCamera = null;

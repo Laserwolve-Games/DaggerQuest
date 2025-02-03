@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
-import { TrackballControls } from './TrackballControls.js';
-import { RoomEnvironment } from './RoomEnvironment.js';
-import { GLTFLoader } from './GLTFLoader.js';
+import { TrackballControls } from './three/addons/controls/TrackballControls.js';
+import { RoomEnvironment } from './three/addons/environments/RoomEnvironment.js';
+import { GLTFLoader } from './three/addons/loaders/GLTFLoader.js';
 
 let threeRenderer = null;
 let threeCamera = null;
@@ -51,14 +51,14 @@ const pointerDown = (event) => {
 		let nodeParent = nodeUnderMouse?.parent.parent;
 
 		if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
-	
+
 			nodeParent.userData.isAllocated = true;
 			passivePoints--;
 			scanAllNodes(nodeParent);
 			pointerMove(event);
-	
+
 		} else if (nodeParent.userData.canBeDeallocated) {
-	
+
 			nodeParent.userData.isAllocated = false;
 			passivePoints++;
 			scanAllNodes(nodeParent);
@@ -116,7 +116,7 @@ const scanAllNodes = (nodeParent) => {
 	threeScene.children.forEach(node => {
 		if (!node.userData.isAllocated) {
 			const isAdjacent = directions.some(direction => {
-				const adjacentNode = threeScene.children.find(n => 
+				const adjacentNode = threeScene.children.find(n =>
 					n.userData.Row === node.userData.Row + direction.Row &&
 					n.userData.Column === node.userData.Column + direction.Column &&
 					n.userData.Depth === node.userData.Depth + direction.Depth &&
@@ -130,7 +130,7 @@ const scanAllNodes = (nodeParent) => {
 			} else {
 				nonAdjacentNodes.push(node);
 			}
-		// If a node is allocated, see if it can be deallocated without breaking allocated node continuity.
+			// If a node is allocated, see if it can be deallocated without breaking allocated node continuity.
 		} else {
 			const visited = new Set();
 			const stack = [nodeParent];
@@ -264,7 +264,7 @@ const InitThreeJs = async (runtime) => {
 			}
 
 	// Hide the passive cube.
-	// document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
+	// document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 const LoadGLTF = (loader, path) => {

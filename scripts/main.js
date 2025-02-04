@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
-import { TrackballControls } from './TrackballControls.js';
-import { RoomEnvironment } from './RoomEnvironment.js';
+import { TrackballControls } from './three/addons/controls/TrackballControls.js';
+import { RoomEnvironment } from './three/addons/environments/RoomEnvironment.js';
 import { GLTFLoader } from './three/addons/loaders/GLTFLoader.js';
 
 let threeRenderer = null;
@@ -37,19 +37,42 @@ const OnBeforeProjectStart = async (runtime) => {
 
 	runtime.addEventListener('tick', () => OnTick(runtime));
 
-	window.addEventListener('contextmenu', onMouseClick);
+	window.addEventListener('pointerdown', pointerDown);
 
-	window.addEventListener('mousemove', updateMousePosition);
+	runtime.addEventListener('pointermove', pointerMove);
 
-	window.addEventListener('keydown', opacityToggle);
+	runtime.addEventListener('keydown', keyDown);
 }
 
-const updateMousePosition = (event) => {
+const pointerDown = (event) => {
+
+	if (event.button === 2) {
+
+		let nodeParent = nodeUnderMouse?.parent.parent;
+
+		if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
+
+			nodeParent.userData.isAllocated = true;
+			passivePoints--;
+			scanAllNodes(nodeParent);
+			pointerMove(event);
+
+		} else if (nodeParent.userData.canBeDeallocated) {
+
+			nodeParent.userData.isAllocated = false;
+			passivePoints++;
+			scanAllNodes(nodeParent);
+			pointerMove(event);
+		}
+	}
+}
+
+const pointerMove = (event) => {
 	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
-const opacityToggle = (event) => {
+const keyDown = (event) => {
 	let property = null;
 	let index = null;
 
@@ -77,10 +100,10 @@ const opacityToggle = (event) => {
 	}
 }
 
-const onMouseClick = (event) => {
+const scanAllNodes = (nodeParent) => {
 
-	let nodeParent = nodeUnderMouse?.parent.parent;
-
+	const adjacentNodes = [];
+	const nonAdjacentNodes = [];
 	const directions = [
 		{ Row: 1, Column: 0, Depth: 0 },
 		{ Row: -1, Column: 0, Depth: 0 },
@@ -90,24 +113,10 @@ const onMouseClick = (event) => {
 		{ Row: 0, Column: 0, Depth: -1 }
 	];
 
-	if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
-
-		nodeParent.userData.isAllocated = true;
-		passivePoints--;
-
-	} else if (nodeParent.userData.canBeDeallocated) {
-
-		nodeParent.userData.isAllocated = false;
-		passivePoints++;
-	}
-
-	const adjacentNodes = [];
-	const nonAdjacentNodes = [];
-
 	threeScene.children.forEach(node => {
 		if (!node.userData.isAllocated) {
 			const isAdjacent = directions.some(direction => {
-				const adjacentNode = threeScene.children.find(n => 
+				const adjacentNode = threeScene.children.find(n =>
 					n.userData.Row === node.userData.Row + direction.Row &&
 					n.userData.Column === node.userData.Column + direction.Column &&
 					n.userData.Depth === node.userData.Depth + direction.Depth &&
@@ -121,10 +130,10 @@ const onMouseClick = (event) => {
 			} else {
 				nonAdjacentNodes.push(node);
 			}
+			// If a node is allocated, see if it can be deallocated without breaking allocated node continuity.
 		} else {
 			const visited = new Set();
 			const stack = [nodeParent];
-			let contiguous = true;
 
 			while (stack.length > 0) {
 				const currentNode = stack.pop();
@@ -158,21 +167,21 @@ const onMouseClick = (event) => {
 	adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
 	nonAdjacentNodes.forEach(node => node.userData.canBeAllocated = false);
 
-	updateMousePosition(event);
 }
 
 const InitThreeJs = async (runtime) => {
 	const platformInfo = runtime.platformInfo;
 	const container = runtime.getHTMLLayer(0);
 
-	threeRenderer = new THREE.WebGLRenderer({
+	threeRenderer = new THREE.WebGPURenderer({
 		antialias: true,
 		alpha: true
 	});
 
+	const canvas = threeRenderer.domElement;
 	threeRenderer.setPixelRatio(platformInfo.devicePixelRatio);
 	threeRenderer.setSize(platformInfo.canvasCssWidth, platformInfo.canvasCssHeight);
-	container.appendChild(threeRenderer.domElement);
+	container.appendChild(canvas);
 
 	const pmremGenerator = new THREE.PMREMGenerator(threeRenderer);
 	threeScene = new THREE.Scene();
@@ -181,7 +190,7 @@ const InitThreeJs = async (runtime) => {
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
 	threeCamera.position.set(10, 4, 16);
 
-	threeControls = new TrackballControls(threeCamera, threeRenderer.domElement);
+	threeControls = new TrackballControls(threeCamera, canvas);
 	threeControls.mouseButtons = {
 		// Setting RIGHT to THREE.MOUSE.ROTATE and LEFT to null doesn't work.
 		// Left becomes pan and right doesn't do anything.
@@ -255,7 +264,7 @@ const InitThreeJs = async (runtime) => {
 			}
 
 	// Hide the passive cube.
-	// document.evaluate("//canvas[@data-engine]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
+	// document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 const LoadGLTF = (loader, path) => {

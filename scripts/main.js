@@ -264,7 +264,7 @@ const InitThreeJs = async (runtime) => {
 			}
 
 	// Hide the passive cube.
-	// document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
+	document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
 const LoadGLTF = (loader, path) => {

@@ -1,0 +1,26 @@
+# GitHub Actions workflow to deploy the contents of the build folder to GitHub Pages on new tag push
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: DaggerQuest/build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

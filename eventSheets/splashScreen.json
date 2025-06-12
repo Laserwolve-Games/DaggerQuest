@@ -451,6 +451,28 @@
 							}
 						},
 						{
+							"id": "request-project-file",
+							"objectClass": "ajax",
+							"sid": 706738363661707,
+							"parameters": {
+								"tag": "NOT_USED",
+								"file": "nodeMods.json"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 736195274160862
+						},
+						{
+							"id": "load",
+							"objectClass": "nodeModsArray",
+							"sid": 343711869424823,
+							"parameters": {
+								"json": "AJAX.LastData"
+							}
+						},
+						{
 							"type": "comment",
 							"text": "Set up dictionaries."
 						},

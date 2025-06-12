@@ -3281,9 +3281,10 @@
 																								},
 																								{
 																									"callFunction": "manageMods",
-																									"sid": 295486289945631,
+																									"sid": 540326595034529,
 																									"parameters": [
-																										false
+																										false,
+																										"item.mods"
 																									]
 																								},
 																								{
@@ -4492,9 +4493,10 @@
 																						},
 																						{
 																							"callFunction": "manageMods",
-																							"sid": 906665275106208,
+																							"sid": 652107938435484,
 																							"parameters": [
-																								false
+																								false,
+																								"item.mods"
 																							]
 																						},
 																						{
@@ -5376,9 +5378,10 @@
 									"actions": [
 										{
 											"callFunction": "manageMods",
-											"sid": 936820586346001,
+											"sid": 295549108993008,
 											"parameters": [
-												true
+												true,
+												"item.mods"
 											]
 										}
 									],
@@ -5396,9 +5399,10 @@
 									"actions": [
 										{
 											"callFunction": "manageMods",
-											"sid": 119908917978573,
+											"sid": 771698436145257,
 											"parameters": [
-												false
+												false,
+												"item.mods"
 											]
 										}
 									],
@@ -18823,25 +18827,121 @@
 					]
 				},
 				{
-					"functionName": "manageMods",
-					"functionDescription": "Activate or deactivate the mods of an item.",
+					"functionName": "manageNodeMods",
+					"functionDescription": "Manage the mods from passive nodes.",
 					"functionCategory": "mods",
 					"functionReturnType": "none",
-					"functionCopyPicked": true,
+					"functionCopyPicked": false,
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
 							"name": "active",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Whether or not to activate or deactivate this mod.",
-							"sid": 608758543573668
+							"comment": "Whether or not to apply or remove these mods",
+							"sid": 169610684842094
+						},
+						{
+							"name": "row",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The row of the node (X value)",
+							"sid": 103790429966106
+						},
+						{
+							"name": "column",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The column of the node (Y value)",
+							"sid": 517796271907735
+						},
+						{
+							"name": "depth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The depth of the node (Z value)",
+							"sid": 765154012557958
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 502769143658461,
+					"sid": 874268372188755,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 921674829300949,
+									"parameters": {
+										"variable": "active"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "manageMods",
+									"sid": 292035135559098,
+									"parameters": [
+										true,
+										"nodeModsArray.At(row, column, depth)"
+									]
+								}
+							],
+							"sid": 741735787233396
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 503428391636091
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "manageMods",
+									"sid": 230305147957959,
+									"parameters": [
+										false,
+										"nodeModsArray.At(row, column, depth)"
+									]
+								}
+							],
+							"sid": 532996172633404
+						}
+					]
+				},
+				{
+					"functionName": "manageMods",
+					"functionDescription": "Activates or deactivates mods",
+					"functionCategory": "mods",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "active",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Whether or not to apply or remove these mods",
+							"sid": 320322540087353
+						},
+						{
+							"name": "mods",
+							"type": "string",
+							"initialValue": "",
+							"comment": "The mods to manage",
+							"sid": 770799780804067
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 774980469777344,
 					"children": [
 						{
 							"eventType": "variable",
@@ -18851,7 +18951,7 @@
 							"comment": "The mod we're currently working on in the below loop.",
 							"isStatic": true,
 							"isConstant": false,
-							"sid": 675202259414484
+							"sid": 658994502548319
 						},
 						{
 							"eventType": "block",
@@ -18859,11 +18959,11 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 279138871422595,
+									"sid": 332883692666387,
 									"parameters": {
 										"name": "NOT_USED",
 										"start-index": "LOOP_DEFAULT",
-										"end-index": "tokencount(item.mods, MOD_SEPARATOR) - DOUBLE_OFFSET"
+										"end-index": "tokencount(mods, MOD_SEPARATOR) - DOUBLE_OFFSET"
 									}
 								}
 							],
@@ -18871,14 +18971,14 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 186469235570453,
+									"sid": 208150560176102,
 									"parameters": {
 										"variable": "mod",
-										"value": "tokenat(item.mods, loopindex, MOD_SEPARATOR)"
+										"value": "tokenat(mods, loopindex, MOD_SEPARATOR)"
 									}
 								}
 							],
-							"sid": 867779511144806,
+							"sid": 779671384936572,
 							"children": [
 								{
 									"eventType": "comment",
@@ -18904,7 +19004,7 @@
 									"comment": "The index of the description of the mod.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 971110566132811
+									"sid": 101551332716494
 								},
 								{
 									"eventType": "variable",
@@ -18914,7 +19014,7 @@
 									"comment": "The index of the name of the mod.",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 830741968104748
+									"sid": 919024741673307
 								},
 								{
 									"eventType": "block",
@@ -18922,7 +19022,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 468135131817932,
+											"sid": 906401843708283,
 											"parameters": {
 												"variable": "active"
 											}
@@ -18931,7 +19031,7 @@
 									"actions": [
 										{
 											"callFunction": "modCaller",
-											"sid": 768889427966747,
+											"sid": 121924609139306,
 											"parameters": [
 												true,
 												"tokenat(mod, DESCRIPTION_INDEX, MOD_NAME_SEPARATOR)",
@@ -18939,7 +19039,7 @@
 											]
 										}
 									],
-									"sid": 931958845924383
+									"sid": 526533871975863
 								},
 								{
 									"eventType": "block",
@@ -18947,13 +19047,13 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 797626541149464
+											"sid": 844394093944753
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "modCaller",
-											"sid": 110292418413939,
+											"sid": 630043489526376,
 											"parameters": [
 												false,
 												"tokenat(mod, DESCRIPTION_INDEX, MOD_NAME_SEPARATOR)",
@@ -18961,7 +19061,7 @@
 											]
 										}
 									],
-									"sid": 218511279335757
+									"sid": 835571074643744
 								}
 							]
 						}

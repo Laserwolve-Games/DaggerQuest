@@ -15,15 +15,18 @@ let nodeUnderMouse = null;
 let isRotating = false;
 let pulseClock = new THREE.Clock();
 const spacing = .1;
-const cubeSize = 7;
+const cubeSize = 7; // We could add a lot of fancy code to get this from nodeMods.json, but it's not worth it.
 const adjustedCubeSize = Math.floor(cubeSize / 2); // 3
 const orange = new THREE.Color(0xffa500);
 const red = new THREE.Color(0xff0000);
 const none = new THREE.Color(0xffffff);
 const lightRed = new THREE.Color(0xffcccc);
 let passivePoints = 10;
+let runtime = null;
 
-runOnStartup(async runtime => {
+runOnStartup(async (r) => {
+
+	runtime = r;
 
 	runtime.addEventListener('beforeprojectstart', () => OnBeforeProjectStart(runtime));
 
@@ -56,6 +59,7 @@ const pointerDown = (event) => {
 			nodeParent.userData.canBeAllocated = false;
 			nodeParent.userData.canBeDeallocated = true;
 			passivePoints--;
+			runtime.callFunction('manageNodeMods', nodeParent.userData.isAllocated, nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
 			scanAllNodes(nodeParent);
 			pointerMove(event);
 
@@ -65,6 +69,7 @@ const pointerDown = (event) => {
 			nodeParent.userData.canBeAllocated = true;
 			nodeParent.userData.canBeDeallocated = false;
 			passivePoints++;
+			runtime.callFunction('manageNodeMods', nodeParent.userData.isAllocated, nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
 			scanAllNodes(nodeParent);
 			pointerMove(event);
 		}
@@ -236,7 +241,7 @@ const InitThreeJs = async (runtime) => {
 				return {
 					nodeId: nodeId,
 					description: `Description of node: ${nodeId}`,
-					passiveMod: `Mod details of node: ${nodeId}`,
+					nodeMod: `Mod details of node: ${nodeId}`,
 					layer: layer,
 					isAllocated: false,
 					canBeAllocated: false,

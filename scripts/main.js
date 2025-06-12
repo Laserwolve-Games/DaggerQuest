@@ -50,16 +50,20 @@ const pointerDown = (event) => {
 
 		let nodeParent = nodeUnderMouse?.parent.parent;
 
-		if (nodeParent.userData.canBeAllocated && passivePoints > 0) {
+		if (nodeParent.userData.canBeAllocated && !nodeParent.userData.isAllocated && passivePoints > 0) {
 
 			nodeParent.userData.isAllocated = true;
+			nodeParent.userData.canBeAllocated = false;
+			nodeParent.userData.canBeDeallocated = true;
 			passivePoints--;
 			scanAllNodes(nodeParent);
 			pointerMove(event);
 
-		} else if (nodeParent.userData.canBeDeallocated) {
+		} else if (nodeParent.userData.canBeDeallocated && nodeParent.userData.isAllocated) {
 
 			nodeParent.userData.isAllocated = false;
+			nodeParent.userData.canBeAllocated = true;
+			nodeParent.userData.canBeDeallocated = false;
 			passivePoints++;
 			scanAllNodes(nodeParent);
 			pointerMove(event);

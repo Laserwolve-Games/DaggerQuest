@@ -322,6 +322,28 @@
 									"sid": 585732234228745
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 612729355090763
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Start playing the splash screen soundtrack if the window gets focus, but we haven't finished loading yet"
+								},
+								{
+									"customAction": "Fade in area soundtrack",
+									"objectClass": "audio",
+									"sid": 585030949208185
+								}
+							],
+							"sid": 394322925909109
 						}
 					],
 					"isOrBlock": true
@@ -766,82 +788,7 @@
 							}
 						}
 					],
-					"sid": 847260980959405,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-display-mode",
-									"objectClass": "browser",
-									"sid": 529521577279210,
-									"parameters": {
-										"display-mode": "standalone"
-									}
-								},
-								{
-									"id": "is-in-preview",
-									"objectClass": "System",
-									"sid": 955170184762730
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "If we're in a PWA or previewing, we can play audio right away."
-								},
-								{
-									"customAction": "Fade in area soundtrack",
-									"objectClass": "audio",
-									"sid": 490542002747700
-								}
-							],
-							"sid": 269691687171896,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "comment",
-							"text": "TODO: See if PWAs are allowed to go fullscreen without user input.",
-							"text-color": [
-								0,
-								0,
-								0,
-								1
-							],
-							"background-color": [
-								1,
-								1,
-								0,
-								1
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-display-mode",
-									"objectClass": "browser",
-									"sid": 200942892421991,
-									"parameters": {
-										"display-mode": "standalone"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "request-fullscreen",
-									"objectClass": "browser",
-									"sid": 545992750639300,
-									"parameters": {
-										"mode": "stretch-scale-inner",
-										"navigation-ui": "hide"
-									}
-								}
-							],
-							"sid": 327615388920449,
-							"isOrBlock": true
-						}
-					]
+					"sid": 847260980959405
 				}
 			],
 			"sid": 297998252022528

@@ -1619,7 +1619,8 @@
 							"objectClass": "System",
 							"sid": 337903059839948,
 							"parameters": {
-								"seconds": "END_OF_TICK"
+								"seconds": "END_OF_TICK",
+								"use-timescale": true
 							}
 						},
 						{
@@ -5629,7 +5630,8 @@
 													"objectClass": "System",
 													"sid": 940584177632114,
 													"parameters": {
-														"seconds": "END_OF_TICK"
+														"seconds": "END_OF_TICK",
+														"use-timescale": true
 													}
 												},
 												{
@@ -5933,7 +5935,8 @@
 																	"objectClass": "System",
 																	"sid": 782401797582376,
 																	"parameters": {
-																		"seconds": "END_OF_TICK"
+																		"seconds": "END_OF_TICK",
+																		"use-timescale": true
 																	}
 																},
 																{
@@ -6040,7 +6043,8 @@
 															"objectClass": "System",
 															"sid": 786894593534729,
 															"parameters": {
-																"seconds": "END_OF_TICK"
+																"seconds": "END_OF_TICK",
+																"use-timescale": true
 															}
 														},
 														{
@@ -7162,7 +7166,8 @@
 											"objectClass": "System",
 											"sid": 944013668078549,
 											"parameters": {
-												"seconds": "INTERACT_COOLDOWN"
+												"seconds": "INTERACT_COOLDOWN",
+												"use-timescale": true
 											}
 										},
 										{
@@ -7682,9 +7687,23 @@
 															"parameters": {
 																"mouse-button": "left"
 															}
+														},
+														{
+															"id": "layer-is-visible",
+															"objectClass": "System",
+															"sid": 598925948899116,
+															"parameters": {
+																"layer": "kingdomOfHeaven.LayerName"
+															},
+															"isInverted": true
 														}
 													],
-													"actions": [],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "This prevents walking when the left mouse button is held down, then moved outside the window"
+														}
+													],
 													"sid": 251039767195007,
 													"children": [
 														{
@@ -8667,7 +8686,8 @@
 													"objectClass": "System",
 													"sid": 684032327105710,
 													"parameters": {
-														"seconds": "waitPeriod"
+														"seconds": "waitPeriod",
+														"use-timescale": true
 													}
 												}
 											],
@@ -8837,7 +8857,8 @@
 																	"objectClass": "System",
 																	"sid": 713788350010661,
 																	"parameters": {
-																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod",
+																		"use-timescale": true
 																	}
 																}
 															],
@@ -9123,7 +9144,8 @@
 													"objectClass": "System",
 													"sid": 406577977717044,
 													"parameters": {
-														"seconds": "waitPeriod"
+														"seconds": "waitPeriod",
+														"use-timescale": true
 													}
 												}
 											],
@@ -9289,7 +9311,8 @@
 																	"objectClass": "System",
 																	"sid": 141786868695105,
 																	"parameters": {
-																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod",
+																		"use-timescale": true
 																	}
 																}
 															],
@@ -9574,7 +9597,8 @@
 													"objectClass": "System",
 													"sid": 533660683334436,
 													"parameters": {
-														"seconds": "waitPeriod"
+														"seconds": "waitPeriod",
+														"use-timescale": true
 													}
 												},
 												{
@@ -9746,7 +9770,8 @@
 																	"objectClass": "System",
 																	"sid": 729366325956590,
 																	"parameters": {
-																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod"
+																		"seconds": "body.AnimationFrameCount / body.AnimationSpeed - waitPeriod",
+																		"use-timescale": true
 																	}
 																}
 															],
@@ -13276,7 +13301,8 @@
 											"objectClass": "System",
 											"sid": 837721359401634,
 											"parameters": {
-												"seconds": "END_OF_TICK"
+												"seconds": "END_OF_TICK",
+												"use-timescale": true
 											}
 										},
 										{
@@ -13647,7 +13673,8 @@
 											"objectClass": "System",
 											"sid": 229744424860900,
 											"parameters": {
-												"seconds": "END_OF_TICK"
+												"seconds": "END_OF_TICK",
+												"use-timescale": true
 											}
 										},
 										{
@@ -13854,7 +13881,8 @@
 											"objectClass": "System",
 											"sid": 984177249915966,
 											"parameters": {
-												"seconds": "END_OF_TICK"
+												"seconds": "END_OF_TICK",
+												"use-timescale": true
 											}
 										},
 										{
@@ -16274,7 +16302,8 @@
 											"objectClass": "System",
 											"sid": 182674950820577,
 											"parameters": {
-												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime",
+												"use-timescale": true
 											}
 										}
 									],
@@ -16411,7 +16440,8 @@
 															"objectClass": "System",
 															"sid": 701368489370650,
 															"parameters": {
-																"seconds": "projectileManifestationTime"
+																"seconds": "projectileManifestationTime",
+																"use-timescale": true
 															}
 														},
 														{
@@ -16596,7 +16626,8 @@
 											"objectClass": "System",
 											"sid": 758343467445718,
 											"parameters": {
-												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed",
+												"use-timescale": true
 											}
 										}
 									],
@@ -16905,7 +16936,8 @@
 											"objectClass": "System",
 											"sid": 682291151350586,
 											"parameters": {
-												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime"
+												"seconds": " MANIFESTATION_FRAME / enemyBody.AnimationSpeed - projectileManifestationTime",
+												"use-timescale": true
 											}
 										}
 									],
@@ -17058,7 +17090,8 @@
 															"objectClass": "System",
 															"sid": 505067466058697,
 															"parameters": {
-																"seconds": "projectileManifestationTime"
+																"seconds": "projectileManifestationTime",
+																"use-timescale": true
 															}
 														},
 														{

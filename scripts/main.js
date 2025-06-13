@@ -82,30 +82,50 @@ const pointerMove = (event) => {
 }
 
 const keyDown = (event) => {
+
+	const layer = runtime.layout.getLayer('kingdomOfHeaven');
 	let property = null;
 	let index = null;
 
-	// Toggle row, column, or depth opacity based on the keys pressed.
-	// Account for nodes that were already made opaque by another key press.
-	if (event.ctrlKey && event.key >= '1' && event.key <= cubeSize.toString())
-		property = 'Row';
-	else if (event.altKey && event.key >= '1' && event.key <= cubeSize.toString())
-		property = 'Column';
-	else if (event.key >= '1' && event.key <= cubeSize.toString())
-		property = 'Depth';
-
-	if (property) {
-		index = parseInt(event.key) - 1;
-		threeScene.children.forEach(node => {
-			if (node.userData[property] === index) {
-				const opacityProperty = `opacitySetVia${property}`;
-				node.userData[opacityProperty] = !node.userData[opacityProperty];
-
-				if (node.userData.opacitySetViaRow || node.userData.opacitySetViaColumn || node.userData.opacitySetViaDepth)
-					node.children[0].children[0].material.opacity = 0.1;
-				else node.children[0].children[0].material.opacity = 1;
+	if (layer?.isVisible) {
+		// Toggle row, column, or depth opacity based on the keys pressed.
+		// Account for nodes that were already made opaque by another key press.
+		if (event.ctrlKey && event.key >= '1' && event.key <= cubeSize.toString()) {
+			property = 'Row';
+			index = parseInt(event.key) - 1;
+		} else if (event.altKey && event.key >= '1' && event.key <= cubeSize.toString()) {
+			property = 'Column';
+			index = parseInt(event.key) - 1;
+		} else if (event.shiftKey && event.code.startsWith('Digit')) {
+			const digit = parseInt(event.code.replace('Digit', ''));
+			if (digit >= 1 && digit <= cubeSize) {
+				property = 'Depth';
+				index = digit - 1;
 			}
-		});
+		}  else if (event.key >= '1' && event.key <= cubeSize.toString()) {
+			property = 'Layer';
+			index = parseInt(event.key) - 1;
+		}
+
+		if (property && index !== null) {
+			threeScene.children.forEach(node => {
+				if (node.userData[property] === index) {
+					const opacityProperty = `opacitySetVia${property}`;
+					node.userData[opacityProperty] = !node.userData[opacityProperty];
+
+					if (
+						node.userData.opacitySetViaRow ||
+						node.userData.opacitySetViaColumn ||
+						node.userData.opacitySetViaDepth ||
+						node.userData.opacitySetViaLayer
+					) {
+						node.children[0].children[0].material.opacity = 0;
+					} else {
+						node.children[0].children[0].material.opacity = 1;
+					}
+				}
+			});
+		}
 	}
 }
 
@@ -240,9 +260,7 @@ const InitThreeJs = async (runtime) => {
 
 				return {
 					nodeId: nodeId,
-					description: `Description of node: ${nodeId}`,
-					nodeMod: `Mod details of node: ${nodeId}`,
-					layer: layer,
+					Layer: layer,
 					isAllocated: false,
 					canBeAllocated: false,
 					canBeDeallocated: false,

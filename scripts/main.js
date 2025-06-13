@@ -15,15 +15,18 @@ let nodeUnderMouse = null;
 let isRotating = false;
 let pulseClock = new THREE.Clock();
 const spacing = .1;
-const cubeSize = 7; // We could add a lot of fancy code to get this from nodeMods.json, but it's not worth it.
+const cubeSize = 7;
 const adjustedCubeSize = Math.floor(cubeSize / 2); // 3
 const orange = new THREE.Color(0xffa500);
 const red = new THREE.Color(0xff0000);
 const none = new THREE.Color(0xffffff);
 const lightRed = new THREE.Color(0xffcccc);
-let passivePoints = 10;
 let runtime = null;
 
+/**
+ * Handles logic to run on startup, including event registration.
+ * @param {object} r - The runtime object.
+ */
 runOnStartup(async (r) => {
 
 	runtime = r;
@@ -32,6 +35,10 @@ runOnStartup(async (r) => {
 
 });
 
+/**
+ * Initializes event listeners and sets up the 3D scene before the project starts.
+ * @param {object} runtime - The runtime object.
+ */
 const OnBeforeProjectStart = async (runtime) => {
 
 	await InitThreeJs(runtime);
@@ -47,18 +54,23 @@ const OnBeforeProjectStart = async (runtime) => {
 	runtime.addEventListener('keydown', keyDown);
 }
 
+/**
+ * Handles pointer down events for node allocation and deallocation.
+ * @param {PointerEvent} event - The pointer event.
+ */
 const pointerDown = (event) => {
 
 	if (event.button === 2) {
 
 		let nodeParent = nodeUnderMouse?.parent.parent;
 
-		if (nodeParent.userData.canBeAllocated && !nodeParent.userData.isAllocated && passivePoints > 0) {
+		if (nodeParent.userData.canBeAllocated && !nodeParent.userData.isAllocated && runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints > 0) {
 
 			nodeParent.userData.isAllocated = true;
-			nodeParent.userData.canBeAllocated = false;
+			if (!nodeParent.userData.isCornerNode) nodeParent.userData.canBeAllocated = false;
 			nodeParent.userData.canBeDeallocated = true;
-			passivePoints--;
+			runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints--;
+			runtime.objects.player.getFirstInstance().instVars.allocatedPassivePoints++;
 			runtime.callFunction('manageNodeMods', nodeParent.userData.isAllocated, nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
 			scanAllNodes(nodeParent);
 			pointerMove(event);
@@ -68,7 +80,8 @@ const pointerDown = (event) => {
 			nodeParent.userData.isAllocated = false;
 			nodeParent.userData.canBeAllocated = true;
 			nodeParent.userData.canBeDeallocated = false;
-			passivePoints++;
+			runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints++;
+			runtime.objects.player.getFirstInstance().instVars.allocatedPassivePoints--;
 			runtime.callFunction('manageNodeMods', nodeParent.userData.isAllocated, nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
 			scanAllNodes(nodeParent);
 			pointerMove(event);
@@ -76,11 +89,19 @@ const pointerDown = (event) => {
 	}
 }
 
+/**
+ * Updates the mouse position for raycasting on pointer move.
+ * @param {PointerEvent} event - The pointer event.
+ */
 const pointerMove = (event) => {
 	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
+/**
+ * Handles key down events for toggling node opacity by row, column, depth, or layer.
+ * @param {KeyboardEvent} event - The keyboard event.
+ */
 const keyDown = (event) => {
 
 	const layer = runtime.layout.getLayer('kingdomOfHeaven');
@@ -129,75 +150,92 @@ const keyDown = (event) => {
 	}
 }
 
+/**
+ * Scans all nodes to update their allocation and deallocation status based on adjacency and connectivity.
+ * @param {object} nodeParent - The parent node to scan from.
+ */
 const scanAllNodes = (nodeParent) => {
+    const adjacentNodes = [];
+    const nonAdjacentNodes = [];
+    const directions = [
+        { Row: 1, Column: 0, Depth: 0 },
+        { Row: -1, Column: 0, Depth: 0 },
+        { Row: 0, Column: 1, Depth: 0 },
+        { Row: 0, Column: -1, Depth: 0 },
+        { Row: 0, Column: 0, Depth: 1 },
+        { Row: 0, Column: 0, Depth: -1 }
+    ];
 
-	const adjacentNodes = [];
-	const nonAdjacentNodes = [];
-	const directions = [
-		{ Row: 1, Column: 0, Depth: 0 },
-		{ Row: -1, Column: 0, Depth: 0 },
-		{ Row: 0, Column: 1, Depth: 0 },
-		{ Row: 0, Column: -1, Depth: 0 },
-		{ Row: 0, Column: 0, Depth: 1 },
-		{ Row: 0, Column: 0, Depth: -1 }
-	];
+    threeScene.children.forEach(node => {
+        if (!node.userData.isAllocated) {
+            const isAdjacent = directions.some(direction => {
+                const adjacentNode = threeScene.children.find(n =>
+                    n.userData.Row === node.userData.Row + direction.Row &&
+                    n.userData.Column === node.userData.Column + direction.Column &&
+                    n.userData.Depth === node.userData.Depth + direction.Depth &&
+                    n.userData.isAllocated
+                );
+                return adjacentNode !== undefined;
+            });
 
-	threeScene.children.forEach(node => {
-		if (!node.userData.isAllocated) {
-			const isAdjacent = directions.some(direction => {
-				const adjacentNode = threeScene.children.find(n =>
-					n.userData.Row === node.userData.Row + direction.Row &&
-					n.userData.Column === node.userData.Column + direction.Column &&
-					n.userData.Depth === node.userData.Depth + direction.Depth &&
-					n.userData.isAllocated
-				);
-				return adjacentNode !== undefined;
-			});
+            if (isAdjacent) {
+                adjacentNodes.push(node);
+            } else {
+                nonAdjacentNodes.push(node);
+            }
+        }
+    });
 
-			if (isAdjacent) {
-				adjacentNodes.push(node);
-			} else {
-				nonAdjacentNodes.push(node);
-			}
-			// If a node is allocated, see if it can be deallocated without breaking allocated node continuity.
-		} else {
-			const visited = new Set();
-			const stack = [nodeParent];
+    // For each allocated node, check if it can be deallocated without breaking connectivity
+    const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
+    allocatedNodes.forEach(node => {
+        // Temporarily unallocate this node
+        node.userData.isAllocated = false;
+        // Find another allocated node to start the search
+        const otherAllocated = threeScene.children.find(n => n.userData.isAllocated);
+        let canDeallocate = false;
+        if (otherAllocated) {
+            // BFS/DFS to count reachable allocated nodes
+            const visited = new Set();
+            const stack = [otherAllocated];
+            while (stack.length > 0) {
+                const currentNode = stack.pop();
+                if (!visited.has(currentNode.userData.nodeId)) {
+                    visited.add(currentNode.userData.nodeId);
+                    directions.forEach(direction => {
+                        const adjacentNode = threeScene.children.find(n =>
+                            n.userData.Row === currentNode.userData.Row + direction.Row &&
+                            n.userData.Column === currentNode.userData.Column + direction.Column &&
+                            n.userData.Depth === currentNode.userData.Depth + direction.Depth &&
+                            n.userData.isAllocated
+                        );
+                        if (adjacentNode && !visited.has(adjacentNode.userData.nodeId)) {
+                            stack.push(adjacentNode);
+                        }
+                    });
+                }
+            }
+            // If all other allocated nodes are reachable, allow deallocation
+            canDeallocate = (visited.size === allocatedNodes.length - 1);
+        } else {
+            // If this was the only allocated node, allow deallocation
+            canDeallocate = true;
+        }
+        node.userData.canBeDeallocated = canDeallocate;
+        // Restore allocation state
+        node.userData.isAllocated = true;
+    });
 
-			while (stack.length > 0) {
-				const currentNode = stack.pop();
-				if (!visited.has(currentNode.userData.nodeId)) {
-					visited.add(currentNode.userData.nodeId);
-
-					directions.forEach(direction => {
-						const adjacentNode = threeScene.children.find(n =>
-							n.userData.Row === currentNode.userData.Row + direction.Row &&
-							n.userData.Column === currentNode.userData.Column + direction.Column &&
-							n.userData.Depth === currentNode.userData.Depth + direction.Depth &&
-							n.userData.isAllocated
-						);
-
-						if (adjacentNode && !visited.has(adjacentNode.userData.nodeId)) {
-							stack.push(adjacentNode);
-						}
-					});
-				}
-			}
-
-			const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
-			if (visited.size !== allocatedNodes.length) {
-				nodeParent.userData.canBeDeallocated = false;
-			} else {
-				nodeParent.userData.canBeDeallocated = true;
-			}
-		}
-	});
-
-	adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
-	nonAdjacentNodes.forEach(node => node.userData.canBeAllocated = false);
-
+    adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
+    nonAdjacentNodes.forEach(node => {
+        if (!node.userData.isCornerNode) node.userData.canBeAllocated = false;
+    });
 }
 
+/**
+ * Initializes the Three.js scene, camera, controls, and loads the node model.
+ * @param {object} runtime - The runtime object.
+ */
 const InitThreeJs = async (runtime) => {
 	const platformInfo = runtime.platformInfo;
 	const container = runtime.getHTMLLayer(0);
@@ -221,9 +259,6 @@ const InitThreeJs = async (runtime) => {
 
 	threeControls = new TrackballControls(threeCamera, canvas);
 	threeControls.mouseButtons = {
-		// Setting RIGHT to THREE.MOUSE.ROTATE and LEFT to null doesn't work.
-		// Left becomes pan and right doesn't do anything.
-		// Might be an issue with threejs 167.
 		LEFT: THREE.MOUSE.ROTATE,
 		MIDDLE: null,
 		RIGHT: null
@@ -264,6 +299,7 @@ const InitThreeJs = async (runtime) => {
 					isAllocated: false,
 					canBeAllocated: false,
 					canBeDeallocated: false,
+					isCornerNode: false,
 					Row: x,
 					Column: y,
 					Depth: z
@@ -285,6 +321,7 @@ const InitThreeJs = async (runtime) => {
 					(Math.abs(x) === adjustedCubeSize && Math.abs(y) === adjustedCubeSize && Math.abs(z) === adjustedCubeSize)
 				) {
 					node.userData.canBeAllocated = true;
+					node.userData.isCornerNode = true;
 				}
 
 				threeScene.add(node);
@@ -294,21 +331,32 @@ const InitThreeJs = async (runtime) => {
 	document.evaluate('//canvas[@data-engine]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.style.display = 'none';
 }
 
+/**
+ * Loads a GLTF model asynchronously.
+ * @param {GLTFLoader} loader - The GLTFLoader instance.
+ * @param {string} path - The path to the GLTF file.
+ * @returns {Promise<object>} - The loaded GLTF scene.
+ */
 const LoadGLTF = (loader, path) => {
 	return new Promise((resolve, reject) => {
 		loader.load(path, resolve, undefined, reject);
 	});
 }
 
+/**
+ * Handles window or canvas resize events to update camera and renderer.
+ * @param {object} e - The resize event object.
+ */
 const OnResize = (e) => {
 	threeCamera.aspect = e.cssWidth / e.cssHeight;
 	threeCamera.updateProjectionMatrix();
 
 	threeRenderer.setSize(e.cssWidth, e.cssHeight);
 }
-
-
-
+/**
+ * Main render loop: updates animation, controls, rendering, and node highlighting.
+ * @param {object} runtime - The runtime object.
+ */
 const OnTick = (runtime) => {
 
 	threeMixer?.update(runtime.dt);
@@ -322,7 +370,8 @@ const OnTick = (runtime) => {
 		if (!node.userData.isAllocated) node.children[0].children[0].material.color.set(none);
 		else node.children[0].children[0].material.color.set(red);
 		// Make unallocated nodes that can be allocated pulsate blue
-		if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && passivePoints > 0) {
+		let player = runtime?.objects?.player?.getFirstInstance();
+		if (player) if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && player?.instVars?.unspentPassivePoints > 0) {
 			const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
 			node.children[0].children[0].material.color.lerp(lightRed, scale);
 		}

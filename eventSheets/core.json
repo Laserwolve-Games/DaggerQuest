@@ -12316,6 +12316,243 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "Kingdom of Heaven",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "Show node tooltip",
+							"functionDescription": "Shows the tooltip for the node under the cursor",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "row",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 571073470386970
+								},
+								{
+									"name": "column",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 293042432866022
+								},
+								{
+									"name": "depth",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 387843985455063
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "browser",
+									"sid": 235192537744868,
+									"parameters": {
+										"type": "log",
+										"message": "row & \" \" & column & \" \" & depth"
+									}
+								}
+							],
+							"sid": 803459225117184,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "text",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 776396751980889
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 436922488551493,
+											"parameters": {
+												"variable": "text",
+												"value": "nodeTextArray.At(row, column, depth)"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "nodeTooltipTitle",
+											"sid": 806929471704290,
+											"parameters": {
+												"text": "tokenat(text, 0, \",\")"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "nodeTooltipText",
+											"sid": 336218915809320,
+											"parameters": {
+												"text": "tokenat(text, 1, \",\")"
+											}
+										}
+									],
+									"sid": 146920536722128
+								}
+							]
+						},
+						{
+							"functionName": "Hide node tooltip",
+							"functionDescription": "",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "nodeTooltipTitle",
+									"sid": 142266475253450,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "nodeTooltipText",
+									"sid": 405611461477718,
+									"parameters": {
+										"text": "\"\""
+									}
+								}
+							],
+							"sid": 334888299885335
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-visible",
+									"objectClass": "pointsAllocatedText",
+									"sid": 601729800970754
+								}
+							],
+							"actions": [],
+							"sid": 793100371177857,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 352970576816759,
+											"parameters": {
+												"instance-variable": "unspentPassivePoints",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "pointsAvailableText",
+											"sid": 459980674825211,
+											"parameters": {
+												"text": "player.unspentPassivePoints & \" point available\""
+											}
+										}
+									],
+									"sid": 217895524482574
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 749264370475756
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "pointsAvailableText",
+											"sid": 632960637392240,
+											"parameters": {
+												"text": "player.unspentPassivePoints & \" points available\""
+											}
+										}
+									],
+									"sid": 375037856053984
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "player",
+											"sid": 573793146852447,
+											"parameters": {
+												"instance-variable": "allocatedPassivePoints",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "pointsAllocatedText",
+											"sid": 207742973904590,
+											"parameters": {
+												"text": "player.allocatedPassivePoints & \" point allocated\""
+											}
+										}
+									],
+									"sid": 544494553680110
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 867914477355055
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "pointsAllocatedText",
+											"sid": 628827434612876,
+											"parameters": {
+												"text": "player.allocatedPassivePoints & \" points allocated\""
+											}
+										}
+									],
+									"sid": 290580259897124
+								}
+							]
+						}
+					],
+					"sid": 271148303308724
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "tooltip",
 					"description": "",
 					"isActiveOnStart": true,
@@ -13775,125 +14012,6 @@
 									"sid": 343025903689753
 								}
 							]
-						},
-						{
-							"functionName": "Show node tooltip",
-							"functionDescription": "Shows the tooltip for the node under the cursor",
-							"functionCategory": "menus",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [
-								{
-									"name": "row",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "",
-									"sid": 571073470386970
-								},
-								{
-									"name": "column",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "",
-									"sid": 293042432866022
-								},
-								{
-									"name": "depth",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "",
-									"sid": 387843985455063
-								}
-							],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "log",
-									"objectClass": "browser",
-									"sid": 503724645885810,
-									"parameters": {
-										"type": "log",
-										"message": "row & \" \" & column & \" \" & depth"
-									}
-								}
-							],
-							"sid": 848801930038958,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "text",
-									"type": "string",
-									"initialValue": "",
-									"comment": "",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 346679557209931
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 193217885682197,
-											"parameters": {
-												"variable": "text",
-												"value": "nodeTextArray.At(row, column, depth)"
-											}
-										},
-										{
-											"id": "set-text",
-											"objectClass": "nodeTooltipTitle",
-											"sid": 388842600796920,
-											"parameters": {
-												"text": "tokenat(text, 0, \",\")"
-											}
-										},
-										{
-											"id": "set-text",
-											"objectClass": "nodeTooltipText",
-											"sid": 203551400250575,
-											"parameters": {
-												"text": "tokenat(text, 1, \",\")"
-											}
-										}
-									],
-									"sid": 480420337297833
-								}
-							]
-						},
-						{
-							"functionName": "Hide node tooltip",
-							"functionDescription": "",
-							"functionCategory": "menus",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "nodeTooltipTitle",
-									"sid": 944303501503096,
-									"parameters": {
-										"text": "\"\""
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "nodeTooltipText",
-									"sid": 528816814328373,
-									"parameters": {
-										"text": "\"\""
-									}
-								}
-							],
-							"sid": 750656768203951
 						}
 					],
 					"sid": 534862555037467

@@ -320,5 +320,16 @@ const OnTick = (runtime) => {
 		});
 
 		nodeUnderMouse?.material.color.set(orange);
+
+		let nodeParent = nodeUnderMouse?.parent.parent;
+
+		const layer = runtime.layout.getLayer('kingdomOfHeaven');
+
+		if (layer) if (nodeUnderMouse && layer.isVisible) {
+
+			runtime.callFunction('Show node tooltip', nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
+		} else {
+			runtime.callFunction('Hide node tooltip');
+		}			
 	}
 }

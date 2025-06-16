@@ -67,7 +67,7 @@ const pointerDown = (event) => {
 		if (nodeParent.userData.canBeAllocated && !nodeParent.userData.isAllocated && runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints > 0) {
 
 			nodeParent.userData.isAllocated = true;
-			if (!nodeParent.userData.isCornerNode) nodeParent.userData.canBeAllocated = false;
+			nodeParent.userData.canBeAllocated = false;
 			nodeParent.userData.canBeDeallocated = true;
 			runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints--;
 			runtime.objects.player.getFirstInstance().instVars.allocatedPassivePoints++;
@@ -228,7 +228,7 @@ const scanAllNodes = (nodeParent) => {
 
     adjacentNodes.forEach(node => node.userData.canBeAllocated = true);
     nonAdjacentNodes.forEach(node => {
-        if (!node.userData.isCornerNode) node.userData.canBeAllocated = false;
+        node.userData.canBeAllocated = false;
     });
 }
 
@@ -299,7 +299,7 @@ const InitThreeJs = async (runtime) => {
 					isAllocated: false,
 					canBeAllocated: false,
 					canBeDeallocated: false,
-					isCornerNode: false,
+					startingPointForClass: null,
 					Row: x,
 					Column: y,
 					Depth: z
@@ -307,6 +307,17 @@ const InitThreeJs = async (runtime) => {
 			})
 		)
 	);
+
+	const playerClasses = [
+		"knight",
+		"rogue",
+		"barbarian",
+		"paladin",
+		"cleric",
+		"ranger",
+		"wizard",
+		"monk"
+	];
 
 	for (let x = -adjustedCubeSize; x <= adjustedCubeSize; x++)
 		for (let y = -adjustedCubeSize; y <= adjustedCubeSize; y++)
@@ -316,12 +327,11 @@ const InitThreeJs = async (runtime) => {
 				node.position.set(x + x * spacing, y + y * spacing, z + z * spacing);
 				node.userData = nodeData[x + adjustedCubeSize][y + adjustedCubeSize][z + adjustedCubeSize];
 
-				// The eight nodes on the corners of the cube are the only ones that can be allocated or deallocated to start
+				// The eight nodes on the corners are the eight starting locations of the eight classes
 				if (
 					(Math.abs(x) === adjustedCubeSize && Math.abs(y) === adjustedCubeSize && Math.abs(z) === adjustedCubeSize)
 				) {
-					node.userData.canBeAllocated = true;
-					node.userData.isCornerNode = true;
+					node.userData.startingPointForClass = playerClasses.shift();
 				}
 
 				threeScene.add(node);
@@ -366,12 +376,38 @@ const OnTick = (runtime) => {
 	threeRenderer.render(threeScene, threeCamera);
 
 	threeScene.children.forEach(node => {
+
+		let player = runtime?.objects?.player?.getFirstInstance();
+
+		if (player?.instVars.allocatedPassivePoints === 0) {
+
+			// TODO: don't hardcode this, get it from the player/body
+			if (node.userData.startingPointForClass === "knight") {
+
+				node.userData.canBeAllocated = true;
+
+				// Move the camera controls target to this node's position so it appears in the middle
+				// threeControls.target.copy(node.position);
+				// threeCamera.position.addVectors(node.position, new THREE.Vector3(10, 4, 16));
+				// threeCamera.lookAt(node.position);
+				// threeControls.update();
+
+				if (!OnTick.cameraSetForZeroPoints) {
+					threeCamera.position.set(-11, -11, -11);
+					OnTick.cameraSetForZeroPoints = true;
+				}
+
+				// if (!OnTick.lastLogTime || performance.now() - OnTick.lastLogTime > 1000) {
+				// 	console.log(`Camera position: X=${threeCamera.position.x}, Y=${threeCamera.position.y}, Z=${threeCamera.position.z}`);
+				// 	OnTick.lastLogTime = performance.now();
+				// }
+			}
+		}
 		// Set all unallocated nodes white
 		if (!node.userData.isAllocated) node.children[0].children[0].material.color.set(none);
 		else node.children[0].children[0].material.color.set(red);
 		// Make unallocated nodes that can be allocated pulsate blue
-		let player = runtime?.objects?.player?.getFirstInstance();
-		if (player) if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && player?.instVars?.unspentPassivePoints > 0) {
+		if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && player?.instVars.unspentPassivePoints > 0) {
 			const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
 			node.children[0].children[0].material.color.lerp(lightRed, scale);
 		}
@@ -399,4 +435,6 @@ const OnTick = (runtime) => {
 			runtime.callFunction('Hide node tooltip');
 		}			
 	}
+
+
 }

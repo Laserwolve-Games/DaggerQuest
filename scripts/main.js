@@ -104,7 +104,7 @@ const pointerMove = (event) => {
  */
 const keyDown = (event) => {
 
-	const layer = runtime.layout.getLayer('kingdomOfHeaven');
+	const layer = runtime.layout.getLayer('passives');
 	let property = null;
 	let index = null;
 
@@ -426,7 +426,7 @@ const OnTick = (runtime) => {
 
 		let nodeParent = nodeUnderMouse?.parent.parent;
 
-		const layer = runtime.layout.getLayer('kingdomOfHeaven');
+		const layer = runtime.layout.getLayer('passives');
 
 		if (layer) if (nodeUnderMouse && layer.isVisible) {
 

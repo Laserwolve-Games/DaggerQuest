@@ -6547,6 +6547,16 @@
 							"sid": 792452581919563
 						},
 						{
+							"eventType": "variable",
+							"name": "PASSIVE_SKILL_POINT_AMOUNT",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "How many passive skill points the player receives when leveling up.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 181312081430482
+						},
+						{
 							"aceType": "action",
 							"aceName": "Level up",
 							"objectClass": "player",
@@ -6575,6 +6585,15 @@
 									"parameters": {
 										"instance-variable": "level",
 										"value": "LEVEL_INCREMENTER"
+									}
+								},
+								{
+									"id": "add-to-instvar",
+									"objectClass": "player",
+									"sid": 993574488477250,
+									"parameters": {
+										"instance-variable": "unspentPassivePoints",
+										"value": "PASSIVE_SKILL_POINT_AMOUNT"
 									}
 								},
 								{

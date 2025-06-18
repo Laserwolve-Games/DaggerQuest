@@ -431,7 +431,7 @@
 								"busyCastingAbility": false,
 								"talkingToNpc": "none",
 								"isFemale": false,
-								"unspentPassivePoints": 9,
+								"unspentPassivePoints": 0,
 								"allocatedPassivePoints": 0
 							},
 							"behaviors": {
@@ -29331,7 +29331,17 @@
 							"sid": 754909882040514,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "window-left",
+										"top-edge": "window-top",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
 							"sceneGraphData": {
 								"parent-uid": 214,
 								"uid": 409,
@@ -37040,36 +37050,6 @@
 								"uid": 427,
 								"children": [
 									{
-										"uid": 443,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 445,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
 										"uid": 447,
 										"flags": {
 											"x": true,
@@ -37116,66 +37096,6 @@
 									},
 									{
 										"uid": 441,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 431,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 433,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 435,
-										"flags": {
-											"x": true,
-											"y": true,
-											"z": true,
-											"w": true,
-											"h": true,
-											"a": true,
-											"o": true,
-											"v": true,
-											"d": true,
-											"sm": "normal"
-										}
-									},
-									{
-										"uid": 448,
 										"flags": {
 											"x": true,
 											"y": true,
@@ -37255,10 +37175,52 @@
 							"sid": 711345595961456,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "window-left",
+										"top-edge": "window-top",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
 							"sceneGraphData": {
 								"parent-uid": 427,
 								"uid": 447,
+								"children": [
+									{
+										"uid": 435,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 448,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -37324,10 +37286,37 @@
 							"sid": 532193148092420,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "window-right",
+										"top-edge": "window-top",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
 							"sceneGraphData": {
 								"parent-uid": 427,
 								"uid": 429,
+								"children": [
+									{
+										"uid": 433,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -37393,10 +37382,52 @@
 							"sid": 949266931805146,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "window-left",
+										"top-edge": "window-bottom",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
 							"sceneGraphData": {
 								"parent-uid": 427,
 								"uid": 446,
+								"children": [
+									{
+										"uid": 443,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									},
+									{
+										"uid": 445,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -37476,7 +37507,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 446,
 								"uid": 443,
 								"flags": {
 									"x": true,
@@ -37485,8 +37516,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},
@@ -37557,7 +37588,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 446,
 								"uid": 445,
 								"flags": {
 									"x": true,
@@ -37566,8 +37597,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},
@@ -37624,10 +37655,37 @@
 							"sid": 696312345821736,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Anchor": {
+									"properties": {
+										"left-edge": "window-right",
+										"top-edge": "window-bottom",
+										"right-edge": "none",
+										"bottom-edge": "none",
+										"enabled": true
+									}
+								}
+							},
 							"sceneGraphData": {
 								"parent-uid": 427,
 								"uid": 441,
+								"children": [
+									{
+										"uid": 431,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": false,
+											"v": false,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -37707,7 +37765,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 441,
 								"uid": 431,
 								"flags": {
 									"x": true,
@@ -37716,8 +37774,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},
@@ -37788,7 +37846,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 429,
 								"uid": 433,
 								"flags": {
 									"x": true,
@@ -37797,8 +37855,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},
@@ -37869,7 +37927,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 447,
 								"uid": 435,
 								"flags": {
 									"x": true,
@@ -37878,8 +37936,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},
@@ -37950,7 +38008,7 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"sceneGraphData": {
-								"parent-uid": 427,
+								"parent-uid": 447,
 								"uid": 448,
 								"flags": {
 									"x": true,
@@ -37959,8 +38017,8 @@
 									"w": true,
 									"h": true,
 									"a": true,
-									"o": true,
-									"v": true,
+									"o": false,
+									"v": false,
 									"d": true,
 									"sm": "normal"
 								},

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DaggerQuest 0.3.6 Release Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Grenze:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container news-container">
+        <div class="news-post-detail">
+            <img src="../images/036.jpg" alt="DaggerQuest 0.3.6" class="news-thumb">
+            <h1 class="news-title">Release 0.3.6</h1>
+            <div class="news-body">
+                <h2>Updates</h2>
+                <ul>
+                    <li>UI components have a fixed ordering, instead of putting the last component moved on top.</li>
+                    <li>Updated the dialog of The Guide, and added a second message.</li>
+                    <li>Reduced music volume. This is a temporary solution until we add volume sliders in the Settings menu.</li>
+                    <li>The distance with which an NPC can be interacted with is determined individually for each NPC, instead of being derived off of the player's pickup range.</li>
+                    <li>Added coins, the currency of Ashladon. All items have a coin value, which appears in the mouse-over tooltips.</li>
+                    <li>Added The Merchant to Windmill Level 2. You can sell your items to him, and buy back items that you've sold.</li>
+                    <li>Color coordinated the menus for equipped items, and the inventory of players and merchants.</li>
+                    <li>Enemies, loot, chests and NPCs no longer reset after leaving the area they are in and returning later.</li>
+                    <li>The windmill fan sound effect plays while inside on Windmill Level 1 and Windmill Level 2.</li>
+                    <li>The enemy info mouse-over information fades in and out just like the rest of the interface.</li>
+                    <li>The Settings menu is only available in-game, and no longer accessible from the main menu.</li>
+                </ul>
+                <h2>Bug Fixes</h2>
+                <ul>
+                    <li>UI components would be broken after going to a new area if they had been rearranged.</li>
+                    <li>Picking up the tutorial loot, then leaving the area and coming back and picking up the tutorial loot again, would break most item functionality.</li>
+                    <li>Clicking on an enemy while the player couldn't move would result in the player attacking that enemy, if that enemy later came near to the player.</li>
+                    <li>The sizing of the header text in some locations was incorrect.</li>
+                    <li>Menus would flicker when appearing or disappearing on low-end systems.</li>
+                    <li>The necessary distance between the player and an NPC in order to initiate interaction wasn't isometrically correct.</li>
+                    <li>NPC portraits obscured loot and item tooltips.</li>
+                    <li>Dragging and dropping an item outside of the window would essentially destroy it.</li>
+                    <li>Moving the mouse outside the window while dragging an item would cause the player to move toward the mouse location.</li>
+                    <li>The sound effect for the basic attack and Heroic Strike would still play if the player was stunned before the attack did any damage.</li>
+                    <li>Ranged projectiles shot from the player that were already mid-flight would be destroyed if the player died.</li>
+                    <li>The player's gear wouldn't become invisible if the player did.</li>
+                    <li>Projectiles with audio that plays continually (like the buzzing of the Goblin Warlock's lightning orb) wouldn't stop playing immediately after changing areas.</li>
+                    <li>Various control issues if the player's action speed was changed while they were currently stunned or blocking.</li>
+                    <li>Key bindings could not be set if the player was stunned or blocking.</li>
+                    <li>The player would switch to the idle animation after pausing, even when previously walking.</li>
+                    <li>The player's action speed was affecting the speed of the idle animation.</li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <script src="../includes.js"></script>
+</body>
+</html>

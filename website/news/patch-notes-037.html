@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DaggerQuest 0.3.7 Release Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Grenze:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container news-container">
+        <div class="news-post-detail">
+            <img src="../images/037.jpg" alt="DaggerQuest 0.3.7" class="news-thumb">
+            <h1 class="news-title">Release 0.3.7</h1>
+            <div class="news-body">
+                <h2>Updates</h2>
+                <ul>
+                    <li>Various performance improvements have been implemented.</li>
+                    <li>Reduced the file size of DaggerQuest by about half.</li>
+                    <li>The Hitstun Threshold stat has been renamed to Flinch Resistance.</li>
+                    <li>The Block Chance stat has been renamed to Armor.</li>
+                    <li>Base Armor has been reduced from 5 to zero.</li>
+                    <li>Armor, Flinch Resistance, and all the damage resistances use a formula with diminishing returns. The more of the stat you have, the less effective it is.</li>
+                    <li>Having a shield equipped is no longer a requirement to successfully block.</li>
+                    <li>Kick no longer can hit multiple enemies.</li>
+                    <li>Reduced how much item mods scale with level.</li>
+                    <li>Modified the formula that determines numerical values in item mods.</li>
+                    <li>Reduced the attack speed of the Goblin Warlock.</li>
+                    <li>Player abilities no longer scale with level, and have had their values retuned.</li>
+                    <li>Leveling up closes the ability selector.</li>
+                </ul>
+                <h2>Bug Fixes</h2>
+                <ul>
+                    <li>Sound effects with multiple variants would play some variants much less frequently than others.</li>
+                    <li>Kick inflicted damage twice.</li>
+                    <li>Flinch Resistance (formally known as Hitstun Threshold) displayed incorrect values in the Character menu.</li>
+                    <li>The Goblin Underling could damage the player multiple times with his attack, in rare scenarios.</li>
+                    <li>Player and enemy abilities would sometimes still do damage if the player or enemy died in the middle of using them.</li>
+                    <li>Multiple door sound effects couldn't play at the same time, if multiple doors had been moused over.</li>
+                    <li>Mods with very few possible numerical values didn't have a reduced chance at rolling a higher value.</li>
+                    <li>Leggings didn't cast a shadow when equipped.</li>
+                    <li>The player didn't obtain access to the correct abilities upon leveling up.</li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <script src="../includes.js"></script>
+</body>
+</html>

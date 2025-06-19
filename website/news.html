@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DaggerQuest News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container news-container">
+        <h1 class="title">news</h1>
+        <div class="news-reel" id="news-reel">
+            <a class="news-post" href="news/patch-notes-040.html">
+                <img src="images/040.jpg" alt="DaggerQuest 0.4.0" class="news-thumb">
+                <div class="news-headline">Release 0.4.0</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-039.html">
+                <img src="images/039.jpg" alt="DaggerQuest 0.3.9" class="news-thumb">
+                <div class="news-headline">Release 0.3.9</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-038.html">
+                <img src="images/038.jpg" alt="DaggerQuest 0.3.8" class="news-thumb">
+                <div class="news-headline">Release 0.3.8</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-037.html">
+                <img src="images/037.jpg" alt="DaggerQuest 0.3.7" class="news-thumb">
+                <div class="news-headline">Release 0.3.7</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-036.html">
+                <img src="images/036.jpg" alt="DaggerQuest 0.3.6" class="news-thumb">
+                <div class="news-headline">Release 0.3.6</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-035.html">
+                <img src="images/035.jpg" alt="DaggerQuest 0.3.5" class="news-thumb">
+                <div class="news-headline">Release 0.3.5</div>
+            </a>
+            <a class="news-post" href="news/patch-notes-034.html">
+                <img src="images/034.jpg" alt="DaggerQuest 0.3.4" class="news-thumb">
+                <div class="news-headline">Release 0.3.4</div>
+            </a>
+        </div>
+        <button id="show-more-btn" style="display:block;margin:32px auto 0 auto;padding:10px 32px;font-size:1.1em;border-radius:8px;border:none;background:#ffe7b0;color:#222;font-family:'Cinzel',serif;cursor:pointer;text-transform:lowercase;">show more</button>
+        <script>
+        const posts = Array.from(document.querySelectorAll('.news-post'));
+        // TODO: We'll need to make sure the Show More button shows exactly 6 more posts, and to only load the images of those posts when the button is clicked.
+        const showMoreBtn = document.getElementById('show-more-btn');
+        function updatePosts() {
+            posts.forEach((post, i) => {
+                post.style.display = i < 6 ? '' : 'none';
+            });
+            showMoreBtn.style.display = posts.length > 6 ? '' : 'none';
+        }
+        showMoreBtn.addEventListener('click', () => {
+            posts.forEach(post => post.style.display = '');
+            showMoreBtn.style.display = 'none';
+        });
+        updatePosts();
+        </script>
+        <div id="footer"></div>
+    </div>
+    <script src="includes.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# GitHub Actions workflow to deploy the contents of the build folder to GitHub Pages on new tag push
+# GitHub Actions workflow to deploy the contents of the website folder to GitHub Pages on new tag push
 name: Deploy to GitHub Pages
 
 on:
@@ -20,10 +20,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload build folder
+      - name: Upload website folder
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: website
 
       - name: Deploy to GitHub Pages
         id: deployment

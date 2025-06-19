@@ -25,3 +25,15 @@ fetch(basePath + 'header.html').then(res => res.text()).then(data => {
 fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
   document.getElementById('footer').innerHTML = data;
 });
+
+// Add favicon dynamically to every page
+(function() {
+  const head = document.head;
+  if (head && !document.querySelector('link[rel="icon"]')) {
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/png';
+    favicon.href = basePath + 'game/icons/icon-64.png';
+    head.appendChild(favicon);
+  }
+})();

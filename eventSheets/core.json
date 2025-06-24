@@ -1796,6 +1796,50 @@
 							"sid": 814323650475468
 						},
 						{
+							"eventType": "variable",
+							"name": "PUSHOUT_DISTANCE",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "The amount by which to move overlapping text backgrounds.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 682823896490809
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "lootNameBackground",
+									"sid": 424338570264327,
+									"parameters": {
+										"object": "lootNameBackground"
+									}
+								},
+								{
+									"id": "pick-by-highest-lowest-value",
+									"objectClass": "System",
+									"sid": 590763395163963,
+									"parameters": {
+										"object": "lootNameBackground",
+										"which": "highest",
+										"expression": "lootNameBackground.UID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "lootNameBackground",
+									"sid": 151141083989316,
+									"parameters": {
+										"y": "Self.Y - PUSHOUT_DISTANCE"
+									}
+								}
+							],
+							"sid": 178317157288246
+						},
+						{
 							"aceType": "action",
 							"aceName": "Pick up loot",
 							"objectClass": "player",
@@ -2267,6 +2311,16 @@
 							"sid": 629339917694708
 						},
 						{
+							"eventType": "variable",
+							"name": "LOOTNAME_LAYER",
+							"type": "string",
+							"initialValue": "foreground",
+							"comment": "The name of the layer on which the lootName should spawn.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 720928237757086
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2309,9 +2363,155 @@
 										"variable": "nextAvailableIdentifier",
 										"value": "IDENTIFIER_INCREMENTER"
 									}
+								},
+								{
+									"id": "spawn-another-object",
+									"objectClass": "loot",
+									"sid": 721790405859380,
+									"parameters": {
+										"object": "lootNameBackground",
+										"layer": "LOOTNAME_LAYER",
+										"image-point": "OBJECT_ORIGIN",
+										"create-hierarchy": false,
+										"template-name": "NOT_USED"
+									}
 								}
 							],
-							"sid": 328634154225649
+							"sid": 328634154225649,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 398614825395494,
+											"parameters": {
+												"object": "lootNameBackground"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "We're using a sprite for the text background instead of bbcode [background=black] so we can use the sprite's 'is overlapping' condition to prevent overlapping names.",
+											"text-color": [
+												0.7843137254901961,
+												0.7843137254901961,
+												0.7843137254901961,
+												1
+											],
+											"background-color": [
+												0.39215686274509803,
+												0,
+												0,
+												1
+											]
+										},
+										{
+											"id": "add-child",
+											"objectClass": "loot",
+											"sid": 845568218064450,
+											"parameters": {
+												"child": "lootNameBackground",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-o": false,
+												"transform-z-elevation": false,
+												"transform-visibility": true,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "spawn-another-object",
+											"objectClass": "lootNameBackground",
+											"sid": 917513762899206,
+											"parameters": {
+												"object": "lootName",
+												"layer": "Self.LayerName",
+												"image-point": "OBJECT_ORIGIN",
+												"create-hierarchy": false,
+												"template-name": "NOT_USED"
+											}
+										}
+									],
+									"sid": 991760041692823,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "LOOTNAME_PADDING",
+											"type": "number",
+											"initialValue": "5",
+											"comment": "The amount of horizontal padding to use for the loot name's backgrounds.",
+											"isStatic": false,
+											"isConstant": true,
+											"sid": 370870229223107
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 207970024553758,
+													"parameters": {
+														"object": "lootName"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-child",
+													"objectClass": "lootNameBackground",
+													"sid": 576652845830760,
+													"parameters": {
+														"child": "lootName",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": false,
+														"transform-h": false,
+														"transform-a": false,
+														"transform-o": true,
+														"transform-z-elevation": false,
+														"transform-visibility": true,
+														"destroy-with-parent": true
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 840290243271446,
+													"parameters": {
+														"seconds": "0",
+														"use-timescale": true
+													}
+												},
+												{
+													"id": "set-text",
+													"objectClass": "lootName",
+													"sid": 378899296142521,
+													"parameters": {
+														"text": "lowercase(loot.fullName)"
+													}
+												},
+												{
+													"id": "set-size",
+													"objectClass": "lootNameBackground",
+													"sid": 187714315519705,
+													"parameters": {
+														"width": "lootName.TextWidth + LOOTNAME_PADDING",
+														"height": "lootName.TextHeight"
+													}
+												}
+											],
+											"sid": 138525307360567
+										}
+									]
+								}
+							]
 						},
 						{
 							"aceType": "action",
@@ -12890,6 +13090,7 @@
 												{
 													"callFunction": "Update tooltip",
 													"sid": 829729198243444,
+													"disabled": true,
 													"parameters": [
 														false,
 														"loot.fullName",

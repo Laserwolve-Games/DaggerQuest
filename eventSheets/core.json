@@ -891,6 +891,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "INTENSITY_PARAMETER_INDEX",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The index of the intensity parameter on the blur effects.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 241234237203465
+		},
+		{
+			"eventType": "variable",
 			"name": "isOnInteractCooldown",
 			"type": "boolean",
 			"initialValue": "false",
@@ -1774,6 +1784,129 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 911680764449106,
+									"parameters": {
+										"object": "lootNameBackground"
+									}
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "lootNameBackground",
+									"sid": 766646861614217,
+									"parameters": {
+										"parent": "loot",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "lootNameBackground",
+									"sid": 890238431217920,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "lootNameBackground",
+									"sid": 937169287250140,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "loot",
+									"sid": 866840345430003,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "loot",
+									"sid": 454178303243958,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								}
+							],
+							"sid": 306356706138845
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 676483237006015,
+									"parameters": {
+										"object": "lootNameBackground"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "pick-parent",
+									"objectClass": "lootNameBackground",
+									"sid": 987042371095098,
+									"parameters": {
+										"parent": "loot",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "lootNameBackground",
+									"sid": 437434173190226,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "lootNameBackground",
+									"sid": 566915523238569,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "loot",
+									"sid": 795103719568577,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "loot",
+									"sid": 347279947749317,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								}
+							],
+							"sid": 557337625535603
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "is-overlapping-another-object",
 									"objectClass": "loot",
 									"sid": 614694260723140,
@@ -2321,6 +2454,16 @@
 							"sid": 720928237757086
 						},
 						{
+							"eventType": "variable",
+							"name": "GLOW_INTENSITY",
+							"type": "number",
+							"initialValue": "100",
+							"comment": "How strong of a glow to display on the loot.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 336050135033595
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2374,6 +2517,26 @@
 										"image-point": "OBJECT_ORIGIN",
 										"create-hierarchy": false,
 										"template-name": "NOT_USED"
+									}
+								},
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "loot",
+									"sid": 880089867530840,
+									"parameters": {
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME",
+										"parameter-index": "INTENSITY_PARAMETER_INDEX",
+										"value": "GLOW_INTENSITY"
+									}
+								},
+								{
+									"id": "set-effect-parameter",
+									"objectClass": "loot",
+									"sid": 107610155243485,
+									"parameters": {
+										"effect": "GLOWVERTICAL_EFFECT_NAME",
+										"parameter-index": "INTENSITY_PARAMETER_INDEX",
+										"value": "GLOW_INTENSITY"
 									}
 								}
 							],
@@ -7681,19 +7844,28 @@
 												{
 													"id": "on-object-clicked",
 													"objectClass": "mouse",
-													"sid": 763879713843625,
+													"sid": 930466692127290,
 													"parameters": {
 														"mouse-button": "left",
 														"click-type": "clicked",
-														"object-clicked": "loot"
+														"object-clicked": "lootNameBackground"
 													}
 												},
 												{
 													"id": "pick-topbottom",
-													"objectClass": "loot",
-													"sid": 435457045204375,
+													"objectClass": "lootNameBackground",
+													"sid": 110231106933776,
 													"parameters": {
 														"which": "top"
+													}
+												},
+												{
+													"id": "pick-parent",
+													"objectClass": "lootNameBackground",
+													"sid": 674151495804685,
+													"parameters": {
+														"parent": "loot",
+														"which": "own"
 													}
 												}
 											],
@@ -7978,9 +8150,9 @@
 																{
 																	"id": "cursor-is-over-object",
 																	"objectClass": "mouse",
-																	"sid": 295687394680588,
+																	"sid": 192233266108980,
 																	"parameters": {
-																		"object": "loot"
+																		"object": "lootNameBackground"
 																	},
 																	"isInverted": true
 																},
@@ -13031,9 +13203,9 @@
 												{
 													"id": "cursor-is-over-object",
 													"objectClass": "mouse",
-													"sid": 896098241564343,
+													"sid": 534886504752529,
 													"parameters": {
-														"object": "loot"
+														"object": "lootNameBackground"
 													}
 												},
 												{
@@ -17914,16 +18086,6 @@
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 498523278491456
-				},
-				{
-					"eventType": "variable",
-					"name": "INTENSITY_PARAMETER_INDEX",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "The index of the intensity parameter on the blur effects.",
-					"isStatic": false,
-					"isConstant": true,
-					"sid": 680730105349972
 				},
 				{
 					"eventType": "variable",

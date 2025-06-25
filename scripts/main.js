@@ -252,7 +252,14 @@ const InitThreeJs = async (runtime) => {
 
 	const pmremGenerator = new THREE.PMREMGenerator(threeRenderer);
 	threeScene = new THREE.Scene();
+	// Suppress PMREMGenerator .fromScene() warning
+	const originalWarn = console.warn;
+	console.warn = function(msg, ...args) {
+	    if (typeof msg === "string" && msg.includes("THREE.PMREMGenerator: .fromScene() called before the backend is initialized")) return;
+	    originalWarn.call(console, msg, ...args);
+	};
 	threeScene.environment = pmremGenerator.fromScene(new RoomEnvironment(threeRenderer), 0.04).texture;
+	console.warn = originalWarn;
 
 	threeCamera = new THREE.PerspectiveCamera(40, platformInfo.canvasCssWidth / platformInfo.canvasCssHeight, 1, 100);
 	threeCamera.position.set(10, 4, 16);

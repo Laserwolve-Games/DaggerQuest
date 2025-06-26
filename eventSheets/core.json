@@ -211,6 +211,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "INTENSITY_PARAMETER_INDEX",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The index of the intensity parameter on the blur effects.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 578027666968604
+		},
+		{
+			"eventType": "variable",
 			"name": "INTERACT_COOLDOWN",
 			"type": "number",
 			"initialValue": "0.3",
@@ -888,16 +898,6 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 849112042530215
-		},
-		{
-			"eventType": "variable",
-			"name": "INTENSITY_PARAMETER_INDEX",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "The index of the intensity parameter on the blur effects.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 241234237203465
 		},
 		{
 			"eventType": "variable",
@@ -7818,19 +7818,11 @@
 											],
 											"actions": [
 												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 981260177954875,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "npc.UID"
-													}
-												},
-												{
-													"customAction": "Move to location",
+													"customAction": "Object Clicked",
 													"objectClass": "player",
-													"sid": 703019230666960,
+													"sid": 428238737872347,
 													"parameters": [
+														"npc.UID",
 														"npc.X",
 														"npc.Y"
 													]
@@ -7871,19 +7863,11 @@
 											],
 											"actions": [
 												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 640378117880726,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "loot.UID"
-													}
-												},
-												{
-													"customAction": "Move to location",
+													"customAction": "Object Clicked",
 													"objectClass": "player",
-													"sid": 297620773482621,
+													"sid": 936106381352956,
 													"parameters": [
+														"loot.UID",
 														"loot.X",
 														"loot.Y"
 													]
@@ -7907,25 +7891,77 @@
 											],
 											"actions": [
 												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 886877031292798,
-													"parameters": {
-														"variable": "uidOfClicked",
-														"value": "door.UID"
-													}
-												},
-												{
-													"customAction": "Move to location",
+													"customAction": "Object Clicked",
 													"objectClass": "player",
-													"sid": 555111948861754,
+													"sid": 950483251274234,
 													"parameters": [
+														"door.UID",
 														"door.ImagePointX(NON_DEFAULT_IMAGE_POINT)",
 														"door.ImagePointY(NON_DEFAULT_IMAGE_POINT)"
 													]
 												}
 											],
 											"sid": 398884856732755
+										},
+										{
+											"aceType": "action",
+											"aceName": "Object Clicked",
+											"objectClass": "player",
+											"functionDescription": "Actions to perform when the player clicks an interactable object",
+											"functionCategory": "movement",
+											"functionReturnType": "none",
+											"functionCopyPicked": false,
+											"functionIsAsync": false,
+											"functionParameters": [
+												{
+													"name": "uid",
+													"type": "number",
+													"initialValue": "0",
+													"comment": "The UID of the object that was clicked.",
+													"sid": 225918105633451
+												},
+												{
+													"name": "locationX",
+													"type": "number",
+													"initialValue": "0",
+													"comment": "The location of where the player will move to, on the X axis.",
+													"sid": 221939755553716
+												},
+												{
+													"name": "locationY",
+													"type": "number",
+													"initialValue": "0",
+													"comment": "The location of where the player will move to, on the Y axis.",
+													"sid": 334869229659795
+												}
+											],
+											"eventType": "custom-ace-block",
+											"conditions": [],
+											"actions": [
+												{
+													"callFunction": "Close dialog",
+													"sid": 567888262171020
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 170155143736724,
+													"parameters": {
+														"variable": "uidOfClicked",
+														"value": "uid"
+													}
+												},
+												{
+													"customAction": "Move to location",
+													"objectClass": "player",
+													"sid": 114215892088326,
+													"parameters": [
+														"locationX",
+														"locationY"
+													]
+												}
+											],
+											"sid": 903599002664064
 										},
 										{
 											"eventType": "block",
@@ -8366,9 +8402,9 @@
 										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
-											"sid": 653750243369573,
+											"sid": 838468420089255,
 											"parameters": {
-												"value": "Functions.isInRange((player.pickupRange + max(loot.Width, loot.Height)) + loot.pickupRangeBonus, loot.X, loot.Y)"
+												"value": "Functions.isInRange(player.pickupRange + loot.pickupRangeBonus, loot.X, loot.Y)"
 											}
 										}
 									],

@@ -37,3 +37,24 @@ fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
     head.appendChild(favicon);
   }
 })();
+
+// Add Google Analytics dynamically to every page
+(function() {
+  const head = document.head;
+  if (head && !document.getElementById('google-gtag')) {
+    // Add the gtag.js script
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5SY437DMY';
+    gaScript.id = 'google-gtag';
+    head.appendChild(gaScript);
+
+    // Add the inline config script
+    const inlineScript = document.createElement('script');
+    inlineScript.innerHTML = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C5SY437DMY');`;
+    head.appendChild(inlineScript);
+  }
+})();

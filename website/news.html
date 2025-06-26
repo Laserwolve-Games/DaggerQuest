@@ -11,52 +11,9 @@
     <div class="container news-container">
         <h1 class="title">news</h1>
         <div class="news-reel" id="news-reel">
-            <a class="news-post" href="news/patch-notes-040.html">
-                <img src="images/040.jpg" alt="DaggerQuest 0.4.0" class="news-thumb">
-                <div class="news-headline">0.4.0 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-039.html">
-                <img src="images/039.jpg" alt="DaggerQuest 0.3.9" class="news-thumb">
-                <div class="news-headline">0.3.9 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-038.html">
-                <img src="images/038.jpg" alt="DaggerQuest 0.3.8" class="news-thumb">
-                <div class="news-headline">0.3.8 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-037.html">
-                <img src="images/037.jpg" alt="DaggerQuest 0.3.7" class="news-thumb">
-                <div class="news-headline">0.3.7 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-036.html">
-                <img src="images/036.jpg" alt="DaggerQuest 0.3.6" class="news-thumb">
-                <div class="news-headline">0.3.6 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-035.html">
-                <img src="images/035.jpg" alt="DaggerQuest 0.3.5" class="news-thumb">
-                <div class="news-headline">0.3.5 Patch Notes</div>
-            </a>
-            <a class="news-post" href="news/patch-notes-034.html">
-                <img src="images/034.jpg" alt="DaggerQuest 0.3.4" class="news-thumb">
-                <div class="news-headline">0.3.4 Patch Notes</div>
-            </a>
         </div>
         <button id="show-more-btn" class="show-more-btn">show more</button>
-        <script>
-        const posts = Array.from(document.querySelectorAll('.news-post'));
-        // TODO: We'll need to make sure the Show More button shows exactly 6 more posts, and to only load the images of those posts when the button is clicked.
-        const showMoreBtn = document.getElementById('show-more-btn');
-        function updatePosts() {
-            posts.forEach((post, i) => {
-                post.style.display = i < 6 ? '' : 'none';
-            });
-            showMoreBtn.style.display = posts.length > 6 ? '' : 'none';
-        }
-        showMoreBtn.addEventListener('click', () => {
-            posts.forEach(post => post.style.display = '');
-            showMoreBtn.style.display = 'none';
-        });
-        updatePosts();
-        </script>
+        <script src="news-loader.js"></script>
         <div id="footer"></div>
     </div>
     <script src="includes.js"></script>

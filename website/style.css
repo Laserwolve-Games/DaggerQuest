@@ -65,6 +65,13 @@ body, .news-body, ul, li {
      min-height: 80vh;
      font-size: 1.1em;
 }
+.container.legal-page {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
 h1 {
      margin-top: 32px;
      margin-bottom: 16px;
@@ -220,6 +227,10 @@ h1 {
     font-family: 'Cinzel', serif;
     cursor: pointer;
     text-transform: lowercase;
+}
+.legal-link {
+    color: #fff;
+    text-decoration: underline;
 }
 @media (max-width: 900px) {
     .news-columns {

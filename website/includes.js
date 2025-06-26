@@ -24,6 +24,22 @@ fetch(basePath + 'header.html').then(res => res.text()).then(data => {
 });
 fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
   document.getElementById('footer').innerHTML = data;
+  // Update footer links to use correct basePath
+  const footerLinks = document.querySelectorAll('#footer a');
+  footerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+      link.setAttribute('href', basePath + href);
+    }
+  });
+  // Update footer images to use correct basePath
+  const footerImgs = document.querySelectorAll('#footer img');
+  footerImgs.forEach(img => {
+    const src = img.getAttribute('src');
+    if (src && !src.startsWith('http') && !src.startsWith('data:') && !src.startsWith('#')) {
+      img.setAttribute('src', basePath + src);
+    }
+  });
 });
 
 // Add favicon dynamically to every page

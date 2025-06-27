@@ -861,19 +861,9 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "interfaceVolume",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "How loudly to place interface sound effects, in decibels.",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 235684735055744
-		},
-		{
-			"eventType": "variable",
 			"name": "musicVolume",
 			"type": "number",
-			"initialValue": "-10",
+			"initialValue": "0",
 			"comment": "How loudly to play the music, in decibels.",
 			"isStatic": false,
 			"isConstant": false,
@@ -12542,13 +12532,13 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "audio",
-											"sid": 228251495697342,
+											"sid": 156768396105750,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "Functions.soundEffectName(MENU_CLOSE_KEYWORD)",
 												"loop": "not-looping",
 												"volume": "DEFAULT_STEREO_PAN",
-												"stereo-pan": "interfaceVolume",
+												"stereo-pan": "soundEffectsVolume",
 												"tag-optional": "MENU_CLOSE_KEYWORD"
 											}
 										}
@@ -12684,12 +12674,12 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "audio",
-											"sid": 980524320326130,
+											"sid": 476991075236243,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "Functions.soundEffectName(MENU_OPEN_KEYWORD)",
 												"loop": "not-looping",
-												"volume": "interfaceVolume",
+												"volume": "soundEffectsVolume",
 												"stereo-pan": "DEFAULT_STEREO_PAN",
 												"tag-optional": "MENU_OPEN_KEYWORD"
 											}
@@ -15390,6 +15380,150 @@
 											"sid": 949462789028493
 										}
 									]
+								}
+							]
+						},
+						{
+							"eventType": "variable",
+							"name": "SLIDER_MIN",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The lowest number the slider can go to.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 775681053994268
+						},
+						{
+							"eventType": "variable",
+							"name": "SLIDER_MAX",
+							"type": "number",
+							"initialValue": "100",
+							"comment": "The highest number the slider can go to.",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 289177293823567
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "mouse",
+									"sid": 922191330145385,
+									"parameters": {
+										"mouse-button": "left"
+									}
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 703896772834178,
+									"parameters": {
+										"object": "volumeSlider"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-image-scale-x",
+									"objectClass": "volumeSlider",
+									"sid": 869266595279577,
+									"parameters": {
+										"scale-x": "lerp(SLIDER_MIN, SLIDER_MAX, unlerp(Self.BBoxLeft, Self.BBoxRight, mouse.X(Self.LayerName))) "
+									}
+								}
+							],
+							"sid": 566796542052185,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 358315732286188,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"musicVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 860205869695213,
+											"parameters": {
+												"variable": "musicVolume",
+												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100) - 10"
+											}
+										},
+										{
+											"id": "set-volume",
+											"objectClass": "audio",
+											"sid": 809968223706200,
+											"parameters": {
+												"tag": "LayoutName",
+												"db": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
+											}
+										}
+									],
+									"sid": 524332742953525
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 172588908146608,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"soundEffectsVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 329294183334329,
+											"parameters": {
+												"variable": "soundEffectsVolume",
+												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
+											}
+										}
+									],
+									"sid": 594686757848662
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 765043170167453,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"dialogVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 166284773584635,
+											"parameters": {
+												"variable": "dialogVolume",
+												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
+											}
+										}
+									],
+									"sid": 321680542399318
 								}
 							]
 						}

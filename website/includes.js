@@ -75,15 +75,27 @@ gtag('config', 'G-C5SY437DMY');`;
   }
 })();
 
-// Add Google AdSense dynamically to every page
+// Add Google Adsense
 (function() {
   const head = document.head;
-  if (head && !document.getElementById('google-adsense')) {
-    const adsenseScript = document.createElement('script');
-    adsenseScript.async = true;
-    adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
-    adsenseScript.crossOrigin = 'anonymous';
-    adsenseScript.id = 'google-adsense';
-    head.appendChild(adsenseScript);
+  if (head && !document.querySelector('script[src*="adsbygoogle.js"]')) {
+    const adScript = document.createElement('script');
+    adScript.async = true;
+    adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
+    adScript.crossOrigin = 'anonymous';
+    head.appendChild(adScript);
   }
 })();
+
+// Add Google Adsense account meta tag
+(function() {
+  const head = document.head;
+  if (head && !document.querySelector('meta[name="google-adsense-account"]')) {
+    const meta = document.createElement('meta');
+    meta.name = 'google-adsense-account';
+    meta.content = 'ca-pub-2087729758302145';
+    head.appendChild(meta);
+  }
+})();
+
+

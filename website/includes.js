@@ -74,3 +74,16 @@ gtag('config', 'G-C5SY437DMY');`;
     head.appendChild(inlineScript);
   }
 })();
+
+// Add Google AdSense dynamically to every page
+(function() {
+  const head = document.head;
+  if (head && !document.getElementById('google-adsense')) {
+    const adsenseScript = document.createElement('script');
+    adsenseScript.async = true;
+    adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
+    adsenseScript.crossOrigin = 'anonymous';
+    adsenseScript.id = 'google-adsense';
+    head.appendChild(adsenseScript);
+  }
+})();

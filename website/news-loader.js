@@ -4,55 +4,55 @@
 // List of all news posts (add new posts here as objects)
 const newsPosts = [
     {
-        href: "news/patch-notes-042.html",
+        href: "https://DaggerQuest.com/news/patch-notes-042",
         img: "images/042.webp",
         alt: "DaggerQuest 0.4.2",
         headline: "0.4.2 Patch Notes"
     },
     {
-        href: "news/patch-notes-041.html",
+        href: "https://DaggerQuest.com/news/patch-notes-041",
         img: "images/041.webp",
         alt: "DaggerQuest 0.4.1",
         headline: "0.4.1 Patch Notes"
     },
     {
-        href: "news/patch-notes-040.html",
+        href: "https://DaggerQuest.com/news/patch-notes-040",
         img: "images/040.webp",
         alt: "DaggerQuest 0.4.0",
         headline: "0.4.0 Patch Notes"
     },
     {
-        href: "news/patch-notes-039.html",
+        href: "https://DaggerQuest.com/news/patch-notes-039",
         img: "images/039.webp",
         alt: "DaggerQuest 0.3.9",
         headline: "0.3.9 Patch Notes"
     },
     {
-        href: "news/patch-notes-038.html",
+        href: "https://DaggerQuest.com/news/patch-notes-038",
         img: "images/038.webp",
         alt: "DaggerQuest 0.3.8",
         headline: "0.3.8 Patch Notes"
     },
     {
-        href: "news/patch-notes-037.html",
+        href: "https://DaggerQuest.com/news/patch-notes-037",
         img: "images/037.webp",
         alt: "DaggerQuest 0.3.7",
         headline: "0.3.7 Patch Notes"
     },
     {
-        href: "news/patch-notes-036.html",
+        href: "https://DaggerQuest.com/news/patch-notes-036",
         img: "images/036.webp",
         alt: "DaggerQuest 0.3.6",
         headline: "0.3.6 Patch Notes"
     },
     {
-        href: "news/patch-notes-035.html",
+        href: "https://DaggerQuest.com/news/patch-notes-035",
         img: "images/035.webp",
         alt: "DaggerQuest 0.3.5",
         headline: "0.3.5 Patch Notes"
     },
     {
-        href: "news/patch-notes-034.html",
+        href: "https://DaggerQuest.com/news/patch-notes-034",
         img: "images/034.webp",
         alt: "DaggerQuest 0.3.4",
         headline: "0.3.4 Patch Notes"

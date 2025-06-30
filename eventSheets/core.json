@@ -12532,13 +12532,13 @@
 										{
 											"id": "play-by-name",
 											"objectClass": "audio",
-											"sid": 156768396105750,
+											"sid": 806690784978279,
 											"parameters": {
 												"folder": "sounds",
 												"audio-file-name": "Functions.soundEffectName(MENU_CLOSE_KEYWORD)",
 												"loop": "not-looping",
-												"volume": "DEFAULT_STEREO_PAN",
-												"stereo-pan": "soundEffectsVolume",
+												"volume": "soundEffectsVolume",
+												"stereo-pan": "DEFAULT_STEREO_PAN",
 												"tag-optional": "MENU_CLOSE_KEYWORD"
 											}
 										}
@@ -15404,6 +15404,318 @@
 							"sid": 289177293823567
 						},
 						{
+							"eventType": "variable",
+							"name": "VOLUME_BASE",
+							"type": "number",
+							"initialValue": "-50",
+							"comment": "The decibels for a volume value of 10 (see manual)",
+							"isStatic": false,
+							"isConstant": true,
+							"sid": 334680952951602
+						},
+						{
+							"aceType": "action",
+							"aceName": "Update Volume",
+							"objectClass": "audio",
+							"functionDescription": "Update the volume level of the specified volume.",
+							"functionCategory": "audio",
+							"functionReturnType": "none",
+							"functionCopyPicked": true,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "custom-ace-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 127656221179776,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "actualMusicVolume",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The volume of the music after its been reduced.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 259709781215133
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 616537796256424,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"musicVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Set both the music volume variable, and adjust the volume level of the music that's currently playing."
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 710116861490254,
+											"parameters": {
+												"variable": "actualMusicVolume",
+												"value": "Functions.convertToDecibels(volumeSlider.ImageScaleX)"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 658080997682613,
+											"parameters": {
+												"variable": "musicVolume",
+												"value": "actualMusicVolume"
+											}
+										},
+										{
+											"id": "set-volume",
+											"objectClass": "audio",
+											"sid": 628172836484021,
+											"parameters": {
+												"tag": "LayoutName",
+												"db": "actualMusicVolume"
+											}
+										}
+									],
+									"sid": 107981051648550
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 843109539442641,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"soundEffectsVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "We don't care about adjusting the volume of sound effects that are currently playing, so only setting the variable will suffice"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 602833683337595,
+											"parameters": {
+												"variable": "soundEffectsVolume",
+												"value": "Functions.convertToDecibels(volumeSlider.ImageScaleX)"
+											}
+										}
+									],
+									"sid": 677486739213370
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 671301124055615,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"dialogVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "It shouldn't be possible to adjust dialog volume while dialog is playing"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 266209939523213,
+											"parameters": {
+												"variable": "dialogVolume",
+												"value": "Functions.convertToDecibels(volumeSlider.ImageScaleX)"
+											}
+										}
+									],
+									"sid": 911064114488476
+								}
+							]
+						},
+						{
+							"functionName": "convertToDecibels",
+							"functionDescription": "Convert the Image X Scale of the volume slider into decibels.",
+							"functionCategory": "audio",
+							"functionReturnType": "number",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "imageScaleX",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "The image scale X of the volume slider.",
+									"sid": 865518584125163
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 397963318389935,
+									"parameters": {
+										"value": "round(audio.NormalizedVolume(imageScaleX, VOLUME_BASE))"
+									}
+								}
+							],
+							"sid": 124691076649909
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "volumeSlider",
+									"sid": 505720763166962
+								}
+							],
+							"actions": [],
+							"sid": 918508699329970,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "MUSIC_INITIAL_VOLUME",
+									"type": "number",
+									"initialValue": "65",
+									"comment": "The initial value for the music volume.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 973980986103582
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 162854082987315,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"musicVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-image-scale-x",
+											"objectClass": "volumeSlider",
+											"sid": 333761429183392,
+											"parameters": {
+												"scale-x": "MUSIC_INITIAL_VOLUME"
+											}
+										}
+									],
+									"sid": 511289753340361
+								},
+								{
+									"eventType": "variable",
+									"name": "SOUND_EFFECTS_INITIAL_VOLUME",
+									"type": "number",
+									"initialValue": "75",
+									"comment": "The initial value for the sound effects volume.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 804299113265366
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 666978830402509,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"soundEffectsVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-image-scale-x",
+											"objectClass": "volumeSlider",
+											"sid": 228371502949163,
+											"parameters": {
+												"scale-x": "SOUND_EFFECTS_INITIAL_VOLUME"
+											}
+										}
+									],
+									"sid": 784247881699887
+								},
+								{
+									"eventType": "variable",
+									"name": "DIALOG_VOLUME_INITIAL_VOLUME",
+									"type": "number",
+									"initialValue": "75",
+									"comment": "The initial value for the dialog volume.",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 953422350330496
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "volumeSlider",
+											"sid": 718699748001497,
+											"parameters": {
+												"instance-variable": "property",
+												"comparison": 0,
+												"value": "\"dialogVolume\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-image-scale-x",
+											"objectClass": "volumeSlider",
+											"sid": 472429033293493,
+											"parameters": {
+												"scale-x": "DIALOG_VOLUME_INITIAL_VOLUME"
+											}
+										}
+									],
+									"sid": 142635656625103
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"customAction": "Update Volume",
+											"objectClass": "audio",
+											"sid": 842423623721163
+										}
+									],
+									"sid": 114705168821585
+								}
+							]
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -15427,105 +15739,18 @@
 								{
 									"id": "set-image-scale-x",
 									"objectClass": "volumeSlider",
-									"sid": 869266595279577,
+									"sid": 340056845991363,
 									"parameters": {
-										"scale-x": "lerp(SLIDER_MIN, SLIDER_MAX, unlerp(Self.BBoxLeft, Self.BBoxRight, mouse.X(Self.LayerName))) "
+										"scale-x": "round(lerp(SLIDER_MIN, SLIDER_MAX, unlerp(Self.BBoxLeft, Self.BBoxRight, mouse.X(Self.LayerName))))"
 									}
+								},
+								{
+									"customAction": "Update Volume",
+									"objectClass": "audio",
+									"sid": 421487100487519
 								}
 							],
-							"sid": 566796542052185,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "volumeSlider",
-											"sid": 358315732286188,
-											"parameters": {
-												"instance-variable": "property",
-												"comparison": 0,
-												"value": "\"musicVolume\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 860205869695213,
-											"parameters": {
-												"variable": "musicVolume",
-												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100) - 10"
-											}
-										},
-										{
-											"id": "set-volume",
-											"objectClass": "audio",
-											"sid": 809968223706200,
-											"parameters": {
-												"tag": "LayoutName",
-												"db": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
-											}
-										}
-									],
-									"sid": 524332742953525
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "volumeSlider",
-											"sid": 172588908146608,
-											"parameters": {
-												"instance-variable": "property",
-												"comparison": 0,
-												"value": "\"soundEffectsVolume\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 329294183334329,
-											"parameters": {
-												"variable": "soundEffectsVolume",
-												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
-											}
-										}
-									],
-									"sid": 594686757848662
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "volumeSlider",
-											"sid": 765043170167453,
-											"parameters": {
-												"instance-variable": "property",
-												"comparison": 0,
-												"value": "\"dialogVolume\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 166284773584635,
-											"parameters": {
-												"variable": "dialogVolume",
-												"value": "lerp(-100, 0, volumeSlider.ImageScaleX / 100)"
-											}
-										}
-									],
-									"sid": 321680542399318
-								}
-							]
+							"sid": 566796542052185
 						}
 					],
 					"sid": 925547222458167
@@ -22046,6 +22271,44 @@
 						}
 					],
 					"sid": 944082009451185
+				},
+				{
+					"aceType": "action",
+					"aceName": "Deterministic Play",
+					"objectClass": "audio",
+					"functionDescription": "Play a sound, as long as its decibel level is above the threshold.",
+					"functionCategory": "audio",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "custom-ace-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 698395974493887,
+					"disabled": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "audio",
+									"sid": 165996710681361,
+									"parameters": {
+										"audio-file": "arrowShot0",
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 332544982084094,
+							"disabled": true
+						}
+					]
 				}
 			],
 			"sid": 499889136212563

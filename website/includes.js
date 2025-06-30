@@ -45,12 +45,37 @@ fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
 // Add favicon dynamically to every page
 (function() {
   const head = document.head;
+  // Add charset meta tag if not present (should be first in head)
+  if (head && !document.querySelector('meta[charset]')) {
+    const charset = document.createElement('meta');
+    charset.setAttribute('charset', 'UTF-8');
+    // Insert as the first child of <head>
+    if (head.firstChild) {
+      head.insertBefore(charset, head.firstChild);
+    } else {
+      head.appendChild(charset);
+    }
+  }
   if (head && !document.querySelector('link[rel="icon"]')) {
     const favicon = document.createElement('link');
     favicon.rel = 'icon';
     favicon.type = 'image/png';
     favicon.href = basePath + 'game/icons/icon-64.png';
     head.appendChild(favicon);
+  }
+  // Add viewport meta tag if not present
+  if (head && !document.querySelector('meta[name="viewport"]')) {
+    const viewport = document.createElement('meta');
+    viewport.name = 'viewport';
+    viewport.content = 'width=device-width, initial-scale=1.0';
+    head.appendChild(viewport);
+  }
+  // Add stylesheet link if not present
+  if (head && !document.querySelector('link[rel="stylesheet"][href$="style.css"]')) {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = basePath + 'style.css';
+    head.appendChild(stylesheet);
   }
 })();
 

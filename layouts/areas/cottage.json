@@ -37,8 +37,8 @@
 					"showing": false,
 					"locked": false,
 					"world": {
-						"x": 0,
-						"y": 0,
+						"x": 6,
+						"y": -3,
 						"width": 1920,
 						"height": 1080,
 						"originX": 0,
@@ -383,7 +383,159 @@
 					"name": "mechanics",
 					"overriden": 0,
 					"subLayers": [],
-					"instances": [],
+					"instances": [
+						{
+							"type": "enemy",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 466,
+							"sid": 261623250932593,
+							"tags": "",
+							"instanceVariables": {
+								"simpleName": "goblinWarlock",
+								"fullName": "Goblin Warlock",
+								"type": "goblin",
+								"movementSpeed": 300,
+								"degrees": 0,
+								"attributes": "",
+								"experience": 50,
+								"currentHealth": 10,
+								"maxHealth": 10,
+								"attackSpeed": 22,
+								"slashDamage": 0,
+								"smashDamage": 0,
+								"stabDamage": 0,
+								"coldDamage": 0,
+								"fireDamage": 0,
+								"lightningDamage": 11,
+								"arcaneDamage": 0,
+								"corruptDamage": 0,
+								"attackRange": 300,
+								"physicalResistance": 0,
+								"coldResistance": 0,
+								"fireResistance": 0,
+								"lightningResistance": 0,
+								"arcaneResistance": 0,
+								"holyResistance": 0,
+								"attacking": false,
+								"hit": false,
+								"rerouting": "no"
+							},
+							"behaviors": {
+								"MoveTo": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": true,
+										"enabled": true
+									}
+								},
+								"Solid": {
+									"properties": {
+										"enabled": true,
+										"tags": ""
+									}
+								},
+								"knockback": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 0,
+										"deceleration": 0,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
+								},
+								"LineOfSight": {
+									"properties": {
+										"obstacles": "solids",
+										"range": 10000,
+										"cone-of-view": 360,
+										"use-collision-cells": true
+									}
+								},
+								"Persist": {
+									"properties": {}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 466,
+								"children": [
+									{
+										"uid": 468,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": false,
+											"w": true,
+											"h": true,
+											"a": false,
+											"o": false,
+											"v": false,
+											"d": false,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 261623250932593,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 870,
+								"y": 641,
+								"width": 78,
+								"height": 26,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
 					"sid": 725383114277321,
 					"effectTypes": [],
 					"isInitiallyVisible": false,
@@ -517,6 +669,185 @@
 						"height": 276,
 						"originX": 2.0258620689655173,
 						"originY": 0.5181159420289855,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinWarlock_shadow",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_45",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 467,
+					"sid": 295866826509506,
+					"tags": "",
+					"instanceVariables": {
+						"yValue": 0
+					},
+					"behaviors": {
+						"Persist": {
+							"properties": {}
+						}
+					},
+					"effects": {
+						"BlurHorizontal": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 0.75
+							}
+						},
+						"BlurVertical": {
+							"isEnabled": true,
+							"parameters": {
+								"intensity": 0.75
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 468,
+						"uid": 467,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": false,
+							"w": false,
+							"h": false,
+							"a": false,
+							"o": true,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 295866826509506,
+						"expanded": false
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 870,
+						"y": 641,
+						"width": 163,
+						"height": 89,
+						"originX": 0.7730061349693251,
+						"originY": 0.7640449438202247,
+						"color": [
+							1,
+							1,
+							1,
+							0.5
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "goblinWarlock",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "walk_45",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 468,
+					"sid": 456397742700066,
+					"tags": "",
+					"instanceVariables": {
+						"yValue": 0,
+						"doNotCreateShadow": false
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						},
+						"Persist": {
+							"properties": {}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": 466,
+						"uid": 468,
+						"children": [
+							{
+								"uid": 467,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": false,
+							"w": true,
+							"h": true,
+							"a": false,
+							"o": false,
+							"v": false,
+							"d": false,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 456397742700066,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 870,
+						"y": 641,
+						"width": 100,
+						"height": 165,
+						"originX": 0.19,
+						"originY": 0.8787878787878788,
 						"color": [
 							1,
 							1,

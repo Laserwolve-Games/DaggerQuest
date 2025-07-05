@@ -81,16 +81,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "ANIMATION_DIVISOR",
-			"type": "number",
-			"initialValue": "7",
-			"comment": "The number by which to divide the movement speed to obtain the animation speed.",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 692404595559537
-		},
-		{
-			"eventType": "variable",
 			"name": "ARC",
 			"type": "number",
 			"initialValue": "22.5",
@@ -10386,10 +10376,10 @@
 										{
 											"customAction": "Update animation",
 											"objectClass": "player",
-											"sid": 546656549921007,
+											"sid": 450615815246526,
 											"parameters": [
 												"WALK_KEYWORD",
-												"player.movementSpeed / ANIMATION_DIVISOR",
+												"body.AnimationFrameCount * (Self.movementSpeed / Self.STRIDE_COEFFICIENT)",
 												false
 											]
 										}
@@ -10421,10 +10411,10 @@
 										{
 											"customAction": "Update animation",
 											"objectClass": "player",
-											"sid": 547920157368544,
+											"sid": 899069752877809,
 											"parameters": [
 												"WALK_KEYWORD",
-												"player.movementSpeed / ANIMATION_DIVISOR",
+												"body.AnimationFrameCount",
 												true
 											]
 										}
@@ -16775,9 +16765,9 @@
 												{
 													"id": "set-animation-speed",
 													"objectClass": "enemyBody",
-													"sid": 299126247746393,
+													"sid": 609772185611778,
 													"parameters": {
-														"speed": "enemy.movementSpeed / ANIMATION_DIVISOR"
+														"speed": "Self.AnimationFrameCount * (enemy.movementSpeed / enemy.STRIDE_COEFFICIENT)"
 													}
 												}
 											],
@@ -17249,7 +17239,7 @@
 									"eventType": "variable",
 									"name": "MANIFESTATION_FRAME",
 									"type": "number",
-									"initialValue": "10",
+									"initialValue": "5",
 									"comment": "The (0-based) frame in which the projectile should manifest",
 									"isStatic": false,
 									"isConstant": true,

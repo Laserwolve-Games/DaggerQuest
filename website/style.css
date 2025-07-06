@@ -319,6 +319,38 @@ h1 {
     color: #bba;
     opacity: 0.7;
 }
+/* --- DaggerQuest Game Page Ad Layout --- */
+.container.flex-ads {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0;
+}
+.ad-slot {
+  width: 200px;
+  min-width: 200px;
+  height: 720px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1400px;
+  flex: 0 0 auto;
+}
+.game-frame {
+  width: 1280px;
+  min-width: 1280px;
+  min-height: 720px;
+  border: none;
+}
 @media (max-width: 900px) {
     .news-columns {
         flex-direction: column;

@@ -17855,7 +17855,7 @@
 									"eventType": "variable",
 									"name": "MANIFESTATION_FRAME",
 									"type": "number",
-									"initialValue": "15",
+									"initialValue": "48",
 									"comment": "The (0-based) frame in which the projectile should manifest.",
 									"isStatic": false,
 									"isConstant": true,
@@ -18136,7 +18136,7 @@
 															"objectClass": "System",
 															"sid": 208506944533334,
 															"parameters": {
-																"object-to-create": "crossbowBolt",
+																"object-to-create": "arrow",
 																"layer": "enemyBody.LayerName",
 																"x": "projectile.X",
 																"y": "projectile.Y",
@@ -18164,14 +18164,14 @@
 																	"objectClass": "System",
 																	"sid": 993114304744468,
 																	"parameters": {
-																		"object": "crossbowBolt"
+																		"object": "arrow"
 																	}
 																}
 															],
 															"actions": [
 																{
 																	"id": "set-animation",
-																	"objectClass": "crossbowBolt",
+																	"objectClass": "arrow",
 																	"sid": 661064372819070,
 																	"parameters": {
 																		"animation": "str(enemy.degrees)",
@@ -18183,7 +18183,7 @@
 																	"objectClass": "projectile",
 																	"sid": 366119185591288,
 																	"parameters": {
-																		"child": "crossbowBolt",
+																		"child": "arrow",
 																		"transform-x": true,
 																		"transform-y": true,
 																		"transform-w": false,
@@ -18197,7 +18197,7 @@
 																},
 																{
 																	"type": "comment",
-																	"text": "'arrowShot' is a short enough sound effect that we should play it in its entirety even the crossbow bolt is destroyed before the audio can complete, so don't use a tag here.",
+																	"text": "'arrowShot' is a short enough sound effect that we should play it in its entirety even the arrow is destroyed before the audio can complete, so don't use a tag here.",
 																	"text-color": [
 																		0.7843137254901961,
 																		0.7843137254901961,
@@ -18220,7 +18220,7 @@
 																		"audio-file-name": "Functions.soundEffectName(SOUND_EFFECT)",
 																		"loop": "not-looping",
 																		"volume": "soundEffectsVolume",
-																		"object": "crossbowBolt",
+																		"object": "arrow",
 																		"inner-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 																		"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
 																		"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",

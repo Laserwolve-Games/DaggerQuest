@@ -8870,15 +8870,6 @@
 										"animation": "NONE_KEYWORD"
 									},
 									"isInverted": true
-								},
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "player",
-									"sid": 613291942331108,
-									"parameters": {
-										"object": "nonCombatArea"
-									},
-									"isInverted": true
 								}
 							],
 							"actions": [
@@ -8976,17 +8967,7 @@
 										}
 									],
 									"eventType": "custom-ace-block",
-									"conditions": [
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "player",
-											"sid": 631070015681285,
-											"parameters": {
-												"object": "nonCombatArea"
-											},
-											"isInverted": true
-										}
-									],
+									"conditions": [],
 									"actions": [],
 									"sid": 669092372960624,
 									"children": [
@@ -10704,16 +10685,6 @@
 							"sid": 978826309289581,
 							"children": [
 								{
-									"eventType": "variable",
-									"name": "UNARMED_KEYWORD",
-									"type": "string",
-									"initialValue": "Unarmed",
-									"comment": "Used for setting combat animations.",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 224265743515472
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -10725,57 +10696,18 @@
 											}
 										}
 									],
-									"actions": [],
-									"sid": 522639755557380,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "player",
-													"sid": 546759449919497,
-													"parameters": {
-														"object": "nonCombatArea"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-animation",
-													"objectClass": "body",
-													"sid": 893930655249901,
-													"parameters": {
-														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
-														"from": "beginning"
-													}
-												}
-											],
-											"sid": 560707158544189
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 193130514691037
-												}
-											],
-											"actions": [
-												{
-													"id": "set-animation",
-													"objectClass": "body",
-													"sid": 980805719994862,
-													"parameters": {
-														"animation": "animationName & SEPARATOR & player.degrees",
-														"from": "beginning"
-													}
-												}
-											],
-											"sid": 938698912811728
+											"id": "set-animation",
+											"objectClass": "body",
+											"sid": 831681047823421,
+											"parameters": {
+												"animation": "animationName & SEPARATOR & player.degrees",
+												"from": "beginning"
+											}
 										}
-									]
+									],
+									"sid": 522639755557380
 								},
 								{
 									"eventType": "block",
@@ -10786,57 +10718,18 @@
 											"sid": 486694199195613
 										}
 									],
-									"actions": [],
-									"sid": 849921736427602,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "player",
-													"sid": 397612595242238,
-													"parameters": {
-														"object": "nonCombatArea"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-animation",
-													"objectClass": "body",
-													"sid": 480750740249930,
-													"parameters": {
-														"animation": "animationName & UNARMED_KEYWORD & SEPARATOR & player.degrees",
-														"from": "current-frame"
-													}
-												}
-											],
-											"sid": 741758805012343
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 547459200049500
-												}
-											],
-											"actions": [
-												{
-													"id": "set-animation",
-													"objectClass": "body",
-													"sid": 420614807039127,
-													"parameters": {
-														"animation": "animationName & SEPARATOR & player.degrees",
-														"from": "current-frame"
-													}
-												}
-											],
-											"sid": 305507655711060
+											"id": "set-animation",
+											"objectClass": "body",
+											"sid": 226423951532282,
+											"parameters": {
+												"animation": "animationName & SEPARATOR & player.degrees",
+												"from": "current-frame"
+											}
 										}
-									]
+									],
+									"sid": 849921736427602
 								},
 								{
 									"eventType": "block",
@@ -18939,15 +18832,6 @@
 											"isInverted": true
 										},
 										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "player",
-											"sid": 476151660177644,
-											"parameters": {
-												"object": "nonCombatArea"
-											},
-											"isInverted": true
-										},
-										{
 											"id": "evaluate-expression",
 											"objectClass": "System",
 											"sid": 722866731052195,
@@ -18959,7 +18843,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "If the player isn't in a non-combat area, isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
+											"text": "If the player isn't currently channeling, and successfully blocks the attack, play the block animation, then we're done."
 										},
 										{
 											"customAction": "Play channeled animation",
@@ -19043,15 +18927,6 @@
 													"isInverted": true
 												},
 												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "player",
-													"sid": 971472195556840,
-													"parameters": {
-														"object": "nonCombatArea"
-													},
-													"isInverted": true
-												},
-												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
 													"sid": 956923238129420,
@@ -19073,7 +18948,7 @@
 											"actions": [
 												{
 													"type": "comment",
-													"text": "If the player isn't currently channeling, isn't in a non-combat area, and the hit doesn't kill him, and the hit overcomes the flinch resistance, the player flinches."
+													"text": "If the player isn't currently channeling, the hit doesn't kill him, and the hit overcomes the flinch resistance, the player flinches."
 												},
 												{
 													"customAction": "Play channeled animation",

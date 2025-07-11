@@ -27,6 +27,7 @@ This repository contains the source code for DaggerQuest, built using Construct 
 
 - [**Overlord**](https://github.com/Laserwolve-Games/Overlord) - An render pipeline management tool used to generated assets for *DaggerQuest*.
 - [**CAFfeine**](https://github.com/Laserwolve-Games/CAFfeine) - An automation and testing framework for *DaggerQuest* and Construct 3 in general.
+- [**Plains of Shinar**](https://github.com/Laserwolve-Games/PlainsOfShinar) - An attempt at porting *DaggerQuest* to Pixi.js.
 
 ## 🧙‍♂️ Updates
 

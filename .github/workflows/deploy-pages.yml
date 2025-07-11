@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     tags:
-      - '*'
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   deploy:
@@ -28,3 +28,23 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Check if tag is three-digit version
+        id: tagcheck
+        run: |
+          if [[ "${GITHUB_REF##*/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "is_release_tag=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_release_tag=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
+        if: steps.tagcheck.outputs.is_release_tag == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: |
+            Play now at https://daggerquest.com/
+
+            Read the patch notes at https://daggerquest.com/news/patch-notes-${{ github.ref_name }}

@@ -349,6 +349,58 @@
 					"isOrBlock": true
 				},
 				{
+					"eventType": "variable",
+					"name": "DAGGERQUEST_WEBSITE_URL",
+					"type": "string",
+					"initialValue": "https://daggerquest.com",
+					"comment": "The URL of the DaggerQuest website.",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 190069425487968
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 111851796675608
+						},
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 891443397856963,
+							"isInverted": true
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 352052879462429,
+							"parameters": {
+								"first-value": "DAGGERQUEST_WEBSITE_URL",
+								"comparison": 1,
+								"second-value": "lowercase(browser.URL)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-url",
+							"objectClass": "browser",
+							"sid": 217312060039224,
+							"parameters": {
+								"url": "DAGGERQUEST_WEBSITE_URL",
+								"target": "parent"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website."
+						}
+					],
+					"sid": 673192513632614
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{

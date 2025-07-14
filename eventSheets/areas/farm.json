@@ -47,6 +47,40 @@
 				}
 			],
 			"sid": 299902647022873
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 304771673933654
+				},
+				{
+					"id": "is-in-preview",
+					"objectClass": "System",
+					"sid": 180269269013499,
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"if (window.parent && typeof window.parent.gtag === 'function') {",
+						"",
+						"\tgtag('event', 'loaded_into_tutorial', {",
+						"\t\t'notsure': 'tutorial_start'",
+						"\t});",
+						"\tconsole.log('Google Analytics event sent: loaded_into_tutorial with parameter \"notsure\"');",
+						"",
+						"} else console.warn('Could not access gtag on parent window. Same-origin policy might be preventing direct access, or gtag is not loaded.');",
+						""
+					]
+				}
+			],
+			"sid": 452671156190024
 		}
 	],
 	"sid": 853340695623395

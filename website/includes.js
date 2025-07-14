@@ -70,13 +70,13 @@ fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
     viewport.content = 'width=device-width, initial-scale=1.0';
     head.appendChild(viewport);
   }
-  // Add stylesheet link if not present
-  if (head && !document.querySelector('link[rel="stylesheet"][href$="style.css"]')) {
-    const stylesheet = document.createElement('link');
-    stylesheet.rel = 'stylesheet';
-    stylesheet.href = basePath + 'style.css';
-    head.appendChild(stylesheet);
-  }
+  // This works, but causes a FOUC (Flash of Unstyled Content) on the first load
+  // if (head && !document.querySelector('link[rel="stylesheet"][href$="style.css"]')) {
+  //   const stylesheet = document.createElement('link');
+  //   stylesheet.rel = 'stylesheet';
+  //   stylesheet.href = basePath + 'style.css';
+  //   head.appendChild(stylesheet);
+  // }
 })();
 
 // Add Google Analytics dynamically to every page

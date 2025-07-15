@@ -349,6 +349,27 @@
 					"isOrBlock": true
 				},
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 239306007566295
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"console.log(firebase);"
+							]
+						}
+					],
+					"sid": 846057692147630,
+					"disabled": true
+				},
+				{
 					"eventType": "variable",
 					"name": "DAGGERQUEST_WEBSITE_URL",
 					"type": "string",

@@ -16,58 +16,7 @@
 					"comment": "The name of the layout to go to after after the main menu.",
 					"isStatic": false,
 					"isConstant": true,
-					"sid": 505358137732277
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-object-clicked",
-							"objectClass": "mouse",
-							"sid": 513273473779613,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "play"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 966393218487465,
-							"parameters": {
-								"layer": "play.LayerName",
-								"interactive": false
-							}
-						},
-						{
-							"id": "play-at-object-by-name",
-							"objectClass": "audio",
-							"sid": 112808181784737,
-							"parameters": {
-								"folder": "sounds",
-								"audio-file-name": "Functions.soundEffectName(MENU_OPEN_KEYWORD)",
-								"loop": "not-looping",
-								"volume": "DEFAULT_STEREO_PAN",
-								"object": "play",
-								"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
-								"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
-								"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
-								"tag-optional": "MENU_OPEN_KEYWORD"
-							}
-						},
-						{
-							"callFunction": "Change layout",
-							"sid": 934225930353188,
-							"parameters": [
-								"FIRST_LAYOUT",
-								false
-							]
-						}
-					],
-					"sid": 620884769961856
+					"sid": 882369192093224
 				},
 				{
 					"eventType": "block",
@@ -337,6 +286,40 @@
 							"sid": 829274809575794
 						},
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 866538545653799,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "textButtons"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play-at-object-by-name",
+									"objectClass": "audio",
+									"sid": 729944780974981,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "Functions.soundEffectName(MENU_OPEN_KEYWORD)",
+										"loop": "not-looping",
+										"volume": "DEFAULT_STEREO_PAN",
+										"object": "textButtons",
+										"inner-angle": "NON_DIRECTIONAL_INNER_ANGLE",
+										"outer-angle": "NON_DIRECTIONAL_OUTER_ANGLE",
+										"outer-gain": "NON_DIRECTIONAL_OUTER_GAIN",
+										"tag-optional": "MENU_OPEN_KEYWORD"
+									}
+								}
+							],
+							"sid": 111424523986358
+						},
+						{
 							"eventType": "variable",
 							"name": "SIZE_REDUCTION_MULTIPLIER",
 							"type": "number",
@@ -487,6 +470,411 @@
 						}
 					],
 					"sid": 645094698531049
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "log in",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 258363660053746,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "login"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 806944153348638,
+									"parameters": [
+										"login.LayerName",
+										"play.LayerName"
+									]
+								}
+							],
+							"sid": 249820971674497
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 566665389488212,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "signup"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 319253239058949,
+									"parameters": [
+										"signup.LayerName",
+										"create.LayerName"
+									]
+								}
+							],
+							"sid": 100821260743806
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 259134507497669,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "resetPassword"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 956981698128358,
+									"parameters": [
+										"resetPassword.LayerName",
+										"send.LayerName"
+									]
+								}
+							],
+							"sid": 367883499154420
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 323313352848165,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "play"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 456968209685895,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "back",
+											"sid": 710171261108763
+										},
+										{
+											"id": "set-text",
+											"objectClass": "message",
+											"sid": 181274370896891,
+											"parameters": {
+												"text": "\"Authentication successful. Entering the world of Ashladon...\""
+											}
+										},
+										{
+											"callFunction": "Switch Login Screen",
+											"sid": 500188745593693,
+											"parameters": [
+												"play.LayerName",
+												"message.layerName"
+											]
+										},
+										{
+											"callFunction": "Change layout",
+											"sid": 952922889660158,
+											"parameters": [
+												"FIRST_LAYOUT",
+												false
+											]
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 720627991975768,
+											"parameters": {
+												"seconds": ".2",
+												"use-timescale": true
+											}
+										}
+									],
+									"sid": 968281091178654
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "message",
+											"sid": 758489885614049,
+											"parameters": {
+												"text": "\"The email address and/or password are incorrect.\""
+											}
+										},
+										{
+											"callFunction": "Switch Login Screen",
+											"sid": 743090978648611,
+											"parameters": [
+												"player.LayerName",
+												"message.layerName"
+											]
+										}
+									],
+									"sid": 821419650964851,
+									"disabled": true
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 105552488001941,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "create"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 819096388360337,
+									"parameters": [
+										"create.LayerName",
+										"message.LayerName"
+									]
+								}
+							],
+							"sid": 850711460898775,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "TODO: Need to figure out how this workflow will actually work in Firebase"
+										},
+										{
+											"id": "set-text",
+											"objectClass": "message",
+											"sid": 144418843851402,
+											"parameters": {
+												"text": "\"The account has been successfully created. Please check your email with a link to verify your account.\""
+											}
+										}
+									],
+									"sid": 737691421927815
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "message",
+											"sid": 839793247361203,
+											"parameters": {
+												"text": "\"An error was encountered when attempting to create the account. Please try again later.\""
+											}
+										}
+									],
+									"sid": 933009337298041,
+									"disabled": true
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 772285083346250,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "send"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 276645026295771,
+									"parameters": [
+										"send.LayerName",
+										"message.LayerName"
+									]
+								}
+							],
+							"sid": 973411833890479,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "TODO: Need to figure out how this workflow will actually work in Firebase"
+										},
+										{
+											"id": "set-text",
+											"objectClass": "message",
+											"sid": 128840454482617,
+											"parameters": {
+												"text": "\"An email with a link to reset the password has been sent.\""
+											}
+										}
+									],
+									"sid": 849971423870063
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [],
+									"sid": 353321266502026,
+									"disabled": true
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 443969718770539,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "back"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "input",
+									"sid": 268830481030174,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"callFunction": "Switch Login Screen",
+									"sid": 115026545811402,
+									"parameters": [
+										"back.LayerName",
+										"login.LayerName"
+									]
+								}
+							],
+							"sid": 499993634848695
+						},
+						{
+							"functionName": "Switch Login Screen",
+							"functionDescription": "Hides or unhides and layer, and sets it interactive or not interactive.",
+							"functionCategory": "menus",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "layerToTurnOff",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The name of the layer to turn off.",
+									"sid": 321909743870821
+								},
+								{
+									"name": "layerToTurnOn",
+									"type": "string",
+									"initialValue": "",
+									"comment": "The name of the layer to turn on.",
+									"sid": 322331768904052
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 138651738189108,
+									"parameters": {
+										"layer": "layerToTurnOff",
+										"interactive": false
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 103037772765628,
+									"parameters": {
+										"layer": "layerToTurnOff",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "This wait prevents a click that would take us to another screen, also being registered on that screen"
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 446790994871031,
+									"parameters": {
+										"seconds": "0",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 295769803816843,
+									"parameters": {
+										"layer": "layerToTurnOn",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 592413390895478,
+									"parameters": {
+										"layer": "layerToTurnOn",
+										"interactive": true
+									}
+								}
+							],
+							"sid": 571625656246809
+						}
+					],
+					"sid": 578226303117233
 				}
 			],
 			"sid": 608494637955654

@@ -92,6 +92,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "TextBox",
+			"name": "Text input",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "TiledBg",
 			"name": "Tiled Background",
 			"author": "Scirra",
@@ -236,7 +243,10 @@
 		"items": [
 			"lootName",
 			"lootNameBackground",
-			"volumeSlider"
+			"volumeSlider",
+			"input",
+			"displayText",
+			"message"
 		],
 		"subfolders": [
 			{
@@ -365,7 +375,13 @@
 					},
 					{
 						"items": [
-							"play"
+							"login",
+							"signup",
+							"play",
+							"back",
+							"resetPassword",
+							"create",
+							"send"
 						],
 						"subfolders": [],
 						"name": "textButtons"
@@ -711,7 +727,6 @@
 			"comparisonTooltipText",
 			"door",
 			"anchorTiledBackground",
-			"anchorText",
 			"checkbox",
 			"lootChest"
 		],
@@ -862,6 +877,20 @@
 						}
 					],
 					"name": "three"
+				},
+				{
+					"items": [
+						{
+							"name": "firebase-app.js",
+							"type": "application/javascript",
+							"sid": 321402745331426,
+							"script-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "firebase"
 				}
 			],
 			"autoReloadOnPreview": true
@@ -1474,6 +1503,14 @@
 					"sid": 525835444151939,
 					"file-info": {
 						"purpose": "none"
+					}
+				},
+				{
+					"name": "styles.css",
+					"type": "text/css",
+					"sid": 725835856504534,
+					"file-info": {
+						"purpose": "stylesheet"
 					}
 				}
 			],

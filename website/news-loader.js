@@ -4,6 +4,12 @@
 // List of all news posts (add new posts here as objects)
 const newsPosts = [
     {
+        href: "https://DaggerQuest.com/news/patch-notes-044",
+        img: "images/044.webp",
+        alt: "DaggerQuest 0.4.4",
+        headline: "0.4.4 Patch Notes"
+    },
+    {
         href: "https://DaggerQuest.com/news/patch-notes-043",
         img: "images/043.webp",
         alt: "DaggerQuest 0.4.3",

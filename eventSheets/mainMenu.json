@@ -476,7 +476,7 @@
 					"disabled": false,
 					"title": "log in",
 					"description": "",
-					"isActiveOnStart": true,
+					"isActiveOnStart": false,
 					"children": [
 						{
 							"eventType": "block",
@@ -871,10 +871,106 @@
 									}
 								}
 							],
-							"sid": 571625656246809
+							"sid": 571625656246809,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-on-layer",
+											"objectClass": "input",
+											"sid": 912735782450135,
+											"parameters": {
+												"layer": "layerToTurnOn"
+											}
+										},
+										{
+											"id": "pick-by-highest-lowest-value",
+											"objectClass": "System",
+											"sid": 799480912982929,
+											"parameters": {
+												"object": "input",
+												"which": "lowest",
+												"expression": "input.Y"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 904663466435400,
+											"parameters": {
+												"seconds": "0",
+												"use-timescale": true
+											}
+										},
+										{
+											"id": "set-focused",
+											"objectClass": "input",
+											"sid": 950628002867888
+										}
+									],
+									"sid": 766164645711606
+								}
+							]
 						}
 					],
 					"sid": 578226303117233
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "mouse",
+							"sid": 216927894877406,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "textButtons"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "This is a temporary solution that allows us to enter DaggerQuest without authentication. Delete this event and enable the \"log in\" sub-group after https://github.com/Laserwolve-Games/DaggerQuest/issues/54 has been completed."
+						},
+						{
+							"callFunction": "Change layout",
+							"sid": 622964654355346,
+							"parameters": [
+								"FIRST_LAYOUT",
+								false
+							]
+						}
+					],
+					"sid": 943731727606647,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-preview",
+									"objectClass": "System",
+									"sid": 121864649749784,
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "alert",
+									"objectClass": "browser",
+									"sid": 880827614247025,
+									"parameters": {
+										"message": "\"Account functionality has not yet been implemented. Continuing without an account...\""
+									}
+								}
+							],
+							"sid": 411690868697474
+						}
+					]
 				}
 			],
 			"sid": 608494637955654

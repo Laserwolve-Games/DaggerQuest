@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0.3.9 Patch Notes | DaggerQuest | Browser ARPG</title>
     <meta name="description" content="DaggerQuest Patch Notes 0.3.9: Added tips, new keybinds, and UI feedback. Fixed tooltip, menu, and splash screen bugs.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://DaggerQuest.com/news/patch-notes-039">
+    <meta property="og:title" content="0.3.9 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="og:description" content="DaggerQuest Patch Notes 0.3.9: Added tips, new keybinds, and UI feedback. Fixed tooltip, menu, and splash screen bugs.">
+    <meta property="og:image" content="https://DaggerQuest.com/images/039.webp">
+    <meta property="og:image:alt" content="DaggerQuest 0.3.9 Release">
+    <meta property="article:published_time" content="2024-10-15T00:00:00Z">
+    <meta property="article:author" content="Laserwolve Games">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://DaggerQuest.com/news/patch-notes-039">
+    <meta property="twitter:title" content="0.3.9 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="twitter:description" content="DaggerQuest Patch Notes 0.3.9: Added tips, new keybinds, and UI feedback. Fixed tooltip, menu, and splash screen bugs.">
+    <meta property="twitter:image" content="https://DaggerQuest.com/images/039.webp">
+    
     <link rel="preload" href="../game/fonts/cinzel-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../game/fonts/grenze-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../style.css">
@@ -27,13 +47,14 @@
 }
 </script>
 <body>
-    <div id="header"></div>
-    <div class="container news-container">
-        <div class="news-post-detail">
+    <header id="header"></header>
+    <main class="container news-container">
+        <article class="news-post-detail">
+    
             <img src="../images/039.webp" alt="DaggerQuest 0.3.9" class="news-thumb">
             <h1 class="news-title">Release 0.3.9</h1>
             <div class="news-body news-columns">
-                <div class="news-col news-col-left">
+                <section class="news-col news-col-left">
                     <h2 class="news-col-title">updates</h2>
                     <ul>
                         <li>The Shift key can be used to stop moving, and/or attack in place. This can be rebound in the Settings menu.</li>
@@ -47,7 +68,7 @@
                         <li>Merchants let you know verbally when they can't purchase any more items.</li>
                     </ul>
                 </div>
-                <div class="news-col news-col-right">
+                <section class="news-col news-col-right">
                     <h2 class="news-col-title">bug fixes</h2>
                     <ul>
                         <li>The "currently equipped" text above the comparison tooltip for currently equipped items was very small.</li>
@@ -65,12 +86,14 @@
                         <li>Some text on the Settings menu wasn't moving when the Settings menu was moved to a new location, or the screen was resized.</li>
                         <li>Tooltips would display for items and loot that were behind menus.</li>
                     </ul>
-                </div>
+                </section>
             </div>
-        </div>
-        <div class="news-divider"></div>
-        <div id="footer"></div>
-    </div>
+            <div class="news-divider"></div>
+        </article>
+        <footer id="footer"></footer>
+    </main>
     <script src="../includes.js"></script>
 </body>
 </html>
+
+

@@ -43,7 +43,7 @@ fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
 });
 
 // Add favicon dynamically to every page
-(function() {
+(() => {
   const head = document.head;
   // Add charset meta tag if not present (should be first in head)
   if (head && !document.querySelector('meta[charset]')) {
@@ -79,48 +79,88 @@ fetch(basePath + 'footer.html').then(res => res.text()).then(data => {
   // }
 })();
 
-// Add Google Analytics dynamically to every page
-(function() {
-  const head = document.head;
-  if (head && !document.getElementById('google-gtag')) {
-    // Add the gtag.js script
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5SY437DMY';
-    gaScript.id = 'google-gtag';
-    head.appendChild(gaScript);
+if (location.hostname === "daggerquest.com") {
 
-    // Add the inline config script
-    const inlineScript = document.createElement('script');
-    inlineScript.innerHTML = `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-C5SY437DMY');`;
-    head.appendChild(inlineScript);
-  }
+  // Add Google Analytics dynamically to every page
+  (() => {
+    const head = document.head;
+    if (head && !document.getElementById('google-gtag')) {
+      // Add the gtag.js script
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5SY437DMY';
+      gaScript.id = 'google-gtag';
+      head.appendChild(gaScript);
+
+      // Add the inline config script
+      const inlineScript = document.createElement('script');
+      inlineScript.innerHTML = `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C5SY437DMY');`;
+      head.appendChild(inlineScript);
+    }
+  })();
+
+  // Add Google Adsense
+  (() => {
+    const head = document.head;
+    if (head && !document.querySelector('script[src*="adsbygoogle.js"]')) {
+      const adScript = document.createElement('script');
+      adScript.async = true;
+      adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
+      adScript.crossOrigin = 'anonymous';
+      head.appendChild(adScript);
+    }
+  })();
+
+  // Add Google Adsense account meta tag
+  (() => {
+    const head = document.head;
+    if (head && !document.querySelector('meta[name="google-adsense-account"]')) {
+      const meta = document.createElement('meta');
+      meta.name = 'google-adsense-account';
+      meta.content = 'ca-pub-2087729758302145';
+      head.appendChild(meta);
+    }
+  })();
+   
+}
+else console.warn('Not running on DaggerQuest.com, skipping analytics and ads.');
+
+// Function to toggle mobile menu with accessibility support
+function toggleMobileMenu(button) {
+    const menu = document.querySelector('.navbar-menu');
+    if (menu) {
+        const isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        button.setAttribute('aria-expanded', !isOpen);
+    }
+}
+
+// Make the function globally available
+window.toggleMobileMenu = toggleMobileMenu;
+
+// Add accessibility styles
+(() => {
+    if (!document.querySelector('#accessibility-styles')) {
+        const styles = `
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'accessibility-styles';
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+    }
 })();
-
-// Add Google Adsense
-(function() {
-  const head = document.head;
-  if (head && !document.querySelector('script[src*="adsbygoogle.js"]')) {
-    const adScript = document.createElement('script');
-    adScript.async = true;
-    adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
-    adScript.crossOrigin = 'anonymous';
-    head.appendChild(adScript);
-  }
-})();
-
-// Add Google Adsense account meta tag
-(function() {
-  const head = document.head;
-  if (head && !document.querySelector('meta[name="google-adsense-account"]')) {
-    const meta = document.createElement('meta');
-    meta.name = 'google-adsense-account';
-    meta.content = 'ca-pub-2087729758302145';
-    head.appendChild(meta);
-  }
-})();
-
-

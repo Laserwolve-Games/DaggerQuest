@@ -64,7 +64,15 @@
 .navbar-links {
     display: flex;
     gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
+
+.navbar-links li {
+    display: block;
+}
+
 .navbar-hamburger, .navbar-menu {
     display: none;
 }
@@ -108,12 +116,19 @@
         transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s cubic-bezier(.4,0,.2,1);
         transform: translateY(-20px);
         opacity: 0;
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
     .navbar-menu.mobile-only.open {
         display: flex !important;
         pointer-events: auto;
         transform: translateY(0);
         opacity: 1;
+    }
+    .navbar-menu.mobile-only li {
+        display: block;
+        width: 100%;
     }
     .navbar-menu.mobile-only a {
         display: block;
@@ -124,6 +139,7 @@
         border-radius: 0;
         margin: 0;
         border-bottom: 1px solid #222;
+        box-sizing: border-box;
     }
     #header-logo {
         height: 40px !important;

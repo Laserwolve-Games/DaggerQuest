@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DaggerQuest | Browser ARPG</title>
     <meta name="description" content="Play DaggerQuest, a browser-based action RPG. Dive into adventure, battle monsters, and collect loot in this free online game.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://DaggerQuest.com/">
+    <meta property="og:title" content="DaggerQuest | Browser ARPG">
+    <meta property="og:description" content="Play DaggerQuest, a browser-based action RPG. Dive into adventure, battle monsters, and collect loot in this free online game.">
+    <meta property="og:image" content="https://DaggerQuest.com/game/images/logo-lsheet0.avif">
+    <meta property="og:image:alt" content="DaggerQuest Logo">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://DaggerQuest.com/">
+    <meta property="twitter:title" content="DaggerQuest | Browser ARPG">
+    <meta property="twitter:description" content="Play DaggerQuest, a browser-based action RPG. Dive into adventure, battle monsters, and collect loot in this free online game.">
+    <meta property="twitter:image" content="https://DaggerQuest.com/game/images/logo-lsheet0.avif">
+    
     <link rel="preload" href="game/fonts/cinzel-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="game/fonts/grenze-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
@@ -33,9 +51,9 @@
 </script>
 </head>
 <body>
-    <div id="header"></div>
-    <div class="container flex-ads">
-        <div class="ad-slot left-ad desktop-only">
+    <header id="header"></header>
+    <main class="container flex-ads">
+        <aside class="ad-slot left-ad desktop-only">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145"
               crossorigin="anonymous">
             </script>
@@ -46,15 +64,15 @@
             <script>
               (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>
-        <div class="center-content">
+        </aside>
+        <section class="center-content">
             <iframe class="game-frame desktop-only" src="game/index.html" allowfullscreen loading="lazy" title="DaggerQuest Game"></iframe>
             <div id="mobile-message" class="mobile-only">
                 DaggerQuest is not yet available for mobile devices. Check back soon!
             </div>
-            <div id="footer"></div>
-        </div>
-        <div class="ad-slot right-ad desktop-only">
+            <footer id="footer"></footer>
+        </section>
+        <aside class="ad-slot right-ad desktop-only">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145"
               crossorigin="anonymous">
             </script>
@@ -65,8 +83,8 @@
             <script>
               (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>
-    </div>
+        </aside>
+    </main>
     <script src="includes.js"></script>
     <script src="mobile-detect.js"></script>
 </body>

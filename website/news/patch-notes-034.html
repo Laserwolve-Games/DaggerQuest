@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0.3.4 Patch Notes | DaggerQuest | Browser ARPG</title>
     <meta name="description" content="DaggerQuest Patch Notes 0.3.4: Audio, performance, and UI improvements. Fixed equipment overlap and menu fade bugs.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://DaggerQuest.com/news/patch-notes-034">
+    <meta property="og:title" content="0.3.4 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="og:description" content="DaggerQuest Patch Notes 0.3.4: Audio, performance, and UI improvements. Fixed equipment overlap and menu fade bugs.">
+    <meta property="og:image" content="https://DaggerQuest.com/images/034.webp">
+    <meta property="og:image:alt" content="DaggerQuest 0.3.4 Release">
+    <meta property="article:published_time" content="2024-08-15T00:00:00Z">
+    <meta property="article:author" content="Laserwolve Games">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://DaggerQuest.com/news/patch-notes-034">
+    <meta property="twitter:title" content="0.3.4 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="twitter:description" content="DaggerQuest Patch Notes 0.3.4: Audio, performance, and UI improvements. Fixed equipment overlap and menu fade bugs.">
+    <meta property="twitter:image" content="https://DaggerQuest.com/images/034.webp">
+    
     <link rel="preload" href="../game/fonts/cinzel-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../game/fonts/grenze-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../style.css">
@@ -27,13 +47,14 @@
 }
 </script>
 <body>
-    <div id="header"></div>
-    <div class="container news-container">
-        <div class="news-post-detail">
+    <header id="header"></header>
+    <main class="container news-container">
+        <article class="news-post-detail">
+    
             <img src="../images/034.webp" alt="DaggerQuest 0.3.4" class="news-thumb">
             <h1 class="news-title">Release 0.3.4</h1>
             <div class="news-body news-columns">
-                <div class="news-col news-col-left">
+                <section class="news-col news-col-left">
                     <h2 class="news-col-title">updates</h2>
                     <ul>
                         <li>Updated <span class="name">The Guide</span> to look more feminine.</li>
@@ -55,19 +76,21 @@
                         <li>Added fade-in/fade-out effects to the appearance and disappearance of various menus.</li>
                     </ul>
                 </div>
-                <div class="news-col news-col-right">
+                <section class="news-col news-col-right">
                     <h2 class="news-col-title">bug fixes</h2>
                     <ul>
                         <li>Enemies would sometimes still deal damage if they died mid-attack.</li>
                         <li>High memory consumption when transitioning between very large areas.</li>
                         <li>Some parts of the UI could be interacted with while on the loading screen for <span class="name">Windmill Level 1</span>.</li>
                     </ul>
-                </div>
+                </section>
             </div>
-        </div>
-        <div class="news-divider"></div>
-        <div id="footer"></div>
-    </div>
+            <div class="news-divider"></div>
+        </article>
+        <footer id="footer"></footer>
+    </main>
     <script src="../includes.js"></script>
 </body>
 </html>
+
+

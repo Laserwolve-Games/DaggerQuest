@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0.3.7 Patch Notes | DaggerQuest | Browser ARPG</title>
-    <meta name="description" content="DaggerQuest Patch Notes 0.3.7: Major performance and stat changes. Fixed sound, ability, and stat display bugs.">   
+    <meta name="description" content="DaggerQuest Patch Notes 0.3.7: Major performance and stat changes. Fixed sound, ability, and stat display bugs.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://DaggerQuest.com/news/patch-notes-037">
+    <meta property="og:title" content="0.3.7 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="og:description" content="DaggerQuest Patch Notes 0.3.7: Major performance and stat changes. Fixed sound, ability, and stat display bugs.">
+    <meta property="og:image" content="https://DaggerQuest.com/images/037.webp">
+    <meta property="og:image:alt" content="DaggerQuest 0.3.7 Release">
+    <meta property="article:published_time" content="2024-09-30T00:00:00Z">
+    <meta property="article:author" content="Laserwolve Games">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://DaggerQuest.com/news/patch-notes-037">
+    <meta property="twitter:title" content="0.3.7 Patch Notes | DaggerQuest | Browser ARPG">
+    <meta property="twitter:description" content="DaggerQuest Patch Notes 0.3.7: Major performance and stat changes. Fixed sound, ability, and stat display bugs.">
+    <meta property="twitter:image" content="https://DaggerQuest.com/images/037.webp">
+    
     <link rel="preload" href="../game/fonts/cinzel-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../game/fonts/grenze-semibold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../style.css">
@@ -27,13 +47,14 @@
 }
 </script>
 <body>
-    <div id="header"></div>
-    <div class="container news-container">
-        <div class="news-post-detail">
+    <header id="header"></header>
+    <main class="container news-container">
+        <article class="news-post-detail">
+    
             <img src="../images/037.webp" alt="DaggerQuest 0.3.7" class="news-thumb">
             <h1 class="news-title">Release 0.3.7</h1>
             <div class="news-body news-columns">
-                <div class="news-col news-col-left">
+                <section class="news-col news-col-left">
                     <h2 class="news-col-title">updates</h2>
                     <ul>
                         <li>Various performance improvements have been implemented.</li>
@@ -51,7 +72,7 @@
                         <li>Leveling up closes the ability selector.</li>
                     </ul>
                 </div>
-                <div class="news-col news-col-right">
+                <section class="news-col news-col-right">
                     <h2 class="news-col-title">bug fixes</h2>
                     <ul>
                         <li>Sound effects with multiple variants would play some variants much less frequently than others.</li>
@@ -64,12 +85,14 @@
                         <li><span class="name">Leggings</span> didn't cast a shadow when equipped.</li>
                         <li>The player didn't obtain access to the correct abilities upon leveling up.</li>
                     </ul>
-                </div>
+                </section>
             </div>
-        </div>
-        <div class="news-divider"></div>
-        <div id="footer"></div>
-    </div>
+            <div class="news-divider"></div>
+        </article>
+        <footer id="footer"></footer>
+    </main>
     <script src="../includes.js"></script>
 </body>
 </html>
+
+

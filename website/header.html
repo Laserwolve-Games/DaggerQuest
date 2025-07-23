@@ -1,24 +1,24 @@
-<nav class="navbar">
-    <a href="https://DaggerQuest.com" class="navbar-logo-link">
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="https://DaggerQuest.com" class="navbar-logo-link" aria-label="DaggerQuest Home">
         <img id="header-logo" src="game/images/logo-lsheet0.avif" alt="DaggerQuest Logo">
     </a>
-    <div class="navbar-links desktop-only">
-        <a href="https://DaggerQuest.com">home</a>
-        <a href="https://DaggerQuest.com/news">news</a>
-        <a href="https://DaggerQuest.com/guide">guide</a>
-        <a href="https://DaggerQuest.com/media">media</a>
-        <a href="https://DaggerQuest.com/support">support</a>
-    </div>
-    <button class="navbar-hamburger mobile-only" aria-label="Open menu" onclick="document.querySelector('.navbar-menu').classList.toggle('open')">
+    <ul class="navbar-links desktop-only" role="list">
+        <li><a href="https://DaggerQuest.com">home</a></li>
+        <li><a href="https://DaggerQuest.com/news">news</a></li>
+        <li><a href="https://DaggerQuest.com/guide">guide</a></li>
+        <li><a href="https://DaggerQuest.com/media">media</a></li>
+        <li><a href="https://DaggerQuest.com/support">support</a></li>
+    </ul>
+    <button class="navbar-hamburger mobile-only" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)">
         <span class="navbar-hamburger-bar"></span>
         <span class="navbar-hamburger-bar"></span>
         <span class="navbar-hamburger-bar"></span>
     </button>
-    <div class="navbar-menu mobile-only">
-        <a href="https://DaggerQuest.com">home</a>
-        <a href="https://DaggerQuest.com/news">news</a>
-        <a href="https://DaggerQuest.com/guide">guide</a>
-        <a href="https://DaggerQuest.com/media">media</a>
-        <a href="https://DaggerQuest.com/support">support</a>
-    </div>
+    <ul class="navbar-menu mobile-only" role="list">
+        <li><a href="https://DaggerQuest.com">home</a></li>
+        <li><a href="https://DaggerQuest.com/news">news</a></li>
+        <li><a href="https://DaggerQuest.com/guide">guide</a></li>
+        <li><a href="https://DaggerQuest.com/media">media</a></li>
+        <li><a href="https://DaggerQuest.com/support">support</a></li>
+    </ul>
 </nav>

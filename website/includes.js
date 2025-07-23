@@ -101,62 +101,9 @@ if (location.hostname === "daggerquest.com") {
       head.appendChild(inlineScript);
     }
   })();
-
-  // Add Google Adsense
-  (() => {
-    const head = document.head;
-    if (head && !document.querySelector('script[src*="adsbygoogle.js"]')) {
-      const adScript = document.createElement('script');
-      adScript.async = true;
-      adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145';
-      adScript.crossOrigin = 'anonymous';
-      head.appendChild(adScript);
-    }
-  })();
-
-  // Add Google Adsense account meta tag
-  (() => {
-    const head = document.head;
-    if (head && !document.querySelector('meta[name="google-adsense-account"]')) {
-      const meta = document.createElement('meta');
-      meta.name = 'google-adsense-account';
-      meta.content = 'ca-pub-2087729758302145';
-      head.appendChild(meta);
-    }
-  })();
-
-  // Load ads for index page (main game page)
-  (() => {
-    const leftAdSlot = document.querySelector('.ad-slot.left-ad');
-    const rightAdSlot = document.querySelector('.ad-slot.right-ad');
-    
-    if (leftAdSlot || rightAdSlot) {
-      // Function to create ad content
-      const createAdContent = () => `
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2087729758302145"
-          crossorigin="anonymous">
-        </script>
-        <!-- DaggerQuest Game Ads -->
-        <ins class="adsbygoogle ad-ins"
-        data-ad-client="ca-pub-2087729758302145"
-        data-ad-slot="2524300910"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      `;
-
-      // Load ads into slots
-      if (leftAdSlot) {
-        leftAdSlot.innerHTML = createAdContent();
-      }
-      if (rightAdSlot) {
-        rightAdSlot.innerHTML = createAdContent();
-      }
-    }
-  })();
    
 }
-else console.warn('Not running on DaggerQuest.com, skipping analytics and ads.');
+else console.warn('Not running on DaggerQuest.com, skipping analytics');
 
 // Function to toggle mobile menu with accessibility support
 function toggleMobileMenu(button) {

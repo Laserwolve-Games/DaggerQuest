@@ -6425,11 +6425,6 @@
 															}
 														},
 														{
-															"id": "wait-for-previous-actions",
-															"objectClass": "System",
-															"sid": 612226921109791
-														},
-														{
 															"id": "unload-object-images",
 															"objectClass": "System",
 															"sid": 964096055563955,
@@ -18469,6 +18464,36 @@
 					],
 					"sid": 784344448043891,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-destroyed",
+							"objectClass": "shadow",
+							"sid": 853015961101330
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 813900645258940,
+							"parameters": {
+								"seconds": "END_OF_TICK",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "unload-object-images",
+							"objectClass": "System",
+							"sid": 669880400649373,
+							"parameters": {
+								"object": "shadow"
+							}
+						}
+					],
+					"sid": 559838136903737
 				}
 			],
 			"sid": 538206850780870

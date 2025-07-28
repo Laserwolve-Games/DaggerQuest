@@ -461,6 +461,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "USE_ORIGINAL_SPEED",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Specifies that the original animation speed should be used.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 656531634889594
+		},
+		{
+			"eventType": "variable",
 			"name": "ATTACK_KEYWORD",
 			"type": "string",
 			"initialValue": "attack",
@@ -1365,14 +1375,9 @@
 							]
 						},
 						{
-							"customAction": "Update animation",
+							"customAction": "Idle",
 							"objectClass": "player",
-							"sid": 554227226821655,
-							"parameters": [
-								"IDLE_KEYWORD",
-								"body.OriginalAnimationSpeed",
-								true
-							]
+							"sid": 517763703650756
 						},
 						{
 							"id": "load-object-images-by-name",
@@ -8792,14 +8797,9 @@
 									}
 								},
 								{
-									"customAction": "Update animation",
+									"customAction": "Idle",
 									"objectClass": "player",
-									"sid": 385675005148660,
-									"parameters": [
-										"IDLE_KEYWORD",
-										"body.OriginalAnimationSpeed",
-										true
-									]
+									"sid": 839130493040836
 								}
 							],
 							"sid": 300934570311369
@@ -10445,14 +10445,9 @@
 									"text": "If the player isn't moving and not dead, and they were previously walking, (and the timescale isn't paused) make him start idling."
 								},
 								{
-									"customAction": "Update animation",
+									"customAction": "Idle",
 									"objectClass": "player",
-									"sid": 377537583783744,
-									"parameters": [
-										"IDLE_KEYWORD",
-										"body.OriginalAnimationSpeed",
-										false
-									]
+									"sid": 211355552456960
 								},
 								{
 									"id": "reset-eventvar",
@@ -10649,6 +10644,32 @@
 						},
 						{
 							"aceType": "action",
+							"aceName": "Idle",
+							"objectClass": "player",
+							"functionDescription": "Make the player start to idle.",
+							"functionCategory": "animations",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "custom-ace-block",
+							"conditions": [],
+							"actions": [
+								{
+									"customAction": "Update animation",
+									"objectClass": "player",
+									"sid": 157696749167223,
+									"parameters": [
+										"IDLE_KEYWORD",
+										"USE_ORIGINAL_SPEED",
+										true
+									]
+								}
+							],
+							"sid": 234625304615665
+						},
+						{
+							"aceType": "action",
 							"aceName": "Update animation",
 							"objectClass": "player",
 							"functionDescription": "Change the player's animation.",
@@ -10732,8 +10753,35 @@
 									"sid": 849921736427602
 								},
 								{
+									"eventType": "comment",
+									"text": "Calling this action with Sprite.OriginalAnimationSpeed as the animationSpeed parameter will use the original animation speed of the current animation of the sprite. It will not use the animation speed of the sprite being set. If the animationSpeed parameter is 0, we'll assume the original animation speed of the new animation is OK.",
+									"text-color": [
+										0.7843137254901961,
+										0.7843137254901961,
+										0.7843137254901961,
+										1
+									],
+									"background-color": [
+										0.39215686274509803,
+										0,
+										0,
+										1
+									]
+								},
+								{
 									"eventType": "block",
-									"conditions": [],
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 554048596706484,
+											"parameters": {
+												"variable": "animationSpeed",
+												"comparison": 1,
+												"value": "0"
+											}
+										}
+									],
 									"actions": [
 										{
 											"id": "set-animation-speed",

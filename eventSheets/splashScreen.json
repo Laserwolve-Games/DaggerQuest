@@ -373,7 +373,7 @@
 					"eventType": "variable",
 					"name": "DAGGERQUEST_WEBSITE_URL",
 					"type": "string",
-					"initialValue": "https://daggerquest.com",
+					"initialValue": "https://daggerquest.com/",
 					"comment": "The URL of the DaggerQuest website.",
 					"isStatic": false,
 					"isConstant": true,
@@ -405,6 +405,15 @@
 						}
 					],
 					"actions": [
+						{
+							"id": "log",
+							"objectClass": "browser",
+							"sid": 127281798293430,
+							"parameters": {
+								"type": "log",
+								"message": "\"Current URL is \" & browser.URL & \" and not \" & DAGGERQUEST_WEBSITE_URL & \", redirecting...\""
+							}
+						},
 						{
 							"id": "go-to-url",
 							"objectClass": "browser",

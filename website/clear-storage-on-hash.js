@@ -21,6 +21,6 @@ const getFileHash = async (url) => {
       console.log('DaggerQuest version is valid. No storage cleared.');
     }
   } catch (e) {
-    // fail silently
+    console.error('Error checking DaggerQuest version:', e);
   }
 })();

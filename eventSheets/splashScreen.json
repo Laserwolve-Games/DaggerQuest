@@ -406,9 +406,13 @@
 					],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website."
+						},
+						{
 							"id": "log",
 							"objectClass": "browser",
-							"sid": 127281798293430,
+							"sid": 401724419306879,
 							"parameters": {
 								"type": "log",
 								"message": "\"Current URL is \" & browser.URL & \" and not \" & DAGGERQUEST_WEBSITE_URL & \", redirecting...\""
@@ -417,15 +421,11 @@
 						{
 							"id": "go-to-url",
 							"objectClass": "browser",
-							"sid": 217312060039224,
+							"sid": 188562361293630,
 							"parameters": {
 								"url": "DAGGERQUEST_WEBSITE_URL",
 								"target": "parent"
 							}
-						},
-						{
-							"type": "comment",
-							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website."
 						}
 					],
 					"sid": 673192513632614

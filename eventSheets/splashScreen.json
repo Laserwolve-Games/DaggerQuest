@@ -397,6 +397,7 @@
 							"id": "compare-two-values",
 							"objectClass": "System",
 							"sid": 352052879462429,
+							"disabled": true,
 							"parameters": {
 								"first-value": "DAGGERQUEST_WEBSITE_URL",
 								"comparison": 1,
@@ -412,16 +413,17 @@
 						{
 							"id": "log",
 							"objectClass": "browser",
-							"sid": 401724419306879,
+							"sid": 731779099866042,
 							"parameters": {
 								"type": "log",
-								"message": "\"Current URL is \" & browser.URL & \" and not \" & DAGGERQUEST_WEBSITE_URL & \", redirecting...\""
+								"message": "\"Current URL is \" & browser.URL"
 							}
 						},
 						{
 							"id": "go-to-url",
 							"objectClass": "browser",
 							"sid": 188562361293630,
+							"disabled": true,
 							"parameters": {
 								"url": "DAGGERQUEST_WEBSITE_URL",
 								"target": "parent"

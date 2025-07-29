@@ -1,4 +1,5 @@
 // https://github.com/Laserwolve-Games/DaggerQuest/issues/64
+console.log('Checking for bad version of DaggerQuest...');
 const getFileHash = async (url) => {
   const buf = await fetch(url).then(r => r.arrayBuffer());
   const hashBuf = await crypto.subtle.digest('SHA-256', buf);
@@ -16,6 +17,8 @@ const getFileHash = async (url) => {
         console.log('Bad version of DaggerQuest detected. Clearing browser storage...');
         try { localStorage.clear(); } catch (e) {}
         try { sessionStorage.clear(); } catch (e) {}
+    } else {
+      console.log('DaggerQuest version is valid. No storage cleared.');
     }
   } catch (e) {
     // fail silently

@@ -397,7 +397,15 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website. Browser.URL returns 'https://daggerquest.com/game/index' while on the homepage of DaggerQuest.com, so we have to use JavaScript here."
+							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website. "
+						},
+						{
+							"type": "comment",
+							"text": "Browser.URL returns 'https://daggerquest.com/game/index' while on the homepage of DaggerQuest.com, so we have to use JavaScript here."
+						},
+						{
+							"type": "comment",
+							"text": "This caused https://github.com/Laserwolve-Games/DaggerQuest/issues/64"
 						},
 						{
 							"id": "log",

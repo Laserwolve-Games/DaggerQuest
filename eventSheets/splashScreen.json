@@ -392,23 +392,12 @@
 							"objectClass": "System",
 							"sid": 891443397856963,
 							"isInverted": true
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 352052879462429,
-							"disabled": true,
-							"parameters": {
-								"first-value": "DAGGERQUEST_WEBSITE_URL",
-								"comparison": 1,
-								"second-value": "lowercase(browser.URL)"
-							}
 						}
 					],
 					"actions": [
 						{
 							"type": "comment",
-							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website."
+							"text": "🔒Security: If we're not in a preview and the URL is wrong, send us to the DaggerQuest website. Browser.URL returns 'https://daggerquest.com/game/index' while on the homepage of DaggerQuest.com, so we have to use JavaScript here."
 						},
 						{
 							"id": "log",
@@ -420,14 +409,11 @@
 							}
 						},
 						{
-							"id": "go-to-url",
-							"objectClass": "browser",
-							"sid": 188562361293630,
-							"disabled": true,
-							"parameters": {
-								"url": "DAGGERQUEST_WEBSITE_URL",
-								"target": "parent"
-							}
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"if(window.location.href !== 'https://daggerquest.com/') window.location.href = 'https://daggerquest.com/'"
+							]
 						}
 					],
 					"sid": 673192513632614

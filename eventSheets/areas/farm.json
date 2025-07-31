@@ -68,7 +68,8 @@
 					"type": "script",
 					"language": "javascript",
 					"script": [
-						"if (window.parent && typeof window.parent.gtag === 'function') {",
+						"if(window.location.href === 'https://daggerquest.com/')",
+						"if(window.parent && typeof window.parent.gtag === 'function') {",
 						"",
 						"\twindow.parent.gtag('event', 'loaded_into_tutorial', {",
 						"\t\t'notsure': 'tutorial_start'",

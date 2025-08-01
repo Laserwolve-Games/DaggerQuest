@@ -376,72 +376,74 @@ const OnResize = (e) => {
  */
 const OnTick = (runtime) => {
 
-	threeMixer?.update(runtime.dt);
+	const layer = runtime.layout.getLayer('passives');
+	if (layer?.isVisible) {
 
-	threeControls.update();
+		threeMixer?.update(runtime.dt);
 
-	threeRenderer.render(threeScene, threeCamera);
+		threeControls.update();
 
-	threeScene.children.forEach(node => {
+		threeRenderer.render(threeScene, threeCamera);
 
-		let player = runtime?.objects?.player?.getFirstInstance();
+		threeScene.children.forEach(node => {
 
-		if (player?.instVars.allocatedPassivePoints === 0) {
+			let player = runtime?.objects?.player?.getFirstInstance();
 
-			// TODO: don't hardcode this, get it from the player/body
-			if (node.userData.startingPointForClass === "knight") {
+			if (player?.instVars.allocatedPassivePoints === 0) {
 
-				node.userData.canBeAllocated = true;
+				// TODO: don't hardcode this, get it from the player/body
+				if (node.userData.startingPointForClass === "knight") {
 
-				// Move the camera controls target to this node's position so it appears in the middle
-				// threeControls.target.copy(node.position);
-				// threeCamera.position.addVectors(node.position, new THREE.Vector3(10, 4, 16));
-				// threeCamera.lookAt(node.position);
-				// threeControls.update();
+					node.userData.canBeAllocated = true;
 
-				if (!OnTick.cameraSetForZeroPoints) {
-					threeCamera.position.set(-11, -11, -11);
-					OnTick.cameraSetForZeroPoints = true;
+					// Move the camera controls target to this node's position so it appears in the middle
+					// threeControls.target.copy(node.position);
+					// threeCamera.position.addVectors(node.position, new THREE.Vector3(10, 4, 16));
+					// threeCamera.lookAt(node.position);
+					// threeControls.update();
+
+					if (!OnTick.cameraSetForZeroPoints) {
+						threeCamera.position.set(-11, -11, -11);
+						OnTick.cameraSetForZeroPoints = true;
+					}
+
+					// if (!OnTick.lastLogTime || performance.now() - OnTick.lastLogTime > 1000) {
+					// 	console.log(`Camera position: X=${threeCamera.position.x}, Y=${threeCamera.position.y}, Z=${threeCamera.position.z}`);
+					// 	OnTick.lastLogTime = performance.now();
+					// }
 				}
-
-				// if (!OnTick.lastLogTime || performance.now() - OnTick.lastLogTime > 1000) {
-				// 	console.log(`Camera position: X=${threeCamera.position.x}, Y=${threeCamera.position.y}, Z=${threeCamera.position.z}`);
-				// 	OnTick.lastLogTime = performance.now();
-				// }
 			}
-		}
-		// Set all unallocated nodes white
-		if (!node.userData.isAllocated) node.children[0].children[0].material.color.set(none);
-		else node.children[0].children[0].material.color.set(red);
-		// Make unallocated nodes that can be allocated pulsate blue
-		if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && player?.instVars.unspentPassivePoints > 0) {
-			const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
-			node.children[0].children[0].material.color.lerp(lightRed, scale);
-		}
-	});
-
-	// Get the node under the mouse and highlight it
-	if (!isRotating) {
-		raycaster.setFromCamera(mouse, threeCamera);
-		nodeUnderMouse = null;
-
-		raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
-			if (node.object.material.opacity == 1) nodeUnderMouse = node.object;
+			// Set all unallocated nodes white
+			if (!node.userData.isAllocated) node.children[0].children[0].material.color.set(none);
+			else node.children[0].children[0].material.color.set(red);
+			// Make unallocated nodes that can be allocated pulsate blue
+			if (node.userData.canBeAllocated && !node.userData.isAllocated && node.children[0].children[0].material.opacity == 1 && player?.instVars.unspentPassivePoints > 0) {
+				const scale = Math.sin(pulseClock.getElapsedTime() * 5) * 0.5 + 0.5;
+				node.children[0].children[0].material.color.lerp(lightRed, scale);
+			}
 		});
 
-		nodeUnderMouse?.material.color.set(orange);
+		// Get the node under the mouse and highlight it
+		if (!isRotating) {
+			raycaster.setFromCamera(mouse, threeCamera);
+			nodeUnderMouse = null;
 
-		let nodeParent = nodeUnderMouse?.parent.parent;
+			raycaster.intersectObjects(threeScene.children, true).slice().reverse().forEach((node) => {
+				if (node.object.material.opacity == 1) nodeUnderMouse = node.object;
+			});
 
-		const layer = runtime.layout.getLayer('passives');
+			nodeUnderMouse?.material.color.set(orange);
 
-		if (layer) if (nodeUnderMouse && layer.isVisible) {
+			let nodeParent = nodeUnderMouse?.parent.parent;
 
-			runtime.callFunction('Show node tooltip', nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
-		} else {
-			runtime.callFunction('Hide node tooltip');
-		}			
+			const layer = runtime.layout.getLayer('passives');
+
+			if (layer) if (nodeUnderMouse && layer.isVisible) {
+
+				runtime.callFunction('Show node tooltip', nodeParent.userData.Row, nodeParent.userData.Column, nodeParent.userData.Depth);
+			} else {
+				runtime.callFunction('Hide node tooltip');
+			}			
+		}
 	}
-
-
 }

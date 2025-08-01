@@ -64,7 +64,7 @@ const pointerDown = (event) => {
 
 		let nodeParent = nodeUnderMouse?.parent.parent;
 
-		if (nodeParent.userData.canBeAllocated && !nodeParent.userData.isAllocated && runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints > 0) {
+		if (nodeParent?.userData?.canBeAllocated && !nodeParent?.userData?.isAllocated && runtime.objects.player.getFirstInstance().instVars.unspentPassivePoints > 0) {
 
 			nodeParent.userData.isAllocated = true;
 			nodeParent.userData.canBeAllocated = false;
@@ -75,7 +75,7 @@ const pointerDown = (event) => {
 			scanAllNodes(nodeParent);
 			pointerMove(event);
 
-		} else if (nodeParent.userData.canBeDeallocated && nodeParent.userData.isAllocated) {
+		} else if (nodeParent?.userData?.canBeDeallocated && nodeParent?.userData?.isAllocated) {
 
 			nodeParent.userData.isAllocated = false;
 			nodeParent.userData.canBeAllocated = true;

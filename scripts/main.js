@@ -189,6 +189,12 @@ const scanAllNodes = (nodeParent) => {
     // For each allocated node, check if it can be deallocated without breaking connectivity
     const allocatedNodes = threeScene.children.filter(n => n.userData.isAllocated);
     allocatedNodes.forEach(node => {
+        
+        if (node.userData.startingPointForClass === "knight") {
+            node.userData.canBeDeallocated = false;
+            return;
+        }
+        
         // Temporarily unallocate this node
         node.userData.isAllocated = false;
         // Find another allocated node to start the search

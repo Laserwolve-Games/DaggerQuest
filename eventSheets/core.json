@@ -11113,6 +11113,126 @@
 								}
 							],
 							"sid": 235772842449764
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 762046322722674,
+									"parameters": {
+										"object": "pillarOfFateClose"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 453977625300726
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "pillarOfFateClose",
+									"sid": 673786477702889,
+									"parameters": {
+										"animation": "\"highlight\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 269052932391132
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 902255186961477,
+									"parameters": {
+										"object": "pillarOfFateClose"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 835714080508551
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "pillarOfFateClose",
+									"sid": 265533881029443,
+									"parameters": {
+										"animation": "\"normal\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 561862000877785
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 595880368831095,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "pillarOfFate"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 300385643568360,
+									"parameters": {
+										"variable": "isOnInteractCooldown"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Toggle menu",
+									"sid": 679544222727116,
+									"parameters": [
+										"pillarOfFateStatue.LayerName"
+									]
+								}
+							],
+							"sid": 584911525782577
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "mouse",
+									"sid": 563554657999118,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "pillarOfFateClose"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Toggle menu",
+									"sid": 480619928604873,
+									"parameters": [
+										"pillarOfFateStatue.LayerName"
+									]
+								}
+							],
+							"sid": 412309951719771
 						}
 					],
 					"sid": 222903785406309
@@ -12390,7 +12510,7 @@
 						},
 						{
 							"functionName": "Toggle menu",
-							"functionDescription": "Open or close a menu with a key.",
+							"functionDescription": "Open or close a menu.",
 							"functionCategory": "menus",
 							"functionReturnType": "none",
 							"functionCopyPicked": false,

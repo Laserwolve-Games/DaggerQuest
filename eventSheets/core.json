@@ -11031,6 +11031,95 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "pillar of fate",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 407534584546642,
+									"parameters": {
+										"object": "pillarOfFate"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 938403529958379
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "pillarOfFate",
+									"sid": 231568620546934,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "pillarOfFate",
+									"sid": 934094800312888,
+									"parameters": {
+										"mode": "enable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								}
+							],
+							"sid": 531741703994611
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "mouse",
+									"sid": 659875290491134,
+									"parameters": {
+										"object": "pillarOfFate"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 943765850210605
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "pillarOfFate",
+									"sid": 438777028343055,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWVERTICAL_EFFECT_NAME"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "pillarOfFate",
+									"sid": 119580747278897,
+									"parameters": {
+										"mode": "disable",
+										"effect": "GLOWHORIZONTAL_EFFECT_NAME"
+									}
+								}
+							],
+							"sid": 235772842449764
+						}
+					],
+					"sid": 222903785406309
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "ability bar",
 					"description": "",
 					"isActiveOnStart": true,

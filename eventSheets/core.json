@@ -101,6 +101,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "CAMERA_ANGLE",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "The camera angle, on a scale of 0 to 1.",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 881437917367046
+		},
+		{
+			"eventType": "variable",
 			"name": "DEFAULT_STEREO_PAN",
 			"type": "number",
 			"initialValue": "0",
@@ -2737,16 +2747,6 @@
 								},
 								{
 									"eventType": "variable",
-									"name": "isometrifiedLootDistance",
-									"type": "number",
-									"initialValue": "0",
-									"comment": "The loot distance, made isometric.",
-									"isStatic": true,
-									"isConstant": false,
-									"sid": 339031536532458
-								},
-								{
-									"eventType": "variable",
 									"name": "INITIAL_SCALE",
 									"type": "number",
 									"initialValue": "0.5",
@@ -2855,10 +2855,6 @@
 											}
 										},
 										{
-											"type": "comment",
-											"text": "https://github.com/Laserwolve-Games/DaggerQuest/issues/38"
-										},
-										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 355813859460437,
@@ -2868,30 +2864,21 @@
 											}
 										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 468051174019695,
-											"parameters": {
-												"variable": "isometrifiedLootDistance",
-												"value": "Functions.isometrify(LOOT_DISTANCE, theAngle)"
-											}
-										},
-										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 108057161204255,
+											"sid": 709988441930492,
 											"parameters": {
 												"instance-variable": "destinationX",
-												"value": "x + isometrifiedLootDistance * cos(theAngle)"
+												"value": "x + LOOT_DISTANCE * cos(theAngle)"
 											}
 										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "loot",
-											"sid": 292440661066943,
+											"sid": 379851325350770,
 											"parameters": {
 												"instance-variable": "destinationY",
-												"value": "y + isometrifiedLootDistance * sin(theAngle)"
+												"value": "y + (LOOT_DISTANCE * CAMERA_ANGLE) * sin(theAngle)"
 											}
 										},
 										{
@@ -6533,16 +6520,6 @@
 					"actions": [],
 					"sid": 700983687129705,
 					"children": [
-						{
-							"eventType": "variable",
-							"name": "CAMERA_ANGLE",
-							"type": "number",
-							"initialValue": "0.5",
-							"comment": "The camera angle, on a scale of 0 to 1.",
-							"isStatic": false,
-							"isConstant": true,
-							"sid": 332361668066869
-						},
 						{
 							"eventType": "variable",
 							"name": "MAX_ANGLE",

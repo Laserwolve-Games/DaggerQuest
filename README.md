@@ -1,4 +1,4 @@
-![DaggerQuest Logo](logo.png)
+![DaggerQuest Logo](logo.webp)
 
 A 2D Action RPG made in [Construct 3](https://www.construct.net/). Embark on an epic adventure filled with quests, combat, and exploration in this classic-style ARPG.
 

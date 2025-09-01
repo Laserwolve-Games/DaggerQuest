@@ -1,5 +1,67 @@
 {
 	"name": "characterSelect",
-	"events": [],
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 671825146666770,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "manCharacterSelect"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "Change layout",
+					"sid": 553131135228741,
+					"parameters": [
+						"\"manPickup\"",
+						true
+					]
+				}
+			],
+			"sid": 897425488896493
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "mouse",
+					"sid": 868399775429274,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "manCharacterSelect2"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 276457731615182
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 649756226508172
+				}
+			],
+			"actions": [
+				{
+					"customAction": "Fade out",
+					"objectClass": "fader",
+					"sid": 360502434365322
+				}
+			],
+			"sid": 671029646827041
+		}
+	],
 	"sid": 924480755830625
 }

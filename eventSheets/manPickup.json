@@ -1,5 +1,27 @@
 {
 	"name": "manPickup",
-	"events": [],
-	"sid": 211451789894849
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 872359114522801
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "Change layout",
+					"sid": 568821760820495,
+					"parameters": [
+						"\"farm\"",
+						false
+					]
+				}
+			],
+			"sid": 646895741945329
+		}
+	],
+	"sid": 557023382759858
 }

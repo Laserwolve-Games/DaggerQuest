@@ -21,7 +21,7 @@ A 2D Action RPG made in [Construct 3](https://www.construct.net/). Embark on an 
 
 ## 🛠️ Development
 
-This repository contains the source code for DaggerQuest, built using Construct 3. The game is developed by [Laserwolve Games](https://www.laserwolvegames.com/). Contribution is welcomed; submit a Pull Request!
+This repository contains the source code for DaggerQuest, built using Construct 3. The game is developed by [Laserwolve Games](https://laserwolvegames.com/). Contribution is welcomed; submit a Pull Request!
 
 ### 📋 Related Repositories
 

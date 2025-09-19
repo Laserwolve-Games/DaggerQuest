@@ -9,15 +9,15 @@ Thank you for your interest in DaggerQuest! This document outlines how to get he
 If you're experiencing issues with DaggerQuest or need help with gameplay:
 
 1. **Check the Game Guide**: Visit [DaggerQuest.com/guide](https://daggerquest.com/guide) for gameplay tips and tutorials
-2. **Browse Known Issues**: Check our [Issues](https://github.com/Laserwolve-Games/DaggerQuest/issues) page for known problems and solutions
-3. **Community Discussion**: Join discussions in our [Discussions](https://github.com/Laserwolve-Games/DaggerQuest/discussions) section
+2. **Browse Known Issues**: Check our [Issues](https://github.com/Vineyard-Technologies/DaggerQuest/issues) page for known problems and solutions
+3. **Community Discussion**: Join discussions in our [Discussions](https://github.com/Vineyard-Technologies/DaggerQuest/discussions) section
 
 ### Technical Support
 
 For technical issues, bugs, or compatibility problems:
 
 1. **Search Existing Issues**: Check if your issue has already been reported
-2. **Create a Bug Report**: If you find a new bug, please [open an issue](https://github.com/Laserwolve-Games/DaggerQuest/issues/new) with:
+2. **Create a Bug Report**: If you find a new bug, please [open an issue](https://github.com/Vineyard-Technologies/DaggerQuest/issues/new) with:
    - Clear description of the problem
    - Steps to reproduce the issue
    - Browser and device information
@@ -29,7 +29,7 @@ For questions about contributing to DaggerQuest:
 
 1. **Read Contributing Guidelines**: Check our [CONTRIBUTING.md](CONTRIBUTING.md) file
 2. **Code of Conduct**: Review our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-3. **Start a Discussion**: Ask questions in [Discussions](https://github.com/Laserwolve-Games/DaggerQuest/discussions)
+3. **Start a Discussion**: Ask questions in [Discussions](https://github.com/Vineyard-Technologies/DaggerQuest/discussions)
 
 ## Contact Information
 
@@ -115,7 +115,7 @@ You can help improve support for everyone:
 ## Resources
 
 - **Game Website**: [DaggerQuest.com](https://daggerquest.com)
-- **Source Code**: [GitHub Repository](https://github.com/Laserwolve-Games/DaggerQuest)
+- **Source Code**: [GitHub Repository](https://github.com/Vineyard-Technologies/DaggerQuest)
 - **License**: [MIT License](LICENSE)
 - **Privacy Policy**: [Privacy Policy](https://daggerquest.com/privacy-policy.html)
 
